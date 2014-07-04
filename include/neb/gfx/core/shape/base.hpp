@@ -16,8 +16,7 @@
 
 #include <neb/core/shape/base.hpp>
 
-//#include <neb/gfx/glsl/program.hh>
-//#include <neb/core/light/base.hpp>
+//#include <neb/gfx/glsl/program.hpp>//#include <neb/core/light/base.hpp>
 #include <neb/gfx/core/light/util/parent.hpp>
 
 #include <neb/core/light/util/light_count.hpp>

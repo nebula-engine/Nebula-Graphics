@@ -15,8 +15,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/texture.hh>
 //#include <neb/core/light/base.hpp>
-#include <neb/gfx/glsl/program.hh>
-#include <neb/gfx/glsl/shader.hh>
+#include <neb/gfx/glsl/program.hpp>#include <neb/gfx/glsl/shader.hh>
 #include <neb/gfx/GUI/Layout/Base.hh>
 #include <neb/gfx/window/__base.hpp>
 #include <neb/gfx/window/util/Flag.hh>
