@@ -9,13 +9,12 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include <Galaxy-Standard/shared.hpp>
+#include <gal/std/shared.hpp>
 
-#include <Galaxy-Network/decl.hpp>
 
-#include <neb/free.hh>
+//#include <neb/free.hh>
 #include <neb/util/decl.hpp>
-#include <neb/app/__base.hpp>
+#include <neb/core/app/__base.hpp>
 #include <neb/gfx/util/decl.hpp>
 
 namespace neb {
@@ -28,8 +27,8 @@ namespace neb {
 				friend class neb::gfx::environ::two;
 				friend class neb::gfx::environ::three;
 
-			protected:
 				static sp::shared_ptr<neb::app::__gfx_glsl>		global();
+			protected:
 
 				sp::shared_ptr<neb::glsl::program>			use_program(neb::program_name::e);
 				sp::shared_ptr<neb::glsl::program>			get_program(neb::program_name::e);

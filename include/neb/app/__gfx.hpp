@@ -33,6 +33,7 @@ namespace neb {
 				typedef ::std::map< GLFWwindow*, sp::shared_ptr<neb::gfx::window::base> >			glfwwindow_map_type;
 
 				virtual void					init();
+				void						init_glew();
 
 				static sp::shared_ptr<neb::app::__gfx>		global();
 
