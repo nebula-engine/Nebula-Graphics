@@ -7,7 +7,7 @@
 #include <GLFW/glfw3.h>
 
 
-#include <neb/gfx/glsl/program.hh>
+#include <neb/gfx/glsl/program.hpp>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
 
 neb::glsl::Uniform::Scalar::base::base(std::string name) {

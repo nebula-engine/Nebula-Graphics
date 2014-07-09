@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include <Galaxy-Log/log.hpp>
-#include <Galaxy-Network/message.hpp>
 
 //#include <neb/gfx/window/Base.hh>
 //#include <neb/gfx/Context/Base.hh>
@@ -13,15 +12,13 @@
 
 #include <neb/core/light/base.hpp>
 //#include <neb/core/light/spot.hpp>
-#include <neb/gfx/glsl/program.hh>
+#include <neb/gfx/glsl/program.hpp>
 #include <neb/gfx/Camera/Projection/Perspective.hh>
 
 
 #include <neb/core/actor/util/Type.hh>
 
 #include <neb/util/config.hh> // nebula/config.hpp.in
-#include <neb/app/Base.hh>
-//#include <neb/actor/free.hh>
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/timer/Types.hh>
 #include <neb/timer/Actor/Release.hpp>
@@ -44,11 +41,12 @@ void			neb::gfx::core::scene::base::release() {
 	
 	neb::core::scene::base::release();
 }
-void			neb::gfx::core::scene::base::draw(sp::shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p) {
+void			neb::gfx::core::scene::base::draw(
+		sp::shared_ptr<neb::gfx::context::base> context,
+		sp::shared_ptr<neb::glsl::program> p) {
 
 	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core scene", debug) << __PRETTY_FUNCTION__;
 
-	//auto p = neb::app::base::globalBase()->use_program(neb::program_name::e::LIGHT);
 
 
 	neb::core::light::util::count light_count;

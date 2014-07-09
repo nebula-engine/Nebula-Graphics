@@ -2,7 +2,7 @@
 #include <Galaxy-Log/log.hpp>
 
 #include <neb/debug.hh>
-#include <neb/app/Base.hh>
+//#include <neb/app/Base.hh>
 #include <neb/core/scene/base.hpp>
 #include <neb/gfx/Context/Base.hh>
 #include <neb/gfx/environ/base.hpp>

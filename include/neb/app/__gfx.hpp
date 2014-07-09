@@ -9,13 +9,14 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include <Galaxy-Standard/shared.hpp>
+#include <gal/std/shared.hpp>
 
-#include <Galaxy-Network/decl.hpp>
 
 #include <neb/util/decl.hpp>
-#include <neb/app/__base.hpp>
+#include <neb/core/app/__base.hpp>
+
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/GUI/Layout/Util/Parent.hh>
 #include <neb/gfx/window/util/Parent.hh>
 
 namespace neb {
@@ -26,13 +27,15 @@ namespace neb {
 		 */
 		class __gfx:
 			virtual public neb::app::__base,
-			virtual public neb::gfx::window::util::parent
-			virtual public neb::gfx::gui::layout::util::parent,
+			virtual public neb::gfx::window::util::parent,
+			virtual public neb::gfx::gui::layout::util::parent
 		{
 			public:
 				typedef ::std::map< GLFWwindow*, sp::shared_ptr<neb::gfx::window::base> >			glfwwindow_map_type;
 
 				virtual void					init();
+				virtual void					release() = 0;
+
 				void						init_glew();
 
 				static sp::shared_ptr<neb::app::__gfx>		global();
@@ -50,6 +53,7 @@ namespace neb {
 				static void					static_key_fun(GLFWwindow*,int,int,int,int);
 
 
+				sp::shared_ptr<neb::gfx::window::base>			get_window(GLFWwindow*);
 
 			public:
 

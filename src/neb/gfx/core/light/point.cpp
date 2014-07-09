@@ -3,9 +3,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <neb/debug.hh>
-#include <neb/app/Base.hh>
+#include <neb/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/light/point.hpp>
 #include <neb/gfx/glsl/Uniform/vector.hpp>
+#include <neb/gfx/glsl/program.hpp>
 
 neb::gfx::core::light::point::point(sp::shared_ptr<neb::core::light::util::parent> parent):
         neb::core::light::base(parent),
@@ -20,7 +21,7 @@ void	neb::gfx::core::light::point::load(neb::core::light::util::count & light_co
         
         neb::gfx::core::light::base::load(light_count.point, pose);
         
-        auto p = neb::app::base::global()->current_program();
+        auto p = neb::app::__gfx_glsl::global()->current_program();
         
         
         p->get_uniform_vector("lights_point.atten_const")->load(light_count.point, atten_const_);

@@ -1,6 +1,6 @@
 #include <neb/util/config.hh>
 #include <neb/app/__gfx_glsl.hpp>
-#include <neb/gfx/glsl/program.hh>
+#include <neb/gfx/glsl/program.hpp>
 
 void	neb::app::__gfx_glsl::create_programs() {
 

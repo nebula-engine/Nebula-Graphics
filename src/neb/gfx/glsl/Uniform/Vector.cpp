@@ -8,7 +8,7 @@
 //#include <GL/glut.h>
 
 #include <neb/gfx/glsl/Uniform/vector.hpp>
-#include <neb/gfx/glsl/program.hh>
+#include <neb/gfx/glsl/program.hpp>
 
 
 neb::glsl::Uniform::Vector::base::base(std::string name1, std::string name2) {

@@ -9,7 +9,7 @@
 
 
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
-#include <neb/free.hh>
+#include <neb/gfx/free.hpp>
 
 void	neb::glsl::Uniform::Scalar::Mat4::load(mat4 const & m) {
 	assert(o_ != -1);

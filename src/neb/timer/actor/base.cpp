@@ -1,18 +1,18 @@
 #include <gal/log/log.hpp>
 
-#include <neb/app/Base.hh>
+#include <neb/app/__gfx_glsl.hpp>
 #include <neb/timer/Actor/Base.hpp>
 #include <neb/core/actor/base.hpp>
 #include <neb/debug.hh>
 
 
 neb::Timer::actor::base::base(sp::shared_ptr<neb::core::actor::base> actor, double seconds):
-	timer_(neb::app::base::global()->ios_, boost::posix_time::seconds(seconds)),
+	timer_(neb::app::__gfx_glsl::global()->ios_, boost::posix_time::seconds(seconds)),
 	actor_(actor)
 {
 	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb timer", debug) << __PRETTY_FUNCTION__;
 
-	assert(!neb::app::base::global()->ios_.stopped());
+	assert(!neb::app::__gfx_glsl::global()->ios_.stopped());
 	
 	// cannot do this: shared_from_this shouldnt be used in ctor??
 	

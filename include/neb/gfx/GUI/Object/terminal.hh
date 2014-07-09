@@ -3,7 +3,7 @@
 
 #include <deque>
 
-#include <gal/console/base.hpp>
+#include <gal/console/console.hpp>
 
 #include <neb/gfx/GUI/Object/Base.hh>
 
@@ -11,12 +11,12 @@ namespace neb {	namespace gfx {	namespace gui {	namespace object {
 
 
 	class terminal:
-		virtual public neb::gfx::gui::object::base,
-		virtual public gal::std::terminal
+		virtual public neb::gfx::gui::object::base
 	{
 		public:
-			enum
-			{
+			typedef gal::console::temp<gal::console::frontend::store, gal::console::backend::python> console_type;
+			
+			enum {
 				max_line_count = 10
 			};
 
@@ -30,6 +30,9 @@ namespace neb {	namespace gfx {	namespace gui {	namespace object {
 
 			virtual int		key_fun(
 					sp::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
+
+
+			::std::shared_ptr<console_type>		console_;
 
 	};
 

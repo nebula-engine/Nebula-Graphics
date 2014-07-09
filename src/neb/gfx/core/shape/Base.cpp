@@ -4,12 +4,14 @@
 #include <Galaxy-Log/log.hpp>
 
 #include <neb/debug.hh>
-#include <neb/app/Base.hh>
+#include <neb/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/shape/base.hpp>
 
 #include <neb/gfx/core/light/point.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
+#include <neb/gfx/glsl/program.hpp>
+
 #include <neb/math/geo/polygon.hpp>
 
 neb::gfx::core::shape::base::base(sp::shared_ptr<neb::core::shape::util::parent> parent):
@@ -49,7 +51,7 @@ void					neb::gfx::core::shape::base::draw(
 }
 void					neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 
-	auto p = neb::app::base::global()->current_program();
+	auto p = neb::app::__gfx_glsl::global()->current_program();
 
 	mat4 space = pose.mat4_cast() * glm::scale(s_);
 

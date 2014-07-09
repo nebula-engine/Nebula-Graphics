@@ -6,6 +6,8 @@
 
 //#include <galaxy/sig/connection.hpp>
 
+#include <glm/glm.hpp>
+
 /*
 #include <math/vec3.hpp>
 #include <math/vec4.hpp>

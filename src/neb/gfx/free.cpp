@@ -13,12 +13,12 @@
 
 #include <neb/debug.hh>
 
-#include <neb/app/Base.hh>
+#include <neb/app/__gfx.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 
-#include <neb/free.hh>
+#include <neb/gfx/free.hpp>
 
 void			neb::draw_quad(
 		sp::shared_ptr<neb::glsl::program> p,
@@ -96,7 +96,7 @@ void		neb::draw_text(
 		<< text;
 
 	// face
-	FT_Face& face  = neb::app::base::global()->face_;
+	FT_Face& face  = neb::app::__gfx::global()->face_;
 	
 
 

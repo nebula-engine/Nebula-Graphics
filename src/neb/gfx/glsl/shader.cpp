@@ -6,7 +6,7 @@
 #include <sys/time.h>
 #include <string.h>
 
-#include <neb/free.hh>
+#include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/shader.hh>
 
 void	neb::glsl::shader::load(const char * filename, GLenum shader_type)

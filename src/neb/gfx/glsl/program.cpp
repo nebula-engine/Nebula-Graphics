@@ -11,8 +11,8 @@
 
 #include <neb/debug.hh>
 #include <neb/gfx/glsl/shader.hh>
-#include <neb/free.hh>
-#include <neb/gfx/glsl/program.hh>
+#include <neb/gfx/free.hpp>
+#include <neb/gfx/glsl/program.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
 #include <neb/gfx/glsl/Uniform/vector.hpp>

@@ -7,7 +7,7 @@
 
 #include <neb/gfx/texture.hh>
 #include <neb/gfx/window/Base.hh>
-#include <neb/free.hh>
+#include <neb/gfx/free.hpp>
 
 #include <png.h>
 

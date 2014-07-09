@@ -1,6 +1,5 @@
 #include <gal/log/log.hpp>
 
-#include <neb/app/Base.hh>
 #include <neb/timer/Actor/Release.hpp>
 #include <neb/core/actor/base.hpp>
 #include <neb/debug.hh>

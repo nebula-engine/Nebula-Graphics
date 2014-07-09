@@ -1,12 +1,13 @@
 #include <Galaxy-Log/log.hpp>
 
-#include <neb/app/Base.hh>
+#include <neb/app/__gfx_glsl.hpp>
 #include <neb/debug.hh>
 
 #include <neb/gfx/Camera/View/Free.hh>
 #include <neb/gfx/Camera/Projection/Perspective.hh>
 
 #include <neb/gfx/environ/three.hpp>
+#include <neb/gfx/drawable/base.hpp>
 
 void		neb::gfx::environ::three::init() {
 	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx environ", debug) << __PRETTY_FUNCTION__;
@@ -44,7 +45,7 @@ void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> c
 	if(!drawable) return;
 
 	//auto self = sp::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
-	auto app = neb::app::base::global();
+	auto app = neb::app::__gfx_glsl::global();
 
 	/** wrong for color maybe! */	
 	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);

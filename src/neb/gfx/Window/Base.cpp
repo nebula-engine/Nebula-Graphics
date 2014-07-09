@@ -16,9 +16,12 @@
 #include <neb/core/scene/util/Types.hh>
 #include <neb/debug.hh>
 
-#include <neb/free.hh>
+#include <neb/gfx/free.hpp>
 #include <neb/core/actor/base.hpp>
-#include <neb/app/Base.hh>
+
+#include <neb/app/__gfx.hpp>
+#include <neb/app/__gfx_glsl.hpp>
+
 #include <neb/gfx/Context/Base.hh>
 #include <neb/core/light/base.hpp>
 #include <neb/gfx/window/Base.hh>
@@ -47,7 +50,7 @@ void neb::gfx::window::base::init() {
 
 	neb::std::shared::init();
 
-	auto app = neb::app::base::global();
+	auto app = neb::app::__gfx::global();
 	assert(app);
 
 	assert(app->flag_.any(neb::app::util::flag::INIT_GLFW));
@@ -74,30 +77,36 @@ void neb::gfx::window::base::init() {
 
 	glfwSetWindowPosCallback(
 			window_,
-			neb::app::base::static_window_pos_fun);
+			neb::app::__gfx::static_window_pos_fun);
 	glfwSetWindowSizeCallback(
 			window_,
-			neb::app::base::static_window_size_fun);
+			neb::app::__gfx::static_window_size_fun);
 	glfwSetWindowCloseCallback(
 			window_,
-			neb::app::base::static_window_close_fun);
+			neb::app::__gfx::static_window_close_fun);
 	glfwSetWindowRefreshCallback(
 			window_,
-			neb::app::base::static_window_refresh_fun);
+			neb::app::__gfx::static_window_refresh_fun);
 	glfwSetKeyCallback(
 			window_,
-			neb::app::base::static_key_fun);
+			neb::app::__gfx::static_key_fun);
 	glfwSetMouseButtonCallback(
 			window_,
-			neb::app::base::static_mouse_button_fun);
+			neb::app::__gfx::static_mouse_button_fun);
 
 	// add window to app's window map
 	app->windows_glfw_[window_] = self_;
 
 
 	//if(all(neb::app::base::option::SHADERS)) create_programs();
+
+
 	app->init_glew();
-	app->create_programs();
+
+	auto app2 = neb::app::__gfx_glsl::global();
+
+
+	app2->create_programs();
 
 
 

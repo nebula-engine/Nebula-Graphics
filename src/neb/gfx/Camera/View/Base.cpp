@@ -1,5 +1,6 @@
-#include <neb/app/base.hpp>
+//#include <neb/app/base.hpp>
 #include <neb/gfx/Camera/View/Base.hh>
+#include <neb/gfx/glsl/program.hpp>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
 
 neb::gfx::Camera::View::base::base(sp::shared_ptr<neb::gfx::environ::base> parent):

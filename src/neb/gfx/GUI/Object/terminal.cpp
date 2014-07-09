@@ -4,8 +4,8 @@
 #include <gal/log/log.hpp>
 
 #include <neb/debug.hh>
-#include <neb/free.hh>
-#include <neb/app/Base.hh>
+#include <neb/gfx/free.hpp>
+//#include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/GUI/Object/terminal.hh>
 
 void		neb::gfx::gui::object::terminal::init() {
@@ -13,15 +13,17 @@ void		neb::gfx::gui::object::terminal::init() {
 
 	neb::gfx::gui::object::base::init();
 
-	auto app = neb::app::base::global();
+	//auto app = neb::app::base::global();
 
-	cs_ = app->command_set_;
+	//cs_ = app->command_set_;
 
-	assert(cs_);
+	//assert(cs_);
 }
 void		neb::gfx::gui::object::terminal::draw(sp::shared_ptr<neb::glsl::program> p) {
 	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx gui", debug) << __PRETTY_FUNCTION__;
-
+	
+	if(!console_) return;
+	
 	if(!flag_.any(neb::gfx::gui::object::util::flag::ENABLED)) return;
 
 	float sx = 1.0/ 600.0;
@@ -31,13 +33,13 @@ void		neb::gfx::gui::object::terminal::draw(sp::shared_ptr<neb::glsl::program> p
 
 	float y = y_ + 0.5;
 	float line_height = 0.1;
-
-	for(auto l : lines_) {
+	
+	for(auto l : console_->lines_) {
 		draw_text(p, x_, y, sx, sy, font_color_, l.c_str());
 		y -= line_height;
 	}
 
-	::std::string line = "$ " + line_;
+	::std::string line = "$ " + console_->line_;
 
 	draw_text(p, x_, y, sx, sy, font_color_, line.c_str());
 
@@ -65,12 +67,12 @@ int			neb::gfx::gui::object::terminal::key_fun(
 				flag_.toggle(neb::gfx::gui::object::util::flag::ENABLED);
 				break;
 			case GLFW_KEY_BACKSPACE:
-				if(!line_.empty()) {
-					line_.pop_back();
+				if(!console_->line_.empty()) {
+					console_->line_.pop_back();
 				}
 				break;
 			case GLFW_KEY_SPACE:
-				push(' ');
+				console_->push(' ');
 				break;
 			case GLFW_KEY_A:
 			case GLFW_KEY_B:
@@ -98,7 +100,7 @@ int			neb::gfx::gui::object::terminal::key_fun(
 			case GLFW_KEY_X:
 			case GLFW_KEY_Y:
 			case GLFW_KEY_Z:
-				push(k);
+				console_->push(k);
 				break;
 			case GLFW_KEY_0:
 			case GLFW_KEY_1:
@@ -110,10 +112,10 @@ int			neb::gfx::gui::object::terminal::key_fun(
 			case GLFW_KEY_7:
 			case GLFW_KEY_8:
 			case GLFW_KEY_9:
-				push(k_num);
+				console_->push(k_num);
 				break;
 			case GLFW_KEY_ENTER:
-				enter();
+				console_->enter();
 				break;
 		}
 	}

@@ -9,7 +9,7 @@
 
 
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
-#include <neb/free.hh>
+#include <neb/gfx/free.hpp>
 
 void	neb::glsl::Uniform::Scalar::Int::load(int i) {
 	glUniform1i(o_, i);

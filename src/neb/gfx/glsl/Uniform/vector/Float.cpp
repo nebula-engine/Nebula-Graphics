@@ -11,7 +11,7 @@
 
 //#include <neb/scene/scene.hpp>
 #include <neb/gfx/glsl/Uniform/vector.hpp>
-#include <neb/free.hh>
+#include <neb/gfx/free.hpp>
 
 
 

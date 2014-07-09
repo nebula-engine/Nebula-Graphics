@@ -10,7 +10,7 @@
 
 //#include <neb/scene/scene.hpp>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
-#include <neb/free.hh>
+#include <neb/gfx/free.hpp>
 
 
 void	neb::glsl::Uniform::Scalar::Vec3::load(float* v) {

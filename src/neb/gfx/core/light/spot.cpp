@@ -3,10 +3,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <neb/debug.hh>
-#include <neb/app/Base.hh>
+#include <neb/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/light/spot.hpp>
 #include <neb/gfx/glsl/Uniform/vector.hpp>
-
+#include <neb/gfx/glsl/program.hpp>
 
 
 neb::gfx::core::light::spot::spot(sp::shared_ptr<neb::core::light::util::parent> parent):
@@ -27,7 +27,7 @@ void			neb::gfx::core::light::spot::load(
 
 	neb::gfx::core::light::base::load(light_count.spot, pose);
 
-	auto p = neb::app::base::global()->current_program();
+	auto p = neb::app::__gfx_glsl::global()->current_program();
 
 	vec4 spot_direction(spot_direction_,0.0);
 

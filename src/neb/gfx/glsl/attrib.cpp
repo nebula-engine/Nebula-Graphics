@@ -4,8 +4,8 @@
 
 
 #include <neb/gfx/glsl/attrib.hh>
-#include <neb/free.hh>
-#include <neb/gfx/glsl/program.hh>
+#include <neb/gfx/free.hpp>
+#include <neb/gfx/glsl/program.hpp>
 
 neb::glsl::attrib::attrib():
 	o_(-1),

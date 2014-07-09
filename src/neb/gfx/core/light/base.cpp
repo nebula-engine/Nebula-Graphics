@@ -4,13 +4,13 @@
 #include <gal/log/log.hpp>
 
 #include <neb/debug.hh>
-#include <neb/app/Base.hh>
+#include <neb/app/__gfx_glsl.hpp>
 #include <neb/util/decl.hpp>
 #include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/core/scene/base.hpp>
 #include <neb/core/shape/base.hpp>
-#include <neb/free.hh>
+#include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/Uniform/vector.hpp>
 
 
@@ -68,7 +68,7 @@ void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
 	
 	/** @todo way to ditinguish lights in shader */
 	
-	auto p = neb::app::base::global()->current_program();
+	auto p = neb::app::__gfx_glsl::global()->current_program();
 	
 	vec3 pos = pos_;
 	
