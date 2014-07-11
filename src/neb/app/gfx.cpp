@@ -44,7 +44,7 @@ void					neb::app::__gfx::static_error_fun(int error, char const * description) 
 void					neb::app::__gfx::static_window_pos_fun(GLFWwindow* window, int x, int y){
 	//GLUTPP_DEBUG_0_FUNCTION;
 
-	auto w = neb::app::__gfx::global()->getWindow(window);
+	auto w = neb::app::__gfx::global()->get_window(window);
 
 	w->callback_window_pos_fun(window,x,y);
 }

@@ -10,8 +10,8 @@
 #include <GLFW/glfw3.h>
 //#include <glfw3.h>
 
-#include <gal/console/command.hpp>
-#include <gal/console/command_set.hpp>
+#include <gal/console/backend/command.hpp>
+#include <gal/console/backend/command_set.hpp>
 
 #include <Galaxy-Network/message.hpp>
 
@@ -67,24 +67,7 @@ void				neb::app::base::init() {
 
 
 
-	// command set
-	
-	command_set_ = sp::make_shared<gal::std::command_set>();
 
-	command_set_->init();	
-	
-	// exit command
-	
-	auto cmd_exit = sp::make_shared<gal::std::command>();
-
-	cmd_exit->func_ = [&] (sp::shared_ptr<gal::std::terminal> term, bpo::variables_map vm) {
-		sp::shared_ptr<neb::app::base> app = neb::app::base::global();
-		app->flag_.set(neb::app::util::flag::SHOULD_RELEASE);
-	};
-
-	command_set_->map_["exit"] = cmd_exit;
-	
-	
 
 }
 void				neb::app::base::init_glew() {
