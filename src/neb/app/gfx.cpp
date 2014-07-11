@@ -33,7 +33,27 @@ void					neb::app::__gfx::init() {
 	}
 
 
+	// glfw
+	glfwInit();
+	
+	glfwSetErrorCallback(static_error_fun);
 
+	flag_.set(neb::app::util::flag::INIT_GLFW);
+	
+}
+
+void				neb::app::__gfx::init_glew() {
+	if(!flag_.any(neb::app::util::flag::INIT_GLEW)) {
+
+		GLenum err = glewInit();
+		if (err != GLEW_OK)
+		{
+			printf("GLEW: %s\n", glewGetErrorString(err));
+			exit(EXIT_FAILURE);
+		}
+
+		flag_.set(neb::app::util::flag::INIT_GLEW);
+	}
 }
 //void					neb::app::__gfx::release() {
 //}
