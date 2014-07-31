@@ -16,12 +16,14 @@ FIND_PACKAGE(Galaxy COMPONENTS
 	log
 	console
 	REQUIRED)
+
 FIND_PACKAGE(Nebula COMPONENTS
 	core
 	REQUIRED)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -D_DEBUG -std=c++0x")
 
+INCLUDE_DIRECTORIES("/usr/include/python2.7")
 include_directories("/usr/include/freetype2")
 include_directories("./maze/include")
 include_directories("./Control-System/include")
