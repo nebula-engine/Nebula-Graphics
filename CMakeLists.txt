@@ -7,10 +7,7 @@ PROJECT(nebula_gfx)
 SET(nebula_gfx_STATIC TRUE)
 
 FIND_PACKAGE(glfw)
-#FIND_PACKAGE(galaxy_std_shared)
-#FIND_PACKAGE(galaxy_log_shared)
-#FIND_PACKAGE(galaxy_console_shared)
-#FIND_PACKAGE(nebula_core_shared)
+
 FIND_PACKAGE(Galaxy COMPONENTS
 	std
 	log
