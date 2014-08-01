@@ -1,3 +1,6 @@
+
+#include <neb/gfx/GUI/Object/terminal.hh>
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
@@ -6,7 +9,6 @@
 #include <neb/debug.hh>
 #include <neb/gfx/free.hpp>
 //#include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/GUI/Object/terminal.hh>
 
 void		neb::gfx::gui::object::terminal::init() {
 	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx gui", debug) << __PRETTY_FUNCTION__;

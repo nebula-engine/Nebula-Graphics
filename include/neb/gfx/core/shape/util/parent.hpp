@@ -23,7 +23,7 @@
 #include <neb/core/shape/util/Cast.hh>
 
 
-#include <Galaxy-Standard/shared.hpp>
+#include <gal/std/shared.hpp>
 
 //#include <neb/gfx/material.hh>
 //#include <neb/gfx/mesh.hh>
@@ -35,20 +35,20 @@ namespace neb { namespace core { namespace shape { namespace util {
 
 
 
-			/** @brief @Parent
-			 * abstract class for parent of a shape
-			 *
-			 * @note inheritance of neb::util::parent is non-virtual
-			 */
-			class parent:
-				virtual public neb::util::parent<neb::core::shape::base>,
-				virtual public neb::core::actor::util::cast,
-				virtual public neb::core::shape::util::cast,
-				virtual public neb::core::Pose
-			{
-				public:
-					virtual ~parent() {}
-			};
+	/** @brief @Parent
+	 * abstract class for parent of a shape
+	 *
+	 * @note inheritance of neb::util::parent is non-virtual
+	 */
+	class parent:
+		virtual public neb::util::parent<neb::core::shape::base>,
+		virtual public neb::core::actor::util::cast,
+		virtual public neb::core::shape::util::cast,
+		virtual public neb::core::Pose
+	{
+		public:
+			virtual ~parent() {}
+	};
 
 
 }}}}
