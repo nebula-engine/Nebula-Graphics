@@ -1,7 +1,7 @@
 #ifndef NEBULA_GRAPHICS_CONTEXT_UTIL_PARENT_HH
 #define NEBULA_GRAPHICS_CONTEXT_UTIL_PARENT_HH
 
-#include <neb/util/parent.hpp>
+#include <neb/core/util/parent.hpp>
 #include <neb/gfx/window/util/Cast.hh>
 #include <neb/gfx/Context/Base.hh>
 

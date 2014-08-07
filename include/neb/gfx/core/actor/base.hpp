@@ -3,28 +3,13 @@
 
 #include <memory>
 
-#include <boost/signals2.hpp>
-
 #include <boost/archive/polymorphic_iarchive.hpp>
 #include <boost/archive/polymorphic_oarchive.hpp>
 #include <boost/serialization/map.hpp>
+#include <boost/signals2.hpp>
 
-//#include <PxPhysicsAPI.h>
-
-//#include <neb/config.hh> // Nebula/config.hpp.in
-//#include <neb/core/actor/util/desc.hh>
-
-//#include <neb/math/Serialization.hh>
-
-//#include <neb/Filter.hh>
-#include <neb/math/Serialization/GLM.hpp>
-//#include <neb/message/Actor/Update.hh>
-//#include <neb/gfx/texture.hh>
-//#include <neb/gfx/material.hh>
-
+#include <neb/core/math/Serialization/GLM.hpp>
 #include <neb/core/actor/base.hpp>
-
-
 #include <neb/core/shape/base.hpp>
 #include <neb/core/shape/util/Parent.hh>
 

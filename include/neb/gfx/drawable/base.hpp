@@ -1,7 +1,7 @@
 #ifndef NEBULA_GRAPHICS_DRAWABLE_BASE_HPP
 #define NEBULA_GRAPHICS_DRAWABLE_BASE_HPP
 
-#include <neb/util/shared.hpp>
+#include <neb/core/util/shared.hpp>
 
 namespace neb {
 

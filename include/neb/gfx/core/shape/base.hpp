@@ -3,24 +3,16 @@
 
 #include <map>
 
-#include <boost/weak_ptr.hpp>
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include <gal/std/timestep.hpp>
 
-//#include <neb/util/decl.hpp>
-#include <neb/typedef.hpp>
-//#include <neb/gfx/util/decl.hpp>
-
+#include <neb/core/typedef.hpp>
 #include <neb/core/shape/base.hpp>
-
-//#include <neb/gfx/glsl/program.hpp>//#include <neb/core/light/base.hpp>
-#include <neb/gfx/core/light/util/parent.hpp>
-
 #include <neb/core/light/util/light_count.hpp>
 
+#include <neb/gfx/core/light/util/parent.hpp>
 #include <neb/gfx/texture.hh>
 #include <neb/gfx/material.hpp>
 #include <neb/gfx/mesh.hh>

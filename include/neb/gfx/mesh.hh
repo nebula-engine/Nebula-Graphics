@@ -20,11 +20,9 @@
 #include <math/geo/polyhedron.hpp>
 */
 
-#include <neb/math/geo/decl.hpp>
+#include <neb/core/math/geo/decl.hpp>
 
-//#include <neb/config.hh>
 #include <neb/gfx/material.hpp>
-
 
 namespace neb { namespace gfx {
 	class mesh {

@@ -4,7 +4,8 @@
 #include <boost/serialization/nvp.hpp>
 
 #include <gal/std/timestep.hpp>
-#include <neb/gfx/Color/Color.hh>
+
+#include <neb/core/Color/Color.hh>
 
 namespace neb {
 	namespace material {

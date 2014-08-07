@@ -5,9 +5,10 @@
 
 #include <boost/signals2.hpp>
 
-#include <neb/util/shared.hpp>
+#include <neb/core/util/shared.hpp>
+#include <neb/core/Color/Color.hh>
+
 #include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/Color/Color.hh>
 #include <neb/gfx/GUI/Object/Util/Parent.hh>
 #include <neb/gfx/GUI/Object/Util/flag.hpp>
 

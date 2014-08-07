@@ -1,7 +1,7 @@
 #ifndef __GRU_WINDOW___BASE_H__
 #define __GRU_WINDOW___BASE_H__
 
-#include <neb/util/shared.hpp>
+#include <neb/core/util/shared.hpp>
 
 namespace neb {
 	namespace gfx {

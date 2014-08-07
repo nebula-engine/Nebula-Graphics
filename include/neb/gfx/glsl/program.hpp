@@ -7,13 +7,10 @@
 #include <map>
 #include <vector>
 
-//#include <neb/config.hh> // Nebula/config.hpp.in
-#include <neb/util/decl.hpp>
-#include <neb/util/typedef.hpp>
-#include <neb/gfx/util/decl.hpp>
+#include <neb/core/util/decl.hpp>
+#include <neb/core/util/typedef.hpp>
 
-//#include <neb/gfx/glsl/attrib.hh>
-//#include <neb/gfx/glsl/Uniform/uniform.hh>
+#include <neb/gfx/util/decl.hpp>
 
 namespace neb {
 	namespace glsl {

@@ -1,7 +1,8 @@
 #ifndef NEBULA_GRAPHICS_CONTEXT_UTIL_CAST_HH
 #define NEBULA_GRAPHICS_CONTEXT_UTIL_CAST_HH
 
-#include <neb/util/shared.hpp>
+#include <neb/core/util/shared.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 
 namespace neb {
