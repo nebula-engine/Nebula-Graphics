@@ -1,7 +1,8 @@
 #ifndef NEBULA_GFX_ENVIRON_THREE_HPP
 #define NEBULA_GFX_ENVIRON_THREE_HPP
 
-#include <neb/util/typedef.hpp>
+#include <neb/core/util/typedef.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/environ/base.hpp>
 

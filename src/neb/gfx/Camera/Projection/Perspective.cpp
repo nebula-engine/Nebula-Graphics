@@ -11,11 +11,9 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <neb/debug.hh>
-//#include <neb/app/Base.hh>
+#include <neb/core/debug.hh>
 #include <neb/core/actor/base.hpp>
-//#include <neb/gfx/window/Base.hh>
-//#include <neb/core/scene/base.hpp>
+
 #include <neb/gfx/Camera/Projection/Perspective.hh>
 #include <neb/gfx/environ/base.hpp>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>

@@ -2,7 +2,8 @@
 #define __GLUTPP_ATTRIBUTE_H__
 
 #include <memory>
-#include <neb/util/typedef.hpp>
+
+#include <neb/core/util/typedef.hpp>
 
 namespace neb {
 	namespace glsl {

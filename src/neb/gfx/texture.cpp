@@ -3,7 +3,7 @@
 
 #include <GL/glew.h>
 
-#include <neb/gfx/Color/Color.hh>
+#include <neb/core/Color/Color.hh>
 
 #include <neb/gfx/texture.hh>
 #include <neb/gfx/window/Base.hh>

@@ -6,11 +6,7 @@
 
 #include <GLFW/glfw3.h>
 
-//#include <PxPhysicsAPI.h>
-#include <neb/util/typedef.hpp>
-
-//#include <math/mat44.hpp>
-//#include <math/color.hpp>
+#include <neb/core/util/typedef.hpp>
 
 namespace neb {
 	namespace glsl {

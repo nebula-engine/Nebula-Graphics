@@ -2,10 +2,10 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <Galaxy-Log/log.hpp>
+#include <gal/log/log.hpp>
 
-#include <neb/debug.hh>
-//#include <neb/config.hh>
+#include <neb/core/debug.hh>
+
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/Camera/View/Free.hh>
 

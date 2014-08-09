@@ -6,9 +6,9 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/debug.hh>
+#include <neb/core/debug.hh>
+
 #include <neb/gfx/free.hpp>
-//#include <neb/gfx/app/__gfx_glsl.hpp>
 
 void		neb::gfx::gui::object::terminal::init() {
 	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx gui", debug) << __PRETTY_FUNCTION__;

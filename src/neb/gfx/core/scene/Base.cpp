@@ -5,25 +5,25 @@
 //#include <neb/gfx/window/Base.hh>
 //#include <neb/gfx/Context/Base.hh>
 
-#include <neb/debug.hh>
-#include <neb/gfx/core/scene/base.hpp>
-
-#include <neb/gfx/core/actor/base.hpp>
-
+#include <neb/core/debug.hh>
+#include <neb/core/util/config.hpp>
 #include <neb/core/light/base.hpp>
-//#include <neb/core/light/spot.hpp>
+#include <neb/core/actor/util/Type.hh>
+
+#include <neb/gfx/core/scene/base.hpp>
+#include <neb/gfx/core/actor/base.hpp>
 #include <neb/gfx/glsl/program.hpp>
 #include <neb/gfx/Camera/Projection/Perspective.hh>
 
 
-#include <neb/core/actor/util/Type.hh>
 
-#include <neb/util/config.hh> // nebula/config.hpp.in
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/timer/Types.hh>
 #include <neb/timer/Actor/Release.hpp>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
 #include <neb/core/light/util/light_count.hpp>
+
+using namespace std;
 
 neb::gfx::core::scene::base::base(sp::shared_ptr<neb::core::scene::util::parent> parent):
 	neb::core::scene::base(parent)
@@ -77,7 +77,19 @@ void						neb::gfx::core::scene::base::resize(int w, int h) {
 }
 void						neb::gfx::core::scene::base::step(gal::std::timestep const & ts) {
 }
+weak_ptr<neb::core::actor::base>		neb::gfx::core::scene::base::createActorBase(neb::core::pose const & pose) {
+	auto actor(make_shared<neb::gfx::core::actor::base>(isSceneBase()));
+	insert(actor);
+	return actor;
+}
+weak_ptr<neb::core::actor::base>		neb::gfx::core::scene::base::createActorLightPoint(vec3 p) {
+	auto actor(make_shared<neb::gfx::core::actor::base>(isSceneBase()));
+	insert(actor);
 
+	auto shape = actor->createShapeBase();
+
+	return actor;
+}
 
 
 

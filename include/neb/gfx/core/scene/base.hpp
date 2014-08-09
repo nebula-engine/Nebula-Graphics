@@ -26,6 +26,17 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 			void					resize(int w, int h);
 			void					draw(sp::shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p);
 
+			/** @brief create empty actor
+			 *
+			 * @warning this function allocates object
+			 */		
+			virtual sp::weak_ptr<neb::core::actor::base>			createActorBase(neb::core::pose const & pose);
+			/** @brief create empty actor with point light
+			 *
+			 * @warning this function allocates object
+			 */
+			virtual sp::weak_ptr<neb::core::actor::base>			createActorLightPoint(vec3 p);
+
 	};
 
 

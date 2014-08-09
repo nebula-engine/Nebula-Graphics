@@ -4,7 +4,7 @@
 #include <memory>
 
 
-#include <neb/util/decl.hpp> // gru/config.hpp.in
+#include <neb/core/util/decl.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/Context/Util/Cast.hh>

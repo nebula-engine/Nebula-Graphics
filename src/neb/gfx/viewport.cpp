@@ -1,8 +1,9 @@
 #include <Galaxy-Log/log.hpp>
 
-#include <neb/debug.hh>
+#include <neb/core/debug.hh>
+#include <neb/core/util/typedef.hpp>
+
 #include <neb/gfx/Viewport.hpp>
-#include <neb/util/typedef.hpp>
 
 neb::gfx::Viewport::Viewport():
 	x_(0),

@@ -5,7 +5,7 @@
 
 #include <Galaxy-Log/log.hpp>
 
-#include <neb/debug.hh>
+#include <neb/core/debug.hh>
 #include <neb/core/actor/base.hpp>
 #include <neb/gfx/Camera/View/ridealong.hh>
 

@@ -10,7 +10,7 @@
 #include <neb/gfx/drawable/base.hpp>
 
 #include <neb/gfx/window/Base.hh>
-#include <neb/util/typedef.hpp>
+#include <neb/core/util/typedef.hpp>
 
 namespace neb {
 	namespace gfx {

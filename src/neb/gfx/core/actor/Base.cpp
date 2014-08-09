@@ -1,19 +1,16 @@
 #include <gal/log/log.hpp>
 
-#include <neb/debug.hh>
+#include <neb/core/debug.hh>
 
-//#include <neb/util/Typed.hh>
-
-#include <neb/util/decl.hpp>
-#include <neb/util/config.hh> // Nebula/config.hpp.in
-#include <neb/timer/Actor/Base.hpp>
-//#include <neb/app/Base.hh>
+#include <neb/core/util/decl.hpp>
+#include <neb/core/util/config.hpp>
 #include <neb/core/scene/base.hpp>
-#include <neb/gfx/window/util/signals.hpp>
 
+#include <neb/timer/Actor/Base.hpp>
+
+#include <neb/gfx/window/util/signals.hpp>
 #include <neb/gfx/core/actor/base.hpp>
 #include <neb/gfx/core/shape/base.hpp>
-
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/util/decl.hpp>
 

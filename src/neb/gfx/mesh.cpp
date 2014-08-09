@@ -4,10 +4,11 @@
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/shared_ptr.hpp>
 
-#include <Galaxy-Log/log.hpp>
+#include <gal/log/log.hpp>
 
-#include <neb/math/geo/polyhedron.hh>
-#include <neb/debug.hh>
+#include <neb/core/math/geo/polyhedron.hh>
+#include <neb/core/debug.hh>
+
 #include <neb/gfx/mesh.hh>
 
 

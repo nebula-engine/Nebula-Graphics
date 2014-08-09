@@ -8,22 +8,19 @@
 
 #include <map>
 
-//#include <GL/glew.h>
-//#include <GL/glut.h>
+#include <gal/log/log.hpp>
 
-#include <Galaxy-Log/log.hpp>
-
+#include <neb/core/debug.hh>
 #include <neb/core/scene/util/Types.hh>
-#include <neb/debug.hh>
+#include <neb/core/actor/base.hpp>
+#include <neb/core/light/base.hpp>
 
 #include <neb/gfx/free.hpp>
-#include <neb/core/actor/base.hpp>
 
-#include <neb/app/__gfx.hpp>
-#include <neb/app/__gfx_glsl.hpp>
+#include <neb/gfx/app/__gfx.hpp>
+#include <neb/gfx/app/__gfx_glsl.hpp>
 
 #include <neb/gfx/Context/Base.hh>
-#include <neb/core/light/base.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/window/util/Parent.hh>
 
@@ -50,10 +47,10 @@ void neb::gfx::window::base::init() {
 
 	neb::std::shared::init();
 
-	auto app = neb::app::__gfx::global();
+	auto app = neb::app::__gfx::global().lock();
 	assert(app);
 
-	assert(app->flag_.any(neb::app::util::flag::INIT_GLFW));
+	assert(app->flag_.any(neb::core::app::util::flag::INIT_GLFW));
 
 	self_ = sp::dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this());
 
@@ -103,7 +100,7 @@ void neb::gfx::window::base::init() {
 
 	app->init_glew();
 
-	auto app2 = neb::app::__gfx_glsl::global();
+	auto app2 = neb::app::__gfx_glsl::global().lock();
 
 
 	app2->create_programs();

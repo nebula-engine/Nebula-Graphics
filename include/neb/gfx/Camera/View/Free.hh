@@ -3,7 +3,8 @@
 
 #include <vector>
 
-#include <neb/util/typedef.hpp>
+#include <neb/core/util/typedef.hpp>
+
 #include <neb/gfx/Camera/View/Base.hh>
 
 namespace neb {

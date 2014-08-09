@@ -1,6 +1,6 @@
 #include <gal/log/log.hpp>
 
-#include <neb/debug.hh>
+#include <neb/core/debug.hh>
 #include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/core/light/util/parent.hpp>
 

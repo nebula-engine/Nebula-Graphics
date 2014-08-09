@@ -1,5 +1,6 @@
 
-#include <neb/math/geo/polyhedron.hh>
+#include <neb/core/math/geo/polyhedron.hh>
+
 #include <neb/gfx/core/shape/box.hpp>
 
 neb::gfx::core::shape::box::box(sp::shared_ptr<neb::core::shape::util::parent> parent):

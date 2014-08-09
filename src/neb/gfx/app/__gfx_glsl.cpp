@@ -1,7 +1,12 @@
-#include <neb/util/config.hh>
-#include <neb/app/__gfx_glsl.hpp>
+#include <neb/gfx/util/config.hpp>
+#include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/glsl/program.hpp>
 
+weak_ptr<neb::app::__gfx_glsl>		neb::app::__gfx_glsl::global() {
+	auto app(dynamic_pointer_cast<neb::app::__gfx_glsl>(g_app_));
+	assert(app);
+	return app;
+}
 void	neb::app::__gfx_glsl::create_programs() {
 
 	printf("%s\n", __PRETTY_FUNCTION__);
@@ -13,8 +18,8 @@ void	neb::app::__gfx_glsl::create_programs() {
 		p.reset(new neb::glsl::program);
 		p->init();
 
-		p->add_shader(GLUTPP_SHADER_DIR"/v130/text/vs.glsl", GL_VERTEX_SHADER);
-		p->add_shader(GLUTPP_SHADER_DIR"/v130/text/fs.glsl", GL_FRAGMENT_SHADER);
+		p->add_shader(NEB_GFX_SHADER_DIR"/v130/text/vs.glsl", GL_VERTEX_SHADER);
+		p->add_shader(NEB_GFX_SHADER_DIR"/v130/text/fs.glsl", GL_FRAGMENT_SHADER);
 
 		p->compile();
 
@@ -38,8 +43,8 @@ void	neb::app::__gfx_glsl::create_programs() {
 		p.reset(new neb::glsl::program);
 		p->init();
 
-		p->add_shader(GLUTPP_SHADER_DIR"/v130/light/vs.glsl", GL_VERTEX_SHADER);
-		p->add_shader(GLUTPP_SHADER_DIR"/v130/light/fs.glsl", GL_FRAGMENT_SHADER);
+		p->add_shader(NEB_GFX_SHADER_DIR"/v130/light/vs.glsl", GL_VERTEX_SHADER);
+		p->add_shader(NEB_GFX_SHADER_DIR"/v130/light/fs.glsl", GL_FRAGMENT_SHADER);
 
 		p->compile();
 
@@ -63,8 +68,8 @@ void	neb::app::__gfx_glsl::create_programs() {
 		p.reset(new neb::glsl::program);
 		p->init();
 
-		p->add_shader(GLUTPP_SHADER_DIR"/v130/image/vs.glsl", GL_VERTEX_SHADER);
-		p->add_shader(GLUTPP_SHADER_DIR"/v130/image/fs.glsl", GL_FRAGMENT_SHADER);
+		p->add_shader(NEB_GFX_SHADER_DIR"/v130/image/vs.glsl", GL_VERTEX_SHADER);
+		p->add_shader(NEB_GFX_SHADER_DIR"/v130/image/fs.glsl", GL_FRAGMENT_SHADER);
 
 		p->compile();
 

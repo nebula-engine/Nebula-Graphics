@@ -1,7 +1,9 @@
-#include <Galaxy-Log/log.hpp>
+#include <gal/log/log.hpp>
 
-#include <neb/app/__gfx_glsl.hpp>
-#include <neb/debug.hh>
+
+#include <neb/core/debug.hh>
+
+#include <neb/gfx/app/__gfx_glsl.hpp>
 
 #include <neb/gfx/Camera/View/Free.hh>
 #include <neb/gfx/Camera/Projection/Perspective.hh>
@@ -45,7 +47,7 @@ void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> c
 	if(!drawable) return;
 
 	//auto self = sp::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
-	auto app = neb::app::__gfx_glsl::global();
+	auto app = neb::app::__gfx_glsl::global().lock();
 
 	/** wrong for color maybe! */	
 	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);

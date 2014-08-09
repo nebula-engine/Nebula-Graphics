@@ -11,15 +11,15 @@
 
 #include <gal/std/shared.hpp>
 
-
-//#include <neb/free.hh>
-#include <neb/util/decl.hpp>
+#include <neb/core/util/decl.hpp>
 #include <neb/core/app/__base.hpp>
 #include <neb/gfx/util/decl.hpp>
 
+using namespace std;
+
 namespace neb {
 	namespace app {
-		class __gfx_glsl: virtual public neb::app::__base {
+		class __gfx_glsl: virtual public neb::core::app::__base {
 			public:
 				typedef ::std::map<int, sp::shared_ptr<neb::glsl::program> >		map_program_type;
 
@@ -27,7 +27,7 @@ namespace neb {
 				friend class neb::gfx::environ::two;
 				friend class neb::gfx::environ::three;
 
-				static sp::shared_ptr<neb::app::__gfx_glsl>		global();
+				static weak_ptr<neb::app::__gfx_glsl>			global();
 			protected:
 
 				sp::shared_ptr<neb::glsl::program>			use_program(neb::program_name::e);

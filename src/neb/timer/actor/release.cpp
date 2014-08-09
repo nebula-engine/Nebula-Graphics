@@ -2,7 +2,7 @@
 
 #include <neb/timer/Actor/Release.hpp>
 #include <neb/core/actor/base.hpp>
-#include <neb/debug.hh>
+#include <neb/core/debug.hh>
 
 
 neb::Timer::actor::Release::Release(sp::shared_ptr<neb::core::actor::base> actor, double seconds):

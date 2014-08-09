@@ -1,7 +1,8 @@
 #ifndef NEBULA_GRAPHICS_WINDOW_UTIL_PARENT_HH
 #define NEBULA_GRAPHICS_WINDOW_UTIL_PARENT_HH
 
-#include <neb/util/parent.hpp>
+#include <neb/core/util/parent.hpp>
+
 #include <neb/gfx/window/__base.hpp>
 
 namespace neb {

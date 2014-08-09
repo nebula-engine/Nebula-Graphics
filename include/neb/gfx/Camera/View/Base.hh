@@ -4,21 +4,15 @@
 #include <vector>
 #include <memory>
 
-//#include <galaxy/sig/connection.hpp>
-
 #include <glm/glm.hpp>
 
-/*
-#include <math/vec3.hpp>
-#include <math/vec4.hpp>
-#include <math/mat44.hpp>
-*/
-
-#include <neb/util/decl.hpp>
 #include <gal/std/timestep.hpp>
+
+#include <neb/core/util/decl.hpp>
+#include <neb/core/util/shared.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/Camera/View/util/flag.hpp>
-#include <neb/util/shared.hpp>
 
 namespace neb {
 	namespace gfx {

@@ -6,6 +6,7 @@ PROJECT(nebula_gfx)
 
 SET(nebula_gfx_STATIC TRUE)
 
+FIND_PACKAGE(CMakeHelper)
 FIND_PACKAGE(glfw)
 
 FIND_PACKAGE(Galaxy COMPONENTS
@@ -37,7 +38,6 @@ set(include_extensions obj)
 
 SET(GRU_VERSION 0.1.1)
 
-FIND_PACKAGE(CMakeHelper)
 
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_STATIC_RUNTIME OFF)
@@ -51,14 +51,12 @@ FIND_PACKAGE(Boost 1.55 COMPONENTS
 	thread
 	REQUIRED)
 
-
 SET(libs ${libs}
 	${PROJECT_NAME}
 	${Nebula_LIBRARIES}
-	maze
 	${Galaxy_LIBRARIES}
 	${Boost_LIBRARIES}
-	glfw
+	glfw3
 	GL
 	GLU
 	GLEW
@@ -73,6 +71,8 @@ SET(libs ${libs}
 	)
 
 MESSAGE(STATUS "CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE}")
+
+MESSAGE(STATUS "Nebula_LIBRARIES ${Nebula_LIBRARIES}")
 
 
 # common methods for static library

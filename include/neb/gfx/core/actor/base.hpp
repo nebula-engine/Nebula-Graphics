@@ -8,10 +8,12 @@
 #include <boost/serialization/map.hpp>
 #include <boost/signals2.hpp>
 
-#include <neb/core/math/Serialization/GLM.hpp>
+#include <neb/core/math/Serialization/glm.hpp>
 #include <neb/core/actor/base.hpp>
 #include <neb/core/shape/base.hpp>
 #include <neb/core/shape/util/Parent.hh>
+
+using namespace std;
 
 namespace neb {
 	namespace glsl {
@@ -43,8 +45,7 @@ namespace neb {
 			virtual ~base();
 		public:
 			virtual void					init();
-			virtual void					release() = 0;
-		public:
+			virtual void					release();
 			virtual void					step(gal::std::timestep const & ts);
 		public:
 			void						draw(
@@ -53,7 +54,9 @@ namespace neb {
 					neb::core::pose const & pose);
 
 			void						load_lights(neb::core::light::util::count& light_count, neb::core::pose const &);
-
+			virtual weak_ptr<neb::core::shape::base>	createShapeBase();
+			virtual weak_ptr<neb::core::shape::base>	createShapeBox(glm::vec3 size);
+			virtual weak_ptr<neb::core::shape::base>	createShapeCube(double size);
 		public:
 			/** @brief Parent */
 			sp::weak_ptr<neb::core::actor::base>		parent_;

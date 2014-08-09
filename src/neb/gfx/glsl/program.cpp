@@ -9,7 +9,8 @@
 #include <algorithm>
 #include <cassert>
 
-#include <neb/debug.hh>
+#include <neb/core/debug.hh>
+
 #include <neb/gfx/glsl/shader.hh>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/program.hpp>

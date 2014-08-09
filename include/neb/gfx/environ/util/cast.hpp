@@ -1,7 +1,8 @@
 #ifndef NEBULA_GFX_ENVIRON_UTIL_CAST_HPP
 #define NEBULA_GFX_ENVIRON_UTIL_CAST_HPP
 
-#include <neb/util/shared.hpp>
+#include <neb/core/util/shared.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace environ { namespace util {
