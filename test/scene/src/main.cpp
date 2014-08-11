@@ -82,9 +82,9 @@ sp::shared_ptr<neb::gfx::gui::layout::base>	create_layout(
 
 	return layout;
 }
-sp::shared_ptr<neb::core::actor::base>		create_actor(sp::shared_ptr<neb::core::scene::base> scene) {
+sp::shared_ptr<neb::core::actor::base>		create_actor(sp::shared_ptr<neb::core::core::scene::base> scene) {
 
-	auto actor = scene->cii<neb::gfx::core::actor::base, sp::shared_ptr<neb::core::scene::base>>(scene);
+	auto actor = scene->cii<neb::gfx::core::actor::base, sp::shared_ptr<neb::core::core::scene::base>>(scene);
 	
 	// shape	
 	auto shape = sp::make_shared<neb::gfx::core::shape::box>(actor);
@@ -98,7 +98,7 @@ sp::shared_ptr<neb::core::actor::base>		create_actor(sp::shared_ptr<neb::core::s
 	
 	return actor;	
 }
-/*sp::shared_ptr<neb::core::actor::base>		create_actor2(sp::shared_ptr<neb::core::scene::base> scene) {
+/*sp::shared_ptr<neb::core::actor::base>		create_actor2(sp::shared_ptr<neb::core::core::scene::base> scene) {
 	auto actor = sp::make_shared<neb::gfx::core::actor::base>(scene);
 	
 	scene->insert(actor);
@@ -134,7 +134,7 @@ sp::shared_ptr<neb::core::actor::base>		create_actor(sp::shared_ptr<neb::core::s
 
 	return actor;	
 }*/
-sp::shared_ptr<neb::core::scene::base>			create_scene(
+sp::shared_ptr<neb::core::core::scene::base>			create_scene(
 		sp::shared_ptr<neb::gfx::context::window> context) {
 	
 	auto app = neb::app::__core::global().lock();
@@ -142,7 +142,7 @@ sp::shared_ptr<neb::core::scene::base>			create_scene(
 	auto scene = sp::make_shared<neb::gfx::core::scene::base>(app);
 	assert(scene);	
 	
-	app->neb::core::scene::util::parent::insert(scene);
+	app->neb::core::core::scene::util::parent::insert(scene);
 	
 	scene->init();
 	

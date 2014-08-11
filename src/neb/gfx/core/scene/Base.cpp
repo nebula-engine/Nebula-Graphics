@@ -25,8 +25,8 @@
 
 using namespace std;
 
-neb::gfx::core::scene::base::base(sp::shared_ptr<neb::core::scene::util::parent> parent):
-	neb::core::scene::base(parent)
+neb::gfx::core::scene::base::base(sp::shared_ptr<neb::core::core::scene::util::parent> parent):
+	neb::core::core::scene::base(parent)
 {
 	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core scene", debug) << __PRETTY_FUNCTION__;
 }
@@ -39,7 +39,7 @@ void			neb::gfx::core::scene::base::init() {
 void			neb::gfx::core::scene::base::release() {
 	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core scene", debug) << __PRETTY_FUNCTION__;
 	
-	neb::core::scene::base::release();
+	neb::core::core::scene::base::release();
 }
 void			neb::gfx::core::scene::base::draw(
 		sp::shared_ptr<neb::gfx::context::base> context,
