@@ -8,8 +8,7 @@
 #include <gal/std/timestep.hpp>
 
 #include <neb/core/util/decl.hpp>
-#include <neb/core/scene/util/Types.hh>
-
+#include <neb/core/scene/util/decl.hpp>
 #include <neb/gfx/Context/Base.hh>
 #include <neb/gfx/Context/Util/Parent.hh>
 #include <neb/gfx/util/decl.hpp>

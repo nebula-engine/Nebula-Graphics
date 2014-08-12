@@ -11,7 +11,7 @@
 #include <gal/log/log.hpp>
 
 #include <neb/core/debug.hh>
-#include <neb/core/scene/util/Types.hh>
+#include <neb/core/scene/util/decl.hpp>
 #include <neb/core/actor/base.hpp>
 #include <neb/core/light/base.hpp>
 
