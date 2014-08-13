@@ -4,14 +4,11 @@
 
 using namespace std;
 
-void					neb::app::__gfx::init() {
-	neb::core::app::__base::init();
+void					neb::app::__gfx::__init() {
 
-
-	::std::vector< ::std::string > fontfiles({
+	vector< ::std::string > fontfiles({
 		"/usr/share/fonts/msttcorefonts/cour.ttf",
 		"/usr/share/fonts/truetype/msttcorefonts/cour.ttf"});
-
 
 	// font
 	//FT_Library ft;

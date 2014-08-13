@@ -34,8 +34,8 @@ namespace neb {
 		{
 			public:
 				typedef ::std::map< GLFWwindow*, sp::shared_ptr<neb::gfx::window::base> >			glfwwindow_map_type;
-
-				void						init();
+			
+				void						__init();
 				void						release();
 				void						step(gal::std::timestep const & ts);
 

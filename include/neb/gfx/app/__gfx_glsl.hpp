@@ -22,21 +22,17 @@ namespace neb {
 		class __gfx_glsl: virtual public neb::core::app::__base {
 			public:
 				typedef ::std::map<int, sp::shared_ptr<neb::glsl::program> >		map_program_type;
-
 				friend class neb::gfx::environ::base;
 				friend class neb::gfx::environ::two;
 				friend class neb::gfx::environ::three;
-
 				static weak_ptr<neb::app::__gfx_glsl>			global();
 			protected:
-
-				sp::shared_ptr<neb::glsl::program>			use_program(neb::program_name::e);
-				sp::shared_ptr<neb::glsl::program>			get_program(neb::program_name::e);
+				void							__init();
+				shared_ptr<neb::glsl::program>				use_program(neb::program_name::e);
+				shared_ptr<neb::glsl::program>				get_program(neb::program_name::e);
 			public:
-				sp::shared_ptr<neb::glsl::program>			current_program();
+				shared_ptr<neb::glsl::program>				current_program();
 				void							create_programs();
-
-
 				map_program_type					programs_;
 				sp::shared_ptr<neb::glsl::program>			current_;
 		};
