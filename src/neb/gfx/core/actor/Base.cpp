@@ -4,6 +4,7 @@
 
 #include <neb/core/util/decl.hpp>
 #include <neb/core/util/config.hpp>
+#include <neb/core/util/log.hpp>
 #include <neb/core/scene/base.hpp>
 
 #include <neb/timer/Actor/Base.hpp>
@@ -13,26 +14,27 @@
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/util/log.hpp>
 
 
 neb::gfx::core::actor::base::base(sp::shared_ptr<neb::core::actor::util::parent> parent):
 	neb::core::actor::base(parent)
 {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core actor", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 }
 neb::gfx::core::actor::base::~base() {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core actor", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 }
 void				neb::gfx::core::actor::base::init() {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx core actor", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
 void				neb::gfx::core::actor::base::release() {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx core actor", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 }
 void				neb::gfx::core::actor::base::load_lights(neb::core::light::util::count & light_count, neb::core::pose const & pose) {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core actor", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto parent(parent_.lock());
 	assert(parent);
@@ -44,16 +46,15 @@ void				neb::gfx::core::actor::base::load_lights(neb::core::light::util::count &
 
 	auto lambda_actor = [&] (A::map_type::iterator<0> it) {
 		
-		auto actor = sp::dynamic_pointer_cast<neb::core::actor::base>(it->ptr_);
+		auto actor = sp::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
+
 		if(!actor) {
 			::std::cout << "ptr   = " << it->ptr_ << " type= " << typeid(*it->ptr_).name() << ::std::endl;
 			::std::cout << "actor = " << actor << ::std::endl;
 			abort();
 		}
 		
-		if(actor->actor_gfx_) {
-			actor->actor_gfx_->load_lights(light_count, npose);
-		}
+		actor->load_lights(light_count, npose);
 	};
 	
 	auto lambda_shape = [&]  (S::map_type::iterator<0> it) {
@@ -73,7 +74,7 @@ void				neb::gfx::core::actor::base::draw(
 		sp::shared_ptr<neb::glsl::program> p,
 		neb::core::pose const & pose)
 {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core actor", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto npose = pose * pose_;
 
@@ -96,7 +97,7 @@ void				neb::gfx::core::actor::base::draw(
 }
 
 void		neb::gfx::core::actor::base::step(gal::std::timestep const & ts) {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx core actor", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
 

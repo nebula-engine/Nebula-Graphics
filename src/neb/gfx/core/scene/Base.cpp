@@ -77,16 +77,22 @@ void						neb::gfx::core::scene::base::resize(int w, int h) {
 }
 void						neb::gfx::core::scene::base::step(gal::std::timestep const & ts) {
 }
-weak_ptr<neb::core::actor::base>		neb::gfx::core::scene::base::createActorBase(neb::core::pose const & pose) {
+/*weak_ptr<neb::core::actor::base>		neb::gfx::core::scene::base::createActorBase(neb::core::pose const & pose) {
 	auto actor(make_shared<neb::gfx::core::actor::base>(isSceneBase()));
 	insert(actor);
 	return actor;
-}
+}*/
 weak_ptr<neb::core::actor::base>		neb::gfx::core::scene::base::createActorLightPoint(vec3 p) {
-	auto actor(make_shared<neb::gfx::core::actor::base>(isSceneBase()));
+
+	neb::core::pose pose(p);
+	
+	auto actor = createActorBase(pose).lock();
+	
 	insert(actor);
 
-	auto shape = actor->createShapeBase();
+	auto shape = actor->createShapeBase(neb::core::pose()).lock();
+
+	shape->createLightPoint();
 
 	return actor;
 }

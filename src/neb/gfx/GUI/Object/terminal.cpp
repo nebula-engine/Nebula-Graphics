@@ -1,6 +1,3 @@
-
-#include <neb/gfx/GUI/Object/terminal.hh>
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
@@ -9,9 +6,11 @@
 #include <neb/core/debug.hh>
 
 #include <neb/gfx/free.hpp>
+#include <neb/gfx/util/log.hpp>
+#include <neb/gfx/GUI/Object/terminal.hh>
 
 void		neb::gfx::gui::object::terminal::init() {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx gui", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	neb::gfx::gui::object::base::init();
 
@@ -22,7 +21,7 @@ void		neb::gfx::gui::object::terminal::init() {
 	//assert(cs_);
 }
 void		neb::gfx::gui::object::terminal::draw(sp::shared_ptr<neb::glsl::program> p) {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx gui", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	if(!console_) return;
 	
@@ -53,7 +52,7 @@ int			neb::gfx::gui::object::terminal::key_fun(
 		int action,
 		int mods)
 {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx gui", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 
 	char k =	'a' - GLFW_KEY_A + key;

@@ -25,10 +25,7 @@ namespace neb {
 					 * @note inheritance of neb::util::parent is non-virtual
 					 */
 					class parent :
-						virtual public neb::util::parent<neb::core::shape::base>,
-						virtual public neb::core::actor::util::cast,
-						virtual public neb::core::shape::util::cast,
-						virtual public neb::core::Pose
+						virtual public neb::core::shape::util::parent
 					{
 					public:
 						virtual ~parent() {}

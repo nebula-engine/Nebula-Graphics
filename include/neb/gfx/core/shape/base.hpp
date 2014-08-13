@@ -61,7 +61,7 @@ namespace neb {
 					virtual sp::weak_ptr<neb::core::light::base>		createLightPoint();
 
 
-					virtual void					createMesh() = 0;
+					virtual void					createMesh();
 
 
 					/** @name Rendering @{ */

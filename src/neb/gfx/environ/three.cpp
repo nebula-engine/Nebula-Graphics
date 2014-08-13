@@ -10,9 +10,10 @@
 
 #include <neb/gfx/environ/three.hpp>
 #include <neb/gfx/drawable/base.hpp>
+#include <neb/gfx/util/log.hpp>
 
 void		neb::gfx::environ::three::init() {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx environ", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto self = sp::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
 	
@@ -27,7 +28,7 @@ void		neb::gfx::environ::three::init() {
 }
 void		neb::gfx::environ::three::step(gal::std::timestep const & ts) {
 
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx environ", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	if(proj_) proj_->step(ts);	
 	if(view_) view_->step(ts);	
@@ -35,7 +36,7 @@ void		neb::gfx::environ::three::step(gal::std::timestep const & ts) {
 }
 void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> context) {
 
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx environ", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	/**
 	 * prepare rendering environment and then call the drawable

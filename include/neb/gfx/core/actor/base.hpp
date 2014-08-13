@@ -54,9 +54,9 @@ namespace neb {
 					neb::core::pose const & pose);
 
 			void						load_lights(neb::core::light::util::count& light_count, neb::core::pose const &);
-			virtual weak_ptr<neb::core::shape::base>	createShapeBase();
-			virtual weak_ptr<neb::core::shape::base>	createShapeBox(glm::vec3 size);
-			virtual weak_ptr<neb::core::shape::base>	createShapeCube(double size);
+			//virtual weak_ptr<neb::core::shape::base>	createShapeBase();
+			//virtual weak_ptr<neb::core::shape::base>	createShapeBox(glm::vec3 size);
+			//virtual weak_ptr<neb::core::shape::base>	createShapeCube(double size);
 		public:
 			/** @brief Parent */
 			sp::weak_ptr<neb::core::actor::base>		parent_;

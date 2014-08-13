@@ -33,7 +33,7 @@ namespace neb {
 						 *
 						 * @warning this function allocates object
 						 */		
-						virtual sp::weak_ptr<neb::core::actor::base>			createActorBase(neb::core::pose const & pose);
+						//virtual sp::weak_ptr<neb::core::actor::base>			createActorBase(neb::core::pose const & pose);
 						/** @brief create empty actor with point light
 						 *
 						 * @warning this function allocates object
