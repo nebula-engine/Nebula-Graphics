@@ -246,4 +246,9 @@ sp::weak_ptr<neb::core::light::base>		neb::gfx::core::shape::base::createLightPo
 
 	return light;
 }
+void						neb::gfx::core::shape::base::createMesh() {
+}
+
+
+
 
