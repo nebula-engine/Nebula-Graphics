@@ -99,7 +99,8 @@ void		neb::draw_text(
 	
 
 
-	FT_Set_Pixel_Sizes(face, 0, 48);
+	//FT_Set_Pixel_Sizes(face, 0, 48);
+	FT_Set_Pixel_Sizes(face, 0, 24);
 
 	if(FT_Load_Char(face, 'X', FT_LOAD_RENDER))
 	{

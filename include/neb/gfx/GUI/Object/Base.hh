@@ -29,6 +29,9 @@ namespace neb {
 								sp::shared_ptr<neb::gfx::window::base> const & window, int, int, int, int) = 0;
 						virtual int			mouse_button_fun(
 								sp::shared_ptr<neb::gfx::window::base> const & window, int, int, int);
+						virtual int			charFun(
+								shared_ptr<neb::gfx::window::base> const & window,
+								unsigned int codepoint) {return 0;}
 
 						//virtual void			connect();
 						bool				active_;

@@ -53,6 +53,7 @@ namespace neb {
 				//static void					static_window_buffer_size_fun(GLFWwindow*,int,int);
 				static void					static_mouse_button_fun(GLFWwindow*,int,int,int);
 				static void					static_key_fun(GLFWwindow*,int,int,int,int);
+				static void					staticCharFun(GLFWwindow*,unsigned int);
 
 
 				weak_ptr<neb::gfx::window::base>		get_window(GLFWwindow*);

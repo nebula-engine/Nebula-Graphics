@@ -3,16 +3,23 @@
 
 #include <gal/log/log.hpp>
 
+
+
 #include <neb/core/debug.hh>
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/GUI/Object/terminal.hh>
 
+typedef gal::console::temp<gal::console::backend::python, gal::console::frontend::store> console_type;
+
 void		neb::gfx::gui::object::terminal::init() {
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	neb::gfx::gui::object::base::init();
+	
+	console_ = make_shared<console_type>();
+	console_->init();
 
 	//auto app = neb::app::base::global();
 
@@ -32,7 +39,8 @@ void		neb::gfx::gui::object::terminal::draw(sp::shared_ptr<neb::glsl::program> p
 
 	//draw_quad(x_, y_, w_, h_, bg_color_);
 
-	float y = y_ + 0.5;
+	//float y = y_ + 0.5;
+	float y = y_ + 0.25;
 	float line_height = 0.1;
 	
 	for(auto l : console_->lines_) {
@@ -40,10 +48,21 @@ void		neb::gfx::gui::object::terminal::draw(sp::shared_ptr<neb::glsl::program> p
 		y -= line_height;
 	}
 
-	::std::string line = "$ " + console_->line_;
+	string line = "$ " + console_->line_;
 
 	draw_text(p, x_, y, sx, sy, font_color_, line.c_str());
-
+}
+int			neb::gfx::gui::object::terminal::charFun(
+		shared_ptr<neb::gfx::window::base> const & window,
+		unsigned int codepoint)
+{
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	if(flag_.any(neb::gfx::gui::object::util::flag::ENABLED)) {
+		if(console_) {
+			console_->push(codepoint);
+		}
+	}
+	return 1;
 }
 int			neb::gfx::gui::object::terminal::key_fun(
 		sp::shared_ptr<neb::gfx::window::base> const & window,
@@ -71,49 +90,6 @@ int			neb::gfx::gui::object::terminal::key_fun(
 				if(!console_->line_.empty()) {
 					console_->line_.pop_back();
 				}
-				break;
-			case GLFW_KEY_SPACE:
-				console_->push(' ');
-				break;
-			case GLFW_KEY_A:
-			case GLFW_KEY_B:
-			case GLFW_KEY_C:
-			case GLFW_KEY_D:
-			case GLFW_KEY_E:
-			case GLFW_KEY_F:
-			case GLFW_KEY_G:
-			case GLFW_KEY_H:
-			case GLFW_KEY_I:
-			case GLFW_KEY_J:
-			case GLFW_KEY_K:
-			case GLFW_KEY_L:
-			case GLFW_KEY_M:
-			case GLFW_KEY_N:
-			case GLFW_KEY_O:
-			case GLFW_KEY_P:
-			case GLFW_KEY_Q:
-			case GLFW_KEY_R:
-			case GLFW_KEY_S:
-			case GLFW_KEY_T:
-			case GLFW_KEY_U:
-			case GLFW_KEY_V:
-			case GLFW_KEY_W:
-			case GLFW_KEY_X:
-			case GLFW_KEY_Y:
-			case GLFW_KEY_Z:
-				console_->push(k);
-				break;
-			case GLFW_KEY_0:
-			case GLFW_KEY_1:
-			case GLFW_KEY_2:
-			case GLFW_KEY_3:
-			case GLFW_KEY_4:
-			case GLFW_KEY_5:
-			case GLFW_KEY_6:
-			case GLFW_KEY_7:
-			case GLFW_KEY_8:
-			case GLFW_KEY_9:
-				console_->push(k_num);
 				break;
 			case GLFW_KEY_ENTER:
 				console_->enter();

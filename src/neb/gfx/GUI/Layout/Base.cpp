@@ -58,6 +58,13 @@ void neb::gfx::gui::layout::base::connect(sp::shared_ptr<neb::gfx::window::base>
 				::std::placeholders::_4,
 				::std::placeholders::_5
 				));
+	conns_.charFun_ = window->sig_.charFun_.connect(
+			10,
+			::std::bind(&neb::gfx::gui::layout::base::charFun,
+				this,
+				::std::placeholders::_1,
+				::std::placeholders::_2
+				));
 
 	conns_.mouse_button_fun_ = window->sig_.mouse_button_fun_.connect(
 			10,
@@ -70,7 +77,7 @@ void neb::gfx::gui::layout::base::connect(sp::shared_ptr<neb::gfx::window::base>
 				));
 
 }
-int neb::gfx::gui::layout::base::key_fun(sp::shared_ptr<neb::gfx::window::base> const & window, int key, int scancode, int action, int mode) {
+int		neb::gfx::gui::layout::base::key_fun(sp::shared_ptr<neb::gfx::window::base> const & window, int key, int scancode, int action, int mode) {
 	
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -82,6 +89,22 @@ int neb::gfx::gui::layout::base::key_fun(sp::shared_ptr<neb::gfx::window::base> 
 		assert(object);
 
 		if(object->key_fun(window, key, scancode, action, mode)) return 1;
+	};
+
+	return 0;
+}
+int		neb::gfx::gui::layout::base::charFun(
+								shared_ptr<neb::gfx::window::base> const & window,
+								unsigned int codepoint) {
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	typedef neb::gfx::gui::object::util::parent O;
+
+	for(O::map_type::iterator<0> it = O::map_.begin(); it != O::map_.end(); ++it) {
+		auto object = dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
+		assert(object);
+
+		if(object->charFun(window, codepoint)) return 1;
 	};
 
 	return 0;

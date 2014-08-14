@@ -16,7 +16,7 @@ namespace neb {
 	namespace gfx {
 		namespace gui {
 			namespace layout {
-			/** @brief %Base */
+				/** @brief %Base */
 				class base:
 					virtual public neb::std::shared,
 					virtual public neb::gfx::drawable::base,
@@ -32,7 +32,8 @@ namespace neb {
 
 						/** @brief Main Loop @{ */
 						virtual void					step(gal::std::timestep const & ts);
-						virtual void					draw(sp::shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p);
+						virtual void					draw(
+								shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p);
 						/** @} */
 
 						void						connect(
@@ -43,6 +44,10 @@ namespace neb {
 								sp::shared_ptr<neb::gfx::window::base> const & ,int button, int action, int mods);
 						int						key_fun(
 								sp::shared_ptr<neb::gfx::window::base> const & ,int,int,int,int);
+						int						charFun(
+								shared_ptr<neb::gfx::window::base> const & window,
+								unsigned int codepoint);
+
 					public:
 						glm::mat4x4					ortho_;
 
@@ -53,6 +58,7 @@ namespace neb {
 						{
 							boost::signals2::connection		mouse_button_fun_;
 							boost::signals2::connection		key_fun_;
+							boost::signals2::connection		charFun_;
 						} conns_;
 
 

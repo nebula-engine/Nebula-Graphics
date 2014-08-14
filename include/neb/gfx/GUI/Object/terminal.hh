@@ -8,31 +8,40 @@
 
 #include <neb/gfx/GUI/Object/Base.hh>
 
-namespace neb {	namespace gfx {	namespace gui {	namespace object {
-	class terminal:
-		virtual public neb::gfx::gui::object::base
-	{
-		public:
-			typedef gal::console::temp<gal::console::frontend::store, gal::console::backend::python> console_type;
-			
-			enum {
-				max_line_count = 10
-			};
+namespace neb {
+	namespace gfx {
+		namespace gui {
+			namespace object {
+				class terminal:
+					virtual public neb::gfx::gui::object::base
+				{
+					public:
+						typedef gal::console::temp<gal::console::frontend::store, gal::console::backend::python> console_type;
 
-			//terminal();
+						enum {
+							max_line_count = 10
+						};
 
-			virtual void		init();
+						//terminal();
 
-			virtual void		draw(sp::shared_ptr<neb::glsl::program> p);
-			//virtual void		connect();
+						virtual void		init();
 
-			virtual int		key_fun(
-					sp::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
+						virtual void		draw(sp::shared_ptr<neb::glsl::program> p);
+						//virtual void		connect();
 
-			::std::shared_ptr<console_type>		console_;
+						virtual int		key_fun(
+								sp::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
+						virtual int		charFun(
+								shared_ptr<neb::gfx::window::base> const & window,
+								unsigned int codepoint);
 
-	};
-}}}}
+						::std::shared_ptr<console_type>		console_;
+
+				};
+			}
+		}
+	}
+}
 
 #endif
 

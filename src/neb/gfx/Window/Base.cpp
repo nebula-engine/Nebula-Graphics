@@ -90,6 +90,9 @@ void neb::gfx::window::base::init() {
 	glfwSetMouseButtonCallback(
 			window_,
 			neb::app::__gfx::static_mouse_button_fun);
+	glfwSetCharCallback(
+			window_,
+			neb::app::__gfx::staticCharFun);
 
 	// add window to app's window map
 	app->windows_glfw_[window_] = self_;
@@ -210,11 +213,14 @@ void neb::gfx::window::base::callback_mouse_button_fun(GLFWwindow* window, int b
 
 	sig_.mouse_button_fun_(self_, button, action, mods);
 }
-void neb::gfx::window::base::callback_key_fun(GLFWwindow* window, int key, int scancode, int action, int mods) {
+void			neb::gfx::window::base::callback_key_fun(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
 	sig_.key_fun_(self_, key, scancode, action, mods);
 
+}
+void			neb::gfx::window::base::callbackCharFun(GLFWwindow* window, unsigned int codepoint) {
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	sig_.charFun_(self_, codepoint);
 }
 void neb::gfx::window::base::resize() {
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;

@@ -121,6 +121,9 @@ void					neb::app::__gfx::static_key_fun(GLFWwindow* window, int key, int scanco
 
 	w->callback_key_fun(window, key, scancode, action, mods);
 }
-
+void					neb::app::__gfx::staticCharFun(GLFWwindow* window, unsigned int codepoint) {
+	auto w = neb::app::__gfx::global().lock()->get_window(window).lock();
+	w->callbackCharFun(window, codepoint);
+}
 
 

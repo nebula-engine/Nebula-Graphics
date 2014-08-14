@@ -48,6 +48,7 @@ namespace neb { namespace gfx { namespace window {
 					void					callback_window_refresh_fun(GLFWwindow*);
 					void					callback_mouse_button_fun(GLFWwindow*,int,int,int);
 					void					callback_key_fun(GLFWwindow*,int,int,int,int);
+					void					callbackCharFun(GLFWwindow*,unsigned int);
 				public:
 					sp::shared_ptr<neb::gfx::window::util::parent>			parent_;
 					/** @brief self
@@ -61,6 +62,7 @@ namespace neb { namespace gfx { namespace window {
 					{
 						neb::gfx::window::signals::KeyFun		key_fun_;
 						neb::gfx::window::signals::MouseButtonFun	mouse_button_fun_;
+						neb::gfx::window::signals::CharFun		charFun_;
 					} sig_;
 
 
