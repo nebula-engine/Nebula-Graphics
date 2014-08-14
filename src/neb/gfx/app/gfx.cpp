@@ -125,5 +125,10 @@ void					neb::app::__gfx::staticCharFun(GLFWwindow* window, unsigned int codepoi
 	auto w = neb::app::__gfx::global().lock()->get_window(window).lock();
 	w->callbackCharFun(window, codepoint);
 }
-
+weak_ptr<neb::gfx::gui::layout::base>			neb::app::__gfx::createLayout() {
+	auto self(dynamic_pointer_cast<neb::app::__gfx>(shared_from_this()));
+	auto layout = sp::make_shared<neb::gfx::gui::layout::base>(self);
+	neb::gfx::gui::layout::util::parent::insert(layout);
+	return layout;
+}
 

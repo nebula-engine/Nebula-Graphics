@@ -12,6 +12,7 @@
 #include <neb/gfx/Context/Base.hh>
 #include <neb/gfx/Context/Util/Parent.hh>
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/texture.hh>
 #include <neb/gfx/glsl/program.hpp>
 #include <neb/gfx/glsl/shader.hh>
@@ -49,6 +50,8 @@ namespace neb { namespace gfx { namespace window {
 					void					callback_mouse_button_fun(GLFWwindow*,int,int,int);
 					void					callback_key_fun(GLFWwindow*,int,int,int,int);
 					void					callbackCharFun(GLFWwindow*,unsigned int);
+					weak_ptr<neb::gfx::context::window>	createContextTwo();
+					weak_ptr<neb::gfx::context::window>	createContextThree();
 				public:
 					sp::shared_ptr<neb::gfx::window::util::parent>			parent_;
 					/** @brief self

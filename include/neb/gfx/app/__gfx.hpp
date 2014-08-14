@@ -55,9 +55,9 @@ namespace neb {
 				static void					static_key_fun(GLFWwindow*,int,int,int,int);
 				static void					staticCharFun(GLFWwindow*,unsigned int);
 
-
 				weak_ptr<neb::gfx::window::base>		get_window(GLFWwindow*);
 
+				weak_ptr<neb::gfx::gui::layout::base>		createLayout();
 			public:
 
 				//GLFWwindow*								currentIdleWindow_;

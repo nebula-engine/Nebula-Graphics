@@ -6,6 +6,7 @@
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
 #include <neb/gfx/Camera/View/Free.hh>
+#include <neb/gfx/Camera/View/ridealong.hh>
 #include <neb/gfx/Camera/Projection/Perspective.hh>
 
 #include <neb/gfx/environ/three.hpp>
@@ -72,6 +73,15 @@ void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> c
 
 	drawable->draw(context, p);
 }		
+weak_ptr<neb::gfx::Camera::View::Ridealong>		neb::gfx::environ::three::createViewRidealong(
+		weak_ptr<neb::core::actor::base> actor)
+{
+	auto self(dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this()));
+
+	auto view = make_shared<neb::gfx::Camera::View::Ridealong>(self, actor);
+	view_ = view;
+	return view;
+}
 
 
 

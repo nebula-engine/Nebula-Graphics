@@ -14,6 +14,7 @@
 #include <neb/gfx/Context/Base.hh>
 #include <neb/gfx/GUI/Object/Base.hh>
 #include <neb/gfx/GUI/Object/edittext.hh>
+#include <neb/gfx/GUI/Object/terminal.hh>
 #include <neb/gfx/GUI/Layout/Base.hh>
 #include <neb/gfx/util/log.hpp>
 
@@ -130,7 +131,7 @@ int neb::gfx::gui::layout::base::mouse_button_fun(sp::shared_ptr<neb::gfx::windo
 
 	return 0;
 }
-int neb::gfx::gui::layout::base::search(sp::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
+int			neb::gfx::gui::layout::base::search(sp::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
 	
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -176,10 +177,11 @@ int neb::gfx::gui::layout::base::search(sp::shared_ptr<neb::gfx::window::base> c
 
 	return 0;
 }
-
-
-
-
-
+weak_ptr<neb::gfx::gui::object::terminal>		neb::gfx::gui::layout::base::createObjectTerminal() {
+	auto term = sp::make_shared<neb::gfx::gui::object::terminal>();
+	insert(term);
+	term->init();
+	return term;
+}
 
 

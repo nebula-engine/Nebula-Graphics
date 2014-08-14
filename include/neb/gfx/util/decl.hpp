@@ -93,6 +93,7 @@ namespace neb {
 				class parent;
 			}
 			class base;
+			class window;
 		}
 		
 		/**@brief %environ */

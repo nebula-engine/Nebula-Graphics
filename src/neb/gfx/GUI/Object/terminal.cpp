@@ -73,10 +73,6 @@ int			neb::gfx::gui::object::terminal::key_fun(
 {
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-
-	char k =	'a' - GLFW_KEY_A + key;
-	char k_num =	'0' - GLFW_KEY_0 + key;
-
 	if(!flag_.any(neb::gfx::gui::object::util::flag::ENABLED) && !(key == GLFW_KEY_ESCAPE)) {
 		return 0;
 	}

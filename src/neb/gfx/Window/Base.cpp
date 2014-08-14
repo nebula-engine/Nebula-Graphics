@@ -20,10 +20,14 @@
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
-#include <neb/gfx/Context/Base.hh>
+#include <neb/gfx/Camera/View/Base.hh>
+#include <neb/gfx/Context/Window.hpp>
+#include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/window/util/Parent.hh>
 #include <neb/gfx/util/log.hpp>
+#include <neb/gfx/environ/two.hpp>
+#include <neb/gfx/environ/three.hpp>
 
 neb::gfx::window::base::base():
 	x_(0),
@@ -222,7 +226,7 @@ void			neb::gfx::window::base::callbackCharFun(GLFWwindow* window, unsigned int 
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	sig_.charFun_(self_, codepoint);
 }
-void neb::gfx::window::base::resize() {
+void			neb::gfx::window::base::resize() {
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 
@@ -237,7 +241,26 @@ void neb::gfx::window::base::resize() {
 			});
 
 }
-
+weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextTwo() {
+	auto self(dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this()));
+	auto context(make_shared<neb::gfx::context::window>(self));
+	insert(context);
+	context->environ_ = make_shared<neb::gfx::environ::two>();
+	context->init();
+	return context;
+}
+weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextThree() {
+	auto self(dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this()));
+	auto context = make_shared<neb::gfx::context::window>(self);
+	insert(context);
+	auto environ = sp::make_shared<neb::gfx::environ::three>();
+	environ->init();
+	context->environ_ = environ;
+	context->init();
+	assert(environ->view_);
+	environ->view_->connect(self);
+	return context;
+}
 
 
 

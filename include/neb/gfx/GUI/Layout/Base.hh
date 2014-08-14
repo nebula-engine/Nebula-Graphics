@@ -47,7 +47,7 @@ namespace neb {
 						int						charFun(
 								shared_ptr<neb::gfx::window::base> const & window,
 								unsigned int codepoint);
-
+						weak_ptr<neb::gfx::gui::object::terminal>	createObjectTerminal();
 					public:
 						glm::mat4x4					ortho_;
 
