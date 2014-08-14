@@ -1,4 +1,4 @@
-#include <Galaxy-Log/log.hpp>
+#include <gal/log/log.hpp>
 
 #include <glm/gtc/matrix_transform.hpp>
 

@@ -7,7 +7,9 @@ weak_ptr<neb::app::__gfx_glsl>		neb::app::__gfx_glsl::global() {
 	assert(app);
 	return app;
 }
-void	neb::app::__gfx_glsl::create_programs() {
+void		neb::app::__gfx_glsl::__init() {
+}
+void		neb::app::__gfx_glsl::create_programs() {
 
 	printf("%s\n", __PRETTY_FUNCTION__);
 
@@ -113,7 +115,7 @@ void	neb::app::__gfx_glsl::create_programs() {
 	}
 
 }
-std::shared_ptr<neb::glsl::program> neb::app::__gfx_glsl::use_program(neb::program_name::e name){
+shared_ptr<neb::glsl::program>		neb::app::__gfx_glsl::use_program(neb::program_name::e name){
 	auto p = get_program(name);
 
 	p->use();
@@ -122,12 +124,12 @@ std::shared_ptr<neb::glsl::program> neb::app::__gfx_glsl::use_program(neb::progr
 
 	return p;
 }
-std::shared_ptr<neb::glsl::program> neb::app::__gfx_glsl::current_program(){
+shared_ptr<neb::glsl::program>		neb::app::__gfx_glsl::current_program(){
 	assert(current_);
 
 	return current_;
 }
-std::shared_ptr<neb::glsl::program> neb::app::__gfx_glsl::get_program(neb::program_name::e name){
+shared_ptr<neb::glsl::program>		neb::app::__gfx_glsl::get_program(neb::program_name::e name){
 	auto it = programs_.find(name);
 
 	if(it == programs_.end())

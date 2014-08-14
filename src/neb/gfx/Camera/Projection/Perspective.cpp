@@ -4,7 +4,7 @@
 
 #include <GL/glew.h>
 
-#include <Galaxy-Log/log.hpp>
+#include <gal/log/log.hpp>
 
 //#include <math/quat.hpp>
 //#include <math/mat44.hpp>
@@ -18,6 +18,7 @@
 #include <neb/gfx/environ/base.hpp>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
 #include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/util/log.hpp>
 
 neb::gfx::Camera::Projection::base::base(sp::shared_ptr<neb::gfx::environ::base> parent):
 	parent_(parent)
@@ -50,10 +51,10 @@ neb::gfx::Camera::Projection::Perspective::Perspective(sp::shared_ptr<neb::gfx::
 }*/
 mat4		neb::gfx::Camera::Projection::Perspective::proj() {
 
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx", debug) << ::std::setw(8) << "fovy" << ::std::setw(8) << fovy_;
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx", debug) << ::std::setw(8) << "aspect" << ::std::setw(8) << parent_->viewport_.aspect_;
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx", debug) << ::std::setw(8) << "zn" << ::std::setw(8) << zn_;
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx", debug) << ::std::setw(8) << "zf" << ::std::setw(8) << zf_;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "fovy" << ::std::setw(8) << fovy_;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "aspect" << ::std::setw(8) << parent_->viewport_.aspect_;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zn" << ::std::setw(8) << zn_;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zf" << ::std::setw(8) << zf_;
 	
 	mat4 ret = glm::perspective(fovy_, parent_->viewport_.aspect_, zn_, zf_);
 	

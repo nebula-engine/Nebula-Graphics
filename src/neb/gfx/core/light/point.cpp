@@ -1,8 +1,9 @@
-#include <Galaxy-Log/log.hpp>
+#include <gal/log/log.hpp>
 
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <neb/core/debug.hh>
+#include <neb/core/util/log.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/light/point.hpp>
@@ -18,7 +19,7 @@ neb::gfx::core::light::point::point(sp::shared_ptr<neb::core::light::util::paren
 {}
 void	neb::gfx::core::light::point::load(neb::core::light::util::count & light_count, neb::core::pose const & pose) {
 
-        if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core light", debug) << __PRETTY_FUNCTION__;
+        if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
         
         neb::gfx::core::light::base::load(light_count.point, pose);
         

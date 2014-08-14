@@ -3,17 +3,21 @@
 
 #include <neb/gfx/core/shape/base.hpp>
 
-namespace neb { namespace gfx { namespace core { namespace shape {
+namespace neb {
+	namespace gfx {
+		namespace core {
+			namespace shape {
+				class box:
+					virtual public neb::gfx::core::shape::base
+				{
+					public:
+						box(sp::shared_ptr<neb::core::shape::util::parent> parent);
 
-
-		class box: virtual public neb::gfx::core::shape::base {
-			public:
-				box(sp::shared_ptr<neb::core::shape::util::parent> parent);
-
-				virtual void			createMesh();
-		};
-
-
-}}}}
+						virtual void			createMesh();
+				};
+			}
+		}
+	}
+}
 
 #endif

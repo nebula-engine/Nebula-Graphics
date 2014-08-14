@@ -17,7 +17,7 @@
 #include <neb/gfx/util/log.hpp>
 
 
-neb::gfx::core::actor::base::base(sp::shared_ptr<neb::core::actor::util::parent> parent):
+neb::gfx::core::actor::base::base(shared_ptr<neb::core::actor::util::parent> parent):
 	neb::core::actor::base(parent)
 {
 	if(DEBUG_NEB) LOG(lg, neb::core::actor::sl, debug) << __PRETTY_FUNCTION__;
@@ -65,9 +65,9 @@ void				neb::gfx::core::actor::base::load_lights(neb::core::light::util::count &
 		
 	};
 	
-	parent->A::map_.for_each<0>(lambda_actor);
+	/*parent->*/A::map_.for_each<0>(lambda_actor);
 	
-	parent->S::map_.for_each<0>(lambda_shape);
+	/*parent->*/S::map_.for_each<0>(lambda_shape);
 }
 void				neb::gfx::core::actor::base::draw(
 		sp::shared_ptr<neb::gfx::context::base> context,

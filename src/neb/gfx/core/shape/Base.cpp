@@ -1,29 +1,31 @@
 #include <glm/gtx/transform.hpp>
 
-#include <Galaxy-Standard/map.hpp>
-#include <Galaxy-Log/log.hpp>
+#include <gal/std/map.hpp>
+
+#include <gal/log/log.hpp>
 
 #include <neb/core/debug.hh>
 
+
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/shape/base.hpp>
-
 #include <neb/gfx/core/light/point.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/Uniform/scalar.hpp>
 #include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/util/log.hpp>
 
 #include <neb/core/math/geo/polygon.hpp>
 
 neb::gfx::core::shape::base::base(sp::shared_ptr<neb::core::shape::util::parent> parent):
 	neb::core::shape::base(parent)
 {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core shape", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	assert(parent);
 }
 neb::gfx::core::shape::base::~base() {}
 void					neb::gfx::core::shape::base::init() {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core shape", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	createMesh();
 }
@@ -34,7 +36,7 @@ void					neb::gfx::core::shape::base::step(gal::std::timestep const & ts) {
 	material_front_.step(ts);
 }
 void					neb::gfx::core::shape::base::load_lights(neb::core::light::util::count & light_count, neb::core::pose const & pose) {
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb core shape", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto npose = pose * pose_;
 
@@ -60,13 +62,16 @@ void					neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 }
 void					neb::gfx::core::shape::base::init_buffer(sp::shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p) {
 
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	glEnable(GL_TEXTURE_2D);
 
 	if(mesh_.indices_.empty()) {
 		printf("not initialized\n");
-		abort();
+		//assert(0);
+		// return instead of abort so shape::base objects for making lights can pass through
+		/// @todo need better system for this (like seperate mesh objects that implement this function!!
+		return;
 	}
 
 	//checkerror("unknown");
@@ -126,7 +131,7 @@ void					neb::gfx::core::shape::base::init_buffer(sp::shared_ptr<neb::gfx::conte
 			(void*)off_normal);
 	//checkerror("glVertexAttribPointer normal");
 
-	if(0) {//if(flag_.all(neb::core::shape::flag::e::IMAGE)) {
+	if(0) {//if(flag_.all(neb::core::shape::flag::e::IMAGE)) 
 		glVertexAttribPointer(
 				p->get_attrib(neb::attrib_name::e::TEXCOOR)->o_,
 				2,
@@ -149,104 +154,109 @@ void					neb::gfx::core::shape::base::init_buffer(sp::shared_ptr<neb::gfx::conte
 	//glBindBuffer(GL_ARRAY_BUFFER,0);
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 
+}
+void		neb::gfx::core::shape::base::draw_elements(
+		sp::shared_ptr<neb::gfx::context::base> context,
+		sp::shared_ptr<neb::glsl::program> p,
+		neb::core::pose const & pose) {
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	//mesh_.print(debug);
+
+	assert(context);
+
+	/** @todo could switching programs here leave view and proj unset? */
+
+	// initialize buffers if not already
+	//	if(!context_[window.get()])
+	{	
+		init_buffer(context, p);
 	}
-	void		neb::gfx::core::shape::base::draw_elements(
-			sp::shared_ptr<neb::gfx::context::base> context,
-			sp::shared_ptr<neb::glsl::program> p,
-			neb::core::pose const & pose) {
-		if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx", debug) << __PRETTY_FUNCTION__;
+	auto bufs = context_[context.get()];
 
-		//mesh_.print(debug);
+	//assert(bufs);
+	if(!bufs) return;
+	
+	//checkerror("unknown");
 
-		assert(context);
+	// attribs
+	p->get_attrib(neb::attrib_name::e::POSITION)->enable();
+	p->get_attrib(neb::attrib_name::e::NORMAL)->enable();
 
-		/** @todo could switching programs here leave view and proj unset? */
-
-		// initialize buffers if not already
-		//	if(!context_[window.get()])
-		{	
-			init_buffer(context, p);
-		}
-		auto bufs = context_[context.get()];
-		assert(bufs);
-		//checkerror("unknown");
-
-		// attribs
-		p->get_attrib(neb::attrib_name::e::POSITION)->enable();
-		p->get_attrib(neb::attrib_name::e::NORMAL)->enable();
-
-		if(0) //if(flag_.all(neb::core::shape::flag::e::IMAGE))
-		{
-			p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
-		}
-
-		// material
-		//printf("load material\n");
-		material_front_.load();
-
-		// texture
-		if(0) //if(flag_.all(neb::core::shape::flag::e::IMAGE))
-		{
-			glActiveTexture(GL_TEXTURE0);
-			//checkerror("glActiveTexture");
-			bufs->texture_.image_->bind();
-			p->get_uniform_scalar("image")->load(0);
-		}
-
-		//printf("bind vbo\n");
-		glBindBuffer(GL_ARRAY_BUFFER, bufs->vbo_);
-		//checkerror("glBindBuffer");
-		//printf("bind elements\n");// indices
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);
-		//checkerror("glBindBuffer");
-
-		//printf("load model\n");
-		model_load(pose);
-
-		//printf("draw\n");
-		glDrawElements(
-				GL_TRIANGLES,
-				mesh_.indices_.size(),
-				GL_UNSIGNED_SHORT,
-				0);
-		//checkerror("glDrawElements");
-
-		glDrawElements(
-				GL_LINES,
-				mesh_.indices_.size(),
-				GL_UNSIGNED_SHORT,
-				0);
-		//checkerror("glDrawElements");
-
-
-
-
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		//checkerror("glBindBuffer");
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-		//checkerror("glBindBuffer");
-
-		p->get_attrib(neb::attrib_name::e::POSITION)->disable();
-		p->get_attrib(neb::attrib_name::e::NORMAL)->disable();
-
-		if(0) //if(flag_.all(neb::core::shape::flag::e::IMAGE))
-		{
-			p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
-		}
+	if(0) //if(flag_.all(neb::core::shape::flag::e::IMAGE))
+	{
+		p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
 	}
+
+	// material
+	//printf("load material\n");
+	material_front_.load();
+
+	// texture
+	if(0) //if(flag_.all(neb::core::shape::flag::e::IMAGE))
+	{
+		glActiveTexture(GL_TEXTURE0);
+		//checkerror("glActiveTexture");
+		bufs->texture_.image_->bind();
+		p->get_uniform_scalar("image")->load(0);
+	}
+
+	//printf("bind vbo\n");
+	glBindBuffer(GL_ARRAY_BUFFER, bufs->vbo_);
+	//checkerror("glBindBuffer");
+	//printf("bind elements\n");// indices
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);
+	//checkerror("glBindBuffer");
+
+	//printf("load model\n");
+	model_load(pose);
+
+	//printf("draw\n");
+	glDrawElements(
+			GL_TRIANGLES,
+			mesh_.indices_.size(),
+			GL_UNSIGNED_SHORT,
+			0);
+	//checkerror("glDrawElements");
+
+	glDrawElements(
+			GL_LINES,
+			mesh_.indices_.size(),
+			GL_UNSIGNED_SHORT,
+			0);
+	//checkerror("glDrawElements");
+
+
+
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//checkerror("glBindBuffer");
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	//checkerror("glBindBuffer");
+
+	p->get_attrib(neb::attrib_name::e::POSITION)->disable();
+	p->get_attrib(neb::attrib_name::e::NORMAL)->disable();
+
+	if(0) //if(flag_.all(neb::core::shape::flag::e::IMAGE))
+	{
+		p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
+	}
+}
 sp::weak_ptr<neb::core::light::base>		neb::gfx::core::shape::base::createLightPoint() {
 
 	auto self(sp::dynamic_pointer_cast<neb::core::shape::base>(shared_from_this()));
-	
+
 	auto light = sp::make_shared<neb::gfx::core::light::point>(self);
-	
+
 	neb::core::light::util::parent::insert(light);
-	
+
 	light->init();
 
 	return light;
 }
 void						neb::gfx::core::shape::base::createMesh() {
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
 }
 
 

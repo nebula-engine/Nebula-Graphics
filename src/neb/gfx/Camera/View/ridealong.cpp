@@ -1,12 +1,12 @@
-
-
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/matrix_inverse.hpp>
 
-#include <Galaxy-Log/log.hpp>
+#include <gal/log/log.hpp>
 
 #include <neb/core/debug.hh>
 #include <neb/core/actor/base.hpp>
+
+#include <neb/gfx/util/log.hpp>
 #include <neb/gfx/Camera/View/ridealong.hh>
 
 neb::gfx::Camera::View::Ridealong::Ridealong(sp::shared_ptr<neb::gfx::environ::base> parent):
@@ -15,7 +15,7 @@ neb::gfx::Camera::View::Ridealong::Ridealong(sp::shared_ptr<neb::gfx::environ::b
 }
 mat4		neb::gfx::Camera::View::Ridealong::view() {
 
-	if(DEBUG_NEB) BOOST_LOG_CHANNEL_SEV(lg, "neb gfx camera view", debug) << __PRETTY_FUNCTION__;
+	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto actor = actor_.lock();
 	if(!actor) return mat4();
