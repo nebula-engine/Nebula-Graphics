@@ -80,13 +80,19 @@ void			neb::draw_quad(
 
 }
 void		neb::draw_text(
-		sp::shared_ptr<neb::glsl::program> p,
+		shared_ptr<neb::glsl::program> p,
 		float x, float y, float sx, float sy, neb::Color::color<float> color, ::std::string text)
 {
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	const char * c;
 
+	int window_width, window_height;
+	glfwGetWindowSize(glfwGetCurrentContext(), &window_width, &window_height);
+	
+	sx = 1.0 / (float)window_width;
+	sy = 1.0 / (float)window_height;
+	
 	//auto p = neb::app::base::global()->use_program(neb::program_name::e::TEXT);
 
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug)
@@ -96,11 +102,10 @@ void		neb::draw_text(
 
 	// face
 	FT_Face& face  = neb::app::__gfx::global().lock()->face_;
-	
 
 
 	//FT_Set_Pixel_Sizes(face, 0, 48);
-	FT_Set_Pixel_Sizes(face, 0, 24);
+	FT_Set_Pixel_Sizes(face, 36, 36);
 
 	if(FT_Load_Char(face, 'X', FT_LOAD_RENDER))
 	{

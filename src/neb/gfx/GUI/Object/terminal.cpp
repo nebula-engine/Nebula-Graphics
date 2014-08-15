@@ -18,19 +18,16 @@ void		neb::gfx::gui::object::terminal::init() {
 
 	neb::gfx::gui::object::base::init();
 	
-	console_ = make_shared<console_type>();
-	console_->init();
-
-	//auto app = neb::app::base::global();
-
-	//cs_ = app->command_set_;
-
-	//assert(cs_);
+	auto app = neb::core::app::__base::global();
+	
+	console_ = app->console_;
+	
 }
 void		neb::gfx::gui::object::terminal::draw(sp::shared_ptr<neb::glsl::program> p) {
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
-	if(!console_) return;
+	auto console(console_.lock());
+	if(!console) return;
 	
 	if(!flag_.any(neb::gfx::gui::object::util::flag::ENABLED)) return;
 
@@ -39,28 +36,30 @@ void		neb::gfx::gui::object::terminal::draw(sp::shared_ptr<neb::glsl::program> p
 
 	//draw_quad(x_, y_, w_, h_, bg_color_);
 
-	//float y = y_ + 0.5;
-	float y = y_ + 0.25;
-	float line_height = 0.1;
+	float x = x_ - 0.9;
+	float y = y_ + 0.9;
+	float line_height = 0.075;
 	
-	for(auto l : console_->lines_) {
-		draw_text(p, x_, y, sx, sy, font_color_, l.c_str());
+	for(auto l : console->lines_) {
+		draw_text(p, x, y, sx, sy, font_color_, l.c_str());
 		y -= line_height;
 	}
 
-	string line = "$ " + console_->line_;
+	string line = "$ " + console->line_;
 
-	draw_text(p, x_, y, sx, sy, font_color_, line.c_str());
+	draw_text(p, x, y, sx, sy, font_color_, line.c_str());
 }
 int			neb::gfx::gui::object::terminal::charFun(
 		shared_ptr<neb::gfx::window::base> const & window,
 		unsigned int codepoint)
 {
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	auto console(console_.lock());
+	if(!console) return 0;
+
 	if(flag_.any(neb::gfx::gui::object::util::flag::ENABLED)) {
-		if(console_) {
-			console_->push(codepoint);
-		}
+		console->push(codepoint);
 	}
 	return 1;
 }
@@ -72,23 +71,26 @@ int			neb::gfx::gui::object::terminal::key_fun(
 		int mods)
 {
 	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	
+	auto console(console_.lock());
+	if(!console) return 0;
 
 	if(!flag_.any(neb::gfx::gui::object::util::flag::ENABLED) && !(key == GLFW_KEY_ESCAPE)) {
 		return 0;
 	}
-
+	
 	if(action == GLFW_PRESS) {
 		switch(key) {
 			case GLFW_KEY_ESCAPE:
 				flag_.toggle(neb::gfx::gui::object::util::flag::ENABLED);
 				break;
 			case GLFW_KEY_BACKSPACE:
-				if(!console_->line_.empty()) {
-					console_->line_.pop_back();
+				if(!console->line_.empty()) {
+					console->line_.pop_back();
 				}
 				break;
 			case GLFW_KEY_ENTER:
-				console_->enter();
+				console->enter();
 				break;
 		}
 	}

@@ -1,10 +1,10 @@
 #ifndef __NEBULA_UI_OBJECT_TERMINAL_H__
 #define __NEBULA_UI_OBJECT_TERMINAL_H__
 
-#include <gal/console/console.hpp>
 
 #include <deque>
 
+#include <neb/core/app/__base.hpp>
 
 #include <neb/gfx/GUI/Object/Base.hh>
 
@@ -16,27 +16,18 @@ namespace neb {
 					virtual public neb::gfx::gui::object::base
 				{
 					public:
-						typedef gal::console::temp<gal::console::frontend::store, gal::console::backend::python> console_type;
-
 						enum {
 							max_line_count = 10
 						};
-
-						//terminal();
-
-						virtual void		init();
-
-						virtual void		draw(sp::shared_ptr<neb::glsl::program> p);
-						//virtual void		connect();
-
-						virtual int		key_fun(
+						virtual void			init();
+						virtual void			draw(sp::shared_ptr<neb::glsl::program> p);
+						virtual int			key_fun(
 								sp::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
-						virtual int		charFun(
+						virtual int			charFun(
 								shared_ptr<neb::gfx::window::base> const & window,
 								unsigned int codepoint);
 
-						::std::shared_ptr<console_type>		console_;
-
+						weak_ptr<neb::core::app::__base::console_type>		console_;
 				};
 			}
 		}
