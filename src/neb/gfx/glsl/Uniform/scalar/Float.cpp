@@ -10,7 +10,7 @@
 //#include <math/mat44.hpp>
 
 //#include <neb/scene/scene.hpp>
-#include <neb/gfx/glsl/Uniform/scalar.hpp>
+#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/free.hpp>
 
 

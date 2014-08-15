@@ -1,7 +1,7 @@
 #ifndef __NEBULA_UI_OBJECT_TEXTVIEW_HPP__
 #define __NEBULA_UI_OBJECT_TEXTVIEW_HPP__
 
-#include <neb/gfx/GUI/Object/Base.hh>
+#include <neb/gfx/gui/object/Base.hh>
 
 namespace neb {
 	namespace gfx {

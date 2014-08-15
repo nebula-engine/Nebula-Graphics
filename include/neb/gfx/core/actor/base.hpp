@@ -9,9 +9,9 @@
 #include <boost/signals2.hpp>
 
 #include <neb/core/math/Serialization/glm.hpp>
-#include <neb/core/actor/base.hpp>
-#include <neb/core/shape/base.hpp>
-#include <neb/core/shape/util/Parent.hh>
+#include <neb/core/core/actor/base.hpp>
+#include <neb/core/core/shape/base.hpp>
+#include <neb/core/core/shape/util/parent.hpp>
 
 #include <neb/gfx/Context/Util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
@@ -28,13 +28,13 @@ namespace neb {
 				 * no need to derive this class for different actor types.
 				 */
 				class base:
-					virtual public neb::core::actor::base
+					virtual public neb::core::core::actor::base
 				{
 					public:
 						/** @brief default constructor */
 						//base();
 						/** @brief constructor */
-						base(sp::shared_ptr<neb::core::actor::util::parent> parent);
+						base(sp::shared_ptr<neb::core::core::actor::util::parent> parent);
 						virtual ~base();
 					public:
 						virtual void					init();
@@ -46,7 +46,9 @@ namespace neb {
 								sp::shared_ptr<neb::glsl::program> p,
 								neb::core::pose const & pose);
 
-						void						load_lights(neb::core::light::util::count& light_count, neb::core::pose const &);
+						void						load_lights(
+								neb::core::core::light::util::count& light_count,
+								neb::core::pose const &);
 						//virtual weak_ptr<neb::core::shape::base>	createShapeBase();
 						//virtual weak_ptr<neb::core::shape::base>	createShapeBox(glm::vec3 size);
 						//virtual weak_ptr<neb::core::shape::base>	createShapeCube(double size);

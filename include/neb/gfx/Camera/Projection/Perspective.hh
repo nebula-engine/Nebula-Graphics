@@ -18,7 +18,7 @@ namespace neb {
 						/** @brief Constructor */
 						base(sp::shared_ptr<neb::gfx::environ::base>);
 
-						virtual mat4				proj() = 0;
+						virtual glm::mat4				proj() = 0;
 						void					load(sp::shared_ptr<neb::glsl::program> p);
 						/** @brief step
 						 * @todo explain when in timeline this occurs and in which thread and why
@@ -32,7 +32,7 @@ namespace neb {
 					public:
 						Perspective(sp::shared_ptr<neb::gfx::environ::base>);
 						//void		init(neb::renderable_shared);
-						virtual mat4				proj();
+						virtual glm::mat4				proj();
 
 						/** @brief step */
 						void					step(gal::std::timestep const & ts);

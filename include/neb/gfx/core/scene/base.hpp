@@ -1,7 +1,7 @@
 #ifndef __GLUTPP_GFX_CORE_SCENE_H__
 #define __GLUTPP_GFX_CORE_SCENE_H__
 
-#include <neb/core/scene/base.hpp>
+#include <neb/core/core/scene/base.hpp>
 
 #include <neb/gfx/drawable/base.hpp>
 
@@ -33,12 +33,12 @@ namespace neb {
 						 *
 						 * @warning this function allocates object
 						 */		
-						//virtual sp::weak_ptr<neb::core::actor::base>			createActorBase(neb::core::pose const & pose);
+						//virtual sp::weak_ptr<neb::core::core::actor::base>			createActorBase(neb::core::pose const & pose);
 						/** @brief create empty actor with point light
 						 *
 						 * @warning this function allocates object
 						 */
-						virtual sp::weak_ptr<neb::core::actor::base>			createActorLightPoint(vec3 p);
+						virtual weak_ptr<neb::core::core::actor::base>			createActorLightPoint(glm::vec3 p);
 
 				};
 

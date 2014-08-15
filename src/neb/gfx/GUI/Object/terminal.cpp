@@ -9,12 +9,12 @@
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/GUI/Object/terminal.hh>
+#include <neb/gfx/gui/object/terminal.hh>
 
 typedef gal::console::temp<gal::console::backend::python, gal::console::frontend::store> console_type;
 
 void		neb::gfx::gui::object::terminal::init() {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	neb::gfx::gui::object::base::init();
 	
@@ -24,7 +24,7 @@ void		neb::gfx::gui::object::terminal::init() {
 	
 }
 void		neb::gfx::gui::object::terminal::draw(sp::shared_ptr<neb::glsl::program> p) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto console(console_.lock());
 	if(!console) return;
@@ -53,7 +53,7 @@ int			neb::gfx::gui::object::terminal::charFun(
 		shared_ptr<neb::gfx::window::base> const & window,
 		unsigned int codepoint)
 {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto console(console_.lock());
 	if(!console) return 0;
@@ -70,7 +70,7 @@ int			neb::gfx::gui::object::terminal::key_fun(
 		int action,
 		int mods)
 {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto console(console_.lock());
 	if(!console) return 0;

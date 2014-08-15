@@ -3,20 +3,20 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/debug.hh>
-#include <neb/core/actor/base.hpp>
+#include <neb/core/util/debug.hpp>
+#include <neb/core/core/actor/base.hpp>
 
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/Camera/View/ridealong.hh>
 
-neb::gfx::Camera::View::Ridealong::Ridealong(sp::shared_ptr<neb::gfx::environ::base> parent, weak_ptr<neb::core::actor::base> actor):
+neb::gfx::Camera::View::Ridealong::Ridealong(sp::shared_ptr<neb::gfx::environ::base> parent, weak_ptr<neb::core::core::actor::base> actor):
 	neb::gfx::Camera::View::base(parent),
 	actor_(actor)
 {
 }
 mat4		neb::gfx::Camera::View::Ridealong::view() {
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto actor = actor_.lock();
 	if(!actor) return mat4();

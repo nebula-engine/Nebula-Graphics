@@ -4,28 +4,28 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/debug.hh>
+#include <neb/core/util/debug.hpp>
 
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/gfx/core/light/point.hpp>
 #include <neb/gfx/glsl/attrib.hh>
-#include <neb/gfx/glsl/Uniform/scalar.hpp>
+#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program.hpp>
 #include <neb/gfx/util/log.hpp>
 
 #include <neb/core/math/geo/polygon.hpp>
 
-neb::gfx::core::shape::base::base(sp::shared_ptr<neb::core::shape::util::parent> parent):
-	neb::core::shape::base(parent)
+neb::gfx::core::shape::base::base(sp::shared_ptr<neb::core::core::shape::util::parent> parent):
+	neb::core::core::shape::base(parent)
 {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	assert(parent);
 }
 neb::gfx::core::shape::base::~base() {}
 void					neb::gfx::core::shape::base::init() {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	createMesh();
 }
@@ -35,8 +35,8 @@ void					neb::gfx::core::shape::base::step(gal::std::timestep const & ts) {
 
 	material_front_.step(ts);
 }
-void					neb::gfx::core::shape::base::load_lights(neb::core::light::util::count & light_count, neb::core::pose const & pose) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+void					neb::gfx::core::shape::base::load_lights(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) {
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto npose = pose * pose_;
 
@@ -62,7 +62,7 @@ void					neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 }
 void					neb::gfx::core::shape::base::init_buffer(sp::shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p) {
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	glEnable(GL_TEXTURE_2D);
 
@@ -80,7 +80,7 @@ void					neb::gfx::core::shape::base::init_buffer(sp::shared_ptr<neb::gfx::conte
 	context_[context.get()] = bufs;
 
 	// image
-	if(0)//if(flag_.all(neb::core::shape::flag::e::IMAGE))
+	if(0)//if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
 	{
 		bufs->texture_.image_.reset(new neb::texture);
 
@@ -131,7 +131,7 @@ void					neb::gfx::core::shape::base::init_buffer(sp::shared_ptr<neb::gfx::conte
 			(void*)off_normal);
 	//checkerror("glVertexAttribPointer normal");
 
-	if(0) {//if(flag_.all(neb::core::shape::flag::e::IMAGE)) 
+	if(0) {//if(flag_.all(neb::core::core::shape::flag::e::IMAGE)) 
 		glVertexAttribPointer(
 				p->get_attrib(neb::attrib_name::e::TEXCOOR)->o_,
 				2,
@@ -159,7 +159,7 @@ void		neb::gfx::core::shape::base::draw_elements(
 		sp::shared_ptr<neb::gfx::context::base> context,
 		sp::shared_ptr<neb::glsl::program> p,
 		neb::core::pose const & pose) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	//mesh_.print(debug);
 
@@ -183,7 +183,7 @@ void		neb::gfx::core::shape::base::draw_elements(
 	p->get_attrib(neb::attrib_name::e::POSITION)->enable();
 	p->get_attrib(neb::attrib_name::e::NORMAL)->enable();
 
-	if(0) //if(flag_.all(neb::core::shape::flag::e::IMAGE))
+	if(0) //if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
 	{
 		p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
 	}
@@ -193,7 +193,7 @@ void		neb::gfx::core::shape::base::draw_elements(
 	material_front_.load();
 
 	// texture
-	if(0) //if(flag_.all(neb::core::shape::flag::e::IMAGE))
+	if(0) //if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
 	{
 		glActiveTexture(GL_TEXTURE0);
 		//checkerror("glActiveTexture");
@@ -231,25 +231,25 @@ void		neb::gfx::core::shape::base::draw_elements(
 	p->get_attrib(neb::attrib_name::e::POSITION)->disable();
 	p->get_attrib(neb::attrib_name::e::NORMAL)->disable();
 
-	if(0) //if(flag_.all(neb::core::shape::flag::e::IMAGE))
+	if(0) //if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
 	{
 		p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
 	}
 }
-sp::weak_ptr<neb::core::light::base>		neb::gfx::core::shape::base::createLightPoint() {
+sp::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::createLightPoint() {
 
-	auto self(sp::dynamic_pointer_cast<neb::core::shape::base>(shared_from_this()));
+	auto self(sp::dynamic_pointer_cast<neb::core::core::shape::base>(shared_from_this()));
 
 	auto light = sp::make_shared<neb::gfx::core::light::point>(self);
 
-	neb::core::light::util::parent::insert(light);
+	neb::core::core::light::util::parent::insert(light);
 
 	light->init();
 
 	return light;
 }
 void						neb::gfx::core::shape::base::createMesh() {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
 

@@ -7,34 +7,34 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/debug.hh>
+#include <neb/core/util/debug.hpp>
 #include <neb/core/util/decl.hpp>
 
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/Context/Base.hh>
-#include <neb/gfx/GUI/Object/Base.hh>
-#include <neb/gfx/GUI/Object/edittext.hh>
-#include <neb/gfx/GUI/Object/terminal.hh>
-#include <neb/gfx/GUI/Layout/Base.hh>
+#include <neb/gfx/gui/object/Base.hh>
+#include <neb/gfx/gui/object/edittext.hh>
+#include <neb/gfx/gui/object/terminal.hh>
+#include <neb/gfx/gui/layout/base.hpp>
 #include <neb/gfx/util/log.hpp>
 
 neb::gfx::gui::layout::base::base(sp::shared_ptr<neb::gfx::gui::layout::util::parent> parent): parent_(parent) {
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
 void neb::gfx::gui::layout::base::init() {
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	//jess::clog << NEB_FUNCSIG << std::endl;
 }
 void		neb::gfx::gui::layout::base::step(gal::std::timestep const & ts) {
-		if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+		LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
 void		neb::gfx::gui::layout::base::draw(sp::shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p) {
 	
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	typedef neb::gfx::gui::object::util::parent O;
 	
@@ -47,7 +47,7 @@ void		neb::gfx::gui::layout::base::draw(sp::shared_ptr<neb::gfx::context::base> 
 }
 void neb::gfx::gui::layout::base::connect(sp::shared_ptr<neb::gfx::window::base> const & window) {
 	
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	conns_.key_fun_ = window->sig_.key_fun_.connect(
 			10,
@@ -80,7 +80,7 @@ void neb::gfx::gui::layout::base::connect(sp::shared_ptr<neb::gfx::window::base>
 }
 int		neb::gfx::gui::layout::base::key_fun(sp::shared_ptr<neb::gfx::window::base> const & window, int key, int scancode, int action, int mode) {
 	
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	typedef neb::gfx::gui::object::util::parent O;
 
@@ -97,7 +97,7 @@ int		neb::gfx::gui::layout::base::key_fun(sp::shared_ptr<neb::gfx::window::base>
 int		neb::gfx::gui::layout::base::charFun(
 								shared_ptr<neb::gfx::window::base> const & window,
 								unsigned int codepoint) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	typedef neb::gfx::gui::object::util::parent O;
 
@@ -112,7 +112,7 @@ int		neb::gfx::gui::layout::base::charFun(
 }
 int neb::gfx::gui::layout::base::mouse_button_fun(sp::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	assert(window);
 
@@ -133,7 +133,7 @@ int neb::gfx::gui::layout::base::mouse_button_fun(sp::shared_ptr<neb::gfx::windo
 }
 int			neb::gfx::gui::layout::base::search(sp::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
 	
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	assert(window);
 

@@ -7,16 +7,18 @@
 
 #include <neb/gfx/util/decl.hpp>
 
+using namespace std;
+
 namespace neb {
 	void	init_log();
 	void	init();
 }
 
 namespace neb {
-	void	draw_quad(sp::shared_ptr<neb::glsl::program> p,
+	void	draw_quad(shared_ptr<neb::glsl::program> p,
 			float, float, float, float, neb::Color::color<float>);
 	void	draw_text(
-			sp::shared_ptr<neb::glsl::program> p,
+			shared_ptr<neb::glsl::program> p,
 			float, float, float, float, neb::Color::color<float>, ::std::string);
 }
 

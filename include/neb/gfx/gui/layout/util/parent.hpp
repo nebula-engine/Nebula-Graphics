@@ -3,7 +3,7 @@
 
 #include <neb/core/util/parent.hpp>
 
-#include <neb/gfx/GUI/Layout/Base.hh>
+#include <neb/gfx/gui/layout/base.hpp>
 
 namespace neb {
 	namespace gfx {

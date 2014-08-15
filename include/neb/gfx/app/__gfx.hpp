@@ -16,7 +16,7 @@
 #include <neb/core/app/__base.hpp>
 
 #include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/GUI/Layout/Util/Parent.hh>
+#include <neb/gfx/gui/layout/util/parent.hpp>
 #include <neb/gfx/window/util/Parent.hh>
 
 using namespace std;

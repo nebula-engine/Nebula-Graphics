@@ -10,10 +10,10 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/debug.hh>
-#include <neb/core/scene/util/decl.hpp>
-#include <neb/core/actor/base.hpp>
-#include <neb/core/light/base.hpp>
+#include <neb/core/util/debug.hpp>
+#include <neb/core/core/scene/util/decl.hpp>
+#include <neb/core/core/actor/base.hpp>
+#include <neb/core/core/light/base.hpp>
 
 #include <neb/gfx/free.hpp>
 
@@ -47,7 +47,7 @@ neb::gfx::window::base::base(sp::shared_ptr<neb::gfx::window::util::parent> pare
 neb::gfx::window::base::~base() {
 }
 void neb::gfx::window::base::init() {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	neb::std::shared::init();
 
@@ -68,7 +68,7 @@ void neb::gfx::window::base::init() {
 
 	if(window_ == NULL) {
 		glfwTerminate();
-		if(DEBUG_NEB) LOG(lg, neb::gfx::sl, critical) << "glfwCreateWindow failed";
+		LOG(lg, neb::gfx::sl, critical) << "glfwCreateWindow failed";
 		exit(EXIT_FAILURE);
 	}
 
@@ -145,13 +145,13 @@ void neb::gfx::window::base::init() {
 	checkerror("unknown");
 }
 void		neb::gfx::window::base::release() {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 
 	glfwDestroyWindow(window_);
 }
 void		neb::gfx::window::base::render() {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	glfwMakeContextCurrent(window_);
 
@@ -175,7 +175,7 @@ void		neb::gfx::window::base::render() {
 void neb::gfx::window::base::callback_window_refresh_fun(GLFWwindow*) {
 }
 void			neb::gfx::window::base::step(gal::std::timestep const & ts) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	neb::gfx::context::util::parent::step(ts);
 
@@ -191,7 +191,7 @@ void			neb::gfx::window::base::step(gal::std::timestep const & ts) {
 	render();
 }
 void neb::gfx::window::base::callback_window_size_fun(GLFWwindow* window, int w, int h) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	w_ = w;
 	h_ = h;
@@ -201,7 +201,7 @@ void neb::gfx::window::base::callback_window_size_fun(GLFWwindow* window, int w,
 	callback_window_refresh_fun(window);
 }
 void neb::gfx::window::base::callback_window_pos_fun(GLFWwindow* window, int x, int y) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	x_ = x;
 	y_ = y;
@@ -209,25 +209,25 @@ void neb::gfx::window::base::callback_window_pos_fun(GLFWwindow* window, int x, 
 	callback_window_refresh_fun(window);
 }
 void neb::gfx::window::base::callback_window_close_fun(GLFWwindow* window){
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
 void neb::gfx::window::base::callback_mouse_button_fun(GLFWwindow* window, int button, int action, int mods) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	sig_.mouse_button_fun_(self_, button, action, mods);
 }
 void			neb::gfx::window::base::callback_key_fun(GLFWwindow* window, int key, int scancode, int action, int mods) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	sig_.key_fun_(self_, key, scancode, action, mods);
 
 }
 void			neb::gfx::window::base::callbackCharFun(GLFWwindow* window, unsigned int codepoint) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	sig_.charFun_(self_, codepoint);
 }
 void			neb::gfx::window::base::resize() {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 
 	glViewport(0, 0, w_, h_);

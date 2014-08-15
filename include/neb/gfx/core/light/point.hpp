@@ -14,7 +14,7 @@
 #include <neb/core/math/Serialization/glm.hpp>
 
 #include <neb/gfx/core/light/base.hpp>
-#include <neb/gfx/texture.hh>
+#include <neb/gfx/texture.hpp>
 #include <neb/gfx/core/light/base.hpp>
 
 
@@ -25,9 +25,9 @@ namespace neb { namespace gfx { namespace core { namespace light {
 		virtual public neb::gfx::core::light::base
 	{
 		public:
-			point(sp::shared_ptr<neb::core::light::util::parent> parent);
+			point(sp::shared_ptr<neb::core::core::light::util::parent> parent);
 
-			virtual void	load(neb::core::light::util::count & light_count, neb::core::pose const & pose);
+			virtual void	load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose);
 
 
 

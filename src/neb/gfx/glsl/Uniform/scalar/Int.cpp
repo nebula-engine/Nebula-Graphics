@@ -8,7 +8,7 @@
 //#include <GL/glut.h>
 
 
-#include <neb/gfx/glsl/Uniform/scalar.hpp>
+#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/free.hpp>
 
 void	neb::glsl::Uniform::Scalar::Int::load(int i) {

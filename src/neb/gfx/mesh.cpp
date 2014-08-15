@@ -7,9 +7,9 @@
 #include <gal/log/log.hpp>
 
 #include <neb/core/math/geo/polyhedron.hh>
-#include <neb/core/debug.hh>
+#include <neb/core/util/debug.hpp>
 
-#include <neb/gfx/mesh.hh>
+#include <neb/gfx/core/mesh.hh>
 #include <neb/gfx/util/log.hpp>
 
 neb::gfx::mesh::mesh() {
@@ -24,7 +24,7 @@ void	neb::gfx::mesh::construct(math::geo::polyhedron* poly) {
 	
 	printf("%s\n",__PRETTY_FUNCTION__);
 	
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, info) << "tris: " << tris.size();
+	LOG(lg, neb::gfx::sl, info) << "tris: " << tris.size();
 
 
 	
@@ -41,8 +41,8 @@ void	neb::gfx::mesh::construct(math::geo::polyhedron* poly) {
 		}
 	}
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, info) << "vertices: " << vertices_.size();
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, info) << "indices:  " << indices_.size();
+	LOG(lg, neb::gfx::sl, info) << "vertices: " << vertices_.size();
+	LOG(lg, neb::gfx::sl, info) << "indices:  " << indices_.size();
 
 
 }
@@ -67,8 +67,8 @@ void		neb::gfx::mesh::serialize(boost::archive::polymorphic_iarchive & ar, unsig
 	ar & indices_;
 	
 	
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, info) << "vertices: " << vertices_.size();
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, info) << "indices:  " << indices_.size();
+	LOG(lg, neb::gfx::sl, info) << "vertices: " << vertices_.size();
+	LOG(lg, neb::gfx::sl, info) << "indices:  " << indices_.size();
 
 }
 void		neb::gfx::mesh::serialize(boost::archive::polymorphic_oarchive & ar, unsigned int const & version) {
@@ -79,12 +79,12 @@ void		neb::gfx::mesh::serialize(boost::archive::polymorphic_oarchive & ar, unsig
 	ar & indices_;
 	
 	
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, info) << "vertices: " << vertices_.size();
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, info) << "indices:  " << indices_.size();
+	LOG(lg, neb::gfx::sl, info) << "vertices: " << vertices_.size();
+	LOG(lg, neb::gfx::sl, info) << "indices:  " << indices_.size();
 
 }
 void		neb::gfx::mesh::print(int sl) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, (severity_level)sl) << "mesh";
+	LOG(lg, neb::gfx::sl, (severity_level)sl) << "mesh";
 
 	for(auto v : vertices_) {
 		v.print(sl);

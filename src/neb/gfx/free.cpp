@@ -15,7 +15,7 @@
 
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/window/Base.hh>
-#include <neb/gfx/glsl/Uniform/scalar.hpp>
+#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/log.hpp>
@@ -27,7 +27,7 @@ void			neb::draw_quad(
 		float w,
 		float h,
 		neb::Color::color<float> color) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	//GLint uniform_color = glGetUniformLocation(program, "color");
 	//GLint attribute_coord = glGetAttribLocation(program, "coord");
@@ -83,7 +83,7 @@ void		neb::draw_text(
 		shared_ptr<neb::glsl::program> p,
 		float x, float y, float sx, float sy, neb::Color::color<float> color, ::std::string text)
 {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	const char * c;
 
@@ -95,7 +95,7 @@ void		neb::draw_text(
 	
 	//auto p = neb::app::base::global()->use_program(neb::program_name::e::TEXT);
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug)
+	LOG(lg, neb::gfx::sl, debug)
 		<< ::std::setw(8) << x
 		<< ::std::setw(8) << y
 		<< text;

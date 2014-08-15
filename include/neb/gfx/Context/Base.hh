@@ -9,7 +9,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/Viewport.hpp>
 #include <neb/gfx/Context/Util/Cast.hh>
-#include <neb/gfx/GUI/Layout/Base.hh>
+#include <neb/gfx/gui/layout/base.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/drawable/base.hpp>
 

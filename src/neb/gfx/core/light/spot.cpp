@@ -2,16 +2,16 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <neb/core/debug.hh>
+#include <neb/core/util/debug.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/light/spot.hpp>
-#include <neb/gfx/glsl/Uniform/vector.hpp>
+#include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/glsl/program.hpp>
 
 
-neb::gfx::core::light::spot::spot(sp::shared_ptr<neb::core::light::util::parent> parent):
-	neb::core::light::base(parent),
+neb::gfx::core::light::spot::spot(sp::shared_ptr<neb::core::core::light::util::parent> parent):
+	neb::core::core::light::base(parent),
 	neb::gfx::core::light::base(parent, "lights_spot"),
 	spot_direction_(vec3(0.0, 0.0, -1.0)),
 	spot_cutoff_(10.0),
@@ -23,7 +23,7 @@ neb::gfx::core::light::spot::spot(sp::shared_ptr<neb::core::light::util::parent>
 {
 }
 void			neb::gfx::core::light::spot::load(
-		neb::core::light::util::count & light_count,
+		neb::core::core::light::util::count & light_count,
 		neb::core::pose const & pose) {
 
 	neb::gfx::core::light::base::load(light_count.spot, pose);

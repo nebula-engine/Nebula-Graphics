@@ -6,7 +6,7 @@
 
 #include <neb/core/app/__base.hpp>
 
-#include <neb/gfx/GUI/Object/Base.hh>
+#include <neb/gfx/gui/object/Base.hh>
 
 namespace neb {
 	namespace gfx {

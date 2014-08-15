@@ -8,15 +8,16 @@
 #include <gal/std/timestep.hpp>
 
 #include <neb/core/util/decl.hpp>
-#include <neb/core/scene/util/decl.hpp>
+#include <neb/core/core/scene/util/decl.hpp>
+
 #include <neb/gfx/Context/Base.hh>
 #include <neb/gfx/Context/Util/Parent.hh>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/texture.hh>
+#include <neb/gfx/texture.hpp>
 #include <neb/gfx/glsl/program.hpp>
 #include <neb/gfx/glsl/shader.hh>
-#include <neb/gfx/GUI/Layout/Base.hh>
+#include <neb/gfx/gui/layout/base.hpp>
 #include <neb/gfx/window/__base.hpp>
 #include <neb/gfx/window/util/Flag.hh>
 #include <neb/gfx/window/util/Cast.hh>

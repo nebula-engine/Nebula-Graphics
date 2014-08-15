@@ -9,7 +9,7 @@
 
 
 //#include <neb/scene/scene.hpp>
-#include <neb/gfx/glsl/Uniform/vector.hpp>
+#include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/free.hpp>
 
 

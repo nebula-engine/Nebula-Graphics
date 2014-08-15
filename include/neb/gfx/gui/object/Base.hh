@@ -6,11 +6,11 @@
 #include <boost/signals2.hpp>
 
 #include <neb/core/util/shared.hpp>
-#include <neb/core/Color/Color.hh>
+#include <neb/core/color/Color.hh>
 
 #include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/GUI/Object/Util/Parent.hh>
-#include <neb/gfx/GUI/Object/Util/flag.hpp>
+#include <neb/gfx/gui/object/util/parent.hpp>
+#include <neb/gfx/gui/object/util/flag.hpp>
 
 namespace neb {
 	namespace gfx {

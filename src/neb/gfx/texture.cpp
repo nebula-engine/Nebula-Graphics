@@ -3,9 +3,9 @@
 
 #include <GL/glew.h>
 
-#include <neb/core/Color/Color.hh>
+#include <neb/core/color/Color.hh>
 
-#include <neb/gfx/texture.hh>
+#include <neb/gfx/texture.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
 

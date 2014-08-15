@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 
 #include <neb/gfx/free.hpp>
-#include <neb/gfx/GUI/Object/textview.hh>
+#include <neb/gfx/gui/object/textview.hh>
 
 neb::gfx::gui::object::textview::textview() {
 }

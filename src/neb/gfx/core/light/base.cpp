@@ -3,40 +3,40 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/debug.hh>
+#include <neb/core/util/debug.hpp>
 #include <neb/core/util/decl.hpp>
 #include <neb/core/util/log.hpp>
-#include <neb/core/scene/base.hpp>
-#include <neb/core/shape/base.hpp>
+#include <neb/core/core/scene/base.hpp>
+#include <neb/core/core/shape/base.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
-#include <neb/gfx/glsl/Uniform/vector.hpp>
+#include <neb/gfx/glsl/uniform/vector.hpp>
 
 
-neb::gfx::core::light::base::base(sp::shared_ptr<neb::core::light::util::parent> parent, ::std::string light_type_string):
-	neb::core::light::base(parent),
+neb::gfx::core::light::base::base(sp::shared_ptr<neb::core::core::light::util::parent> parent, ::std::string light_type_string):
+	neb::core::core::light::base(parent),
 	light_type_string_(light_type_string),
 	ambient_(0.1,0.1,0.1,1.0),
 	diffuse_(neb::Color::white<float>()),
 	specular_(neb::Color::white<float>())
 {
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
 void neb::gfx::core::light::base::init() {
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
 }
 void neb::gfx::core::light::base::release() {
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
 void neb::gfx::core::light::base::cleanup() {
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
 void neb::gfx::core::light::base::dim() {
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	/*	
 	//printf("diffuse\n");
 	//diffuse_.print();
@@ -53,10 +53,10 @@ void		neb::gfx::core::light::base::step(gal::std::timestep const & ts) {
 
 }
 void	neb::gfx::core::light::base::draw() {	
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
 neb::core::pose		neb::gfx::core::light::base::getPose() {
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto parent(parent_.lock());
 	assert(parent);
@@ -66,7 +66,7 @@ neb::core::pose		neb::gfx::core::light::base::getPose() {
 	return p;
 }
 void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	
 	/** @todo way to ditinguish lights in shader */
 	
@@ -87,7 +87,7 @@ void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
 
 }
 void	neb::gfx::core::light::base::load_shadow() {
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	/*	auto p = neb::master::Global()->current_program();
 
 		math::mat44 biasMatrix(
@@ -108,7 +108,7 @@ void	neb::gfx::core::light::base::load_shadow() {
 }
 void	neb::gfx::core::light::base::RenderLightPOV()
 {
-	if(DEBUG_NEB) LOG(lg, neb::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	/*
 	   std::shared_ptr<scene> scene = scene_.lock();
 

@@ -8,7 +8,7 @@
 
 
 #include <neb/gfx/glsl/program.hpp>
-#include <neb/gfx/glsl/Uniform/scalar.hpp>
+#include <neb/gfx/glsl/uniform/scalar.hpp>
 
 neb::glsl::Uniform::Scalar::base::base(std::string name) {
 	//printf("%s\n",__PRETTY_FUNCTION__);

@@ -1,13 +1,10 @@
 #include <stdio.h>
 
-//#include <math/xml.hpp>
-
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/material.hpp>
-//#include <neb/gfx/window/Base.hh>
 #include <neb/gfx/glsl/program.hpp>
-#include <neb/gfx/glsl/Uniform/scalar.hpp>
-#include <neb/core/scene/base.hpp>
+#include <neb/gfx/glsl/uniform/scalar.hpp>
+#include <neb/core/core/scene/base.hpp>
 
 /*
 gru::Color::color<float> operator<<(gru::Color::color<float> c, tinyxml2::XMLElement* element) {

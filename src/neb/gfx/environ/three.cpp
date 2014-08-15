@@ -1,7 +1,7 @@
 #include <gal/log/log.hpp>
 
 
-#include <neb/core/debug.hh>
+#include <neb/core/util/debug.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
@@ -14,7 +14,7 @@
 #include <neb/gfx/util/log.hpp>
 
 void		neb::gfx::environ::three::init() {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto self = sp::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
 	
@@ -29,7 +29,7 @@ void		neb::gfx::environ::three::init() {
 }
 void		neb::gfx::environ::three::step(gal::std::timestep const & ts) {
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	if(proj_) proj_->step(ts);	
 	if(view_) view_->step(ts);	
@@ -37,7 +37,7 @@ void		neb::gfx::environ::three::step(gal::std::timestep const & ts) {
 }
 void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> context) {
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	/**
 	 * prepare rendering environment and then call the drawable
@@ -74,7 +74,7 @@ void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> c
 	drawable->draw(context, p);
 }		
 weak_ptr<neb::gfx::Camera::View::Ridealong>		neb::gfx::environ::three::createViewRidealong(
-		weak_ptr<neb::core::actor::base> actor)
+		weak_ptr<neb::core::core::actor::base> actor)
 {
 	auto self(dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this()));
 

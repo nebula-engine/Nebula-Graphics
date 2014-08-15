@@ -1,7 +1,7 @@
 #ifndef NEBULA_GFX_ENVIRON_THREE_HPP
 #define NEBULA_GFX_ENVIRON_THREE_HPP
 
-#include <neb/core/actor/util/Types.hh>
+#include <neb/core/core/actor/util/decl.hpp>
 #include <neb/core/util/typedef.hpp>
 
 #include <neb/gfx/util/decl.hpp>
@@ -20,7 +20,7 @@ namespace neb { namespace gfx { namespace environ {
 			virtual void		init();
 			virtual void		step(gal::std::timestep const & ts);
 			virtual void		render(sp::shared_ptr<neb::gfx::context::base> context);
-			weak_ptr<neb::gfx::Camera::View::Ridealong>		createViewRidealong(weak_ptr<neb::core::actor::base> actor);
+			weak_ptr<neb::gfx::Camera::View::Ridealong>		createViewRidealong(weak_ptr<neb::core::core::actor::base> actor);
 		public:
 					/** @brief View Space Camera
 			 * 

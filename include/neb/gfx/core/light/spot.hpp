@@ -16,8 +16,8 @@
 
 #include <neb/gfx/core/light/base.hpp>
 
-#include <neb/gfx/texture.hh>
-#include <neb/core/light/base.hpp>
+#include <neb/gfx/texture.hpp>
+#include <neb/core/core/light/base.hpp>
 
 
 //#include <math/color.hpp>
@@ -36,9 +36,9 @@ namespace neb { namespace gfx { namespace core { namespace light {
 					ar & boost::serialization::make_nvp("spot_light_cos_cutoff",spot_light_cos_cutoff_);
 				}
 			public:
-				spot(sp::shared_ptr<neb::core::light::util::parent> parent);
+				spot(sp::shared_ptr<neb::core::core::light::util::parent> parent);
 
-				virtual void				load(neb::core::light::util::count & light_count, neb::core::pose const & pose);
+				virtual void				load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose);
 
 				virtual void			serialize(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) {
 					neb::gfx::core::light::base::serialize(ar, version);

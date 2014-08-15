@@ -5,7 +5,7 @@
 
 #include <gal/std/timestep.hpp>
 
-#include <neb/core/Color/Color.hh>
+#include <neb/core/color/Color.hh>
 
 namespace neb {
 	namespace material {

@@ -1,7 +1,7 @@
 
 #include <neb/gfx/window/Base.hh>
-#include <neb/gfx/GUI/Layout/Base.hh>
-#include <neb/gfx/GUI/Object/edittext.hh>
+#include <neb/gfx/gui/layout/base.hpp>
+#include <neb/gfx/gui/object/edittext.hh>
 
 neb::gfx::gui::object::edittext::edittext() {
 

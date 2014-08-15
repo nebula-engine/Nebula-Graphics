@@ -8,11 +8,11 @@
 
 #include <gal/std/shared.hpp>
 
-#include <neb/core/Pose.hh>
+#include <neb/core/interface/Pose.hh>
 #include <neb/core/util/parent.hpp>
-#include <neb/core/actor/util/Types.hh>
-#include <neb/core/actor/util/Cast.hh>
-#include <neb/core/shape/util/Cast.hh>
+#include <neb/core/core/actor/util/decl.hpp>
+#include <neb/core/core/actor/util/cast.hpp>
+#include <neb/core/core/shape/util/cast.hpp>
 
 namespace neb {
 	namespace gfx {
@@ -25,7 +25,7 @@ namespace neb {
 					 * @note inheritance of neb::util::parent is non-virtual
 					 */
 					class parent :
-						virtual public neb::core::shape::util::parent
+						virtual public neb::core::core::shape::util::parent
 					{
 					public:
 						virtual ~parent() {}

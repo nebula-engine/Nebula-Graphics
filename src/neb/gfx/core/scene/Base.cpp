@@ -5,37 +5,37 @@
 //#include <neb/gfx/window/Base.hh>
 //#include <neb/gfx/Context/Base.hh>
 
-#include <neb/core/debug.hh>
-#include <neb/core/util/config.hpp>
-#include <neb/core/light/base.hpp>
-#include <neb/core/actor/util/Type.hh>
-#include <neb/core/light/util/light_count.hpp>
 #include <neb/core/util/log.hpp>
+#include <neb/core/util/debug.hpp>
+#include <neb/core/util/config.hpp>
+#include <neb/core/core/light/base.hpp>
+#include <neb/core/core/light/util/light_count.hpp>
+//#include <neb/core/core/actor/util/Type.hh>
+#include <neb/core/timer/Types.hh>
+#include <neb/core/timer/Actor/Release.hpp>
 
 #include <neb/gfx/core/scene/base.hpp>
 #include <neb/gfx/core/actor/base.hpp>
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/gfx/glsl/program.hpp>
-#include <neb/gfx/glsl/Uniform/scalar.hpp>
+#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/Camera/Projection/Perspective.hh>
-#include <neb/timer/Types.hh>
-#include <neb/timer/Actor/Release.hpp>
 
 using namespace std;
 
 neb::gfx::core::scene::base::base(sp::shared_ptr<neb::core::core::scene::util::parent> parent):
 	neb::core::core::scene::base(parent)
 {
-	if(DEBUG_NEB) LOG(lg, neb::core::scene::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 }
 neb::gfx::core::scene::base::~base() {
-	if(DEBUG_NEB) LOG(lg, neb::core::scene::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 }
 void			neb::gfx::core::scene::base::init() {
-	if(DEBUG_NEB) LOG(lg, neb::core::scene::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 }
 void			neb::gfx::core::scene::base::release() {
-	if(DEBUG_NEB) LOG(lg, neb::core::scene::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 	
 	neb::core::core::scene::base::release();
 }
@@ -43,13 +43,13 @@ void			neb::gfx::core::scene::base::draw(
 		sp::shared_ptr<neb::gfx::context::base> context,
 		sp::shared_ptr<neb::glsl::program> p) {
 
-	if(DEBUG_NEB) LOG(lg, neb::core::scene::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 
 
 
-	neb::core::light::util::count light_count;
+	neb::core::core::light::util::count light_count;
 
-	typedef neb::core::actor::util::parent A;
+	typedef neb::core::core::actor::util::parent A;
 
 	A::map_.for_each<0>([&] (A::map_type::iterator<0> it) {
 			auto actor = sp::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
@@ -75,12 +75,12 @@ void						neb::gfx::core::scene::base::resize(int w, int h) {
 }
 void						neb::gfx::core::scene::base::step(gal::std::timestep const & ts) {
 }
-/*weak_ptr<neb::core::actor::base>		neb::gfx::core::scene::base::createActorBase(neb::core::pose const & pose) {
+/*weak_ptr<neb::core::core::actor::base>		neb::gfx::core::scene::base::createActorBase(neb::core::pose const & pose) {
 	auto actor(make_shared<neb::gfx::core::actor::base>(isSceneBase()));
 	insert(actor);
 	return actor;
 }*/
-weak_ptr<neb::core::actor::base>		neb::gfx::core::scene::base::createActorLightPoint(vec3 p) {
+weak_ptr<neb::core::core::actor::base>		neb::gfx::core::scene::base::createActorLightPoint(vec3 p) {
 
 	neb::core::pose pose(p);
 	

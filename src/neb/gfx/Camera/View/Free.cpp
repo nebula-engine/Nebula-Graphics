@@ -4,7 +4,7 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/debug.hh>
+#include <neb/core/util/debug.hpp>
 
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/Camera/View/Free.hh>
@@ -104,7 +104,7 @@ void	neb::gfx::Camera::View::Free::init() {
 
 }
 void			neb::gfx::Camera::View::Free::connect(sp::shared_ptr<neb::gfx::window::base> const & window) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
 	
 	
 	
@@ -139,7 +139,7 @@ int			neb::gfx::Camera::View::Free::key_fun(
 		int action,
 		int mods)
 {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	long unsigned int f = flag_.val_ & (
 			neb::gfx::camera::view::util::flag::NORTH |
@@ -150,7 +150,7 @@ int			neb::gfx::Camera::View::Free::key_fun(
 			neb::gfx::camera::view::util::flag::DOWN);
 
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug)
+	LOG(lg, neb::gfx::sl, debug)
 		<< "key = " << key
 		<< " scancode = " << scancode
 		<< " action = " << action
@@ -231,7 +231,7 @@ int			neb::gfx::Camera::View::Free::key_fun(
 	return 0;
 }
 void			neb::gfx::Camera::View::Free::step(gal::std::timestep const & ts) {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	// look vector
 	//vec3 look = center_ - vec3(eye_);
@@ -304,8 +304,8 @@ void			neb::gfx::Camera::View::Free::step(gal::std::timestep const & ts) {
 }
 
 vec3			neb::gfx::Camera::View::Free::move() {
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << "flag = " << flag_.val_;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << "flag = " << flag_.val_;
 
 	//	vec3 mov = vec3(0,0,-1) * north_ + vec3(1,0,0) * east_;
 
@@ -330,7 +330,7 @@ vec3			neb::gfx::Camera::View::Free::move() {
 		mov = head_[it->second];
 	}
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << "flag = " << flag_.val_;
+	LOG(lg, neb::gfx::sl, debug) << "flag = " << flag_.val_;
 
 	return mov;
 }
@@ -360,17 +360,17 @@ mat4		neb::gfx::Camera::View::Free::view() {
 
 	mat4 ret = glm::lookAt(eye, center, up);
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "yaw" << ::std::setw(8) << yaw_;
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "pitch" << ::std::setw(8) << pitch_;
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "eye"
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "yaw" << ::std::setw(8) << yaw_;
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "pitch" << ::std::setw(8) << pitch_;
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "eye"
 		<< ::std::setw(8) << eye[0]
 		<< ::std::setw(8) << eye[1]
 		<< ::std::setw(8) << eye[2];
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "center"
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "center"
 		<< ::std::setw(8) << center[0]
 		<< ::std::setw(8) << center[1]
 		<< ::std::setw(8) << center[2];
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "up"
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "up"
 		<< ::std::setw(8) << up[0]
 		<< ::std::setw(8) << up[1]
 		<< ::std::setw(8) << up[2];

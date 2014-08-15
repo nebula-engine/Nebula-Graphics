@@ -8,14 +8,13 @@
 
 #include <gal/std/timestep.hpp>
 
-#include <neb/core/typedef.hpp>
-#include <neb/core/shape/base.hpp>
-#include <neb/core/light/util/light_count.hpp>
+#include <neb/core/core/shape/base.hpp>
+#include <neb/core/core/light/util/light_count.hpp>
 
 #include <neb/gfx/core/light/util/parent.hpp>
-#include <neb/gfx/texture.hh>
+#include <neb/gfx/texture.hpp>
 #include <neb/gfx/material.hpp>
-#include <neb/gfx/mesh.hh>
+#include <neb/gfx/core/mesh.hh>
 
 namespace neb {
 	namespace glsl {
@@ -44,13 +43,13 @@ namespace neb {
 			};
 
 			class base:
-				virtual public neb::core::shape::base,
+				virtual public neb::core::core::shape::base,
 				virtual public neb::gfx::core::light::util::parent
 			{
 				public:
 					typedef ::std::map< neb::gfx::context::base*, sp::shared_ptr<buffer> >			map_t;
 
-					base(sp::shared_ptr<neb::core::shape::util::parent> parent);
+					base(sp::shared_ptr<neb::core::core::shape::util::parent> parent);
 					virtual ~base();
 
 					void			init();
@@ -58,15 +57,18 @@ namespace neb {
 					void			step(gal::std::timestep const & ts);
 
 
-					virtual sp::weak_ptr<neb::core::light::base>		createLightPoint();
+					virtual sp::weak_ptr<neb::core::core::light::base>		createLightPoint();
 
 
 					virtual void					createMesh();
 
 
 					/** @name Rendering @{ */
-					void						load_lights(neb::core::light::util::count& light_count, neb::core::pose const & pose);
-					void						model_load(neb::core::pose const & pose);
+					void						load_lights(
+							neb::core::core::light::util::count& light_count,
+							neb::core::pose const & pose);
+					void						model_load(
+							neb::core::pose const & pose);
 					void						init_buffer(
 							sp::shared_ptr<neb::gfx::context::base> context,
 							sp::shared_ptr<neb::glsl::program> p);
@@ -90,7 +92,7 @@ namespace neb {
 					}
 
 				public:
-					sp::weak_ptr<neb::core::shape::util::parent>		parent_;
+					weak_ptr<neb::core::core::shape::util::parent>		parent_;
 
 				public:
 					/** @brief Material. */

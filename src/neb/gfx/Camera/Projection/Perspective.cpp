@@ -11,12 +11,12 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <neb/core/debug.hh>
-#include <neb/core/actor/base.hpp>
+#include <neb/core/util/debug.hpp>
+#include <neb/core/core/actor/base.hpp>
 
 #include <neb/gfx/Camera/Projection/Perspective.hh>
 #include <neb/gfx/environ/base.hpp>
-#include <neb/gfx/glsl/Uniform/scalar.hpp>
+#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program.hpp>
 #include <neb/gfx/util/log.hpp>
 
@@ -51,10 +51,10 @@ neb::gfx::Camera::Projection::Perspective::Perspective(sp::shared_ptr<neb::gfx::
 }*/
 mat4		neb::gfx::Camera::Projection::Perspective::proj() {
 
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "fovy" << ::std::setw(8) << fovy_;
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "aspect" << ::std::setw(8) << parent_->viewport_.aspect_;
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zn" << ::std::setw(8) << zn_;
-	if(DEBUG_NEB) LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zf" << ::std::setw(8) << zf_;
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "fovy" << ::std::setw(8) << fovy_;
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "aspect" << ::std::setw(8) << parent_->viewport_.aspect_;
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zn" << ::std::setw(8) << zn_;
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zf" << ::std::setw(8) << zf_;
 	
 	mat4 ret = glm::perspective(fovy_, parent_->viewport_.aspect_, zn_, zf_);
 	

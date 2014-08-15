@@ -10,17 +10,17 @@
 #include <neb/core/util/decl.hpp>
 #include <neb/core/util/typedef.hpp>
 #include <neb/core/math/Serialization/glm.hpp>
-#include <neb/core/light/base.hpp>
-#include <neb/core/Color/Color.hh>
+#include <neb/core/core/light/base.hpp>
+#include <neb/core/color/Color.hh>
 
-#include <neb/gfx/texture.hh>
+#include <neb/gfx/texture.hpp>
 
 
 namespace neb { namespace gfx { namespace core { namespace light {
 
-		class base: virtual public neb::core::light::base {
+		class base: virtual public neb::core::core::light::base {
 			public:
-				base(sp::shared_ptr<neb::core::light::util::parent> parent, ::std::string);
+				base(sp::shared_ptr<neb::core::core::light::util::parent> parent, ::std::string);
 				
 				void				init();
 				
@@ -28,7 +28,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				virtual void			cleanup();
 				virtual void			step(gal::std::timestep const & ts);
 
-				virtual void			load(neb::core::light::util::count & light_count, neb::core::pose const & pose) = 0;
+				virtual void			load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) = 0;
 				void				load(int o, neb::core::pose const & pose);
 
 				void				load_shadow();

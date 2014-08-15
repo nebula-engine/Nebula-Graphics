@@ -3,14 +3,13 @@
 
 #include <map>
 
-#include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/GUI/Object/Base.hh>
-//#include <neb/gfx/GUI/Layout/util/Parent.hh>
-#include <neb/gfx/GUI/Object/Util/Parent.hh>
-#include <neb/gfx/drawable/base.hpp>
+#include <glm/glm.hpp>
 
+#include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/gui/object/Base.hh>
+#include <neb/gfx/gui/object/util/parent.hpp>
+#include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/window/Base.hh>
-#include <neb/core/util/typedef.hpp>
 
 namespace neb {
 	namespace gfx {

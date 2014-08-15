@@ -8,7 +8,7 @@
 //#include <GL/glut.h>
 
 
-#include <neb/gfx/glsl/Uniform/vector.hpp>
+#include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/free.hpp>
 
 

@@ -8,8 +8,9 @@
 //#include <GL/glut.h>
 
 
-#include <neb/core/scene/base.hpp>
-#include <neb/gfx/glsl/Uniform/vector.hpp>
+#include <neb/core/core/scene/base.hpp>
+
+#include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/free.hpp>
 
 
