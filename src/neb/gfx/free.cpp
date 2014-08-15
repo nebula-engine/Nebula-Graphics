@@ -11,7 +11,7 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/debug.hh>
+#include <neb/core/util/debug.hpp>
 
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/window/Base.hh>

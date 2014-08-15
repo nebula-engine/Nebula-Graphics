@@ -1,7 +1,7 @@
 #include <string.h>
 #include <algorithm>
 
-#include <neb/gfx/GUI/Object/Base.hh>
+#include <neb/gfx/gui/object/Base.hh>
 
 neb::gfx::gui::object::base::base():
 	x_(0.0),

@@ -3,8 +3,7 @@
 
 #include <memory>
 
-#include <neb/core/typedef.hpp>
-#include <neb/core/Color/Color.hh>
+#include <neb/core/color/Color.hh>
 
 #include <neb/gfx/util/decl.hpp>
 
@@ -15,7 +14,7 @@ namespace neb {
 
 namespace neb {
 	void	draw_quad(sp::shared_ptr<neb::glsl::program> p,
-float, float, float, float, neb::Color::color<float>);
+			float, float, float, float, neb::Color::color<float>);
 	void	draw_text(
 			sp::shared_ptr<neb::glsl::program> p,
 			float, float, float, float, neb::Color::color<float>, ::std::string);

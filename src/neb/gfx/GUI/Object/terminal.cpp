@@ -5,7 +5,7 @@
 
 
 
-#include <neb/core/debug.hh>
+#include <neb/core/util/debug.hpp>
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/log.hpp>
