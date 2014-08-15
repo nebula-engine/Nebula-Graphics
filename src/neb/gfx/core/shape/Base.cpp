@@ -219,15 +219,9 @@ void		neb::gfx::core::shape::base::draw_elements(
 			0);
 	//checkerror("glDrawElements");
 
-	glDrawElements(
-			GL_LINES,
-			mesh_.indices_.size(),
-			GL_UNSIGNED_SHORT,
-			0);
+	//glDrawElements(GL_LINES, mesh_.indices_.size(), GL_UNSIGNED_SHORT, 0);
+			
 	//checkerror("glDrawElements");
-
-
-
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	//checkerror("glBindBuffer");
