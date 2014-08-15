@@ -15,40 +15,24 @@
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/material.hpp>
 #include <neb/gfx/core/mesh.hh>
+#include <neb/gfx/core/buffer.hpp>
 
 namespace neb {
 	namespace glsl {
 		class program;
 	}
-
 	namespace gfx {
-
-
 		namespace context {
 			class base;
 		}
 
 		namespace core { namespace shape {
-
-
-			class buffer {
-				public:
-					GLuint		vbo_;
-					GLuint		indices_;
-
-					struct
-					{
-						sp::shared_ptr<neb::texture>	image_;
-					} texture_;
-			};
-
 			class base:
 				virtual public neb::core::core::shape::base,
 				virtual public neb::gfx::core::light::util::parent
 			{
 				public:
-					typedef ::std::map< neb::gfx::context::base*, sp::shared_ptr<buffer> >			map_t;
-
+					
 					base(sp::shared_ptr<neb::core::core::shape::util::parent> parent);
 					virtual ~base();
 
@@ -57,7 +41,7 @@ namespace neb {
 					void			step(gal::std::timestep const & ts);
 
 
-					virtual sp::weak_ptr<neb::core::core::light::base>		createLightPoint();
+					virtual weak_ptr<neb::core::core::light::base>		createLightPoint();
 
 
 					virtual void					createMesh();
@@ -96,14 +80,12 @@ namespace neb {
 
 				public:
 					/** @brief Material. */
-					neb::material::raw			material_;
+					neb::material::raw					material_;
 				public:
 
 					// draw data
 					/** @brief ID */
-					neb::material::material					material_front_;
-					neb::gfx::mesh						mesh_;
-					map_t							context_;
+					shared_ptr<neb::gfx::mesh>				mesh_;
 					//neb::program_name::e					program_;
 					/** @brief Parent */
 

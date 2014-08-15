@@ -19,7 +19,8 @@ void neb::gfx::core::shape::box::box::createMesh() {
 
 	math::geo::cuboid cube(1.0,1.0,1.0);
 	
-	mesh_.construct(&cube);
+	mesh_.reset(new neb::gfx::mesh);
+	mesh_->construct(&cube);
 }
 
 
