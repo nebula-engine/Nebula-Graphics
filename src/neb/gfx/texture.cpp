@@ -18,16 +18,14 @@ neb::gfx::texture::texture():
 neb::gfx::texture::~texture()
 {
 }
-void			neb::gfx::texture::init_shadow(int w,int h, shared_ptr<neb::gfx::core::buffer> buf)
+void			neb::gfx::texture::init_shadow(int w,int h, shared_ptr<neb::gfx::context::base> context)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 
 	w_ = w;
 	h_ = h;
 
-	glGenTextures(1, &buf->texture_);
-	
-	bind(buf);
+	genAndBind(context);
 	
 	glTexImage2D(
 			GL_TEXTURE_2D,
@@ -46,16 +44,31 @@ void			neb::gfx::texture::init_shadow(int w,int h, shared_ptr<neb::gfx::core::bu
 
 	checkerror("");
 }
-void	neb::gfx::texture::genAndBind(shared_ptr<neb::gfx::core::buffer> buf)
+GLuint		neb::gfx::texture::genAndBind(shared_ptr<neb::gfx::context::base> context)
 {
-	glGenTextures(1, &buf->texture_);
+	GLuint o;
+	
+	glGenTextures(1, &o);
 	checkerror("glGenTextures");
+	glBindTexture(GL_TEXTURE_2D, o);
+	checkerror("glBindTexture");
 
-	bind(buf);
+	return o;
 }
-void	neb::gfx::texture::bind(shared_ptr<neb::gfx::core::buffer> buf)
+void	neb::gfx::texture::bind(shared_ptr<neb::gfx::context::base> context)
 {
-	glBindTexture(GL_TEXTURE_2D, buf->texture_); checkerror("glBindTexture");
+	GLuint o;
+	
+	// this is the function called during drawing
+	// this is where we check if the buffer is ready and create it if not
+	auto it = buffers_.find(context.get());
+	if(it == buffers_.end()) {
+		o = init_buffer(context);
+	} else {
+		o = *it;
+	}
+	
+	glBindTexture(GL_TEXTURE_2D, o);
 	checkerror("glBindTexture");
 }
 int	neb::gfx::texture::load_png(char const * filename)
@@ -189,9 +202,12 @@ int	neb::gfx::texture::load_png(char const * filename)
 	fclose(fp);
 	return 0;
 }
-void			neb::gfx::texture::init_buffer(shared_ptr<neb::gfx::core::buffer> buf) {
-	genAndBind(buf);
+GLint			neb::gfx::texture::init_buffer(shared_ptr<neb::gfx::context::base> context) {
+	
+	GLint o = genAndBind(context);
 
+	buffers_[context.get()] = o;
+	
 	cout << "w " << w_ << " h " << h_ << " data " << (long int)png_image_data_ << endl;
 
 	glTexImage2D(
@@ -208,6 +224,8 @@ void			neb::gfx::texture::init_buffer(shared_ptr<neb::gfx::core::buffer> buf) {
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	checkerror("glTexParameterf");
+
+	return o;
 }
 
 

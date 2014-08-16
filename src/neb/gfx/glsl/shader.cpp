@@ -15,8 +15,51 @@
 #include <algorithm>
 
 #include <neb/gfx/free.hpp>
+#include <neb/gfx/util/config.hpp>
 #include <neb/gfx/glsl/shader.hh>
 
+vector<string>		readLines(string filename) {
+
+	filename = NEB_GFX_SHADER_DIR + filename;
+
+	ifstream ifs(filename);
+
+	
+	if(!ifs.is_open()) {
+		cout << "file not found " << filename << endl;
+		abort();
+	}
+
+	vector<string> lines;
+	for(string line; getline(ifs, line);) {
+		lines.push_back(line);
+	}
+	return lines;
+}
+vector<string>		preprocess(const char * filename) {
+	vector<string> lines1 = readLines(filename);
+	vector<string> lines2;
+	
+	for(string line : lines1) {
+		if(line.find("#include") == 0) {
+
+			size_t b = line.find('"');
+			size_t e = line.find('"', b+1);
+
+			string filename_inc = line.substr(b+1, e-b-1);
+
+			cout << "include " << filename_inc << endl;
+
+			auto linesi = preprocess(filename_inc.c_str());
+
+			for(auto linei : linesi) lines2.push_back(linei);
+		} else {
+			lines2.push_back(line);
+		}
+	}
+	
+	return lines2;
+}
 void	neb::glsl::shader::load(const char * filename, GLenum shader_type)
 {	
 	printf("%s\n",__PRETTY_FUNCTION__);
@@ -24,10 +67,7 @@ void	neb::glsl::shader::load(const char * filename, GLenum shader_type)
 
 	// read text
 	
-	ifstream ifs(filename);
-	
-	vector<string> lines;
-	for(string line; getline(ifs, line);) lines.push_back(line);
+	vector<string> lines = preprocess(filename);
 	
 	stringstream ss;
 	copy(lines.begin(), lines.end(), ostream_iterator<string>(ss, "\n"));

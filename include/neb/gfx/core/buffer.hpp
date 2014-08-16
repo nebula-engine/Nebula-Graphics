@@ -23,7 +23,7 @@ namespace neb { namespace gfx { namespace core {
 			GLuint		indices_;
 	
 			GLuint		texture_;
-			
+			GLuint		normal_map_;
 	};
 }}}
 

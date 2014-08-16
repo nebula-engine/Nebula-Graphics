@@ -183,7 +183,7 @@ void			neb::gfx::mesh::vertexAttribPointer(
 				(void*)off_texcoor);
 		checkerror("glVertexAttribPointer texcoor");
 	}
-
+	
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 void			neb::gfx::mesh::buffer_data(shared_ptr<neb::gfx::core::buffer> buf) {
@@ -304,7 +304,7 @@ void			neb::gfx::mesh::draw_elements_texture(
 	
 	// texture
 	glActiveTexture(GL_TEXTURE0);//checkerror("glActiveTexture");
-	texture_->bind(bufs);
+	texture_->bind(context);
 	p->get_uniform_scalar("image")->load(0);
 
 	

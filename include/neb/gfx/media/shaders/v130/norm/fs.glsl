@@ -19,7 +19,7 @@ uniform int light_count_directional;
 uniform mat4 view;
 uniform Material front;
 
-uniform sampler2D image;
+uniform sampler2D norm;
 
 out vec4 color;
 
@@ -39,13 +39,15 @@ void main(void)
 	
 	color = vec4(0.0);
 	
-	vec4 image_color = texture2D(image, vs_texcoor);
+	vec4 norm_vector = texture2D(norm, vs_texcoor);
+	
+	N = normalize(N + norm_vector.xyz);
+	
+	point(front.ambient, front.diffuse, front.specular);
+	spot(front.ambient, front.diffuse, front.specular);
+	directional(front.ambient, front.diffuse, front.specular);
 
-	point(front.ambient * image_color, front.diffuse * image_color, front.specular);
-	spot(front.ambient * image_color, front.diffuse * image_color, front.specular);
-	directional(front.ambient * image_color, front.diffuse * image_color, front.specular);
-
-	color += front.emission * image_color;
+	color += front.emission;
 }
 
 

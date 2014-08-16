@@ -19,6 +19,8 @@ namespace neb {
 			TEXT,
 			LIGHT,
 			IMAGE,
+			NORM,
+			NORM_IMAGE
 		};
 	};
 
