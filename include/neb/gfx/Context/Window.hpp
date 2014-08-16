@@ -27,10 +27,10 @@ namespace neb {
 				virtual public neb::gfx::context::base
 			{
 				public:
-					window(sp::shared_ptr<neb::gfx::window::base> window);
+					window(std::shared_ptr<neb::gfx::window::base> window);
 					virtual void					init();
 				public:
-					sp::shared_ptr<neb::gfx::window::base>	window_;
+					std::shared_ptr<neb::gfx::window::base>	window_;
 			};
 		}
 	}

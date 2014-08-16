@@ -36,7 +36,7 @@ neb::gfx::window::base::base():
 	h_(600)
 {
 }
-neb::gfx::window::base::base(sp::shared_ptr<neb::gfx::window::util::parent> parent):
+neb::gfx::window::base::base(std::shared_ptr<neb::gfx::window::util::parent> parent):
 	parent_(parent),
 	x_(1200),
 	y_(0),
@@ -49,14 +49,14 @@ neb::gfx::window::base::~base() {
 void neb::gfx::window::base::init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	neb::std::shared::init();
+	neb::itf::shared::init();
 
 	auto app = neb::app::__gfx::global().lock();
 	assert(app);
 
 	assert(app->flag_.any(neb::core::app::util::flag::INIT_GLFW));
 
-	self_ = sp::dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this());
+	self_ = std::dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this());
 
 	// create window
 	window_ = glfwCreateWindow(
@@ -164,7 +164,7 @@ void		neb::gfx::window::base::render() {
 	typedef neb::gfx::context::util::parent C;
 
 	C::map_.for_each<0>([] (C::map_type::iterator<0> it) {
-			auto context = sp::dynamic_pointer_cast<neb::gfx::context::base>(it->ptr_);
+			auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(it->ptr_);
 			assert(context);
 			context->render();
 			});
@@ -174,7 +174,7 @@ void		neb::gfx::window::base::render() {
 }
 void neb::gfx::window::base::callback_window_refresh_fun(GLFWwindow*) {
 }
-void			neb::gfx::window::base::step(gal::std::timestep const & ts) {
+void			neb::gfx::window::base::step(gal::etc::timestep const & ts) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	neb::gfx::context::util::parent::step(ts);
@@ -235,7 +235,7 @@ void			neb::gfx::window::base::resize() {
 	typedef neb::gfx::context::util::parent C;
 
 	C::map_.for_each<0>([&] (C::map_type::iterator<0> it) {
-			auto context = sp::dynamic_pointer_cast<neb::gfx::context::base>(it->ptr_);
+			auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(it->ptr_);
 			assert(context);
 			context->resize(w_, h_);
 			});

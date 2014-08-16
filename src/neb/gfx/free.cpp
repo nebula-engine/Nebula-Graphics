@@ -21,7 +21,7 @@
 #include <neb/gfx/util/log.hpp>
 
 void			neb::draw_quad(
-		sp::shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::glsl::program> p,
 		float x,
 		float y,
 		float w,

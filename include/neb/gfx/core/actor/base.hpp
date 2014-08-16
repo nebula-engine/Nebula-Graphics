@@ -34,16 +34,16 @@ namespace neb {
 						/** @brief default constructor */
 						//base();
 						/** @brief constructor */
-						base(sp::shared_ptr<neb::core::core::actor::util::parent> parent);
+						base(std::shared_ptr<neb::core::core::actor::util::parent> parent);
 						virtual ~base();
 					public:
 						virtual void					init();
 						virtual void					release();
-						virtual void					step(gal::std::timestep const & ts);
+						virtual void					step(gal::etc::timestep const & ts);
 					public:
 						void						draw(
-								sp::shared_ptr<neb::gfx::context::base> context,
-								sp::shared_ptr<neb::glsl::program> p,
+								std::shared_ptr<neb::gfx::context::base> context,
+								std::shared_ptr<neb::glsl::program> p,
 								neb::core::pose const & pose);
 
 						void						load_lights(

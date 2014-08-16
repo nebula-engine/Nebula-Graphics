@@ -15,9 +15,9 @@ namespace neb {
 			namespace View {
 				class Ridealong: public neb::gfx::Camera::View::base {
 					public:
-						Ridealong(sp::shared_ptr<neb::gfx::environ::base>, weak_ptr<neb::core::core::actor::base> actor);
+						Ridealong(std::shared_ptr<neb::gfx::environ::base>, weak_ptr<neb::core::core::actor::base> actor);
 						virtual mat4				view();
-						virtual void				step(gal::std::timestep const & ts);
+						virtual void				step(gal::etc::timestep const & ts);
 						weak_ptr<neb::core::core::actor::base>	actor_;
 				};
 			}

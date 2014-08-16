@@ -12,7 +12,7 @@ neb::gfx::gui::object::textview::textview() {
 void	neb::gfx::gui::object::textview::clear_label() {
 	label_.clear();
 }
-void	neb::gfx::gui::object::textview::draw(sp::shared_ptr<neb::glsl::program> p) {
+void	neb::gfx::gui::object::textview::draw(std::shared_ptr<neb::glsl::program> p) {
 	//printf("%s\n",__PRETTY_FUNCTION__);
 
 	float sx = 1.0/600.0;
@@ -22,7 +22,7 @@ void	neb::gfx::gui::object::textview::draw(sp::shared_ptr<neb::glsl::program> p)
 	draw_text(p, x_, y_, sx, sy, font_color_, label_);
 }
 int	neb::gfx::gui::object::textview::mouse_button_fun(
-		sp::shared_ptr<neb::gfx::window::base> const & window,
+		std::shared_ptr<neb::gfx::window::base> const & window,
 		int button,
 		int action,
 		int mods)
@@ -32,7 +32,7 @@ int	neb::gfx::gui::object::textview::mouse_button_fun(
 	return neb::gfx::gui::object::base::mouse_button_fun(window, button, action, mods);
 }
 int	neb::gfx::gui::object::textview::key_fun(
-		sp::shared_ptr<neb::gfx::window::base> const & window,
+		std::shared_ptr<neb::gfx::window::base> const & window,
 		int key, int scancode, int action, int mods) {
 	printf("%s\n", __PRETTY_FUNCTION__);
 	return 0;

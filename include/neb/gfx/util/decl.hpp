@@ -12,6 +12,8 @@ namespace neb {
 			POSITION,
 			NORMAL,
 			TEXCOOR,
+			TANGENT,
+			BINORMAL
 		};
 	};
 	struct program_name {

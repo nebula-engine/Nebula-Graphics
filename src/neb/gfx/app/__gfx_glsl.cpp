@@ -87,6 +87,8 @@ void		neb::app::__gfx_glsl::create_programs() {
 		p->add_attrib(neb::attrib_name::e::POSITION, "position", 1);
 		p->add_attrib(neb::attrib_name::e::NORMAL, "normal", 2);
 		p->add_attrib(neb::attrib_name::e::TEXCOOR, "texcoor", 3);
+		p->add_attrib(neb::attrib_name::e::TANGENT, "tangent", 4);
+		p->add_attrib(neb::attrib_name::e::BINORMAL, "binormal", 5);
 
 		p->scanUniforms();
 		p->locate();

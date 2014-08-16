@@ -18,7 +18,7 @@ neb::gfx::texture::texture():
 neb::gfx::texture::~texture()
 {
 }
-void			neb::gfx::texture::init_shadow(int w,int h, shared_ptr<neb::gfx::context::base> context)
+void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::context::base> context)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 
@@ -44,7 +44,7 @@ void			neb::gfx::texture::init_shadow(int w,int h, shared_ptr<neb::gfx::context:
 
 	checkerror("");
 }
-GLuint		neb::gfx::texture::genAndBind(shared_ptr<neb::gfx::context::base> context)
+GLuint		neb::gfx::texture::genAndBind(std::shared_ptr<neb::gfx::context::base> context)
 {
 	GLuint o;
 	
@@ -55,7 +55,7 @@ GLuint		neb::gfx::texture::genAndBind(shared_ptr<neb::gfx::context::base> contex
 
 	return o;
 }
-void	neb::gfx::texture::bind(shared_ptr<neb::gfx::context::base> context)
+void	neb::gfx::texture::bind(std::shared_ptr<neb::gfx::context::base> context)
 {
 	GLuint o;
 	
@@ -65,7 +65,7 @@ void	neb::gfx::texture::bind(shared_ptr<neb::gfx::context::base> context)
 	if(it == buffers_.end()) {
 		o = init_buffer(context);
 	} else {
-		o = *it;
+		o = it->second;
 	}
 	
 	glBindTexture(GL_TEXTURE_2D, o);
@@ -202,7 +202,7 @@ int	neb::gfx::texture::load_png(char const * filename)
 	fclose(fp);
 	return 0;
 }
-GLint			neb::gfx::texture::init_buffer(shared_ptr<neb::gfx::context::base> context) {
+GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base> context) {
 	
 	GLint o = genAndBind(context);
 

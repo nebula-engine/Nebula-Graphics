@@ -6,7 +6,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include <gal/std/shared.hpp>
+#include <gal/itf/shared.hpp>
 
 #include <neb/core/interface/Pose.hh>
 #include <neb/core/util/parent.hpp>

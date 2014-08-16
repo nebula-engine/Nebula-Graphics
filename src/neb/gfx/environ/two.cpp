@@ -2,7 +2,7 @@
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/environ/two.hpp>
 
-void		neb::gfx::environ::two::render(sp::shared_ptr<neb::gfx::context::base> context) {
+void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> context) {
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
@@ -13,7 +13,7 @@ void		neb::gfx::environ::two::render(sp::shared_ptr<neb::gfx::context::base> con
 
 	if(!drawable) return;
 
-	//auto self = sp::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
+	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	auto app = neb::app::__gfx_glsl::global().lock();
 
 	/** wrong for color maybe! */	

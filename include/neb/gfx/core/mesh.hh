@@ -31,7 +31,7 @@
 namespace neb { namespace gfx {
 	class mesh {
 		public:
-			typedef map< neb::gfx::context::base*, shared_ptr<neb::gfx::core::buffer> >			map_t;
+			typedef map< neb::gfx::context::base*, std::shared_ptr<neb::gfx::core::buffer> >			map_t;
 
 			mesh();
 			~mesh();
@@ -45,18 +45,13 @@ namespace neb { namespace gfx {
 			void				vertexAttribPointer(
 					shared_ptr<neb::gfx::core::buffer> buf,
 					shared_ptr<neb::glsl::program> p);
-			void				buffer_data(shared_ptr<neb::gfx::core::buffer> buf);
+			void				buffer_data(std::shared_ptr<neb::gfx::core::buffer> buf);
 			void				init_buffer(
 					shared_ptr<neb::gfx::context::base> context,
 					shared_ptr<neb::glsl::program> p);
 			void				draw_elements(
-					sp::shared_ptr<neb::gfx::context::base> context,
-					sp::shared_ptr<neb::glsl::program> p,
-					neb::core::pose const & pose,
-					glm::vec3 scale);
-			void				draw_elements_texture(
-					sp::shared_ptr<neb::gfx::context::base> context,
-					sp::shared_ptr<neb::glsl::program> p,
+					std::shared_ptr<neb::gfx::context::base> context,
+					std::shared_ptr<neb::glsl::program> p,
 					neb::core::pose const & pose,
 					glm::vec3 scale);
 
@@ -71,6 +66,7 @@ namespace neb { namespace gfx {
 			
 
 			shared_ptr<neb::gfx::texture>		texture_;
+			shared_ptr<neb::gfx::texture>		normal_map_;
 	};
 }}
 

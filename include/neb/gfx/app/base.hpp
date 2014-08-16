@@ -23,7 +23,7 @@ namespace neb {
 					virtual void					__init();
 				public:
 					virtual void					release();
-					virtual void					step(gal::std::timestep const & ts);
+					virtual void					step(gal::etc::timestep const & ts);
 
 					void						loop();
 			};

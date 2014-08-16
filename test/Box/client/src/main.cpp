@@ -34,7 +34,7 @@
 
 
 
-/*void	create_player(sp::shared_ptr<glutpp::window::window> wnd, sp::shared_ptr<glutpp::scene::scene> scene) {
+/*void	create_player(std::shared_ptr<glutpp::window::window> wnd, std::shared_ptr<glutpp::scene::scene> scene) {
 	
 	auto rigidbody = create_player_actor(scene);
 
@@ -42,7 +42,7 @@
 	rigidbody->connect(wnd);
 
 	// control
-	sp::shared_ptr<neb::control::rigid_body::raw> raw;
+	std::shared_ptr<neb::control::rigid_body::raw> raw;
 	
 	app->create_window(600, 600, 200, 100, "box");
 	app->create_window(600, 600, 200, 100, "box second");
@@ -59,17 +59,17 @@
 	//app->activate_layout(box::LAYOUT_GAME);
 
 }*/
-sp::shared_ptr<neb::Actor::RigidBody::base> create_player_actor(sp::shared_ptr<neb::core::scene::base> scene) {
+std::shared_ptr<neb::Actor::RigidBody::base> create_player_actor(std::shared_ptr<neb::core::scene::base> scene) {
 
 	typedef neb::Actor::base A;
 	
 	auto app = neb::app::base::globalBase();
 	
-	neb::std::wrapper wrap;
+	neb::stl::wrapper wrap;
 
 	app->loadXml(std::string("player0.xml"), wrap);
 	
-	//sp::shared_ptr<glutpp::actor::desc> ad = scene->actors_deferred_[(char*)"player0"];
+	//std::shared_ptr<glutpp::actor::desc> ad = scene->actors_deferred_[(char*)"player0"];
 	//assert(ad);
 	
 	scene->insert(wrap.ptr_);
@@ -83,7 +83,7 @@ sp::shared_ptr<neb::Actor::RigidBody::base> create_player_actor(sp::shared_ptr<n
 
 	return rigidbody;
 }
-void	create_player(sp::shared_ptr<neb::gfx::window::base> wnd, sp::shared_ptr<neb::core::scene::base> scene) {
+void	create_player(std::shared_ptr<neb::gfx::window::base> wnd, std::shared_ptr<neb::core::scene::base> scene) {
 	
 	auto rigidbody = create_player_actor(scene);
 
@@ -91,7 +91,7 @@ void	create_player(sp::shared_ptr<neb::gfx::window::base> wnd, sp::shared_ptr<ne
 	rigidbody->connect(wnd);
 
 	// control
-	sp::shared_ptr<neb::Actor::Control::RigidBody::Manual> control;
+	std::shared_ptr<neb::Actor::Control::RigidBody::Manual> control;
 	
 	
 	

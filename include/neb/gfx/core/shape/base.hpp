@@ -6,7 +6,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include <gal/std/timestep.hpp>
+#include <gal/etc/timestep.hpp>
 
 #include <neb/core/core/shape/base.hpp>
 #include <neb/core/core/light/util/light_count.hpp>
@@ -33,12 +33,12 @@ namespace neb {
 			{
 				public:
 					
-					base(sp::shared_ptr<neb::core::core::shape::util::parent> parent);
+					base(std::shared_ptr<neb::core::core::shape::util::parent> parent);
 					virtual ~base();
 
 					void			init();
 					void			release();
-					void			step(gal::std::timestep const & ts);
+					void			step(gal::etc::timestep const & ts);
 
 
 					virtual weak_ptr<neb::core::core::light::base>		createLightPoint();
@@ -54,15 +54,15 @@ namespace neb {
 					void						model_load(
 							neb::core::pose const & pose);
 					void						init_buffer(
-							sp::shared_ptr<neb::gfx::context::base> context,
-							sp::shared_ptr<neb::glsl::program> p);
+							std::shared_ptr<neb::gfx::context::base> context,
+							std::shared_ptr<neb::glsl::program> p);
 					void						draw(
-							sp::shared_ptr<neb::gfx::context::base>,
-							sp::shared_ptr<neb::glsl::program> p,
+							std::shared_ptr<neb::gfx::context::base>,
+							std::shared_ptr<neb::glsl::program> p,
 							neb::core::pose const & pose);
 					virtual void					draw_elements(
-							sp::shared_ptr<neb::gfx::context::base> context,
-							sp::shared_ptr<neb::glsl::program> p,
+							std::shared_ptr<neb::gfx::context::base> context,
+							std::shared_ptr<neb::glsl::program> p,
 							neb::core::pose const & pose);
 					/** @} */
 				public:

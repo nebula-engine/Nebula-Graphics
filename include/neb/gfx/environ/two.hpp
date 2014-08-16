@@ -12,10 +12,10 @@ namespace neb { namespace gfx { namespace environ {
 	class two: virtual public neb::gfx::environ::base {
 		public:
 
-			virtual void		render(sp::shared_ptr<neb::gfx::context::base> context);
+			virtual void		render(std::shared_ptr<neb::gfx::context::base> context);
 
 		public:
-			//sp::shared_ptr<neb::gfx::drawable::two>		drawable_;
+			//std::shared_ptr<neb::gfx::drawable::two>		drawable_;
 	};
 
 

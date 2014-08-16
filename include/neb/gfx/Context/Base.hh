@@ -32,16 +32,16 @@ namespace neb {
 			 * such that things like layouts are render ON TOP of existing scene.'
 			 */
 			class base:
-				virtual public neb::std::shared,
+				virtual public neb::itf::shared,
 				virtual public neb::gfx::context::util::cast
 			{
 				public:
 					base();
-					base(sp::shared_ptr<neb::gfx::context::util::parent> parent);
+					base(std::shared_ptr<neb::gfx::context::util::parent> parent);
 					base&						operator=(base const & r);
 					void						init();
 					void						release();
-					virtual void					step(gal::std::timestep const & ts);
+					virtual void					step(gal::etc::timestep const & ts);
 					virtual void					render();
 					void						resize(int w, int h);
 
@@ -50,9 +50,9 @@ namespace neb {
 					 * 
 					 * @note WEAK
 					 */
-					sp::shared_ptr<neb::gfx::context::util::parent>		parent_;
+					std::shared_ptr<neb::gfx::context::util::parent>		parent_;
 				public:
-					sp::shared_ptr<neb::gfx::environ::base>			environ_;
+					std::shared_ptr<neb::gfx::environ::base>			environ_;
 			};
 		}
 	}

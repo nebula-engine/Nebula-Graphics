@@ -11,7 +11,7 @@ void			neb::gfx::core::light::util::parent::load_lights(neb::core::core::light::
 
 	auto lambda_light = [&] (map_type::iterator<0> it) {
 
-		auto light = sp::dynamic_pointer_cast<neb::gfx::core::light::base>(it->ptr_);
+		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::base>(it->ptr_);
 		assert(light);
 
 		//if(i == neb::core::light::light_max) return L::map_type::BREAK;

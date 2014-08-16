@@ -20,7 +20,7 @@ namespace neb {
 					public:
 						base(::std::string, ::std::string);
 						virtual ~base() {}
-						void				locate(sp::shared_ptr<program>);
+						void				locate(std::shared_ptr<program>);
 						/** @name Load
 						 * @{
 						 */

@@ -23,7 +23,7 @@ void		neb::gfx::gui::object::terminal::init() {
 	console_ = app->console_;
 	
 }
-void		neb::gfx::gui::object::terminal::draw(sp::shared_ptr<neb::glsl::program> p) {
+void		neb::gfx::gui::object::terminal::draw(std::shared_ptr<neb::glsl::program> p) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto console(console_.lock());
@@ -64,7 +64,7 @@ int			neb::gfx::gui::object::terminal::charFun(
 	return 1;
 }
 int			neb::gfx::gui::object::terminal::key_fun(
-		sp::shared_ptr<neb::gfx::window::base> const & window,
+		std::shared_ptr<neb::gfx::window::base> const & window,
 		int key,
 		int scancode,
 		int action,

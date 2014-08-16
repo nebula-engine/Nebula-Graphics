@@ -16,26 +16,26 @@ namespace neb {
 				class base {
 					public:
 						/** @brief Constructor */
-						base(sp::shared_ptr<neb::gfx::environ::base>);
+						base(std::shared_ptr<neb::gfx::environ::base>);
 
 						virtual glm::mat4				proj() = 0;
-						void					load(sp::shared_ptr<neb::glsl::program> p);
+						void					load(std::shared_ptr<neb::glsl::program> p);
 						/** @brief step
 						 * @todo explain when in timeline this occurs and in which thread and why
 						 */
-						void					step(gal::std::timestep const & ts);
+						void					step(gal::etc::timestep const & ts);
 					protected:
 						/** @brief Parent */
-						sp::shared_ptr<neb::gfx::environ::base>		parent_;
+						std::shared_ptr<neb::gfx::environ::base>		parent_;
 				};
 				class Perspective: virtual public base {
 					public:
-						Perspective(sp::shared_ptr<neb::gfx::environ::base>);
+						Perspective(std::shared_ptr<neb::gfx::environ::base>);
 						//void		init(neb::renderable_shared);
 						virtual glm::mat4				proj();
 
 						/** @brief step */
-						void					step(gal::std::timestep const & ts);
+						void					step(gal::etc::timestep const & ts);
 
 						//
 

@@ -18,27 +18,27 @@ namespace neb { namespace gfx { namespace environ {
 	class three: virtual public neb::gfx::environ::base {
 		public:
 			virtual void		init();
-			virtual void		step(gal::std::timestep const & ts);
-			virtual void		render(sp::shared_ptr<neb::gfx::context::base> context);
+			virtual void		step(gal::etc::timestep const & ts);
+			virtual void		render(std::shared_ptr<neb::gfx::context::base> context);
 			weak_ptr<neb::gfx::Camera::View::Ridealong>		createViewRidealong(weak_ptr<neb::core::core::actor::base> actor);
 		public:
 					/** @brief View Space Camera
 			 * 
 			 * @note OWNED
 			 */			
-			sp::shared_ptr<neb::gfx::Camera::View::base>			view_;
+			std::shared_ptr<neb::gfx::Camera::View::base>			view_;
 			/** @brief Clip Space Camera
 			 * 
 			 * @note OWNED
 			 */
-			sp::shared_ptr<neb::gfx::Camera::Projection::base>		proj_;
+			std::shared_ptr<neb::gfx::Camera::Projection::base>		proj_;
 			/** @brief %drawable
 			 * 
 			 * @note WEAK
 			 * 
 			 * content to draw
 			 */
-			//sp::weak_ptr<neb::gfx::drawable::three>				drawable_;
+			//std::weak_ptr<neb::gfx::drawable::three>				drawable_;
 	};
 
 

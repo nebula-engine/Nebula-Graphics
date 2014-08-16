@@ -19,13 +19,13 @@ namespace neb { namespace gfx { namespace core { namespace light {
 
 		class base: virtual public neb::core::core::light::base {
 			public:
-				base(sp::shared_ptr<neb::core::core::light::util::parent> parent, ::std::string);
+				base(std::shared_ptr<neb::core::core::light::util::parent> parent, ::std::string);
 				
 				void				init();
 				
 				virtual void			release();
 				virtual void			cleanup();
-				virtual void			step(gal::std::timestep const & ts);
+				virtual void			step(gal::etc::timestep const & ts);
 
 				virtual void			load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) = 0;
 				void				load(int o, neb::core::pose const & pose);

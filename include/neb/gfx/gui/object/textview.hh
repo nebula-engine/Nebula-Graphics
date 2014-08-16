@@ -16,14 +16,14 @@ namespace neb {
 					public:
 						textview();
 						void			clear_label();
-						virtual void		draw(sp::shared_ptr<neb::glsl::program> p);
+						virtual void		draw(std::shared_ptr<neb::glsl::program> p);
 
 						//int			key(int, int, int, int);
 						//int			key_down(int);
 						//virtual int		enter();
 
-						virtual int		key_fun(sp::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
-						virtual int		mouse_button_fun(sp::shared_ptr<neb::gfx::window::base> const & window, int,int,int);
+						virtual int		key_fun(std::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
+						virtual int		mouse_button_fun(std::shared_ptr<neb::gfx::window::base> const & window, int,int,int);
 						//virtual void		connect();
 
 				};

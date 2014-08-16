@@ -1,6 +1,6 @@
 #include <glm/gtx/transform.hpp>
 
-#include <gal/std/map.hpp>
+#include <gal/stl/map.hpp>
 
 #include <gal/log/log.hpp>
 
@@ -17,7 +17,7 @@
 
 #include <neb/core/math/geo/polygon.hpp>
 
-neb::gfx::core::shape::base::base(sp::shared_ptr<neb::core::core::shape::util::parent> parent):
+neb::gfx::core::shape::base::base(std::shared_ptr<neb::core::core::shape::util::parent> parent):
 	neb::core::core::shape::base(parent)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -31,7 +31,7 @@ void					neb::gfx::core::shape::base::init() {
 }
 void					neb::gfx::core::shape::base::release() {
 }
-void					neb::gfx::core::shape::base::step(gal::std::timestep const & ts) {
+void					neb::gfx::core::shape::base::step(gal::etc::timestep const & ts) {
 
 	//material_front_.step(ts);
 }
@@ -44,8 +44,8 @@ void					neb::gfx::core::shape::base::load_lights(neb::core::core::light::util::
 
 }
 void					neb::gfx::core::shape::base::draw(
-		sp::shared_ptr<neb::gfx::context::base> context,
-		sp::shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::gfx::context::base> context,
+		std::shared_ptr<neb::glsl::program> p,
 		neb::core::pose const & pose) {
 
 	auto npose = pose * pose_;
@@ -61,8 +61,8 @@ void			neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 	p->get_uniform_scalar("model")->load(space);
 }
 void			neb::gfx::core::shape::base::draw_elements(
-		sp::shared_ptr<neb::gfx::context::base> context,
-		sp::shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::gfx::context::base> context,
+		std::shared_ptr<neb::glsl::program> p,
 		neb::core::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -71,19 +71,25 @@ void			neb::gfx::core::shape::base::draw_elements(
 		
 		switch(p->name_) {
 			case neb::program_name::e::IMAGE:
-				if(mesh_->texture_) mesh_->draw_elements(context, p, pose, s_);
+				if(mesh_->texture_ && !(mesh_->normal_map_))
+					mesh_->draw_elements(context, p, pose, s_);
+				break;
+			case neb::program_name::e::NORM:
+				if(!(mesh_->texture_) && mesh_->normal_map_)
+					mesh_->draw_elements(context, p, pose, s_);
 				break;
 			case neb::program_name::e::LIGHT:
-				if(!(mesh_->texture_)) mesh_->draw_elements(context, p, pose, s_);
+				if(!(mesh_->texture_) && !(mesh_->normal_map_))
+					mesh_->draw_elements(context, p, pose, s_);
 				break;
 			default:
 				abort();
 		}
 	}
 }
-sp::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::createLightPoint() {
+std::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::createLightPoint() {
 
-	auto self(sp::dynamic_pointer_cast<neb::core::core::shape::base>(shared_from_this()));
+	auto self(std::dynamic_pointer_cast<neb::core::core::shape::base>(shared_from_this()));
 
 	auto light = sp::make_shared<neb::gfx::core::light::point>(self);
 

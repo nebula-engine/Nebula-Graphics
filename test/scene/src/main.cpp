@@ -29,7 +29,7 @@
 */
 
 
-sp::shared_ptr<neb::gfx::context::window>		create_context_three(sp::shared_ptr<neb::gfx::window::base> window) {
+std::shared_ptr<neb::gfx::context::window>		create_context_three(std::shared_ptr<neb::gfx::window::base> window) {
 
 	auto context = sp::make_shared<neb::gfx::context::window>(window);
 	
@@ -47,7 +47,7 @@ sp::shared_ptr<neb::gfx::context::window>		create_context_three(sp::shared_ptr<n
 
 	context->init();
 	
-	//auto context = window->cii< neb::gfx::context::window, sp::shared_ptr<neb::gfx::window::base> >(window);
+	//auto context = window->cii< neb::gfx::context::window, std::shared_ptr<neb::gfx::window::base> >(window);
 	
 	
 	environ->view_->connect(window);
@@ -55,9 +55,9 @@ sp::shared_ptr<neb::gfx::context::window>		create_context_three(sp::shared_ptr<n
 	return context;
 }
 
-sp::shared_ptr<neb::gfx::gui::layout::base>	create_layout(
-		sp::shared_ptr<neb::gfx::window::base> window,
-		sp::shared_ptr<neb::gfx::context::window> context) {
+std::shared_ptr<neb::gfx::gui::layout::base>	create_layout(
+		std::shared_ptr<neb::gfx::window::base> window,
+		std::shared_ptr<neb::gfx::context::window> context) {
 
 	auto app = neb::app::__gfx::global().lock();
 	
@@ -82,9 +82,9 @@ sp::shared_ptr<neb::gfx::gui::layout::base>	create_layout(
 
 	return layout;
 }
-sp::shared_ptr<neb::core::actor::base>		create_actor(sp::shared_ptr<neb::core::core::scene::base> scene) {
+std::shared_ptr<neb::core::actor::base>		create_actor(std::shared_ptr<neb::core::core::scene::base> scene) {
 
-	auto actor = scene->cii<neb::gfx::core::actor::base, sp::shared_ptr<neb::core::core::scene::base>>(scene);
+	auto actor = scene->cii<neb::gfx::core::actor::base, std::shared_ptr<neb::core::core::scene::base>>(scene);
 	
 	// shape	
 	auto shape = sp::make_shared<neb::gfx::core::shape::box>(actor);
@@ -98,7 +98,7 @@ sp::shared_ptr<neb::core::actor::base>		create_actor(sp::shared_ptr<neb::core::c
 	
 	return actor;	
 }
-/*sp::shared_ptr<neb::core::actor::base>		create_actor2(sp::shared_ptr<neb::core::core::scene::base> scene) {
+/*std::shared_ptr<neb::core::actor::base>		create_actor2(std::shared_ptr<neb::core::core::scene::base> scene) {
 	auto actor = sp::make_shared<neb::gfx::core::actor::base>(scene);
 	
 	scene->insert(actor);
@@ -113,7 +113,7 @@ sp::shared_ptr<neb::core::actor::base>		create_actor(sp::shared_ptr<neb::core::c
 	
 	//shape->init();
 	
-	auto shape = actor->neb::core::shape::util::parent::cii< neb::core::shape::empty, sp::shared_ptr<neb::core::actor::base> >(actor);
+	auto shape = actor->neb::core::shape::util::parent::cii< neb::core::shape::empty, std::shared_ptr<neb::core::actor::base> >(actor);
 	
 	// light
 	auto light = sp::make_shared<neb::core::light::Point>(shape);
@@ -134,8 +134,8 @@ sp::shared_ptr<neb::core::actor::base>		create_actor(sp::shared_ptr<neb::core::c
 
 	return actor;	
 }*/
-sp::shared_ptr<neb::core::core::scene::base>			create_scene(
-		sp::shared_ptr<neb::gfx::context::window> context) {
+std::shared_ptr<neb::core::core::scene::base>			create_scene(
+		std::shared_ptr<neb::gfx::context::window> context) {
 	
 	auto app = neb::app::__core::global().lock();
 	

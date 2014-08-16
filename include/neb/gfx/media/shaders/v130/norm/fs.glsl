@@ -6,6 +6,8 @@
 in vec4 vs_P;
 in vec3 vs_N;
 in vec2 vs_texcoor;
+in vec3 vs_tangent;
+in vec3 vs_binormal;
 
 uniform Light_Point		lights_point[20];
 uniform Light_Spot		lights_spot[20];
@@ -19,7 +21,7 @@ uniform int light_count_directional;
 uniform mat4 view;
 uniform Material front;
 
-uniform sampler2D norm;
+uniform sampler2D normal_map;
 
 out vec4 color;
 
@@ -39,9 +41,9 @@ void main(void)
 	
 	color = vec4(0.0);
 	
-	vec4 norm_vector = texture2D(norm, vs_texcoor);
+	vec3 norm_vector = texture2D(normal_map, vs_texcoor).xyz;
 	
-	N = normalize(N + norm_vector.xyz);
+	N = normalize(N + (mat3(vs_tangent, vs_binormal, vs_N) * norm_vector));
 	
 	point(front.ambient, front.diffuse, front.specular);
 	spot(front.ambient, front.diffuse, front.specular);

@@ -10,7 +10,7 @@
 #include <neb/gfx/glsl/program.hpp>
 
 
-neb::gfx::core::light::spot::spot(sp::shared_ptr<neb::core::core::light::util::parent> parent):
+neb::gfx::core::light::spot::spot(std::shared_ptr<neb::core::core::light::util::parent> parent):
 	neb::core::core::light::base(parent),
 	neb::gfx::core::light::base(parent, "lights_spot"),
 	spot_direction_(vec3(0.0, 0.0, -1.0)),

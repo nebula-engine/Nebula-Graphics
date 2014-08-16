@@ -119,10 +119,10 @@ void			neb::gfx::mesh::init_buffer(
 
 	// image
 	//if(0)//if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
-	if(texture_)
-	{
-		texture_->init_buffer(bufs);
-	}
+	//if(texture_)
+	//{
+	//	texture_->init_buffer(bufs);
+	//}
 
 
 	glGenBuffers(1, &bufs->indices_);
@@ -152,6 +152,8 @@ void			neb::gfx::mesh::vertexAttribPointer(
 	static long off_position = (long)&(v.p[0])  - (long)&v;
 	static long off_normal =   (long)&(v.n[0])  - (long)&v;
 	static long off_texcoor =  (long)&(v.tc[0]) - (long)&v;
+	static long off_tangent =  (long)&(v.tangent[0]) - (long)&v;
+	static long off_binormal = (long)&(v.binormal[0]) - (long)&v;
 
 	glBindBuffer(GL_ARRAY_BUFFER, buf->vbo_);
 	
@@ -173,7 +175,7 @@ void			neb::gfx::mesh::vertexAttribPointer(
 			(void*)off_normal);
 	checkerror("glVertexAttribPointer normal");
 
-	if(texture_) {
+	if(texture_ || normal_map_) {
 		glVertexAttribPointer(
 				p->get_attrib(neb::attrib_name::e::TEXCOOR)->o_,
 				2,
@@ -183,10 +185,28 @@ void			neb::gfx::mesh::vertexAttribPointer(
 				(void*)off_texcoor);
 		checkerror("glVertexAttribPointer texcoor");
 	}
+	if(normal_map_) {
+		glVertexAttribPointer(
+				p->get_attrib(neb::attrib_name::e::TANGENT)->o_,
+				3,
+				GL_FLOAT,
+				GL_FALSE,
+				sizeof(math::geo::vertex),
+				(void*)off_tangent);
+		checkerror("glVertexAttribPointer tangent");
+		glVertexAttribPointer(
+				p->get_attrib(neb::attrib_name::e::BINORMAL)->o_,
+				3,
+				GL_FLOAT,
+				GL_FALSE,
+				sizeof(math::geo::vertex),
+				(void*)off_binormal);
+		checkerror("glVertexAttribPointer binormal");
+	}
 	
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
-void			neb::gfx::mesh::buffer_data(shared_ptr<neb::gfx::core::buffer> buf) {
+void			neb::gfx::mesh::buffer_data(std::shared_ptr<neb::gfx::core::buffer> buf) {
 
 	int size_i = indices_.size() * sizeof(GLushort);
 	int size_v = vertices_.size() * sizeof(math::geo::vertex);
@@ -210,75 +230,14 @@ void			neb::gfx::mesh::buffer_data(shared_ptr<neb::gfx::core::buffer> buf) {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 }
 void			neb::gfx::mesh::draw_elements(
-		sp::shared_ptr<neb::gfx::context::base> context,
-		sp::shared_ptr<neb::glsl::program> p,
-		neb::core::pose const & pose,
-		glm::vec3 scale)
-{
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	
-	if(texture_) {
-		draw_elements_texture(context, p, pose, scale);
-		return;
-	}
-
-	checkerror("unknown");
-
-	//mesh_.print(debug);
-	
-	assert(context);
-	
-	/** @todo could switching programs here leave view and proj unset? */
-
-	// initialize buffers if not already
-	if(!context_[context.get()])
-	{	
-		init_buffer(context, p);
-	}
-	auto bufs = context_[context.get()];
-	
-	vertexAttribPointer(bufs, p);
-	
-	if(!bufs) return;
-
-	// attribs
-	p->get_attrib(neb::attrib_name::e::POSITION)->enable();
-	p->get_attrib(neb::attrib_name::e::NORMAL)->enable();
-
-	// material
-	material_front_.load();
-
-	// load modelview matrix
-	mat4 space = pose.mat4_cast() * glm::scale(scale);
-
-	p->get_uniform_scalar("model")->load(space);
-
-	// draw
-	glBindBuffer(GL_ARRAY_BUFFER, bufs->vbo_);//checkerror("glBindBuffer");
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);//checkerror("glBindBuffer");
-
-	glDrawElements(GL_TRIANGLES, indices_.size(), GL_UNSIGNED_SHORT, 0);
-	
-	glBindBuffer(GL_ARRAY_BUFFER, 0);//checkerror("glBindBuffer");
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);//checkerror("glBindBuffer");
-
-	// attrib
-	p->get_attrib(neb::attrib_name::e::POSITION)->disable();
-	p->get_attrib(neb::attrib_name::e::NORMAL)->disable();
-}
-void			neb::gfx::mesh::draw_elements_texture(
-		sp::shared_ptr<neb::gfx::context::base> context,
-		sp::shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::gfx::context::base> context,
+		std::shared_ptr<neb::glsl::program> p,
 		neb::core::pose const & pose,
 		glm::vec3 scale)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	//mesh_.print(debug);
-
 	assert(context);
-
-	/** @todo could switching programs here leave view and proj unset? */
 
 	// initialize buffers if not already
 	if(!context_[context.get()])
@@ -289,45 +248,57 @@ void			neb::gfx::mesh::draw_elements_texture(
 
 	vertexAttribPointer(bufs, p);
 
-	//assert(bufs);
 	if(!bufs) return;
 
-	//checkerror("unknown");
+	bool tex = texture_ || normal_map_;
 
 	// attribs
 	p->get_attrib(neb::attrib_name::e::POSITION)->enable();
 	p->get_attrib(neb::attrib_name::e::NORMAL)->enable();
-	p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
+	if(tex) p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
+
 
 	// material
 	material_front_.load();
-	
+
 	// texture
-	glActiveTexture(GL_TEXTURE0);//checkerror("glActiveTexture");
-	texture_->bind(context);
-	p->get_uniform_scalar("image")->load(0);
+	if(normal_map_) {
+		LOG(lg, neb::gfx::sl, debug) << "activate normal map";
+		glActiveTexture(GL_TEXTURE0);//checkerror("glActiveTexture");
+		normal_map_->bind(context);
+		p->get_uniform_scalar("normal_map")->load(0);
+	}
+	if(texture_) {
+		LOG(lg, neb::gfx::sl, debug) << "activate texture";
+		glActiveTexture(GL_TEXTURE1);//checkerror("glActiveTexture");
+		texture_->bind(context);
+		p->get_uniform_scalar("image")->load(1);
+	}
 
-	
 
 	// load modelview matrix
+	LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
 	mat4 space = pose.mat4_cast() * glm::scale(scale);
-
 	p->get_uniform_scalar("model")->load(space);
 
 	// bind
+	LOG(lg, neb::gfx::sl, debug) << "bind vbo";
 	glBindBuffer(GL_ARRAY_BUFFER, bufs->vbo_);//checkerror("glBindBuffer");
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);//checkerror("glBindBuffer");
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);
+	checkerror("glBindBuffer");
 
 	// draw
+	LOG(lg, neb::gfx::sl, debug) << "draw";
 	glDrawElements(GL_TRIANGLES, indices_.size(), GL_UNSIGNED_SHORT, 0);
 
 	// unbind
+	LOG(lg, neb::gfx::sl, debug) << "unbind vbo";
 	glBindBuffer(GL_ARRAY_BUFFER, 0);//checkerror("glBindBuffer");
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);//checkerror("glBindBuffer");
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	checkerror("glBindBuffer 0");
 
 	// attribs
 	p->get_attrib(neb::attrib_name::e::POSITION)->disable();
 	p->get_attrib(neb::attrib_name::e::NORMAL)->disable();
-	p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
+	if(tex) p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
 }
-

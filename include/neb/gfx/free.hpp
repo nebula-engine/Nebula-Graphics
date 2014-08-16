@@ -15,7 +15,7 @@ namespace neb {
 }
 
 namespace neb {
-	void	draw_quad(shared_ptr<neb::glsl::program> p,
+	void	draw_quad(std::shared_ptr<neb::glsl::program> p,
 			float, float, float, float, neb::Color::color<float>);
 	void	draw_text(
 			shared_ptr<neb::glsl::program> p,

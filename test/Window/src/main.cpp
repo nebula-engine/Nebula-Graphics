@@ -17,7 +17,7 @@
 #include <neb/util/command.hpp>
 #include <neb/util/command_set.hpp>
 
-sp::shared_ptr<neb::gfx::context::window>		create_context_two(sp::shared_ptr<neb::gfx::window::base> window) {
+std::shared_ptr<neb::gfx::context::window>		create_context_two(std::shared_ptr<neb::gfx::window::base> window) {
 
 	auto context = sp::make_shared<neb::gfx::context::window>(window);
 	
@@ -27,14 +27,14 @@ sp::shared_ptr<neb::gfx::context::window>		create_context_two(sp::shared_ptr<neb
 
 	context->init();
 	
-	//auto context = window->cii< neb::gfx::context::window, sp::shared_ptr<neb::gfx::window::base> >(window);
+	//auto context = window->cii< neb::gfx::context::window, std::shared_ptr<neb::gfx::window::base> >(window);
 	
 	
 	
 
 	return context;
 }
-sp::shared_ptr<neb::gfx::context::window>		create_context_three(sp::shared_ptr<neb::gfx::window::base> window) {
+std::shared_ptr<neb::gfx::context::window>		create_context_three(std::shared_ptr<neb::gfx::window::base> window) {
 
 	auto context = sp::make_shared<neb::gfx::context::window>(window);
 	
@@ -52,7 +52,7 @@ sp::shared_ptr<neb::gfx::context::window>		create_context_three(sp::shared_ptr<n
 
 	context->init();
 	
-	//auto context = window->cii< neb::gfx::context::window, sp::shared_ptr<neb::gfx::window::base> >(window);
+	//auto context = window->cii< neb::gfx::context::window, std::shared_ptr<neb::gfx::window::base> >(window);
 	
 	
 	environ->view_->connect(window);
@@ -60,9 +60,9 @@ sp::shared_ptr<neb::gfx::context::window>		create_context_three(sp::shared_ptr<n
 	return context;
 }
 
-sp::shared_ptr<neb::gfx::gui::layout::base>	create_layout(
-		sp::shared_ptr<neb::gfx::window::base> window,
-		sp::shared_ptr<neb::gfx::context::window> context) {
+std::shared_ptr<neb::gfx::gui::layout::base>	create_layout(
+		std::shared_ptr<neb::gfx::window::base> window,
+		std::shared_ptr<neb::gfx::context::window> context) {
 
 	auto app = neb::app::base::global();
 	
@@ -87,9 +87,9 @@ sp::shared_ptr<neb::gfx::gui::layout::base>	create_layout(
 
 	return layout;
 }
-sp::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor(sp::shared_ptr<neb::core::scene::local> scene) {
+std::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor(std::shared_ptr<neb::core::scene::local> scene) {
 
-	auto actor = scene->cii<neb::core::actor::rigiddynamic::local, sp::shared_ptr<neb::core::scene::local>>(scene);
+	auto actor = scene->cii<neb::core::actor::rigiddynamic::local, std::shared_ptr<neb::core::scene::local>>(scene);
 
 	// shape	
 	auto shape = sp::make_shared<neb::core::shape::box>(actor);
@@ -103,7 +103,7 @@ sp::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor(sp::shared_p
 	
 	return actor;	
 }
-sp::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor2(sp::shared_ptr<neb::core::scene::local> scene) {
+std::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor2(std::shared_ptr<neb::core::scene::local> scene) {
 	auto actor = sp::make_shared<neb::core::actor::rigiddynamic::local>(scene);
 	
 	scene->insert(actor);
@@ -118,7 +118,7 @@ sp::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor2(sp::shared_
 	
 	shape->init();
 	*/
-	auto shape = actor->neb::core::shape::util::parent::cii< neb::core::shape::empty, sp::shared_ptr<neb::core::actor::rigiddynamic::local> >(actor);
+	auto shape = actor->neb::core::shape::util::parent::cii< neb::core::shape::empty, std::shared_ptr<neb::core::actor::rigiddynamic::local> >(actor);
 	
 	// light
 	auto light = sp::make_shared<neb::core::light::Point>(shape);
@@ -139,8 +139,8 @@ sp::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor2(sp::shared_
 
 	return actor;	
 }
-sp::shared_ptr<neb::core::scene::local>			create_scene(
-		sp::shared_ptr<neb::gfx::context::window> context) {
+std::shared_ptr<neb::core::scene::local>			create_scene(
+		std::shared_ptr<neb::gfx::context::window> context) {
 	
 	auto app = neb::app::base::global();
 	assert(app);
@@ -183,8 +183,8 @@ sp::shared_ptr<neb::core::scene::local>			create_scene(
 
 	return scene;
 }
-sp::shared_ptr<neb::game::map::base>			create_map(
-		sp::shared_ptr<neb::gfx::context::window> context) {
+std::shared_ptr<neb::game::map::base>			create_map(
+		std::shared_ptr<neb::gfx::context::window> context) {
 	
 	auto app = neb::app::base::global();
 	
@@ -225,8 +225,8 @@ sp::shared_ptr<neb::game::map::base>			create_map(
 
 	return map;
 }
-sp::shared_ptr<neb::game::map::base>			create_maze(
-		sp::shared_ptr<neb::gfx::context::window> context) {
+std::shared_ptr<neb::game::map::base>			create_maze(
+		std::shared_ptr<neb::gfx::context::window> context) {
 	
 	auto app = neb::app::base::global();
 	
@@ -263,13 +263,13 @@ int main() {
 	// scene
 	
 	
-	sp::shared_ptr<neb::game::map::base> map;
+	std::shared_ptr<neb::game::map::base> map;
 
 	// command
 	// create scene
 	auto cmd_create_scene = sp::make_shared<neb::util::command>();
 
-	cmd_create_scene->func_ = [&] (sp::shared_ptr<neb::util::terminal> term, bpo::variables_map vm) {
+	cmd_create_scene->func_ = [&] (std::shared_ptr<neb::util::terminal> term, bpo::variables_map vm) {
 		(*term) << "creating scene...";
 		map = create_maze(context1);
 	};
@@ -279,7 +279,7 @@ int main() {
 	// destroy scene
 	auto cmd_destroy_scene = sp::make_shared<neb::util::command>();
 	
-	cmd_destroy_scene->func_ = [&] (sp::shared_ptr<neb::util::terminal> term, bpo::variables_map vm) {
+	cmd_destroy_scene->func_ = [&] (std::shared_ptr<neb::util::terminal> term, bpo::variables_map vm) {
 		(*term) << "destroying scene...";
 		if(map) {
 			map->parent_->erase(map->i_);

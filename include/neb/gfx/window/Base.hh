@@ -5,7 +5,7 @@
 #include <vector>
 #include <map>
 
-#include <gal/std/timestep.hpp>
+#include <gal/etc/timestep.hpp>
 
 #include <neb/core/util/decl.hpp>
 #include <neb/core/core/scene/util/decl.hpp>
@@ -31,7 +31,7 @@ namespace neb { namespace gfx { namespace window {
 			{
 				public:
 					base();
-					base(sp::shared_ptr<neb::gfx::window::util::parent> parent);
+					base(std::shared_ptr<neb::gfx::window::util::parent> parent);
 					virtual ~base();
 				
 				public:
@@ -40,7 +40,7 @@ namespace neb { namespace gfx { namespace window {
 	
 					/** @name Main Loop @{ */
 					void					render();
-					void					step(gal::std::timestep const & ts);
+					void					step(gal::etc::timestep const & ts);
 					/** @} */
 					void					resize();
 	
@@ -54,12 +54,12 @@ namespace neb { namespace gfx { namespace window {
 					weak_ptr<neb::gfx::context::window>	createContextTwo();
 					weak_ptr<neb::gfx::context::window>	createContextThree();
 				public:
-					sp::shared_ptr<neb::gfx::window::util::parent>			parent_;
+					std::shared_ptr<neb::gfx::window::util::parent>			parent_;
 					/** @brief self
 					 *
 					 * avoid casting shared_from_this
 					 */
-					sp::shared_ptr<neb::gfx::window::base>		self_;
+					std::shared_ptr<neb::gfx::window::base>		self_;
 
 					// input signals
 					struct

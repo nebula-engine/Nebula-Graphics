@@ -16,7 +16,7 @@
 void		neb::gfx::environ::three::init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto self = sp::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
+	auto self = std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
 	
 	// camera
 	if(!view_) {
@@ -27,7 +27,7 @@ void		neb::gfx::environ::three::init() {
 	//camera_->init(shared_from_this());
 	
 }
-void		neb::gfx::environ::three::step(gal::std::timestep const & ts) {
+void		neb::gfx::environ::three::step(gal::etc::timestep const & ts) {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -35,7 +35,7 @@ void		neb::gfx::environ::three::step(gal::std::timestep const & ts) {
 	if(view_) view_->step(ts);	
 
 }
-void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> context) {
+void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> context) {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -48,7 +48,7 @@ void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> c
 
 	if(!drawable) return;
 
-	//auto self = sp::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
+	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	auto app = neb::app::__gfx_glsl::global().lock();
 
 	/** wrong for color maybe! */	
@@ -64,21 +64,18 @@ void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> c
 	/** @todo replace with 'environ' which determines program and camera types and accepts certian types of drawables */
 	
 	auto p = app->use_program(neb::program_name::e::LIGHT);
-	
-	//viewport_.load();
-	
 	proj_->load(p);
 	view_->load(p);
-	
 	drawable->draw(context, p);
 	
-	p = app->use_program(neb::program_name::e::IMAGE);
-	
-	//viewport_.load();
-	
+	p = app->use_program(neb::program_name::e::NORM);
 	proj_->load(p);
 	view_->load(p);
-	
+	drawable->draw(context, p);
+
+	p = app->use_program(neb::program_name::e::IMAGE);
+	proj_->load(p);
+	view_->load(p);
 	drawable->draw(context, p);
 }		
 weak_ptr<neb::gfx::Camera::View::Ridealong>		neb::gfx::environ::three::createViewRidealong(

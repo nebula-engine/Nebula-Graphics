@@ -18,7 +18,7 @@
 #include <neb/gfx/gui/layout/base.hpp>
 #include <neb/gfx/util/log.hpp>
 
-neb::gfx::gui::layout::base::base(sp::shared_ptr<neb::gfx::gui::layout::util::parent> parent): parent_(parent) {
+neb::gfx::gui::layout::base::base(std::shared_ptr<neb::gfx::gui::layout::util::parent> parent): parent_(parent) {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -28,24 +28,24 @@ void neb::gfx::gui::layout::base::init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	//jess::clog << NEB_FUNCSIG << std::endl;
 }
-void		neb::gfx::gui::layout::base::step(gal::std::timestep const & ts) {
+void		neb::gfx::gui::layout::base::step(gal::etc::timestep const & ts) {
 		LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
-void		neb::gfx::gui::layout::base::draw(sp::shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p) {
+void		neb::gfx::gui::layout::base::draw(std::shared_ptr<neb::gfx::context::base> context, std::shared_ptr<neb::glsl::program> p) {
 	
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	typedef neb::gfx::gui::object::util::parent O;
 	
 	O::map_.for_each<0>([&] (O::map_type::iterator<0> it) {
-		auto object = sp::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
+		auto object = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
 		assert(object);
 		object->draw(p);
 	});
 
 }
-void neb::gfx::gui::layout::base::connect(sp::shared_ptr<neb::gfx::window::base> const & window) {
+void neb::gfx::gui::layout::base::connect(std::shared_ptr<neb::gfx::window::base> const & window) {
 	
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
@@ -78,7 +78,7 @@ void neb::gfx::gui::layout::base::connect(sp::shared_ptr<neb::gfx::window::base>
 				));
 
 }
-int		neb::gfx::gui::layout::base::key_fun(sp::shared_ptr<neb::gfx::window::base> const & window, int key, int scancode, int action, int mode) {
+int		neb::gfx::gui::layout::base::key_fun(std::shared_ptr<neb::gfx::window::base> const & window, int key, int scancode, int action, int mode) {
 	
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -86,7 +86,7 @@ int		neb::gfx::gui::layout::base::key_fun(sp::shared_ptr<neb::gfx::window::base>
 
 	//O::map_.for_each_int<0>([&] (O::map_type::iterator<0> it) {
 	for(O::map_type::iterator<0> it = O::map_.begin(); it != O::map_.end(); ++it) {
-		auto object = sp::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
+		auto object = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
 		assert(object);
 
 		if(object->key_fun(window, key, scancode, action, mode)) return 1;
@@ -110,7 +110,7 @@ int		neb::gfx::gui::layout::base::charFun(
 
 	return 0;
 }
-int neb::gfx::gui::layout::base::mouse_button_fun(sp::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
+int neb::gfx::gui::layout::base::mouse_button_fun(std::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -131,7 +131,7 @@ int neb::gfx::gui::layout::base::mouse_button_fun(sp::shared_ptr<neb::gfx::windo
 
 	return 0;
 }
-int			neb::gfx::gui::layout::base::search(sp::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
+int			neb::gfx::gui::layout::base::search(std::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
 	
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -151,11 +151,11 @@ int			neb::gfx::gui::layout::base::search(sp::shared_ptr<neb::gfx::window::base>
 
 	typedef neb::gfx::gui::object::util::parent O;
 
-	sp::shared_ptr<neb::gfx::gui::object::base> object;
-	sp::shared_ptr<neb::gfx::gui::object::base> objecttmp;
+	std::shared_ptr<neb::gfx::gui::object::base> object;
+	std::shared_ptr<neb::gfx::gui::object::base> objecttmp;
 
 	O::map_.for_each_int<0>([&] (O::map_type::iterator<0> it) {
-			objecttmp = sp::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
+			objecttmp = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
 			assert(objecttmp);
 			printf("object %f %f %f %f\n",
 				objecttmp->x_,

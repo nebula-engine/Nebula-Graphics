@@ -16,7 +16,7 @@ namespace neb {
 	namespace glsl {
 		class shader;
 
-		class program: public sp::enable_shared_from_this<program> {
+		class program: public std::enable_shared_from_this<program> {
 			public:
 				program(neb::program_name::e name);
 				void	init();
@@ -40,10 +40,10 @@ namespace neb {
 
 				GLuint	o_;
 				
-				::std::map< ::std::string, sp::shared_ptr<neb::glsl::Uniform::Scalar::base> >		uniform_scalar_;
-				::std::map< ::std::string, sp::shared_ptr<neb::glsl::Uniform::Vector::base> >		uniform_vector_;
+				::std::map< ::std::string, std::shared_ptr<neb::glsl::Uniform::Scalar::base> >		uniform_scalar_;
+				::std::map< ::std::string, std::shared_ptr<neb::glsl::Uniform::Vector::base> >		uniform_vector_;
 
-				::std::map<int, sp::shared_ptr<attrib> >						attrib_;
+				::std::map<int, std::shared_ptr<attrib> >						attrib_;
 				neb::program_name::e									name_;
 		};
 	}

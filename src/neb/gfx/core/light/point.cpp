@@ -10,7 +10,7 @@
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/glsl/program.hpp>
 
-neb::gfx::core::light::point::point(sp::shared_ptr<neb::core::core::light::util::parent> parent):
+neb::gfx::core::light::point::point(std::shared_ptr<neb::core::core::light::util::parent> parent):
         neb::core::core::light::base(parent),
         neb::gfx::core::light::base(parent, "lights_point"),
         atten_const_(1.0),

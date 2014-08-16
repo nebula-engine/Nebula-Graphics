@@ -41,6 +41,8 @@ void main(void)
 	
 	vec4 image_color = texture2D(image, vs_texcoor);
 
+
+
 	point(front.ambient * image_color, front.diffuse * image_color, front.specular);
 	spot(front.ambient * image_color, front.diffuse * image_color, front.specular);
 	directional(front.ambient * image_color, front.diffuse * image_color, front.specular);

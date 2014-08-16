@@ -44,7 +44,7 @@ void					neb::app::__gfx::__init() {
 }
 void				neb::app::__gfx::release() {
 }
-void				neb::app::__gfx::step(gal::std::timestep const & ts) {
+void				neb::app::__gfx::step(gal::etc::timestep const & ts) {
 	neb::gfx::window::util::parent::step(ts);
 	neb::gfx::gui::layout::util::parent::step(ts);
 }

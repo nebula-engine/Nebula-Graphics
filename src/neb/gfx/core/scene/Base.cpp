@@ -25,7 +25,7 @@ using namespace std;
 
 typedef neb::core::core::actor::util::parent A;
 
-neb::gfx::core::scene::base::base(sp::shared_ptr<neb::core::core::scene::util::parent> parent):
+neb::gfx::core::scene::base::base(std::shared_ptr<neb::core::core::scene::util::parent> parent):
 	neb::core::core::scene::base(parent)
 {
 	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
@@ -41,12 +41,12 @@ void			neb::gfx::core::scene::base::release() {
 	
 	neb::core::core::scene::base::release();
 }
-void			neb::gfx::core::scene::base::load_lights(sp::shared_ptr<neb::glsl::program> p) {
+void			neb::gfx::core::scene::base::load_lights(std::shared_ptr<neb::glsl::program> p) {
 
 	neb::core::core::light::util::count light_count;
 
 	auto la = [&] (A::map_type::iterator<0> it) {
-		auto actor = sp::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
+		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
 		assert(actor);
 		actor->load_lights(light_count, neb::core::pose());
 	};
@@ -59,15 +59,15 @@ void			neb::gfx::core::scene::base::load_lights(sp::shared_ptr<neb::glsl::progra
 
 }
 void			neb::gfx::core::scene::base::draw(
-		sp::shared_ptr<neb::gfx::context::base> context,
-		sp::shared_ptr<neb::glsl::program> p) {
+		std::shared_ptr<neb::gfx::context::base> context,
+		std::shared_ptr<neb::glsl::program> p) {
 
 	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 
 	load_lights(p);
 
 	auto la = [&] (A::map_type::iterator<0> it) {
-		auto actor = sp::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
+		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
 		assert(actor);
 		actor->draw(context, p, neb::core::pose());
 	};
@@ -76,7 +76,7 @@ void			neb::gfx::core::scene::base::draw(
 }
 void						neb::gfx::core::scene::base::resize(int w, int h) {
 }
-void						neb::gfx::core::scene::base::step(gal::std::timestep const & ts) {
+void						neb::gfx::core::scene::base::step(gal::etc::timestep const & ts) {
 }
 /*weak_ptr<neb::core::core::actor::base>		neb::gfx::core::scene::base::createActorBase(neb::core::pose const & pose) {
   auto actor(make_shared<neb::gfx::core::actor::base>(isSceneBase()));

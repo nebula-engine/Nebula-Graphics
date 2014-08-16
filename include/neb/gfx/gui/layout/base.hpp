@@ -17,41 +17,41 @@ namespace neb {
 			namespace layout {
 				/** @brief %Base */
 				class base:
-					virtual public neb::std::shared,
+					virtual public neb::itf::shared,
 					virtual public neb::gfx::drawable::base,
 					virtual public neb::gfx::gui::object::util::parent
 				{
 					public:
 						//base();
-						base(sp::shared_ptr<neb::gfx::gui::layout::util::parent> parent);
+						base(std::shared_ptr<neb::gfx::gui::layout::util::parent> parent);
 
 						virtual void				init();
 						virtual void				release() {}
 
 
 						/** @brief Main Loop @{ */
-						virtual void					step(gal::std::timestep const & ts);
+						virtual void					step(gal::etc::timestep const & ts);
 						virtual void					draw(
-								shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p);
+								std::shared_ptr<neb::gfx::context::base> context, std::shared_ptr<neb::glsl::program> p);
 						/** @} */
 
 						void						connect(
-								sp::shared_ptr<neb::gfx::window::base> const & window);
+								std::shared_ptr<neb::gfx::window::base> const & window);
 						int						search(
-								sp::shared_ptr<neb::gfx::window::base> const & ,int button, int action, int mods);
+								std::shared_ptr<neb::gfx::window::base> const & ,int button, int action, int mods);
 						int						mouse_button_fun(
-								sp::shared_ptr<neb::gfx::window::base> const & ,int button, int action, int mods);
+								std::shared_ptr<neb::gfx::window::base> const & ,int button, int action, int mods);
 						int						key_fun(
-								sp::shared_ptr<neb::gfx::window::base> const & ,int,int,int,int);
+								std::shared_ptr<neb::gfx::window::base> const & ,int,int,int,int);
 						int						charFun(
-								shared_ptr<neb::gfx::window::base> const & window,
+								std::shared_ptr<neb::gfx::window::base> const & window,
 								unsigned int codepoint);
-						weak_ptr<neb::gfx::gui::object::terminal>	createObjectTerminal();
+						std::weak_ptr<neb::gfx::gui::object::terminal>	createObjectTerminal();
 					public:
 						glm::mat4x4					ortho_;
 
 
-						sp::shared_ptr<neb::gfx::gui::layout::util::parent>	parent_;
+						std::shared_ptr<neb::gfx::gui::layout::util::parent>	parent_;
 						// connections
 						struct
 						{

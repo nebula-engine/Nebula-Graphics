@@ -22,7 +22,7 @@ void					neb::gfx::app::base::release() {
 	neb::app::__gfx::release();
 	//neb::app::__gfx_glsl::release();
 }
-void					neb::gfx::app::base::step(gal::std::timestep const & ts) {
+void					neb::gfx::app::base::step(gal::etc::timestep const & ts) {
 
 	//neb::core::app::__base::step(ts);
 	neb::app::__core::step(ts);

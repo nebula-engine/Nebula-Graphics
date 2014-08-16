@@ -20,9 +20,9 @@ namespace neb {
 							max_line_count = 10
 						};
 						virtual void			init();
-						virtual void			draw(sp::shared_ptr<neb::glsl::program> p);
+						virtual void			draw(std::shared_ptr<neb::glsl::program> p);
 						virtual int			key_fun(
-								sp::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
+								std::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
 						virtual int			charFun(
 								shared_ptr<neb::gfx::window::base> const & window,
 								unsigned int codepoint);

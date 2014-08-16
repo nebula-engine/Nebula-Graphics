@@ -16,7 +16,7 @@
 #include <neb/gfx/glsl/uniform/vector.hpp>
 
 
-neb::gfx::core::light::base::base(sp::shared_ptr<neb::core::core::light::util::parent> parent, ::std::string light_type_string):
+neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::parent> parent, ::std::string light_type_string):
 	neb::core::core::light::base(parent),
 	light_type_string_(light_type_string),
 	ambient_(0.1,0.1,0.1,1.0),
@@ -49,7 +49,7 @@ void neb::gfx::core::light::base::dim() {
 	printf("UNSUPPORTED\n");
 	exit(0);
 }
-void		neb::gfx::core::light::base::step(gal::std::timestep const & ts) {
+void		neb::gfx::core::light::base::step(gal::etc::timestep const & ts) {
 
 }
 void	neb::gfx::core::light::base::draw() {	

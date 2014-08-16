@@ -11,7 +11,7 @@
 
 #include <neb/core/util/config.hpp>
 #include <neb/core/util/decl.hpp>
-#include <neb/core/util/shared.hpp>
+#include <neb/core/itf/shared.hpp>
 #include <neb/core/math/Serialization/glm.hpp>
 
 #include <neb/gfx/core/light/base.hpp>
@@ -36,7 +36,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 					ar & boost::serialization::make_nvp("spot_light_cos_cutoff",spot_light_cos_cutoff_);
 				}
 			public:
-				spot(sp::shared_ptr<neb::core::core::light::util::parent> parent);
+				spot(std::shared_ptr<neb::core::core::light::util::parent> parent);
 
 				virtual void				load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose);
 

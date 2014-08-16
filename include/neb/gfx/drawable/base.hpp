@@ -1,7 +1,7 @@
 #ifndef NEBULA_GRAPHICS_DRAWABLE_BASE_HPP
 #define NEBULA_GRAPHICS_DRAWABLE_BASE_HPP
 
-#include <neb/core/util/shared.hpp>
+#include <neb/core/itf/shared.hpp>
 
 namespace neb {
 
@@ -20,7 +20,7 @@ namespace neb {
 			 * 
 			 * Contains content to draw in a context (scene, layout, etc.).
 			 */
-			class base: virtual public neb::std::shared {
+			class base: virtual public neb::itf::shared {
 				public:
 					/** @brief draw
 					 *
@@ -29,8 +29,8 @@ namespace neb {
 					 * draw into prepared rendering context
 					 */
 					virtual void				draw(
-							sp::shared_ptr<neb::gfx::context::base> context,
-							sp::shared_ptr<neb::glsl::program> p) = 0;
+							std::shared_ptr<neb::gfx::context::base> context,
+							std::shared_ptr<neb::glsl::program> p) = 0;
 			};
 			class two: virtual public neb::gfx::drawable::base
 			{

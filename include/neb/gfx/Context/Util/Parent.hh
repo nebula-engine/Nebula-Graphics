@@ -16,7 +16,7 @@ namespace neb {
 					public:
 						virtual void			init() {}
 						virtual void			release() {}
-						virtual void			step(gal::std::timestep const & ts) { neb::util::parent< neb::gfx::context::base >::step(ts); }
+						virtual void			step(gal::etc::timestep const & ts) { neb::util::parent< neb::gfx::context::base >::step(ts); }
 
 				};
 			}

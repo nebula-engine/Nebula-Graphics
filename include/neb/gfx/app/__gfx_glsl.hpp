@@ -9,7 +9,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include <gal/std/shared.hpp>
+#include <gal/itf/shared.hpp>
 
 #include <neb/core/util/decl.hpp>
 #include <neb/core/app/__base.hpp>
@@ -21,7 +21,7 @@ namespace neb {
 	namespace app {
 		class __gfx_glsl: virtual public neb::core::app::__base {
 			public:
-				typedef ::std::map<int, sp::shared_ptr<neb::glsl::program> >		map_program_type;
+				typedef ::std::map<int, std::shared_ptr<neb::glsl::program> >		map_program_type;
 				friend class neb::gfx::environ::base;
 				friend class neb::gfx::environ::two;
 				friend class neb::gfx::environ::three;
@@ -34,7 +34,7 @@ namespace neb {
 				shared_ptr<neb::glsl::program>				current_program();
 				void							create_programs();
 				map_program_type					programs_;
-				sp::shared_ptr<neb::glsl::program>			current_;
+				std::shared_ptr<neb::glsl::program>			current_;
 		};
 	}
 }

@@ -6,7 +6,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include <gal/std/timestep.hpp>
+#include <gal/etc/timestep.hpp>
 
 #include <neb/core/core/shape/base.hpp>
 #include <neb/core/core/light/util/light_count.hpp>

@@ -5,7 +5,7 @@
 
 #include <boost/signals2.hpp>
 
-#include <neb/core/util/shared.hpp>
+#include <neb/core/itf/shared.hpp>
 #include <neb/core/color/Color.hh>
 
 #include <neb/gfx/util/decl.hpp>
@@ -16,21 +16,21 @@ namespace neb {
 	namespace gfx {
 		namespace gui {
 			namespace object {
-				class base: virtual public neb::std::shared {
+				class base: virtual public neb::itf::shared {
 					public:
 						base();
 						virtual ~base() {}
 
 						virtual void			init();
-						//sp::shared_ptr<window::window>		get_window();
-						virtual void			draw(sp::shared_ptr<neb::glsl::program> p) = 0;
+						//std::shared_ptr<window::window>		get_window();
+						virtual void			draw(std::shared_ptr<neb::glsl::program> p) = 0;
 
 						virtual int			key_fun(
-								sp::shared_ptr<neb::gfx::window::base> const & window, int, int, int, int) = 0;
+								std::shared_ptr<neb::gfx::window::base> const & window, int, int, int, int) = 0;
 						virtual int			mouse_button_fun(
-								sp::shared_ptr<neb::gfx::window::base> const & window, int, int, int);
+								std::shared_ptr<neb::gfx::window::base> const & window, int, int, int);
 						virtual int			charFun(
-								shared_ptr<neb::gfx::window::base> const & window,
+								std::shared_ptr<neb::gfx::window::base> const & window,
 								unsigned int codepoint) {return 0;}
 
 						//virtual void			connect();
@@ -48,7 +48,7 @@ namespace neb {
 
 						}
 					public:
-						sp::shared_ptr<neb::gfx::gui::object::util::parent>	parent_;
+						std::shared_ptr<neb::gfx::gui::object::util::parent>	parent_;
 						
 						neb::gfx::gui::object::util::flag			flag_;
 

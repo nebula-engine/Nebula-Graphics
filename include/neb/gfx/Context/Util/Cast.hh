@@ -1,7 +1,7 @@
 #ifndef NEBULA_GRAPHICS_CONTEXT_UTIL_CAST_HH
 #define NEBULA_GRAPHICS_CONTEXT_UTIL_CAST_HH
 
-#include <neb/core/util/shared.hpp>
+#include <neb/core/itf/shared.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 
@@ -12,10 +12,10 @@ namespace neb {
 				/** @brief %Cast
 				*/
 				class cast:
-					virtual public neb::std::shared
+					virtual public neb::itf::shared
 				{
 					public:
-						sp::shared_ptr<neb::gfx::context::base>			isContextBase();
+						std::shared_ptr<neb::gfx::context::base>			isContextBase();
 				};
 			}
 		}

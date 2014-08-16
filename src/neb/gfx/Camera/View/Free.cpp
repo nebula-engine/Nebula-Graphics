@@ -10,7 +10,7 @@
 #include <neb/gfx/Camera/View/Free.hh>
 #include <neb/gfx/util/log.hpp>
 
-neb::gfx::Camera::View::Free::Free(sp::shared_ptr<neb::gfx::environ::base> parent):
+neb::gfx::Camera::View::Free::Free(std::shared_ptr<neb::gfx::environ::base> parent):
 	neb::gfx::Camera::View::base(parent),
 	pitch_(0),
 	yaw_(0),
@@ -103,7 +103,7 @@ neb::gfx::Camera::View::Free::Free(sp::shared_ptr<neb::gfx::environ::base> paren
 void	neb::gfx::Camera::View::Free::init() {
 
 }
-void			neb::gfx::Camera::View::Free::connect(sp::shared_ptr<neb::gfx::window::base> const & window) {
+void			neb::gfx::Camera::View::Free::connect(std::shared_ptr<neb::gfx::window::base> const & window) {
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
 	
 	
@@ -133,7 +133,7 @@ void			neb::gfx::Camera::View::Free::connect(sp::shared_ptr<neb::gfx::window::ba
 
 }
 int			neb::gfx::Camera::View::Free::key_fun(
-		sp::shared_ptr<neb::gfx::window::base> const & window,
+		std::shared_ptr<neb::gfx::window::base> const & window,
 		int key,
 		int scancode,
 		int action,
@@ -230,7 +230,7 @@ int			neb::gfx::Camera::View::Free::key_fun(
 
 	return 0;
 }
-void			neb::gfx::Camera::View::Free::step(gal::std::timestep const & ts) {
+void			neb::gfx::Camera::View::Free::step(gal::etc::timestep const & ts) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	// look vector

@@ -17,7 +17,7 @@
 #include <neb/gfx/util/log.hpp>
 
 
-neb::gfx::core::actor::base::base(shared_ptr<neb::core::core::actor::util::parent> parent):
+neb::gfx::core::actor::base::base(std::shared_ptr<neb::core::core::actor::util::parent> parent):
 	neb::core::core::actor::base(parent)
 {
 	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
@@ -46,7 +46,7 @@ void				neb::gfx::core::actor::base::load_lights(neb::core::core::light::util::c
 
 	auto lambda_actor = [&] (A::map_type::iterator<0> it) {
 		
-		auto actor = sp::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
+		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
 
 		if(!actor) {
 			::std::cout << "ptr   = " << it->ptr_ << " type= " << typeid(*it->ptr_).name() << ::std::endl;
@@ -58,7 +58,7 @@ void				neb::gfx::core::actor::base::load_lights(neb::core::core::light::util::c
 	};
 	
 	auto lambda_shape = [&]  (S::map_type::iterator<0> it) {
-		auto shape = sp::dynamic_pointer_cast<neb::gfx::core::shape::base>(it->ptr_);
+		auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(it->ptr_);
 		assert(shape);
 		
 		shape->load_lights(light_count, npose);
@@ -70,8 +70,8 @@ void				neb::gfx::core::actor::base::load_lights(neb::core::core::light::util::c
 	/*parent->*/S::map_.for_each<0>(lambda_shape);
 }
 void				neb::gfx::core::actor::base::draw(
-		sp::shared_ptr<neb::gfx::context::base> context,
-		sp::shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::gfx::context::base> context,
+		std::shared_ptr<neb::glsl::program> p,
 		neb::core::pose const & pose)
 {
 	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
@@ -82,13 +82,13 @@ void				neb::gfx::core::actor::base::draw(
 	typedef neb::core::core::shape::util::parent S;
 
 	A::map_.for_each<0>([&] (A::map_type::iterator<0> it) {
-			auto actor = sp::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
+			auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
 			assert(actor);
 			actor->draw(context, p, npose);
 			});
 
 	S::map_.for_each<0>([&] (S::map_type::iterator<0> it) {
-			auto shape = sp::dynamic_pointer_cast<neb::gfx::core::shape::base>(it->ptr_);
+			auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(it->ptr_);
 			assert(shape);
 			shape->draw(context, p, npose);
 			});
@@ -96,7 +96,7 @@ void				neb::gfx::core::actor::base::draw(
 
 }
 
-void		neb::gfx::core::actor::base::step(gal::std::timestep const & ts) {
+void		neb::gfx::core::actor::base::step(gal::etc::timestep const & ts) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }

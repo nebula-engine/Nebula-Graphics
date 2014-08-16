@@ -9,7 +9,7 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include <gal/std/shared.hpp>
+#include <gal/itf/shared.hpp>
 
 
 #include <neb/core/util/decl.hpp>
@@ -33,11 +33,11 @@ namespace neb {
 			virtual public neb::gfx::gui::layout::util::parent
 		{
 			public:
-				typedef ::std::map< GLFWwindow*, sp::shared_ptr<neb::gfx::window::base> >			glfwwindow_map_type;
+				typedef ::std::map< GLFWwindow*, std::shared_ptr<neb::gfx::window::base> >			glfwwindow_map_type;
 			
 				void						__init();
 				void						release();
-				void						step(gal::std::timestep const & ts);
+				void						step(gal::etc::timestep const & ts);
 
 				void						init_glew();
 
