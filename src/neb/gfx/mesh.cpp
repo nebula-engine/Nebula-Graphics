@@ -250,14 +250,15 @@ void			neb::gfx::mesh::draw_elements(
 
 	if(!bufs) return;
 
-	bool tex = texture_ || normal_map_;
-
 	// attribs
 	p->get_attrib(neb::attrib_name::e::POSITION)->enable();
 	p->get_attrib(neb::attrib_name::e::NORMAL)->enable();
-	if(tex) p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
-
-
+	if(texture_ || normal_map_)
+		p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
+	if(normal_map_) {
+		p->get_attrib(neb::attrib_name::e::TANGENT)->enable();
+		p->get_attrib(neb::attrib_name::e::BINORMAL)->enable();
+	}
 	// material
 	material_front_.load();
 
@@ -300,5 +301,11 @@ void			neb::gfx::mesh::draw_elements(
 	// attribs
 	p->get_attrib(neb::attrib_name::e::POSITION)->disable();
 	p->get_attrib(neb::attrib_name::e::NORMAL)->disable();
-	if(tex) p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
+	if(texture_ || normal_map_)
+		p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
+	if(normal_map_) {
+		p->get_attrib(neb::attrib_name::e::TANGENT)->disable();
+		p->get_attrib(neb::attrib_name::e::BINORMAL)->disable();
+	}
+
 }

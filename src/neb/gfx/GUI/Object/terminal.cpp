@@ -13,6 +13,11 @@
 
 typedef gal::console::temp<gal::console::backend::python, gal::console::frontend::store> console_type;
 
+neb::gfx::gui::object::terminal::terminal():
+history_current_(0),
+page_offset_(0),
+max_line_count_(10)
+{}
 void		neb::gfx::gui::object::terminal::init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -40,10 +45,28 @@ void		neb::gfx::gui::object::terminal::draw(std::shared_ptr<neb::glsl::program> 
 	float y = y_ + 0.9;
 	float line_height = 0.075;
 	
-	for(auto l : console->lines_) {
-		draw_text(p, x, y, sx, sy, font_color_, l.c_str());
+	LOG(lg, neb::gfx::sl, debug) << "copy lines";
+	std::vector<std::string> lines(console->lines_.begin(), console->lines_.end());
+	int b, e;
+	
+	LOG(lg, neb::gfx::sl, debug) << "determine begin and end";
+	if(lines.size() < max_line_count_) {
+		b = 0;
+		e = lines.size();
+	} else {
+		b = lines.size() - page_offset_ - max_line_count_;
+		e = lines.size() - page_offset_;
+	}
+	
+	LOG(lg, neb::gfx::sl, debug)
+		<< "draw lines b = " << b << " e = " << e << " size = " << lines.size()
+		<< " offset = " << page_offset_;
+	
+	for(int i = b; i < e; i++) {
+		draw_text(p, x, y, sx, sy, font_color_, lines[i].c_str());
 		y -= line_height;
 	}
+	LOG(lg, neb::gfx::sl, debug) << "draw lines end";
 
 	string line = "$ " + console->line_;
 
@@ -91,6 +114,16 @@ int			neb::gfx::gui::object::terminal::key_fun(
 				break;
 			case GLFW_KEY_ENTER:
 				console->enter();
+				break;
+			case GLFW_KEY_PAGE_UP:
+				page_offset_ += max_line_count_;
+				page_offset_ = std::min(page_offset_, (unsigned int)(console->lines_.size() - max_line_count_));
+				break;
+			case GLFW_KEY_PAGE_DOWN:
+				if(page_offset_ > max_line_count_)
+					page_offset_ -= max_line_count_;
+				else
+					page_offset_ = 0;
 				break;
 		}
 	}
