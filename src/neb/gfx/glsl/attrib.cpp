@@ -38,6 +38,8 @@ int	neb::glsl::attrib::locate(std::shared_ptr<neb::glsl::program> p) {
 }
 void	neb::glsl::attrib::enable()
 {
+	printf("enable attrib %s\n",name_);
+
 	glEnableVertexAttribArray(o_);
 
 	checkerror("glEnableVertexAttribArray");

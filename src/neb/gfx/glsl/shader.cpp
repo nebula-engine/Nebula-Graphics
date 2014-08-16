@@ -6,6 +6,14 @@
 #include <sys/time.h>
 #include <string.h>
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <iterator>
+#include <algorithm>
+
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/shader.hh>
 
@@ -14,34 +22,25 @@ void	neb::glsl::shader::load(const char * filename, GLenum shader_type)
 	printf("%s\n",__PRETTY_FUNCTION__);
 	printf("loading %s\n",filename);
 
-	FILE * fp;
-	size_t filesize;
-	char * data;
-
-	fp = fopen(filename, "rb");
-
-	if (!fp)
-	{
-		perror("fopen");
-		exit(0);
-	}
-
-	fseek(fp, 0, SEEK_END);
-	filesize = ftell(fp);
-	fseek(fp, 0, SEEK_SET);
-
-	data = new char [filesize + 1];
-
-	if (!data)
-	{
-		printf("memory allocation error\n");
-		exit(0);
-	}
+	// read text
 	
-	fread(data, 1, filesize, fp);
-	data[filesize] = 0;
-	fclose(fp);
+	ifstream ifs(filename);
+	
+	vector<string> lines;
+	for(string line; getline(ifs, line);) lines.push_back(line);
+	
+	stringstream ss;
+	copy(lines.begin(), lines.end(), ostream_iterator<string>(ss, "\n"));
 
+	
+	for(auto str : lines) {
+		cout << str << endl;
+	}
+
+	string str(ss.str());
+	const char * data = str.c_str();
+	
+	// opengl
 	o_ = glCreateShader(shader_type);
 	checkerror("glCreateShader");
 
@@ -53,7 +52,6 @@ void	neb::glsl::shader::load(const char * filename, GLenum shader_type)
 
 	glShaderSource(o_, 1, (const GLchar**)&data, NULL);
 
-	delete [] data;
 
 	glCompileShader(o_);
 

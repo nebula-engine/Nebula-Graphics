@@ -59,6 +59,9 @@ namespace neb {
 			class base;
 		}
 
+		class texture;
+		
+
 		/** @brief Graphical User Interface */
 		namespace gui {
 			/** @brief %Layout */
@@ -124,9 +127,13 @@ namespace neb {
 
 			}
 		}
+		
+		namespace core {
+			class buffer;
+		}
 	}
 
-	/*template<typename>*/ class texture;
+	
 }
 
 #endif

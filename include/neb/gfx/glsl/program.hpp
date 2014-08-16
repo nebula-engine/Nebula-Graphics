@@ -18,7 +18,7 @@ namespace neb {
 
 		class program: public sp::enable_shared_from_this<program> {
 			public:
-				program();
+				program(neb::program_name::e name);
 				void	init();
 				void	add_shader(char const *, GLenum);
 				void	add_shaders(::std::vector<neb::glsl::shader>);
@@ -44,6 +44,7 @@ namespace neb {
 				::std::map< ::std::string, sp::shared_ptr<neb::glsl::Uniform::Vector::base> >		uniform_vector_;
 
 				::std::map<int, sp::shared_ptr<attrib> >						attrib_;
+				neb::program_name::e									name_;
 		};
 	}
 }

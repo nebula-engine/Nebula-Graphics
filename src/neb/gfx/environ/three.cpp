@@ -66,11 +66,19 @@ void		neb::gfx::environ::three::render(sp::shared_ptr<neb::gfx::context::base> c
 	auto p = app->use_program(neb::program_name::e::LIGHT);
 	
 	//viewport_.load();
-
-
+	
 	proj_->load(p);
 	view_->load(p);
-
+	
+	drawable->draw(context, p);
+	
+	p = app->use_program(neb::program_name::e::IMAGE);
+	
+	//viewport_.load();
+	
+	proj_->load(p);
+	view_->load(p);
+	
 	drawable->draw(context, p);
 }		
 weak_ptr<neb::gfx::Camera::View::Ridealong>		neb::gfx::environ::three::createViewRidealong(

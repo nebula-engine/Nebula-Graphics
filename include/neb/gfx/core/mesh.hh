@@ -42,10 +42,19 @@ namespace neb { namespace gfx {
 			void				construct(math::geo::polyhedron*);
 			void				print(int sl);
 
+			void				vertexAttribPointer(
+					shared_ptr<neb::gfx::core::buffer> buf,
+					shared_ptr<neb::glsl::program> p);
+			void				buffer_data(shared_ptr<neb::gfx::core::buffer> buf);
 			void				init_buffer(
 					shared_ptr<neb::gfx::context::base> context,
 					shared_ptr<neb::glsl::program> p);
 			void				draw_elements(
+					sp::shared_ptr<neb::gfx::context::base> context,
+					sp::shared_ptr<neb::glsl::program> p,
+					neb::core::pose const & pose,
+					glm::vec3 scale);
+			void				draw_elements_texture(
 					sp::shared_ptr<neb::gfx::context::base> context,
 					sp::shared_ptr<neb::glsl::program> p,
 					neb::core::pose const & pose,
@@ -59,6 +68,9 @@ namespace neb { namespace gfx {
 			vector<GLushort>			indices_;
 
 			map_t					context_;
+			
+
+			shared_ptr<neb::gfx::texture>		texture_;
 	};
 }}
 

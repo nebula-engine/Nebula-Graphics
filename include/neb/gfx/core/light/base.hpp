@@ -13,8 +13,7 @@
 #include <neb/core/core/light/base.hpp>
 #include <neb/core/color/Color.hh>
 
-#include <neb/gfx/texture.hpp>
-
+#include <neb/gfx/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace light {
 
@@ -67,7 +66,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 
 				// other properties
 
-				texture						texture_shadow_map_;
+				shared_ptr<neb::gfx::texture>			texture_shadow_map_;
 
 
 		};

@@ -18,7 +18,7 @@
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 
-neb::glsl::program::program()
+neb::glsl::program::program(neb::program_name::e name): name_(name)
 {
 }
 void	neb::glsl::program::init()

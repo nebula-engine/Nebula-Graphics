@@ -8,8 +8,8 @@
 //#define GLUTPP_OBJECT_DIR "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME@/Graphics/objects"
 //#define GLUTPP_SHADER_DIR "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME@/Graphics/glsl/shaders"
 
-#define NEB_GFX_OBJECT_DIR "@PROJECT_SOURCE_DIR@/include/neb/gfx/media/objects"
-#define NEB_GFX_SHADER_DIR "@PROJECT_SOURCE_DIR@/include/neb/gfx/media/shaders"
+#define NEB_GFX_OBJECT_DIR "@PROJECT_SOURCE_DIR@/include/neb/gfx/media/objects/"
+#define NEB_GFX_SHADER_DIR "@PROJECT_SOURCE_DIR@/include/neb/gfx/media/shaders/"
 
 
 #include <vector>

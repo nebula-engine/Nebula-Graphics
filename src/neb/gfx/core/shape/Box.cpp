@@ -21,6 +21,10 @@ void neb::gfx::core::shape::box::box::createMesh() {
 	
 	mesh_.reset(new neb::gfx::mesh);
 	mesh_->construct(&cube);
+
+	//mesh_->texture_.reset(new neb::gfx::texture);
+	//mesh_->texture_->load_png("/nfs/stak/students/r/rymalc/Documents/Pictures/crab.png", bufs);
+
 }
 
 

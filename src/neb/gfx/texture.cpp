@@ -8,25 +8,26 @@
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
+#include <neb/gfx/core/buffer.hpp>
 
 #include <png.h>
 
-neb::texture::texture():
-	/*window_(NULL),*/
-	o_(-1)
+neb::gfx::texture::texture():
+	w_(0), h_(0), png_image_data_(0)
 {}
-neb::texture::~texture()
+neb::gfx::texture::~texture()
 {
 }
-void	neb::texture::init_shadow(int w,int h)
+void			neb::gfx::texture::init_shadow(int w,int h, shared_ptr<neb::gfx::core::buffer> buf)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 
-	w_ = w; h_ = h;
+	w_ = w;
+	h_ = h;
 
-	glGenTextures(1, &o_);
+	glGenTextures(1, &buf->texture_);
 	
-	bind();
+	bind(buf);
 	
 	glTexImage2D(
 			GL_TEXTURE_2D,
@@ -45,13 +46,19 @@ void	neb::texture::init_shadow(int w,int h)
 
 	checkerror("");
 }
-void	neb::texture::bind()
+void	neb::gfx::texture::genAndBind(shared_ptr<neb::gfx::core::buffer> buf)
 {
-	glBindTexture(GL_TEXTURE_2D, o_);
-	
+	glGenTextures(1, &buf->texture_);
+	checkerror("glGenTextures");
+
+	bind(buf);
+}
+void	neb::gfx::texture::bind(shared_ptr<neb::gfx::core::buffer> buf)
+{
+	glBindTexture(GL_TEXTURE_2D, buf->texture_); checkerror("glBindTexture");
 	checkerror("glBindTexture");
 }
-int	neb::texture::load_png(char const * filename)
+int	neb::gfx::texture::load_png(char const * filename)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 
@@ -121,18 +128,16 @@ int	neb::texture::load_png(char const * filename)
 
 	// variables to pass to get info
 	int bit_depth, color_type;
-	png_uint_32 temp_width, temp_height;
 
 	// get info about png
 	png_get_IHDR(
 			png_ptr, info_ptr,
-			&temp_width, &temp_height,
+			&w_, &h_,
 			&bit_depth, &color_type,
 			NULL, NULL, NULL);
-
-	w_ = temp_width;
-	h_ = temp_height;
-
+	
+	
+	
 	// Update the png info struct.
 	png_read_update_info(png_ptr, info_ptr);
 
@@ -143,63 +148,67 @@ int	neb::texture::load_png(char const * filename)
 	rowbytes += 3 - ((rowbytes-1) % 4);
 
 	// Allocate the image_data as a big block, to be given to opengl
-	png_byte * image_data;
-	image_data = (png_byte*)malloc(rowbytes * temp_height * sizeof(png_byte)+15);
-	if (image_data == NULL)
+
+	png_image_data_ = (png_byte*)malloc(rowbytes * h_ * sizeof(png_byte)+15);
+	if (png_image_data_ == NULL)
 	{
 		fprintf(stderr, "error: could not allocate memory for PNG image data\n");
 		png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
 		fclose(fp);
-		return 0;
+		abort();
 	}
 
 	// row_pointers is for pointing to image_data for reading the png with libpng
-	png_bytep * row_pointers = (png_bytep*)malloc(temp_height * sizeof(png_bytep));
+	png_bytep * row_pointers = (png_bytep*)malloc(h_ * sizeof(png_bytep));
 	if (row_pointers == NULL)
 	{
 		fprintf(stderr, "error: could not allocate memory for PNG row pointers\n");
 		png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
-		free(image_data);
+		free(png_image_data_);
 		fclose(fp);
-		return 0;
+		abort();
 	}
 
 	// set the individual row_pointers to point at the correct offsets of image_data
-	for (unsigned int i = 0; i < temp_height; i++)
+	for (unsigned int i = 0; i < h_; i++)
 	{
-		row_pointers[temp_height - 1 - i] = image_data + i * rowbytes;
+		row_pointers[h_ - 1 - i] = png_image_data_ + i * rowbytes;
 	}
 
 	// read the png into image_data through row_pointers
 	png_read_image(png_ptr, row_pointers);
 
 	// Generate the OpenGL texture object
-	glGenTextures(1, &o_);
-	glBindTexture(GL_TEXTURE_2D, o_);
+
+	//printf("image '%s' loaded into texture object %i\n", filename, buf->texture_);
+
+	// clean up
+	png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
+	//free(image_data);
+	free(row_pointers);
+	fclose(fp);
+	return 0;
+}
+void			neb::gfx::texture::init_buffer(shared_ptr<neb::gfx::core::buffer> buf) {
+	genAndBind(buf);
+
+	cout << "w " << w_ << " h " << h_ << " data " << (long int)png_image_data_ << endl;
 
 	glTexImage2D(
 			GL_TEXTURE_2D,
 			0,
 			GL_RGB,
-			temp_width, temp_height,
+			w_, h_,
 			0,
 			GL_RGB,
 			GL_UNSIGNED_BYTE,
-			image_data);
+			png_image_data_);
+	checkerror("glTexImage2D");
 
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-	printf("image '%s' loaded into texture object %i\n",filename,o_);
-
-	checkerror("");
-
-	// clean up
-	png_destroy_read_struct(&png_ptr, &info_ptr, &end_info);
-	free(image_data);
-	free(row_pointers);
-	fclose(fp);
-	return o_;
+	checkerror("glTexParameterf");
 }
+
 
 

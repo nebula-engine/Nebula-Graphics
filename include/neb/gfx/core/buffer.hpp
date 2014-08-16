@@ -21,11 +21,9 @@ namespace neb { namespace gfx { namespace core {
 		public:
 			GLuint		vbo_;
 			GLuint		indices_;
-
-			struct
-			{
-				sp::shared_ptr<neb::texture>	image_;
-			} texture_;
+	
+			GLuint		texture_;
+			
 	};
 }}}
 

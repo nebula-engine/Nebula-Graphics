@@ -30,7 +30,7 @@
 #include <neb/gfx/environ/three.hpp>
 
 neb::gfx::window::base::base():
-	x_(0),
+	x_(1200),
 	y_(0),
 	w_(600),
 	h_(600)
@@ -38,7 +38,7 @@ neb::gfx::window::base::base():
 }
 neb::gfx::window::base::base(sp::shared_ptr<neb::gfx::window::util::parent> parent):
 	parent_(parent),
-	x_(0),
+	x_(1200),
 	y_(0),
 	w_(600),
 	h_(600)

@@ -52,7 +52,7 @@ void					neb::gfx::core::shape::base::draw(
 
 	draw_elements(context, p, npose);
 }
-void					neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
+void			neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 
 	auto p = neb::app::__gfx_glsl::global().lock()->current_program();
 
@@ -60,14 +60,26 @@ void					neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 
 	p->get_uniform_scalar("model")->load(space);
 }
-void		neb::gfx::core::shape::base::draw_elements(
+void			neb::gfx::core::shape::base::draw_elements(
 		sp::shared_ptr<neb::gfx::context::base> context,
 		sp::shared_ptr<neb::glsl::program> p,
 		neb::core::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
-	if(mesh_) mesh_->draw_elements(context, p, pose, s_);
+	
+	if(mesh_) {
+		
+		switch(p->name_) {
+			case neb::program_name::e::IMAGE:
+				if(mesh_->texture_) mesh_->draw_elements(context, p, pose, s_);
+				break;
+			case neb::program_name::e::LIGHT:
+				if(!(mesh_->texture_)) mesh_->draw_elements(context, p, pose, s_);
+				break;
+			default:
+				abort();
+		}
+	}
 }
 sp::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::createLightPoint() {
 

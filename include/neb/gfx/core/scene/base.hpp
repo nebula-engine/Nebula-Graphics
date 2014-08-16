@@ -27,6 +27,7 @@ namespace neb {
 						virtual void				step(gal::std::timestep const & ts);
 
 						void					resize(int w, int h);
+						void					load_lights(sp::shared_ptr<neb::glsl::program> p);
 						void					draw(sp::shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p);
 
 						/** @brief create empty actor

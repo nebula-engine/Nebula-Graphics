@@ -11,6 +11,7 @@
 #include <neb/core/math/geo/polyhedron.hh>
 #include <neb/core/util/debug.hpp>
 
+#include <neb/gfx/free.hpp>
 #include <neb/gfx/core/mesh.hh>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/program.hpp>
@@ -95,7 +96,177 @@ void		neb::gfx::mesh::print(int sl) {
 		v.print(sl);
 	}	
 }
-void		neb::gfx::mesh::draw_elements(
+void			neb::gfx::mesh::init_buffer(
+		shared_ptr<neb::gfx::context::base> context,
+		shared_ptr<neb::glsl::program> p)
+{
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	//glEnable(GL_TEXTURE_2D);
+
+	if(indices_.empty()) {
+		printf("not initialized\n");
+		//assert(0);
+		// return instead of abort so shape::base objects for making lights can pass through
+		/// @todo need better system for this (like seperate mesh objects that implement this function!!
+		return;
+	}
+
+	checkerror("unknown");
+
+	auto bufs(sp::make_shared<neb::gfx::core::buffer>());
+	context_[context.get()] = bufs;
+
+	// image
+	//if(0)//if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
+	if(texture_)
+	{
+		texture_->init_buffer(bufs);
+	}
+
+
+	glGenBuffers(1, &bufs->indices_);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);
+
+	// vertices
+
+	glGenBuffers(1, &bufs->vbo_);
+	//glBindBuffer(GL_ARRAY_BUFFER, bufs->vbo_);
+	//glBindVertexBuffer(0, vbo_, baseOffset, sizeof(neb::vertex));
+	checkerror("glGenBuffers");
+
+	//glBindBuffer(GL_ARRAY_BUFFER,0);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+	
+
+	vertexAttribPointer(bufs, p);
+
+	buffer_data(bufs);
+}
+void			neb::gfx::mesh::vertexAttribPointer(
+		shared_ptr<neb::gfx::core::buffer> buf,
+		shared_ptr<neb::glsl::program> p)
+{
+
+	static math::geo::vertex v;
+	static long off_position = (long)&(v.p[0])  - (long)&v;
+	static long off_normal =   (long)&(v.n[0])  - (long)&v;
+	static long off_texcoor =  (long)&(v.tc[0]) - (long)&v;
+
+	glBindBuffer(GL_ARRAY_BUFFER, buf->vbo_);
+	
+	glVertexAttribPointer(
+			p->get_attrib(neb::attrib_name::e::POSITION)->o_,
+			4,
+			GL_FLOAT,
+			GL_FALSE,
+			sizeof(math::geo::vertex),
+			(void*)off_position);
+	checkerror("glVertexAttribPointer position");
+
+	glVertexAttribPointer(
+			p->get_attrib(neb::attrib_name::e::NORMAL)->o_,
+			3,
+			GL_FLOAT,
+			GL_FALSE,
+			sizeof(math::geo::vertex),
+			(void*)off_normal);
+	checkerror("glVertexAttribPointer normal");
+
+	if(texture_) {
+		glVertexAttribPointer(
+				p->get_attrib(neb::attrib_name::e::TEXCOOR)->o_,
+				2,
+				GL_FLOAT,
+				GL_FALSE,
+				sizeof(math::geo::vertex),
+				(void*)off_texcoor);
+		checkerror("glVertexAttribPointer texcoor");
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+void			neb::gfx::mesh::buffer_data(shared_ptr<neb::gfx::core::buffer> buf) {
+
+	int size_i = indices_.size() * sizeof(GLushort);
+	int size_v = vertices_.size() * sizeof(math::geo::vertex);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buf->indices_);
+	glBindBuffer(GL_ARRAY_BUFFER, buf->vbo_);
+
+	glBufferData(
+			GL_ELEMENT_ARRAY_BUFFER,
+			size_i,
+			&indices_[0],
+			GL_STATIC_DRAW);
+
+	glBufferData(
+			GL_ARRAY_BUFFER,
+			size_v,
+			&vertices_[0],
+			GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ARRAY_BUFFER,0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
+}
+void			neb::gfx::mesh::draw_elements(
+		sp::shared_ptr<neb::gfx::context::base> context,
+		sp::shared_ptr<neb::glsl::program> p,
+		neb::core::pose const & pose,
+		glm::vec3 scale)
+{
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	
+	if(texture_) {
+		draw_elements_texture(context, p, pose, scale);
+		return;
+	}
+
+	checkerror("unknown");
+
+	//mesh_.print(debug);
+	
+	assert(context);
+	
+	/** @todo could switching programs here leave view and proj unset? */
+
+	// initialize buffers if not already
+	if(!context_[context.get()])
+	{	
+		init_buffer(context, p);
+	}
+	auto bufs = context_[context.get()];
+	
+	vertexAttribPointer(bufs, p);
+	
+	if(!bufs) return;
+
+	// attribs
+	p->get_attrib(neb::attrib_name::e::POSITION)->enable();
+	p->get_attrib(neb::attrib_name::e::NORMAL)->enable();
+
+	// material
+	material_front_.load();
+
+	// load modelview matrix
+	mat4 space = pose.mat4_cast() * glm::scale(scale);
+
+	p->get_uniform_scalar("model")->load(space);
+
+	// draw
+	glBindBuffer(GL_ARRAY_BUFFER, bufs->vbo_);//checkerror("glBindBuffer");
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);//checkerror("glBindBuffer");
+
+	glDrawElements(GL_TRIANGLES, indices_.size(), GL_UNSIGNED_SHORT, 0);
+	
+	glBindBuffer(GL_ARRAY_BUFFER, 0);//checkerror("glBindBuffer");
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);//checkerror("glBindBuffer");
+
+	// attrib
+	p->get_attrib(neb::attrib_name::e::POSITION)->disable();
+	p->get_attrib(neb::attrib_name::e::NORMAL)->disable();
+}
+void			neb::gfx::mesh::draw_elements_texture(
 		sp::shared_ptr<neb::gfx::context::base> context,
 		sp::shared_ptr<neb::glsl::program> p,
 		neb::core::pose const & pose,
@@ -110,168 +281,53 @@ void		neb::gfx::mesh::draw_elements(
 	/** @todo could switching programs here leave view and proj unset? */
 
 	// initialize buffers if not already
-	//	if(!context_[window.get()])
+	if(!context_[context.get()])
 	{	
 		init_buffer(context, p);
 	}
 	auto bufs = context_[context.get()];
 
+	vertexAttribPointer(bufs, p);
+
 	//assert(bufs);
 	if(!bufs) return;
-	
+
 	//checkerror("unknown");
 
 	// attribs
 	p->get_attrib(neb::attrib_name::e::POSITION)->enable();
 	p->get_attrib(neb::attrib_name::e::NORMAL)->enable();
-
-	if(0) //if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
-	{
-		p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
-	}
+	p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
 
 	// material
-	//printf("load material\n");
 	material_front_.load();
-
+	
 	// texture
-	if(0) //if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
-	{
-		glActiveTexture(GL_TEXTURE0);
-		//checkerror("glActiveTexture");
-		bufs->texture_.image_->bind();
-		p->get_uniform_scalar("image")->load(0);
-	}
+	glActiveTexture(GL_TEXTURE0);//checkerror("glActiveTexture");
+	texture_->bind(bufs);
+	p->get_uniform_scalar("image")->load(0);
 
-	//printf("bind vbo\n");
-	glBindBuffer(GL_ARRAY_BUFFER, bufs->vbo_);
-	//checkerror("glBindBuffer");
-	//printf("bind elements\n");// indices
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);
-	//checkerror("glBindBuffer");
+	
 
 	// load modelview matrix
 	mat4 space = pose.mat4_cast() * glm::scale(scale);
-	
+
 	p->get_uniform_scalar("model")->load(space);
-	
-	
+
+	// bind
+	glBindBuffer(GL_ARRAY_BUFFER, bufs->vbo_);//checkerror("glBindBuffer");
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);//checkerror("glBindBuffer");
+
 	// draw
 	glDrawElements(GL_TRIANGLES, indices_.size(), GL_UNSIGNED_SHORT, 0);
-	//checkerror("glDrawElements");
 
-	//glDrawElements(GL_LINES, mesh_.indices_.size(), GL_UNSIGNED_SHORT, 0);
-	//checkerror("glDrawElements");
+	// unbind
+	glBindBuffer(GL_ARRAY_BUFFER, 0);//checkerror("glBindBuffer");
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);//checkerror("glBindBuffer");
 
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	//checkerror("glBindBuffer");
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	//checkerror("glBindBuffer");
-
+	// attribs
 	p->get_attrib(neb::attrib_name::e::POSITION)->disable();
 	p->get_attrib(neb::attrib_name::e::NORMAL)->disable();
-
-	if(0) //if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
-	{
-		p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
-	}
+	p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
 }
-void			neb::gfx::mesh::init_buffer(sp::shared_ptr<neb::gfx::context::base> context, sp::shared_ptr<neb::glsl::program> p) {
-
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
-	glEnable(GL_TEXTURE_2D);
-
-	if(indices_.empty()) {
-		printf("not initialized\n");
-		//assert(0);
-		// return instead of abort so shape::base objects for making lights can pass through
-		/// @todo need better system for this (like seperate mesh objects that implement this function!!
-		return;
-	}
-
-	//checkerror("unknown");
-
-	auto bufs(sp::make_shared<neb::gfx::core::buffer>());
-	context_[context.get()] = bufs;
-
-	// image
-	if(0)//if(flag_.all(neb::core::core::shape::flag::e::IMAGE))
-	{
-		bufs->texture_.image_.reset(new neb::texture);
-
-		//bufs->texture_.image_->load_png(raw_.image_);
-	}
-
-	// indices
-	int size = indices_.size() * sizeof(GLushort);
-
-	glGenBuffers(1, &bufs->indices_);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufs->indices_);
-	glBufferData(
-			GL_ELEMENT_ARRAY_BUFFER,
-			size,
-			&indices_[0],
-			GL_STATIC_DRAW);
-
-	//checkerror("glBufferData");
-
-	// vertices
-
-	glGenBuffers(1, &bufs->vbo_);
-
-	//int baseOffset = 0;
-	glBindBuffer(GL_ARRAY_BUFFER, bufs->vbo_);
-	//glBindVertexBuffer(0, vbo_, baseOffset, sizeof(neb::vertex));
-
-	math::geo::vertex v;
-	long off_position = (long)&(v.p[0])  - (long)&v;
-	long off_normal =   (long)&(v.n[0])  - (long)&v;
-	long off_texcoor =  (long)&(v.tc[0]) - (long)&v;
-
-	glVertexAttribPointer(
-			p->get_attrib(neb::attrib_name::e::POSITION)->o_,
-			4,
-			GL_FLOAT,
-			GL_FALSE,
-			sizeof(math::geo::vertex),
-			(void*)off_position);
-	//checkerror("glVertexAttribPointer");
-
-	glVertexAttribPointer(
-			p->get_attrib(neb::attrib_name::e::NORMAL)->o_,
-			3,
-			GL_FLOAT,
-			GL_FALSE,
-			sizeof(math::geo::vertex),
-			(void*)off_normal);
-	//checkerror("glVertexAttribPointer normal");
-
-	if(0) {//if(flag_.all(neb::core::core::shape::flag::e::IMAGE)) 
-		glVertexAttribPointer(
-				p->get_attrib(neb::attrib_name::e::TEXCOOR)->o_,
-				2,
-				GL_FLOAT,
-				GL_FALSE,
-				sizeof(math::geo::vertex),
-				(void*)off_texcoor);
-		//checkerror("glVertexAttribPointer texcoor");
-	}
-
-	size = vertices_.size() * sizeof(math::geo::vertex);
-	glBufferData(
-			GL_ARRAY_BUFFER,
-			size,
-			&vertices_[0],
-			GL_STATIC_DRAW);
-
-	//checkerror("glBufferData");
-
-	//glBindBuffer(GL_ARRAY_BUFFER,0);
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
-
-}
-
-
 
