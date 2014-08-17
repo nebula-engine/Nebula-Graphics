@@ -115,6 +115,12 @@ int			neb::gfx::gui::object::terminal::key_fun(
 				}
 				break;
 			case GLFW_KEY_ENTER:
+				
+				if(!console->line_.empty())
+					history_.push_back(console->line_);
+				
+				history_current_ = history_.size();
+				
 				console->enter();
 				break;
 			case GLFW_KEY_PAGE_UP:
@@ -138,8 +144,29 @@ int			neb::gfx::gui::object::terminal::key_fun(
 					page_offset_ -= max_line_count_;
 				else
 					page_offset_ = 0;
+
 				LOG(lg, neb::gfx::sl, info)
 					<< "page offset = " << page_offset_;
+				break;
+			case GLFW_KEY_UP:
+				if(history_.empty()) break;
+				
+				if(history_current_ > 0) {
+					history_current_--;
+					console->line_ = history_[history_current_];
+				}
+				break;
+			case GLFW_KEY_DOWN:
+				if(history_.empty()) break;
+				if(history_current_ == history_.size()) break;
+
+				history_current_++;
+				
+				if(history_current_ == history_.size()) {
+					console->line_.clear();
+				} else {
+					console->line_ = history_[history_current_];
+				}
 				break;
 		}
 	}
