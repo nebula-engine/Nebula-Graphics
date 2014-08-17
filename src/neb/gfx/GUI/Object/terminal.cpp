@@ -102,6 +102,8 @@ int			neb::gfx::gui::object::terminal::key_fun(
 		return 0;
 	}
 	
+	size_t N = console->lines_.size();
+
 	if(action == GLFW_PRESS) {
 		switch(key) {
 			case GLFW_KEY_ESCAPE:
@@ -117,13 +119,27 @@ int			neb::gfx::gui::object::terminal::key_fun(
 				break;
 			case GLFW_KEY_PAGE_UP:
 				page_offset_ += max_line_count_;
-				page_offset_ = std::min(page_offset_, (unsigned int)(console->lines_.size() - max_line_count_));
+				
+				if(max_line_count_ >= N) {
+					page_offset_ = 0;
+					break;
+				}
+				
+				if((page_offset_ + max_line_count_) > N) {
+					page_offset_ = N - max_line_count_;
+					break;
+				}
+				
+				LOG(lg, neb::gfx::sl, info)
+					<< "page offset = " << page_offset_;
 				break;
 			case GLFW_KEY_PAGE_DOWN:
 				if(page_offset_ > max_line_count_)
 					page_offset_ -= max_line_count_;
 				else
 					page_offset_ = 0;
+				LOG(lg, neb::gfx::sl, info)
+					<< "page offset = " << page_offset_;
 				break;
 		}
 	}
