@@ -7,6 +7,8 @@
 
 #include <neb/gfx/gui/object/Base.hh>
 
+
+
 namespace neb { namespace gfx { namespace gui { namespace object {
 	class terminal:
 		virtual public neb::gfx::gui::object::base

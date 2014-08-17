@@ -68,9 +68,9 @@ void		neb::gfx::gui::object::terminal::draw(std::shared_ptr<neb::glsl::program> 
 	}
 	LOG(lg, neb::gfx::sl, debug) << "draw lines end";
 
-	string line = "$ " + console->line_;
+	string line = console->prompt_end_ + console->line_.container;
 
-	draw_text(p, x, y, sx, sy, font_color_, line.c_str());
+	draw_text(p, x, y, sx, sy, font_color_, line.c_str(), console->line_.pos + console->prompt_end_.size());
 }
 int			neb::gfx::gui::object::terminal::charFun(
 		shared_ptr<neb::gfx::window::base> const & window,
@@ -109,15 +109,16 @@ int			neb::gfx::gui::object::terminal::key_fun(
 			case GLFW_KEY_ESCAPE:
 				flag_.toggle(neb::gfx::gui::object::util::flag::ENABLED);
 				break;
+			case GLFW_KEY_DELETE:
+				console->line_.del();
+				break;
 			case GLFW_KEY_BACKSPACE:
-				if(!console->line_.empty()) {
-					console->line_.pop_back();
-				}
+				console->line_.backspace();
 				break;
 			case GLFW_KEY_ENTER:
 				
-				if(!console->line_.empty())
-					history_.push_back(console->line_);
+				if(!console->line_.container.empty())
+					history_.push_back(console->line_.container);
 				
 				history_current_ = history_.size();
 				
@@ -167,6 +168,12 @@ int			neb::gfx::gui::object::terminal::key_fun(
 				} else {
 					console->line_ = history_[history_current_];
 				}
+				break;
+			case GLFW_KEY_LEFT:
+				console->line_.down();
+				break;
+			case GLFW_KEY_RIGHT:
+				console->line_.up();
 				break;
 		}
 	}

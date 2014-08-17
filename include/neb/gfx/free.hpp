@@ -19,7 +19,8 @@ namespace neb {
 			float, float, float, float, neb::Color::color<float>);
 	void	draw_text(
 			shared_ptr<neb::glsl::program> p,
-			float, float, float, float, neb::Color::color<float>, ::std::string);
+			float, float, float, float, neb::Color::color<float>, ::std::string,
+			std::string::size_type pos = std::string::npos);
 }
 
 void	checkerror(char const *);

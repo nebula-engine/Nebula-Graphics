@@ -81,11 +81,12 @@ void			neb::draw_quad(
 }
 void		neb::draw_text(
 		shared_ptr<neb::glsl::program> p,
-		float x, float y, float sx, float sy, neb::Color::color<float> color, ::std::string text)
+		float x, float y, float sx, float sy,
+		neb::Color::color<float> color,
+		std::string text,
+		std::string::size_type cursor_pos)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
-	const char * c;
 
 	int window_width, window_height;
 	glfwGetWindowSize(glfwGetCurrentContext(), &window_width, &window_height);
@@ -115,33 +116,9 @@ void		neb::draw_text(
 
 	FT_GlyphSlot g = face->glyph;
 
-
-	/*
-	   GLint uniform_tex = glGetUniformLocation(program, "tex");
-	   GLint uniform_color = glGetUniformLocation(program, "color");
-	   GLint attribute_coord = glGetAttribLocation(program, "coord");
-
-	   if(uniform_tex == -1)
-	   {
-	   printf("tex not found\n");
-	//exit(0);
-	}
-	if(uniform_color == -1)
-	{
-	printf("color not found\n");
-	exit(0);
-	}
-	if(attribute_coord == -1)
-	{
-	printf("coord not found\n");
-	exit(0);
-	}
-	 */
-
-	//printf("tex   = %i\n",uniform_tex);
-	//printf("color = %i\n",uniform_color);
-	//printf("coord = %i\n",attribute_coord);
-
+	// cursor color
+	neb::Color::color<float> cursor_color(1,1,1,1);
+	
 	// color
 	p->get_uniform_scalar("font_color")->load(color);
 
@@ -171,18 +148,21 @@ void		neb::draw_text(
 	glVertexAttribPointer(attrib_coord->o_, 4, GL_FLOAT, GL_FALSE, 0, 0);
 
 
-
-
+	// prep environment
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_CULL_FACE);
+	
+	// draw
+	const char * cstr = text.c_str();
+	size_t len = text.size();
+	for(size_t i = 0; i < len; i++) {
+		
+		if(i == cursor_pos) p->get_uniform_scalar("font_color")->load(cursor_color);
+		
 
-
-
-
-	for(c = text.c_str(); *c; c++) {
-		if(FT_Load_Char(face, *c, FT_LOAD_RENDER)) continue;
+		if(FT_Load_Char(face, cstr[i], FT_LOAD_RENDER)) continue;
 
 		glTexImage2D(
 				GL_TEXTURE_2D,
@@ -219,6 +199,9 @@ void		neb::draw_text(
 
 		x += (g->advance.x >> 6) * sx;
 		y += (g->advance.y >> 6) * sy;
+
+		if(i == cursor_pos) p->get_uniform_scalar("font_color")->load(color);
+
 	}
 
 
