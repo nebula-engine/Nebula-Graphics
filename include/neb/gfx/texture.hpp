@@ -22,6 +22,8 @@ namespace neb { namespace gfx {
 
 			typedef map< neb::gfx::context::base*, GLuint >		map_t;
 
+			static std::shared_ptr<neb::gfx::texture>	makePNG(std::string filename);
+
 			texture();
 			~texture();
 			//void			init(WINDOW_S);

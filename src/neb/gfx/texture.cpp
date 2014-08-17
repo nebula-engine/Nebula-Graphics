@@ -13,6 +13,11 @@
 
 #include <png.h>
 
+std::shared_ptr<neb::gfx::texture>	neb::gfx::texture::makePNG(std::string filename) {
+	auto tex(make_shared<neb::gfx::texture>());
+	tex->load_png(filename);
+	return tex;
+}
 neb::gfx::texture::texture():
 	w_(0), h_(0), png_image_data_(0)
 {}
