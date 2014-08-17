@@ -16,6 +16,8 @@ weak_ptr<neb::gfx::app::base>		neb::gfx::app::base::initialize() {
 
 	return app;
 }
+void					neb::gfx::app::base::__init() {
+}
 void					neb::gfx::app::base::release() {
 	neb::app::__core::release();
 	

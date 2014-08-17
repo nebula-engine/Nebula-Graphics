@@ -3,6 +3,7 @@
 
 #include <GL/glew.h>
 
+#include <neb/core/app/__base.hpp>
 #include <neb/core/color/Color.hh>
 
 #include <neb/gfx/texture.hpp>
@@ -71,16 +72,20 @@ void	neb::gfx::texture::bind(std::shared_ptr<neb::gfx::context::base> context)
 	glBindTexture(GL_TEXTURE_2D, o);
 	checkerror("glBindTexture");
 }
-int	neb::gfx::texture::load_png(char const * filename)
+int		neb::gfx::texture::load_png(std::string filename)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
-
+	
+	auto app(neb::core::app::__base::global());
+	
+	filename = app->share_dir_ + "media/texture/" + filename;
+	
 	png_byte header[8];
 
-	FILE *fp = fopen(filename, "rb");
+	FILE *fp = fopen(filename.c_str(), "rb");
 	if (fp == 0)
 	{
-		perror(filename);
+		perror(filename.c_str());
 		exit(0);
 	}
 
@@ -89,7 +94,7 @@ int	neb::gfx::texture::load_png(char const * filename)
 
 	if (png_sig_cmp(header, 0, 8))
 	{
-		fprintf(stderr, "error: %s is not a PNG.\n", filename);
+		fprintf(stderr, "error: %s is not a PNG.\n", filename.c_str());
 		fclose(fp);
 		return 0;
 	}

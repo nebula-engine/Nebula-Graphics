@@ -27,7 +27,7 @@ namespace neb { namespace gfx {
 			//void			init(WINDOW_S);
 			void			init_shadow(int,int, std::shared_ptr<neb::gfx::context::base> context);
 
-			int			load_png(char const *);
+			int			load_png(std::string filename);
 
 			GLuint			init_buffer(std::shared_ptr<neb::gfx::context::base> context);
 			GLuint			genAndBind(std::shared_ptr<neb::gfx::context::base> context);
