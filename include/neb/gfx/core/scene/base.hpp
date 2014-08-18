@@ -46,7 +46,8 @@ namespace neb {
 						virtual weak_ptr<neb::core::core::actor::base>			createActorLightPoint(glm::vec3 p);
 
 						
-						neb::gfx::glsl::uniform::light_array				light_array_;
+						// one for static, one for dynamic
+						neb::gfx::glsl::uniform::light_array				light_array_[2];
 
 				};
 

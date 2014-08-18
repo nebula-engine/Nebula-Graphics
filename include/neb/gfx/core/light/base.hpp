@@ -57,16 +57,30 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				}
 			public:
 			
-				::std::string					light_type_string_;
+				std::string					light_type_string_;
 
-				// colors
+				// data
 				neb::Color::color<float>			ambient_;
 				neb::Color::color<float>			diffuse_;
 				neb::Color::color<float>			specular_;
+				float						atten_const_;
+				float						atten_linear_;
+				float						atten_quad_;
+				vec3						spot_direction_;
+				float						spot_cutoff_;
+				float						spot_exponent_;
+				float						spot_light_cos_cutoff_;
 
+				int						type_;
+				
+				
 				// other properties
 
-				shared_ptr<neb::gfx::texture>			texture_shadow_map_;
+				int						light_array_;
+				int						light_array_slot_;
+				
+				std::shared_ptr<neb::gfx::texture>		texture_shadow_map_;
+
 
 
 		};

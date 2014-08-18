@@ -104,7 +104,8 @@ std::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::create
 	light->init();
 	
 	// register in light_array
-	light->light_array_ = getScene()->light_array.reg(
+	light->light_array_ = 0;
+	light->light_array_slot_ = getScene()->light_array_[light->light_array_].reg(
 			light->pos_,
 			light->ambient_);
 
