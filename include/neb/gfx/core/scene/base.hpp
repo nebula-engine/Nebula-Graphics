@@ -1,7 +1,11 @@
 #ifndef __GLUTPP_GFX_CORE_SCENE_H__
 #define __GLUTPP_GFX_CORE_SCENE_H__
 
+
+
 #include <neb/core/core/scene/base.hpp>
+
+#include <neb/gfx/glsl/array.hpp>
 
 #include <neb/gfx/drawable/base.hpp>
 
@@ -40,6 +44,9 @@ namespace neb {
 						 * @warning this function allocates object
 						 */
 						virtual weak_ptr<neb::core::core::actor::base>			createActorLightPoint(glm::vec3 p);
+
+						
+						neb::gfx::glsl::uniform::light_array				light_array_;
 
 				};
 

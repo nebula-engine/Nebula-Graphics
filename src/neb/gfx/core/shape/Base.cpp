@@ -41,7 +41,9 @@ void					neb::gfx::core::shape::base::load_lights(neb::core::core::light::util::
 	auto npose = pose * pose_;
 
 	neb::gfx::core::light::util::parent::load_lights(light_count, npose);
+	
 
+	this goes away! to be replaced by light_array in scene
 }
 void					neb::gfx::core::shape::base::draw(
 		std::shared_ptr<neb::gfx::context::base> context,
@@ -49,8 +51,10 @@ void					neb::gfx::core::shape::base::draw(
 		neb::core::pose const & pose) {
 
 	auto npose = pose * pose_;
-
+	
 	draw_elements(context, p, npose);
+	
+
 }
 void			neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 
@@ -96,8 +100,13 @@ std::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::create
 	auto light = sp::make_shared<neb::gfx::core::light::point>(self);
 
 	neb::core::core::light::util::parent::insert(light);
-
+	
 	light->init();
+	
+	// register in light_array
+	light->light_array_ = getScene()->light_array.reg(
+			light->pos_,
+			light->ambient_);
 
 	return light;
 }
