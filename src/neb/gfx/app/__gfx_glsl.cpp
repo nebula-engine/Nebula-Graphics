@@ -74,13 +74,13 @@ void		neb::app::__gfx_glsl::create_programs() {
 
 		programs_[neb::program_name::IMAGE] = p;
 	}
-	//light and normal map
+
 	{
-		p.reset(new neb::glsl::program(neb::program_name::NORM));
+		p.reset(new neb::glsl::program(neb::program_name::THREED));
 		p->init();
 
-		p->add_shader("v130/norm/vs.glsl", GL_VERTEX_SHADER);
-		p->add_shader("v130/norm/fs.glsl", GL_FRAGMENT_SHADER);
+		p->add_shader("v130/3d/vs.glsl", GL_VERTEX_SHADER);
+		p->add_shader("v130/3d/fs.glsl", GL_FRAGMENT_SHADER);
 
 		p->compile();
 
@@ -93,7 +93,7 @@ void		neb::app::__gfx_glsl::create_programs() {
 		p->scanUniforms();
 		p->locate();
 
-		programs_[neb::program_name::NORM] = p;
+		programs_[neb::program_name::THREED] = p;
 	}
 }
 shared_ptr<neb::glsl::program>		neb::app::__gfx_glsl::use_program(neb::program_name::e name){

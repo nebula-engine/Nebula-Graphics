@@ -259,24 +259,36 @@ void			neb::gfx::mesh::draw_elements(
 		p->get_attrib(neb::attrib_name::e::TANGENT)->enable();
 		p->get_attrib(neb::attrib_name::e::BINORMAL)->enable();
 	}
+	
+	// Uniforms
+	// ========
 	// material
 	material_front_.load();
-
+	
 	// texture
 	if(normal_map_) {
 		LOG(lg, neb::gfx::sl, debug) << "activate normal map";
 		glActiveTexture(GL_TEXTURE0);//checkerror("glActiveTexture");
 		normal_map_->bind(context);
 		p->get_uniform_scalar("normal_map")->load(0);
+
+		p->get_uniform_scalar("has_normal_map")->load_b(true);
+	} else {
+		p->get_uniform_scalar("has_normal_map")->load_b(false);
 	}
+
 	if(texture_) {
 		LOG(lg, neb::gfx::sl, debug) << "activate texture";
 		glActiveTexture(GL_TEXTURE1);//checkerror("glActiveTexture");
 		texture_->bind(context);
-		p->get_uniform_scalar("image")->load(1);
+		p->get_uniform_scalar("texture")->load(1);
+
+		p->get_uniform_scalar("has_texture")->load_b(true);
+	} else {
+		p->get_uniform_scalar("has_texture")->load_b(false);
 	}
 
-
+	
 	// load modelview matrix
 	LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
 	mat4 space = pose.mat4_cast() * glm::scale(scale);

@@ -63,12 +63,12 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	// get program choice from drawable
 	/** @todo replace with 'environ' which determines program and camera types and accepts certian types of drawables */
 	
-	auto p = app->use_program(neb::program_name::e::LIGHT);
+	auto p = app->use_program(neb::program_name::e::THREED);
 	proj_->load(p);
 	view_->load(p);
 	drawable->draw(context, p);
 	
-	p = app->use_program(neb::program_name::e::NORM);
+/*	p = app->use_program(neb::program_name::e::NORM);
 	proj_->load(p);
 	view_->load(p);
 	drawable->draw(context, p);
@@ -76,7 +76,7 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	p = app->use_program(neb::program_name::e::IMAGE);
 	proj_->load(p);
 	view_->load(p);
-	drawable->draw(context, p);
+	drawable->draw(context, p);*/
 }		
 weak_ptr<neb::gfx::Camera::View::Ridealong>		neb::gfx::environ::three::createViewRidealong(
 		weak_ptr<neb::core::core::actor::base> actor)

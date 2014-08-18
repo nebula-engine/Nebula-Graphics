@@ -69,6 +69,8 @@ void			neb::gfx::core::shape::base::draw_elements(
 	
 	if(mesh_) {
 		
+		mesh_->draw_elements(context, p, pose, s_);
+		/*
 		switch(p->name_) {
 			case neb::program_name::e::IMAGE:
 				if(mesh_->texture_ && !(mesh_->normal_map_))
@@ -84,7 +86,7 @@ void			neb::gfx::core::shape::base::draw_elements(
 				break;
 			default:
 				abort();
-		}
+		}*/
 	}
 }
 std::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::createLightPoint() {

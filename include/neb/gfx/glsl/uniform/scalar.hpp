@@ -36,12 +36,20 @@ namespace neb {
 						virtual void			load(double*) { throw 0; }
 						virtual void			load(float) { throw 0; }
 						virtual void			load(double) { throw 0; }
+						virtual void			load_b(bool const &) {throw 0; }
+						virtual void			load_b(bool &&) {throw 0; }
 						/** @} */
 					protected:
 						::std::string		name_;
 						GLint			o_;
 				};
 
+				class Bool: public neb::glsl::Uniform::Scalar::base {
+					public:
+						Bool(std::string s): base(s) {}
+						virtual void		load_b(bool const &);
+						virtual void		load_b(bool &&);
+				};
 				class Int: public neb::glsl::Uniform::Scalar::base {
 					public:
 						Int(::std::string s): base(s) {}

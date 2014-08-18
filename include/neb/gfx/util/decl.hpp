@@ -22,7 +22,8 @@ namespace neb {
 			LIGHT,
 			IMAGE,
 			NORM,
-			NORM_IMAGE
+			NORM_IMAGE,
+			THREED
 		};
 	};
 

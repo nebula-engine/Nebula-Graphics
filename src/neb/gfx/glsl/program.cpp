@@ -104,6 +104,9 @@ void	neb::glsl::program::add_uniform_scalar(std::string name, GLenum type) {
 	std::shared_ptr<neb::glsl::Uniform::Scalar::base> u;
 
 	switch(type) {
+		case GL_BOOL:
+			u.reset(new neb::glsl::Uniform::Scalar::Bool(name));
+			break;
 		case GL_INT:
 			u.reset(new neb::glsl::Uniform::Scalar::Int(name));
 			break;
