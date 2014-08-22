@@ -7,7 +7,7 @@
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/light/spot.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
-#include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 
 
 neb::gfx::core::light::spot::spot(std::shared_ptr<neb::core::core::light::util::parent> parent):
@@ -28,7 +28,7 @@ void			neb::gfx::core::light::spot::load(
 
 	neb::gfx::core::light::base::load(light_count.spot, pose);
 
-	auto p = neb::app::__gfx_glsl::global().lock()->current_program();
+	auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
 
 	vec4 spot_direction(spot_direction_,0.0);
 

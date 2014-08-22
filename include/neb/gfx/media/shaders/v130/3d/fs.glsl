@@ -1,6 +1,5 @@
 #version 130
 
-#include "v130/inc/light.glsl"
 #include "v130/inc/material.glsl"
 
 in vec4 vs_P;
@@ -9,15 +8,7 @@ in vec2 vs_texcoor;
 in vec3 vs_T;
 in vec3 vs_B;
 
-
-uniform Light_Point		lights_point[20];
-uniform Light_Spot		lights_spot[20];
-uniform Light_Directional	lights_directional[20];
-
-
-uniform int light_count_point;
-uniform int light_count_spot;
-uniform int light_count_directional;
+#include "v130/inc/light.glsl"
 
 uniform mat4 view;
 uniform Material front;
@@ -65,9 +56,7 @@ void main(void)
 	}
 	
 	
-	point(amb, dif, spc);
-	spot(amb, dif, spc);
-	directional(amb, dif, spc);
+	lf_lights(amb, dif, spc);
 
 	color += front.emission;
 }

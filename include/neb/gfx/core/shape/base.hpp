@@ -16,11 +16,9 @@
 #include <neb/gfx/material.hpp>
 #include <neb/gfx/core/mesh.hh>
 #include <neb/gfx/core/buffer.hpp>
+#include <neb/gfx/glsl/util/decl.hpp>
 
 namespace neb {
-	namespace glsl {
-		class program;
-	}
 	namespace gfx {
 		namespace context {
 			class base;
@@ -44,25 +42,26 @@ namespace neb {
 					virtual weak_ptr<neb::core::core::light::base>		createLightPoint();
 
 
-					virtual void					createMesh();
+					void							setPose(neb::core::pose const & pose);
+					virtual void						createMesh();
 
 
 					/** @name Rendering @{ */
-					void						load_lights(
-							neb::core::core::light::util::count& light_count,
-							neb::core::pose const & pose);
+					//void						load_lights(
+					//		neb::core::core::light::util::count& light_count,
+					//		neb::core::pose const & pose);
 					void						model_load(
 							neb::core::pose const & pose);
 					void						init_buffer(
 							std::shared_ptr<neb::gfx::context::base> context,
-							std::shared_ptr<neb::glsl::program> p);
+							std::shared_ptr<neb::gfx::glsl::program::base> p);
 					void						draw(
 							std::shared_ptr<neb::gfx::context::base>,
-							std::shared_ptr<neb::glsl::program> p,
+							std::shared_ptr<neb::gfx::glsl::program::base> p,
 							neb::core::pose const & pose);
 					virtual void					draw_elements(
 							std::shared_ptr<neb::gfx::context::base> context,
-							std::shared_ptr<neb::glsl::program> p,
+							std::shared_ptr<neb::gfx::glsl::program::base> p,
 							neb::core::pose const & pose);
 					/** @} */
 				public:

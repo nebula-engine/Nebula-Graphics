@@ -14,7 +14,7 @@
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/core/mesh.hh>
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 
@@ -98,7 +98,7 @@ void		neb::gfx::mesh::print(int sl) {
 }
 void			neb::gfx::mesh::init_buffer(
 		shared_ptr<neb::gfx::context::base> context,
-		shared_ptr<neb::glsl::program> p)
+		shared_ptr<neb::gfx::glsl::program::base> p)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -145,7 +145,7 @@ void			neb::gfx::mesh::init_buffer(
 }
 void			neb::gfx::mesh::vertexAttribPointer(
 		shared_ptr<neb::gfx::core::buffer> buf,
-		shared_ptr<neb::glsl::program> p)
+		shared_ptr<neb::gfx::glsl::program::base> p)
 {
 
 	static math::geo::vertex v;
@@ -231,7 +231,7 @@ void			neb::gfx::mesh::buffer_data(std::shared_ptr<neb::gfx::core::buffer> buf) 
 }
 void			neb::gfx::mesh::draw_elements(
 		std::shared_ptr<neb::gfx::context::base> context,
-		std::shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::gfx::glsl::program::base> p,
 		neb::core::pose const & pose,
 		glm::vec3 scale)
 {

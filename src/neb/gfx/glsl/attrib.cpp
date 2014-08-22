@@ -7,13 +7,13 @@
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/free.hpp>
-#include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 
-neb::glsl::attrib::attrib():
+neb::gfx::glsl::attrib::attrib():
 	o_(-1),
 	o_bind_(-1)
 {}
-void	neb::glsl::attrib::init(char const * name, GLuint o_bind)
+void	neb::gfx::glsl::attrib::init(char const * name, GLuint o_bind)
 {
 	name_ = name;
 	o_bind_ = o_bind;
@@ -21,7 +21,7 @@ void	neb::glsl::attrib::init(char const * name, GLuint o_bind)
 	LOG(lg, neb::gfx::sl, debug) << "attrib " << name_;
 	
 }
-int	neb::glsl::attrib::locate(std::shared_ptr<neb::glsl::program> p) {
+int	neb::gfx::glsl::attrib::locate(std::shared_ptr<neb::gfx::glsl::program::base> p) {
 	glBindAttribLocation(p->o_, o_bind_, name_);
 	checkerror("glBindAttribLocation");
 	
@@ -38,7 +38,7 @@ int	neb::glsl::attrib::locate(std::shared_ptr<neb::glsl::program> p) {
 	*/
 	return o_;
 }
-void	neb::glsl::attrib::enable()
+void	neb::gfx::glsl::attrib::enable()
 {
 	LOG(lg, neb::gfx::sl, debug) << "enable attrib " << name_;
 
@@ -46,7 +46,7 @@ void	neb::glsl::attrib::enable()
 
 	checkerror("glEnableVertexAttribArray");
 }
-void	neb::glsl::attrib::disable()
+void	neb::gfx::glsl::attrib::disable()
 {
 	glDisableVertexAttribArray(o_);
 

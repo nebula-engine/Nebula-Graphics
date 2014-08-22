@@ -13,13 +13,15 @@
 #include <neb/core/core/light/base.hpp>
 #include <neb/core/color/Color.hh>
 
+
+#include <neb/gfx/core/scene/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace light {
 
 		class base: virtual public neb::core::core::light::base {
 			public:
-				base(std::shared_ptr<neb::core::core::light::util::parent> parent, ::std::string);
+				base(std::shared_ptr<neb::core::core::light::util::parent> parent, std::string);
 				
 				void				init();
 				
@@ -37,8 +39,10 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				void				RenderLightPOV();
 
 
-				neb::core::pose			getPose();
-				vec4				getPos();
+				std::weak_ptr<neb::gfx::core::scene::base>	getScene();
+				neb::core::pose					getPose();
+				vec4						getPos();
+				void						setPose(neb::core::pose const & pose);
 			private:
 				template<class Archive> void		serializeTemplate(Archive & ar, unsigned int const & version) {
 					ar & boost::serialization::make_nvp("ambient",ambient_);

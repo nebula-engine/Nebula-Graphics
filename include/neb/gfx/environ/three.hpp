@@ -5,9 +5,8 @@
 #include <neb/core/util/typedef.hpp>
 
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/base.hpp>
-
-using namespace std;
 
 namespace neb { namespace gfx { namespace environ {
 
@@ -17,10 +16,14 @@ namespace neb { namespace gfx { namespace environ {
 	 */
 	class three: virtual public neb::gfx::environ::base {
 		public:
+			typedef std::shared_ptr<neb::gfx::glsl::program::threed>	program_shared;
+		public:
 			virtual void		init();
 			virtual void		step(gal::etc::timestep const & ts);
-			virtual void		render(std::shared_ptr<neb::gfx::context::base> context);
-			weak_ptr<neb::gfx::Camera::View::Ridealong>		createViewRidealong(weak_ptr<neb::core::core::actor::base> actor);
+			virtual void		render(
+					std::shared_ptr<neb::gfx::context::base> context);
+			std::weak_ptr<neb::gfx::Camera::View::Ridealong>		createViewRidealong(
+					std::weak_ptr<neb::core::core::actor::base> actor);
 		public:
 					/** @brief View Space Camera
 			 * 
@@ -39,6 +42,12 @@ namespace neb { namespace gfx { namespace environ {
 			 * content to draw
 			 */
 			//std::weak_ptr<neb::gfx::drawable::three>				drawable_;
+			//
+			//
+			//
+			
+			program_shared			program_;
+
 	};
 
 

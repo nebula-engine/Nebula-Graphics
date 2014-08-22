@@ -16,7 +16,7 @@ namespace neb {
 					public:
 						textview();
 						void			clear_label();
-						virtual void		draw(std::shared_ptr<neb::glsl::program> p);
+						virtual void		draw(std::shared_ptr<neb::gfx::glsl::program::base> p);
 
 						//int			key(int, int, int, int);
 						//int			key_down(int);

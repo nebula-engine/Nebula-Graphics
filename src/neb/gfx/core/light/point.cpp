@@ -8,7 +8,7 @@
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/light/point.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
-#include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 
 neb::gfx::core::light::point::point(std::shared_ptr<neb::core::core::light::util::parent> parent):
         neb::core::core::light::base(parent),
@@ -23,7 +23,7 @@ void	neb::gfx::core::light::point::load(neb::core::core::light::util::count & li
         
         neb::gfx::core::light::base::load(light_count.point, pose);
         
-        auto p = neb::app::__gfx_glsl::global().lock()->current_program();
+        auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
         
         
         p->get_uniform_vector("lights_point.atten_const")->load(light_count.point, atten_const_);

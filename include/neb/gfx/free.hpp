@@ -6,20 +6,24 @@
 #include <neb/core/color/Color.hh>
 
 #include <neb/gfx/util/decl.hpp>
-
-using namespace std;
-
-namespace neb {
-	void	init_log();
-	void	init();
-}
+#include <neb/gfx/glsl/util/decl.hpp>
 
 namespace neb {
-	void	draw_quad(std::shared_ptr<neb::glsl::program> p,
-			float, float, float, float, neb::Color::color<float>);
+	void	draw_quad(
+			std::shared_ptr<neb::gfx::glsl::program::base> p,
+			float,
+			float,
+			float,
+			float,
+			neb::Color::color<float>);
 	void	draw_text(
-			shared_ptr<neb::glsl::program> p,
-			float, float, float, float, neb::Color::color<float>, ::std::string,
+			std::shared_ptr<neb::gfx::glsl::program::base> p,
+			float,
+			float,
+			float,
+			float,
+			neb::Color::color<float>,
+			std::string,
 			std::string::size_type pos = std::string::npos);
 }
 

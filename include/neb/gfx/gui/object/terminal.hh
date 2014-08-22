@@ -16,7 +16,7 @@ namespace neb { namespace gfx { namespace gui { namespace object {
 		public:
 			terminal();
 			virtual void			init();
-			virtual void			draw(std::shared_ptr<neb::glsl::program> p);
+			virtual void			draw(std::shared_ptr<neb::gfx::glsl::program::base> p);
 			virtual int			key_fun(
 					std::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
 			virtual int			charFun(

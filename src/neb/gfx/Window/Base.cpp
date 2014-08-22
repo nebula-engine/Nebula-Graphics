@@ -51,7 +51,7 @@ void neb::gfx::window::base::init() {
 
 	neb::itf::shared::init();
 
-	auto app = neb::app::__gfx::global().lock();
+	auto app = neb::gfx::app::__gfx::global().lock();
 	assert(app);
 
 	assert(app->flag_.any(neb::core::app::util::flag::INIT_GLFW));
@@ -78,25 +78,25 @@ void neb::gfx::window::base::init() {
 
 	glfwSetWindowPosCallback(
 			window_,
-			neb::app::__gfx::static_window_pos_fun);
+			neb::gfx::app::__gfx::static_window_pos_fun);
 	glfwSetWindowSizeCallback(
 			window_,
-			neb::app::__gfx::static_window_size_fun);
+			neb::gfx::app::__gfx::static_window_size_fun);
 	glfwSetWindowCloseCallback(
 			window_,
-			neb::app::__gfx::static_window_close_fun);
+			neb::gfx::app::__gfx::static_window_close_fun);
 	glfwSetWindowRefreshCallback(
 			window_,
-			neb::app::__gfx::static_window_refresh_fun);
+			neb::gfx::app::__gfx::static_window_refresh_fun);
 	glfwSetKeyCallback(
 			window_,
-			neb::app::__gfx::static_key_fun);
+			neb::gfx::app::__gfx::static_key_fun);
 	glfwSetMouseButtonCallback(
 			window_,
-			neb::app::__gfx::static_mouse_button_fun);
+			neb::gfx::app::__gfx::static_mouse_button_fun);
 	glfwSetCharCallback(
 			window_,
-			neb::app::__gfx::staticCharFun);
+			neb::gfx::app::__gfx::staticCharFun);
 
 	// add window to app's window map
 	app->windows_glfw_[window_] = self_;
@@ -107,8 +107,7 @@ void neb::gfx::window::base::init() {
 
 	app->init_glew();
 
-	auto app2 = neb::app::__gfx_glsl::global().lock();
-
+	auto app2 = neb::gfx::app::__gfx_glsl::global().lock();
 
 	app2->create_programs();
 

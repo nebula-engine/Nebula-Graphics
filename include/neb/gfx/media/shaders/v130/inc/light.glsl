@@ -1,35 +1,16 @@
 
-struct Light_Point
-{
-	vec3 position;
-	vec4 ambient;
-	vec4 diffuse;
-	vec4 specular;
-	float atten_const;
-	float atten_linear;
-	float atten_quad;
-};
+uniform vec3	light_position[32];
+uniform vec4	light_ambient[32];
+uniform vec4	light_diffuse[32];
+uniform vec4	light_specular[32];
+uniform float	light_atten_const[32];
+uniform float	light_atten_linear[32];
+uniform float	light_atten_quad[32];
+uniform vec3	light_spot_direction[32];
+uniform float	light_spot_cutoff[32];
+uniform float	light_spot_exponent[32];
+uniform float	light_spot_light_cos_cutoff[32];
+uniform int	light_type[32];
 
-struct Light_Spot
-{
-	vec3 position;
-	vec4 ambient;
-	vec4 diffuse;
-	vec4 specular;
-	vec3 spot_direction;
-	float spot_cutoff;
-	float spot_exponent;
-	float spot_light_cos_cutoff;
-	float atten_const;
-	float atten_linear;
-	float atten_quad;
-};
-
-struct Light_Directional
-{
-	vec3 position;
-	vec4 ambient;
-	vec4 diffuse;
-	vec4 specular;
-};
+uniform int light_count;
 

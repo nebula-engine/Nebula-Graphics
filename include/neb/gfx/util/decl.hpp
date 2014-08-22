@@ -27,33 +27,6 @@ namespace neb {
 		};
 	};
 
-
-	/** @brief Lights */
-	namespace Light {
-		enum {
-			light_max = 20
-		};
-
-		class base;
-	}
-	/** @brief GLSL */
-	namespace glsl {
-		/** @brief GLSL Uniforms */
-		namespace Uniform {
-			/** @brief Scalar GLSL Uniforms */
-			namespace Scalar {
-				class base;
-			}
-			/** @brief Vector GLSL Uniforms */
-			namespace Vector {
-				class base;
-			}
-		}
-		class program;
-		class shader;
-		class attrib;
-	}
-
 	/** @brief %Graphics */
 	namespace gfx {
 		namespace window {

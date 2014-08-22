@@ -3,18 +3,13 @@
 
 #include <neb/core/itf/shared.hpp>
 
+#include <neb/gfx/glsl/util/decl.hpp>
+
 namespace neb {
-
-	namespace glsl {
-		class program;
-	}
-
 	namespace gfx {
-
 		namespace context {
 			class base;
 		}
-
 		namespace drawable {
 			/** @brief %drawable
 			 * 
@@ -22,23 +17,21 @@ namespace neb {
 			 */
 			class base: virtual public neb::itf::shared {
 				public:
+					virtual void			init() = 0;
 					/** @brief draw
 					 *
 					 * @param context context in which we are drawing. used by shape to keep track of vertex buffers for various contexts.
 					 *
 					 * draw into prepared rendering context
 					 */
-					virtual void				draw(
+					virtual void			draw(
 							std::shared_ptr<neb::gfx::context::base> context,
-							std::shared_ptr<neb::glsl::program> p) = 0;
+							std::shared_ptr<neb::gfx::glsl::program::base> p) = 0;
 			};
-			class two: virtual public neb::gfx::drawable::base
-			{
+			class two: virtual public neb::gfx::drawable::base {
+				public:
+					virtual void			init() {}
 			};
-			class three: virtual public neb::gfx::drawable::base
-			{
-			};
-
 		}
 	}
 }

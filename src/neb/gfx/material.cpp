@@ -2,7 +2,7 @@
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/material.hpp>
-#include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/core/core/scene/base.hpp>
 
@@ -66,12 +66,12 @@ void	neb::material::material::init()
 
 void	neb::material::material::load()
 {
-	auto p = neb::app::__gfx_glsl::global().lock()->current_program();
+	auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
 
-	p->get_uniform_scalar("front.ambient")->load(raw_.ambient_);
-	p->get_uniform_scalar("front.diffuse")->load(raw_.diffuse_);
-	p->get_uniform_scalar("front.specular")->load(raw_.specular_);
-	p->get_uniform_scalar("front.emission")->load(raw_.emission_);
+	p->get_uniform_scalar("front.ambient")->load((glm::vec4)raw_.ambient_);
+	p->get_uniform_scalar("front.diffuse")->load((glm::vec4)raw_.diffuse_);
+	p->get_uniform_scalar("front.specular")->load((glm::vec4)raw_.specular_);
+	p->get_uniform_scalar("front.emission")->load((glm::vec4)raw_.emission_);
 	p->get_uniform_scalar("front.shininess")->load(raw_.shininess_);
 }
 void		neb::material::material::step(gal::etc::timestep const & ts) {

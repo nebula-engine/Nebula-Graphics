@@ -8,10 +8,10 @@
 //#include <GL/glut.h>
 
 #include <neb/gfx/glsl/uniform/vector.hpp>
-#include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 
 
-neb::glsl::Uniform::Vector::base::base(std::string name1, std::string name2) {
+neb::gfx::glsl::Uniform::Vector::base::base(std::string name1, std::string name2) {
 	name1_ = name1;
 	name2_ = name2;
 	c_ = 0;
@@ -20,7 +20,7 @@ neb::glsl::Uniform::Vector::base::base(std::string name1, std::string name2) {
 	}
 	//printf("%s\n",__PRETTY_FUNCTION__);
 }
-void	neb::glsl::Uniform::Vector::base::locate(std::shared_ptr<neb::glsl::program> p) {
+void			neb::gfx::glsl::Uniform::Vector::base::locate(std::shared_ptr<neb::gfx::glsl::program::base> p) {
 	printf("%s\n",__PRETTY_FUNCTION__);
 
 	assert(p);

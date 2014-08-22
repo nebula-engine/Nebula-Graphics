@@ -12,7 +12,7 @@
 #include <neb/gfx/core/light/point.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
-#include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/util/log.hpp>
 
 #include <neb/core/math/geo/polygon.hpp>
@@ -35,19 +35,16 @@ void					neb::gfx::core::shape::base::step(gal::etc::timestep const & ts) {
 
 	//material_front_.step(ts);
 }
-void					neb::gfx::core::shape::base::load_lights(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) {
+void					neb::gfx::core::shape::base::setPose(neb::core::pose const & pose) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto npose = pose * pose_;
 
-	neb::gfx::core::light::util::parent::load_lights(light_count, npose);
-	
-
-	this goes away! to be replaced by light_array in scene
+	neb::gfx::core::light::util::parent::setPose(npose);
 }
 void					neb::gfx::core::shape::base::draw(
 		std::shared_ptr<neb::gfx::context::base> context,
-		std::shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::gfx::glsl::program::base> p,
 		neb::core::pose const & pose) {
 
 	auto npose = pose * pose_;
@@ -58,7 +55,7 @@ void					neb::gfx::core::shape::base::draw(
 }
 void			neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 
-	auto p = neb::app::__gfx_glsl::global().lock()->current_program();
+	auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
 
 	mat4 space = pose.mat4_cast() * glm::scale(s_);
 
@@ -66,7 +63,7 @@ void			neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 }
 void			neb::gfx::core::shape::base::draw_elements(
 		std::shared_ptr<neb::gfx::context::base> context,
-		std::shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::gfx::glsl::program::base> p,
 		neb::core::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -103,11 +100,6 @@ std::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::create
 	
 	light->init();
 	
-	// register in light_array
-	light->light_array_ = 0;
-	light->light_array_slot_ = getScene()->light_array_[light->light_array_].reg(
-			light->pos_,
-			light->ambient_);
 
 	return light;
 }

@@ -15,6 +15,7 @@
 
 #include <neb/gfx/Context/Util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/glsl/util/decl.hpp>
 
 using namespace std;
 
@@ -43,7 +44,7 @@ namespace neb {
 					public:
 						void						draw(
 								std::shared_ptr<neb::gfx::context::base> context,
-								std::shared_ptr<neb::glsl::program> p,
+								std::shared_ptr<neb::gfx::glsl::program::base> p,
 								neb::core::pose const & pose);
 
 						void						load_lights(

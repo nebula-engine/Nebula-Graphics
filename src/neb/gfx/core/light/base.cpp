@@ -10,6 +10,7 @@
 #include <neb/core/core/shape/base.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
+#include <neb/gfx/core/scene/base.hpp>
 #include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
@@ -25,17 +26,41 @@ neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::
 {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
-void neb::gfx::core::light::base::init() {
+void			neb::gfx::core::light::base::init() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
+	// register in light_array
+	light_array_ = 0;
+	light_array_slot_ = getScene().lock()->light_array_[light_array_].reg(
+			pos_,
+			ambient_,
+			diffuse_,
+			specular_,
+			atten_const_,
+			atten_linear_,
+			atten_quad_,
+			spot_direction_,
+			spot_cutoff_,
+			spot_exponent_,
+			spot_light_cos_cutoff_,
+			type_
+			);
 }
-void neb::gfx::core::light::base::release() {
+void			neb::gfx::core::light::base::setPose(neb::core::pose const & pose) {
+	pos_ = pose.pos_;
+	
+	auto parent = getScene().lock();
+	
+	parent->light_array_[light_array_].set_pos(light_array_slot_, pose.pos_);
+	parent->light_array_[light_array_].set_spot_direction(light_array_slot_, pose.rot_ * spot_direction_);
+}
+void			neb::gfx::core::light::base::release() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
-void neb::gfx::core::light::base::cleanup() {
+void			neb::gfx::core::light::base::cleanup() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
-void neb::gfx::core::light::base::dim() {
+void			neb::gfx::core::light::base::dim() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	/*	
 	//printf("diffuse\n");
@@ -70,7 +95,7 @@ void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
 	
 	/** @todo way to ditinguish lights in shader */
 	
-	auto p = neb::app::__gfx_glsl::global().lock()->current_program();
+	auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
 	
 	vec3 pos = pos_;
 	
@@ -80,9 +105,9 @@ void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
 	p->get_uniform_vector(light_type_string_ + ".position")->load(o, pos);
 	
 	
-	p->get_uniform_vector(light_type_string_ + ".ambient")->load(o, ambient_);
-	p->get_uniform_vector(light_type_string_ + ".diffuse")->load(o, diffuse_);
-	p->get_uniform_vector(light_type_string_ + ".specular")->load(o, specular_);
+	p->get_uniform_vector(light_type_string_ + ".ambient")->load(o, (glm::vec4)ambient_);
+	p->get_uniform_vector(light_type_string_ + ".diffuse")->load(o, (glm::vec4)diffuse_);
+	p->get_uniform_vector(light_type_string_ + ".specular")->load(o, (glm::vec4)specular_);
 
 
 }
@@ -171,6 +196,17 @@ void	neb::gfx::core::light::base::RenderShadowPost()
 	glDisable(GL_ALPHA_TEST);
 	checkerror(__PRETTY_FUNCTION__);
 }
+std::weak_ptr<neb::gfx::core::scene::base>	neb::gfx::core::light::base::getScene() {
+	auto parent = parent_.lock();
+	assert(parent);
+
+	auto p2 = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(
+			parent->getScene().lock());
+	assert(p2);
+	return p2;
+}
+
+
 
 
 

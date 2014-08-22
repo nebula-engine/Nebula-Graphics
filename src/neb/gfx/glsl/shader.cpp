@@ -18,37 +18,37 @@
 #include <neb/gfx/util/config.hpp>
 #include <neb/gfx/glsl/shader.hh>
 
-vector<string>		readLines(string filename) {
+std::vector<std::string>		readLines(std::string filename) {
 
 	filename = NEB_GFX_SHADER_DIR + filename;
 
-	ifstream ifs(filename);
+	std::ifstream ifs(filename);
 
 	
 	if(!ifs.is_open()) {
-		cout << "file not found " << filename << endl;
+		std::cout << "file not found " << filename << std::endl;
 		abort();
 	}
 
-	vector<string> lines;
-	for(string line; getline(ifs, line);) {
+	std::vector<std::string> lines;
+	for(std::string line; std::getline(ifs, line);) {
 		lines.push_back(line);
 	}
 	return lines;
 }
-vector<string>		preprocess(const char * filename) {
-	vector<string> lines1 = readLines(filename);
-	vector<string> lines2;
+std::vector<std::string>		preprocess(const char * filename) {
+	std::vector<std::string> lines1 = readLines(filename);
+	std::vector<std::string> lines2;
 	
-	for(string line : lines1) {
+	for(std::string line : lines1) {
 		if(line.find("#include") == 0) {
 
 			size_t b = line.find('"');
 			size_t e = line.find('"', b+1);
 
-			string filename_inc = line.substr(b+1, e-b-1);
+			std::string filename_inc = line.substr(b+1, e-b-1);
 
-			cout << "include " << filename_inc << endl;
+			std::cout << "include " << filename_inc << std::endl;
 
 			auto linesi = preprocess(filename_inc.c_str());
 
@@ -60,24 +60,24 @@ vector<string>		preprocess(const char * filename) {
 	
 	return lines2;
 }
-void	neb::glsl::shader::load(const char * filename, GLenum shader_type)
+void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 {	
 	printf("%s\n",__PRETTY_FUNCTION__);
 	printf("loading %s\n",filename);
 
 	// read text
 	
-	vector<string> lines = preprocess(filename);
+	std::vector<std::string> lines = preprocess(filename);
 	
-	stringstream ss;
-	copy(lines.begin(), lines.end(), ostream_iterator<string>(ss, "\n"));
+	std::stringstream ss;
+	std::copy(lines.begin(), lines.end(), std::ostream_iterator<std::string>(ss, "\n"));
 
 	
 	for(auto str : lines) {
-		cout << str << endl;
+		std::cout << str << std::endl;
 	}
 
-	string str(ss.str());
+	std::string str(ss.str());
 	const char * data = str.c_str();
 	
 	// opengl

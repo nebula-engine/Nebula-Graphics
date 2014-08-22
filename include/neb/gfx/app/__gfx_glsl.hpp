@@ -14,30 +14,30 @@
 #include <neb/core/util/decl.hpp>
 #include <neb/core/app/__base.hpp>
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/glsl/util/decl.hpp>
 
-using namespace std;
 
-namespace neb {
-	namespace app {
-		class __gfx_glsl: virtual public neb::core::app::__base {
-			public:
-				typedef ::std::map<int, std::shared_ptr<neb::glsl::program> >		map_program_type;
-				friend class neb::gfx::environ::base;
-				friend class neb::gfx::environ::two;
-				friend class neb::gfx::environ::three;
-				static weak_ptr<neb::app::__gfx_glsl>			global();
-			protected:
-				void							__init();
-				shared_ptr<neb::glsl::program>				use_program(neb::program_name::e);
-				shared_ptr<neb::glsl::program>				get_program(neb::program_name::e);
-			public:
-				shared_ptr<neb::glsl::program>				current_program();
-				void							create_programs();
-				map_program_type					programs_;
-				std::shared_ptr<neb::glsl::program>			current_;
-		};
-	}
-}
+namespace neb { namespace gfx { namespace app {
+	class __gfx_glsl: virtual public neb::core::app::__base {
+		public:
+			typedef std::map<int, std::shared_ptr<neb::gfx::glsl::program::base> >		map_program_type;
+			friend class neb::gfx::environ::base;
+			friend class neb::gfx::environ::two;
+			friend class neb::gfx::environ::three;
+		public:
+			static std::weak_ptr<neb::gfx::app::__gfx_glsl>		global();
+		protected:
+			void							__init();
+			std::shared_ptr<neb::gfx::glsl::program::base>		use_program(neb::program_name::e);
+			std::shared_ptr<neb::gfx::glsl::program::base>		get_program(neb::program_name::e);
+		public:
+			std::shared_ptr<neb::gfx::glsl::program::base>		current_program();
+			void							create_programs();
+			map_program_type					programs_;
+			std::shared_ptr<neb::gfx::glsl::program::base>		current_;
+	};
+}}}
+
 #endif
 
 

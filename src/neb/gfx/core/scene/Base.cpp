@@ -17,7 +17,7 @@
 #include <neb/gfx/core/scene/base.hpp>
 #include <neb/gfx/core/actor/base.hpp>
 #include <neb/gfx/core/shape/base.hpp>
-#include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/glsl/program/threed.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/Camera/Projection/Perspective.hh>
 
@@ -35,13 +35,16 @@ neb::gfx::core::scene::base::~base() {
 }
 void			neb::gfx::core::scene::base::init() {
 	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
+	
+	light_array_[0].alloc(32);
+	light_array_[1].alloc(32);
 }
 void			neb::gfx::core::scene::base::release() {
 	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 	
 	neb::core::core::scene::base::release();
 }
-void			neb::gfx::core::scene::base::load_lights(std::shared_ptr<neb::glsl::program> p) {
+/*void			neb::gfx::core::scene::base::load_lights(std::shared_ptr<neb::gfx::glsl::program::base> p) {
 
 	neb::core::core::light::util::count light_count;
 
@@ -57,19 +60,23 @@ void			neb::gfx::core::scene::base::load_lights(std::shared_ptr<neb::glsl::progr
 	p->get_uniform_scalar("light_count_spot")->load(light_count.spot);
 	p->get_uniform_scalar("light_count_directional")->load(light_count.directional);
 
-}
+}*/
 void			neb::gfx::core::scene::base::draw(
 		std::shared_ptr<neb::gfx::context::base> context,
-		std::shared_ptr<neb::glsl::program> p) {
-
+		std::shared_ptr<neb::gfx::glsl::program::base> p) {
+	
 	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 
-	load_lights(p);
-
+	auto program_3d = std::dynamic_pointer_cast<neb::gfx::glsl::program::threed>(p);
+	assert(program_3d);
+	
+	//load_lights(p);
+	light_array_[0].load_uniform(program_3d->light_locations_.location);
+	
 	auto la = [&] (A::map_type::iterator<0> it) {
 		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
 		assert(actor);
-		actor->draw(context, p, neb::core::pose());
+		actor->draw(context, program_3d, neb::core::pose());
 	};
 
 	A::map_.for_each<0>(la);

@@ -1,12 +1,9 @@
 #ifndef __GLUTPP_GFX_CORE_SCENE_H__
 #define __GLUTPP_GFX_CORE_SCENE_H__
 
-
-
 #include <neb/core/core/scene/base.hpp>
 
 #include <neb/gfx/glsl/array.hpp>
-
 #include <neb/gfx/drawable/base.hpp>
 
 namespace neb {
@@ -29,11 +26,12 @@ namespace neb {
 						virtual void				init();
 						virtual void				release();
 						virtual void				step(gal::etc::timestep const & ts);
-
 						void					resize(int w, int h);
-						void					load_lights(std::shared_ptr<neb::glsl::program> p);
-						void					draw(std::shared_ptr<neb::gfx::context::base> context, std::shared_ptr<neb::glsl::program> p);
-
+						//void					load_lights(
+						//		std::shared_ptr<neb::gfx::glsl::program::base> p);
+						void					draw(
+								std::shared_ptr<neb::gfx::context::base> context,
+								std::shared_ptr<neb::gfx::glsl::program::base> p);
 						/** @brief create empty actor
 						 *
 						 * @warning this function allocates object
@@ -45,15 +43,10 @@ namespace neb {
 						 */
 						virtual weak_ptr<neb::core::core::actor::base>			createActorLightPoint(glm::vec3 p);
 
-						
+						// rendering data
 						// one for static, one for dynamic
 						neb::gfx::glsl::uniform::light_array				light_array_[2];
-
 				};
-
-
-
-
 			}
 		}
 	}

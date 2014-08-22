@@ -21,7 +21,7 @@
 #include <neb/gfx/util/log.hpp>
 
 void			neb::draw_quad(
-		std::shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::gfx::glsl::program::base> p,
 		float x,
 		float y,
 		float w,
@@ -80,7 +80,7 @@ void			neb::draw_quad(
 
 }
 void		neb::draw_text(
-		shared_ptr<neb::glsl::program> p,
+		std::shared_ptr<neb::gfx::glsl::program::base> p,
 		float x, float y, float sx, float sy,
 		neb::Color::color<float> color,
 		std::string text,
@@ -102,7 +102,7 @@ void		neb::draw_text(
 		<< text;
 
 	// face
-	FT_Face& face  = neb::app::__gfx::global().lock()->face_;
+	FT_Face& face  = neb::gfx::app::__gfx::global().lock()->face_;
 
 
 	//FT_Set_Pixel_Sizes(face, 0, 48);
@@ -120,7 +120,7 @@ void		neb::draw_text(
 	neb::Color::color<float> cursor_color(1,1,1,1);
 	
 	// color
-	p->get_uniform_scalar("font_color")->load(color);
+	p->get_uniform_scalar("font_color")->load((glm::vec4)color);
 
 	// texture
 	GLuint tex;
@@ -159,7 +159,7 @@ void		neb::draw_text(
 	size_t len = text.size();
 	for(size_t i = 0; i < len; i++) {
 		
-		if(i == cursor_pos) p->get_uniform_scalar("font_color")->load(cursor_color);
+		if(i == cursor_pos) p->get_uniform_scalar("font_color")->load((glm::vec4)cursor_color);
 		
 
 		if(FT_Load_Char(face, cstr[i], FT_LOAD_RENDER)) continue;
@@ -200,7 +200,7 @@ void		neb::draw_text(
 		x += (g->advance.x >> 6) * sx;
 		y += (g->advance.y >> 6) * sy;
 
-		if(i == cursor_pos) p->get_uniform_scalar("font_color")->load(color);
+		if(i == cursor_pos) p->get_uniform_scalar("font_color")->load((glm::vec4)color);
 
 	}
 

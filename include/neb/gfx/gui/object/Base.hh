@@ -9,6 +9,7 @@
 #include <neb/core/color/Color.hh>
 
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/gui/object/util/parent.hpp>
 #include <neb/gfx/gui/object/util/flag.hpp>
 
@@ -23,7 +24,7 @@ namespace neb {
 
 						virtual void			init();
 						//std::shared_ptr<window::window>		get_window();
-						virtual void			draw(std::shared_ptr<neb::glsl::program> p) = 0;
+						virtual void			draw(std::shared_ptr<neb::gfx::glsl::program::base> p) = 0;
 
 						virtual int			key_fun(
 								std::shared_ptr<neb::gfx::window::base> const & window, int, int, int, int) = 0;

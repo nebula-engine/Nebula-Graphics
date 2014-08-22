@@ -1,23 +1,23 @@
 #include <neb/gfx/util/config.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/glsl/program.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 
-weak_ptr<neb::app::__gfx_glsl>		neb::app::__gfx_glsl::global() {
-	auto app(dynamic_pointer_cast<neb::app::__gfx_glsl>(g_app_));
+weak_ptr<neb::gfx::app::__gfx_glsl>		neb::gfx::app::__gfx_glsl::global() {
+	auto app(dynamic_pointer_cast<neb::gfx::app::__gfx_glsl>(g_app_));
 	assert(app);
 	return app;
 }
-void		neb::app::__gfx_glsl::__init() {
+void		neb::gfx::app::__gfx_glsl::__init() {
 }
-void		neb::app::__gfx_glsl::create_programs() {
+void		neb::gfx::app::__gfx_glsl::create_programs() {
 
 	printf("%s\n", __PRETTY_FUNCTION__);
 
-	std::shared_ptr<neb::glsl::program> p;
+	std::shared_ptr<neb::gfx::glsl::program::base> p;
 
 	// text
 	{
-		p.reset(new neb::glsl::program(neb::program_name::TEXT));
+		p.reset(new neb::gfx::glsl::program::base(neb::program_name::TEXT));
 		p->init();
 
 		p->add_shader("v130/text/vs.glsl", GL_VERTEX_SHADER);
@@ -35,8 +35,8 @@ void		neb::app::__gfx_glsl::create_programs() {
 	// quad
 
 	// light
-	{
-		p.reset(new neb::glsl::program(neb::program_name::LIGHT));
+/*	{
+		p.reset(new neb::gfx::glsl::program::base(neb::program_name::LIGHT));
 		p->init();
 
 		p->add_shader("v130/light/vs.glsl", GL_VERTEX_SHADER);
@@ -54,10 +54,10 @@ void		neb::app::__gfx_glsl::create_programs() {
 
 
 	}
-
+*/
 	//light and image
-	{
-		p.reset(new neb::glsl::program(neb::program_name::IMAGE));
+/*	{
+		p.reset(new neb::gfx::glsl::program::base(neb::program_name::IMAGE));
 		p->init();
 
 		p->add_shader("v130/image/vs.glsl", GL_VERTEX_SHADER);
@@ -73,10 +73,10 @@ void		neb::app::__gfx_glsl::create_programs() {
 		p->locate();
 
 		programs_[neb::program_name::IMAGE] = p;
-	}
+	}*/
 
 	{
-		p.reset(new neb::glsl::program(neb::program_name::THREED));
+		p.reset(new neb::gfx::glsl::program::base(neb::program_name::THREED));
 		p->init();
 
 		p->add_shader("v130/3d/vs.glsl", GL_VERTEX_SHADER);
@@ -96,7 +96,7 @@ void		neb::app::__gfx_glsl::create_programs() {
 		programs_[neb::program_name::THREED] = p;
 	}
 }
-shared_ptr<neb::glsl::program>		neb::app::__gfx_glsl::use_program(neb::program_name::e name){
+std::shared_ptr<neb::gfx::glsl::program::base>		neb::gfx::app::__gfx_glsl::use_program(neb::program_name::e name){
 	auto p = get_program(name);
 
 	p->use();
@@ -105,12 +105,12 @@ shared_ptr<neb::glsl::program>		neb::app::__gfx_glsl::use_program(neb::program_n
 
 	return p;
 }
-shared_ptr<neb::glsl::program>		neb::app::__gfx_glsl::current_program(){
+std::shared_ptr<neb::gfx::glsl::program::base>		neb::gfx::app::__gfx_glsl::current_program(){
 	assert(current_);
 
 	return current_;
 }
-shared_ptr<neb::glsl::program>		neb::app::__gfx_glsl::get_program(neb::program_name::e name){
+std::shared_ptr<neb::gfx::glsl::program::base>		neb::gfx::app::__gfx_glsl::get_program(neb::program_name::e name){
 	auto it = programs_.find(name);
 
 	if(it == programs_.end())

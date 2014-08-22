@@ -24,6 +24,7 @@
 #include <neb/core/math/geo/decl.hpp>
 
 #include <neb/gfx/material.hpp>
+#include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/core/buffer.hpp>
 #include <neb/gfx/Context/Util/decl.hpp>
@@ -44,14 +45,14 @@ namespace neb { namespace gfx {
 
 			void				vertexAttribPointer(
 					shared_ptr<neb::gfx::core::buffer> buf,
-					shared_ptr<neb::glsl::program> p);
+					shared_ptr<neb::gfx::glsl::program::base> p);
 			void				buffer_data(std::shared_ptr<neb::gfx::core::buffer> buf);
 			void				init_buffer(
 					shared_ptr<neb::gfx::context::base> context,
-					shared_ptr<neb::glsl::program> p);
+					shared_ptr<neb::gfx::glsl::program::base> p);
 			void				draw_elements(
 					std::shared_ptr<neb::gfx::context::base> context,
-					std::shared_ptr<neb::glsl::program> p,
+					std::shared_ptr<neb::gfx::glsl::program::base> p,
 					neb::core::pose const & pose,
 					glm::vec3 scale);
 

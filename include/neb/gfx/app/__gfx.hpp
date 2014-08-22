@@ -11,7 +11,6 @@
 
 #include <gal/itf/shared.hpp>
 
-
 #include <neb/core/util/decl.hpp>
 #include <neb/core/app/__base.hpp>
 
@@ -19,10 +18,7 @@
 #include <neb/gfx/gui/layout/util/parent.hpp>
 #include <neb/gfx/window/util/Parent.hh>
 
-using namespace std;
-
-namespace neb {
-	namespace app {
+namespace neb { namespace gfx {namespace app {
 		/** @brief gfx
 		 * 
 		 * graphics and window handling
@@ -41,7 +37,7 @@ namespace neb {
 
 				void						init_glew();
 
-				static weak_ptr<neb::app::__gfx>		global();
+				static weak_ptr<neb::gfx::app::__gfx>		global();
 
 				static void					static_error_fun(int,char const *);
 				static void					static_window_pos_fun(GLFWwindow*,int,int);
@@ -67,8 +63,8 @@ namespace neb {
 				FT_Library								ft_;
 				FT_Face									face_;
 		};
-	}
-}
+}}}
+
 #endif
 
 

@@ -12,6 +12,8 @@ namespace neb { namespace gfx { namespace core {
 			{
 				public:
 					virtual ~parent() {}
+					void			setPose(
+							neb::core::pose const & pose);
 					void			load_lights(
 							neb::core::core::light::util::count & light_count,
 							neb::core::pose const & pose);

@@ -3,15 +3,13 @@
 
 #include <GLFW/glfw3.h>
 
-namespace neb {
-	namespace glsl {
-		class shader {
-			public:
-				void	load(const char * filename, GLenum shader_type);
+namespace neb { namespace gfx { namespace glsl {
+	class shader {
+		public:
+			void	load(const char * filename, GLenum shader_type);
 
-				GLuint	o_;
-		};
-	}
-}
+			GLuint	o_;
+	};
+}}}
 
 #endif

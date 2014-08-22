@@ -28,7 +28,7 @@ void		neb::gfx::gui::object::terminal::init() {
 	console_ = app->console_;
 	
 }
-void		neb::gfx::gui::object::terminal::draw(std::shared_ptr<neb::glsl::program> p) {
+void		neb::gfx::gui::object::terminal::draw(std::shared_ptr<neb::gfx::glsl::program::base> p) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto console(console_.lock());

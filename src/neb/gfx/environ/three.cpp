@@ -12,12 +12,20 @@
 #include <neb/gfx/environ/three.hpp>
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/util/log.hpp>
+#include <neb/gfx/glsl/program/threed.hpp>
 
 void		neb::gfx::environ::three::init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
+
+
+	program_ = std::make_shared<neb::gfx::glsl::program::threed>();
 	
+	program_->init();
+
+
+
 	// camera
 	if(!view_) {
 		view_.reset(new neb::gfx::Camera::View::Free(self));
@@ -25,7 +33,9 @@ void		neb::gfx::environ::three::init() {
 
 	proj_.reset(new neb::gfx::Camera::Projection::Perspective(self));
 	//camera_->init(shared_from_this());
-	
+
+
+
 }
 void		neb::gfx::environ::three::step(gal::etc::timestep const & ts) {
 
@@ -49,7 +59,7 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	if(!drawable) return;
 
 	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
-	auto app = neb::app::__gfx_glsl::global().lock();
+	auto app = neb::gfx::app::__gfx_glsl::global().lock();
 
 	/** wrong for color maybe! */	
 	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
@@ -64,19 +74,12 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	/** @todo replace with 'environ' which determines program and camera types and accepts certian types of drawables */
 	
 	auto p = app->use_program(neb::program_name::e::THREED);
+	
 	proj_->load(p);
 	view_->load(p);
+	
 	drawable->draw(context, p);
 	
-/*	p = app->use_program(neb::program_name::e::NORM);
-	proj_->load(p);
-	view_->load(p);
-	drawable->draw(context, p);
-
-	p = app->use_program(neb::program_name::e::IMAGE);
-	proj_->load(p);
-	view_->load(p);
-	drawable->draw(context, p);*/
 }		
 weak_ptr<neb::gfx::Camera::View::Ridealong>		neb::gfx::environ::three::createViewRidealong(
 		weak_ptr<neb::core::core::actor::base> actor)

@@ -14,7 +14,7 @@ void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> co
 	if(!drawable) return;
 
 	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
-	auto app = neb::app::__gfx_glsl::global().lock();
+	auto app = neb::gfx::app::__gfx_glsl::global().lock();
 
 	/** wrong for color maybe! */	
 	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);

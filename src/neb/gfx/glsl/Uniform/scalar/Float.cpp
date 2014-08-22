@@ -16,7 +16,7 @@
 
 
 
-void	neb::glsl::Uniform::Scalar::Float::load(float f) {
+void	neb::gfx::glsl::Uniform::Scalar::Float::load(float f) {
 	glUniform1f(o_, f);
 	checkerror("glUniform1f");
 }

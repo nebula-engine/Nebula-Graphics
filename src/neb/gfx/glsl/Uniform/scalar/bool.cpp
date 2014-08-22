@@ -11,11 +11,11 @@
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/free.hpp>
 
-void	neb::glsl::Uniform::Scalar::Bool::load_b(bool const & b) {
+void	neb::gfx::glsl::Uniform::Scalar::Bool::load_b(bool const & b) {
 	glUniform1i(o_, b);
 	checkerror("glUniform1i");
 }
-void	neb::glsl::Uniform::Scalar::Bool::load_b(bool && b) {
+void	neb::gfx::glsl::Uniform::Scalar::Bool::load_b(bool && b) {
 	glUniform1i(o_, b);
 	checkerror("glUniform1i");
 }
