@@ -34,7 +34,15 @@ void neb::gfx::core::shape::box::box::createMesh() {
 	if(!mesh_slot_) {
 		auto model = getPoseGlobal().mat4_cast() * glm::scale(s_);
 		
-		mesh_slot_ = scene->meshes_.cuboid_->instances_->reg(model, -1.0, -1.0, neb::Color::cyan<float>());
+		mesh_slot_ = scene->meshes_.cuboid_->instances_->reg(
+				model,
+				glm::vec4(-1.0),
+				neb::Color::rand<float>(),
+				neb::Color::gray<float>(0.1),
+				neb::Color::white<float>(),
+				neb::Color::black<float>(),
+				100.0
+				);
 	}
 	
 	//mesh_->texture_.reset(new neb::gfx::texture);

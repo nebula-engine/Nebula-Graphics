@@ -13,23 +13,16 @@ void			neb::gfx::glsl::buffer::mesh_instanced::init(
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	GLsizei size = 32;
 
 	checkerror("unknown");
 
-	glGenBuffers(4, buffer_array_);
+	glGenBuffers(BUFFER_COUNT, buffer_array_);
 	checkerror("glGenBuffers");
 
 	// Initialize with empty (NULL) buffer; it will be updated later, each frame.
 
-	GLsizei datasize[] = {
-		sizeof(glm::mat4),
-		sizeof(GLfloat),
-		sizeof(GLfloat),
-		sizeof(glm::vec4)
-	};
 	
-	for(unsigned int c = 0; c < 4; c++) {
+/*	for(unsigned int c = 0; c < BUFFER_COUNT; c++) {
 		glBindBuffer(GL_ARRAY_BUFFER, buffer_array_[c]);
 		glBufferData(
 				GL_ARRAY_BUFFER,
@@ -39,7 +32,7 @@ void			neb::gfx::glsl::buffer::mesh_instanced::init(
 		checkerror("glBufferData");
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
-
+*/
 	//vertexAttribPointer(program);
 
 }
@@ -76,26 +69,32 @@ void			neb::gfx::glsl::buffer::mesh_instanced::vertexAttribPointer(
 		program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL1)->o_,
 		program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL2)->o_,
 		program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL3)->o_,
-		program->get_attrib(neb::attrib_name::e::INSTANCE_IMAGE_SAMPLER)->o_,
-		program->get_attrib(neb::attrib_name::e::INSTANCE_NORMAL_MAP_SAMPLER)->o_,
-		program->get_attrib(neb::attrib_name::e::INSTANCE_DIFFUSE)->o_
+		program->get_attrib(neb::attrib_name::e::INSTANCE_SAMPLER)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_DIFFUSE)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_AMBIENT)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_SPECULAR)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_EMISSION)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_SHININESS)->o_
 	};
 
 	GLint size[] = {
-		4,4,4,4,1,1,4
+		4,4,4,4,4,4,4,4,4,1
 	};
 
-	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "sizeof(glm::mat4)" << std::setw(8) << sizeof(glm::mat4);
-	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "pointer[0]" << std::setw(8) << pointer[0];
-	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "pointer[1]" << std::setw(8) << pointer[1];
-	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "pointer[2]" << std::setw(8) << pointer[2];
-	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "pointer[3]" << std::setw(8) << pointer[3];
+	LOG(lg, neb::gfx::sl, debug) << std::setw(32) << "sizeof(glm::mat4)" << std::setw(8) << sizeof(glm::mat4);
+	LOG(lg, neb::gfx::sl, debug) << std::setw(32) << "pointer[0]" << std::setw(8) << pointer[0];
+	LOG(lg, neb::gfx::sl, debug) << std::setw(32) << "pointer[1]" << std::setw(8) << pointer[1];
+	LOG(lg, neb::gfx::sl, debug) << std::setw(32) << "pointer[2]" << std::setw(8) << pointer[2];
+	LOG(lg, neb::gfx::sl, debug) << std::setw(32) << "pointer[3]" << std::setw(8) << pointer[3];
 
 	GLsizei stride[] = {
 		sizeof(glm::mat4),
 		sizeof(glm::mat4),
 		sizeof(glm::mat4),
 		sizeof(glm::mat4),
+		0,
+		0,
+		0,
 		0,
 		0,
 		0
@@ -106,25 +105,32 @@ void			neb::gfx::glsl::buffer::mesh_instanced::vertexAttribPointer(
 		model_,
 		model_,
 		model_,
-		image_sampler_,
-		normal_map_sampler_,
-		diffuse_
+		sampler_,
+		diffuse_,
+		buffer_array_[4],
+		buffer_array_[5],
+		buffer_array_[6],
+		buffer_array_[7]
 	};
+	
 
-	for(unsigned int c = 0; c < 7; c++) {
+	for(unsigned int c = 0; c < ATTRIB_COUNT; c++) {
 		glBindBuffer(GL_ARRAY_BUFFER, buffer[c]);
 		checkerror("glBindBuffer");
 		glEnableVertexAttribArray(index[c]);
 		checkerror("glEnableVertexAttribArray");
+
 		glVertexAttribPointer(
 				index[c],
 				size[c],
-				GL_FLOAT,
-				GL_FALSE,
+				type[c],
+				normalized[c],
 				stride[c],
 				pointer[c]
 				);
+		
 		checkerror("glVertexAttribPointer");
+
 		glVertexAttribDivisor(index[c], 1);
 		checkerror("glVertexAttribDivisor");
 	}

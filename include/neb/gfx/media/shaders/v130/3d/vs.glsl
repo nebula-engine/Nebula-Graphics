@@ -8,6 +8,10 @@ out vec3	vs_B;
 out float	vs_instance_image_sampler;
 out float	vs_instance_normal_map_sampler;
 out vec4	vs_instance_diffuse;
+out vec4	vs_instance_ambient;
+out vec4	vs_instance_specular;
+out vec4	vs_instance_emission;
+out float	vs_instance_shininess;
 
 uniform mat4 view;
 uniform mat4 proj;
@@ -24,6 +28,10 @@ in vec4		instance_model3;
 in float	instance_image_sampler;
 in float	instance_normal_map_sampler;
 in vec4		instance_diffuse;
+in vec4		instance_ambient;
+in vec4		instance_specular;
+in vec4		instance_emission;
+in float	instance_shininess;
 
 void main(void) {
 
@@ -47,7 +55,12 @@ void main(void) {
 
 	vs_instance_image_sampler = instance_image_sampler;
 	vs_instance_normal_map_sampler = instance_normal_map_sampler;
+
 	vs_instance_diffuse = instance_diffuse;
+	vs_instance_ambient = instance_ambient;
+	vs_instance_specular = instance_specular;
+	vs_instance_emission = instance_emission;
+	vs_instance_shininess = instance_shininess;
 
 	// Calculate the clip-space position of each vertex
 	gl_Position = proj * vs_P;

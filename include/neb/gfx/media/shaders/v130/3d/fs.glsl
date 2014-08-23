@@ -10,6 +10,10 @@ in vec3		vs_B;
 in float	vs_instance_image_sampler;
 in float	vs_instance_normal_map_sampler;
 in vec4		vs_instance_diffuse;
+in vec4		vs_instance_ambient;
+in vec4		vs_instance_specular;
+in vec4		vs_instance_emission;
+in float	vs_instance_shininess;
 
 uniform sampler2DArray	image;
 uniform sampler2DArray	normal_map;
@@ -40,13 +44,13 @@ void main(void)
 	
 	if(vs_instance_image_sampler >= 0.0) {
 		vec4 image_color = texture(image, vec3(vs_texcoor, vs_instance_image_sampler));
-		amb = image_color;
+		amb = vs_instance_ambient * image_color;
 		dif = vs_instance_diffuse * image_color;
-		spc = image_color;
+		spc = vs_instance_specular * image_color;
 	} else {
-		amb = vec4(0);
+		amb = vs_instance_ambient;
 		dif = vs_instance_diffuse;
-		spc = vec4(0);
+		spc = vs_instance_specular;
 	}
 
 	if(vs_instance_normal_map_sampler >= 0.0) {	
@@ -57,8 +61,7 @@ void main(void)
 	
 	lf_lights(amb, dif, spc);
 
-	color += vec4(0);
-	color += vec4(0.5, 0.5, 0.5, 1.0);
+	color += vs_instance_emission;
 }
 
 

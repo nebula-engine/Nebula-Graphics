@@ -12,7 +12,7 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 
 	float atten;
 
-	float shininess = 10.0;
+	//float shininess = 10.0;
 
 	for(int i = 0; i < light_count; i++) // for all light sources
 	{
@@ -80,7 +80,7 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 		{
 			
 			specular = atten * light_specular[i] * spc *
-				vec4(vec3(pow(max(0.0, dot(reflect(-L,N), -P.xyz)), shininess)),1.0);
+				vec4(vec3(pow(max(0.0, dot(reflect(-L,N), -P.xyz)), vs_instance_shininess)),1.0);
 		}
 
 		color += ambient + diffuse + specular;

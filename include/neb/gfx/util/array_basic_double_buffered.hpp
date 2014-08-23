@@ -48,7 +48,6 @@ namespace neb { namespace gfx {
 			template<int... S> void			set(seq<S...>, int i, T... value) {
 				pass((std::get<S>(*front_)[i] = value)...);
 			}
-
 			void					swap_buffers() {
 				std::swap(front_, back_);
 			}
@@ -62,7 +61,24 @@ namespace neb { namespace gfx {
 				std::get<I>(*back_)[newi] = std::get<I>(*front_)[oldi];
 				return 0;
 			}
+			void					set_size(int size) {
+				size_ = size;
+			}
+			template<int I, typename U> U*		get() {
+				return std::get<I>(*front_);
+			}
+			int					next() {
+				if(size_ == size_array_) throw 0;
+				return size_++;
+			}
+			GLsizei					size() const {
+				return size_;
+			}
+			GLsizei					size_array() const {
+				return size_array_;
+			}
 
+		private:
 			std::tuple<T*...>			data_[2];
 			std::tuple<T*...>*			front_;
 			std::tuple<T*...>*			back_;
