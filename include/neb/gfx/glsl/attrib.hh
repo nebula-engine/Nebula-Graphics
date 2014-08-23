@@ -3,6 +3,8 @@
 
 #include <memory>
 
+#include <GL/glew.h>
+
 #include <neb/gfx/glsl/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace glsl {
@@ -15,7 +17,7 @@ namespace neb { namespace gfx { namespace glsl {
 			void		disable();
 
 			char const *	name_;
-			GLuint		o_;
+			GLint		o_;
 			GLuint		o_bind_;
 	};
 }}}

@@ -3,8 +3,9 @@
 
 #include <neb/core/core/scene/base.hpp>
 
-#include <neb/gfx/glsl/array.hpp>
+#include <neb/gfx/glsl/uniform/array.hpp>
 #include <neb/gfx/drawable/base.hpp>
+#include <neb/gfx/util/decl.hpp>
 
 namespace neb {
 	namespace gfx {
@@ -46,6 +47,12 @@ namespace neb {
 						// rendering data
 						// one for static, one for dynamic
 						neb::gfx::glsl::uniform::light_array				light_array_[2];
+
+						// standard meshes
+						struct {
+							std::shared_ptr<neb::gfx::mesh_instanced>		cuboid_;
+						} meshes_;
+
 				};
 			}
 		}

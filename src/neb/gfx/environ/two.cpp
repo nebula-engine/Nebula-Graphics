@@ -1,6 +1,7 @@
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/environ/two.hpp>
+#include <neb/gfx/glsl/program/text.hpp>
 
 void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> context) {
 	/**
@@ -27,11 +28,9 @@ void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> co
 	/** @todo replace with 'environ' which determines program and camera types and accepts certian types of drawables */
 	
 	
+	app->program_text_->use();
 	
-	auto p = app->use_program(neb::program_name::e::TEXT);
-	
-
-	drawable->draw(context, p);
+	drawable->draw(context, app->program_text_);
 }		
 
 

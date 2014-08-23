@@ -21,7 +21,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 
 		class base: virtual public neb::core::core::light::base {
 			public:
-				base(std::shared_ptr<neb::core::core::light::util::parent> parent, std::string);
+				base(std::shared_ptr<neb::core::core::light::util::parent> parent, int type);
 				
 				void				init();
 				

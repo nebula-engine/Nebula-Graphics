@@ -7,9 +7,10 @@
 
 #include <neb/core/color/Color.hh>
 
+#include <neb/gfx/glsl/util/decl.hpp>
+
 namespace neb {
 	namespace material {
-
 
 		struct raw {
 			raw();
@@ -40,7 +41,7 @@ namespace neb {
 				 *
 				 * load into OpenGL
 				 */
-				void		load();
+				void		load(std::shared_ptr<neb::gfx::glsl::program::threed> p);
 				raw		raw_;
 		};
 	}

@@ -9,8 +9,7 @@ uniform float	light_atten_quad[32];
 uniform vec3	light_spot_direction[32];
 uniform float	light_spot_cutoff[32];
 uniform float	light_spot_exponent[32];
-uniform float	light_spot_light_cos_cutoff[32];
 uniform int	light_type[32];
-
-uniform int light_count;
+uniform int	light_closed[32];
+uniform int	light_count;
 

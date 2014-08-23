@@ -13,6 +13,7 @@
 //#include <neb/core/core/actor/util/Type.hh>
 #include <neb/core/timer/Types.hh>
 #include <neb/core/timer/Actor/Release.hpp>
+#include <neb/core/math/geo/polyhedron.hh>
 
 #include <neb/gfx/core/scene/base.hpp>
 #include <neb/gfx/core/actor/base.hpp>
@@ -20,6 +21,7 @@
 #include <neb/gfx/glsl/program/threed.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/Camera/Projection/Perspective.hh>
+#include <neb/gfx/core/mesh_instanced.hpp>
 
 using namespace std;
 
@@ -38,6 +40,17 @@ void			neb::gfx::core::scene::base::init() {
 	
 	light_array_[0].alloc(32);
 	light_array_[1].alloc(32);
+
+	// meshes
+
+	math::geo::cuboid cube(1.0,1.0,1.0);
+	
+	meshes_.cuboid_.reset(new neb::gfx::mesh_instanced);
+	meshes_.cuboid_->mesh_.construct(&cube);
+
+	meshes_.cuboid_->instances_.reset(new neb::gfx::mesh_instanced::instances_type);
+	meshes_.cuboid_->instances_->alloc(32);
+
 }
 void			neb::gfx::core::scene::base::release() {
 	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
@@ -70,14 +83,20 @@ void			neb::gfx::core::scene::base::draw(
 	auto program_3d = std::dynamic_pointer_cast<neb::gfx::glsl::program::threed>(p);
 	assert(program_3d);
 	
-	//load_lights(p);
+	// lights
 	light_array_[0].load_uniform(program_3d->light_locations_.location);
 	
+	// meshes
+	assert(meshes_.cuboid_);
+	meshes_.cuboid_->draw(program_3d);
+	
+	// meshes
 	auto la = [&] (A::map_type::iterator<0> it) {
 		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
 		assert(actor);
 		actor->draw(context, program_3d, neb::core::pose());
 	};
+	
 
 	A::map_.for_each<0>(la);
 }

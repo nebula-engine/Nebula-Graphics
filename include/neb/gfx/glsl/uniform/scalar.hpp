@@ -34,8 +34,8 @@ namespace neb { namespace gfx { namespace glsl { namespace Uniform { namespace S
 			virtual void			load_b(bool const &) {throw 0; }
 			virtual void			load_b(bool &&) {throw 0; }
 			/** @} */
-		protected:
-			::std::string		name_;
+		public:
+			std::string		name_;
 			GLint			o_;
 	};
 
@@ -69,6 +69,7 @@ namespace neb { namespace gfx { namespace glsl { namespace Uniform { namespace S
 	class Vec4: public neb::gfx::glsl::Uniform::Scalar::base {
 		public:
 			Vec4(::std::string s): base(s) {}
+			virtual void		load(vec4 const &);
 			virtual void		load(float*);
 	};
 	class DVec4: public neb::gfx::glsl::Uniform::Scalar::base {

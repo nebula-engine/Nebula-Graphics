@@ -31,10 +31,6 @@ namespace neb { namespace gfx { namespace core { namespace light {
 
 
 
-			float	atten_const_;
-			float	atten_linear_;
-			float	atten_quad_;
-
 
 	};
 

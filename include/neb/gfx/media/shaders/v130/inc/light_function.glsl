@@ -14,6 +14,8 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 
 	for(int i = 0; i < light_count; i++) // for all light sources
 	{
+		if(light_closed[i] == 0) continue;
+
 		// ambient
 		ambient = light_ambient[i] * amb;
 

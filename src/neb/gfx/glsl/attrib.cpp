@@ -25,17 +25,20 @@ int	neb::gfx::glsl::attrib::locate(std::shared_ptr<neb::gfx::glsl::program::base
 	glBindAttribLocation(p->o_, o_bind_, name_);
 	checkerror("glBindAttribLocation");
 	
+	assert(o_ == -1);
+
 	o_ = glGetAttribLocation(p->o_, name_);
 	
 	checkerror("glGetAttribLocation");
-
-	/*
-	if(o_ == -1)
+	
+	printf("%s %s %i\n", __PRETTY_FUNCTION__, name_, o_);
+	
+	/*if(o_ == -1)
 	{
 		printf("could not find attrib '%s'\n", name_);
-		exit(0);
-	}
-	*/
+		abort();
+	}*/
+	
 	return o_;
 }
 void	neb::gfx::glsl::attrib::enable()

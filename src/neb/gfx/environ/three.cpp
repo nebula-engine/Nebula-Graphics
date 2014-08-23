@@ -59,7 +59,7 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	if(!drawable) return;
 
 	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
-	auto app = neb::gfx::app::__gfx_glsl::global().lock();
+	//auto app = neb::gfx::app::__gfx_glsl::global().lock();
 
 	/** wrong for color maybe! */	
 	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
@@ -70,15 +70,12 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	assert(proj_);
 	assert(view_);
 	
-	// get program choice from drawable
-	/** @todo replace with 'environ' which determines program and camera types and accepts certian types of drawables */
+	program_->use();
+
+	proj_->load(program_);
+	view_->load(program_);
 	
-	auto p = app->use_program(neb::program_name::e::THREED);
-	
-	proj_->load(p);
-	view_->load(p);
-	
-	drawable->draw(context, p);
+	drawable->draw(context, program_);
 	
 }		
 weak_ptr<neb::gfx::Camera::View::Ridealong>		neb::gfx::environ::three::createViewRidealong(

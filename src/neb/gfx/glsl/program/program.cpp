@@ -8,6 +8,7 @@
 #include <string.h>
 #include <algorithm>
 #include <cassert>
+#include <iomanip>
 
 #include <neb/core/util/debug.hpp>
 
@@ -18,7 +19,7 @@
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 
-neb::gfx::glsl::program::base::base(neb::program_name::e name): name_(name)
+neb::gfx::glsl::program::base::base()
 {
 }
 void	neb::gfx::glsl::program::base::init()
@@ -89,10 +90,11 @@ void	neb::gfx::glsl::program::base::use() {
 	{
 		attrib = (*it).second;
 		assert(attrib);
-		attrib->locate(shared_from_this());
+		//attrib->locate(shared_from_this());
 	}
 }
 void	neb::gfx::glsl::program::base::add_attrib(neb::attrib_name::e name, char const * s, GLuint o_bind) {
+
 	std::shared_ptr<neb::gfx::glsl::attrib> a(new neb::gfx::glsl::attrib);
 	
 	a->init(s, o_bind);
@@ -125,6 +127,9 @@ void	neb::gfx::glsl::program::base::add_uniform_scalar(std::string name, GLenum 
 		case GL_SAMPLER_2D:
 			u.reset(new neb::gfx::glsl::Uniform::Scalar::Sampler2D(name));
 			break;
+		case GL_SAMPLER_2D_ARRAY:
+			u.reset(new neb::gfx::glsl::Uniform::Scalar::Int(name));
+			break;
 		default:
 			printf("unsupported glsl type \"%s\"\n", name.c_str());
 			exit(0);
@@ -132,29 +137,27 @@ void	neb::gfx::glsl::program::base::add_uniform_scalar(std::string name, GLenum 
 
 	uniform_scalar_[name] = u;
 }
-void	neb::gfx::glsl::program::base::add_uniform_vector(std::string name1, std::string name2, GLenum type) {
+void			neb::gfx::glsl::program::base::add_uniform_vector(std::string name, GLenum type) {
 
 	std::shared_ptr<neb::gfx::glsl::Uniform::Vector::base> u;
 
 	switch(type) {
 		case GL_INT:
-			u.reset(new neb::gfx::glsl::Uniform::Vector::Int(name1, name2));
+			u.reset(new neb::gfx::glsl::Uniform::Vector::Int(name));
 			break;
 		case GL_FLOAT:
-			u.reset(new neb::gfx::glsl::Uniform::Vector::Float(name1, name2));
+			u.reset(new neb::gfx::glsl::Uniform::Vector::Float(name));
 			break;
 		case GL_FLOAT_VEC3:
-			u.reset(new neb::gfx::glsl::Uniform::Vector::Vec3(name1, name2));
+			u.reset(new neb::gfx::glsl::Uniform::Vector::Vec3(name));
 			break;
 		case GL_FLOAT_VEC4:
-			u.reset(new neb::gfx::glsl::Uniform::Vector::Vec4(name1, name2));
+			u.reset(new neb::gfx::glsl::Uniform::Vector::Vec4(name));
 			break;
 		default:
-			printf("unsupported glsl type \"%s.%s\"\n", name1.c_str(), name2.c_str());
+			printf("unsupported glsl type \"%s\"\n", name.c_str());
 			exit(0);
 	}
-	
-	std::string name = name1 + "." + name2;
 	
 	uniform_vector_[name] = u;
 	
@@ -181,8 +184,8 @@ std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base>	neb::gfx::glsl::program::
 
 	if(it == uniform_scalar_.end())
 	{
-		printf("uniform \"%s\" not found\n", name.c_str());
-		exit(0);
+		std::cout << "uniform \"" << name << "\" not found\n" << std::endl;
+		abort();
 	}
 
 	auto p = (*it).second;
@@ -202,8 +205,8 @@ std::shared_ptr<neb::gfx::glsl::Uniform::Vector::base>		neb::gfx::glsl::program:
 			std::cout << (*it2).first << std::endl;
 		}
 		
-		printf("uniform \"%s\" not found\n", name.c_str());
-		exit(0);
+		std::cout << "uniform \"" << name << "\" not found\n" << std::endl;
+		abort();
 	}
 
 	auto p = (*it).second;
@@ -349,17 +352,30 @@ void		neb::gfx::glsl::program::base::scanUniforms() {
 				abort();
 			}
 
-			std::string name1 = name.substr(0, find_open);
-			std::string name2 = name.substr(find_close + 2);
-			
-			auto it = uniform_vector_.find(name1 + "." + name2);
+			name = name.substr(0, find_open);
+	
+		
+			auto it = uniform_vector_.find(name);
 			if(it != uniform_vector_.end()) continue;
 			
-			add_uniform_vector(name1, name2, type);
+			add_uniform_vector(name, type);
 	
+			std::cout
+				<< std::setw(16) << "array"
+				<< std::setw(32) << name
+				<< std::setw(32) << shaderTypeString(type)
+				<< std::endl;
+		
+
 		} else {
 			
 			add_uniform_scalar(name, type);
+
+			std::cout
+				<< std::setw(16) << "single"
+				<< std::setw(32) << name
+				<< std::setw(32) << shaderTypeString(type)
+				<< std::endl;
 		}
 	}
 }

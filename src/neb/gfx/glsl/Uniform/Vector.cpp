@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <iomanip>
+#include <iostream>
 
 #include <assert.h>
 
@@ -11,13 +13,16 @@
 #include <neb/gfx/glsl/program/base.hpp>
 
 
-neb::gfx::glsl::Uniform::Vector::base::base(std::string name1, std::string name2) {
-	name1_ = name1;
-	name2_ = name2;
-	c_ = 0;
+neb::gfx::glsl::Uniform::Vector::base::base(std::string name):
+	name_(name),
+	c_(0)
+{
 	for(int i = 0; i < LEN; i++) {
 		o_[i] = -1;
 	}
+
+	assert(!name_.empty());
+
 	//printf("%s\n",__PRETTY_FUNCTION__);
 }
 void			neb::gfx::glsl::Uniform::Vector::base::locate(std::shared_ptr<neb::gfx::glsl::program::base> p) {
@@ -28,8 +33,7 @@ void			neb::gfx::glsl::Uniform::Vector::base::locate(std::shared_ptr<neb::gfx::g
 	char o_str[8];
 	//char name[128];
 
-	assert(!name1_.empty());
-	assert(!name2_.empty());
+	assert(!name_.empty());
 	
 	std::string name;
 	
@@ -37,13 +41,13 @@ void			neb::gfx::glsl::Uniform::Vector::base::locate(std::shared_ptr<neb::gfx::g
 		
 		sprintf(o_str, "%i", c);
 		
-		name = name1_ + "[" + o_str + "]." + name2_;
+		name = name_ + "[" + o_str + "]";
 		
 		//printf("str = '%s' c = %i\n", o_str, c);
 		
 		GLint o = glGetUniformLocation(p->o_, name.c_str());
 		
-		//printf("locate \"%s\" %i\n", name.c_str(), o);
+		std::cout << std::setw(16) << name << std::setw(16) << o << std::endl;
 		
 		if(o == -1) {
 			c_ = c;

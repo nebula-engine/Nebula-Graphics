@@ -17,12 +17,15 @@
 #include <neb/gfx/glsl/uniform/vector.hpp>
 
 
-neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::parent> parent, ::std::string light_type_string):
+neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::parent> parent, int type):
 	neb::core::core::light::base(parent),
-	light_type_string_(light_type_string),
 	ambient_(0.1,0.1,0.1,1.0),
 	diffuse_(neb::Color::white<float>()),
-	specular_(neb::Color::white<float>())
+	specular_(neb::Color::white<float>()),
+	atten_const_(1.0),
+	atten_linear_(0.0),
+	atten_quad_(0.0),
+	type_(type)
 {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
@@ -42,7 +45,6 @@ void			neb::gfx::core::light::base::init() {
 			spot_direction_,
 			spot_cutoff_,
 			spot_exponent_,
-			spot_light_cos_cutoff_,
 			type_
 			);
 }
@@ -94,7 +96,7 @@ void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	
 	/** @todo way to ditinguish lights in shader */
-	
+/*	
 	auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
 	
 	vec3 pos = pos_;
@@ -108,7 +110,7 @@ void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
 	p->get_uniform_vector(light_type_string_ + ".ambient")->load(o, (glm::vec4)ambient_);
 	p->get_uniform_vector(light_type_string_ + ".diffuse")->load(o, (glm::vec4)diffuse_);
 	p->get_uniform_vector(light_type_string_ + ".specular")->load(o, (glm::vec4)specular_);
-
+*/
 
 }
 void	neb::gfx::core::light::base::load_shadow() {

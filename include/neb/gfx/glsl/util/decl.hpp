@@ -7,6 +7,7 @@ namespace neb { namespace gfx {
 
 		namespace program {
 			class base;
+			class text;
 			class threed;
 		}
 
@@ -24,6 +25,10 @@ namespace neb { namespace gfx {
 
 		class shader;
 		class attrib;
+
+		namespace buffer {
+			class mesh_instanced;
+		}
 	}
 
 }}

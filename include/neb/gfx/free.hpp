@@ -27,7 +27,7 @@ namespace neb {
 			std::string::size_type pos = std::string::npos);
 }
 
-void	checkerror(char const *);
+void	checkerror(std::string);
 bool	isGLError();
 
 template<class A> A*	new_copy(std::shared_ptr<A> a) {

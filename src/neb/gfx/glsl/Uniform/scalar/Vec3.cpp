@@ -27,4 +27,9 @@ void	neb::gfx::glsl::Uniform::Scalar::Vec4::load(float* v) {
 	glUniform4fv(o_, 1, v);
 	checkerror("glUniform4fv");
 }
+void	neb::gfx::glsl::Uniform::Scalar::Vec4::load(vec4 const & v) {
+	glUniform4fv(o_, 1, &v[0]);
+	checkerror("glUniform4fv");
+}
+
 

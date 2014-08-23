@@ -20,7 +20,7 @@
 namespace neb { namespace gfx { namespace app {
 	class __gfx_glsl: virtual public neb::core::app::__base {
 		public:
-			typedef std::map<int, std::shared_ptr<neb::gfx::glsl::program::base> >		map_program_type;
+			//typedef std::map<int, std::shared_ptr<neb::gfx::glsl::program::base> >		map_program_type;
 			friend class neb::gfx::environ::base;
 			friend class neb::gfx::environ::two;
 			friend class neb::gfx::environ::three;
@@ -28,13 +28,15 @@ namespace neb { namespace gfx { namespace app {
 			static std::weak_ptr<neb::gfx::app::__gfx_glsl>		global();
 		protected:
 			void							__init();
-			std::shared_ptr<neb::gfx::glsl::program::base>		use_program(neb::program_name::e);
-			std::shared_ptr<neb::gfx::glsl::program::base>		get_program(neb::program_name::e);
+			//std::shared_ptr<neb::gfx::glsl::program::base>		use_program(neb::program_name::e);
+			//std::shared_ptr<neb::gfx::glsl::program::base>		get_program(neb::program_name::e);
 		public:
-			std::shared_ptr<neb::gfx::glsl::program::base>		current_program();
+			//std::shared_ptr<neb::gfx::glsl::program::base>		current_program();
 			void							create_programs();
-			map_program_type					programs_;
-			std::shared_ptr<neb::gfx::glsl::program::base>		current_;
+			//map_program_type					programs_;
+			//std::shared_ptr<neb::gfx::glsl::program::base>		current_;
+			std::shared_ptr<neb::gfx::glsl::program::text>		program_text_;
+
 	};
 }}}
 

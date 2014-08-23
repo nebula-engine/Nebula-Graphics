@@ -1,10 +1,11 @@
 #include <stdio.h>
 
+#include <neb/core/core/scene/base.hpp>
+
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/material.hpp>
-#include <neb/gfx/glsl/program/base.hpp>
+#include <neb/gfx/glsl/program/threed.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
-#include <neb/core/core/scene/base.hpp>
 
 /*
 gru::Color::color<float> operator<<(gru::Color::color<float> c, tinyxml2::XMLElement* element) {
@@ -63,10 +64,7 @@ void	neb::material::material::init()
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 }
-
-void	neb::material::material::load()
-{
-	auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
+void	neb::material::material::load(std::shared_ptr<neb::gfx::glsl::program::threed> p) {
 
 	p->get_uniform_scalar("front.ambient")->load((glm::vec4)raw_.ambient_);
 	p->get_uniform_scalar("front.diffuse")->load((glm::vec4)raw_.diffuse_);

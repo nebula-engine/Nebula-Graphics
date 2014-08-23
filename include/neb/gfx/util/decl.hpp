@@ -13,7 +13,13 @@ namespace neb {
 			NORMAL,
 			TEXCOOR,
 			TANGENT,
-			BINORMAL
+			BINORMAL,
+			INSTANCE_MODEL0,
+			INSTANCE_MODEL1,
+			INSTANCE_MODEL2,
+			INSTANCE_MODEL3,
+			INSTANCE_IMAGE_SAMPLER,
+			INSTANCE_NORMAL_MAP_SAMPLER,
 		};
 	};
 	struct program_name {
@@ -38,7 +44,9 @@ namespace neb {
 		}
 
 		class texture;
-		
+	
+		class mesh;
+		class mesh_instanced;	
 
 		/** @brief Graphical User Interface */
 		namespace gui {
@@ -105,13 +113,7 @@ namespace neb {
 
 			}
 		}
-		
-		namespace core {
-			class buffer;
-		}
 	}
-
-	
 }
 
 #endif

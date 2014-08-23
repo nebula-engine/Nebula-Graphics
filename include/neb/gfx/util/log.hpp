@@ -6,6 +6,11 @@
 namespace neb {
 	namespace gfx {
 		extern severity_level		sl;
+		namespace core {
+			namespace shape {
+				extern severity_level		sl;
+			}
+		}
 	}
 }
 

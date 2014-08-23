@@ -9,7 +9,6 @@
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
-#include <neb/gfx/core/buffer.hpp>
 
 #include <png.h>
 

@@ -15,8 +15,8 @@
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/material.hpp>
 #include <neb/gfx/core/mesh.hh>
-#include <neb/gfx/core/buffer.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
+#include <neb/gfx/core/mesh_instanced.hpp>
 
 namespace neb {
 	namespace gfx {
@@ -37,8 +37,7 @@ namespace neb {
 					void			init();
 					void			release();
 					void			step(gal::etc::timestep const & ts);
-
-
+					virtual void		callbackPose(neb::core::pose const & pose_global);
 					virtual weak_ptr<neb::core::core::light::base>		createLightPoint();
 
 
@@ -51,17 +50,18 @@ namespace neb {
 					//		neb::core::core::light::util::count& light_count,
 					//		neb::core::pose const & pose);
 					void						model_load(
+							std::shared_ptr<neb::gfx::glsl::program::threed> p,
 							neb::core::pose const & pose);
 					void						init_buffer(
 							std::shared_ptr<neb::gfx::context::base> context,
 							std::shared_ptr<neb::gfx::glsl::program::base> p);
 					void						draw(
 							std::shared_ptr<neb::gfx::context::base>,
-							std::shared_ptr<neb::gfx::glsl::program::base> p,
+							std::shared_ptr<neb::gfx::glsl::program::threed> p,
 							neb::core::pose const & pose);
 					virtual void					draw_elements(
 							std::shared_ptr<neb::gfx::context::base> context,
-							std::shared_ptr<neb::gfx::glsl::program::base> p,
+							std::shared_ptr<neb::gfx::glsl::program::threed> p,
 							neb::core::pose const & pose);
 					/** @} */
 				public:
@@ -84,12 +84,12 @@ namespace neb {
 
 					// draw data
 					/** @brief ID */
-					shared_ptr<neb::gfx::mesh>				mesh_;
+					std::shared_ptr<neb::gfx::mesh>				mesh_;
 					//neb::program_name::e					program_;
 					/** @brief Parent */
-
+					
+					std::shared_ptr<neb::gfx::mesh_instanced::slot_type>	mesh_slot_;
 			};
-
 		}}
 	}
 }

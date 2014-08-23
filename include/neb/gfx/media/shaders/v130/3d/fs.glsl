@@ -2,22 +2,22 @@
 
 #include "v130/inc/material.glsl"
 
-in vec4 vs_P;
-in vec3 vs_N;
-in vec2 vs_texcoor;
-in vec3 vs_T;
-in vec3 vs_B;
+in vec4		vs_P;
+in vec3		vs_N;
+in vec2		vs_texcoor;
+in vec3 	vs_T;
+in vec3		vs_B;
+in float	vs_instance_image_sampler;
+in float	vs_instance_normal_map_sampler;
+
+uniform sampler2DArray	image;
+uniform sampler2DArray	normal_map;
 
 #include "v130/inc/light.glsl"
 
 uniform mat4 view;
+
 uniform Material front;
-
-uniform bool has_texture;
-uniform bool has_normal_map;
-
-uniform sampler2D texture;
-uniform sampler2D normal_map;
 
 out vec4 color;
 
@@ -39,19 +39,19 @@ void main(void)
 	vec4 amb, dif, spc;
 	
 	
-	if(has_texture) {
-		vec4 texture_color = texture2D(texture, vs_texcoor);
-		amb = front.ambient * texture_color;
-		dif = front.diffuse * texture_color;
-		spc = front.specular * texture_color;
+	if(vs_instance_image_sampler >= 0.0) {
+		vec4 image_color = texture(image, vec3(vs_texcoor, vs_instance_image_sampler));
+		amb = front.ambient * image_color;
+		dif = front.diffuse * image_color;
+		spc = front.specular * image_color;
 	} else {
 		amb = front.ambient;
 		dif = front.diffuse;
 		spc = front.specular;
 	}
 
-	if(has_normal_map) {	
-		vec3 norm_vector = texture2D(normal_map, vs_texcoor).xyz;
+	if(vs_instance_normal_map_sampler >= 0.0) {	
+		vec3 norm_vector = texture(normal_map, vec3(vs_texcoor, vs_instance_normal_map_sampler)).xyz;
 		N = normalize(N + (mat3(vs_T, vs_B, vs_N) * norm_vector));
 	}
 	
@@ -59,6 +59,7 @@ void main(void)
 	lf_lights(amb, dif, spc);
 
 	color += front.emission;
+	color += vec4(0.5, 0.5, 0.5, 1.0);
 }
 
 

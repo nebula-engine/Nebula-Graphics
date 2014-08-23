@@ -6,14 +6,15 @@
 
 #include <neb/core/util/debug.hpp>
 
-
+#include <neb/gfx/util/io.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/gfx/core/light/point.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
-#include <neb/gfx/glsl/program/base.hpp>
+#include <neb/gfx/glsl/program/threed.hpp>
 #include <neb/gfx/util/log.hpp>
+#include <neb/gfx/core/mesh_instanced.hpp>
 
 #include <neb/core/math/geo/polygon.hpp>
 
@@ -35,16 +36,25 @@ void					neb::gfx::core::shape::base::step(gal::etc::timestep const & ts) {
 
 	//material_front_.step(ts);
 }
+void					neb::gfx::core::shape::base::callbackPose(neb::core::pose const & gpose) {
+	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
+	
+	if(mesh_slot_) {
+		mesh_slot_->set<0>(gpose.mat4_cast());
+		LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
+	}
+}
 void					neb::gfx::core::shape::base::setPose(neb::core::pose const & pose) {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
+	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
+	
 	auto npose = pose * pose_;
 
 	neb::gfx::core::light::util::parent::setPose(npose);
 }
 void					neb::gfx::core::shape::base::draw(
 		std::shared_ptr<neb::gfx::context::base> context,
-		std::shared_ptr<neb::gfx::glsl::program::base> p,
+		std::shared_ptr<neb::gfx::glsl::program::threed> p,
 		neb::core::pose const & pose) {
 
 	auto npose = pose * pose_;
@@ -53,9 +63,9 @@ void					neb::gfx::core::shape::base::draw(
 	
 
 }
-void			neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
-
-	auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
+void			neb::gfx::core::shape::base::model_load(
+		std::shared_ptr<neb::gfx::glsl::program::threed> p,
+		neb::core::pose const & pose) {
 
 	mat4 space = pose.mat4_cast() * glm::scale(s_);
 
@@ -63,14 +73,14 @@ void			neb::gfx::core::shape::base::model_load(neb::core::pose const & pose) {
 }
 void			neb::gfx::core::shape::base::draw_elements(
 		std::shared_ptr<neb::gfx::context::base> context,
-		std::shared_ptr<neb::gfx::glsl::program::base> p,
+		std::shared_ptr<neb::gfx::glsl::program::threed> p,
 		neb::core::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	if(mesh_) {
 		
-		mesh_->draw_elements(context, p, pose, s_);
+		mesh_->draw_elements(p, pose, s_);
 		/*
 		switch(p->name_) {
 			case neb::program_name::e::IMAGE:
