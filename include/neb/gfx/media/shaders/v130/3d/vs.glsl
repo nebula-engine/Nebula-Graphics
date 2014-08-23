@@ -7,6 +7,7 @@ out vec3	vs_T;
 out vec3	vs_B;
 out float	vs_instance_image_sampler;
 out float	vs_instance_normal_map_sampler;
+out vec4	vs_instance_diffuse;
 
 uniform mat4 view;
 uniform mat4 proj;
@@ -22,6 +23,7 @@ in vec4		instance_model2;
 in vec4		instance_model3;
 in float	instance_image_sampler;
 in float	instance_normal_map_sampler;
+in vec4		instance_diffuse;
 
 void main(void) {
 
@@ -45,6 +47,7 @@ void main(void) {
 
 	vs_instance_image_sampler = instance_image_sampler;
 	vs_instance_normal_map_sampler = instance_normal_map_sampler;
+	vs_instance_diffuse = instance_diffuse;
 
 	// Calculate the clip-space position of each vertex
 	gl_Position = proj * vs_P;

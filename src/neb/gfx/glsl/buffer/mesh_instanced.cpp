@@ -17,7 +17,7 @@ void			neb::gfx::glsl::buffer::mesh_instanced::init(
 
 	checkerror("unknown");
 
-	glGenBuffers(3, buffer_array_);
+	glGenBuffers(4, buffer_array_);
 	checkerror("glGenBuffers");
 
 	// Initialize with empty (NULL) buffer; it will be updated later, each frame.
@@ -25,10 +25,11 @@ void			neb::gfx::glsl::buffer::mesh_instanced::init(
 	GLsizei datasize[] = {
 		sizeof(glm::mat4),
 		sizeof(GLfloat),
-		sizeof(GLfloat)
+		sizeof(GLfloat),
+		sizeof(glm::vec4)
 	};
 	
-	for(unsigned int c = 0; c < 3; c++) {
+	for(unsigned int c = 0; c < 4; c++) {
 		glBindBuffer(GL_ARRAY_BUFFER, buffer_array_[c]);
 		glBufferData(
 				GL_ARRAY_BUFFER,
@@ -57,69 +58,77 @@ void			neb::gfx::glsl::buffer::mesh_instanced::vertexAttribPointer(
 {	
 
 
-	GLuint attrib_model =		program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL0)->o_;
-	GLuint attrib_image =		program->get_attrib(neb::attrib_name::e::INSTANCE_IMAGE_SAMPLER)->o_;
-	GLuint attrib_normal_map =	program->get_attrib(neb::attrib_name::e::INSTANCE_NORMAL_MAP_SAMPLER)->o_;
-
-
 	checkerror("unknown");
 
 	glm::mat4 m;
-	void* offset[] = {
+	void* pointer[] = {
 		(void*)((long)&m[0] - (long)&m),
 		(void*)((long)&m[1] - (long)&m),
 		(void*)((long)&m[2] - (long)&m),
-		(void*)((long)&m[3] - (long)&m)
+		(void*)((long)&m[3] - (long)&m),
+		(void*)0,
+		(void*)0,
+		(void*)0
 	};
 
+	GLint index[] = {
+		program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL0)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL1)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL2)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL3)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_IMAGE_SAMPLER)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_NORMAL_MAP_SAMPLER)->o_,
+		program->get_attrib(neb::attrib_name::e::INSTANCE_DIFFUSE)->o_
+	};
+
+	GLint size[] = {
+		4,4,4,4,1,1,4
+	};
 
 	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "sizeof(glm::mat4)" << std::setw(8) << sizeof(glm::mat4);
-	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "offset[0]" << std::setw(8) << offset[0];
-	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "offset[1]" << std::setw(8) << offset[1];
-	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "offset[2]" << std::setw(8) << offset[2];
-	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "offset[3]" << std::setw(8) << offset[3];
+	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "pointer[0]" << std::setw(8) << pointer[0];
+	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "pointer[1]" << std::setw(8) << pointer[1];
+	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "pointer[2]" << std::setw(8) << pointer[2];
+	LOG(lg, neb::gfx::sl, info) << std::setw(32) << "pointer[3]" << std::setw(8) << pointer[3];
 
-	GLsizei stride = sizeof(glm::mat4);
-
-	glBindBuffer(GL_ARRAY_BUFFER, model_);
-	for(unsigned int i = 0; i < 4; i++) {
-		glEnableVertexAttribArray(attrib_model + i);
-		glVertexAttribPointer(
-				attrib_model + i,
-				4,
-				GL_FLOAT, // type
-				GL_FALSE, // normalized?
-				stride, // stride
-				offset[i] // array buffer offset
-				);
-		checkerror("glVertexAttribPointer model");
-		glVertexAttribDivisor(attrib_model + i, 1);
-	}
+	GLsizei stride[] = {
+		sizeof(glm::mat4),
+		sizeof(glm::mat4),
+		sizeof(glm::mat4),
+		sizeof(glm::mat4),
+		0,
+		0,
+		0
+	};
 
 	GLuint buffer[] = {
+		model_,
+		model_,
+		model_,
+		model_,
 		image_sampler_,
-		normal_map_sampler_
-	};
-	GLuint attrib[] = {
-		attrib_image,
-		attrib_normal_map
+		normal_map_sampler_,
+		diffuse_
 	};
 
-	for(unsigned int c = 0; c < 2; c++) {
+	for(unsigned int c = 0; c < 7; c++) {
 		glBindBuffer(GL_ARRAY_BUFFER, buffer[c]);
-		glEnableVertexAttribArray(attrib[c]);
+		checkerror("glBindBuffer");
+		glEnableVertexAttribArray(index[c]);
+		checkerror("glEnableVertexAttribArray");
 		glVertexAttribPointer(
-				attrib[c],
-				1,
+				index[c],
+				size[c],
 				GL_FLOAT,
 				GL_FALSE,
-				0,
-				(void*)0
+				stride[c],
+				pointer[c]
 				);
-		checkerror("glVertexAttribPointer image");
-		glVertexAttribDivisor(attrib[c], 1);
+		checkerror("glVertexAttribPointer");
+		glVertexAttribDivisor(index[c], 1);
+		checkerror("glVertexAttribDivisor");
 	}
-
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 

@@ -1,5 +1,7 @@
 #include <gal/log/log.hpp>
 
+#include <glm/gtx/transform.hpp>
+
 #include <neb/core/util/debug.hpp>
 #include <neb/core/math/geo/polyhedron.hh>
 
@@ -30,7 +32,9 @@ void neb::gfx::core::shape::box::box::createMesh() {
 	auto scene = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(getScene().lock());
 	
 	if(!mesh_slot_) {
-		mesh_slot_ = scene->meshes_.cuboid_->instances_->reg(getPoseGlobal().mat4_cast(), -1.0, -1.0);
+		auto model = getPoseGlobal().mat4_cast() * glm::scale(s_);
+		
+		mesh_slot_ = scene->meshes_.cuboid_->instances_->reg(model, -1.0, -1.0, neb::Color::cyan<float>());
 	}
 	
 	//mesh_->texture_.reset(new neb::gfx::texture);

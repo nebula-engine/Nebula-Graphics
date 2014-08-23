@@ -20,6 +20,7 @@ namespace neb {
 			INSTANCE_MODEL3,
 			INSTANCE_IMAGE_SAMPLER,
 			INSTANCE_NORMAL_MAP_SAMPLER,
+			INSTANCE_DIFFUSE,
 		};
 	};
 	struct program_name {

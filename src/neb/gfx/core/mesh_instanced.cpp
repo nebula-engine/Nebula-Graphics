@@ -43,17 +43,20 @@ void			neb::gfx::mesh_instanced::bufferData(
 	void* data[] = {
 		instances_->get<0, glm::mat4>(),
 		instances_->get<1, GLfloat>(),
-		instances_->get<2, GLfloat>()
+		instances_->get<2, GLfloat>(),
+		instances_->get<3, glm::vec4>()
 	};
 	unsigned int datasize[] = {
 		sizeof(glm::mat4),
 		sizeof(GLfloat),
-		sizeof(GLfloat)
+		sizeof(GLfloat),
+		sizeof(glm::vec4)
 	};
 	GLuint buffer[] = {
 		buf->model_,
 		buf->image_sampler_,
-		buf->normal_map_sampler_
+		buf->normal_map_sampler_,
+		buf->diffuse_
 	};
 
 	/*
@@ -72,7 +75,7 @@ void			neb::gfx::mesh_instanced::bufferData(
 		checkerror("glBufferSubData");
 	}
 	*/
-	for(unsigned int c = 0; c < 3; c++) {
+	for(unsigned int c = 0; c < 4; c++) {
 		glBindBuffer(GL_ARRAY_BUFFER, buffer[c]);
 		glBufferData(
 				GL_ARRAY_BUFFER,

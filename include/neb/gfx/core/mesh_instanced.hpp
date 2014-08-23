@@ -8,10 +8,11 @@
 namespace neb { namespace gfx {
 	class mesh_instanced {
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::buffer::mesh_instanced>		buffer_shared;
-			typedef std::map<neb::gfx::glsl::program::threed*, buffer_shared>	buffer_map;
-			typedef neb::gfx::array_continuous<glm::mat4, float, float>::slot	slot_type;
-			typedef neb::gfx::array_continuous<glm::mat4, float, float>		instances_type;
+			typedef std::shared_ptr<neb::gfx::glsl::buffer::mesh_instanced>			buffer_shared;
+			typedef std::map<neb::gfx::glsl::program::threed*, buffer_shared>		buffer_map;
+
+			typedef neb::gfx::array_continuous<glm::mat4, float, float, glm::vec4>		instances_type;
+			typedef instances_type::slot							slot_type;
 		public:
 			void							init(
 					std::shared_ptr<neb::gfx::glsl::program::threed> program);

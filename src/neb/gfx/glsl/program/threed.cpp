@@ -28,6 +28,8 @@ void		neb::gfx::glsl::program::threed::init() {
 	add_attrib(neb::attrib_name::e::INSTANCE_IMAGE_SAMPLER,		"instance_image_sampler",	10);
 	add_attrib(neb::attrib_name::e::INSTANCE_NORMAL_MAP_SAMPLER,	"instance_normal_map_sampler",	11);
 
+	add_attrib(neb::attrib_name::e::INSTANCE_DIFFUSE,		"instance_diffuse",		12);
+
 	scanUniforms();
 	locate();
 

@@ -49,7 +49,7 @@ void			neb::gfx::core::scene::base::init() {
 	meshes_.cuboid_->mesh_.construct(&cube);
 
 	meshes_.cuboid_->instances_.reset(new neb::gfx::mesh_instanced::instances_type);
-	meshes_.cuboid_->instances_->alloc(32);
+	meshes_.cuboid_->instances_->alloc(256);
 
 }
 void			neb::gfx::core::scene::base::release() {

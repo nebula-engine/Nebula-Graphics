@@ -21,11 +21,12 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 	
 
 			union {
-				GLuint			buffer_array_[3];
+				GLuint			buffer_array_[4];
 				struct {
 					GLuint		model_;
 					GLuint		image_sampler_;
 					GLuint		normal_map_sampler_;
+					GLuint		diffuse_;
 				};
 			};
 	};

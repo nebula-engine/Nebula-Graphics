@@ -9,6 +9,7 @@ in vec3 	vs_T;
 in vec3		vs_B;
 in float	vs_instance_image_sampler;
 in float	vs_instance_normal_map_sampler;
+in vec4		vs_instance_diffuse;
 
 uniform sampler2DArray	image;
 uniform sampler2DArray	normal_map;
@@ -16,8 +17,6 @@ uniform sampler2DArray	normal_map;
 #include "v130/inc/light.glsl"
 
 uniform mat4 view;
-
-uniform Material front;
 
 out vec4 color;
 
@@ -41,13 +40,13 @@ void main(void)
 	
 	if(vs_instance_image_sampler >= 0.0) {
 		vec4 image_color = texture(image, vec3(vs_texcoor, vs_instance_image_sampler));
-		amb = front.ambient * image_color;
-		dif = front.diffuse * image_color;
-		spc = front.specular * image_color;
+		amb = image_color;
+		dif = vs_instance_diffuse * image_color;
+		spc = image_color;
 	} else {
-		amb = front.ambient;
-		dif = front.diffuse;
-		spc = front.specular;
+		amb = vec4(0);
+		dif = vs_instance_diffuse;
+		spc = vec4(0);
 	}
 
 	if(vs_instance_normal_map_sampler >= 0.0) {	
@@ -58,7 +57,7 @@ void main(void)
 	
 	lf_lights(amb, dif, spc);
 
-	color += front.emission;
+	color += vec4(0);
 	color += vec4(0.5, 0.5, 0.5, 1.0);
 }
 

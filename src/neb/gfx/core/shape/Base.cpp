@@ -41,7 +41,9 @@ void					neb::gfx::core::shape::base::callbackPose(neb::core::pose const & gpose
 	LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
 	
 	if(mesh_slot_) {
-		mesh_slot_->set<0>(gpose.mat4_cast());
+		auto model = gpose.mat4_cast() * glm::scale(s_);
+		
+		mesh_slot_->set<0>(model);
 		LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
 	}
 }
