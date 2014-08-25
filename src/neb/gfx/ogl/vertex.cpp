@@ -43,7 +43,7 @@ void			neb::gfx::ogl::bufferData(
 		const GLuint*		buffer,
 		const GLsizeiptr*	datasize,
 		const GLsizeiptr*	size,
-		const GLvoid**		data,
+		GLvoid** const		data,
 		const GLenum*		usage,
 		const unsigned int	count)
 {
@@ -102,7 +102,7 @@ void			neb::gfx::ogl::bufferSubData(
 		GLintptr*		end,
 		const GLsizeiptr*	datasize,
 		GLsizeiptr*		size,
-		const GLvoid**		data,
+		GLvoid** const		data,
 		unsigned int		count)
 {
 

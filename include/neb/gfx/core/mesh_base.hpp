@@ -21,7 +21,7 @@ namespace neb { namespace gfx { namespace mesh {
 			virtual GLsizeiptr*		begin() = 0;
 			virtual GLsizeiptr*		end() = 0;
 			virtual GLsizeiptr*		size() = 0;
-			virtual GLvoid**		data() = 0;
+			virtual GLvoid** const		data() = 0;
 
 			/** set by function of same name then sent to bufferData functions */
 			GLvoid**			data_;
@@ -33,10 +33,10 @@ namespace neb { namespace gfx { namespace mesh {
 				neb::gfx::ogl::bufferData(
 						BUFFER::target_,
 						buffer->buffer_,
-						BUFFER::datasize,
+						BUFFER::datasize_,
 						size(),
-						data(),
-						GL_STREAM_DRAW,
+						(GLvoid** const)data(),
+						BUFFER::usage_,
 						BUFFER_COUNT
 						);
 			}
@@ -52,7 +52,7 @@ namespace neb { namespace gfx { namespace mesh {
 						end(),
 						BUFFER::datasize_,
 						size(),
-						(const GLvoid**)data(),
+						(GLvoid** const)data(),
 						BUFFER_COUNT
 						);
 

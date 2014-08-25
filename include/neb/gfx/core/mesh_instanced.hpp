@@ -35,15 +35,13 @@ namespace neb { namespace gfx { namespace mesh {
 			virtual GLsizeiptr*					begin();
 			virtual GLsizeiptr*					end();
 			virtual GLsizeiptr*					size();
-			virtual GLvoid**					data();
+			virtual GLvoid** const					data();
 
 			void							draw(program_shared);
 			void							draw(program_shared, buffer_shared);
 		public:
 			neb::gfx::mesh::tri1					mesh_;
 			
-			GLvoid**						data_;
-
 			buffer_map						buffers_;
 
 			std::shared_ptr<instances_type>				instances_;

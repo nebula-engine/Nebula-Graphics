@@ -15,7 +15,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 		public neb::gfx::glsl::buffer::base<tri1>
 	{
 		public:
-			const math::geo::vertex v;
+			//const math::geo::vertex v;
 
 			static constexpr GLenum			target_[BUFFER_COUNT] = {
 				GL_ARRAY_BUFFER,

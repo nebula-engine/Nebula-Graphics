@@ -86,7 +86,7 @@ void			neb::gfx::mesh::instanced::init(
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	}*/
-GLvoid**		neb::gfx::mesh::instanced::data() {
+GLvoid** const		neb::gfx::mesh::instanced::data() {
 	data_[0] = instances_->get<0, glm::mat4>();
 	data_[1] = instances_->get<1, glm::vec4>();
 	data_[2] = instances_->get<2, glm::vec4>();

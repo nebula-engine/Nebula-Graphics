@@ -17,7 +17,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			typedef neb::gfx::glsl::buffer::base<instanced>			buffer_base_type;
 
 			//static const glm::mat4 m;
-			static constexpr void* pointer[ATTRIB_COUNT] = {
+			static constexpr void*		pointer_[ATTRIB_COUNT] = {
 				(void*)0,
 				(void*)16,
 				(void*)32,
@@ -79,7 +79,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 				GL_FALSE, GL_FALSE, GL_FALSE, 
 				GL_FALSE
 			};
-			static constexpr unsigned int	buffer_index[ATTRIB_COUNT] = {
+			static constexpr unsigned int	buffer_index_[ATTRIB_COUNT] = {
 				0,0,0,0,1,2,3,4,5,6
 			};
 			static constexpr GLenum		target_[BUFFER_COUNT] = {
@@ -90,6 +90,9 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 				GL_ARRAY_BUFFER,
 				GL_ARRAY_BUFFER,
 				GL_ARRAY_BUFFER
+			};
+			static constexpr GLuint		divisor_[ATTRIB_COUNT] = {
+				1,1,1,1,1,1,1,1,1,1
 			};
 
 		public:

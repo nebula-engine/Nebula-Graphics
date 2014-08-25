@@ -29,6 +29,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/buffer/mesh.hpp>
 #include <neb/gfx/Context/Util/decl.hpp>
+#include <neb/gfx/core/mesh_base.hpp>
 
 namespace ba = boost::archive;
 
@@ -44,7 +45,7 @@ namespace neb { namespace gfx { namespace mesh {
 
 			virtual GLsizeiptr*		begin();
 			virtual GLsizeiptr*		end();
-			GLvoid**			data() {
+			virtual GLvoid** const		data() {
 				data_[0] = &vertices_[0];
 				data_[1] = &indices_[0];
 				return data_;
