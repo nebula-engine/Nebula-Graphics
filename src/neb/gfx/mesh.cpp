@@ -117,7 +117,7 @@ void			neb::gfx::mesh::tri1::init_buffer(
 
 	bufs->init(p);
 
-	buffer_data(bufs);
+	bufferData(bufs);
 }
 
 void			neb::gfx::mesh::tri1::draw_elements(

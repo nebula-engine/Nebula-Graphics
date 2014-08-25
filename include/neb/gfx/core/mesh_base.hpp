@@ -23,6 +23,10 @@ namespace neb { namespace gfx { namespace mesh {
 			virtual GLsizeiptr*		size() = 0;
 			virtual GLvoid**		data() = 0;
 
+			/** set by function of same name then sent to bufferData functions */
+			GLvoid**			data_;
+			GLsizeiptr*			size_;
+
 
 			void			bufferData(std::shared_ptr<BUFFER> buffer)
 			{

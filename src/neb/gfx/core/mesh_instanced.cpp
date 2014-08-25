@@ -153,7 +153,7 @@ void			neb::gfx::mesh::instanced::draw(
 	auto buf_mesh = mesh_.buffers_[program.get()];
 	assert(buf_mesh);
 
-	buf->vertexAttribPointer(program);
+	buf->vertexAttribPointer();
 	buf_mesh->vertexAttribPointer();
 
 	std::cout << "instances size = " << instances_->size() << std::endl;

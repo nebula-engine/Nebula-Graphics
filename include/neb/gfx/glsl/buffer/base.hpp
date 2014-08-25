@@ -23,6 +23,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			void			vertexAttribPointer()
 			{
 				neb::gfx::ogl::vertexAttribPointer(
+						BUFFER::target_,
 						index_,
 						BUFFER::size_array_,
 						BUFFER::type_,

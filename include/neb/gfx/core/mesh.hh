@@ -33,7 +33,7 @@
 namespace ba = boost::archive;
 
 namespace neb { namespace gfx { namespace mesh {
-	class tri1 {
+	class tri1: public base<neb::gfx::glsl::buffer::tri1> {
 		public:
 			typedef std::shared_ptr<neb::gfx::glsl::buffer::tri1>			buffer_shared;
 			typedef std::map<neb::gfx::glsl::program::threed*, buffer_shared>	buffer_map;
@@ -42,14 +42,14 @@ namespace neb { namespace gfx { namespace mesh {
 			tri1();
 			~tri1();
 
-			GLvoid**			data_;
-			GLsizei*			size_;
+			virtual GLsizeiptr*		begin();
+			virtual GLsizeiptr*		end();
 			GLvoid**			data() {
 				data_[0] = &vertices_[0];
 				data_[1] = &indices_[0];
 				return data_;
 			}
-			GLsizei*			size() {
+			GLsizeiptr*			size() {
 				assert(!indices_.empty());
 				assert(!vertices_.empty());
 				
@@ -66,7 +66,6 @@ namespace neb { namespace gfx { namespace mesh {
 			void				construct(math::geo::polyhedron*);
 			void				print(int sl);
 
-			void				buffer_data(buffer_shared buf);
 			void				init_buffer(program_shared p);
 			void				draw_elements(
 					program_shared,

@@ -1,8 +1,10 @@
 
+#include <GL/glew.h>
 
 namespace neb { namespace gfx { namespace ogl {
 
 	void			vertexAttribPointer(
+			const GLenum*		target,
 			GLint*			index,
 			const GLint*		size,
 			const GLenum*		type,
@@ -16,7 +18,7 @@ namespace neb { namespace gfx { namespace ogl {
 
 	void			bufferSubData(
 			const GLenum*		target,
-			GLuint*			buffer_,
+			GLuint*			buffer,
 			GLintptr*		begin,
 			GLintptr*		end,
 			const GLsizeiptr*	datasize,
@@ -26,11 +28,12 @@ namespace neb { namespace gfx { namespace ogl {
 
 	void			bufferData(
 			const GLenum*		target,
-			GLuint*			buffer,
+			const GLuint*		buffer,
 			const GLsizeiptr*	datasize,
-			GLsizeiptr*		size,
+			const GLsizeiptr*	size,
 			const GLvoid**		data,
-			unsigned int		count);
+			const GLenum*		usage,
+			const unsigned int	count);
 
 	void			bufferDataNull(
 			const GLenum*		target,
@@ -39,7 +42,7 @@ namespace neb { namespace gfx { namespace ogl {
 			GLsizeiptr*		size,
 			const GLenum*		usage,
 			unsigned int		count);
-			
+
 
 
 }}}

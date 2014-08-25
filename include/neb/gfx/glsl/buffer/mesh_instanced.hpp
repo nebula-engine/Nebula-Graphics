@@ -95,12 +95,6 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 		public:
 			void				init(
 					std::shared_ptr<neb::gfx::glsl::program::threed> p);
-			void				bind();
-			void				unbind();
-			void				vertexAttribPointer(
-					std::shared_ptr<neb::gfx::glsl::program::threed> p);
-			void				enableAttribs(
-					std::shared_ptr<neb::gfx::glsl::program::threed> p);
 
 	};
 }}}}
