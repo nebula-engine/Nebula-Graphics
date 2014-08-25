@@ -30,50 +30,67 @@
 #include <neb/gfx/glsl/buffer/mesh.hpp>
 #include <neb/gfx/Context/Util/decl.hpp>
 
-namespace neb { namespace gfx {
-	class mesh {
+namespace ba = boost::archive;
+
+namespace neb { namespace gfx { namespace mesh {
+	class tri1 {
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::buffer::mesh>			buffer_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::buffer::tri1>			buffer_shared;
 			typedef std::map<neb::gfx::glsl::program::threed*, buffer_shared>	buffer_map;
+			typedef std::shared_ptr<neb::gfx::glsl::program::threed>		program_shared;
 
-			mesh();
-			~mesh();
+			tri1();
+			~tri1();
 
-			void				serialize(boost::archive::polymorphic_iarchive & ar, unsigned int const & version);
-			void				serialize(boost::archive::polymorphic_oarchive & ar, unsigned int const & version);
+			GLvoid**			data_;
+			GLsizei*			size_;
+			GLvoid**			data() {
+				data_[0] = &vertices_[0];
+				data_[1] = &indices_[0];
+				return data_;
+			}
+			GLsizei*			size() {
+				assert(!indices_.empty());
+				assert(!vertices_.empty());
+				
+				size_[0] = vertices_.size();
+				size_[0] = indices_.size();
+				return size_;
+			}
+
+			void				serialize(
+					ba::polymorphic_iarchive & ar, unsigned int const & version);
+			void				serialize(
+					ba::polymorphic_oarchive & ar, unsigned int const & version);
 
 			void				construct(math::geo::polyhedron*);
 			void				print(int sl);
 
-			void				buffer_data(
-					std::shared_ptr<neb::gfx::glsl::buffer::mesh> buf);
-
-			void				init_buffer(
-					std::shared_ptr<neb::gfx::glsl::program::threed> p);
-
+			void				buffer_data(buffer_shared buf);
+			void				init_buffer(program_shared p);
 			void				draw_elements(
-					std::shared_ptr<neb::gfx::glsl::program::threed> program,
+					program_shared,
 					neb::core::pose const & pose,
 					glm::vec3 scale);
 			void				draw_elements(
-					std::shared_ptr<neb::gfx::glsl::program::threed> program,
-					std::shared_ptr<neb::gfx::glsl::buffer::mesh> buffer,
+					program_shared,
+					buffer_shared,
 					neb::core::pose const & pose,
 					glm::vec3 scale);
 
 			neb::material::material			material_front_;
 
 			/** @todo boost wont let me use shared ptr here! */
-			std::vector<math::geo::vertex>		vertices_;
-			std::vector<GLushort>			indices_;
+			std::vector<math::geo::vertex>			vertices_;
+			std::vector<GLushort>				indices_;
 
-			buffer_map				buffers_;
+			buffer_map					buffers_;
 
 
 			std::shared_ptr<neb::gfx::texture>		texture_;
 			std::shared_ptr<neb::gfx::texture>		normal_map_;
 	};
-}}
+}}}
 
 #endif
 

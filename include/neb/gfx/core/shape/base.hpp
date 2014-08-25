@@ -84,11 +84,11 @@ namespace neb {
 
 					// draw data
 					/** @brief ID */
-					std::shared_ptr<neb::gfx::mesh>				mesh_;
+					std::shared_ptr<neb::gfx::mesh::tri1>			mesh_;
 					//neb::program_name::e					program_;
 					/** @brief Parent */
 					
-					std::shared_ptr<neb::gfx::mesh_instanced::slot_type>	mesh_slot_;
+					std::shared_ptr<neb::gfx::mesh::instanced::slot_type>	mesh_slot_;
 			};
 		}}
 	}

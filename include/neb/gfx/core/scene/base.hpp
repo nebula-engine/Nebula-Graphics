@@ -50,7 +50,7 @@ namespace neb {
 
 						// standard meshes
 						struct {
-							std::shared_ptr<neb::gfx::mesh_instanced>		cuboid_;
+							std::shared_ptr<neb::gfx::mesh::instanced>		cuboid_;
 						} meshes_;
 
 				};

@@ -45,10 +45,10 @@ void			neb::gfx::core::scene::base::init() {
 
 	math::geo::cuboid cube(1.0,1.0,1.0);
 	
-	meshes_.cuboid_.reset(new neb::gfx::mesh_instanced);
+	meshes_.cuboid_.reset(new neb::gfx::mesh::instanced);
 	meshes_.cuboid_->mesh_.construct(&cube);
 
-	meshes_.cuboid_->instances_.reset(new neb::gfx::mesh_instanced::instances_type);
+	meshes_.cuboid_->instances_.reset(new neb::gfx::mesh::instanced::instances_type);
 	meshes_.cuboid_->instances_->alloc(256);
 
 }

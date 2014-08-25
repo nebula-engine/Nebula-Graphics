@@ -6,21 +6,20 @@
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/free.hpp>
 
-void			neb::gfx::mesh_instanced::init(
+void			neb::gfx::mesh::instanced::init(
 		std::shared_ptr<neb::gfx::glsl::program::threed> program)
 {
 	mesh_.init_buffer(program);
 
 
-
-	auto buf(std::make_shared<neb::gfx::glsl::buffer::mesh_instanced>());
+	auto buf(std::make_shared<neb::gfx::glsl::buffer::instanced>());
 	buffers_[program.get()] = buf;
 	
 	buf->init(program);
 	
 	bufferDataNull(buf);
 }
-void			neb::gfx::mesh_instanced::bufferSubData(
+/*void			neb::gfx::mesh::instanced::bufferSubData(
 		std::shared_ptr<neb::gfx::glsl::buffer::mesh_instanced>	buf)
 {
 	checkerror("unknown");
@@ -35,7 +34,7 @@ void			neb::gfx::mesh_instanced::bufferSubData(
 		instances_->get<6, GLfloat>()
 	};
 
-	GLuint* buffer = buf->buffer_array_;
+	GLuint* buffer = buf->buffer_;
 
 	auto b = instances_->update_begin_;
 	auto e = instances_->update_end_;
@@ -48,7 +47,7 @@ void			neb::gfx::mesh_instanced::bufferSubData(
 	
 	for(unsigned int c = 0; c < BUFFER_COUNT; c++) {
 
-		GLintptr offset = b * datasize[c];
+		GLintptr offset = b * buffer_type::datasize[c];
 
 		LOG(lg, neb::gfx::sl, debug)
 			<< std::setw(16) << offset
@@ -65,8 +64,8 @@ void			neb::gfx::mesh_instanced::bufferSubData(
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	instances_->reset_update();
-}
-void			neb::gfx::mesh_instanced::bufferDataNull(
+}*/
+/*void			neb::gfx::mesh::instanced::bufferDataNull(
 		std::shared_ptr<neb::gfx::glsl::buffer::mesh_instanced>	buf)
 {
 	checkerror("unknown");
@@ -86,39 +85,48 @@ void			neb::gfx::mesh_instanced::bufferDataNull(
 	}
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+	}*/
+GLvoid**		neb::gfx::mesh::instanced::data() {
+	data_[0] = instances_->get<0, glm::mat4>();
+	data_[1] = instances_->get<1, glm::vec4>();
+	data_[2] = instances_->get<2, glm::vec4>();
+	data_[3] = instances_->get<3, glm::vec4>();
+	data_[4] = instances_->get<4, glm::vec4>();
+	data_[5] = instances_->get<5, glm::vec4>();
+	data_[6] = instances_->get<6, GLfloat>();
+	return data_;
 }
-void			neb::gfx::mesh_instanced::bufferData(
-		std::shared_ptr<neb::gfx::glsl::buffer::mesh_instanced>	buf)
-{
-	checkerror("unknown");
+/*void			neb::gfx::mesh::instanced::bufferData(
+  std::shared_ptr<neb::gfx::glsl::buffer::mesh_instanced>	buf)
+  {
+  checkerror("unknown");
 
-	auto size = instances_->size();
+  auto size = instances_->size();
 
-	void* data[] = {
-		instances_->get<0, glm::mat4>(),
-		instances_->get<1, glm::vec4>(),
-		instances_->get<2, glm::vec4>(),
-		instances_->get<3, glm::vec4>(),
-		instances_->get<4, glm::vec4>(),
-		instances_->get<5, glm::vec4>(),
-		instances_->get<6, GLfloat>()
-	};
+  void* data[] = {
+  instances_->get<0, glm::mat4>(),
+  instances_->get<1, glm::vec4>(),
+  instances_->get<2, glm::vec4>(),
+  instances_->get<3, glm::vec4>(),
+  instances_->get<4, glm::vec4>(),
+  instances_->get<5, glm::vec4>(),
+  instances_->get<6, GLfloat>()
+  };
 
-	GLuint* buffer = buf->buffer_array_;
+  GLuint* buffer = buf->buffer_array_;
 
-	for(unsigned int c = 0; c < BUFFER_COUNT; c++) {
-		glBindBuffer(GL_ARRAY_BUFFER, buffer[c]);
-		glBufferData(
-				GL_ARRAY_BUFFER,
-				size * datasize[c],
-				data[c],
-				GL_STREAM_DRAW);
-		checkerror("glBufferSubData");
-	}
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+  neb::gfx::ogl::bufferData(
+  buffer_array_,
+  datasize,
+  size,
+  data,
+  GL_STREAM_DRAW,
+  BUFFER_COUNT
+  );
 
-}	
-void			neb::gfx::mesh_instanced::draw(
+
+  }*/	
+void			neb::gfx::mesh::instanced::draw(
 		std::shared_ptr<neb::gfx::glsl::program::threed> program)
 {
 	if(!buffers_[program.get()])
@@ -137,16 +145,16 @@ void			neb::gfx::mesh_instanced::draw(
 
 	draw(program, buf);
 }
-void			neb::gfx::mesh_instanced::draw(
+void			neb::gfx::mesh::instanced::draw(
 		std::shared_ptr<neb::gfx::glsl::program::threed>	program,
-		std::shared_ptr<neb::gfx::glsl::buffer::mesh_instanced>	buf)
+		std::shared_ptr<neb::gfx::glsl::buffer::instanced>	buf)
 {
 
 	auto buf_mesh = mesh_.buffers_[program.get()];
 	assert(buf_mesh);
 
 	buf->vertexAttribPointer(program);
-	buf_mesh->vertexAttribPointer(program);
+	buf_mesh->vertexAttribPointer();
 
 	std::cout << "instances size = " << instances_->size() << std::endl;
 	std::cout << "mesh size      = " << mesh_.indices_.size() << std::endl;

@@ -27,7 +27,8 @@ namespace neb { namespace gfx {
 		class attrib;
 
 		namespace buffer {
-			class mesh_instanced;
+			class tri1;
+			class instanced;
 		}
 	}
 

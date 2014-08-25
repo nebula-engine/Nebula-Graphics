@@ -18,13 +18,13 @@
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 
-neb::gfx::mesh::mesh() {
+neb::gfx::mesh::tri1::tri1() {
 	//printf("%s\n",__PRETTY_FUNCTION__);
 }
-neb::gfx::mesh::~mesh() {
+neb::gfx::mesh::tri1::~tri1() {
 	//printf("%s\n",__PRETTY_FUNCTION__);
 }
-void	neb::gfx::mesh::construct(math::geo::polyhedron* poly) {
+void	neb::gfx::mesh::tri1::construct(math::geo::polyhedron* poly) {
 
 	auto tris = poly->triangles();
 	
@@ -51,7 +51,7 @@ void	neb::gfx::mesh::construct(math::geo::polyhedron* poly) {
 
 
 }
-void		neb::gfx::mesh::serialize(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) {
+void		neb::gfx::mesh::tri1::serialize(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) {
 	
 	printf("%s\n",__PRETTY_FUNCTION__);
 	
@@ -76,7 +76,7 @@ void		neb::gfx::mesh::serialize(boost::archive::polymorphic_iarchive & ar, unsig
 	LOG(lg, neb::gfx::sl, info) << "indices:  " << indices_.size();
 
 }
-void		neb::gfx::mesh::serialize(boost::archive::polymorphic_oarchive & ar, unsigned int const & version) {
+void		neb::gfx::mesh::tri1::serialize(boost::archive::polymorphic_oarchive & ar, unsigned int const & version) {
 
 	printf("%s\n",__PRETTY_FUNCTION__);
 	
@@ -88,14 +88,14 @@ void		neb::gfx::mesh::serialize(boost::archive::polymorphic_oarchive & ar, unsig
 	LOG(lg, neb::gfx::sl, info) << "indices:  " << indices_.size();
 
 }
-void		neb::gfx::mesh::print(int sl) {
+void		neb::gfx::mesh::tri1::print(int sl) {
 	LOG(lg, neb::gfx::sl, (severity_level)sl) << "mesh";
 
 	for(auto v : vertices_) {
 		v.print(sl);
 	}	
 }
-void			neb::gfx::mesh::init_buffer(
+void			neb::gfx::mesh::tri1::init_buffer(
 		shared_ptr<neb::gfx::glsl::program::threed> p)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -112,40 +112,15 @@ void			neb::gfx::mesh::init_buffer(
 
 	checkerror("unknown");
 
-	auto bufs(std::make_shared<neb::gfx::glsl::buffer::mesh>());
+	auto bufs(std::make_shared<neb::gfx::glsl::buffer::tri1>());
 	buffers_[p.get()] = bufs;
 
 	bufs->init(p);
 
 	buffer_data(bufs);
 }
-void			neb::gfx::mesh::buffer_data(std::shared_ptr<neb::gfx::glsl::buffer::mesh> buf) {
-	
-	assert(!indices_.empty());
-	assert(!vertices_.empty());
 
-	int size_i = indices_.size() * sizeof(GLushort);
-	int size_v = vertices_.size() * sizeof(math::geo::vertex);
-	
-	buf->bind();
-
-
-	glBufferData(
-			GL_ELEMENT_ARRAY_BUFFER,
-			size_i,
-			&indices_[0],
-			GL_STATIC_DRAW);
-
-	glBufferData(
-			GL_ARRAY_BUFFER,
-			size_v,
-			&vertices_[0],
-			GL_STATIC_DRAW);
-
-	buf->unbind();
-
-}
-void			neb::gfx::mesh::draw_elements(
+void			neb::gfx::mesh::tri1::draw_elements(
 		std::shared_ptr<neb::gfx::glsl::program::threed> p,
 		neb::core::pose const & pose,
 		glm::vec3 scale)
@@ -163,15 +138,15 @@ void			neb::gfx::mesh::draw_elements(
 	draw_elements(p, buf, pose, scale);
 
 }
-void			neb::gfx::mesh::draw_elements(
+void			neb::gfx::mesh::tri1::draw_elements(
 		std::shared_ptr<neb::gfx::glsl::program::threed>	p,
-		std::shared_ptr<neb::gfx::glsl::buffer::mesh>		buf,
+		std::shared_ptr<neb::gfx::glsl::buffer::tri1>		buf,
 		neb::core::pose const & pose,
 		glm::vec3 scale)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	buf->vertexAttribPointer(p);
+	buf->vertexAttribPointer();
 
 	// attribs
 	p->get_attrib(neb::attrib_name::e::POSITION)->enable();

@@ -48,9 +48,12 @@ namespace neb {
 		}
 
 		class texture;
-	
-		class mesh;
-		class mesh_instanced;	
+
+		namespace mesh {
+			template<typename BUFFER> class base;
+			class tri1;
+			class instanced;
+		}
 
 		/** @brief Graphical User Interface */
 		namespace gui {
@@ -65,7 +68,7 @@ namespace neb {
 
 
 			}
-			
+
 			/** @brief %Object */
 			namespace object {
 				/** @brief %utilities */
@@ -88,7 +91,7 @@ namespace neb {
 			class base;
 			class window;
 		}
-		
+
 		/**@brief %environ */
 		namespace environ {
 			class base;

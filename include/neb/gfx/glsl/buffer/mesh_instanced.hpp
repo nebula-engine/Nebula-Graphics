@@ -6,52 +6,90 @@
 #include <GL/glew.h>
 
 #include <neb/gfx/glsl/util/decl.hpp>
+#include <neb/gfx/glsl/buffer/base.hpp>
 
 namespace neb { namespace gfx { namespace glsl { namespace buffer {
-	class mesh_instanced {
+	class instanced:
+		public neb::gfx::glsl::buffer::base<instanced>
+	{
 		public:
-			enum {
-				ATTRIB_COUNT = 10,
-				BUFFER_COUNT = 7
-			};
+			typedef std::shared_ptr<neb::gfx::glsl::program::threed>	program_shared;
+			typedef neb::gfx::glsl::buffer::base<instanced>			buffer_base_type;
 
-			const GLenum type[ATTRIB_COUNT] = {
-				GL_FLOAT,
-				GL_FLOAT,
-				GL_FLOAT,
-				GL_FLOAT,
-				GL_FLOAT,
-				GL_FLOAT,
-				GL_FLOAT,
-				GL_FLOAT,
-				GL_FLOAT,
+			//static const glm::mat4 m;
+			static constexpr void* pointer[ATTRIB_COUNT] = {
+				(void*)0,
+				(void*)16,
+				(void*)32,
+				(void*)48,
+				(void*)0,
+				(void*)0,
+				(void*)0,
+				(void*)0,
+				(void*)0,
+				(void*)0
+			};
+/*			static constexpr void* pointer[ATTRIB_COUNT] = {
+				(void*)((long)&m[0] - (long)&m),
+				(void*)((long)&m[1] - (long)&m),
+				(void*)((long)&m[2] - (long)&m),
+				(void*)((long)&m[3] - (long)&m),
+				0,
+				(void*)0,
+				(void*)0,
+				(void*)0,
+				(void*)0,
+				(void*)0
+			};*/
+			static constexpr GLenum		usage_[BUFFER_COUNT] = {
+				GL_STREAM_DRAW,
+				GL_STREAM_DRAW
+			};
+			static constexpr GLint		size_array_[ATTRIB_COUNT] = {
+				4,4,4,4,4,4,4,4,4,1
+			};
+			static constexpr GLsizeiptr	datasize_[ATTRIB_COUNT] = {
+				sizeof(glm::vec4),
+				sizeof(glm::vec4),
+				sizeof(glm::vec4),
+				sizeof(glm::vec4),
+				sizeof(glm::vec4),
+				sizeof(glm::vec4),
+				sizeof(glm::vec4),
+				sizeof(glm::vec4),
+				sizeof(glm::vec4),
+				sizeof(GLfloat)
+			};
+			static constexpr GLsizei	stride_[ATTRIB_COUNT] = {
+				sizeof(glm::mat4),
+				sizeof(glm::mat4),
+				sizeof(glm::mat4),
+				sizeof(glm::mat4),
+				0,0,0,0,0,0
+			};
+			static constexpr GLenum		type_[ATTRIB_COUNT] = {
+				GL_FLOAT, GL_FLOAT, GL_FLOAT, 
+				GL_FLOAT, GL_FLOAT, GL_FLOAT, 
+				GL_FLOAT, GL_FLOAT, GL_FLOAT, 
 				GL_FLOAT
 			};
-
-			const GLboolean normalized[ATTRIB_COUNT] = {
-				GL_FALSE,
-				GL_FALSE,
-				GL_FALSE,
-				GL_FALSE,
-				GL_FALSE,
-				GL_FALSE,
-				GL_FALSE,
-				GL_FALSE,
-				GL_FALSE,
+			static constexpr GLboolean	normalized_[ATTRIB_COUNT] = {
+				GL_FALSE, GL_FALSE, GL_FALSE, 
+				GL_FALSE, GL_FALSE, GL_FALSE, 
+				GL_FALSE, GL_FALSE, GL_FALSE, 
 				GL_FALSE
 			};
-
-			const GLuint buffer[ATTRIB_COUNT] = {
-				model_,
-				model_,
-				model_,
-				model_,
-				sampler_,
-				diffuse_,
-				buffer_array_[4],
-				buffer_array_[5],
-				buffer_array_[6],
-				buffer_array_[7]
+			static constexpr unsigned int	buffer_index[ATTRIB_COUNT] = {
+				0,0,0,0,1,2,3,4,5,6
+			};
+			static constexpr GLenum		target_[BUFFER_COUNT] = {
+				GL_ARRAY_BUFFER,
+				GL_ARRAY_BUFFER,
+				GL_ARRAY_BUFFER,
+				GL_ARRAY_BUFFER,
+				GL_ARRAY_BUFFER,
+				GL_ARRAY_BUFFER,
+				GL_ARRAY_BUFFER
 			};
 
 		public:
@@ -64,19 +102,6 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			void				enableAttribs(
 					std::shared_ptr<neb::gfx::glsl::program::threed> p);
 
-
-			union {
-				GLuint			buffer_array_[BUFFER_COUNT];
-				struct {
-					GLuint		model_;
-					GLuint		sampler_;
-					GLuint		diffuse_;
-					GLuint		ambient_;
-					GLuint		specular_;
-					GLuint		emission_;
-					GLuint		shininess_;
-				};
-			};
 	};
 }}}}
 
