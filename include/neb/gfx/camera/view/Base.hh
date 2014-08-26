@@ -13,11 +13,9 @@
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
-#include <neb/gfx/Camera/View/util/flag.hpp>
+#include <neb/gfx/camera/view/util/flag.hpp>
 
-namespace neb {namespace gfx {namespace Camera {namespace view {
-
-
+namespace neb {namespace gfx {namespace camera {namespace view {
 
 	/** @brief @Base */
 	class base: virtual public neb::itf::shared {

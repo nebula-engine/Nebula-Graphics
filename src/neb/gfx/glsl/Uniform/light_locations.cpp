@@ -15,9 +15,21 @@ void		neb::gfx::glsl::uniform::light_locations::init(std::shared_ptr<neb::gfx::g
 	location[7] = program->get_uniform_vector("light_spot_direction")->o_[0];
 	location[8] = program->get_uniform_vector("light_spot_cutoff")->o_[0];
 	location[9] = program->get_uniform_vector("light_spot_exponent")->o_[0];
-	location[10] = program->get_uniform_vector("light_type")->o_[0];
-	location[11] = program->get_uniform_vector("light_closed")->o_[0];
-	location[12] = program->get_uniform_scalar("light_count")->o_;
+
+	location[10] = program->get_uniform_vector("light_shadow_vpb_0")->o_[0];
+	location[11] = program->get_uniform_vector("light_shadow_vpb_1")->o_[0];
+	location[12] = program->get_uniform_vector("light_shadow_vpb_2")->o_[0];
+	location[13] = program->get_uniform_vector("light_shadow_vpb_3")->o_[0];
+	location[14] = program->get_uniform_vector("light_shadow_vpb_4")->o_[0];
+	location[15] = program->get_uniform_vector("light_shadow_vpb_5")->o_[0];
+
+	location[16] = program->get_uniform_vector("light_shadow_sampler_0")->o_[0];
+	location[17] = program->get_uniform_vector("light_shadow_sampler_1")->o_[0];
+
+	location[18] = program->get_uniform_vector("light_type")->o_[0];
+
+	location[19] = program->get_uniform_vector("light_closed")->o_[0];
+	location[20] = program->get_uniform_scalar("light_count")->o_;
 }
 
 

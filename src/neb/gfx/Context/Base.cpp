@@ -8,7 +8,7 @@
 #include <neb/gfx/environ/base.hpp>
 #include <neb/gfx/gui/layout/base.hpp>
 #include <neb/gfx/camera/view/Free.hh>
-#include <neb/gfx/camera/proj/Perspective.hh>
+#include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/util/log.hpp>
 
 

@@ -4,37 +4,31 @@
 #include <vector>
 #include <memory>
 
-//#include <neb/config.hh>
-#include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/glsl/util/decl.hpp>
-//#include <neb/camera_control.hpp>
+#include <neb/gfx/camera/proj/base.hpp>
 
-namespace neb {
-	namespace gfx {
-		namespace camera {
-			namespace proj {
-				/** @brief @Base */
-				class ortho: virtual public base {
-					public:
-						Perspective(std::shared_ptr<neb::gfx::environ::base>);
-						//void		init(neb::renderable_shared);
-						virtual glm::mat4				proj();
+namespace neb {namespace gfx {namespace camera {namespace proj {
 
-						/** @brief step */
-						void					step(gal::etc::timestep const & ts);
 
-						//
+	/** @brief @Base */
+	class ortho: virtual public neb::gfx::camera::proj::base {
+		public:
+			ortho(std::shared_ptr<neb::gfx::environ::base>);
 
-						float					left_;
-						float					right_;
-						float					bottom_;
-						float					top_;
+			virtual glm::mat4			proj();
 
-				};
-			}
-		}
-	}
-}
+			virtual void				step(gal::etc::timestep const & ts);
+
+
+			float					left_;
+			float					right_;
+			float					bottom_;
+			float					top_;
+			float					near_;
+			float					far_;
+
+	};
+
+}}}}
 
 #endif
 

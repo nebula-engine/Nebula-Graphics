@@ -1,5 +1,5 @@
 //#include <neb/app/base.hpp>
-#include <neb/gfx/Camera/View/Base.hh>
+#include <neb/gfx/camera/view/Base.hh>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 

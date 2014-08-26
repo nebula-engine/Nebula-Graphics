@@ -13,16 +13,52 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 	float atten;
 
 	//float shininess = 10.0;
+	
+	bool shadow = false;
+	
+	float depth0;
+	float depth1;
+	float depth2;
+	float depth3;
+	float depth4;
+	float depth5;
 
 	for(int i = 0; i < light_count; i++) // for all light sources
 	{
 		if(light_closed[i] == 0) continue;
+		
+		
+		// shadow
+		if(light_shadow_sampler_0[i].x >= 0.0) {
+
+			vec4 shadow_coor_0 = light_shadow_vpb_0[i] * vs_m_P;
+			vec4 shadow_coor_1 = light_shadow_vpb_1[i] * vs_m_P;
+			vec4 shadow_coor_2 = light_shadow_vpb_2[i] * vs_m_P;
+			vec4 shadow_coor_3 = light_shadow_vpb_3[i] * vs_m_P;
+			vec4 shadow_coor_4 = light_shadow_vpb_4[i] * vs_m_P;
+			vec4 shadow_coor_5 = light_shadow_vpb_5[i] * vs_m_P;
+
+			depth0 = texture(shadow_map, vec3(shadow_coor_0.xy, light_shadow_sampler_0[i].x)).z;
+			depth1 = texture(shadow_map, vec3(shadow_coor_1.xy, light_shadow_sampler_0[i].y)).z;
+			depth2 = texture(shadow_map, vec3(shadow_coor_2.xy, light_shadow_sampler_0[i].z)).z;
+			depth3 = texture(shadow_map, vec3(shadow_coor_3.xy, light_shadow_sampler_1[i].x)).z;
+			depth4 = texture(shadow_map, vec3(shadow_coor_4.xy, light_shadow_sampler_1[i].y)).z;
+			depth5 = texture(shadow_map, vec3(shadow_coor_5.xy, light_shadow_sampler_1[i].z)).z;
+			
+			if(depth0 < shadow_coor_0.z) shadow = true;
+			if(depth1 < shadow_coor_1.z) shadow = true;
+			if(depth2 < shadow_coor_2.z) shadow = true;
+			if(depth3 < shadow_coor_3.z) shadow = true;
+			if(depth4 < shadow_coor_4.z) shadow = true;
+			if(depth5 < shadow_coor_5.z) shadow = true;
+		}
+
+
 
 		// ambient
 		ambient = light_ambient[i] * amb;
 
 		// diffuse
-
 		pos = vec4(light_position[i], 1.0);
 
 		
@@ -81,6 +117,11 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 			
 			specular = atten * light_specular[i] * spc *
 				vec4(vec3(pow(max(0.0, dot(reflect(-L,N), -P.xyz)), vs_instance_shininess)),1.0);
+		}
+
+		if(shadow) {
+			diffuse = vec4(0);
+			specular = vec4(0);
 		}
 
 		color += ambient + diffuse + specular;

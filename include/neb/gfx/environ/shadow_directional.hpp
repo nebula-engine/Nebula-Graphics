@@ -4,10 +4,11 @@
 #include <neb/core/core/actor/util/decl.hpp>
 #include <neb/core/util/typedef.hpp>
 
+#include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/base.hpp>
-#include <neb/gfx/core/light/util/Types.hh>
+#include <neb/gfx/core/light/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace environ {
 

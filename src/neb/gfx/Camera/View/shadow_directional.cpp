@@ -1,6 +1,6 @@
 
 #include <neb/gfx/environ/shadow_directional.hpp>
-#include <neb/gfx/Camera/View/shadow_directional.hpp>
+#include <neb/gfx/camera/view/shadow_directional.hpp>
 #include <neb/gfx/core/light/directional.hpp>
 
 neb::gfx::camera::view::shadow_directional::shadow_directional(std::shared_ptr<neb::gfx::environ::base> parent):

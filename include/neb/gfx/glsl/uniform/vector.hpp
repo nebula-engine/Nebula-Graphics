@@ -58,10 +58,10 @@ namespace neb { namespace gfx { namespace glsl { namespace Uniform { namespace V
 			virtual void		load(int, float*);
 			virtual void		load(int, vec4 const &);
 	};
-	class Mat4: public neb::gfx::glsl::Uniform::Vector::base {
+	class mat4: public neb::gfx::glsl::Uniform::Vector::base {
 		public:
-			Mat4(std::string s): base(s) {}
-			virtual void		load(int, mat4 const &);
+			mat4(std::string s): base(s) {}
+			virtual void		load(int, glm::mat4 const &);
 	};
 }}}}}
 

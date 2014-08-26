@@ -27,6 +27,9 @@ void		neb::gfx::ogl::glUniformv(GLint location, GLsizei count, float const * con
 	checkerror(ss.str());
 }
 void		neb::gfx::ogl::glUniformv(GLint location, GLsizei count, int const * const & value) {
+
+	checkerror("unknown");
+
 	glUniform1iv(location, count, value);
 
 	std::stringstream ss;

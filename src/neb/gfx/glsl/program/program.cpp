@@ -154,6 +154,9 @@ void			neb::gfx::glsl::program::base::add_uniform_vector(std::string name, GLenu
 		case GL_FLOAT_VEC4:
 			u.reset(new neb::gfx::glsl::Uniform::Vector::Vec4(name));
 			break;
+		case GL_FLOAT_MAT4:
+			u.reset(new neb::gfx::glsl::Uniform::Vector::mat4(name));
+			break;
 		default:
 			printf("unsupported glsl type \"%s\"\n", name.c_str());
 			exit(0);

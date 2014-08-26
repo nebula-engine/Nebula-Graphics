@@ -9,7 +9,7 @@
 
 namespace neb {
 	namespace gfx {
-		namespace Camera {
+		namespace camera {
 			namespace view {
 				/** @brief free flying camera
 				 * this camera can move freely through the scene

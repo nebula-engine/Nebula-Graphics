@@ -14,7 +14,7 @@
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
 #include <neb/gfx/GUI/Object/terminal.hh>
-#include <neb/gfx/Camera/View/Base.hh>
+#include <neb/gfx/camera/view/Base.hh>
 
 /*#include <neb/core/light/Spot.hh>
 #include <neb/core/scene/Local.hh>

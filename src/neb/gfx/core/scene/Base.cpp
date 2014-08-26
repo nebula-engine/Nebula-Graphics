@@ -20,7 +20,7 @@
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
-#include <neb/gfx/Camera/Projection/Perspective.hh>
+#include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/core/mesh_instanced.hpp>
 
 using namespace std;

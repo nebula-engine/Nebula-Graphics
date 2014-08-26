@@ -5,8 +5,8 @@
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
-#include <neb/gfx/Camera/View/shadow_directional.hpp>
-#include <neb/gfx/Camera/proj/ortho.hpp>
+#include <neb/gfx/camera/view/shadow_directional.hpp>
+#include <neb/gfx/camera/proj/ortho.hpp>
 
 #include <neb/gfx/environ/shadow_directional.hpp>
 #include <neb/gfx/drawable/base.hpp>

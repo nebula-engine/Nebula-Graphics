@@ -7,14 +7,14 @@
 #include <neb/core/core/actor/base.hpp>
 
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/Camera/View/ridealong.hh>
+#include <neb/gfx/camera/view/ridealong.hh>
 
-neb::gfx::camera::view::Ridealong::Ridealong(std::shared_ptr<neb::gfx::environ::base> parent, weak_ptr<neb::core::core::actor::base> actor):
+neb::gfx::camera::view::ridealong::ridealong(std::shared_ptr<neb::gfx::environ::base> parent, weak_ptr<neb::core::core::actor::base> actor):
 	neb::gfx::camera::view::base(parent),
 	actor_(actor)
 {
 }
-mat4		neb::gfx::camera::view::Ridealong::view() {
+mat4		neb::gfx::camera::view::ridealong::view() {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
@@ -69,7 +69,7 @@ mat4		neb::gfx::camera::view::Ridealong::view() {
 	*/
 	return mat4(ret);
 }
-void neb::gfx::camera::view::Ridealong::step(gal::etc::timestep const & ts) {
+void neb::gfx::camera::view::ridealong::step(gal::etc::timestep const & ts) {
 	
 }
 

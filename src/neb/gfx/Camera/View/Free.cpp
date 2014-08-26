@@ -7,7 +7,7 @@
 #include <neb/core/util/debug.hpp>
 
 #include <neb/gfx/window/Base.hh>
-#include <neb/gfx/Camera/View/Free.hh>
+#include <neb/gfx/camera/view/Free.hh>
 #include <neb/gfx/util/log.hpp>
 
 neb::gfx::camera::view::Free::Free(std::shared_ptr<neb::gfx::environ::base> parent):

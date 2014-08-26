@@ -3,6 +3,7 @@
 #include "v130/inc/material.glsl"
 
 in vec4		vs_P;
+in vec4		vs_m_P;
 in vec3		vs_N;
 in vec2		vs_texcoor;
 in vec3 	vs_T;
@@ -16,6 +17,7 @@ in float	vs_instance_shininess;
 
 uniform sampler2DArray	image;
 uniform sampler2DArray	normal_map;
+uniform sampler2DArray	shadow_map;
 
 #include "v130/inc/light.glsl"
 

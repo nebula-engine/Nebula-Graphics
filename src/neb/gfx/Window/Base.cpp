@@ -20,7 +20,7 @@
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
-#include <neb/gfx/Camera/View/Base.hh>
+#include <neb/gfx/camera/view/Base.hh>
 #include <neb/gfx/Context/Window.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/window/Base.hh>

@@ -4,10 +4,14 @@
 #include <vector>
 #include <memory>
 
+#include <glm/glm.hpp>
+
+#include <gal/etc/timestep.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 
-namespace neb {namespace gfx {namespace camera {namespace projection {
+namespace neb {namespace gfx {namespace camera {namespace proj {
 	/** @brief @Base */
 	class base {
 		public:

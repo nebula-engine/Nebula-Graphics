@@ -1,6 +1,7 @@
 #version 130
 
 out vec4	vs_P;
+out vec4	vs_m_P;
 out vec3	vs_N;
 out vec2	vs_texcoor;
 out vec3	vs_T;
@@ -43,6 +44,7 @@ void main(void) {
 	
 	// Calculate view-space coordinate
 	vs_P = modelview * vec4(position,1.0);
+	vs_m_P = model * vec4(position,1.0);
 
 	// Calculate normal in view-space
 	vs_N = normalize(mat3(modelview) * normal);
