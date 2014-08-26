@@ -13,17 +13,23 @@ void			neb::gfx::ogl::vertexAttribPointer(
 		GLuint*			buffer,
 		const unsigned int*	buffer_index,
 		const GLuint*		divisor,
-		unsigned int		count)
+		unsigned int		attrib_count)
 {
-	for(unsigned int c = 0; c < count; c++)
+	for(unsigned int c = 0; c < attrib_count; c++)
 	{
 
 		glBindBuffer(
 				target[buffer_index[c]],
 				buffer[buffer_index[c]]);
 
+		checkerror("glBindBuffer");
+
 		glEnableVertexAttribArray(
 				index[c]);
+
+		std::stringstream ss;
+		ss << "glEnableVertexAttribArray " << index[c];
+		checkerror(ss.str());
 
 		glVertexAttribPointer(
 				index[c],
@@ -33,9 +39,13 @@ void			neb::gfx::ogl::vertexAttribPointer(
 				stride[c],
 				pointer[c]);
 
+		checkerror("glVertexAttribPointer");
+
 		glVertexAttribDivisor(
 				index[c],
 				divisor[c]);
+
+		checkerror("glVertexAttribDivisor");
 	}
 }
 void			neb::gfx::ogl::bufferData(
@@ -45,14 +55,16 @@ void			neb::gfx::ogl::bufferData(
 		const GLsizeiptr*	size,
 		GLvoid** const		data,
 		const GLenum*		usage,
-		const unsigned int	count)
+		const unsigned int	buffer_count)
 {
 
-	for(unsigned int c = 0; c < count; c++)
+	for(unsigned int c = 0; c < buffer_count; c++)
 	{
 		glBindBuffer(
 				target[c],
 				buffer[c]);
+
+		checkerror("glBindBuffer");
 
 		glBufferData(
 				target[c],
@@ -64,6 +76,8 @@ void			neb::gfx::ogl::bufferData(
 
 		glBindBuffer(target[c], 0);
 
+		checkerror("glBindBuffer");
+
 	}
 
 
@@ -74,12 +88,14 @@ void			neb::gfx::ogl::bufferDataNull(
 		const GLsizeiptr*	datasize,
 		GLsizeiptr*		size,
 		const GLenum*		usage,
-		unsigned int		count)
+		unsigned int		buffer_count)
 {
 
-	for(unsigned int c = 0; c < count; c++)
+	for(unsigned int c = 0; c < buffer_count; c++)
 	{
 		glBindBuffer(target[c], buffer[c]);
+
+		checkerror("glBindBuffer");
 
 		glBufferData(
 				target[c],
@@ -87,9 +103,11 @@ void			neb::gfx::ogl::bufferDataNull(
 				NULL,
 				usage[c]);
 
-		checkerror("glBufferSubData");
+		checkerror("glBufferData");
 
 		glBindBuffer(target[c], 0);
+
+		checkerror("glBindBuffer");
 
 	}
 

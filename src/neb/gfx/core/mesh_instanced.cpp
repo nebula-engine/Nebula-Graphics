@@ -86,6 +86,48 @@ void			neb::gfx::mesh::instanced::init(
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	}*/
+
+GLsizeiptr*		neb::gfx::mesh::instanced::size_array() {
+
+	for(unsigned int c = 0; c < BUFFER_COUNT; c++)
+	{
+		size_array_[c] = instances_->size_array();
+	}
+
+	return size_array_;
+}
+GLsizeiptr*		neb::gfx::mesh::instanced::size() {
+
+	begin();
+	end();
+
+	for(unsigned int c = 0; c < BUFFER_COUNT; c++)
+	{
+		size_[c] = end_[c] - begin_[c] + 1;
+	}
+
+	return size_;
+}
+GLsizeiptr*		neb::gfx::mesh::instanced::end() {
+	end_[0] = instances_->update_end_;
+	end_[1] = instances_->update_end_;
+	end_[2] = instances_->update_end_;
+	end_[3] = instances_->update_end_;
+	end_[4] = instances_->update_end_;
+	end_[5] = instances_->update_end_;
+	end_[6] = instances_->update_end_;
+	return end_;
+}
+GLsizeiptr*		neb::gfx::mesh::instanced::begin() {
+	begin_[0] = instances_->update_begin_;
+	begin_[1] = instances_->update_begin_;
+	begin_[2] = instances_->update_begin_;
+	begin_[3] = instances_->update_begin_;
+	begin_[4] = instances_->update_begin_;
+	begin_[5] = instances_->update_begin_;
+	begin_[6] = instances_->update_begin_;
+	return begin_;
+}
 GLvoid** const		neb::gfx::mesh::instanced::data() {
 	data_[0] = instances_->get<0, glm::mat4>();
 	data_[1] = instances_->get<1, glm::vec4>();
@@ -103,15 +145,6 @@ GLvoid** const		neb::gfx::mesh::instanced::data() {
 
   auto size = instances_->size();
 
-  void* data[] = {
-  instances_->get<0, glm::mat4>(),
-  instances_->get<1, glm::vec4>(),
-  instances_->get<2, glm::vec4>(),
-  instances_->get<3, glm::vec4>(),
-  instances_->get<4, glm::vec4>(),
-  instances_->get<5, glm::vec4>(),
-  instances_->get<6, GLfloat>()
-  };
 
   GLuint* buffer = buf->buffer_array_;
 
@@ -156,12 +189,13 @@ void			neb::gfx::mesh::instanced::draw(
 	buf->vertexAttribPointer();
 	buf_mesh->vertexAttribPointer();
 
-	std::cout << "instances size = " << instances_->size() << std::endl;
-	std::cout << "mesh size      = " << mesh_.indices_.size() << std::endl;
+	LOG(lg, neb::gfx::sl, debug) << "instances size = " << instances_->size();
+	LOG(lg, neb::gfx::sl, debug) << "mesh size      = " << mesh_.indices_.size();
 
 	buf_mesh->bind();
 
 	glDrawElementsInstanced(GL_TRIANGLES, mesh_.indices_.size(), GL_UNSIGNED_SHORT, 0, instances_->size());
+
 	checkerror("glDrawElementsInstanced");
 
 	buf_mesh->unbind();

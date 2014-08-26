@@ -228,6 +228,7 @@ void			neb::gfx::glsl::program::base::locate() {
 
 	{
 		std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base> u;
+
 		for(auto it = uniform_scalar_.begin(); it != uniform_scalar_.end(); ++it) {
 			u = (*it).second;
 			u->locate(shared_from_this());

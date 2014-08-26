@@ -23,10 +23,10 @@ namespace neb {
 				ar & boost::serialization::make_nvp("shininess",shininess_);
 			}
 
-			neb::Color::color<float>	ambient_;
-			neb::Color::color<float>	diffuse_;
-			neb::Color::color<float>	specular_;
-			neb::Color::color<float>	emission_;
+			neb::core::color::color	ambient_;
+			neb::core::color::color	diffuse_;
+			neb::core::color::color	specular_;
+			neb::core::color::color	emission_;
 			float				shininess_;
 		};
 

@@ -26,7 +26,7 @@ void			neb::draw_quad(
 		float y,
 		float w,
 		float h,
-		neb::Color::color<float> color) {
+		neb::core::color::color color) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	//GLint uniform_color = glGetUniformLocation(program, "color");
@@ -82,7 +82,7 @@ void			neb::draw_quad(
 void		neb::draw_text(
 		std::shared_ptr<neb::gfx::glsl::program::base> p,
 		float x, float y, float sx, float sy,
-		neb::Color::color<float> color,
+		neb::core::color::color color,
 		std::string text,
 		std::string::size_type cursor_pos)
 {
@@ -117,7 +117,7 @@ void		neb::draw_text(
 	FT_GlyphSlot g = face->glyph;
 
 	// cursor color
-	neb::Color::color<float> cursor_color(1,1,1,1);
+	neb::core::color::color cursor_color = neb::core::color::color::white();
 	
 	// color
 	p->get_uniform_scalar("font_color")->load((glm::vec4)color);

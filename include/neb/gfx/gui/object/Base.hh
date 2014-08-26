@@ -58,8 +58,8 @@ namespace neb {
 						float							w_;
 						float							h_;
 
-						neb::Color::color<float>				font_color_;
-						neb::Color::color<float>				bg_color_;
+						neb::core::color::color				font_color_;
+						neb::core::color::color				bg_color_;
 
 						::std::string						label_;
 						// connections

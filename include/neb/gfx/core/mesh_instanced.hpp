@@ -34,6 +34,7 @@ namespace neb { namespace gfx { namespace mesh {
 			void							init(program_shared);
 			virtual GLsizeiptr*					begin();
 			virtual GLsizeiptr*					end();
+			virtual GLsizeiptr*					size_array();
 			virtual GLsizeiptr*					size();
 			virtual GLvoid** const					data();
 

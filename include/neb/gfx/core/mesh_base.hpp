@@ -21,11 +21,15 @@ namespace neb { namespace gfx { namespace mesh {
 			virtual GLsizeiptr*		begin() = 0;
 			virtual GLsizeiptr*		end() = 0;
 			virtual GLsizeiptr*		size() = 0;
+			virtual GLsizeiptr*		size_array() = 0;
 			virtual GLvoid** const		data() = 0;
 
 			/** set by function of same name then sent to bufferData functions */
-			GLvoid**			data_;
-			GLsizeiptr*			size_;
+			GLvoid*				data_[BUFFER_COUNT];
+			GLsizeiptr			begin_[BUFFER_COUNT];
+			GLsizeiptr			end_[BUFFER_COUNT];
+			GLsizeiptr			size_[BUFFER_COUNT];
+			GLsizeiptr			size_array_[BUFFER_COUNT];
 
 
 			void			bufferData(std::shared_ptr<BUFFER> buffer)
@@ -64,7 +68,7 @@ namespace neb { namespace gfx { namespace mesh {
 						BUFFER::target_,
 						buffer->buffer_,
 						BUFFER::datasize_,
-						size(),
+						size_array(),
 						BUFFER::usage_,
 						BUFFER_COUNT
 						);

@@ -7,8 +7,7 @@ in vec3		vs_N;
 in vec2		vs_texcoor;
 in vec3 	vs_T;
 in vec3		vs_B;
-in float	vs_instance_image_sampler;
-in float	vs_instance_normal_map_sampler;
+in vec4		vs_instance_sampler;
 in vec4		vs_instance_diffuse;
 in vec4		vs_instance_ambient;
 in vec4		vs_instance_specular;
@@ -42,8 +41,8 @@ void main(void)
 	vec4 amb, dif, spc;
 	
 	
-	if(vs_instance_image_sampler >= 0.0) {
-		vec4 image_color = texture(image, vec3(vs_texcoor, vs_instance_image_sampler));
+	if(vs_instance_sampler.x >= 0.0) {
+		vec4 image_color = texture(image, vec3(vs_texcoor, vs_instance_sampler.x));
 		amb = vs_instance_ambient * image_color;
 		dif = vs_instance_diffuse * image_color;
 		spc = vs_instance_specular * image_color;
@@ -53,8 +52,8 @@ void main(void)
 		spc = vs_instance_specular;
 	}
 
-	if(vs_instance_normal_map_sampler >= 0.0) {	
-		vec3 norm_vector = texture(normal_map, vec3(vs_texcoor, vs_instance_normal_map_sampler)).xyz;
+	if(vs_instance_sampler.y >= 0.0) {	
+		vec3 norm_vector = texture(normal_map, vec3(vs_texcoor, vs_instance_sampler.y)).xyz;
 		N = normalize(N + (mat3(vs_T, vs_B, vs_N) * norm_vector));
 	}
 	

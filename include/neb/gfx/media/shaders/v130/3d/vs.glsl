@@ -5,8 +5,7 @@ out vec3	vs_N;
 out vec2	vs_texcoor;
 out vec3	vs_T;
 out vec3	vs_B;
-out float	vs_instance_image_sampler;
-out float	vs_instance_normal_map_sampler;
+out vec4	vs_instance_sampler;
 out vec4	vs_instance_diffuse;
 out vec4	vs_instance_ambient;
 out vec4	vs_instance_specular;
@@ -25,8 +24,7 @@ in vec4		instance_model0;
 in vec4		instance_model1;
 in vec4		instance_model2;
 in vec4		instance_model3;
-in float	instance_image_sampler;
-in float	instance_normal_map_sampler;
+in vec4		instance_sampler;
 in vec4		instance_diffuse;
 in vec4		instance_ambient;
 in vec4		instance_specular;
@@ -53,8 +51,7 @@ void main(void) {
 
 	vs_texcoor = texcoor;
 
-	vs_instance_image_sampler = instance_image_sampler;
-	vs_instance_normal_map_sampler = instance_normal_map_sampler;
+	vs_instance_sampler = instance_sampler;
 
 	vs_instance_diffuse = instance_diffuse;
 	vs_instance_ambient = instance_ambient;

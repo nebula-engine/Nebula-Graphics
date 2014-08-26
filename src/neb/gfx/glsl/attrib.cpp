@@ -33,11 +33,11 @@ int	neb::gfx::glsl::attrib::locate(std::shared_ptr<neb::gfx::glsl::program::base
 	
 	printf("%s %s %i\n", __PRETTY_FUNCTION__, name_, o_);
 	
-	/*if(o_ == -1)
+	if(o_ == -1)
 	{
 		printf("could not find attrib '%s'\n", name_);
 		abort();
-	}*/
+	}
 	
 	return o_;
 }

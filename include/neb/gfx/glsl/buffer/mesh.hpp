@@ -76,7 +76,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			};
 
 
-			void				init(
+			virtual void				init(
 					std::shared_ptr<neb::gfx::glsl::program::threed> p);
 
 	};

@@ -64,9 +64,9 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				std::string					light_type_string_;
 
 				// data
-				neb::Color::color<float>			ambient_;
-				neb::Color::color<float>			diffuse_;
-				neb::Color::color<float>			specular_;
+				neb::core::color::color			ambient_;
+				neb::core::color::color			diffuse_;
+				neb::core::color::color			specular_;
 				float						atten_const_;
 				float						atten_linear_;
 				float						atten_quad_;

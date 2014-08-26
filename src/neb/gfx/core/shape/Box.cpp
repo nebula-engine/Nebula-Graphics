@@ -33,14 +33,28 @@ void neb::gfx::core::shape::box::box::createMesh() {
 	
 	if(!mesh_slot_) {
 		auto model = getPoseGlobal().mat4_cast() * glm::scale(s_);
+
+		auto dif = neb::core::color::color::rand();
+		auto amb = neb::core::color::color::gray(0.1);
+		auto spc = neb::core::color::color::white();
+		auto emi = neb::core::color::color::black();
 		
+		LOG(lg, neb::gfx::sl, info) << "diffuse";
+		dif.print();
+		LOG(lg, neb::gfx::sl, info) << "ambient";
+		amb.print();
+		LOG(lg, neb::gfx::sl, info) << "specular";
+		spc.print();
+		LOG(lg, neb::gfx::sl, info) << "emission";
+		emi.print();
+
 		mesh_slot_ = scene->meshes_.cuboid_->instances_->reg(
 				model,
-				glm::vec4(-1.0),
-				neb::Color::rand<float>(),
-				neb::Color::gray<float>(0.1),
-				neb::Color::white<float>(),
-				neb::Color::black<float>(),
+				glm::vec4(-1.0,-1.0,-1.0,-1.0),
+				dif,
+				amb,
+				spc,
+				emi,
 				100.0
 				);
 	}

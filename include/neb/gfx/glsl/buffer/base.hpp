@@ -16,12 +16,15 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			//	BUFFER_COUNT = traits<BUFFER>::BUFFER_COUNT
 			//};
 
-			void	init() {
+			base(): index_(NULL) {}
+			virtual void		init() {
 				glGenBuffers(BUFFER::BUFFER_COUNT, buffer_);
 				checkerror("glGenBuffers");
 			}
 			void			vertexAttribPointer()
 			{
+				assert(index_ != NULL);
+	
 				neb::gfx::ogl::vertexAttribPointer(
 						BUFFER::target_,
 						index_,
@@ -39,12 +42,14 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 				for(int c = 0; c < traits<BUFFER>::BUFFER_COUNT; c++)
 				{
 					glBindBuffer(BUFFER::target_[c], buffer_[c]);
+					checkerror("glBindBuffer");
 				}
 			}
 			void			unbind() {
 				for(int c = 0; c < traits<BUFFER>::BUFFER_COUNT; c++)
 				{
 					glBindBuffer(BUFFER::target_[c], 0);
+					checkerror("glBindBuffer");
 				}
 			}
 

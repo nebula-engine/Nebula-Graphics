@@ -43,19 +43,30 @@ namespace neb { namespace gfx { namespace mesh {
 			tri1();
 			~tri1();
 
-			virtual GLsizeiptr*		begin();
-			virtual GLsizeiptr*		end();
+			virtual GLsizeiptr*		begin() {
+				begin_[0] = 0;
+				begin_[1] = 0;
+				return begin_;
+			}
+			virtual GLsizeiptr*		end() {
+				begin_[0] = vertices_.size();
+				begin_[1] = indices_.size();
+				return begin_;
+			}
 			virtual GLvoid** const		data() {
 				data_[0] = &vertices_[0];
 				data_[1] = &indices_[0];
 				return data_;
 			}
+			GLsizeiptr*			size_array() {
+				return size();
+			}
 			GLsizeiptr*			size() {
-				assert(!indices_.empty());
 				assert(!vertices_.empty());
+				assert(!indices_.empty());
 				
 				size_[0] = vertices_.size();
-				size_[0] = indices_.size();
+				size_[1] = indices_.size();
 				return size_;
 			}
 

@@ -29,10 +29,10 @@ float operator<<(float f, tinyxml2::XMLElement* element) {
 */
 
 neb::material::raw::raw() {
-	ambient_ = neb::Color::white<float>();
-	diffuse_ = neb::Color::cyan<float>();
-	specular_ = neb::Color::white<float>();
-	emission_ = neb::Color::black<float>();
+	ambient_ = neb::core::color::color::white();
+	diffuse_ = neb::core::color::color::cyan();
+	specular_ = neb::core::color::color::white();
+	emission_ = neb::core::color::color::black();
 	shininess_ = 500;
 }
 /* implement through serialize(ar)
