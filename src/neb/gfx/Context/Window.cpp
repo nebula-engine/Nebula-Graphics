@@ -6,7 +6,7 @@ neb::gfx::context::window::window(std::shared_ptr<neb::gfx::window::base> window
 {
 }
 void		neb::gfx::context::window::init() {
-	neb::gfx::context::base::init();
+	neb::gfx::context::base::__init();
 	
 	assert(window_);
 

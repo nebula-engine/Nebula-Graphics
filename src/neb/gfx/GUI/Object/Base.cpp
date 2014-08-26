@@ -12,7 +12,7 @@ neb::gfx::gui::object::base::base():
 	bg_color_()
 {}
 void		neb::gfx::gui::object::base::init() {
-	neb::itf::shared::init();
+	neb::itf::shared::__init();
 }
 int		neb::gfx::gui::object::base::mouse_button_fun(std::shared_ptr<neb::gfx::window::base> const & window, int,int,int) {
 	printf("%s\n", __PRETTY_FUNCTION__);

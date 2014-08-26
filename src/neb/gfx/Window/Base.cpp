@@ -49,7 +49,7 @@ neb::gfx::window::base::~base() {
 void neb::gfx::window::base::init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	neb::itf::shared::init();
+	neb::itf::shared::__init();
 
 	auto app = neb::gfx::app::__gfx::global().lock();
 	assert(app);

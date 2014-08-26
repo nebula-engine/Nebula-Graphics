@@ -26,6 +26,7 @@ namespace neb { namespace gfx {namespace app {
 		class __gfx:
 			virtual public neb::core::app::__base,
 			virtual public neb::gfx::window::util::parent,
+			virtual public neb::gfx::context::util::parent,
 			virtual public neb::gfx::gui::layout::util::parent
 		{
 			public:
@@ -54,6 +55,7 @@ namespace neb { namespace gfx {namespace app {
 				weak_ptr<neb::gfx::window::base>		get_window(GLFWwindow*);
 
 				weak_ptr<neb::gfx::gui::layout::base>		createLayout();
+				weak_ptr<neb::gfx::window::base>		createWindow();
 			public:
 
 				//GLFWwindow*								currentIdleWindow_;
