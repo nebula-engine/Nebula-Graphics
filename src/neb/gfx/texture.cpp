@@ -30,8 +30,12 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 	w_ = w;
 	h_ = h;
 
-	genAndBind(context);
-	
+	glGenTextures(1, &o_);
+	checkerror("glGenTextures");
+
+	glBindTexture(GL_TEXTURE_2D, o_);
+	checkerror("glBindTexture");
+
 	glTexImage2D(
 			GL_TEXTURE_2D,
 			0,
@@ -62,7 +66,7 @@ GLuint		neb::gfx::texture::genAndBind(std::shared_ptr<neb::gfx::context::base> c
 }
 void	neb::gfx::texture::bind(std::shared_ptr<neb::gfx::context::base> context)
 {
-	GLuint o;
+	/*GLuint o;
 	
 	// this is the function called during drawing
 	// this is where we check if the buffer is ready and create it if not
@@ -71,9 +75,11 @@ void	neb::gfx::texture::bind(std::shared_ptr<neb::gfx::context::base> context)
 		o = init_buffer(context);
 	} else {
 		o = it->second;
-	}
+	}*/
 	
-	glBindTexture(GL_TEXTURE_2D, o);
+	
+
+	glBindTexture(GL_TEXTURE_2D, o_);
 	checkerror("glBindTexture");
 }
 int		neb::gfx::texture::load_png(std::string filename)
@@ -213,9 +219,9 @@ int		neb::gfx::texture::load_png(std::string filename)
 }
 GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base> context) {
 	
-	GLint o = genAndBind(context);
+	o_ = genAndBind(context);
 
-	buffers_[context.get()] = o;
+	//buffers_[context.get()] = o;
 	
 	cout << "w " << w_ << " h " << h_ << " data " << (long int)png_image_data_ << endl;
 
@@ -234,7 +240,7 @@ GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base>
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	checkerror("glTexParameterf");
 
-	return o;
+	return o_;
 }
 
 

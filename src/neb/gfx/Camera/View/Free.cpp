@@ -10,8 +10,8 @@
 #include <neb/gfx/Camera/View/Free.hh>
 #include <neb/gfx/util/log.hpp>
 
-neb::gfx::Camera::View::Free::Free(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::Camera::View::base(parent),
+neb::gfx::camera::view::Free::Free(std::shared_ptr<neb::gfx::environ::base> parent):
+	neb::gfx::camera::view::base(parent),
 	pitch_(0),
 	yaw_(0),
 	eye_(0, 0, 0, 0),
@@ -100,10 +100,10 @@ neb::gfx::Camera::View::Free::Free(std::shared_ptr<neb::gfx::environ::base> pare
 	head_flag_[view_flag::DOWN		] = 25;
 
 }
-void	neb::gfx::Camera::View::Free::init() {
+void	neb::gfx::camera::view::Free::init() {
 
 }
-void			neb::gfx::Camera::View::Free::connect(std::shared_ptr<neb::gfx::window::base> const & window) {
+void			neb::gfx::camera::view::Free::connect(std::shared_ptr<neb::gfx::window::base> const & window) {
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
 	
 	
@@ -111,7 +111,7 @@ void			neb::gfx::Camera::View::Free::connect(std::shared_ptr<neb::gfx::window::b
 	/*conns_.key_fun_ =*/ window->sig_.key_fun_.connect(
 			20,
 			neb::gfx::window::signals::KeyFun::slot_type(
-				&neb::gfx::Camera::View::Free::key_fun,
+				&neb::gfx::camera::view::Free::key_fun,
 				this,
 				_1,
 				_2,
@@ -132,7 +132,7 @@ void			neb::gfx::Camera::View::Free::connect(std::shared_ptr<neb::gfx::window::b
 	 */
 
 }
-int			neb::gfx::Camera::View::Free::key_fun(
+int			neb::gfx::camera::view::Free::key_fun(
 		std::shared_ptr<neb::gfx::window::base> const & window,
 		int key,
 		int scancode,
@@ -230,7 +230,7 @@ int			neb::gfx::Camera::View::Free::key_fun(
 
 	return 0;
 }
-void			neb::gfx::Camera::View::Free::step(gal::etc::timestep const & ts) {
+void			neb::gfx::camera::view::Free::step(gal::etc::timestep const & ts) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	// look vector
@@ -303,7 +303,7 @@ void			neb::gfx::Camera::View::Free::step(gal::etc::timestep const & ts) {
 	eye_ += vec4(v, 0.0f);
 }
 
-vec3			neb::gfx::Camera::View::Free::move() {
+vec3			neb::gfx::camera::view::Free::move() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::sl, debug) << "flag = " << flag_.val_;
 
@@ -335,7 +335,7 @@ vec3			neb::gfx::Camera::View::Free::move() {
 	return mov;
 }
 
-mat4		neb::gfx::Camera::View::Free::view() {
+mat4		neb::gfx::camera::view::Free::view() {
 	printf("%s\n", __FUNCTION__);
 
 	vec3 x(1,0,0);

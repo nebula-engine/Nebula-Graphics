@@ -15,7 +15,7 @@
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/Camera/View/util/flag.hpp>
 
-namespace neb {namespace gfx {namespace Camera {namespace View {
+namespace neb {namespace gfx {namespace Camera {namespace view {
 
 
 

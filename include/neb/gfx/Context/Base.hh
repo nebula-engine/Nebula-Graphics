@@ -36,11 +36,11 @@ namespace neb {
 				virtual public neb::gfx::context::util::cast
 			{
 				public:
-					base();
+					//base();
 					base(std::shared_ptr<neb::gfx::context::util::parent> parent);
-					base&						operator=(base const & r);
-					void						init();
-					void						release();
+					//base&						operator=(base const & r);
+					//void						init();
+					//void						release();
 					virtual void					step(gal::etc::timestep const & ts);
 					virtual void					render();
 					void						resize(int w, int h);
@@ -50,7 +50,7 @@ namespace neb {
 					 * 
 					 * @note WEAK
 					 */
-					std::shared_ptr<neb::gfx::context::util::parent>		parent_;
+					std::weak_ptr<neb::gfx::context::util::parent>			parent_;
 				public:
 					std::shared_ptr<neb::gfx::environ::base>			environ_;
 			};

@@ -3,11 +3,11 @@
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 
-neb::gfx::Camera::View::base::base(std::shared_ptr<neb::gfx::environ::base> parent):
+neb::gfx::camera::view::base::base(std::shared_ptr<neb::gfx::environ::base> parent):
 	parent_(parent)
 {
 }
-void		neb::gfx::Camera::View::base::load(std::shared_ptr<neb::gfx::glsl::program::base> p) {
+void		neb::gfx::camera::view::base::load(std::shared_ptr<neb::gfx::glsl::program::base> p) {
 	
 	p->get_uniform_scalar("view")->load(view());
 }

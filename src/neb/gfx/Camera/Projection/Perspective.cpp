@@ -20,36 +20,36 @@
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/util/log.hpp>
 
-neb::gfx::Camera::Projection::base::base(std::shared_ptr<neb::gfx::environ::base> parent):
+neb::gfx::camera::proj::base::base(std::shared_ptr<neb::gfx::environ::base> parent):
 	parent_(parent)
 {
 }
-void		neb::gfx::Camera::Projection::base::load(std::shared_ptr<neb::gfx::glsl::program::base> p) {
+void		neb::gfx::camera::proj::base::load(std::shared_ptr<neb::gfx::glsl::program::base> p) {
 	
 	
 	//glViewport(0, 0, parent_->viewport_.w_, parent_->viewport_.h_);
 	
 	p->get_uniform_scalar("proj")->load(proj());
 }
-void		neb::gfx::Camera::Projection::base::step(gal::etc::timestep const & ts) {
+void		neb::gfx::camera::proj::base::step(gal::etc::timestep const & ts) {
 
 }
 
 
-neb::gfx::Camera::Projection::Perspective::Perspective(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::Camera::Projection::base(parent),
+neb::gfx::camera::proj::Perspective::Perspective(std::shared_ptr<neb::gfx::environ::base> parent):
+	neb::gfx::camera::proj::base(parent),
 	fovy_(45.0f),
 	zn_(2.0f),
 	zf_(10000.0f)
 {
 
 }
-/*void		neb::gfx::Camera::Projection::Perspective::init(RENDERABLE_S renderable) {
+/*void		neb::gfx::camera::proj::Perspective::init(RENDERABLE_S renderable) {
 	GLUTPP_DEBUG_0_FUNCTION;
 	
 	renderable_ = renderable;
 }*/
-mat4		neb::gfx::Camera::Projection::Perspective::proj() {
+mat4		neb::gfx::camera::proj::Perspective::proj() {
 
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "fovy" << ::std::setw(8) << fovy_;
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "aspect" << ::std::setw(8) << parent_->viewport_.aspect_;
@@ -62,7 +62,7 @@ mat4		neb::gfx::Camera::Projection::Perspective::proj() {
 	
 	return ret;
 }
-void		neb::gfx::Camera::Projection::Perspective::step(gal::etc::timestep const & ts) {
+void		neb::gfx::camera::proj::Perspective::step(gal::etc::timestep const & ts) {
 
 }
 

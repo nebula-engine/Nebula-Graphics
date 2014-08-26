@@ -9,6 +9,7 @@ namespace neb { namespace gfx {
 			class base;
 			class text;
 			class threed;
+			class shadow_directional;
 		}
 
 		/** @brief uniforms */

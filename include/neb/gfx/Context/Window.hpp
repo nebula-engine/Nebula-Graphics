@@ -30,7 +30,7 @@ namespace neb {
 					window(std::shared_ptr<neb::gfx::window::base> window);
 					virtual void					init();
 				public:
-					std::shared_ptr<neb::gfx::window::base>	window_;
+					std::shared_ptr<neb::gfx::window::base>		window_;
 			};
 		}
 	}

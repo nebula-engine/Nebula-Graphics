@@ -29,6 +29,7 @@ neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::
 {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
+neb::gfx::core::light::base::~base() {}
 void			neb::gfx::core::light::base::init() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -45,6 +46,14 @@ void			neb::gfx::core::light::base::init() {
 			spot_direction_,
 			spot_cutoff_,
 			spot_exponent_,
+			glm::mat4(),
+			glm::mat4(),
+			glm::mat4(),
+			glm::mat4(),
+			glm::mat4(),
+			glm::mat4(),
+			glm::vec3(-1.0),
+			glm::vec3(-1.0),
 			type_
 			);
 }

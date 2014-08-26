@@ -42,7 +42,8 @@ namespace neb { namespace gfx {
 
 			png_byte*		png_image_data_;
 
-			map_t			buffers_;
+			//map_t			buffers_;
+			GLuint			o_;
 	};
 }}
 

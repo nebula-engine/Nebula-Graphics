@@ -21,8 +21,13 @@ namespace neb { namespace gfx { namespace core { namespace light {
 
 		class base: virtual public neb::core::core::light::base {
 			public:
+				enum {
+					POINT = 0,
+					SPOT = 1,
+					DIRECTIONAL = 2
+				};
 				base(std::shared_ptr<neb::core::core::light::util::parent> parent, int type);
-				
+				~base() = 0;
 				void				init();
 				
 				virtual void			release();

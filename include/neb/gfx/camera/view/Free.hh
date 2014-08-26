@@ -5,17 +5,17 @@
 
 #include <neb/core/util/typedef.hpp>
 
-#include <neb/gfx/Camera/View/Base.hh>
+#include <neb/gfx/camera/view/Base.hh>
 
 namespace neb {
 	namespace gfx {
 		namespace Camera {
-			namespace View {
+			namespace view {
 				/** @brief free flying camera
 				 * this camera can move freely through the scene
 				 * user input in interpreted as three-component velocity and yaw and pitch rate
 				 */
-				class Free: public neb::gfx::Camera::View::base {
+				class Free: public neb::gfx::camera::view::base {
 					public:
 						/** @name constructors
 						 * @{

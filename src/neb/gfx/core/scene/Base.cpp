@@ -82,6 +82,7 @@ void			neb::gfx::core::scene::base::draw(
 
 	auto program_3d = std::dynamic_pointer_cast<neb::gfx::glsl::program::threed>(p);
 	assert(program_3d);
+
 	
 	// lights
 	light_array_[0].load_uniform(program_3d->light_locations_.location);

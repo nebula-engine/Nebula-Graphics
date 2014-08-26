@@ -108,13 +108,13 @@ namespace neb {
 
 		/** @brief Camera */
 		namespace Camera {
-			namespace View {
+			namespace view {
 				class base;
 				class Free;
 				class Ridealong;
 
 			}
-			namespace Projection {
+			namespace proj {
 				class base;
 				class Perspective;
 

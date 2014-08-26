@@ -8,6 +8,7 @@
 namespace neb { namespace gfx { namespace ogl {
 	void		glUniformv(GLint location, GLsizei count, glm::vec3 const * const & value);
 	void		glUniformv(GLint location, GLsizei count, glm::vec4 const * const & value);
+	void		glUniformv(GLint location, GLsizei count, glm::mat4 const * const & value);
 	void		glUniformv(GLint location, GLsizei count, float const * const & value);
 	void		glUniformv(GLint location, GLsizei count, int const * const & value);
 
@@ -16,3 +17,5 @@ namespace neb { namespace gfx { namespace ogl {
 }}}
 
 #endif
+
+

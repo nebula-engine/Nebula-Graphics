@@ -28,10 +28,10 @@ void		neb::gfx::environ::three::init() {
 
 	// camera
 	if(!view_) {
-		view_.reset(new neb::gfx::Camera::View::Free(self));
+		view_.reset(new neb::gfx::camera::view::Free(self));
 	}
 
-	proj_.reset(new neb::gfx::Camera::Projection::Perspective(self));
+	proj_.reset(new neb::gfx::camera::proj::Perspective(self));
 	//camera_->init(shared_from_this());
 
 
@@ -78,12 +78,12 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	drawable->draw(context, program_);
 	
 }		
-weak_ptr<neb::gfx::Camera::View::Ridealong>		neb::gfx::environ::three::createViewRidealong(
+weak_ptr<neb::gfx::camera::view::Ridealong>		neb::gfx::environ::three::createViewRidealong(
 		weak_ptr<neb::core::core::actor::base> actor)
 {
 	auto self(dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this()));
 
-	auto view = make_shared<neb::gfx::Camera::View::Ridealong>(self, actor);
+	auto view = make_shared<neb::gfx::camera::view::Ridealong>(self, actor);
 	view_ = view;
 	return view;
 }

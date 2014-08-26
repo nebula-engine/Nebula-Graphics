@@ -191,6 +191,14 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 			   glm::vec3,	// spot direction
 			   float,	// spot cutoff
 			   float,	// spot exponent
+			   glm::mat4,	// shadow vpb matrix 0
+			   glm::mat4,	// shadow vpb matrix 1
+			   glm::mat4,	// shadow vpb matrix 2
+			   glm::mat4,	// shadow vpb matrix 3
+			   glm::mat4,	// shadow vpb matrix 4
+			   glm::mat4,	// shadow vpb matrix 5
+			   glm::vec3,	// shadow sampler 0
+			   glm::vec3,	// shadow sampler 1
 			   int		// type
 					       >
 	{

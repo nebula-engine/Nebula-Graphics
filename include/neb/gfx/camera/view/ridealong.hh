@@ -12,8 +12,8 @@
 namespace neb {
 	namespace gfx {
 		namespace Camera {
-			namespace View {
-				class Ridealong: public neb::gfx::Camera::View::base {
+			namespace view {
+				class Ridealong: public neb::gfx::camera::view::base {
 					public:
 						Ridealong(std::shared_ptr<neb::gfx::environ::base>, weak_ptr<neb::core::core::actor::base> actor);
 						virtual mat4				view();

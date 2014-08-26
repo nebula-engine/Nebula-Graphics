@@ -12,6 +12,10 @@ void		neb::gfx::ogl::glUniformv(GLint location, GLsizei count, glm::vec4 const *
 	glUniform4fv(location, count, (float*)value);
 	checkerror("glUniform4fv");
 }
+void		neb::gfx::ogl::glUniformv(GLint location, GLsizei count, glm::mat4 const * const & value) {
+	glUniformMatrix4fv(location, count, GL_FALSE, (float*)value);
+	checkerror("glUniformMatrix4fv");
+}
 void		neb::gfx::ogl::glUniformv(GLint location, GLsizei count, float const * const & value) {
 	glUniform1fv(location, count, value);
 
