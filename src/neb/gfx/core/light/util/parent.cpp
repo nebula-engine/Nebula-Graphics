@@ -35,6 +35,8 @@ void			neb::gfx::core::light::util::parent::setPose(neb::core::pose const & pose
 void			neb::gfx::core::light::util::parent::load_lights(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) {
 	LOG(lg, neb::core::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 
+	assert(0);
+
 	auto lambda_light = [&] (map_type::iterator<0> it) {
 
 		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::base>(it->ptr_);
@@ -42,7 +44,7 @@ void			neb::gfx::core::light::util::parent::load_lights(neb::core::core::light::
 
 		//if(i == neb::core::light::light_max) return L::map_type::BREAK;
 		
-		light->load(light_count, pose);
+		//light->load(light_count, pose);
 		
 		return map_type::CONTINUE;
 	};

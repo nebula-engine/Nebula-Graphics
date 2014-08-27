@@ -15,6 +15,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 		public neb::gfx::glsl::buffer::base<tri1>
 	{
 		public:
+			typedef std::shared_ptr<neb::gfx::glsl::program::base> program_shared;
 			//const math::geo::vertex v;
 
 			static constexpr GLenum			target_[BUFFER_COUNT] = {
@@ -77,7 +78,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 
 
 			virtual void				init(
-					std::shared_ptr<neb::gfx::glsl::program::threed> p);
+					 program_shared p);
 
 	};
 }}}}

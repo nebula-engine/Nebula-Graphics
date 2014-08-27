@@ -13,6 +13,7 @@ namespace neb {
 					public neb::util::parent<neb::gfx::window::__base>
 				{
 					public:
+						void		render();
 				};
 			}
 		}

@@ -96,7 +96,7 @@ void		neb::gfx::mesh::tri1::print(int sl) {
 	}	
 }
 void			neb::gfx::mesh::tri1::init_buffer(
-		shared_ptr<neb::gfx::glsl::program::threed> p)
+		program_shared p)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -121,7 +121,7 @@ void			neb::gfx::mesh::tri1::init_buffer(
 }
 
 void			neb::gfx::mesh::tri1::draw_elements(
-		std::shared_ptr<neb::gfx::glsl::program::threed> p,
+		program_shared p,
 		neb::core::pose const & pose,
 		glm::vec3 scale)
 {
@@ -139,7 +139,7 @@ void			neb::gfx::mesh::tri1::draw_elements(
 
 }
 void			neb::gfx::mesh::tri1::draw_elements(
-		std::shared_ptr<neb::gfx::glsl::program::threed>	p,
+		program_shared						p,
 		std::shared_ptr<neb::gfx::glsl::buffer::tri1>		buf,
 		neb::core::pose const & pose,
 		glm::vec3 scale)
@@ -149,16 +149,16 @@ void			neb::gfx::mesh::tri1::draw_elements(
 	buf->vertexAttribPointer();
 
 	// attribs
-	p->get_attrib(neb::attrib_name::e::POSITION)->enable();
-	p->get_attrib(neb::attrib_name::e::NORMAL)->enable();
-	p->get_attrib(neb::attrib_name::e::TEXCOOR)->enable();
-	p->get_attrib(neb::attrib_name::e::TANGENT)->enable();
-	p->get_attrib(neb::attrib_name::e::BINORMAL)->enable();
-
+/*	p->get_attrib(neb::gfx::glsl::attribs::POSITION)->enable();
+	p->get_attrib(neb::gfx::glsl::attribs::NORMAL)->enable();
+	p->get_attrib(neb::gfx::glsl::attribs::TEXCOOR)->enable();
+	p->get_attrib(neb::gfx::glsl::attribs::TANGENT)->enable();
+	p->get_attrib(neb::gfx::glsl::attribs::BINORMAL)->enable();
+*/
 	// Uniforms
 	// ========
 	// material
-	material_front_.load(p);
+	//material_front_.load(p);
 
 	/*	// texture
 		if(normal_map_) {
@@ -183,7 +183,7 @@ void			neb::gfx::mesh::tri1::draw_elements(
 		p->get_uniform_scalar("has_texture")->load_b(false);
 		}
 		*/
-
+/*
 	// load modelview matrix
 	LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
 	mat4 space = pose.mat4_cast() * glm::scale(scale);
@@ -202,13 +202,13 @@ void			neb::gfx::mesh::tri1::draw_elements(
 	buf->unbind();
 
 	// attribs
-	p->get_attrib(neb::attrib_name::e::POSITION)->disable();
-	p->get_attrib(neb::attrib_name::e::NORMAL)->disable();
+	p->get_attrib(neb::gfx::glsl::attribs::POSITION)->disable();
+	p->get_attrib(neb::gfx::glsl::attribs::NORMAL)->disable();
 	if(texture_ || normal_map_)
-		p->get_attrib(neb::attrib_name::e::TEXCOOR)->disable();
+		p->get_attrib(neb::gfx::glsl::attribs::TEXCOOR)->disable();
 	if(normal_map_) {
-		p->get_attrib(neb::attrib_name::e::TANGENT)->disable();
-		p->get_attrib(neb::attrib_name::e::BINORMAL)->disable();
+		p->get_attrib(neb::gfx::glsl::attribs::TANGENT)->disable();
+		p->get_attrib(neb::gfx::glsl::attribs::BINORMAL)->disable();
 	}
-
+*/
 }

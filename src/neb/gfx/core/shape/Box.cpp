@@ -32,7 +32,7 @@ void neb::gfx::core::shape::box::box::createMesh() {
 	auto scene = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(getScene().lock());
 	
 	if(!mesh_slot_) {
-		auto model = getPoseGlobal().mat4_cast() * glm::scale(s_);
+		auto model = getPoseGlobal().mat4_cast() * glm::scale(scale_);
 
 		auto dif = neb::core::color::color::rand();
 		auto amb = neb::core::color::color::gray(0.1);

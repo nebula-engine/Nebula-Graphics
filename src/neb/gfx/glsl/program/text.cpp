@@ -10,7 +10,7 @@ void		neb::gfx::glsl::program::text::init() {
 
 	compile();
 
-	add_attrib(neb::attrib_name::e::COOR, "coord", 0);
+//	add_attrib(neb::gfx::glsl::attribs::COOR, "coord", 0);
 
 	scanUniforms();
 	locate();

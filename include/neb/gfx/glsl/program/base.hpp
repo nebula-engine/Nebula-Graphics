@@ -34,11 +34,11 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 			void			locate();
 			void			scanUniforms();
 
-			void			add_attrib(neb::attrib_name::e, char const *, GLuint);
+			//void			add_attrib(neb::gfx::glsl::attribs, char const *, GLuint);
 			void			add_uniform_scalar(std::string, GLenum);
 			void			add_uniform_vector(std::string, GLenum);
 
-			attrib_shared		get_attrib(int);
+			//attrib_shared		get_attrib(int);
 			single_shared		get_uniform_scalar(std::string);
 			array_shared		get_uniform_vector(std::string);
 
@@ -48,6 +48,8 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 			uniform_a_map		uniform_vector_;
 
 			attrib_map		attrib_;
+			
+			GLint			attrib_table_[neb::gfx::glsl::attribs::COUNT];
 	};
 }}}}
 

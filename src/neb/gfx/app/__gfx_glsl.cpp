@@ -4,6 +4,7 @@
 #include <neb/gfx/util/config.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/glsl/program/text.hpp>
+#include <neb/gfx/glsl/program/tex.hpp>
 #include <neb/gfx/core/mesh_instanced.hpp>
 
 weak_ptr<neb::gfx::app::__gfx_glsl>		neb::gfx::app::__gfx_glsl::global() {
@@ -22,6 +23,8 @@ void		neb::gfx::app::__gfx_glsl::create_programs() {
 	program_text_.reset(new neb::gfx::glsl::program::text());
 	program_text_->init();
 
+	program_tex_.reset(new neb::gfx::glsl::program::tex());
+	program_tex_->init();
 
 
 	

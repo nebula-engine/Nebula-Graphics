@@ -34,7 +34,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				virtual void			cleanup();
 				virtual void			step(gal::etc::timestep const & ts);
 
-				virtual void			load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) = 0;
+				//virtual void			load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) = 0;
 				void				load(int o, neb::core::pose const & pose);
 
 				void				load_shadow();

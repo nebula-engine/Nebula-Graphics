@@ -36,6 +36,7 @@ namespace neb { namespace gfx { namespace app {
 			//map_program_type					programs_;
 			//std::shared_ptr<neb::gfx::glsl::program::base>		current_;
 			std::shared_ptr<neb::gfx::glsl::program::text>		program_text_;
+			std::shared_ptr<neb::gfx::glsl::program::tex>		program_tex_;
 
 	};
 }}}

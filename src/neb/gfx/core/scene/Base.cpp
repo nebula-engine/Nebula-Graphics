@@ -77,20 +77,21 @@ void			neb::gfx::core::scene::base::release() {
 void			neb::gfx::core::scene::base::draw(
 		std::shared_ptr<neb::gfx::context::base> context,
 		std::shared_ptr<neb::gfx::glsl::program::base> p) {
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
-	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;
-
+	assert(p);
+	
 	auto program_3d = std::dynamic_pointer_cast<neb::gfx::glsl::program::threed>(p);
-	assert(program_3d);
+	if(program_3d) {
+		// lights
+		light_array_[0].load_uniform(program_3d->light_locations_.location);
+	}
 
-	
-	// lights
-	light_array_[0].load_uniform(program_3d->light_locations_.location);
-	
 	// meshes
 	assert(meshes_.cuboid_);
-	meshes_.cuboid_->draw(program_3d);
+	meshes_.cuboid_->draw(p);
 	
+	/*
 	// meshes
 	auto la = [&] (A::map_type::iterator<0> it) {
 		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
@@ -100,6 +101,7 @@ void			neb::gfx::core::scene::base::draw(
 	
 
 	A::map_.for_each<0>(la);
+	*/
 }
 void						neb::gfx::core::scene::base::resize(int w, int h) {
 }

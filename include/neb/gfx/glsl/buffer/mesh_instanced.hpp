@@ -13,7 +13,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 		public neb::gfx::glsl::buffer::base<instanced>
 	{
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::program::threed>	program_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::program::base>		program_shared;
 			typedef neb::gfx::glsl::buffer::base<instanced>			buffer_base_type;
 
 			//static const glm::mat4 m;
@@ -117,7 +117,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 
 		public:
 			void				init(
-					std::shared_ptr<neb::gfx::glsl::program::threed> p);
+					program_shared p);
 
 	};
 }}}}

@@ -6,12 +6,14 @@
 
 #include <neb/core/util/decl.hpp> // gru/config.hpp.in
 
+
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/environ/util/decl.hpp>
 #include <neb/gfx/Viewport.hpp>
 #include <neb/gfx/Context/Util/Cast.hh>
-#include <neb/gfx/gui/layout/base.hpp>
-#include <neb/gfx/window/Base.hh>
-#include <neb/gfx/drawable/base.hpp>
+//#include <neb/gfx/gui/layout/base.hpp>
+//#include <neb/gfx/window/Base.hh>
+//#include <neb/gfx/drawable/base.hpp>
 
 
 //#include <neb/core/scene/base.hpp>
@@ -45,6 +47,11 @@ namespace neb {
 					virtual void					render();
 					void						resize(int w, int h);
 
+
+					std::weak_ptr<neb::gfx::environ::two>			createEnvironTwo();
+					std::weak_ptr<neb::gfx::environ::three>			createEnvironThree();
+					std::weak_ptr<neb::gfx::environ::shadow_directional>	createEnvironShadowDirectional();
+					void							setDrawable(std::shared_ptr<neb::gfx::drawable::base>);
 				public:
 					/** @brief %Parent
 					 * 

@@ -24,16 +24,16 @@ void			neb::gfx::glsl::buffer::instanced::init(program_shared program) {
 	base_type::init();
 
 	index_ = new GLint[10];
-	index_[0] = program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL0)->o_;
-	index_[1] = program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL1)->o_;
-	index_[2] = program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL2)->o_;
-	index_[3] = program->get_attrib(neb::attrib_name::e::INSTANCE_MODEL3)->o_;
-	index_[4] = program->get_attrib(neb::attrib_name::e::INSTANCE_SAMPLER)->o_;
-	index_[5] = program->get_attrib(neb::attrib_name::e::INSTANCE_DIFFUSE)->o_;
-	index_[6] = program->get_attrib(neb::attrib_name::e::INSTANCE_AMBIENT)->o_;
-	index_[7] = program->get_attrib(neb::attrib_name::e::INSTANCE_SPECULAR)->o_;
-	index_[8] = program->get_attrib(neb::attrib_name::e::INSTANCE_EMISSION)->o_;
-	index_[9] = program->get_attrib(neb::attrib_name::e::INSTANCE_SHININESS)->o_;
+	index_[0] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_MODEL0];
+	index_[1] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_MODEL1];
+	index_[2] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_MODEL2];
+	index_[3] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_MODEL3];
+	index_[4] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_SAMPLER];
+	index_[5] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_DIFFUSE];
+	index_[6] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_AMBIENT];
+	index_[7] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_SPECULAR];
+	index_[8] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_EMISSION];
+	index_[9] = program->attrib_table_[neb::gfx::glsl::attribs::INSTANCE_SHININESS];
 }
 /*void			neb::gfx::glsl::buffer::instanced::vertexAttribPointer(
   std::shared_ptr<neb::gfx::glsl::program::threed> program)

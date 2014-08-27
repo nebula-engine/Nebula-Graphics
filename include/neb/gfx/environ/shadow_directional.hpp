@@ -25,7 +25,7 @@ namespace neb { namespace gfx { namespace environ {
 			typedef std::shared_ptr<light_type>			light_shared;
 			typedef std::weak_ptr<light_type>			light_weak;
 		public:
-			shadow_directional(light_shared);
+			shadow_directional();
 			virtual void		init();
 			virtual void		step(gal::etc::timestep const & ts);
 			virtual void		render(

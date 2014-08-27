@@ -137,15 +137,15 @@ void		neb::draw_text(
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-	auto attrib_coord = p->get_attrib(neb::attrib_name::e::COOR);
+	GLint attrib_coord = p->attrib_table_[neb::gfx::glsl::attribs::COOR];
 
 	// vbo
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
-	attrib_coord->enable();//glEnableVertexAttribArray(attribute_coord);
+	glEnableVertexAttribArray(attrib_coord);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	// this line fucks everything up -- not anymore! needed to bind attrib location using layout in shader
-	glVertexAttribPointer(attrib_coord->o_, 4, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(attrib_coord, 4, GL_FLOAT, GL_FALSE, 0, 0);
 
 
 	// prep environment
@@ -208,7 +208,7 @@ void		neb::draw_text(
 	checkerror("unknown");
 
 
-	attrib_coord->disable();
+	glDisableVertexAttribArray(attrib_coord);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);

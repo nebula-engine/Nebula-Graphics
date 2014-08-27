@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,11 +27,15 @@ void	neb::gfx::glsl::program::base::init()
 {
 	//NEBULA_GLSL_PROGRAM_FUNC;
 
+	assert(glfwGetCurrentContext() != NULL);
+
 	o_ = glCreateProgram();
 	
+
 	printf("program = %i\n",o_);
 	
 	checkerror("glCreateProgram");
+
 }
 void	neb::gfx::glsl::program::base::add_shaders(std::vector<neb::gfx::glsl::shader> s)
 {
@@ -79,13 +84,17 @@ void	neb::gfx::glsl::program::base::compile() {
 }
 void	neb::gfx::glsl::program::base::use() {
 	
-	//GRU_GLSL_PROGRAM_FUNC;
 	
+	checkerror("unknown");
+
 	glUseProgram(o_);
-	checkerror("glUseProgram");
-	
+
+	std::stringstream ss;
+	ss << "glUseProgram " << o_;
+	checkerror(ss.str());
+
 	std::shared_ptr<neb::gfx::glsl::attrib> attrib;
-	
+
 	for(auto it = attrib_.begin(); it != attrib_.end(); ++it)
 	{
 		attrib = (*it).second;
@@ -93,16 +102,16 @@ void	neb::gfx::glsl::program::base::use() {
 		//attrib->locate(shared_from_this());
 	}
 }
-void	neb::gfx::glsl::program::base::add_attrib(neb::attrib_name::e name, char const * s, GLuint o_bind) {
+/*void	neb::gfx::glsl::program::base::add_attrib(neb::gfx::glsl::attribs name, char const * s, GLuint o_bind) {
 
-	std::shared_ptr<neb::gfx::glsl::attrib> a(new neb::gfx::glsl::attrib);
-	
-	a->init(s, o_bind);
-	
-	attrib_[name] = a;
-}
+  std::shared_ptr<neb::gfx::glsl::attrib> a(new neb::gfx::glsl::attrib);
+
+  a->init(s, o_bind);
+
+  attrib_[name] = a;
+  }*/
 void	neb::gfx::glsl::program::base::add_uniform_scalar(std::string name, GLenum type) {
-	
+
 	std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base> u;
 
 	switch(type) {
@@ -132,7 +141,7 @@ void	neb::gfx::glsl::program::base::add_uniform_scalar(std::string name, GLenum 
 			break;
 		default:
 			printf("unsupported glsl type \"%s\"\n", name.c_str());
-			exit(0);
+			abort();
 	}
 
 	uniform_scalar_[name] = u;
@@ -159,27 +168,27 @@ void			neb::gfx::glsl::program::base::add_uniform_vector(std::string name, GLenu
 			break;
 		default:
 			printf("unsupported glsl type \"%s\"\n", name.c_str());
-			exit(0);
+			abort();
 	}
-	
+
 	uniform_vector_[name] = u;
-	
+
 }
-std::shared_ptr<neb::gfx::glsl::attrib>	neb::gfx::glsl::program::base::get_attrib(int name) {
-	auto it = attrib_.find(name);
+/*std::shared_ptr<neb::gfx::glsl::attrib>	neb::gfx::glsl::program::base::get_attrib(int name) {
+  auto it = attrib_.find(name);
 
-	if(it == attrib_.end())
-	{
-		printf("attribute %i not found\n",name);
-		exit(0);
-	}
+  if(it == attrib_.end())
+  {
+  printf("attribute %i not found\n",name);
+  abort();
+  }
 
-	auto p = (*it).second;
+  auto p = (*it).second;
 
-	assert(p);
+  assert(p);
 
-	return p;
-}
+  return p;
+  }*/
 std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base>	neb::gfx::glsl::program::base::get_uniform_scalar(std::string name) {
 	//printf("%s\n", __PRETTY_FUNCTION__);
 
@@ -203,11 +212,11 @@ std::shared_ptr<neb::gfx::glsl::Uniform::Vector::base>		neb::gfx::glsl::program:
 	auto it = uniform_vector_.find(name);
 
 	if(it == uniform_vector_.end()) {
-		
+
 		for(auto it2 = uniform_vector_.begin(); it2 != uniform_vector_.end(); ++it2) {
 			std::cout << (*it2).first << std::endl;
 		}
-		
+
 		std::cout << "uniform \"" << name << "\" not found\n" << std::endl;
 		abort();
 	}
@@ -228,6 +237,21 @@ void			neb::gfx::glsl::program::base::locate() {
 
 		attrib->locate(shared_from_this());
 	}
+
+
+
+	for(unsigned int c = 0; c < neb::gfx::glsl::attribs::COUNT; c++)
+	{
+		attrib_table_[c] = glGetAttribLocation(o_, neb::gfx::glsl::attrib::attrib_string_[c]);
+		checkerror("");
+	}
+
+
+
+
+
+
+
 
 	{
 		std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base> u;
@@ -279,12 +303,12 @@ char const * shaderTypeString(GLenum type) {
 	m[GL_DOUBLE_MAT2]			="dmat2";
 	m[GL_DOUBLE_MAT3]			="dmat3";
 	m[GL_DOUBLE_MAT4]			="dmat4";
-//	m[GL_DOUBLE_MAT2x3]			="dmat2x3";
-//	m[GL_DOUBLE_MAT2x4]			="dmat2x4";
-//	m[GL_DOUBLE_MAT3x2]			="dmat3x2";
-//	m[GL_DOUBLE_MAT3x4]			="dmat3x4";
-//	m[GL_DOUBLE_MAT4x2]			="dmat4x2";
-//	m[GL_DOUBLE_MAT4x3]			="dmat4x3";
+	//	m[GL_DOUBLE_MAT2x3]			="dmat2x3";
+	//	m[GL_DOUBLE_MAT2x4]			="dmat2x4";
+	//	m[GL_DOUBLE_MAT3x2]			="dmat3x2";
+	//	m[GL_DOUBLE_MAT3x4]			="dmat3x4";
+	//	m[GL_DOUBLE_MAT4x2]			="dmat4x2";
+	//	m[GL_DOUBLE_MAT4x3]			="dmat4x3";
 	m[GL_SAMPLER_1D]			="sampler1D";
 	m[GL_SAMPLER_2D]			="sampler2D";
 	m[GL_SAMPLER_3D]			="sampler3D";
@@ -335,9 +359,9 @@ void		neb::gfx::glsl::program::base::scanUniforms() {
 	GLchar str_name[128];
 	for(int i = 0; i < 1000; i++) {
 		glGetActiveUniform(o_, i, 128, &len, &size, &type, str_name);
-		
+
 		if(isGLError()) break;
-		
+
 		//printf("name=%32s type=%s\n", str_name, shaderTypeString(type));
 
 		// scalar or vector
@@ -357,22 +381,22 @@ void		neb::gfx::glsl::program::base::scanUniforms() {
 			}
 
 			name = name.substr(0, find_open);
-	
-		
+
+
 			auto it = uniform_vector_.find(name);
 			if(it != uniform_vector_.end()) continue;
-			
+
 			add_uniform_vector(name, type);
-	
+
 			std::cout
 				<< std::setw(16) << "array"
 				<< std::setw(32) << name
 				<< std::setw(32) << shaderTypeString(type)
 				<< std::endl;
-		
+
 
 		} else {
-			
+
 			add_uniform_scalar(name, type);
 
 			std::cout

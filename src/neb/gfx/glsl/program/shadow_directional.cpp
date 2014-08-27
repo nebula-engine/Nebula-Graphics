@@ -18,24 +18,24 @@ void		neb::gfx::glsl::program::shadow_directional::init() {
 	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &param);
 	LOG(lg, neb::gfx::sl, info) << "GL_MAX_VERTEX_ATTRIBS " << param;
 
-	add_attrib(neb::attrib_name::e::POSITION,	"position",	1);
-	/*add_attrib(neb::attrib_name::e::NORMAL,		"normal",	2);
-	add_attrib(neb::attrib_name::e::TEXCOOR,	"texcoor",	3);
-	add_attrib(neb::attrib_name::e::TANGENT,	"tangent",	4);
-	add_attrib(neb::attrib_name::e::BINORMAL,	"binormal",	5);*/
+//	add_attrib(neb::gfx::glsl::attribs::POSITION,	"position",	1);
+	/*add_attrib(neb::gfx::glsl::attribs::NORMAL,		"normal",	2);
+	add_attrib(neb::gfx::glsl::attribs::TEXCOOR,	"texcoor",	3);
+	add_attrib(neb::gfx::glsl::attribs::TANGENT,	"tangent",	4);
+	add_attrib(neb::gfx::glsl::attribs::BINORMAL,	"binormal",	5);*/
+/*
+	add_attrib(neb::gfx::glsl::attribs::INSTANCE_MODEL0,		"instance_model0",		6);
+	add_attrib(neb::gfx::glsl::attribs::INSTANCE_MODEL1,		"instance_model1",		7);
+	add_attrib(neb::gfx::glsl::attribs::INSTANCE_MODEL2,		"instance_model2",		8);
+	add_attrib(neb::gfx::glsl::attribs::INSTANCE_MODEL3,		"instance_model3",		9);
+*/
+/*	add_attrib(neb::gfx::glsl::attribs::INSTANCE_SAMPLER,		"instance_sampler",		10);
 
-	add_attrib(neb::attrib_name::e::INSTANCE_MODEL0,		"instance_model0",		6);
-	add_attrib(neb::attrib_name::e::INSTANCE_MODEL1,		"instance_model1",		7);
-	add_attrib(neb::attrib_name::e::INSTANCE_MODEL2,		"instance_model2",		8);
-	add_attrib(neb::attrib_name::e::INSTANCE_MODEL3,		"instance_model3",		9);
-
-/*	add_attrib(neb::attrib_name::e::INSTANCE_SAMPLER,		"instance_sampler",		10);
-
-	add_attrib(neb::attrib_name::e::INSTANCE_DIFFUSE,		"instance_diffuse",		11);
-	add_attrib(neb::attrib_name::e::INSTANCE_AMBIENT,		"instance_ambient",		12);
-	add_attrib(neb::attrib_name::e::INSTANCE_SPECULAR,		"instance_specular",		13);
-	add_attrib(neb::attrib_name::e::INSTANCE_EMISSION,		"instance_emission",		14);
-	add_attrib(neb::attrib_name::e::INSTANCE_SHININESS,		"instance_shininess",		15);
+	add_attrib(neb::gfx::glsl::attribs::INSTANCE_DIFFUSE,		"instance_diffuse",		11);
+	add_attrib(neb::gfx::glsl::attribs::INSTANCE_AMBIENT,		"instance_ambient",		12);
+	add_attrib(neb::gfx::glsl::attribs::INSTANCE_SPECULAR,		"instance_specular",		13);
+	add_attrib(neb::gfx::glsl::attribs::INSTANCE_EMISSION,		"instance_emission",		14);
+	add_attrib(neb::gfx::glsl::attribs::INSTANCE_SHININESS,		"instance_shininess",		15);
 */
 
 	scanUniforms();

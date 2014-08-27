@@ -5,27 +5,6 @@
 
 namespace neb {
 
-	struct attrib_name {
-		enum e {
-			COOR,
-			TEX,
-			POSITION,
-			NORMAL,
-			TEXCOOR,
-			TANGENT,
-			BINORMAL,
-			INSTANCE_MODEL0,
-			INSTANCE_MODEL1,
-			INSTANCE_MODEL2,
-			INSTANCE_MODEL3,
-			INSTANCE_SAMPLER,
-			INSTANCE_DIFFUSE,
-			INSTANCE_AMBIENT,
-			INSTANCE_SPECULAR,
-			INSTANCE_EMISSION,
-			INSTANCE_SHININESS,
-		};
-	};
 	struct program_name {
 		enum e {
 			TEXT,

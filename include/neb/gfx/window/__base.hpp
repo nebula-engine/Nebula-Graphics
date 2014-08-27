@@ -8,6 +8,8 @@ namespace neb {
 		namespace window {
 			class __base: virtual public neb::itf::shared
 			{
+				public:
+					virtual void		render() = 0;
 			};
 		}
 	}

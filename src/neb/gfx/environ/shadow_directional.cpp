@@ -14,18 +14,16 @@
 #include <neb/gfx/glsl/program/shadow_directional.hpp>
 #include <neb/gfx/core/light/directional.hpp>
 
-neb::gfx::environ::shadow_directional::shadow_directional(light_shared light):
-	light_(light)
+neb::gfx::environ::shadow_directional::shadow_directional()
 {
-	assert(light);
 }
 void		neb::gfx::environ::shadow_directional::init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::shadow_directional>(shared_from_this());
 
-	auto light = light_.lock();
-	assert(light);
+//	auto light = light_.lock();
+//	assert(light);
 
 	program_ = std::make_shared<neb::gfx::glsl::program::shadow_directional>();
 	program_->init();
@@ -57,7 +55,10 @@ void		neb::gfx::environ::shadow_directional::render(std::shared_ptr<neb::gfx::co
 	
 	auto drawable = drawable_.lock();
 
-	if(!drawable) return;
+	if(!drawable) {
+		LOG(lg, neb::gfx::sl, warning) << "environ has no drawable";
+		return;
+	}
 
 	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	//auto app = neb::gfx::app::__gfx_glsl::global().lock();

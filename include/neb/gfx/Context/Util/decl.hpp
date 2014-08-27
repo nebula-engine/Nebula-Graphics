@@ -5,8 +5,11 @@ namespace neb {
 	namespace gfx {
 		namespace context {
 			namespace util {
+				class parent;
 			}
 			class base;
+			class window;
+			class fbo;
 		}
 	}
 }

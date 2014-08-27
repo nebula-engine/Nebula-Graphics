@@ -9,7 +9,7 @@
 #include <neb/gfx/gui/object/Base.hh>
 #include <neb/gfx/gui/object/util/parent.hpp>
 #include <neb/gfx/drawable/base.hpp>
-#include <neb/gfx/window/Base.hh>
+//#include <neb/gfx/window/Base.hh>
 
 namespace neb {namespace gfx {namespace gui {namespace layout {
 	/** @brief %Base */

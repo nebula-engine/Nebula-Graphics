@@ -3,6 +3,9 @@
 
 #include <fstream>
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
 #include <boost/asio/io_service.hpp>
 #include <boost/archive/polymorphic_xml_iarchive.hpp>
 
@@ -17,6 +20,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/gui/layout/util/parent.hpp>
 #include <neb/gfx/window/util/Parent.hh>
+#include <neb/gfx/Context/Util/Parent.hh>
 
 namespace neb { namespace gfx {namespace app {
 		/** @brief gfx
@@ -35,6 +39,7 @@ namespace neb { namespace gfx {namespace app {
 				void						__init();
 				void						release();
 				void						step(gal::etc::timestep const & ts);
+				void						render();
 
 				void						init_glew();
 

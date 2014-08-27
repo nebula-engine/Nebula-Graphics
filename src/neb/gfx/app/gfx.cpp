@@ -1,12 +1,12 @@
 
+#include <neb/gfx/util/log.hpp>
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/window/Base.hh>
 
-using namespace std;
 
 void					neb::gfx::app::__gfx::__init() {
 
-	vector< ::std::string > fontfiles({
+	vector<std::string> fontfiles({
 		"/usr/share/fonts/msttcorefonts/cour.ttf",
 		"/usr/share/fonts/truetype/msttcorefonts/cour.ttf"});
 
@@ -51,6 +51,15 @@ void				neb::gfx::app::__gfx::step(gal::etc::timestep const & ts) {
 	neb::gfx::context::util::parent::step(ts);
 
 	neb::gfx::gui::layout::util::parent::step(ts);
+}
+void				neb::gfx::app::__gfx::render()
+{
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	neb::gfx::window::util::parent::render();
+
+	neb::gfx::context::util::parent::render();
+
 }
 void				neb::gfx::app::__gfx::init_glew() {
 
@@ -137,6 +146,8 @@ std::weak_ptr<neb::gfx::gui::layout::base>		neb::gfx::app::__gfx::createLayout()
 
 	neb::gfx::gui::layout::util::parent::insert(layout);
 
+	layout->init();
+
 	return layout;
 }
 std::weak_ptr<neb::gfx::window::base>			neb::gfx::app::__gfx::createWindow()
@@ -147,6 +158,8 @@ std::weak_ptr<neb::gfx::window::base>			neb::gfx::app::__gfx::createWindow()
 	
 	neb::gfx::window::util::parent::insert(window);
 
+	window->__init();
+	
 	return window;
 }
 

@@ -35,12 +35,12 @@ namespace neb { namespace gfx { namespace window {
 			virtual ~base();
 
 		public:
-			virtual void				init();
+			virtual void				__init();
 			virtual void				release();
 
 			/** @name Main Loop @{ */
-			void					render();
-			void					step(gal::etc::timestep const & ts);
+			virtual void				render();
+			virtual void				step(gal::etc::timestep const & ts);
 			/** @} */
 			void					resize();
 
@@ -51,8 +51,8 @@ namespace neb { namespace gfx { namespace window {
 			void					callback_mouse_button_fun(GLFWwindow*,int,int,int);
 			void					callback_key_fun(GLFWwindow*,int,int,int,int);
 			void					callbackCharFun(GLFWwindow*,unsigned int);
-			weak_ptr<neb::gfx::context::window>	createContextTwo();
-			weak_ptr<neb::gfx::context::window>	createContextThree();
+			std::weak_ptr<neb::gfx::context::window>	createContextTwo();
+			std::weak_ptr<neb::gfx::context::window>	createContextThree();
 		public:
 			std::shared_ptr<neb::gfx::window::util::parent>			parent_;
 			/** @brief self
@@ -70,7 +70,7 @@ namespace neb { namespace gfx { namespace window {
 			} sig_;
 
 
-
+			static GLFWwindow*					first_window_;
 
 
 			neb::gfx::window::util::Flag	flag_;

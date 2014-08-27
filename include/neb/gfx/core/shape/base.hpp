@@ -38,7 +38,9 @@ namespace neb {
 					void			release();
 					void			step(gal::etc::timestep const & ts);
 					virtual void		callbackPose(neb::core::pose const & pose_global);
+
 					virtual weak_ptr<neb::core::core::light::base>		createLightPoint();
+					virtual weak_ptr<neb::core::core::light::base>		createLightDirectional(glm::vec3);
 
 
 					void							setPose(neb::core::pose const & pose);
@@ -68,7 +70,7 @@ namespace neb {
 					template<class Archive>	void	serialize(Archive & ar, unsigned int const & version) {
 						ar & boost::serialization::make_nvp("flag",flag_);
 						ar & boost::serialization::make_nvp("pose",pose_);
-						ar & boost::serialization::make_nvp("s",s_);
+						ar & boost::serialization::make_nvp("scale",scale_);
 						ar & boost::serialization::make_nvp("image",image_);
 						ar & boost::serialization::make_nvp("normal",normal_);
 						ar & boost::serialization::make_nvp("material",material_);

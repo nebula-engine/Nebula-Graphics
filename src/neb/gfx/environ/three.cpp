@@ -21,9 +21,7 @@ void		neb::gfx::environ::three::init() {
 
 
 	program_ = std::make_shared<neb::gfx::glsl::program::threed>();
-	
 	program_->init();
-
 
 
 	// camera

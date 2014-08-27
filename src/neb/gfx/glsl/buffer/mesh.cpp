@@ -25,19 +25,20 @@ constexpr GLuint		neb::gfx::glsl::buffer::tri1::divisor_[ATTRIB_COUNT];// = {
 
 
 void			neb::gfx::glsl::buffer::tri1::init(
-		std::shared_ptr<neb::gfx::glsl::program::threed> program)
+		neb::gfx::glsl::buffer::tri1::program_shared program)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	base_type::init();
-
-
+	
+	
+	
 	index_ = new GLint[ATTRIB_COUNT];
-	index_[0] = program->get_attrib(neb::attrib_name::e::POSITION)->o_;
-	index_[1] = program->get_attrib(neb::attrib_name::e::NORMAL)->o_;
-	index_[2] = program->get_attrib(neb::attrib_name::e::TEXCOOR)->o_;
-	index_[3] = program->get_attrib(neb::attrib_name::e::TANGENT)->o_;
-	index_[4] = program->get_attrib(neb::attrib_name::e::BINORMAL)->o_;
+	index_[0] = program->attrib_table_[neb::gfx::glsl::attribs::POSITION];
+	index_[1] = program->attrib_table_[neb::gfx::glsl::attribs::NORMAL];
+	index_[2] = program->attrib_table_[neb::gfx::glsl::attribs::TEXCOOR];
+	index_[3] = program->attrib_table_[neb::gfx::glsl::attribs::TANGENT];
+	index_[4] = program->attrib_table_[neb::gfx::glsl::attribs::BINORMAL];
 
 	vertexAttribPointer();
 

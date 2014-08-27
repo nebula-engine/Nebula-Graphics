@@ -36,9 +36,9 @@ namespace neb {namespace gfx {namespace camera {namespace view {
 					std::shared_ptr<neb::gfx::window::base> const & window) {}
 
 		public:
-			std::shared_ptr< ::neb::gfx::environ::base >		parent_;
+			std::weak_ptr<neb::gfx::environ::base>		parent_;
 
-			neb::gfx::camera::view::util::flag			flag_;
+			neb::gfx::camera::view::util::flag		flag_;
 	};
 }}}}
 

@@ -3,13 +3,15 @@
 
 #include <GL/glew.h>
 
-#include <neb/core/app/__base.hpp>
 #include <neb/core/color/Color.hh>
 
+#include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
-
+#include <neb/gfx/glsl/program/tex.hpp>
+#include <neb/gfx/glsl/uniform/scalar.hpp>
+#include <neb/gfx/glsl/attrib.hh>
 #include <png.h>
 
 std::shared_ptr<neb::gfx::texture>	neb::gfx::texture::makePNG(std::string filename) {
@@ -50,8 +52,11 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	checkerror("glTexParameteri");
 
-	checkerror("");
+	glBindTexture(GL_TEXTURE_2D, 0);
+	checkerror("glBindTexture");
+
 }
 GLuint		neb::gfx::texture::genAndBind(std::shared_ptr<neb::gfx::context::base> context)
 {
@@ -239,9 +244,92 @@ GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base>
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	checkerror("glTexParameterf");
+	
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	return o_;
 }
+
+
+
+
+void		neb::gfx::texture::draw(
+		std::shared_ptr<neb::gfx::context::base> context,
+		std::shared_ptr<neb::gfx::glsl::program::base>)
+{
+
+	auto app = neb::gfx::app::__gfx_glsl::global().lock();
+	auto p = app->program_tex_;
+	p->use();
+
+	// texture
+	//GLuint tex;
+	//glGenTextures(1, &tex);
+	//glBindTexture(GL_TEXTURE_2D, tex);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, o_);
+	p->get_uniform_scalar("tex")->load(0);
+
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE );
+	glTexParameteri( GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE );
+
+	/*	
+	 *	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	 */
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	auto attrib_coord = p->attrib_table_[neb::gfx::glsl::attribs::COOR];
+
+	// vbo
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glEnableVertexAttribArray(attrib_coord);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	// this line fucks everything up -- not anymore! needed to bind attrib location using layout in shader
+	glVertexAttribPointer(attrib_coord, 4, GL_FLOAT, GL_FALSE, 0, 0);
+
+
+	// prep environment
+	glDisable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDisable(GL_CULL_FACE);
+
+	// draw
+
+	GLfloat box[4][4] = 
+	{
+		{-1, -1, 0, 0},
+		{ 1, -1, 1, 0},
+		{-1,  1, 0, 1},
+		{ 1,  1, 1, 1},
+	};
+
+
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+
+
+	checkerror("unknown");
+
+
+	glDisableVertexAttribArray(attrib_coord);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	checkerror("unknown");
+
+
+}
+
 
 
 

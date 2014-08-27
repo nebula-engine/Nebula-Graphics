@@ -10,6 +10,7 @@
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/gfx/core/light/point.hpp>
+#include <neb/gfx/core/light/directional.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
@@ -41,7 +42,7 @@ void					neb::gfx::core::shape::base::callbackPose(neb::core::pose const & gpose
 	LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
 	
 	if(mesh_slot_) {
-		auto model = gpose.mat4_cast() * glm::scale(s_);
+		auto model = gpose.mat4_cast() * glm::scale(scale_);
 		
 		mesh_slot_->set<0>(model);
 		LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
@@ -69,7 +70,7 @@ void			neb::gfx::core::shape::base::model_load(
 		std::shared_ptr<neb::gfx::glsl::program::threed> p,
 		neb::core::pose const & pose) {
 
-	mat4 space = pose.mat4_cast() * glm::scale(s_);
+	mat4 space = pose.mat4_cast() * glm::scale(scale_);
 
 	p->get_uniform_scalar("model")->load(space);
 }
@@ -82,7 +83,7 @@ void			neb::gfx::core::shape::base::draw_elements(
 	
 	if(mesh_) {
 		
-		mesh_->draw_elements(p, pose, s_);
+		mesh_->draw_elements(p, pose, scale_);
 		/*
 		switch(p->name_) {
 			case neb::program_name::e::IMAGE:
@@ -112,6 +113,19 @@ std::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::create
 	
 	light->init();
 	
+	return light;
+}
+std::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::createLightDirectional(glm::vec3 d) {
+
+	auto self(std::dynamic_pointer_cast<neb::core::core::shape::base>(shared_from_this()));
+	
+	auto light = std::make_shared<neb::gfx::core::light::directional>(self);
+	
+	light->pos_ = d;
+
+	neb::core::core::light::util::parent::insert(light);
+	
+	light->init();
 
 	return light;
 }

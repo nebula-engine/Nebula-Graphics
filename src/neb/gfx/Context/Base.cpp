@@ -5,7 +5,9 @@
 #include <neb/core/core/scene/base.hpp>
 
 #include <neb/gfx/Context/Base.hh>
-#include <neb/gfx/environ/base.hpp>
+#include <neb/gfx/environ/two.hpp>
+#include <neb/gfx/environ/three.hpp>
+#include <neb/gfx/environ/shadow_directional.hpp>
 #include <neb/gfx/gui/layout/base.hpp>
 #include <neb/gfx/camera/view/Free.hh>
 #include <neb/gfx/camera/proj/perspective.hpp>
@@ -39,10 +41,44 @@ void		neb::gfx::context::base::render() {
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
-	if(!environ_) return;
+	if(!environ_) {
+		LOG(lg, neb::gfx::sl, warning) << "context has no environ";
+		return;
+	}
+
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	assert(self);
+
 	environ_->render(self);
 }		
+std::weak_ptr<neb::gfx::environ::two>			neb::gfx::context::base::createEnvironTwo() {
+	auto environ = sp::make_shared<neb::gfx::environ::two>();
+
+	environ->init();
+
+	environ_ = environ;
+	
+	return environ;
+}
+std::weak_ptr<neb::gfx::environ::three>			neb::gfx::context::base::createEnvironThree() {
+	auto environ = sp::make_shared<neb::gfx::environ::three>();
+	environ->init();
+	environ_ = environ;
+
+	return environ;
+}
+std::weak_ptr<neb::gfx::environ::shadow_directional>	neb::gfx::context::base::createEnvironShadowDirectional() {
+	auto environ = sp::make_shared<neb::gfx::environ::shadow_directional>();
+	environ->init();
+	
+	environ_ = environ;
+	
+	return environ;
+}
+void							neb::gfx::context::base::setDrawable(std::shared_ptr<neb::gfx::drawable::base> drawable) {
+	assert(environ_);
+	environ_->drawable_ = drawable;
+}
+
 
 

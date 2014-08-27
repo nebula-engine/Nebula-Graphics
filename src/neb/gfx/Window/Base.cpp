@@ -29,6 +29,10 @@
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
 
+
+
+GLFWwindow* neb::gfx::window::base::first_window_ = NULL;
+
 neb::gfx::window::base::base():
 	x_(1200),
 	y_(0),
@@ -46,7 +50,7 @@ neb::gfx::window::base::base(std::shared_ptr<neb::gfx::window::util::parent> par
 }
 neb::gfx::window::base::~base() {
 }
-void neb::gfx::window::base::init() {
+void			neb::gfx::window::base::__init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	neb::itf::shared::__init();
@@ -64,7 +68,12 @@ void neb::gfx::window::base::init() {
 			h_,
 			title_.c_str(),
 			NULL,
-			NULL);
+			first_window_
+			);
+
+	if(first_window_ == NULL) {
+		first_window_ = window_;
+	}
 
 	if(window_ == NULL) {
 		glfwTerminate();
@@ -72,7 +81,7 @@ void neb::gfx::window::base::init() {
 		exit(EXIT_FAILURE);
 	}
 
-
+	glfwSetWindowPos(window_, x_, y_);
 
 	glfwMakeContextCurrent(window_);
 
@@ -152,13 +161,12 @@ void		neb::gfx::window::base::release() {
 void		neb::gfx::window::base::render() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
+	assert(window_ != NULL);
 	glfwMakeContextCurrent(window_);
 
 	/** @todo rendering multiple contexts in a window */
 
-
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-
 
 	typedef neb::gfx::context::util::parent C;
 
@@ -184,10 +192,6 @@ void			neb::gfx::window::base::step(gal::etc::timestep const & ts) {
 		return;
 	}
 
-
-
-	/** @todo wtf is this doing here?? */
-	render();
 }
 void neb::gfx::window::base::callback_window_size_fun(GLFWwindow* window, int w, int h) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -244,7 +248,9 @@ weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextTwo() 
 	auto self(dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this()));
 	auto context(make_shared<neb::gfx::context::window>(self));
 	insert(context);
-	context->environ_ = make_shared<neb::gfx::environ::two>();
+
+	auto environ = context->createEnvironTwo().lock();
+
 	context->init();
 	return context;
 }
@@ -252,12 +258,14 @@ weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextThree(
 	auto self(dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this()));
 	auto context = make_shared<neb::gfx::context::window>(self);
 	insert(context);
-	auto environ = sp::make_shared<neb::gfx::environ::three>();
-	environ->init();
-	context->environ_ = environ;
+	
+	auto environ = context->createEnvironThree().lock();
+
 	context->init();
+	
 	assert(environ->view_);
 	environ->view_->connect(self);
+	
 	return context;
 }
 

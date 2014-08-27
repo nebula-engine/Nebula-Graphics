@@ -5,9 +5,33 @@ namespace neb { namespace gfx {
 
 	namespace glsl {
 
+		struct attribs {
+			enum {
+				COOR,
+				TEX,
+				POSITION,
+				NORMAL,
+				TEXCOOR,
+				TANGENT,
+				BINORMAL,
+				INSTANCE_MODEL0,
+				INSTANCE_MODEL1,
+				INSTANCE_MODEL2,
+				INSTANCE_MODEL3,
+				INSTANCE_SAMPLER,
+				INSTANCE_DIFFUSE,
+				INSTANCE_AMBIENT,
+				INSTANCE_SPECULAR,
+				INSTANCE_EMISSION,
+				INSTANCE_SHININESS,
+				COUNT
+			};
+		};
+
 		namespace program {
 			class base;
 			class text;
+			class tex;
 			class threed;
 			class shadow_directional;
 		}

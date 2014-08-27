@@ -11,7 +11,7 @@
 namespace neb { namespace gfx { namespace mesh {
 	class instanced: public neb::gfx::mesh::base<neb::gfx::glsl::buffer::instanced> {
 		public:
-			typedef neb::gfx::glsl::program::threed			program_type;
+			typedef neb::gfx::glsl::program::base			program_type;
 			typedef std::shared_ptr<program_type>			program_shared;
 			typedef neb::gfx::glsl::buffer::instanced		buffer_type;
 			typedef std::shared_ptr<buffer_type>			buffer_shared;

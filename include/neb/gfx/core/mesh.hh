@@ -37,8 +37,9 @@ namespace neb { namespace gfx { namespace mesh {
 	class tri1: public base<neb::gfx::glsl::buffer::tri1> {
 		public:
 			typedef std::shared_ptr<neb::gfx::glsl::buffer::tri1>			buffer_shared;
-			typedef std::map<neb::gfx::glsl::program::threed*, buffer_shared>	buffer_map;
-			typedef std::shared_ptr<neb::gfx::glsl::program::threed>		program_shared;
+			typedef neb::gfx::glsl::program::base			program_type;
+			typedef std::shared_ptr<program_type>			program_shared;
+			typedef std::map<program_type*, buffer_shared>		buffer_map;
 
 			tri1();
 			~tri1();
@@ -78,7 +79,8 @@ namespace neb { namespace gfx { namespace mesh {
 			void				construct(math::geo::polyhedron*);
 			void				print(int sl);
 
-			void				init_buffer(program_shared p);
+			void				init_buffer(
+					program_shared p);
 			void				draw_elements(
 					program_shared,
 					neb::core::pose const & pose,

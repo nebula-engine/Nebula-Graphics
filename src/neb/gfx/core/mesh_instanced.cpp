@@ -7,7 +7,7 @@
 #include <neb/gfx/free.hpp>
 
 void			neb::gfx::mesh::instanced::init(
-		std::shared_ptr<neb::gfx::glsl::program::threed> program)
+		neb::gfx::mesh::instanced::program_shared program)
 {
 	mesh_.init_buffer(program);
 
@@ -160,8 +160,9 @@ GLvoid** const		neb::gfx::mesh::instanced::data() {
 
   }*/	
 void			neb::gfx::mesh::instanced::draw(
-		std::shared_ptr<neb::gfx::glsl::program::threed> program)
+		neb::gfx::mesh::instanced::program_shared program)
 {
+
 	if(!buffers_[program.get()])
 	{	
 		init(program);
@@ -179,9 +180,10 @@ void			neb::gfx::mesh::instanced::draw(
 	draw(program, buf);
 }
 void			neb::gfx::mesh::instanced::draw(
-		std::shared_ptr<neb::gfx::glsl::program::threed>	program,
+		neb::gfx::mesh::instanced::program_shared		program,
 		std::shared_ptr<neb::gfx::glsl::buffer::instanced>	buf)
 {
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto buf_mesh = mesh_.buffers_[program.get()];
 	assert(buf_mesh);
