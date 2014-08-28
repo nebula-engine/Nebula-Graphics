@@ -16,8 +16,8 @@
 namespace neb { namespace gfx { namespace glsl { namespace program {
 	class base: public std::enable_shared_from_this<base> {
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base>		single_shared;
-			typedef std::shared_ptr<neb::gfx::glsl::Uniform::Vector::base>		array_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::uniform::Scalar::base>		single_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::uniform::Vector::base>		array_shared;
 			typedef std::shared_ptr<neb::gfx::glsl::attrib>				attrib_shared;
 			typedef std::map<std::string, single_shared>				uniform_s_map;
 			typedef std::map<std::string, array_shared>				uniform_a_map;
@@ -57,6 +57,7 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 			int			shader_[2];
 
 			GLint			attrib_table_[neb::gfx::glsl::attribs::COUNT];
+			GLint			uniform_table_[neb::gfx::glsl::uniforms::COUNT];
 	};
 }}}}
 

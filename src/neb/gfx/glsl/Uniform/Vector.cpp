@@ -13,7 +13,7 @@
 #include <neb/gfx/glsl/program/base.hpp>
 
 
-neb::gfx::glsl::Uniform::Vector::base::base(std::string name):
+neb::gfx::glsl::uniform::Vector::base::base(std::string name):
 	name_(name),
 	c_(0)
 {
@@ -25,7 +25,7 @@ neb::gfx::glsl::Uniform::Vector::base::base(std::string name):
 
 	//printf("%s\n",__PRETTY_FUNCTION__);
 }
-void			neb::gfx::glsl::Uniform::Vector::base::locate(std::shared_ptr<neb::gfx::glsl::program::base> p) {
+void			neb::gfx::glsl::uniform::Vector::base::locate(std::shared_ptr<neb::gfx::glsl::program::base> p) {
 	printf("%s\n",__PRETTY_FUNCTION__);
 
 	assert(p);

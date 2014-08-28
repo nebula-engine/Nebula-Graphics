@@ -11,7 +11,7 @@
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/free.hpp>
 
-void	neb::gfx::glsl::Uniform::Scalar::Mat4::load(mat4 const & m) {
+void	neb::gfx::glsl::uniform::Scalar::Mat4::load(mat4 const & m) {
 	assert(o_ != -1);
 	glUniformMatrix4fv(o_, 1, false, (float*)&m);
 	checkerror("glUniformMatrix4fv");

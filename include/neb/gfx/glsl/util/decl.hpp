@@ -28,6 +28,17 @@ namespace neb { namespace gfx {
 			};
 		};
 
+		struct uniforms {
+			enum {
+				VIEW,
+				PROJ,
+				TEX_IMAGE,
+				TEX_NORMAL_MAP,
+				TEX_SHADOW_MAP,
+				COUNT
+			};
+		};
+
 		namespace program {
 			class base;
 			class text;
@@ -37,7 +48,16 @@ namespace neb { namespace gfx {
 		}
 
 		/** @brief uniforms */
-		namespace Uniform {
+		namespace uniform {
+
+			static constexpr char const * uniform_string_[attribs::COUNT] = {
+				"view",
+				"proj",
+				"image",
+				"normal_map",
+				"shadow_map"
+			};
+
 			/** @brief Scalar GLSL Uniforms */
 			namespace Scalar {
 				class base;

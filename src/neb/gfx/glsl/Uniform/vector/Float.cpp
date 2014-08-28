@@ -13,7 +13,7 @@
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/free.hpp>
 
-void	neb::gfx::glsl::Uniform::Vector::Float::load(int c, float f) {
+void	neb::gfx::glsl::uniform::Vector::Float::load(int c, float f) {
 	glUniform1f(o_[c], f);
 	checkerror("glUniform1f");
 }

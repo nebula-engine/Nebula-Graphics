@@ -22,6 +22,7 @@
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/core/mesh_instanced.hpp>
+#include <neb/gfx/texture.hpp>
 
 using namespace std;
 
@@ -88,21 +89,25 @@ void			neb::gfx::core::scene::base::draw(
 	}
 	
 	if(tex_shadow_map_) {
-		//load into uniform
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(tex_shadow_map_->target_, tex_shadow_map_->o_);
+
+		GLint loc = p->uniform_table_[neb::gfx::glsl::uniforms::TEX_SHADOW_MAP];
+		neb::gfx::ogl::glUniform(loc, 0);
 	}
-	
+
 	// meshes
 	assert(meshes_.cuboid_);
 	meshes_.cuboid_->draw(p);
-	
+
 	/*
 	// meshes
 	auto la = [&] (A::map_type::iterator<0> it) {
-		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
-		assert(actor);
-		actor->draw(context, program_3d, neb::core::pose());
+	auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(it->ptr_);
+	assert(actor);
+	actor->draw(context, program_3d, neb::core::pose());
 	};
-	
+
 
 	A::map_.for_each<0>(la);
 	*/

@@ -13,7 +13,7 @@
 
 
 /*
-void	neb::gfx::glsl::Uniform::Scalar::Mat4::load(mat4 const & m) {
+void	neb::gfx::glsl::uniform::Scalar::Mat4::load(mat4 const & m) {
 	assert(o_ != -1);
 	glUniformMatrix4fv(o_, 1, false, (float*)&m);
 	checkerror("glUniform1i");
@@ -22,7 +22,7 @@ void	neb::gfx::glsl::Uniform::Scalar::Mat4::load(mat4 const & m) {
 
 
 
-void	neb::gfx::glsl::Uniform::Vector::Mat4::load(int c, int i) {
+void	neb::gfx::glsl::uniform::Vector::Mat4::load(int c, int i) {
 	glUniform1i(o_[c], i);
 	checkerror("glUniform1i");
 }

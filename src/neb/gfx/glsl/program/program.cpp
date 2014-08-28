@@ -125,32 +125,32 @@ void	neb::gfx::glsl::program::base::use() {
   }*/
 void	neb::gfx::glsl::program::base::add_uniform_scalar(std::string name, GLenum type) {
 
-	std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base> u;
+	std::shared_ptr<neb::gfx::glsl::uniform::Scalar::base> u;
 
 	switch(type) {
 		case GL_BOOL:
-			u.reset(new neb::gfx::glsl::Uniform::Scalar::Bool(name));
+			u.reset(new neb::gfx::glsl::uniform::Scalar::Bool(name));
 			break;
 		case GL_INT:
-			u.reset(new neb::gfx::glsl::Uniform::Scalar::Int(name));
+			u.reset(new neb::gfx::glsl::uniform::Scalar::Int(name));
 			break;
 		case GL_FLOAT:
-			u.reset(new neb::gfx::glsl::Uniform::Scalar::Float(name));
+			u.reset(new neb::gfx::glsl::uniform::Scalar::Float(name));
 			break;
 		case GL_FLOAT_VEC3:
-			u.reset(new neb::gfx::glsl::Uniform::Scalar::Vec3(name));
+			u.reset(new neb::gfx::glsl::uniform::Scalar::Vec3(name));
 			break;
 		case GL_FLOAT_VEC4:
-			u.reset(new neb::gfx::glsl::Uniform::Scalar::Vec4(name));
+			u.reset(new neb::gfx::glsl::uniform::Scalar::Vec4(name));
 			break;
 		case GL_FLOAT_MAT4:
-			u.reset(new neb::gfx::glsl::Uniform::Scalar::Mat4(name));
+			u.reset(new neb::gfx::glsl::uniform::Scalar::Mat4(name));
 			break;
 		case GL_SAMPLER_2D:
-			u.reset(new neb::gfx::glsl::Uniform::Scalar::Sampler2D(name));
+			u.reset(new neb::gfx::glsl::uniform::Scalar::Sampler2D(name));
 			break;
 		case GL_SAMPLER_2D_ARRAY:
-			u.reset(new neb::gfx::glsl::Uniform::Scalar::Int(name));
+			u.reset(new neb::gfx::glsl::uniform::Scalar::Int(name));
 			break;
 		default:
 			printf("unsupported glsl type \"%s\"\n", name.c_str());
@@ -161,23 +161,23 @@ void	neb::gfx::glsl::program::base::add_uniform_scalar(std::string name, GLenum 
 }
 void			neb::gfx::glsl::program::base::add_uniform_vector(std::string name, GLenum type) {
 
-	std::shared_ptr<neb::gfx::glsl::Uniform::Vector::base> u;
+	std::shared_ptr<neb::gfx::glsl::uniform::Vector::base> u;
 
 	switch(type) {
 		case GL_INT:
-			u.reset(new neb::gfx::glsl::Uniform::Vector::Int(name));
+			u.reset(new neb::gfx::glsl::uniform::Vector::Int(name));
 			break;
 		case GL_FLOAT:
-			u.reset(new neb::gfx::glsl::Uniform::Vector::Float(name));
+			u.reset(new neb::gfx::glsl::uniform::Vector::Float(name));
 			break;
 		case GL_FLOAT_VEC3:
-			u.reset(new neb::gfx::glsl::Uniform::Vector::Vec3(name));
+			u.reset(new neb::gfx::glsl::uniform::Vector::Vec3(name));
 			break;
 		case GL_FLOAT_VEC4:
-			u.reset(new neb::gfx::glsl::Uniform::Vector::Vec4(name));
+			u.reset(new neb::gfx::glsl::uniform::Vector::Vec4(name));
 			break;
 		case GL_FLOAT_MAT4:
-			u.reset(new neb::gfx::glsl::Uniform::Vector::mat4(name));
+			u.reset(new neb::gfx::glsl::uniform::Vector::mat4(name));
 			break;
 		default:
 			printf("unsupported glsl type \"%s\"\n", name.c_str());
@@ -202,7 +202,7 @@ void			neb::gfx::glsl::program::base::add_uniform_vector(std::string name, GLenu
 
   return p;
   }*/
-std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base>	neb::gfx::glsl::program::base::get_uniform_scalar(std::string name) {
+std::shared_ptr<neb::gfx::glsl::uniform::Scalar::base>	neb::gfx::glsl::program::base::get_uniform_scalar(std::string name) {
 	//printf("%s\n", __PRETTY_FUNCTION__);
 
 	auto it = uniform_scalar_.find(name);
@@ -219,7 +219,7 @@ std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base>	neb::gfx::glsl::program::
 
 	return p;
 }
-std::shared_ptr<neb::gfx::glsl::Uniform::Vector::base>		neb::gfx::glsl::program::base::get_uniform_vector(std::string name) {
+std::shared_ptr<neb::gfx::glsl::uniform::Vector::base>		neb::gfx::glsl::program::base::get_uniform_vector(std::string name) {
 	//printf("%s\n", __PRETTY_FUNCTION__);
 
 	auto it = uniform_vector_.find(name);
@@ -256,7 +256,14 @@ void			neb::gfx::glsl::program::base::locate() {
 	for(unsigned int c = 0; c < neb::gfx::glsl::attribs::COUNT; c++)
 	{
 		attrib_table_[c] = glGetAttribLocation(o_, neb::gfx::glsl::attrib::attrib_string_[c]);
-		printf("attrib %s %i\n", neb::gfx::glsl::attrib::attrib_string_[c], attrib_table_[c]);
+		printf("attrib  %32s %i\n", neb::gfx::glsl::attrib::attrib_string_[c], attrib_table_[c]);
+		checkerror("");
+	}
+
+	for(unsigned int c = 0; c < neb::gfx::glsl::uniforms::COUNT; c++)
+	{
+		uniform_table_[c] = glGetUniformLocation(o_, neb::gfx::glsl::uniform::uniform_string_[c]);
+		printf("uniform %32s %i\n", neb::gfx::glsl::uniform::uniform_string_[c], uniform_table_[c]);
 		checkerror("");
 	}
 
@@ -266,9 +273,8 @@ void			neb::gfx::glsl::program::base::locate() {
 
 
 
-
 	{
-		std::shared_ptr<neb::gfx::glsl::Uniform::Scalar::base> u;
+		std::shared_ptr<neb::gfx::glsl::uniform::Scalar::base> u;
 
 		for(auto it = uniform_scalar_.begin(); it != uniform_scalar_.end(); ++it) {
 			u = (*it).second;
@@ -276,7 +282,7 @@ void			neb::gfx::glsl::program::base::locate() {
 		}
 	}	
 
-	std::shared_ptr<neb::gfx::glsl::Uniform::Vector::base> u;
+	std::shared_ptr<neb::gfx::glsl::uniform::Vector::base> u;
 	for(auto it = uniform_vector_.begin(); it != uniform_vector_.end(); ++it) {
 		u = (*it).second;
 		u->locate(shared_from_this());

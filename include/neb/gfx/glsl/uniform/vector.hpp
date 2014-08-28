@@ -10,7 +10,7 @@
 
 #include <neb/gfx/glsl/util/decl.hpp>
 
-namespace neb { namespace gfx { namespace glsl { namespace Uniform { namespace Vector {
+namespace neb { namespace gfx { namespace glsl { namespace uniform { namespace Vector {
 	/** @brief %Array
 	 * base class for array GLSL uniform
 	 */
@@ -36,29 +36,29 @@ namespace neb { namespace gfx { namespace glsl { namespace Uniform { namespace V
 			GLuint			o_[LEN];
 
 	};
-	class Int: public neb::gfx::glsl::Uniform::Vector::base {
+	class Int: public neb::gfx::glsl::uniform::Vector::base {
 		public:
 			Int(std::string s): base(s) {}
 			virtual void		load(int,int);
 	};
-	class Float: public neb::gfx::glsl::Uniform::Vector::base {
+	class Float: public neb::gfx::glsl::uniform::Vector::base {
 		public:
 			Float(std::string s): base(s) {}
 			virtual void		load(int,float);
 	};
-	class Vec3: public neb::gfx::glsl::Uniform::Vector::base {
+	class Vec3: public neb::gfx::glsl::uniform::Vector::base {
 		public:
 			Vec3(std::string s): base(s) {}
 			virtual void		load(int, float*);
 			virtual void		load(int, vec3 const &);
 	};
-	class Vec4: public neb::gfx::glsl::Uniform::Vector::base {
+	class Vec4: public neb::gfx::glsl::uniform::Vector::base {
 		public:
 			Vec4(std::string s): base(s) {}
 			virtual void		load(int, float*);
 			virtual void		load(int, vec4 const &);
 	};
-	class mat4: public neb::gfx::glsl::Uniform::Vector::base {
+	class mat4: public neb::gfx::glsl::uniform::Vector::base {
 		public:
 			mat4(std::string s): base(s) {}
 			virtual void		load(int, glm::mat4 const &);

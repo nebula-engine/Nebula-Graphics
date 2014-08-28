@@ -32,12 +32,12 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 	w_ = w;
 	h_ = h;
 
-	GLenum target = GL_TEXTURE_2D_ARRAY;
+	target_ = GL_TEXTURE_2D_ARRAY;
 
 	glGenTextures(1, &o_);
 	checkerror("glGenTextures");
 
-	glBindTexture(target, o_);
+	glBindTexture(target_, o_);
 	checkerror("glBindTexture");
 	
 /*	glTexImage2D(
@@ -54,7 +54,7 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 	
 	GLsizei depth = 8;
 	glTexImage3D(
-			target,
+			target_,
 			0,
 			GL_DEPTH_COMPONENT,
 			w_,
@@ -65,13 +65,13 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 			GL_UNSIGNED_BYTE,
 			NULL);
 
-	glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_CLAMP);
-	glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameteri(target_, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(target_, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(target_, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(target_, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	checkerror("glTexParameteri");
 
-	glBindTexture(target, 0);
+	glBindTexture(target_, 0);
 	checkerror("glBindTexture");
 
 }

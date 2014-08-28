@@ -10,7 +10,7 @@
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 
-neb::gfx::glsl::Uniform::Scalar::base::base(std::string name) {
+neb::gfx::glsl::uniform::Scalar::base::base(std::string name) {
 	//printf("%s\n",__PRETTY_FUNCTION__);
 	name_ = name;
 	o_ = -1;
@@ -18,7 +18,7 @@ neb::gfx::glsl::Uniform::Scalar::base::base(std::string name) {
 	//checkerror("glGetUniformLocation");
 	//locate();
 }
-void	neb::gfx::glsl::Uniform::Scalar::base::locate(std::shared_ptr<neb::gfx::glsl::program::base> p) {
+void	neb::gfx::glsl::uniform::Scalar::base::locate(std::shared_ptr<neb::gfx::glsl::program::base> p) {
 	
 	assert(p);
 	

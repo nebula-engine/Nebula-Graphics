@@ -46,6 +46,7 @@ namespace neb { namespace gfx {
 
 			//map_t			buffers_;
 			GLuint			o_;
+			GLenum			target_;
 	};
 }}
 
