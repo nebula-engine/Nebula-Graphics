@@ -39,14 +39,14 @@ void neb::gfx::core::shape::box::box::createMesh() {
 		auto spc = neb::core::color::color::white();
 		auto emi = neb::core::color::color::black();
 		
-		LOG(lg, neb::gfx::sl, info) << "diffuse";
-		dif.print();
-		LOG(lg, neb::gfx::sl, info) << "ambient";
-		amb.print();
-		LOG(lg, neb::gfx::sl, info) << "specular";
-		spc.print();
-		LOG(lg, neb::gfx::sl, info) << "emission";
-		emi.print();
+		LOG(lg, neb::gfx::sl, debug) << "diffuse";
+		//dif.print();
+		LOG(lg, neb::gfx::sl, debug) << "ambient";
+		//amb.print();
+		LOG(lg, neb::gfx::sl, debug) << "specular";
+		//spc.print();
+		LOG(lg, neb::gfx::sl, debug) << "emission";
+		//emi.print();
 
 		mesh_slot_ = scene->meshes_.cuboid_->instances_->reg(
 				model,

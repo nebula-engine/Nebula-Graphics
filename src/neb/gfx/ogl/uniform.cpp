@@ -18,35 +18,15 @@ void		neb::gfx::ogl::glUniformv(GLint location, GLsizei count, glm::mat4 const *
 }
 void		neb::gfx::ogl::glUniformv(GLint location, GLsizei count, float const * const & value) {
 	glUniform1fv(location, count, value);
-
-	std::stringstream ss;
-	ss
-		<< std::setw(16) << "glUniform1fv"
-		<< std::setw(16) << location
-		<< std::setw(16) << count;
-	checkerror(ss.str());
+	checkerror("glUniform1fv %i %i\n", location, count);
 }
 void		neb::gfx::ogl::glUniformv(GLint location, GLsizei count, int const * const & value) {
-
 	checkerror("unknown");
-
 	glUniform1iv(location, count, value);
-
-	std::stringstream ss;
-	ss
-		<< std::setw(16) << "glUniform1iv"
-		<< std::setw(16) << location
-		<< std::setw(16) << count;
-	checkerror(ss.str());
+	checkerror("glUniform1iv %i %i\n", location, count);
 }
 void		neb::gfx::ogl::glUniform(GLint location, int const & value) {
 	glUniform1i(location, value);
-	
-	std::stringstream ss;
-	ss
-		<< std::setw(16) << "glUniform1i"
-		<< std::setw(16) << location;
-
-	checkerror(ss.str());
+	checkerror("glUniform1i %i\n", location);
 }
 

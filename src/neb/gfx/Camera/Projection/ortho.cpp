@@ -6,11 +6,11 @@
 
 neb::gfx::camera::proj::ortho::ortho(std::shared_ptr<neb::gfx::environ::base> parent):
 	neb::gfx::camera::proj::base(parent),
-	left_(0),
-	right_(10),
-	bottom_(0),
-	top_(10),
-	near_(1),
+	left_(-30),
+	right_(30),
+	bottom_(-30),
+	top_(30),
+	near_(-1000),
 	far_(1000)
 {
 

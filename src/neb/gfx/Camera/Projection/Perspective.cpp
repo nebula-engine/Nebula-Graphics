@@ -59,6 +59,10 @@ mat4		neb::gfx::camera::proj::perspective::proj() {
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zn" << ::std::setw(8) << zn_;
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zf" << ::std::setw(8) << zf_;
 	
+	if(parent->viewport_.aspect_ == 0.0) {
+		parent->viewport_.aspect_ = 1.0;
+	}
+
 	mat4 ret = glm::perspective(fovy_, parent->viewport_.aspect_, zn_, zf_);
 	
 	//ret.print();

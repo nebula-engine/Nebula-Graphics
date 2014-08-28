@@ -54,7 +54,10 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	
 	auto drawable = drawable_.lock();
 
-	if(!drawable) return;
+	if(!drawable) {
+		LOG(lg, neb::gfx::sl, warning) << "drawable is NULL";
+		return;
+	}
 
 	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	//auto app = neb::gfx::app::__gfx_glsl::global().lock();
@@ -69,7 +72,9 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	assert(view_);
 	
 	program_->use();
-
+	
+	
+	
 	proj_->load(program_);
 	view_->load(program_);
 	

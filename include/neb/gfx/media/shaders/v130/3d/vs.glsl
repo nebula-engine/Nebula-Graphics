@@ -21,10 +21,10 @@ in vec3		normal; // 1
 in vec2		texcoor; // 2
 in vec3		tangent; // 3
 in vec3		binormal; // 4
-in vec4		instance_model0;
-in vec4		instance_model1;
-in vec4		instance_model2;
-in vec4		instance_model3;
+in vec4		instance_model_0;
+in vec4		instance_model_1;
+in vec4		instance_model_2;
+in vec4		instance_model_3;
 in vec4		instance_sampler;
 in vec4		instance_diffuse;
 in vec4		instance_ambient;
@@ -35,10 +35,10 @@ in float	instance_shininess;
 void main(void) {
 
 	mat4 model = mat4(
-			instance_model0,
-			instance_model1,
-			instance_model2,
-			instance_model3);
+			instance_model_0,
+			instance_model_1,
+			instance_model_2,
+			instance_model_3);
 
 	mat4 modelview = view * model;
 	

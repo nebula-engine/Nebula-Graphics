@@ -86,7 +86,11 @@ void			neb::gfx::core::scene::base::draw(
 		// lights
 		light_array_[0].load_uniform(program_3d->light_locations_.location);
 	}
-
+	
+	if(tex_shadow_map_) {
+		load into uniform
+	}
+	
 	// meshes
 	assert(meshes_.cuboid_);
 	meshes_.cuboid_->draw(p);

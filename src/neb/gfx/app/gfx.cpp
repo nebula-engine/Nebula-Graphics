@@ -48,7 +48,7 @@ void				neb::gfx::app::__gfx::step(gal::etc::timestep const & ts) {
 	
 	neb::gfx::window::util::parent::step(ts);
 
-	neb::gfx::context::util::parent::step(ts);
+	//neb::gfx::context::util::parent::step(ts);
 
 	neb::gfx::gui::layout::util::parent::step(ts);
 }
@@ -58,7 +58,7 @@ void				neb::gfx::app::__gfx::render()
 
 	neb::gfx::window::util::parent::render();
 
-	neb::gfx::context::util::parent::render();
+	//neb::gfx::context::util::parent::render();
 
 }
 void				neb::gfx::app::__gfx::init_glew() {

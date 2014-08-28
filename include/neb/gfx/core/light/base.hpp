@@ -48,6 +48,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				neb::core::pose					getPose();
 				vec4						getPos();
 				void						setPose(neb::core::pose const & pose);
+				void						setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ);
 			private:
 				template<class Archive> void		serializeTemplate(Archive & ar, unsigned int const & version) {
 					ar & boost::serialization::make_nvp("ambient",ambient_);
@@ -69,9 +70,9 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				std::string					light_type_string_;
 
 				// data
-				neb::core::color::color			ambient_;
-				neb::core::color::color			diffuse_;
-				neb::core::color::color			specular_;
+				neb::core::color::color				ambient_;
+				neb::core::color::color				diffuse_;
+				neb::core::color::color				specular_;
 				float						atten_const_;
 				float						atten_linear_;
 				float						atten_quad_;
@@ -79,9 +80,13 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				float						spot_cutoff_;
 				float						spot_exponent_;
 				float						spot_light_cos_cutoff_;
+				
+				glm::mat4					shadow_vpb_[6];
+				glm::vec3					shadow_sampler_[2];
 
 				int						type_;
-				
+
+				std::shared_ptr<neb::gfx::environ::base>	shadow_environ_;				
 				
 				// other properties
 

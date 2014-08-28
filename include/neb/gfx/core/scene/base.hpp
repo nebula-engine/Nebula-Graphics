@@ -48,6 +48,9 @@ namespace neb {
 						// one for static, one for dynamic
 						neb::gfx::glsl::uniform::light_array				light_array_[2];
 
+
+						std::shared_ptr<neb::gfx::texture>				tex_shadow_map_;
+
 						// standard meshes
 						struct {
 							std::shared_ptr<neb::gfx::mesh::instanced>		cuboid_;

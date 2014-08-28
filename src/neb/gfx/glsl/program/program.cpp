@@ -20,21 +20,22 @@
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 
-neb::gfx::glsl::program::base::base()
+neb::gfx::glsl::program::base::~base() {}
+neb::gfx::glsl::program::base::base():
+	o_(0)
 {
+	shader_[0] = 0;
+	shader_[1] = 0;
 }
 void	neb::gfx::glsl::program::base::init()
 {
 	//NEBULA_GLSL_PROGRAM_FUNC;
 
 	assert(glfwGetCurrentContext() != NULL);
-
+	
 	o_ = glCreateProgram();
 	
-
-	printf("program = %i\n",o_);
-	
-	checkerror("glCreateProgram");
+	checkerror("glCreateProgram %i\n");
 
 }
 void	neb::gfx::glsl::program::base::add_shaders(std::vector<neb::gfx::glsl::shader> s)
@@ -56,10 +57,25 @@ void	neb::gfx::glsl::program::base::add_shader(char const * filename, GLenum typ
 	
 	glAttachShader(o_, s.o_);
 	checkerror("glAttachShader");
+	
+	switch(type)
+	{
+		case GL_VERTEX_SHADER:
+			shader_[VERT] = 1;
+			break;
+		case GL_FRAGMENT_SHADER:
+			shader_[FRAG] = 1;
+			break;
+		default:
+			abort();
+	}
 }
 void	neb::gfx::glsl::program::base::compile() {
 	//GRU_GLSL_PROGRAM_FUNC
 	
+	assert(shader_[VERT] == 1);
+	assert(shader_[FRAG] == 1);
+
 	glLinkProgram(o_);
 	checkerror("glLinkProgram");
 	
@@ -86,12 +102,9 @@ void	neb::gfx::glsl::program::base::use() {
 	
 	
 	checkerror("unknown");
-
+	
 	glUseProgram(o_);
-
-	std::stringstream ss;
-	ss << "glUseProgram " << o_;
-	checkerror(ss.str());
+	checkerror("glUseProgram %i\n", o_);
 
 	std::shared_ptr<neb::gfx::glsl::attrib> attrib;
 
@@ -243,6 +256,7 @@ void			neb::gfx::glsl::program::base::locate() {
 	for(unsigned int c = 0; c < neb::gfx::glsl::attribs::COUNT; c++)
 	{
 		attrib_table_[c] = glGetAttribLocation(o_, neb::gfx::glsl::attrib::attrib_string_[c]);
+		printf("attrib %s %i\n", neb::gfx::glsl::attrib::attrib_string_[c], attrib_table_[c]);
 		checkerror("");
 	}
 

@@ -12,7 +12,7 @@ namespace neb { namespace gfx {
 		class two;
 		class three;
 		class shadow_directional;
-
+		class vis_depth;
 	}
 
 }}

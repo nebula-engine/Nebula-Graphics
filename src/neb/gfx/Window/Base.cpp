@@ -62,7 +62,15 @@ void			neb::gfx::window::base::__init() {
 
 	self_ = std::dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this());
 
+
+
+
 	// create window
+	//
+	
+	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
+	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
 	window_ = glfwCreateWindow(
 			w_,
 			h_,
@@ -245,7 +253,10 @@ void			neb::gfx::window::base::resize() {
 
 }
 weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextTwo() {
-	auto self(dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this()));
+
+	auto self = isWindowBase();
+	assert(self);
+
 	auto context(make_shared<neb::gfx::context::window>(self));
 	insert(context);
 
@@ -255,8 +266,11 @@ weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextTwo() 
 	return context;
 }
 weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextThree() {
-	auto self(dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this()));
-	auto context = make_shared<neb::gfx::context::window>(self);
+
+	auto self = isWindowBase();
+	assert(self);
+	
+	auto context = std::make_shared<neb::gfx::context::window>(self);
 	insert(context);
 	
 	auto environ = context->createEnvironThree().lock();
@@ -268,6 +282,9 @@ weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextThree(
 	
 	return context;
 }
-
+void						neb::gfx::window::base::makeCurrent() {
+	assert(window_ != NULL);
+	glfwMakeContextCurrent(window_);
+}
 
 

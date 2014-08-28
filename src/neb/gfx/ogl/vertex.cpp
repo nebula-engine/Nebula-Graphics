@@ -18,34 +18,35 @@ void			neb::gfx::ogl::vertexAttribPointer(
 	for(unsigned int c = 0; c < attrib_count; c++)
 	{
 
-		glBindBuffer(
-				target[buffer_index[c]],
-				buffer[buffer_index[c]]);
+		if(index[c] != -1)
+		{
+			glBindBuffer(
+					target[buffer_index[c]],
+					buffer[buffer_index[c]]);
 
-		checkerror("glBindBuffer");
+			checkerror("glBindBuffer");
 
-		glEnableVertexAttribArray(
-				index[c]);
+			glEnableVertexAttribArray(
+					index[c]);
 
-		std::stringstream ss;
-		ss << "glEnableVertexAttribArray " << index[c];
-		checkerror(ss.str());
+			checkerror("glEnableVertexAttribArray %s\n", index[c]);
 
-		glVertexAttribPointer(
-				index[c],
-				size[c],
-				type[c],
-				normalized[c],
-				stride[c],
-				pointer[c]);
+			glVertexAttribPointer(
+					index[c],
+					size[c],
+					type[c],
+					normalized[c],
+					stride[c],
+					pointer[c]);
 
-		checkerror("glVertexAttribPointer");
+			checkerror("glVertexAttribPointer");
 
-		glVertexAttribDivisor(
-				index[c],
-				divisor[c]);
+			glVertexAttribDivisor(
+					index[c],
+					divisor[c]);
 
-		checkerror("glVertexAttribDivisor");
+			checkerror("glVertexAttribDivisor");
+		}
 	}
 }
 void			neb::gfx::ogl::bufferData(
@@ -147,6 +148,7 @@ void			neb::gfx::ogl::bufferSubData(
 		checkerror("glBufferSubData");
 	}
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	checkerror("glBindBuffer");
 
 
 }

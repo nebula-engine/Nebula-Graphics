@@ -53,6 +53,7 @@ namespace neb { namespace gfx { namespace window {
 			void					callbackCharFun(GLFWwindow*,unsigned int);
 			std::weak_ptr<neb::gfx::context::window>	createContextTwo();
 			std::weak_ptr<neb::gfx::context::window>	createContextThree();
+			void						makeCurrent();
 		public:
 			std::shared_ptr<neb::gfx::window::util::parent>			parent_;
 			/** @brief self

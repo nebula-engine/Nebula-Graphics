@@ -51,6 +51,7 @@ namespace neb {
 					std::weak_ptr<neb::gfx::environ::two>			createEnvironTwo();
 					std::weak_ptr<neb::gfx::environ::three>			createEnvironThree();
 					std::weak_ptr<neb::gfx::environ::shadow_directional>	createEnvironShadowDirectional();
+					std::weak_ptr<neb::gfx::environ::vis_depth>		createEnvironVisDepth();
 					void							setDrawable(std::shared_ptr<neb::gfx::drawable::base>);
 				public:
 					/** @brief %Parent

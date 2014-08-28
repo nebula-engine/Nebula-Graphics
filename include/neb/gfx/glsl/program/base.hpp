@@ -23,10 +23,15 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 			typedef std::map<std::string, array_shared>				uniform_a_map;
 			typedef std::map<int, std::shared_ptr<neb::gfx::glsl::attrib> >		attrib_map;
 			
+			enum {
+				VERT = 0,
+				FRAG = 1
+			};
+
 			base();
-			virtual ~base() {}
+			virtual ~base() = 0;
 			
-			void			init();
+			virtual void		init();
 			void			add_shader(char const *, GLenum);
 			void			add_shaders(std::vector<neb::gfx::glsl::shader>);
 			void			compile();
@@ -49,6 +54,8 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 
 			attrib_map		attrib_;
 			
+			int			shader_[2];
+
 			GLint			attrib_table_[neb::gfx::glsl::attribs::COUNT];
 	};
 }}}}

@@ -15,7 +15,9 @@
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
-
+#include <neb/gfx/camera/proj/base.hpp>
+#include <neb/gfx/camera/view/Base.hh>
+#include <neb/gfx/environ/shadow_directional.hpp>
 
 neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::parent> parent, int type):
 	neb::core::core::light::base(parent),
@@ -85,41 +87,77 @@ void			neb::gfx::core::light::base::dim() {
 	printf("UNSUPPORTED\n");
 	exit(0);
 }
-void		neb::gfx::core::light::base::step(gal::etc::timestep const & ts) {
+void		neb::gfx::core::light::base::setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) {
+	assert(environ);
+	shadow_environ_ = environ;
+	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow_directional>(environ);
+	assert(e);
+	
+	auto proj = e->proj_->proj();
+	auto view = e->view_->view();
 
+	static const glm::mat4 bias(
+			0.5f, 0.0f, 0.0f, 0.0f,
+			0.0f, 0.5f, 0.0f, 0.0f,
+			0.0f, 0.0f, 0.5f, 0.0f,
+			0.5f, 0.5f, 0.5f, 1.0f);
+
+	glm::mat4 vpb = bias * proj * view;
+	
+	shadow_vpb_[0] = vpb;
+	shadow_sampler_[0] = vec3(1,-1,-1);
+	
+	auto parent = getScene().lock();
+
+	parent->light_array_[light_array_].set_shadow_vpb_0(
+			light_array_slot_,
+			shadow_vpb_[0]);
+	parent->light_array_[light_array_].set_shadow_sampler_0(
+			light_array_slot_,
+			shadow_sampler_[0]);
+
+}
+void		neb::gfx::core::light::base::step(gal::etc::timestep const & ts) {
+	/*
+	   if(shadow_environ_) {
+
+	   auto e = std::dynamic_pointer_cast<>
+
+	   }
+	   */
 }
 void	neb::gfx::core::light::base::draw() {	
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
 neb::core::pose		neb::gfx::core::light::base::getPose() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
-	
+
 	auto parent(parent_.lock());
 	assert(parent);
-	
+
 	auto p = parent->getPoseGlobal();
-	
+
 	return p;
 }
 void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
-	
+
 	/** @todo way to ditinguish lights in shader */
-/*	
-	auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
-	
-	vec3 pos = pos_;
-	
-	pos += vec3(pose.pos_);
-	
-	
-	p->get_uniform_vector(light_type_string_ + ".position")->load(o, pos);
-	
-	
-	p->get_uniform_vector(light_type_string_ + ".ambient")->load(o, (glm::vec4)ambient_);
-	p->get_uniform_vector(light_type_string_ + ".diffuse")->load(o, (glm::vec4)diffuse_);
-	p->get_uniform_vector(light_type_string_ + ".specular")->load(o, (glm::vec4)specular_);
-*/
+	/*	
+		auto p = neb::gfx::app::__gfx_glsl::global().lock()->current_program();
+
+		vec3 pos = pos_;
+
+		pos += vec3(pose.pos_);
+
+
+		p->get_uniform_vector(light_type_string_ + ".position")->load(o, pos);
+
+
+		p->get_uniform_vector(light_type_string_ + ".ambient")->load(o, (glm::vec4)ambient_);
+		p->get_uniform_vector(light_type_string_ + ".diffuse")->load(o, (glm::vec4)diffuse_);
+		p->get_uniform_vector(light_type_string_ + ".specular")->load(o, (glm::vec4)specular_);
+		*/
 
 }
 void	neb::gfx::core::light::base::load_shadow() {

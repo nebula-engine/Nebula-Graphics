@@ -69,6 +69,7 @@ namespace neb {
 			}
 			class base;
 			class window;
+			class fbo;
 		}
 
 		/**@brief %environ */

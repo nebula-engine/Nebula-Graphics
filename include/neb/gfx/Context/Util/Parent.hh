@@ -6,6 +6,7 @@
 #include <neb/gfx/Context/Base.hh>
 #include <neb/gfx/Context/Util/decl.hpp>
 
+
 namespace neb {
 	namespace gfx {
 		namespace context {
@@ -15,12 +16,18 @@ namespace neb {
 					virtual public neb::gfx::window::util::cast
 				{
 					public:
+						typedef neb::gfx::context::window C_W;
+
+					public:
 						virtual void			__init() {}
 						virtual void			release() {}
 						virtual void			step(gal::etc::timestep const & ts) { neb::util::parent< neb::gfx::context::base >::step(ts); }
 						virtual void			render();
-						
+
 						std::weak_ptr<neb::gfx::context::fbo>	createContextFBO();
+						std::weak_ptr<C_W>			createContextWindow();
+						std::weak_ptr<C_W>			createContextVisDepth();
+
 				};
 			}
 		}

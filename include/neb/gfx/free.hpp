@@ -4,6 +4,9 @@
 #include <memory>
 #include <sstream>
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
 #include <gal/stl/helper.hpp>
 
 #include <neb/core/color/Color.hh>
@@ -31,12 +34,19 @@ namespace neb {
 			std::string::size_type pos = std::string::npos);
 }
 
-void	checkerror(std::string);
+template<typename... T> void	checkerror(char const * cstr, T... t) {
 
-template<typename... T> void	checkerror(T... t) {
-	std::stringstream ss;
-	pass((ss << t)...);
-	checkerror(ss.str());
+#ifdef _DEBUG
+	GLenum err = glGetError();
+	if(err != GL_NO_ERROR)
+	{
+		unsigned char const * str = gluErrorString(err);
+		printf(cstr, t...);
+		printf("OpenGL Error: %s\n", str);
+		abort();
+	}
+#endif
+
 }
 
 bool	isGLError();

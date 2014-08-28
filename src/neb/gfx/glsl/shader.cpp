@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 #include <string.h>
+#include <iomanip>
 
 #include <iostream>
 #include <fstream>
@@ -72,9 +73,9 @@ void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 	std::stringstream ss;
 	std::copy(lines.begin(), lines.end(), std::ostream_iterator<std::string>(ss, "\n"));
 
-	
+	int c = 0;
 	for(auto str : lines) {
-		std::cout << str << std::endl;
+		std::cout << std::setw(3) << c++ << ":" << str << std::endl;
 	}
 
 	std::string str(ss.str());

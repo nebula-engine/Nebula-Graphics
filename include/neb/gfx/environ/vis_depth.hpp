@@ -1,5 +1,5 @@
-#ifndef NEBULA_GFX_ENVIRON_SHADOW_DIRECTIONAL_HPP
-#define NEBULA_GFX_ENVIRON_SHADOW_DIRECTIONAL_HPP
+#ifndef NEBULA_GFX_ENVIRON_VIS_DEPTH_HPP
+#define NEBULA_GFX_ENVIRON_VIS_DEPTH_HPP
 
 #include <neb/core/core/actor/util/decl.hpp>
 #include <neb/core/util/typedef.hpp>
@@ -16,7 +16,7 @@ namespace neb { namespace gfx { namespace environ {
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
-	class shadow_directional: virtual public neb::gfx::environ::base {
+	class vis_depth: virtual public neb::gfx::environ::base {
 		public:
 			typedef std::shared_ptr<neb::gfx::glsl::program::shadow_directional>	program_shared;
 			typedef std::shared_ptr<neb::gfx::camera::view::base>			view_shared;
@@ -25,7 +25,7 @@ namespace neb { namespace gfx { namespace environ {
 			typedef std::shared_ptr<light_type>			light_shared;
 			typedef std::weak_ptr<light_type>			light_weak;
 		public:
-			shadow_directional();
+			vis_depth();
 			virtual void		init();
 			virtual void		step(gal::etc::timestep const & ts);
 			virtual void		render(
@@ -51,3 +51,4 @@ namespace neb { namespace gfx { namespace environ {
 
 
 #endif
+

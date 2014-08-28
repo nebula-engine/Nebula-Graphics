@@ -38,11 +38,6 @@ namespace neb { namespace gfx { namespace environ {
 			 * @note OWNED
 			 */
 			proj_shared			proj_;
-			/** @brief %glsl %program
-			 * 
-			 * @note OWNED
-			 */
-			program_shared			program_;
 
 	};
 

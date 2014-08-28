@@ -16,6 +16,8 @@ namespace neb {
 				{
 					public:
 						std::shared_ptr<neb::gfx::context::base>			isContextBase();
+						std::shared_ptr<neb::gfx::context::window>			isContextWindow();
+						std::shared_ptr<neb::gfx::context::fbo>				isContextFBO();
 				};
 			}
 		}

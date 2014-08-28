@@ -6,9 +6,12 @@
 #include <neb/gfx/Context/fbo.hpp>
 #include <neb/gfx/environ/base.hpp>
 #include <neb/gfx/texture.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
+#include <neb/gfx/window/Base.hh>
 
-neb::gfx::context::fbo::fbo(std::shared_ptr<neb::gfx::context::util::parent> parent):
+neb::gfx::context::fbo::fbo(std::shared_ptr<neb::gfx::window::base> parent):
 	neb::gfx::context::base(parent),
+	neb::gfx::context::window(parent),
 	framebuffer_(0)
 {}
 void		neb::gfx::context::fbo::init() {
@@ -56,15 +59,31 @@ void		neb::gfx::context::fbo::render() {
 	}
 	checkerror("unknown");
 
+	assert(environ_->program_);
+	environ_->program_->use();
+
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	assert(self);
 
 	// Not sure, but I think these three lines should be called each time the scene is rendered
-	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_); checkerror("glBindFramebuffer");
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_); checkerror("glBindFramebuffer\n");
 	
-	glBindTexture(GL_TEXTURE_2D, texture_->o_); checkerror("glBindTexture");
+	glBindTexture(GL_TEXTURE_2D_ARRAY, texture_->o_);
+	//glBindTexture(GL_TEXTURE_2D, texture_->o_);
+	checkerror("glBindTexture\n");
 	
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture_->o_, 0); checkerror("glFramebufferTexture");
+/*	glFramebufferTexture(
+			GL_FRAMEBUFFER,
+			GL_DEPTH_ATTACHMENT,
+			texture_->o_,
+			0);*/
+	glFramebufferTextureLayer(
+			GL_FRAMEBUFFER,
+			GL_DEPTH_ATTACHMENT,
+			texture_->o_,
+			0,
+			1);
+	checkerror("glFramebufferTexture\n");
 	
 
 	glDrawBuffer(GL_NONE); // No color buffer is drawn to.

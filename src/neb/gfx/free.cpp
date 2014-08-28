@@ -261,18 +261,7 @@ void CheckExt()
 }
 
 
-void	checkerror(std::string msg) {
 
-	GLenum err = glGetError();
-	if(err != GL_NO_ERROR)
-	{
-		unsigned char const * str = gluErrorString(err);
-		std::cout
-			<< msg << std::endl
-			<< "opengl: " << str << std::endl;
-		abort();
-	}
-}
 bool	isGLError() {
 	return (glGetError() != GL_NO_ERROR);
 }

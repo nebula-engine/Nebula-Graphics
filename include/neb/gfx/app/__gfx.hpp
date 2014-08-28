@@ -30,7 +30,7 @@ namespace neb { namespace gfx {namespace app {
 		class __gfx:
 			virtual public neb::core::app::__base,
 			virtual public neb::gfx::window::util::parent,
-			virtual public neb::gfx::context::util::parent,
+			/*virtual public neb::gfx::context::util::parent,*/
 			virtual public neb::gfx::gui::layout::util::parent
 		{
 			public:

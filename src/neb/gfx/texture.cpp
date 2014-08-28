@@ -32,29 +32,46 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 	w_ = w;
 	h_ = h;
 
+	GLenum target = GL_TEXTURE_2D_ARRAY;
+
 	glGenTextures(1, &o_);
 	checkerror("glGenTextures");
 
-	glBindTexture(GL_TEXTURE_2D, o_);
+	glBindTexture(target, o_);
 	checkerror("glBindTexture");
-
-	glTexImage2D(
+	
+/*	glTexImage2D(
 			GL_TEXTURE_2D,
 			0,
 			GL_DEPTH_COMPONENT,
-			w_, h_,
+			w_,
+			h_,
 			0,
 			GL_DEPTH_COMPONENT,
 			GL_UNSIGNED_BYTE,
 			NULL);
+*/	
 	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	GLsizei depth = 8;
+	glTexImage3D(
+			target,
+			0,
+			GL_DEPTH_COMPONENT,
+			w_,
+		       	h_,
+			depth,
+			0,
+			GL_DEPTH_COMPONENT,
+			GL_UNSIGNED_BYTE,
+			NULL);
+
+	glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(target, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(target, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	checkerror("glTexParameteri");
 
-	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(target, 0);
 	checkerror("glBindTexture");
 
 }
@@ -257,6 +274,7 @@ void		neb::gfx::texture::draw(
 		std::shared_ptr<neb::gfx::context::base> context,
 		std::shared_ptr<neb::gfx::glsl::program::base>)
 {
+	checkerror("unknown");
 
 	auto app = neb::gfx::app::__gfx_glsl::global().lock();
 	auto p = app->program_tex_;
@@ -267,12 +285,14 @@ void		neb::gfx::texture::draw(
 	//glGenTextures(1, &tex);
 	//glBindTexture(GL_TEXTURE_2D, tex);
 
+	GLenum texture_target = GL_TEXTURE_2D_ARRAY;
+
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, o_);
+	glBindTexture(texture_target, o_);
 	p->get_uniform_scalar("tex")->load(0);
 
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE );
-	glTexParameteri( GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE );
+	glTexParameteri(texture_target, GL_TEXTURE_COMPARE_MODE, GL_NONE );
+	glTexParameteri(texture_target, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE );
 
 	/*	
 	 *	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -288,10 +308,14 @@ void		neb::gfx::texture::draw(
 	// vbo
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
+
 	glEnableVertexAttribArray(attrib_coord);
+	checkerror("glEnableVertexAttribArray %i\n", attrib_coord);
+
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	// this line fucks everything up -- not anymore! needed to bind attrib location using layout in shader
 	glVertexAttribPointer(attrib_coord, 4, GL_FLOAT, GL_FALSE, 0, 0);
+	checkerror("glVertexAttribPointer");
 
 
 	// prep environment
@@ -310,10 +334,13 @@ void		neb::gfx::texture::draw(
 		{ 1,  1, 1, 1},
 	};
 
+	checkerror("unknown");
 
 
 	glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
+	checkerror("glBufferData");
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+	checkerror("glDrawArrays");
 
 
 
@@ -321,9 +348,11 @@ void		neb::gfx::texture::draw(
 
 
 	glDisableVertexAttribArray(attrib_coord);
+	
+	
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(texture_target, 0);
 
 	checkerror("unknown");
 

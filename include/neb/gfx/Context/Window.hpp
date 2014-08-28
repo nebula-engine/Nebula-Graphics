@@ -7,11 +7,7 @@
 #include <neb/core/util/decl.hpp>
 
 #include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/Context/Util/Cast.hh>
-#include <neb/gfx/gui/layout/base.hpp>
-#include <neb/gfx/window/Base.hh>
-
-#include <neb/core/core/scene/base.hpp>
+#include <neb/gfx/Context/Base.hh>
 
 namespace neb {
 	namespace gfx {
@@ -29,8 +25,6 @@ namespace neb {
 				public:
 					window(std::shared_ptr<neb::gfx::window::base> window);
 					virtual void					init();
-				public:
-					std::shared_ptr<neb::gfx::window::base>		window_;
 			};
 		}
 	}

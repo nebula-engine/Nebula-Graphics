@@ -3,8 +3,10 @@
 
 #include <gal/etc/timestep.hpp>
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/util/cast.hpp>
 #include <neb/gfx/Viewport.hpp>
+
 
 namespace neb { namespace gfx { namespace environ {
 
@@ -15,6 +17,8 @@ namespace neb { namespace gfx { namespace environ {
 	class base:
 		virtual public neb::gfx::environ::util::cast
 	{
+		public:
+			typedef std::shared_ptr<neb::gfx::glsl::program::base>		program_shared;
 		public:
 			virtual ~base() {}
 
@@ -36,6 +40,12 @@ namespace neb { namespace gfx { namespace environ {
 
 
 			std::weak_ptr<neb::gfx::drawable::base>			drawable_;
+			/** @brief %glsl %program
+			 * 
+			 * @note OWNED
+			 */
+			program_shared			program_;
+
 	};
 
 
