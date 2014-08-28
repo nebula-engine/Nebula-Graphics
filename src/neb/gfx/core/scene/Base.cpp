@@ -88,7 +88,7 @@ void			neb::gfx::core::scene::base::draw(
 	}
 	
 	if(tex_shadow_map_) {
-		load into uniform
+		//load into uniform
 	}
 	
 	// meshes

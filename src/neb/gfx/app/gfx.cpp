@@ -35,9 +35,10 @@ void					neb::gfx::app::__gfx::__init() {
 
 
 	// glfw
+
+	glfwSetErrorCallback(static_error_fun);
 	glfwInit();
 	
-	glfwSetErrorCallback(static_error_fun);
 
 	flag_.set(neb::core::app::util::flag::INIT_GLFW);
 	
