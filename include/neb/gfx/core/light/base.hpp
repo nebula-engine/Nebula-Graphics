@@ -48,7 +48,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				neb::core::pose					getPose();
 				vec4						getPos();
 				void						setPose(neb::core::pose const & pose);
-				void						setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ);
+				virtual void					setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) = 0;
 			private:
 				template<class Archive> void		serializeTemplate(Archive & ar, unsigned int const & version) {
 					ar & boost::serialization::make_nvp("ambient",ambient_);

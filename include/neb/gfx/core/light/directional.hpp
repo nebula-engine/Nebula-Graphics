@@ -9,6 +9,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 	class directional: virtual public neb::gfx::core::light::base {
 		public:
 			directional(std::shared_ptr<neb::core::core::light::util::parent> parent);
+			void		setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ);
 
 	};
 

@@ -44,7 +44,7 @@ namespace neb { namespace gfx {
 			class text;
 			class tex;
 			class threed;
-			class shadow_directional;
+			class shadow;
 		}
 
 		/** @brief uniforms */

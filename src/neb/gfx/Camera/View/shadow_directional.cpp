@@ -1,5 +1,5 @@
 
-#include <neb/gfx/environ/shadow_directional.hpp>
+#include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
 #include <neb/gfx/camera/view/shadow_directional.hpp>
 #include <neb/gfx/core/light/directional.hpp>
@@ -26,7 +26,7 @@ glm::mat4				neb::gfx::camera::view::shadow_directional::view() {
 		light = p2->light_.lock();
 		assert(light);
 	} else if(p3) {
-		light = p3->light_.lock();
+		light = std::dynamic_pointer_cast<neb::gfx::core::light::directional>(p3->light_.lock());
 		assert(light);
 	}
 

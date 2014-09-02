@@ -10,7 +10,7 @@
 #include <neb/gfx/Context/Util/Parent.hh>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
-#include <neb/gfx/environ/shadow_directional.hpp>
+#include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
 #include <neb/gfx/gui/layout/base.hpp>
 #include <neb/gfx/camera/view/Free.hh>

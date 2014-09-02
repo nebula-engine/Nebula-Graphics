@@ -25,7 +25,7 @@ neb::gfx::texture::texture():
 neb::gfx::texture::~texture()
 {
 }
-void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::context::base> context)
+void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::context::base>)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 

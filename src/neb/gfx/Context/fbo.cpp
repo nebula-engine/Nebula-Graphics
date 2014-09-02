@@ -27,20 +27,20 @@ void		neb::gfx::context::fbo::init() {
 	checkerror("glBindFramebuffer");
 
 
-	texture_ = std::make_shared<neb::gfx::texture>();
-	texture_->init_shadow(2048, 2048, self);
+	//texture_ = std::make_shared<neb::gfx::texture>();
+	//texture_->init_shadow(2048, 2048, self);
 
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture_->o_, 0); checkerror("glFramebufferTexture");
+	//glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture_->o_, 0); checkerror("glFramebufferTexture");
 	
 
 	glDrawBuffer(GL_NONE); // No color buffer is drawn to.
 	checkerror("");
 
-	// Always check that our framebuffer is ok
+/*	// Always check that our framebuffer is ok
 	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 		std::cout << "error with framebuffer" << std::endl;
 		abort();
-	}
+	}*/
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	checkerror("");
@@ -51,7 +51,8 @@ void		neb::gfx::context::fbo::render() {
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
-	assert(texture_);
+	auto tex = texture_.lock();
+	assert(tex);
 	
 	if(!environ_) {
 		LOG(lg, neb::gfx::sl, warning) << "context has no environ";
@@ -68,7 +69,7 @@ void		neb::gfx::context::fbo::render() {
 	// Not sure, but I think these three lines should be called each time the scene is rendered
 	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_); checkerror("glBindFramebuffer\n");
 	
-	glBindTexture(GL_TEXTURE_2D_ARRAY, texture_->o_);
+	glBindTexture(GL_TEXTURE_2D_ARRAY, tex->o_);
 	//glBindTexture(GL_TEXTURE_2D, texture_->o_);
 	checkerror("glBindTexture\n");
 	
@@ -80,7 +81,7 @@ void		neb::gfx::context::fbo::render() {
 	glFramebufferTextureLayer(
 			GL_FRAMEBUFFER,
 			GL_DEPTH_ATTACHMENT,
-			texture_->o_,
+			tex->o_,
 			0,
 			1);
 	checkerror("glFramebufferTexture\n");
@@ -89,7 +90,15 @@ void		neb::gfx::context::fbo::render() {
 	glDrawBuffer(GL_NONE); // No color buffer is drawn to.
 	checkerror("glDrawBuffer");
 
-	glViewport(0, 0, texture_->w_, texture_->h_);
+	// Always check that our framebuffer is ok
+	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+		std::cout << "error with framebuffer" << std::endl;
+		abort();
+	}
+
+
+
+	glViewport(0, 0, tex->w_, tex->h_);
 	
 	environ_->render(self);
 	

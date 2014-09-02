@@ -5,13 +5,13 @@
 #include <neb/gfx/glsl/program/base.hpp>
 
 namespace neb { namespace gfx { namespace glsl { namespace program {
-	class shadow_directional:
+	class shadow:
 		public neb::gfx::glsl::program::base
 	{
 		public:
-			shadow_directional(): neb::gfx::glsl::program::base() {}
+			shadow(): neb::gfx::glsl::program::base() {}
 
-			virtual ~shadow_directional() {}
+			virtual ~shadow() {}
 
 			virtual void						init();
 

@@ -17,7 +17,7 @@
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
 #include <neb/gfx/camera/view/Base.hh>
-#include <neb/gfx/environ/shadow_directional.hpp>
+#include <neb/gfx/environ/shadow/directional.hpp>
 
 neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::parent> parent, int type):
 	neb::core::core::light::base(parent),
@@ -30,6 +30,10 @@ neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::
 	type_(type)
 {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
+
+	shadow_sampler_[0] = glm::vec3(-1);
+	shadow_sampler_[1] = glm::vec3(-1);
+
 }
 neb::gfx::core::light::base::~base() {}
 void			neb::gfx::core::light::base::init() {
@@ -87,36 +91,7 @@ void			neb::gfx::core::light::base::dim() {
 	printf("UNSUPPORTED\n");
 	exit(0);
 }
-void		neb::gfx::core::light::base::setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) {
-	assert(environ);
-	shadow_environ_ = environ;
-	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow_directional>(environ);
-	assert(e);
-	
-	auto proj = e->proj_->proj();
-	auto view = e->view_->view();
 
-	static const glm::mat4 bias(
-			0.5f, 0.0f, 0.0f, 0.0f,
-			0.0f, 0.5f, 0.0f, 0.0f,
-			0.0f, 0.0f, 0.5f, 0.0f,
-			0.5f, 0.5f, 0.5f, 1.0f);
-
-	glm::mat4 vpb = bias * proj * view;
-	
-	shadow_vpb_[0] = vpb;
-	shadow_sampler_[0] = vec3(1,-1,-1);
-	
-	auto parent = getScene().lock();
-
-	parent->light_array_[light_array_].set_shadow_vpb_0(
-			light_array_slot_,
-			shadow_vpb_[0]);
-	parent->light_array_[light_array_].set_shadow_sampler_0(
-			light_array_slot_,
-			shadow_sampler_[0]);
-
-}
 void		neb::gfx::core::light::base::step(gal::etc::timestep const & ts) {
 	/*
 	   if(shadow_environ_) {

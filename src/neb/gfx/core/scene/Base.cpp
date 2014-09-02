@@ -52,6 +52,11 @@ void			neb::gfx::core::scene::base::init() {
 	meshes_.cuboid_->instances_.reset(new neb::gfx::mesh::instanced::instances_type);
 	meshes_.cuboid_->instances_->alloc(256);
 
+
+	tex_shadow_map_ = std::make_shared<neb::gfx::texture>();
+	tex_shadow_map_->init_shadow(2048, 2048, std::shared_ptr<neb::gfx::context::base>());
+
+
 }
 void			neb::gfx::core::scene::base::release() {
 	LOG(lg, neb::core::core::scene::sl, debug) << __PRETTY_FUNCTION__;

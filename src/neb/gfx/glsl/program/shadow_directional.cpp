@@ -1,16 +1,16 @@
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/glsl/program/shadow_directional.hpp>
+#include <neb/gfx/glsl/program/shadow.hpp>
 
-void		neb::gfx::glsl::program::shadow_directional::init() {
+void		neb::gfx::glsl::program::shadow::init() {
 	
-	auto self = std::dynamic_pointer_cast<neb::gfx::glsl::program::shadow_directional>(shared_from_this());
+	auto self = std::dynamic_pointer_cast<neb::gfx::glsl::program::shadow>(shared_from_this());
 
 
 	
 	neb::gfx::glsl::program::base::init();
 
-	add_shader("v130/shadow/directional/vs.glsl", GL_VERTEX_SHADER);
-	add_shader("v130/shadow/directional/fs.glsl", GL_FRAGMENT_SHADER);
+	add_shader("v130/shadow/vs.glsl", GL_VERTEX_SHADER);
+	add_shader("v130/shadow/fs.glsl", GL_FRAGMENT_SHADER);
 
 	compile();
 

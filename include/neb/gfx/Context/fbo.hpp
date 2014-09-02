@@ -26,7 +26,8 @@ namespace neb {
 					
 					GLuint					framebuffer_;
 
-					std::shared_ptr<neb::gfx::texture>	texture_;
+					std::weak_ptr<neb::gfx::texture>	texture_;
+					GLint					layer_;
 			};
 		}
 	}
