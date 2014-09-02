@@ -23,7 +23,6 @@ namespace neb {
 					fbo(std::shared_ptr<neb::gfx::window::base> parent);
 					virtual void				init();
 					virtual void				render();
-
 					
 					GLuint					framebuffer_;
 

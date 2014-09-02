@@ -10,8 +10,8 @@ neb::gfx::camera::proj::ortho::ortho(std::shared_ptr<neb::gfx::environ::base> pa
 	right_(30),
 	bottom_(-30),
 	top_(30),
-	near_(-1000),
-	far_(1000)
+	near_(0),
+	far_(100)
 {
 
 }

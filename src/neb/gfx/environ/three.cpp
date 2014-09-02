@@ -73,7 +73,7 @@ void		neb::gfx::environ::three::render(std::shared_ptr<neb::gfx::context::base> 
 	
 	program_->use();
 	
-	
+	viewport_.load();
 	
 	proj_->load(program_);
 	view_->load(program_);

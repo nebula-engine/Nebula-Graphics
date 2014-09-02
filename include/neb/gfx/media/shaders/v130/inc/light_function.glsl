@@ -23,6 +23,8 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 	float depth4;
 	float depth5;
 
+	float bias = 0.005;
+
 	for(int i = 0; i < light_count; i++) // for all light sources
 	{
 		if(light_closed[i] == 0) continue;
@@ -34,7 +36,7 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 			// directional or spot?
 			vec4 shadow_coor_0 = light_shadow_vpb_0[i] * vs_m_P;
 			
-			depth0 = texture(shadow_map, vec3(shadow_coor_0.xy, light_shadow_sampler_0[i].x)).z;
+			depth0 = texture(shadow_map, vec3(shadow_coor_0.xy, light_shadow_sampler_0[i].x)).z + bias;
 	
 			if(depth0 < shadow_coor_0.z) shadow = true;
 		
@@ -71,7 +73,7 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 
 
 
-		if(light_type[i] == 2) {
+		if(light_type[i] == 2) { // directional
 
 			light_pos = mat3(view) * light_position[i];
 

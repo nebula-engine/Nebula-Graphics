@@ -18,11 +18,15 @@ void		sinecolor(in float f, inout vec4 c)
 }
 
 float near = 0;
-float far = 30;
+float far = 100;
 
 float map(float z)
 {
+	if(z < near) z = near;
+	if(z > far) z = far;
+
 	float f = (z - near) / (far - near);
+
 	return f;
 }
 

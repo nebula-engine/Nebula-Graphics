@@ -28,7 +28,7 @@ void		neb::gfx::context::fbo::init() {
 
 
 	texture_ = std::make_shared<neb::gfx::texture>();
-	texture_->init_shadow(1024, 1024, self);
+	texture_->init_shadow(2048, 2048, self);
 
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture_->o_, 0); checkerror("glFramebufferTexture");
 	
@@ -89,7 +89,11 @@ void		neb::gfx::context::fbo::render() {
 	glDrawBuffer(GL_NONE); // No color buffer is drawn to.
 	checkerror("glDrawBuffer");
 
+	glViewport(0, 0, texture_->w_, texture_->h_);
+	
 	environ_->render(self);
+	
+	
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	checkerror("glBindFramebuffer");

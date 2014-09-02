@@ -45,7 +45,7 @@ namespace neb {
 					//void						release();
 					virtual void					step(gal::etc::timestep const & ts);
 					virtual void					render();
-					void						resize(int w, int h);
+					virtual void					resize(int w, int h);
 
 
 					std::weak_ptr<neb::gfx::environ::two>			createEnvironTwo();
