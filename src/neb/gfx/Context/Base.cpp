@@ -10,6 +10,7 @@
 #include <neb/gfx/Context/Util/Parent.hh>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
+#include <neb/gfx/environ/shadow/point.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
 #include <neb/gfx/gui/layout/base.hpp>
@@ -106,6 +107,24 @@ std::weak_ptr<neb::gfx::environ::vis_depth>		neb::gfx::context::base::createEnvi
 std::weak_ptr<neb::gfx::environ::shadow_directional>	neb::gfx::context::base::createEnvironShadowDirectional() {
 
 	auto environ = sp::make_shared<neb::gfx::environ::shadow_directional>();
+
+	auto p = parent_.lock();
+	assert(p);
+	auto w = p->isWindowBase();
+	if(w)
+	{
+		w->makeCurrent();
+	}
+
+	environ->init();
+	
+	environ_ = environ;
+	
+	return environ;
+}
+std::weak_ptr<neb::gfx::environ::shadow::point>		neb::gfx::context::base::createEnvironShadowPoint() {
+
+	auto environ = sp::make_shared<neb::gfx::environ::shadow::point>();
 
 	auto p = parent_.lock();
 	assert(p);

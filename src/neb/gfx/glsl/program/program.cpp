@@ -150,6 +150,7 @@ void	neb::gfx::glsl::program::base::add_uniform_scalar(std::string name, GLenum 
 			u.reset(new neb::gfx::glsl::uniform::Scalar::Sampler2D(name));
 			break;
 		case GL_SAMPLER_2D_ARRAY:
+		case GL_SAMPLER_2D_ARRAY_SHADOW:
 			u.reset(new neb::gfx::glsl::uniform::Scalar::Int(name));
 			break;
 		default:

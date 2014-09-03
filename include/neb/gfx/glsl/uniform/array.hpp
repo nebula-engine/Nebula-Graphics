@@ -180,47 +180,6 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 		public:
 			GLint					location[I];
 	};
-	class light_array: public array<
-			   glm::vec3,	// 0position
-			   glm::vec4,	// 1ambient
-			   glm::vec4,	// 2diffuse
-			   glm::vec4,	// 3specular
-			   float,	// 4atten const
-			   float,	// 5atten linear
-			   float,	// 6atten quad
-			   glm::vec3,	// 7spot direction
-			   float,	// 8spot cutoff
-			   float,	// 9spot exponent
-			   glm::mat4,	// 0shadow vpb matrix 0
-			   glm::mat4,	// 1shadow vpb matrix 1
-			   glm::mat4,	// 2shadow vpb matrix 2
-			   glm::mat4,	// 3shadow vpb matrix 3
-			   glm::mat4,	// 4shadow vpb matrix 4
-			   glm::mat4,	// 5shadow vpb matrix 5
-			   glm::vec3,	// 6shadow sampler 0
-			   glm::vec3,	// 7shadow sampler 1
-			   int		// 8type
-					       >
-	{
-		public:
-			light_array() {}
-			void		set_pos(int i, glm::vec3 const & pos) {
-				set<0>(i, pos);
-			}
-			void		set_spot_direction(int i, glm::vec3 const & pos) {
-				set<7>(i, pos);
-			}
-			void		set_shadow_vpb_0(int i, glm::mat4 const & v) {
-				set<10>(i, v);
-			}
-			void		set_shadow_sampler_0(int i, glm::vec3 const & v) {
-				set<16>(i, v);
-			}
-	};
-	class light_locations: public light_array::loc_type {
-		public:
-			void		init(std::shared_ptr<neb::gfx::glsl::program::threed> program);
-	};
 }}}}
 
 

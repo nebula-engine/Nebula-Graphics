@@ -10,6 +10,7 @@ namespace neb {
 			class base;
 			class window;
 			class fbo;
+			class fbo_multi;
 		}
 	}
 }

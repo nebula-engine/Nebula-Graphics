@@ -121,7 +121,7 @@ std::weak_ptr<neb::core::core::light::base>		neb::gfx::core::shape::base::create
 	
 	auto light = std::make_shared<neb::gfx::core::light::directional>(self);
 	
-	light->pos_ = d;
+	light->pose_.pos_ = d;
 
 	neb::core::core::light::util::parent::insert(light);
 	

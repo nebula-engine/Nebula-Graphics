@@ -30,8 +30,8 @@ glm::mat4				neb::gfx::camera::view::shadow::point::view() {
 	}
 
 	assert(light);
-
-	glm::vec3 eye = light->pos_;
+	
+	glm::vec3 eye = light->getPoseGlobal().pos_;
 	
 	return glm::lookAt(eye, eye + look_, up_);
 

@@ -126,7 +126,7 @@ void						neb::gfx::core::scene::base::step(gal::etc::timestep const & ts) {
   insert(actor);
   return actor;
   }*/
-weak_ptr<neb::core::core::actor::base>		neb::gfx::core::scene::base::createActorLightPoint(vec3 p) {
+std::weak_ptr<neb::core::core::actor::base>	neb::gfx::core::scene::base::createActorLightPoint(vec3 p) {
 
 	neb::core::pose pose(p);
 

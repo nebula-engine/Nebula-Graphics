@@ -11,6 +11,9 @@ namespace neb { namespace gfx {
 		class base;
 		class two;
 		class three;
+		namespace shadow {
+			class point;
+		}
 		class shadow_directional;
 		class vis_depth;
 	}

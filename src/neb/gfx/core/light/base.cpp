@@ -38,18 +38,20 @@ neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::
 neb::gfx::core::light::base::~base() {}
 void			neb::gfx::core::light::base::init() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
-
+	
+	auto pose = getPoseGlobal();
+	
 	// register in light_array
 	light_array_ = 0;
 	light_array_slot_ = getScene().lock()->light_array_[light_array_].reg(
-			pos_,
+			pose.pos_,
 			ambient_,
 			diffuse_,
 			specular_,
 			atten_const_,
 			atten_linear_,
 			atten_quad_,
-			spot_direction_,
+			pose.rot_ * spot_direction_,
 			spot_cutoff_,
 			spot_exponent_,
 			glm::mat4(),
@@ -63,13 +65,15 @@ void			neb::gfx::core::light::base::init() {
 			type_
 			);
 }
-void			neb::gfx::core::light::base::setPose(neb::core::pose const & pose) {
-	pos_ = pose.pos_;
+void			neb::gfx::core::light::base::setPose(neb::core::pose const & npose) {
+	pose_ = npose;
+
+	auto s = getScene().lock();
 	
-	auto parent = getScene().lock();
+	auto pose = getPoseGlobal();
 	
-	parent->light_array_[light_array_].set_pos(light_array_slot_, pose.pos_);
-	parent->light_array_[light_array_].set_spot_direction(light_array_slot_, pose.rot_ * spot_direction_);
+	s->light_array_[light_array_].set_pos(			light_array_slot_, pose.pos_);
+	s->light_array_[light_array_].set_spot_direction(	light_array_slot_, pose.rot_ * spot_direction_);
 }
 void			neb::gfx::core::light::base::release() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;

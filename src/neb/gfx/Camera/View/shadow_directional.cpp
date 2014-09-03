@@ -37,7 +37,7 @@ glm::mat4				neb::gfx::camera::view::shadow_directional::view() {
 	//assert(light);
 	
 	//glm::vec3 look = light->pos_;
-	glm::vec3 look = -light->pos_;
+	glm::vec3 look = -light->pose_.pos_;
 	
 	glm::vec3 scene_center(22.5,0,0);
 	

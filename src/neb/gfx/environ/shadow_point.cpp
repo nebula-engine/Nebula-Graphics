@@ -6,7 +6,7 @@
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
-#include <neb/gfx/camera/proj/ortho.hpp>
+#include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/camera/view/shadow/point.hpp>
 
 #include <neb/gfx/environ/shadow/point.hpp>
@@ -29,11 +29,34 @@ void		neb::gfx::environ::shadow::point::init() {
 	program_ = std::make_shared<neb::gfx::glsl::program::shadow>();
 	program_->init();
 	
-	
-	// camera
-	view_[0].reset(new neb::gfx::camera::view::shadow::point(self));
+	static const glm::vec3 look[6] = {
+		glm::vec3( 1, 0, 0),
+		glm::vec3(-1, 0, 0),
+		glm::vec3( 0, 1, 0),
+		glm::vec3( 0,-1, 0),
+		glm::vec3( 0, 0, 1),
+		glm::vec3( 0, 0,-1)
+	};
+	static const glm::vec3 up[6] = {
+		glm::vec3( 0, 1, 0),
+		glm::vec3( 0, 1, 0),
+		glm::vec3( 0, 0, 1),
+		glm::vec3( 0, 0, 1),
+		glm::vec3( 1, 0, 0),
+		glm::vec3( 1, 0, 0)
+	};
 
-	proj_.reset(new neb::gfx::camera::proj::ortho(self));
+	// camera
+	for(int c = 0; c < 6; c++) {
+		view_[c].reset(new neb::gfx::camera::view::shadow::point(self));
+		view_[c]->look_ = look[c];
+		view_[c]->up_ = up[c];
+	}
+
+	proj_.reset(new neb::gfx::camera::proj::perspective(self));
+	proj_->zn_ = 1.0;
+	proj_->zf_ = 100.0;
+	proj_->fovy_ = 90.0;
 
 
 }
@@ -45,7 +68,10 @@ void		neb::gfx::environ::shadow::point::step(gal::etc::timestep const & ts) {
 	if(view_) view_[0]->step(ts);	
 
 }
-void		neb::gfx::environ::shadow::point::render(std::shared_ptr<neb::gfx::context::base> context) {
+void			neb::gfx::environ::shadow::point::render(
+		std::shared_ptr<neb::gfx::context::base> context,
+		GLint layer)
+{
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -71,12 +97,12 @@ void		neb::gfx::environ::shadow::point::render(std::shared_ptr<neb::gfx::context
 	glEnable(GL_DEPTH_TEST);
 
 	assert(proj_);
-	assert(view_);
+	assert(view_[layer]);
 	
 	program_->use();
 
 	proj_->load(program_);
-	view_[0]->load(program_);
+	view_[layer]->load(program_);
 
 	//glViewPort(0, 0, );
 

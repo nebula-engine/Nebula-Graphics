@@ -44,7 +44,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				void				RenderLightPOV();
 
 
-				std::weak_ptr<neb::gfx::core::scene::base>	getScene();
+				std::weak_ptr<neb::gfx::core::scene::base>		getScene();
 				neb::core::pose					getPose();
 				vec4						getPos();
 				void						setPose(neb::core::pose const & pose);

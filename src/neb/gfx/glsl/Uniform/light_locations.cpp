@@ -5,31 +5,31 @@
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 
 void		neb::gfx::glsl::uniform::light_locations::init(std::shared_ptr<neb::gfx::glsl::program::threed> program) {
-	location[0] = program->get_uniform_vector("light_position")->o_[0];
-	location[1] = program->get_uniform_vector("light_ambient")->o_[0];
-	location[2] = program->get_uniform_vector("light_diffuse")->o_[0];
-	location[3] = program->get_uniform_vector("light_specular")->o_[0];
-	location[4] = program->get_uniform_vector("light_atten_const")->o_[0];
-	location[5] = program->get_uniform_vector("light_atten_linear")->o_[0];
-	location[6] = program->get_uniform_vector("light_atten_quad")->o_[0];
-	location[7] = program->get_uniform_vector("light_spot_direction")->o_[0];
-	location[8] = program->get_uniform_vector("light_spot_cutoff")->o_[0];
-	location[9] = program->get_uniform_vector("light_spot_exponent")->o_[0];
+	location[0]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_POSITION];
+	location[1]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_AMBIENT];
+	location[2]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_DIFFUSE];
+	location[3]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SPECULAR];
+	location[4]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_ATTEN_CONST];
+	location[5]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_ATTEN_LINEAR];
+	location[6]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_ATTEN_QUAD];
+	location[7]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SPOT_DIRECTION];
+	location[8]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SPOT_CUTOFF];
+	location[9]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SPOT_EXPONENT];
 
-	location[10] = program->get_uniform_vector("light_shadow_vpb_0")->o_[0];
-	location[11] = program->get_uniform_vector("light_shadow_vpb_1")->o_[0];
-	location[12] = program->get_uniform_vector("light_shadow_vpb_2")->o_[0];
-	location[13] = program->get_uniform_vector("light_shadow_vpb_3")->o_[0];
-	location[14] = program->get_uniform_vector("light_shadow_vpb_4")->o_[0];
-	location[15] = program->get_uniform_vector("light_shadow_vpb_5")->o_[0];
+	location[10] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_0];
+	location[11] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_1];
+	location[12] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_2];
+	location[13] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_3];
+	location[14] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_4];
+	location[15] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_5];
 
-	location[16] = program->get_uniform_vector("light_shadow_sampler_0")->o_[0];
-	location[17] = program->get_uniform_vector("light_shadow_sampler_1")->o_[0];
+	location[16] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SHADOW_SAMPLER_0];
+	location[17] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_SHADOW_SAMPLER_1];
 
-	location[18] = program->get_uniform_vector("light_type")->o_[0];
+	location[18] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_TYPE];
 
-	location[19] = program->get_uniform_vector("light_closed")->o_[0];
-	location[20] = program->get_uniform_scalar("light_count")->o_;
+	location[19] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_CLOSED];
+	location[20] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_COUNT];
 }
 
 

@@ -24,10 +24,10 @@ namespace neb {
 						virtual void			step(gal::etc::timestep const & ts) { neb::util::parent< neb::gfx::context::base >::step(ts); }
 						virtual void			render();
 
-						std::weak_ptr<neb::gfx::context::fbo>	createContextFBO();
-						std::weak_ptr<C_W>			createContextWindow();
-						std::weak_ptr<C_W>			createContextVisDepth();
-
+						std::weak_ptr<neb::gfx::context::fbo>		createContextFBO();
+						std::weak_ptr<neb::gfx::context::fbo_multi>	createContextFBOMulti();
+						std::weak_ptr<C_W>				createContextWindow();
+						std::weak_ptr<C_W>				createContextVisDepth();
 				};
 			}
 		}

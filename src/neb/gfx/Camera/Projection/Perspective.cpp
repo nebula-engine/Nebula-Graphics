@@ -19,6 +19,7 @@
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/util/log.hpp>
+#include <neb/gfx/util/io.hpp>
 
 neb::gfx::camera::proj::base::base(std::shared_ptr<neb::gfx::environ::base> parent):
 	parent_(parent)
@@ -65,7 +66,7 @@ mat4		neb::gfx::camera::proj::perspective::proj() {
 
 	mat4 ret = glm::perspective(fovy_, parent->viewport_.aspect_, zn_, zf_);
 	
-	//ret.print();
+	//std::cout << ret << std::endl;
 	
 	return ret;
 }

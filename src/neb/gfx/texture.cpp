@@ -69,6 +69,9 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 	glTexParameteri(target_, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(target_, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(target_, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameteri(target_, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);
+	glTexParameteri(target_, GL_TEXTURE_COMPARE_FUNC, GL_GREATER);
+	
 	checkerror("glTexParameteri");
 
 	glBindTexture(target_, 0);
