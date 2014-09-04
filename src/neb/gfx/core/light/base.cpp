@@ -21,7 +21,7 @@
 
 neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::parent> parent, int type):
 	neb::core::core::light::base(parent),
-	ambient_(0.1,0.1,0.1,1.0),
+	ambient_(0.2,0.2,0.2,1.0),
 	diffuse_(neb::core::color::color::white()),
 	specular_(neb::core::color::color::white()),
 	atten_const_(1.0),

@@ -35,7 +35,7 @@ void neb::gfx::core::shape::box::box::createMesh() {
 		auto model = getPoseGlobal().mat4_cast() * glm::scale(scale_);
 
 		auto dif = neb::core::color::ucolor8888::rand();
-		auto amb = neb::core::color::color::gray(0.1);
+		auto amb = neb::core::color::color::gray(0.2);
 		auto spc = neb::core::color::color::white();
 		auto emi = neb::core::color::color::black();
 		
