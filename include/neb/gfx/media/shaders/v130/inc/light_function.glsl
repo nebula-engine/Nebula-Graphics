@@ -6,7 +6,6 @@
 
 void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 
-	vec4 ambient;
 	vec4 diffuse;
 	vec4 specular;
 
@@ -18,14 +17,14 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 
 	//float shininess = 10.0;
 	
-	bool shadow;
+	float shadow;
 	
 	float layer[6];
 	vec4 shadow_coor[6];
 	
 	vec2 sh_texcoor;
 
-	float bias = 0.005;
+	float bias = 0.01;
 
 	float shadow_depth;
 
@@ -46,15 +45,20 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 	{
 		if(light_closed[i] == 0) continue;
 
-		if(light_type[i] == DIRECTIONAL) { // directional
+		// ambient
+		color += light_ambient[i] * amb;
 
+		// calculate L vector
+		if(light_type[i] == DIRECTIONAL)
+		{
 			light_pos = mat3(view) * light_position[i];
 
 			L = normalize(light_pos);
 
 			atten = 1.0;
-
-		} else {
+		}
+		else // POINT and SPOT
+		{
 			light_pos = vec3(view * vec4(light_position[i], 1.0));
 			
 			L = light_pos - vs_P.xyz;
@@ -67,11 +71,13 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 					light_atten_const[i] +
 					light_atten_linear[i] * l +
 					light_atten_quad[i] * l * l);
+			
 			// check for very small atten
+			if(atten < 0.01) continue;
 		}
 
 		// shadow
-		shadow = false;
+		shadow = 0.0;
 
 		layer[0] = light_shadow_sampler_0[i].x;
 		layer[1] = light_shadow_sampler_0[i].y;
@@ -105,46 +111,38 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 					if(dot(L, shadow_dir[c]) > 0.0) continue;
 				}
 
-				vec3 sc = shadow_coor[c].xyz / shadow_coor[c].w;
-				//vec2 sc = shadow_coor[c].xy;
+				vec2 sc = shadow_coor[c].xy / shadow_coor[c].w;
 
 				if(sc.x >= 0.0 && sc.x <= 1.0 && sc.y >= 0.0 && sc.y <= 1.0)
 				{
 
-					vec3 texcoord = vec3(shadow_coor[c].xy / shadow_coor[c].w, layer[c]);
-					//vec3 texcoord = vec3(shadow_coor[c].xy, layer[c]);
+					vec3 texcoord = vec3(sc, layer[c]);
 
 					float fd = (shadow_coor[c].z - bias) / shadow_coor[c].w;
-					//float fd = shadow_coor[c].z - bias;
-
-
-					//fd = fd * 0.5 + 0.5;
-
 
 					// shadow depth	
-					//float sd = txl.z;// / txl.w;
+				
 					shadow_depth = texture(shadow_map, texcoord).z;
-
-					//sd = sd * 100.0;
-					//sd = sd * 10.0;
-					//sd = sd * 3.0;
-					//sd = (sd * 2.0) - 1.0;
-					//sd = sd * 1.0;
-
-					//sd = sd / shadow_coor[c].w;
-
 					if(shadow_depth < fd)
 					{
-						shadow = true;
+						shadow = 0.7;
 						continue;
 					}
+					
+					//shadow = 1.0 - texture(shadow_map, vec4(texcoord, fd));
+					//shadow = texture(shadow_map, vec4(texcoord, fd));
+
+					//if(shadow > 0.1) {
+					//	shadow = 0.8;
+					//	continue;
+					//}
+
+
 				}
 			}
 		}
 
 
-		// ambient
-		ambient = light_ambient[i] * amb;
 
 
 
@@ -170,7 +168,7 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 		// specular
 		if (dot(N,L) < 0.0) // light source behind
 		{
-			specular = vec4(0.0, 0.0, 0.0, 0.0);
+			specular = vec4(0);
 		}
 		else // light source in front
 		{
@@ -179,14 +177,14 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 				vec4(vec3(pow(max(0.0, dot(reflect(-L,N), -P.xyz)), vs_instance_shininess)),1.0);
 		}
 
-		if(shadow) {
-			diffuse *= 0.5;
-			specular *= 0.5;
-		}
-
-		color += ambient + diffuse + specular;
+		diffuse *= (1.0 - shadow);
+		
+		if(shadow > 0.0) specular = vec4(0);
+		
+		color += diffuse + specular;
 		//color = vec4(vec3(shadow_depth),1);
 		//color = vec4(L,1);
+		//color = vec4(vec3(shadow),1);
 		//color = vec4(dot(L, shadow_dir[0]),dot(L, shadow_dir[1]),0,1);
 	}
 }

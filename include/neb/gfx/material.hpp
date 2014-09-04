@@ -1,6 +1,8 @@
 #ifndef __GLUTPP_MATERIAL_H__
 #define __GLUTPP_MATERIAL_H__
 
+#include <memory>
+
 #include <boost/serialization/nvp.hpp>
 
 #include <gal/etc/timestep.hpp>

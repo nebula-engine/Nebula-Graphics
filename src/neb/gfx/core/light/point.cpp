@@ -16,6 +16,7 @@
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/camera/view/shadow/point.hpp>
 #include <neb/gfx/Context/fbo_multi.hpp>
+#include <neb/gfx/texture.hpp>
 
 neb::gfx::core::light::point::point(std::shared_ptr<neb::core::core::light::util::parent> parent):
 	neb::core::core::light::base(parent),
@@ -88,13 +89,18 @@ void		neb::gfx::core::light::point::setShadowEnviron(std::shared_ptr<neb::gfx::e
 		shadow_vpb_[layer] = vpb;
 
 	}
-	
-	shadow_sampler_[0].x = 0;
-	shadow_sampler_[0].y = 1;
-	shadow_sampler_[0].z = 2;
-	shadow_sampler_[1].x = 3;
-	shadow_sampler_[1].y = 4;
-	shadow_sampler_[1].z = 5;
+
+	auto scene = getScene().lock();
+
+	// request texture layers
+	texture_layers_ = scene->tex_shadow_map_->layer_slots_->reg(6);
+
+	shadow_sampler_[0].x = texture_layers_->operator[](0);
+	shadow_sampler_[0].y = texture_layers_->operator[](1);
+	shadow_sampler_[0].z = texture_layers_->operator[](2);
+	shadow_sampler_[1].x = texture_layers_->operator[](3);
+	shadow_sampler_[1].y = texture_layers_->operator[](4);
+	shadow_sampler_[1].z = texture_layers_->operator[](5);
 	
 	auto parent = getScene().lock();
 

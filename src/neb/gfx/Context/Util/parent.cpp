@@ -10,11 +10,11 @@ typedef neb::gfx::context::window	C_W;
 
 void					neb::gfx::context::util::parent::render() {
 
-	auto lamb = [&] (iterator<0> it) {
-		it->ptr_->render();
+	auto lamb = [&] (pointer p) {
+		p->render();
 	};
 
-	map_.template for_each<0>(lamb);
+	map_.for_each(lamb);
 
 }
 std::weak_ptr<C_W>			neb::gfx::context::util::parent::createContextWindow()

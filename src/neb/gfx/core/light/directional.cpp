@@ -58,8 +58,13 @@ void		neb::gfx::core::light::directional::setShadowEnviron(std::shared_ptr<neb::
 
 	glm::mat4 vpb = bias * proj * view;
 	
+	// request texture layers
+	auto scene = getScene().lock();
+	texture_layers_ = scene->tex_shadow_map_->layer_slots_->reg(1);
+
+	shadow_sampler_[0].x = texture_layers_->operator[](0);
+
 	shadow_vpb_[0] = vpb;
-	shadow_sampler_[0].x = 0;// = vec3(1,-1,-1);
 	
 	auto parent = getScene().lock();
 

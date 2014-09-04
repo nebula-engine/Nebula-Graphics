@@ -32,23 +32,25 @@ void		neb::gfx::gui::layout::base::step(gal::etc::timestep const & ts) {
 		LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
-void		neb::gfx::gui::layout::base::draw(std::shared_ptr<neb::gfx::context::base> context, std::shared_ptr<neb::gfx::glsl::program::base> p) {
+void		neb::gfx::gui::layout::base::draw(std::shared_ptr<neb::gfx::context::base> context, std::shared_ptr<neb::gfx::glsl::program::base> program) {
 	
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	typedef neb::gfx::gui::object::util::parent O;
-	
-	O::map_.for_each<0>([&] (O::map_type::iterator<0> it) {
-		auto object = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
+
+	auto lamb = [&] (O::map_type::pointer p) {
+		auto object = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(p);
 		assert(object);
-		object->draw(p);
-	});
+		object->draw(program);
+	};
+
+	O::map_.for_each(lamb);
 
 }
 void neb::gfx::gui::layout::base::connect(std::shared_ptr<neb::gfx::window::base> const & window) {
-	
+
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	
+
 	conns_.key_fun_ = window->sig_.key_fun_.connect(
 			10,
 			::std::bind(&neb::gfx::gui::layout::base::key_fun,
@@ -79,14 +81,14 @@ void neb::gfx::gui::layout::base::connect(std::shared_ptr<neb::gfx::window::base
 
 }
 int		neb::gfx::gui::layout::base::key_fun(std::shared_ptr<neb::gfx::window::base> const & window, int key, int scancode, int action, int mode) {
-	
+
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	typedef neb::gfx::gui::object::util::parent O;
 
 	//O::map_.for_each_int<0>([&] (O::map_type::iterator<0> it) {
-	for(O::map_type::iterator<0> it = O::map_.begin(); it != O::map_.end(); ++it) {
-		auto object = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
+	for(O::map_type::iterator it = O::map_.begin(); it != O::map_.end(); ++it) {
+		auto object = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->second.ptr_);
 		assert(object);
 
 		if(object->key_fun(window, key, scancode, action, mode)) return 1;
@@ -95,14 +97,14 @@ int		neb::gfx::gui::layout::base::key_fun(std::shared_ptr<neb::gfx::window::base
 	return 0;
 }
 int		neb::gfx::gui::layout::base::charFun(
-								shared_ptr<neb::gfx::window::base> const & window,
-								unsigned int codepoint) {
+		shared_ptr<neb::gfx::window::base> const & window,
+		unsigned int codepoint) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	typedef neb::gfx::gui::object::util::parent O;
 
-	for(O::map_type::iterator<0> it = O::map_.begin(); it != O::map_.end(); ++it) {
-		auto object = dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
+	for(O::map_type::iterator it = O::map_.begin(); it != O::map_.end(); ++it) {
+		auto object = dynamic_pointer_cast<neb::gfx::gui::object::base>(it->second.ptr_);
 		assert(object);
 
 		if(object->charFun(window, codepoint)) return 1;
@@ -132,7 +134,7 @@ int neb::gfx::gui::layout::base::mouse_button_fun(std::shared_ptr<neb::gfx::wind
 	return 0;
 }
 int			neb::gfx::gui::layout::base::search(std::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
-	
+
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	assert(window);
@@ -154,24 +156,26 @@ int			neb::gfx::gui::layout::base::search(std::shared_ptr<neb::gfx::window::base
 	std::shared_ptr<neb::gfx::gui::object::base> object;
 	std::shared_ptr<neb::gfx::gui::object::base> objecttmp;
 
-	O::map_.for_each_int<0>([&] (O::map_type::iterator<0> it) {
-			objecttmp = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->ptr_);
-			assert(objecttmp);
-			printf("object %f %f %f %f\n",
+	auto lamb = [&] (O::map_type::pointer p) {
+		objecttmp = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(p);
+		assert(objecttmp);
+		printf("object %f %f %f %f\n",
 				objecttmp->x_,
 				objecttmp->y_,
 				objecttmp->w_,
 				objecttmp->h_);	
 
-			if(x <   objecttmp->x_) return O::map_type::CONTINUE;
-			if(x > ( objecttmp->x_ + objecttmp->w_)) return O::map_type::CONTINUE;
-			if(y >  -objecttmp->y_) return O::map_type::CONTINUE;
-			if(y < (-objecttmp->y_ - objecttmp->h_)) return O::map_type::CONTINUE;
+		if(x <   objecttmp->x_) return O::map_type::CONTINUE;
+		if(x > ( objecttmp->x_ + objecttmp->w_)) return O::map_type::CONTINUE;
+		if(y >  -objecttmp->y_) return O::map_type::CONTINUE;
+		if(y < (-objecttmp->y_ - objecttmp->h_)) return O::map_type::CONTINUE;
 
-			object = objecttmp;
+		object = objecttmp;
 
-			return O::map_type::BREAK;
-			});
+		return O::map_type::BREAK;
+	};
+
+	O::map_.for_each_int(lamb);
 
 	if(object) return object->mouse_button_fun(window, button, action, mods);
 

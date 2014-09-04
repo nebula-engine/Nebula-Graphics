@@ -3,7 +3,7 @@
 
 #include <neb/core/core/scene/base.hpp>
 
-#include <neb/gfx/glsl/uniform/array.hpp>
+#include <neb/gfx/glsl/uniform/light_array.hpp>
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/util/decl.hpp>
 
@@ -42,7 +42,7 @@ namespace neb {
 						 *
 						 * @warning this function allocates object
 						 */
-						virtual weak_ptr<neb::core::core::actor::base>			createActorLightPoint(glm::vec3 p);
+						//virtual weak_ptr<neb::core::core::actor::base>			createActorLightPoint(glm::vec3 p);
 
 						// rendering data
 						// one for static, one for dynamic

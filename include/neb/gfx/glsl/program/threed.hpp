@@ -1,7 +1,7 @@
 #ifndef NEB_GFX_GLSL_PROGRAM_THREED_HPP
 #define NEB_GFX_GLSL_PROGRAM_THREED_HPP
 
-#include <neb/gfx/glsl/uniform/array.hpp>
+#include <neb/gfx/glsl/uniform/light_array.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 
 namespace neb { namespace gfx { namespace glsl { namespace program {

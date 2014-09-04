@@ -17,6 +17,7 @@ in float	vs_instance_shininess;
 
 uniform sampler2DArray	image;
 uniform sampler2DArray	normal_map;
+
 //uniform sampler2DArrayShadow	shadow_map;
 uniform sampler2DArray	shadow_map;
 

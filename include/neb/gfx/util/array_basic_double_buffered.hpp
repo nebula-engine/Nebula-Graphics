@@ -6,6 +6,7 @@
 #include <memory>
 #include <iostream>
 #include <iomanip>
+#include <exception>
 
 #include <gal/stl/helper.hpp>
 
@@ -19,6 +20,12 @@ namespace neb { namespace gfx {
 	template<class... T> class array_basic_double_buffered {
 		public:
 			typedef typename gens<sizeof...(T)>::type	seq_type;
+
+			struct capacity: std::exception {
+				const char * what() const {
+					return "capacity reached";
+				}
+			};
 
 			array_basic_double_buffered():
 				front_(data_),

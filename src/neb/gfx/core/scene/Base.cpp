@@ -50,7 +50,7 @@ void			neb::gfx::core::scene::base::init() {
 	meshes_.cuboid_->mesh_.construct(&cube);
 
 	meshes_.cuboid_->instances_.reset(new neb::gfx::mesh::instanced::instances_type);
-	meshes_.cuboid_->instances_->alloc(256);
+	meshes_.cuboid_->instances_->alloc(2048);
 
 
 	tex_shadow_map_ = std::make_shared<neb::gfx::texture>();
@@ -126,7 +126,7 @@ void						neb::gfx::core::scene::base::step(gal::etc::timestep const & ts) {
   insert(actor);
   return actor;
   }*/
-std::weak_ptr<neb::core::core::actor::base>	neb::gfx::core::scene::base::createActorLightPoint(vec3 p) {
+/*std::weak_ptr<neb::core::core::actor::base>	neb::gfx::core::scene::base::createActorLightPoint(vec3 p) {
 
 	neb::core::pose pose(p);
 
@@ -139,7 +139,7 @@ std::weak_ptr<neb::core::core::actor::base>	neb::gfx::core::scene::base::createA
 	shape->createLightPoint();
 
 	return actor;
-}
+}*/
 
 
 

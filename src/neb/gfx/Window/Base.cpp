@@ -178,8 +178,8 @@ void		neb::gfx::window::base::render() {
 
 	typedef neb::gfx::context::util::parent C;
 
-	C::map_.for_each<0>([] (C::map_type::iterator<0> it) {
-			auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(it->ptr_);
+	C::map_.for_each([] (C::map_type::pointer p) {
+			auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
 			assert(context);
 			context->render();
 			});
@@ -196,7 +196,7 @@ void			neb::gfx::window::base::step(gal::etc::timestep const & ts) {
 
 
 	if(glfwWindowShouldClose(window_)) {
-		parent_->erase(i_);
+		parent_->erase(_M_index);
 		return;
 	}
 
@@ -245,42 +245,55 @@ void			neb::gfx::window::base::resize() {
 
 	typedef neb::gfx::context::util::parent C;
 
-	C::map_.for_each<0>([&] (C::map_type::iterator<0> it) {
-			auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(it->ptr_);
+	C::map_.for_each([&] (C::map_type::pointer p) {
+			auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
 			assert(context);
 			context->resize(w_, h_);
 			});
 
 }
-weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextTwo() {
+std::weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextTwo() {
 
 	auto self = isWindowBase();
 	assert(self);
 
-	auto context(make_shared<neb::gfx::context::window>(self));
-	insert(context);
+	std::weak_ptr<neb::gfx::context::window> w;
+	{
+		auto context(make_shared<neb::gfx::context::window>(self));
+		assert(context);
+		insert(context);
 
-	auto environ = context->createEnvironTwo().lock();
+		auto environ = context->createEnvironTwo().lock();
 
-	context->init();
-	return context;
+		context->init();
+
+		w = context;
+	}
+	assert(!w.expired());
+	return w;
 }
-weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextThree() {
+std::weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextThree() {
 
 	auto self = isWindowBase();
 	assert(self);
-	
-	auto context = std::make_shared<neb::gfx::context::window>(self);
-	insert(context);
-	
-	auto environ = context->createEnvironThree().lock();
 
-	context->init();
-	
-	assert(environ->view_);
-	environ->view_->connect(self);
-	
-	return context;
+	std::weak_ptr<neb::gfx::context::window> w;
+	{
+		auto context = std::make_shared<neb::gfx::context::window>(self);
+		assert(context);
+		insert(context);
+
+		auto environ = context->createEnvironThree().lock();
+
+		context->init();
+
+		assert(environ->view_);
+		environ->view_->connect(self);
+
+		w = context;
+	}
+	assert(!w.expired());
+	return w;
 }
 void						neb::gfx::window::base::makeCurrent() {
 	assert(window_ != NULL);

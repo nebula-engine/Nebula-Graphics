@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-#include <neb/core/core/scene/base.hpp>
+//#include <neb/core/core/scene/base.hpp>
 
-#include <neb/gfx/app/__gfx_glsl.hpp>
+//#include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/material.hpp>
-#include <neb/gfx/glsl/program/threed.hpp>
-#include <neb/gfx/glsl/uniform/scalar.hpp>
+//#include <neb/gfx/glsl/program/threed.hpp>
+//#include <neb/gfx/glsl/uniform/scalar.hpp>
 
 /*
 gru::Color::color<float> operator<<(gru::Color::color<float> c, tinyxml2::XMLElement* element) {
@@ -65,12 +65,13 @@ void	neb::material::material::init()
 	printf("%s\n",__PRETTY_FUNCTION__);
 }
 void	neb::material::material::load(std::shared_ptr<neb::gfx::glsl::program::threed> p) {
-
+/*
 	p->get_uniform_scalar("front.ambient")->load((glm::vec4)raw_.ambient_);
 	p->get_uniform_scalar("front.diffuse")->load((glm::vec4)raw_.diffuse_);
 	p->get_uniform_scalar("front.specular")->load((glm::vec4)raw_.specular_);
 	p->get_uniform_scalar("front.emission")->load((glm::vec4)raw_.emission_);
 	p->get_uniform_scalar("front.shininess")->load(raw_.shininess_);
+	*/
 }
 void		neb::material::material::step(gal::etc::timestep const & ts) {
 		

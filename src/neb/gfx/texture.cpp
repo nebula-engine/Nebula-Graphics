@@ -52,7 +52,10 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 			NULL);
 */	
 	
-	GLsizei depth = 8;
+	GLsizei depth = 32;
+	
+	layer_slots_.reset(new gal::etc::slots(depth));
+	
 	glTexImage3D(
 			target_,
 			0,
@@ -65,8 +68,8 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 			GL_UNSIGNED_BYTE,
 			NULL);
 
-	glTexParameteri(target_, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(target_, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(target_, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(target_, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(target_, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(target_, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	glTexParameteri(target_, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_REF_TO_TEXTURE);

@@ -1,19 +1,7 @@
 #ifndef NEB_GFX_GLSL_LIGHT_ARRAY_HPP
 #define NEB_GFX_GLSL_LIGHT_ARRAY_HPP
 
-#include <stdio.h>
-#include <tuple>
-#include <memory>
-#include <iostream>
-#include <iomanip>
-
-#include <gal/stl/helper.hpp>
-
-#include <neb/gfx/opengl/uniform.hpp>
-#include <neb/gfx/util/io.hpp>
-#include <neb/gfx/glsl/util/decl.hpp>
-
-
+#include <neb/gfx/glsl/uniform/array.hpp>
 
 
 namespace neb { namespace gfx { namespace glsl { namespace uniform {

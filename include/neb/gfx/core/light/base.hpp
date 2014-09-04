@@ -7,6 +7,8 @@
 #include <boost/archive/polymorphic_iarchive.hpp>
 #include <boost/archive/polymorphic_oarchive.hpp>
 
+#include <gal/etc/slots.hpp>
+
 #include <neb/core/util/decl.hpp>
 #include <neb/core/util/typedef.hpp>
 #include <neb/core/math/Serialization/glm.hpp>
@@ -92,7 +94,9 @@ namespace neb { namespace gfx { namespace core { namespace light {
 
 				int						light_array_;
 				int						light_array_slot_;
-				
+		
+				std::shared_ptr<gal::etc::slots::ticket>	texture_layers_;
+
 				std::shared_ptr<neb::gfx::texture>		texture_shadow_map_;
 
 

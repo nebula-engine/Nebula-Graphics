@@ -10,6 +10,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <gal/etc/slots.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/drawable/base.hpp>
 
@@ -43,6 +45,9 @@ namespace neb { namespace gfx {
 			png_uint_32		h_;
 
 			png_byte*		png_image_data_;
+			
+			
+			std::shared_ptr<gal::etc::slots>		layer_slots_;
 
 			//map_t			buffers_;
 			GLuint			o_;
