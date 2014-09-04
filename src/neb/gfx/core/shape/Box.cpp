@@ -34,7 +34,7 @@ void neb::gfx::core::shape::box::box::createMesh() {
 	if(!mesh_slot_) {
 		auto model = getPoseGlobal().mat4_cast() * glm::scale(scale_);
 
-		auto dif = neb::core::color::color::rand();
+		auto dif = neb::core::color::ucolor8888::rand();
 		auto amb = neb::core::color::color::gray(0.1);
 		auto spc = neb::core::color::color::white();
 		auto emi = neb::core::color::color::black();
@@ -51,7 +51,7 @@ void neb::gfx::core::shape::box::box::createMesh() {
 		mesh_slot_ = scene->meshes_.cuboid_->instances_->reg(
 				model,
 				glm::vec4(-1.0,-1.0,-1.0,-1.0),
-				dif,
+				(unsigned int)dif,
 				amb,
 				spc,
 				emi,

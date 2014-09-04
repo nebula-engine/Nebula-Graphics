@@ -5,6 +5,8 @@
 
 #define SHADOW 1u
 
+#include "v130/inc/color.glsl"
+
 void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 
 	vec4 diffuse;
@@ -189,6 +191,8 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 		//color = vec4(L,1);
 		//color = vec4(vec3(shadow),1);
 		//color = vec4(dot(L, shadow_dir[0]),dot(L, shadow_dir[1]),0,1);
+
+		//color = uint_to_vec4(255u + (255u << 24u));
 	}
 }
 

@@ -20,7 +20,7 @@ namespace neb { namespace gfx { namespace mesh {
 			typedef neb::gfx::array_continuous<
 				glm::mat4,
 				glm::vec4,
-				glm::vec4,
+				unsigned int,
 				glm::vec4,
 				glm::vec4,
 				glm::vec4,

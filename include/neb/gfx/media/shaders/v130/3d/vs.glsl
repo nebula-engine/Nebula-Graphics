@@ -1,5 +1,7 @@
 #version 130
 
+#include "v130/inc/color.glsl"
+
 out vec4	vs_P;
 out vec4	vs_m_P;
 out vec3	vs_N;
@@ -26,7 +28,7 @@ in vec4		instance_model_1;
 in vec4		instance_model_2;
 in vec4		instance_model_3;
 in vec4		instance_sampler;
-in vec4		instance_diffuse;
+in uint		instance_diffuse;
 in vec4		instance_ambient;
 in vec4		instance_specular;
 in vec4		instance_emission;
@@ -55,7 +57,7 @@ void main(void) {
 
 	vs_instance_sampler = instance_sampler;
 
-	vs_instance_diffuse = instance_diffuse;
+	vs_instance_diffuse = uint_to_vec4(instance_diffuse);
 	vs_instance_ambient = instance_ambient;
 	vs_instance_specular = instance_specular;
 	vs_instance_emission = instance_emission;

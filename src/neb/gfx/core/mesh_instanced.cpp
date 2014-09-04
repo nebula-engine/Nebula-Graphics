@@ -131,7 +131,7 @@ GLsizeiptr*		neb::gfx::mesh::instanced::begin() {
 GLvoid** const		neb::gfx::mesh::instanced::data() {
 	data_[0] = instances_->get<0, glm::mat4>();
 	data_[1] = instances_->get<1, glm::vec4>();
-	data_[2] = instances_->get<2, glm::vec4>();
+	data_[2] = instances_->get<2, unsigned int>();
 	data_[3] = instances_->get<3, glm::vec4>();
 	data_[4] = instances_->get<4, glm::vec4>();
 	data_[5] = instances_->get<5, glm::vec4>();
