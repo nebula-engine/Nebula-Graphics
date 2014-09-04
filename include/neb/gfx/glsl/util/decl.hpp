@@ -30,6 +30,7 @@ namespace neb { namespace gfx {
 
 		struct uniforms {
 			enum {
+				FLAG,
 				VIEW,
 				PROJ,
 				TEX_IMAGE,
@@ -72,6 +73,7 @@ namespace neb { namespace gfx {
 		namespace uniform {
 
 			static constexpr char const * uniform_string_[uniforms::COUNT] = {
+				"flag",
 				"view",
 				"proj",
 				"image",

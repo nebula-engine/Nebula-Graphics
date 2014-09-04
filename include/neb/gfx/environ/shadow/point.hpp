@@ -33,6 +33,7 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			virtual void		render(
 					std::shared_ptr<neb::gfx::context::base> context,
 					GLint layer);
+			virtual bool		shouldRender();
 		public:
 			/** @brief View Space Camera
 			 * 

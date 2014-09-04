@@ -20,6 +20,7 @@ uniform sampler2DArray	normal_map;
 
 //uniform sampler2DArrayShadow	shadow_map;
 uniform sampler2DArray	shadow_map;
+uniform int		flag;
 
 #include "v130/inc/light.glsl"
 

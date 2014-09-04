@@ -60,6 +60,14 @@ void		neb::gfx::environ::shadow::point::init() {
 
 
 }
+bool		neb::gfx::environ::shadow::point::shouldRender() {
+	assert(program_);
+	bool ret = program_->flag_shader_.all(neb::gfx::glsl::program::util::flag_shader::SHADOW);
+	
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << ret;
+
+	return ret;
+}
 void		neb::gfx::environ::shadow::point::step(gal::etc::timestep const & ts) {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;

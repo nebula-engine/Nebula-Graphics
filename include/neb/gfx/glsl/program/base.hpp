@@ -12,6 +12,7 @@
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
+#include <neb/gfx/glsl/program/util/flag.hpp>
 
 namespace neb { namespace gfx { namespace glsl { namespace program {
 	class base: public std::enable_shared_from_this<base> {
@@ -32,6 +33,7 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 			virtual ~base() = 0;
 			
 			virtual void		init();
+			void			restoreDefaultShaderFlags();
 			void			add_shader(char const *, GLenum);
 			void			add_shaders(std::vector<neb::gfx::glsl::shader>);
 			void			compile();
@@ -58,6 +60,9 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 
 			GLint			attrib_table_[neb::gfx::glsl::attribs::COUNT];
 			GLint			uniform_table_[neb::gfx::glsl::uniforms::COUNT];
+
+			neb::gfx::glsl::program::util::flag_shader	flag_shader_;
+			neb::gfx::glsl::program::util::flag_shader	flag_shader_def_;
 	};
 }}}}
 

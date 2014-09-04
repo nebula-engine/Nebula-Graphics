@@ -64,6 +64,8 @@ void		neb::gfx::context::fbo_multi::render() {
 	}
 	checkerror("unknown");
 
+	if(!environ_->shouldRender()) return;
+
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::point>(environ_);
 	assert(e);
 

@@ -3,6 +3,7 @@
 #define SPOT 1
 #define DIRECTIONAL 2
 
+#define SHADOW 1u
 
 void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 
@@ -29,16 +30,20 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 	float shadow_depth;
 
 	vec3 shadow_dir[6];
-	shadow_dir[0] = vec3( 1, 0, 0);
-	shadow_dir[1] = vec3(-1, 0, 0);
-	shadow_dir[2] = vec3( 0, 1, 0);
-	shadow_dir[3] = vec3( 0,-1, 0);
-	shadow_dir[4] = vec3( 0, 0, 1);
-	shadow_dir[5] = vec3( 0, 0,-1);
 
-	for(int c = 0; c < 6; c++)
+	if((uint(flag) & SHADOW) > 0u)
 	{
-		shadow_dir[c] = mat3(view) * shadow_dir[c];
+		shadow_dir[0] = vec3( 1, 0, 0);
+		shadow_dir[1] = vec3(-1, 0, 0);
+		shadow_dir[2] = vec3( 0, 1, 0);
+		shadow_dir[3] = vec3( 0,-1, 0);
+		shadow_dir[4] = vec3( 0, 0, 1);
+		shadow_dir[5] = vec3( 0, 0,-1);
+
+		for(int c = 0; c < 6; c++)
+		{
+			shadow_dir[c] = mat3(view) * shadow_dir[c];
+		}
 	}
 
 	for(int i = 0; i < light_count; i++) // for all light sources
@@ -60,7 +65,7 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 		else // POINT and SPOT
 		{
 			light_pos = vec3(view * vec4(light_position[i], 1.0));
-			
+
 			L = light_pos - vs_P.xyz;
 
 			float l = length(L);
@@ -71,7 +76,7 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 					light_atten_const[i] +
 					light_atten_linear[i] * l +
 					light_atten_quad[i] * l * l);
-			
+
 			// check for very small atten
 			if(atten < 0.01) continue;
 		}
@@ -79,69 +84,67 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 		// shadow
 		shadow = 0.0;
 
-		layer[0] = light_shadow_sampler_0[i].x;
-		layer[1] = light_shadow_sampler_0[i].y;
-		layer[2] = light_shadow_sampler_0[i].z;
-		layer[3] = light_shadow_sampler_1[i].x;
-		layer[4] = light_shadow_sampler_1[i].y;
-		layer[5] = light_shadow_sampler_1[i].z;
-
-		if(layer[0] >= 0.0) {
-			// directional or spot?
-			shadow_coor[0] = light_shadow_vpb_0[i] * vs_m_P;
-
-			// point?
-			if(layer[1] >= 0.0)
-			{
-				shadow_coor[1] = light_shadow_vpb_1[i] * vs_m_P;
-				shadow_coor[2] = light_shadow_vpb_2[i] * vs_m_P;
-				shadow_coor[3] = light_shadow_vpb_3[i] * vs_m_P;
-				shadow_coor[4] = light_shadow_vpb_4[i] * vs_m_P;
-				shadow_coor[5] = light_shadow_vpb_5[i] * vs_m_P;
-			}
-		}
-
-		for(int c = 0; c < 6; c++)
+		if((uint(flag) & SHADOW) > 0u)
 		{
-			if(layer[c] >= 0.0)
-			{	
+			layer[0] = light_shadow_sampler_0[i].x;
+			layer[1] = light_shadow_sampler_0[i].y;
+			layer[2] = light_shadow_sampler_0[i].z;
+			layer[3] = light_shadow_sampler_1[i].x;
+			layer[4] = light_shadow_sampler_1[i].y;
+			layer[5] = light_shadow_sampler_1[i].z;
 
-				if(light_type[i] == POINT)
+			if(layer[0] >= 0.0) {
+				// directional or spot?
+				shadow_coor[0] = light_shadow_vpb_0[i] * vs_m_P;
+
+				// point?
+				if(layer[1] >= 0.0)
 				{
-					if(dot(L, shadow_dir[c]) > 0.0) continue;
+					shadow_coor[1] = light_shadow_vpb_1[i] * vs_m_P;
+					shadow_coor[2] = light_shadow_vpb_2[i] * vs_m_P;
+					shadow_coor[3] = light_shadow_vpb_3[i] * vs_m_P;
+					shadow_coor[4] = light_shadow_vpb_4[i] * vs_m_P;
+					shadow_coor[5] = light_shadow_vpb_5[i] * vs_m_P;
 				}
-
-				vec2 sc = shadow_coor[c].xy / shadow_coor[c].w;
-
-				if(sc.x >= 0.0 && sc.x <= 1.0 && sc.y >= 0.0 && sc.y <= 1.0)
-				{
-
-					vec3 texcoord = vec3(sc, layer[c]);
-
-					float fd = (shadow_coor[c].z - bias) / shadow_coor[c].w;
-
-					// shadow depth	
-				
-					shadow_depth = texture(shadow_map, texcoord).z;
-					if(shadow_depth < fd)
+			}
+			for(int c = 0; c < 6; c++)
+			{
+				if(layer[c] >= 0.0)
+				{	
+					if(light_type[i] == POINT)
 					{
-						shadow = 0.7;
-						continue;
+						if(dot(L, shadow_dir[c]) > 0.0) continue;
 					}
-					
-					//shadow = 1.0 - texture(shadow_map, vec4(texcoord, fd));
-					//shadow = texture(shadow_map, vec4(texcoord, fd));
 
-					//if(shadow > 0.1) {
-					//	shadow = 0.8;
-					//	continue;
-					//}
+					vec2 sc = shadow_coor[c].xy / shadow_coor[c].w;
 
+					if(sc.x >= 0.0 && sc.x <= 1.0 && sc.y >= 0.0 && sc.y <= 1.0)
+					{
 
+						vec3 texcoord = vec3(sc, layer[c]);
+
+						float fd = (shadow_coor[c].z - bias) / shadow_coor[c].w;
+
+						// shadow depth	
+
+						shadow_depth = texture(shadow_map, texcoord).z;
+						if(shadow_depth < fd)
+						{
+							shadow = 0.7;
+							continue;
+						}
+
+						//shadow = 1.0 - texture(shadow_map, vec4(texcoord, fd));
+						//shadow = texture(shadow_map, vec4(texcoord, fd));
+
+						//if(shadow > 0.1) {
+						//	shadow = 0.8;
+						//	continue;
+						//}
+					}
 				}
 			}
 		}
-
 
 
 
@@ -178,9 +181,9 @@ void	lf_lights(in vec4 amb, in vec4 dif, in vec4 spc) {
 		}
 
 		diffuse *= (1.0 - shadow);
-		
+
 		if(shadow > 0.0) specular = vec4(0);
-		
+
 		color += diffuse + specular;
 		//color = vec4(vec3(shadow_depth),1);
 		//color = vec4(L,1);

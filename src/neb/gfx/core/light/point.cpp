@@ -41,6 +41,9 @@ void			neb::gfx::core::light::point::init()
 {
 	neb::gfx::core::light::base::init();
 
+
+	// shadows
+	
 	auto scene = getScene().lock();
 	assert(scene);
 

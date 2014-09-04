@@ -5,6 +5,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/util/cast.hpp>
+#include <neb/gfx/environ/util/flag.hpp>
 #include <neb/gfx/Viewport.hpp>
 
 
@@ -25,12 +26,9 @@ namespace neb { namespace gfx { namespace environ {
 
 			virtual void		init();
 			virtual void		step(gal::etc::timestep const & ts);
-
-
 			virtual void		resize(int w, int h);
-
-
 			virtual void		render(std::shared_ptr<neb::gfx::context::base> context) = 0;
+			virtual bool		shouldRender();
 		public:	
 			/** @brief %Viewport
 			 * 
@@ -44,8 +42,9 @@ namespace neb { namespace gfx { namespace environ {
 			 * 
 			 * @note OWNED
 			 */
-			program_shared			program_;
+			program_shared					program_;
 
+			neb::gfx::environ::util::flag			flag_;
 	};
 
 

@@ -26,6 +26,10 @@ neb::gfx::glsl::program::base::base():
 {
 	shader_[0] = 0;
 	shader_[1] = 0;
+
+	
+	flag_shader_def_.set(neb::gfx::glsl::program::util::flag_shader::SHADOW);
+
 }
 void	neb::gfx::glsl::program::base::init()
 {
@@ -132,6 +136,7 @@ void	neb::gfx::glsl::program::base::add_uniform_scalar(std::string name, GLenum 
 			u.reset(new neb::gfx::glsl::uniform::Scalar::Bool(name));
 			break;
 		case GL_INT:
+		case GL_UNSIGNED_INT:
 			u.reset(new neb::gfx::glsl::uniform::Scalar::Int(name));
 			break;
 		case GL_FLOAT:
@@ -241,6 +246,13 @@ std::shared_ptr<neb::gfx::glsl::uniform::Vector::base>		neb::gfx::glsl::program:
 
 	return p;
 }
+void			neb::gfx::glsl::program::base::restoreDefaultShaderFlags()
+{
+	flag_shader_ = flag_shader_def_;
+
+	glUniform1i(uniform_table_[neb::gfx::glsl::uniforms::FLAG], (GLint)flag_shader_);
+	checkerror("");
+}
 void			neb::gfx::glsl::program::base::locate() {
 
 	std::shared_ptr<neb::gfx::glsl::attrib> attrib;
@@ -268,10 +280,9 @@ void			neb::gfx::glsl::program::base::locate() {
 		checkerror("");
 	}
 
+	use();
 
-
-
-
+	restoreDefaultShaderFlags();
 
 
 	{
