@@ -18,12 +18,13 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 	 */
 	class point: virtual public neb::gfx::environ::base {
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::program::shadow>		rogram_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::program::shadow>		program_shared;
 			typedef std::shared_ptr<neb::gfx::camera::view::shadow::point>		view_shared;
 			typedef std::shared_ptr<neb::gfx::camera::proj::perspective>		proj_shared;
 			typedef neb::gfx::core::light::point					light_type;
 			typedef std::shared_ptr<light_type>					light_shared;
 			typedef std::weak_ptr<light_type>					light_weak;
+			typedef std::weak_ptr<neb::gfx::environ::three>				environ3_weak;
 		public:
 			point();
 			virtual void		init();
@@ -34,6 +35,8 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 					std::shared_ptr<neb::gfx::context::base> context,
 					GLint layer);
 			virtual bool		shouldRender();
+			/** check per view */
+			virtual bool		shouldRender(unsigned int);
 		public:
 			/** @brief View Space Camera
 			 * 
@@ -46,6 +49,10 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			 */
 			proj_shared			proj_;
 
+			/** environ that uses the shadow map
+			 * frustrum used to determine which shadowmaps need to be rendered
+			 */
+			environ3_weak			environ3_;
 
 			light_weak			light_;
 	};

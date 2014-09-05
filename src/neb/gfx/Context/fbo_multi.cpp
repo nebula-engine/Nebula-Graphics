@@ -75,7 +75,10 @@ void		neb::gfx::context::fbo_multi::render() {
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	assert(self);
 
-	for(GLint layer = layer_; layer < (layer_ + layer_count_); layer++) {
+	for(unsigned int c = 0; c < layer_count_; c++) {
+
+		if(!environ_->shouldRender(c)) return;
+	
 
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_);
 		checkerror("glBindFramebuffer\n");
@@ -88,7 +91,7 @@ void		neb::gfx::context::fbo_multi::render() {
 				GL_DEPTH_ATTACHMENT,
 				tex->o_,
 				0,
-				layer);
+				c);
 		checkerror("glFramebufferTexture\n");
 
 		glDrawBuffer(GL_NONE);
@@ -101,7 +104,7 @@ void		neb::gfx::context::fbo_multi::render() {
 
 		glViewport(0, 0, tex->w_, tex->h_);
 
-		e->render(self,layer);
+		e->render(self,c);
 	}
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

@@ -88,6 +88,8 @@ namespace neb { namespace gfx { namespace core { namespace light {
 
 				int						type_;
 
+				// shadows
+				//std::shared_ptr<neb::gfx::window::base>		shadow_environ_;				
 				std::shared_ptr<neb::gfx::environ::base>	shadow_environ_;				
 				
 				// other properties

@@ -29,6 +29,7 @@ namespace neb { namespace gfx { namespace environ {
 			virtual void		resize(int w, int h);
 			virtual void		render(std::shared_ptr<neb::gfx::context::base> context) = 0;
 			virtual bool		shouldRender();
+			virtual bool		shouldRender(unsigned int) { return true; }
 		public:	
 			/** @brief %Viewport
 			 * 

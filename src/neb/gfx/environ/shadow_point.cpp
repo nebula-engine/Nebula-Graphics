@@ -15,6 +15,8 @@
 #include <neb/gfx/glsl/program/shadow.hpp>
 #include <neb/gfx/core/light/directional.hpp>
 
+#include <neb/phx/test.hpp>
+
 neb::gfx::environ::shadow::point::point()
 {
 }
@@ -61,12 +63,17 @@ void		neb::gfx::environ::shadow::point::init() {
 
 }
 bool		neb::gfx::environ::shadow::point::shouldRender() {
-	assert(program_);
-	bool ret = program_->flag_shader_.all(neb::gfx::glsl::program::util::flag_shader::SHADOW);
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << ret;
-
-	return ret;
+	assert(program_);
+	if(!program_->flag_shader_.all(neb::gfx::glsl::program::util::flag_shader::SHADOW)) return false;
+	
+	return true;
+}
+bool		neb::gfx::environ::shadow::point::shouldRender(unsigned int c) {
+	auto e = environ3_.lock();
+	
+	return neb::frustrum_overlap(this, e.get());
 }
 void		neb::gfx::environ::shadow::point::step(gal::etc::timestep const & ts) {
 

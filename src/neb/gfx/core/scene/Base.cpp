@@ -52,9 +52,13 @@ void			neb::gfx::core::scene::base::init() {
 	meshes_.cuboid_->instances_.reset(new neb::gfx::mesh::instanced::instances_type);
 	meshes_.cuboid_->instances_->alloc(2048);
 
+	unsigned int shadow_tex_size = 512;
 
 	tex_shadow_map_ = std::make_shared<neb::gfx::texture>();
-	tex_shadow_map_->init_shadow(2048, 2048, std::shared_ptr<neb::gfx::context::base>());
+	tex_shadow_map_->init_shadow(
+			shadow_tex_size,
+			shadow_tex_size,
+			std::shared_ptr<neb::gfx::context::base>());
 
 
 }
