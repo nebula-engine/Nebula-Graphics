@@ -31,7 +31,7 @@ namespace neb {
 			{
 				public:
 					
-					base(std::shared_ptr<neb::core::core::shape::util::parent> parent);
+					base();
 					virtual ~base();
 
 					void			init();

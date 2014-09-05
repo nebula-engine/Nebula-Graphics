@@ -16,16 +16,22 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/util/log.hpp>
 
+//neb::gfx::core::actor::base::base()
 
-neb::gfx::core::actor::base::base(std::shared_ptr<neb::core::core::actor::util::parent> parent):
+/*neb::gfx::core::actor::base::base(std::shared_ptr<neb::core::core::actor::util::parent> parent):
+	gal::stl::child<neb::core::core::actor::base
 	neb::core::core::actor::base(parent)
 {
 	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
-}
+}*/
 neb::gfx::core::actor::base::~base() {
 	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 }
 void				neb::gfx::core::actor::base::init() {
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+}
+void				neb::gfx::core::actor::base::__init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
@@ -36,8 +42,8 @@ void				neb::gfx::core::actor::base::release() {
 void				neb::gfx::core::actor::base::load_lights(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) {
 	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto parent(parent_.lock());
-	assert(parent);
+	//auto parent(parent_.lock());
+	//assert(parent);
 
 	auto npose = pose * pose_;
 	

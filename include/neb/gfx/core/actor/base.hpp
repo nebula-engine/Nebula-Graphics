@@ -17,8 +17,6 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 
-using namespace std;
-
 namespace neb {
 	namespace gfx {
 		namespace core {
@@ -35,10 +33,11 @@ namespace neb {
 						/** @brief default constructor */
 						//base();
 						/** @brief constructor */
-						base(std::shared_ptr<neb::core::core::actor::util::parent> parent);
+						//base(std::shared_ptr<neb::core::core::actor::util::parent> parent);
 						virtual ~base();
 					public:
-						virtual void					init();
+						virtual void					init() = 0;
+						virtual void					__init();
 						virtual void					release();
 						virtual void					step(gal::etc::timestep const & ts);
 					public:

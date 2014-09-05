@@ -11,7 +11,7 @@ namespace neb {
 					virtual public neb::gfx::core::shape::base
 				{
 					public:
-						box(std::shared_ptr<neb::core::core::shape::util::parent> parent);
+						box();
 
 						virtual void			createMesh();
 				};

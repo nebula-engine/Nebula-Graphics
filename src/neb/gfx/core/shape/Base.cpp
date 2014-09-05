@@ -19,11 +19,9 @@
 
 #include <neb/core/math/geo/polygon.hpp>
 
-neb::gfx::core::shape::base::base(std::shared_ptr<neb::core::core::shape::util::parent> parent):
-	neb::core::core::shape::base(parent)
+neb::gfx::core::shape::base::base()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	assert(parent);
 }
 neb::gfx::core::shape::base::~base() {}
 void					neb::gfx::core::shape::base::init() {

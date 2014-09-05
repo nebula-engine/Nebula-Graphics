@@ -11,9 +11,7 @@
 #include <neb/gfx/util/log.hpp>
 
 
-neb::gfx::core::shape::box::box(std::shared_ptr<neb::core::core::shape::util::parent> parent):
-	neb::core::core::shape::base(parent),
-	neb::gfx::core::shape::base(parent)
+neb::gfx::core::shape::box::box()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }
