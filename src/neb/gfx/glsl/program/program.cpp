@@ -16,30 +16,37 @@
 #include <neb/gfx/glsl/shader.hh>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
-#include <neb/gfx/glsl/attrib.hh>
-#include <neb/gfx/glsl/uniform/scalar.hpp>
-#include <neb/gfx/glsl/uniform/vector.hpp>
 
 neb::gfx::glsl::program::base::~base() {}
-neb::gfx::glsl::program::base::base():
-	o_(0)
+neb::gfx::glsl::program::base::base(std::string name):
+	o_(0),
+	name_(name)
 {
 	shader_[0] = 0;
 	shader_[1] = 0;
 
 	
-	flag_shader_def_.set(neb::gfx::glsl::program::util::flag_shader::SHADOW);
+	//flag_shader_def_.set(neb::gfx::glsl::program::util::flag_shader::SHADOW);
 
 }
 void	neb::gfx::glsl::program::base::init()
 {
 	//NEBULA_GLSL_PROGRAM_FUNC;
 
-	assert(glfwGetCurrentContext() != NULL);
-	
+	if(glfwGetCurrentContext() == NULL) return;
+
 	o_ = glCreateProgram();
 	
 	checkerror("glCreateProgram %i\n");
+
+	add_shader("v130/" + name_ + "/vs.glsl", GL_VERTEX_SHADER);
+	add_shader("v130/" + name_ + "/fs.glsl", GL_FRAGMENT_SHADER);
+	
+	compile();
+	
+	scanUniforms();
+	locate();
+
 
 }
 void	neb::gfx::glsl::program::base::add_shaders(std::vector<neb::gfx::glsl::shader> s)
@@ -54,10 +61,10 @@ void	neb::gfx::glsl::program::base::add_shaders(std::vector<neb::gfx::glsl::shad
 		checkerror("glAttachShader");
 	}
 }
-void	neb::gfx::glsl::program::base::add_shader(char const * filename, GLenum type)
+void	neb::gfx::glsl::program::base::add_shader(std::string filename, GLenum type)
 {
 	neb::gfx::glsl::shader s;
-	s.load(filename, type);
+	s.load(filename.c_str(), type);
 	
 	glAttachShader(o_, s.o_);
 	checkerror("glAttachShader");
@@ -102,149 +109,16 @@ void	neb::gfx::glsl::program::base::compile() {
 	printf("program=%i\n",o_);
 
 }
-void	neb::gfx::glsl::program::base::use() {
-	
+void	neb::gfx::glsl::program::base::use() const {
 	
 	checkerror("unknown");
 	
 	glUseProgram(o_);
 	checkerror("glUseProgram %i\n", o_);
 
-	std::shared_ptr<neb::gfx::glsl::attrib> attrib;
-
-	for(auto it = attrib_.begin(); it != attrib_.end(); ++it)
-	{
-		attrib = (*it).second;
-		assert(attrib);
-		//attrib->locate(shared_from_this());
-	}
-}
-/*void	neb::gfx::glsl::program::base::add_attrib(neb::gfx::glsl::attribs name, char const * s, GLuint o_bind) {
-
-  std::shared_ptr<neb::gfx::glsl::attrib> a(new neb::gfx::glsl::attrib);
-
-  a->init(s, o_bind);
-
-  attrib_[name] = a;
-  }*/
-void	neb::gfx::glsl::program::base::add_uniform_scalar(std::string name, GLenum type) {
-
-	std::shared_ptr<neb::gfx::glsl::uniform::Scalar::base> u;
-
-	switch(type) {
-		case GL_BOOL:
-			u.reset(new neb::gfx::glsl::uniform::Scalar::Bool(name));
-			break;
-		case GL_INT:
-		case GL_UNSIGNED_INT:
-			u.reset(new neb::gfx::glsl::uniform::Scalar::Int(name));
-			break;
-		case GL_FLOAT:
-			u.reset(new neb::gfx::glsl::uniform::Scalar::Float(name));
-			break;
-		case GL_FLOAT_VEC3:
-			u.reset(new neb::gfx::glsl::uniform::Scalar::Vec3(name));
-			break;
-		case GL_FLOAT_VEC4:
-			u.reset(new neb::gfx::glsl::uniform::Scalar::Vec4(name));
-			break;
-		case GL_FLOAT_MAT4:
-			u.reset(new neb::gfx::glsl::uniform::Scalar::Mat4(name));
-			break;
-		case GL_SAMPLER_2D:
-			u.reset(new neb::gfx::glsl::uniform::Scalar::Sampler2D(name));
-			break;
-		case GL_SAMPLER_2D_ARRAY:
-		case GL_SAMPLER_2D_ARRAY_SHADOW:
-			u.reset(new neb::gfx::glsl::uniform::Scalar::Int(name));
-			break;
-		default:
-			printf("unsupported glsl type \"%s\"\n", name.c_str());
-			abort();
-	}
-
-	uniform_scalar_[name] = u;
-}
-void			neb::gfx::glsl::program::base::add_uniform_vector(std::string name, GLenum type) {
-
-	std::shared_ptr<neb::gfx::glsl::uniform::Vector::base> u;
-
-	switch(type) {
-		case GL_INT:
-			u.reset(new neb::gfx::glsl::uniform::Vector::Int(name));
-			break;
-		case GL_FLOAT:
-			u.reset(new neb::gfx::glsl::uniform::Vector::Float(name));
-			break;
-		case GL_FLOAT_VEC3:
-			u.reset(new neb::gfx::glsl::uniform::Vector::Vec3(name));
-			break;
-		case GL_FLOAT_VEC4:
-			u.reset(new neb::gfx::glsl::uniform::Vector::Vec4(name));
-			break;
-		case GL_FLOAT_MAT4:
-			u.reset(new neb::gfx::glsl::uniform::Vector::mat4(name));
-			break;
-		default:
-			printf("unsupported glsl type \"%s\"\n", name.c_str());
-			abort();
-	}
-
-	uniform_vector_[name] = u;
-
-}
-/*std::shared_ptr<neb::gfx::glsl::attrib>	neb::gfx::glsl::program::base::get_attrib(int name) {
-  auto it = attrib_.find(name);
-
-  if(it == attrib_.end())
-  {
-  printf("attribute %i not found\n",name);
-  abort();
-  }
-
-  auto p = (*it).second;
-
-  assert(p);
-
-  return p;
-  }*/
-std::shared_ptr<neb::gfx::glsl::uniform::Scalar::base>	neb::gfx::glsl::program::base::get_uniform_scalar(std::string name) {
-	//printf("%s\n", __PRETTY_FUNCTION__);
-
-	auto it = uniform_scalar_.find(name);
-
-	if(it == uniform_scalar_.end())
-	{
-		std::cout << "uniform \"" << name << "\" not found\n" << std::endl;
-		abort();
-	}
-
-	auto p = (*it).second;
-
-	assert(p);
-
-	return p;
-}
-std::shared_ptr<neb::gfx::glsl::uniform::Vector::base>		neb::gfx::glsl::program::base::get_uniform_vector(std::string name) {
-	//printf("%s\n", __PRETTY_FUNCTION__);
-
-	auto it = uniform_vector_.find(name);
-
-	if(it == uniform_vector_.end()) {
-
-		for(auto it2 = uniform_vector_.begin(); it2 != uniform_vector_.end(); ++it2) {
-			std::cout << (*it2).first << std::endl;
-		}
-
-		std::cout << "uniform \"" << name << "\" not found\n" << std::endl;
-		abort();
-	}
-
-	auto p = (*it).second;
-
-	assert(p);
-
-	return p;
+	// load flags
+	//glUniform1i(uniform_table_[neb::gfx::glsl::uniforms::FLAG], flag_shader_.val_);
+	//checkerror("");
 }
 void			neb::gfx::glsl::program::base::restoreDefaultShaderFlags()
 {
@@ -255,50 +129,25 @@ void			neb::gfx::glsl::program::base::restoreDefaultShaderFlags()
 }
 void			neb::gfx::glsl::program::base::locate() {
 
-	std::shared_ptr<neb::gfx::glsl::attrib> attrib;
-
-	for(auto it = attrib_.begin(); it != attrib_.end(); ++it)
-	{
-		attrib = (*it).second;
-
-		attrib->locate(shared_from_this());
-	}
-
-
+	use();
 
 	for(unsigned int c = 0; c < neb::gfx::glsl::attribs::COUNT; c++)
 	{
-		attrib_table_[c] = glGetAttribLocation(o_, neb::gfx::glsl::attrib::attrib_string_[c]);
-		printf("attrib  %32s %i\n", neb::gfx::glsl::attrib::attrib_string_[c], attrib_table_[c]);
+		attrib_table_[c] = glGetAttribLocation(o_, neb::gfx::glsl::attribs::string[c]);
+		printf("attrib  %32s %i\n", neb::gfx::glsl::attribs::string[c], attrib_table_[c]);
 		checkerror("");
 	}
 
 	for(unsigned int c = 0; c < neb::gfx::glsl::uniforms::COUNT; c++)
 	{
-		uniform_table_[c] = glGetUniformLocation(o_, neb::gfx::glsl::uniform::uniform_string_[c]);
-		printf("uniform %32s %i\n", neb::gfx::glsl::uniform::uniform_string_[c], uniform_table_[c]);
+		uniform_table_[c] = glGetUniformLocation(o_, neb::gfx::glsl::uniforms::string[c]);
+		printf("uniform %32s %i\n", neb::gfx::glsl::uniforms::string[c], uniform_table_[c]);
 		checkerror("");
 	}
 
-	use();
 
 	restoreDefaultShaderFlags();
 
-
-	{
-		std::shared_ptr<neb::gfx::glsl::uniform::Scalar::base> u;
-
-		for(auto it = uniform_scalar_.begin(); it != uniform_scalar_.end(); ++it) {
-			u = (*it).second;
-			u->locate(shared_from_this());
-		}
-	}	
-
-	std::shared_ptr<neb::gfx::glsl::uniform::Vector::base> u;
-	for(auto it = uniform_vector_.begin(); it != uniform_vector_.end(); ++it) {
-		u = (*it).second;
-		u->locate(shared_from_this());
-	}
 }
 char const * shaderTypeString(GLenum type) {
 	std::map<GLenum,char const *> m;
@@ -415,10 +264,10 @@ void		neb::gfx::glsl::program::base::scanUniforms() {
 			name = name.substr(0, find_open);
 
 
-			auto it = uniform_vector_.find(name);
-			if(it != uniform_vector_.end()) continue;
+			//auto it = uniform_vector_.find(name);
+			//if(it != uniform_vector_.end()) continue;
 
-			add_uniform_vector(name, type);
+			//add_uniform_vector(name, type);
 
 			std::cout
 				<< std::setw(16) << "array"
@@ -429,7 +278,7 @@ void		neb::gfx::glsl::program::base::scanUniforms() {
 
 		} else {
 
-			add_uniform_scalar(name, type);
+			//add_uniform_scalar(name, type);
 
 			std::cout
 				<< std::setw(16) << "single"

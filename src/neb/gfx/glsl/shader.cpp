@@ -15,13 +15,19 @@
 #include <iterator>
 #include <algorithm>
 
+#include <neb/core/util/config.hpp>
+
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/config.hpp>
+#include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/shader.hh>
+#include <neb/gfx/app/__gfx_glsl.hpp>
 
 std::vector<std::string>		readLines(std::string filename) {
 
-	filename = NEB_GFX_SHADER_DIR + filename;
+	auto app(neb::gfx::app::__gfx_glsl::global().lock());
+	
+	filename = NEB_SHARE_DIR"media/shaders/" + filename;
 
 	std::ifstream ifs(filename);
 
@@ -63,8 +69,8 @@ std::vector<std::string>		preprocess(const char * filename) {
 }
 void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 {	
-	printf("%s\n",__PRETTY_FUNCTION__);
-	printf("loading %s\n",filename);
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << "loading " << filename;
 
 	// read text
 	
@@ -75,7 +81,7 @@ void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 
 	int c = 0;
 	for(auto str : lines) {
-		std::cout << std::setw(3) << c++ << ":" << str << std::endl;
+		LOG(lg, neb::gfx::sl, debug) << std::setw(3) << c++ << ":" << str;
 	}
 
 	std::string str(ss.str());

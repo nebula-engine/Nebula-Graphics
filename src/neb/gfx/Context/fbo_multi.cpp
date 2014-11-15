@@ -10,16 +10,14 @@
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/window/Base.hh>
 
-neb::gfx::context::fbo_multi::fbo_multi(std::shared_ptr<neb::gfx::window::base> parent):
-	neb::gfx::context::base(parent),
-	neb::gfx::context::window(parent),
+neb::gfx::context::fbo_multi::fbo_multi():
 	framebuffer_(0)
 {
 	layer_ = 0;
 	layer_count_ = 6;
 }
-void		neb::gfx::context::fbo_multi::init() {
-	
+void		neb::gfx::context::fbo_multi::init(parent_t * const & p)
+{
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	assert(self);
 
@@ -69,8 +67,8 @@ void		neb::gfx::context::fbo_multi::render() {
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::point>(environ_);
 	assert(e);
 
-	assert(environ_->program_);
-	environ_->program_->use();
+	//assert(environ_->program_);
+	//environ_->program_->use();
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	assert(self);

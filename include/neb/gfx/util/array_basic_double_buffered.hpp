@@ -33,17 +33,24 @@ namespace neb { namespace gfx {
 				size_(0),
 				size_array_(0)	{}
 			
-			void					alloc(int n) {
+			void					alloc(int n)
+			{
+				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+
 				assert(n > 0);
 
-				alloc(seq_type(), n);
-			}
-			template<int... S> void			alloc(seq<S...>, int n) {
-				pass((std::get<S>(*front_) = new T[n])...);
-				pass((std::get<S>(*back_) = new T[n])...);
+				assert(size_array_ == 0);
 
 				size_array_ = n;
+				alloc(seq_type(), n);
 			}
+		private:
+			template<int... S> void			alloc(seq<S...>, int n)
+			{
+				pass((std::get<S>(*front_) = new T[n])...);
+				pass((std::get<S>(*back_) = new T[n])...);
+			}
+		public:
 			void					set(int i, T... value) {
 				assert(size_array_ > 0);
 
@@ -52,9 +59,11 @@ namespace neb { namespace gfx {
 			template<int I, typename U> void	set(int i, U const & u) {
 				std::get<I>(*front_)[i] = u;
 			}
+		private:
 			template<int... S> void			set(seq<S...>, int i, T... value) {
 				pass((std::get<S>(*front_)[i] = value)...);
 			}
+		public:
 			void					swap_buffers() {
 				std::swap(front_, back_);
 			}
@@ -68,15 +77,20 @@ namespace neb { namespace gfx {
 				std::get<I>(*back_)[newi] = std::get<I>(*front_)[oldi];
 				return 0;
 			}
-			void					set_size(int size) {
-				size_ = size;
+			void					set_size(GLsizei s) {
+				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this << " size = " << s;
+				size_ = s;
 			}
 			template<int I, typename U> U*		get() {
 				return std::get<I>(*front_);
 			}
-			int					next() {
+			int					next()
+			{
+				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this << " size = " << size_+1;
 				if(size_ == size_array_) throw 0;
-				return size_++;
+				GLsizei s = size_;
+				size_++;
+				return s;
 			}
 			GLsizei					size() const {
 				return size_;

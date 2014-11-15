@@ -5,8 +5,11 @@
 
 
 namespace neb { namespace gfx { namespace glsl { namespace uniform {
-	template<int I> class locations;
+	//template<int I> class locations;
+	class light_locations;
+
 	class light_array: public array<
+			   light_locations,
 			   glm::vec3,	//  0	position
 			   glm::vec4,	//  1	ambient
 			   glm::vec4,	//  2	diffuse
@@ -47,7 +50,31 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 	};
 	class light_locations: public light_array::loc_type {
 		public:
-			void		init(std::shared_ptr<neb::gfx::glsl::program::threed> program);
+			static constexpr neb::gfx::glsl::uniforms::e	names_[light_array::loc_type::N] = {
+				neb::gfx::glsl::uniforms::LIGHT_POSITION,
+				neb::gfx::glsl::uniforms::LIGHT_AMBIENT,
+				neb::gfx::glsl::uniforms::LIGHT_DIFFUSE,
+				neb::gfx::glsl::uniforms::LIGHT_SPECULAR,
+				neb::gfx::glsl::uniforms::LIGHT_ATTEN_CONST,
+				neb::gfx::glsl::uniforms::LIGHT_ATTEN_LINEAR,
+				neb::gfx::glsl::uniforms::LIGHT_ATTEN_QUAD,
+				neb::gfx::glsl::uniforms::LIGHT_SPOT_DIRECTION,
+				neb::gfx::glsl::uniforms::LIGHT_SPOT_CUTOFF,
+				neb::gfx::glsl::uniforms::LIGHT_SPOT_EXPONENT,
+				neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_0,
+				neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_1,
+				neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_2,
+				neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_3,
+				neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_4,
+				neb::gfx::glsl::uniforms::LIGHT_SHADOW_VPB_5,
+				neb::gfx::glsl::uniforms::LIGHT_SHADOW_SAMPLER_0,
+				neb::gfx::glsl::uniforms::LIGHT_SHADOW_SAMPLER_1,
+				neb::gfx::glsl::uniforms::LIGHT_TYPE,
+				neb::gfx::glsl::uniforms::LIGHT_CLOSED,
+				neb::gfx::glsl::uniforms::LIGHT_COUNT
+			};
+
+			//void		init(std::shared_ptr<neb::gfx::glsl::program::base> program);
 	};
 }}}}
 

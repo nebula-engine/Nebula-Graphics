@@ -43,7 +43,7 @@ namespace neb {
 				 *
 				 * load into OpenGL
 				 */
-				void		load(std::shared_ptr<neb::gfx::glsl::program::threed> p);
+				void		load(std::shared_ptr<neb::gfx::glsl::program::base> p);
 				raw		raw_;
 		};
 	}

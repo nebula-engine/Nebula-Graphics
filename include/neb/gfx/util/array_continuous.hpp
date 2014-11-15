@@ -6,53 +6,50 @@
 #include <memory>
 
 #include <neb/gfx/util/array_basic_double_buffered.hpp>
+#include <neb/gfx/util/slot.hpp>
 
 namespace neb { namespace gfx {
+
 	template<class... T> class array_continuous:
 		public std::enable_shared_from_this< array_continuous<T...> >,
 		public array_basic_double_buffered<T...>
 	{
 		public:
+			typedef std::enable_shared_from_this< array_continuous<T...> > esft;
+
 			typedef typename gens<sizeof...(T)>::type seq_type;
-			struct slot {
-				slot(std::shared_ptr< neb::gfx::array_continuous<T...> > array, int index):
-					array_(array),
-					index_(index),
-					count_(0) {}
-				template<int I, typename U> void	set(U const & u) {
-					auto arr = array_.lock();
-					if(arr) {
-						//std::cout << __PRETTY_FUNCTION__ << " index=" << index_ << std::endl;
-						arr->set<I>(index_, u);
-						count_++;
-					}
-				}
-				std::weak_ptr< neb::gfx::array_continuous<T...> >	array_;
-				int							index_;
-				int							count_;
-			};
+
+			typedef slot< array_continuous< T... > >	slot_type;
+			typedef std::shared_ptr<slot_type>		slot_shared;
 		public:
+			
 			array_continuous():
 				update_begin_(0),
 				update_end_(0) {}
 			void					alloc(int n) {
 				array_basic_double_buffered<T...>::alloc(n);
-				
+
 				reset_update();
 			}
-			std::shared_ptr<slot>			reg(T... value) {
+			slot_shared			reg(T... value)
+			{
+				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
 
 				int index = array_basic_double_buffered<T...>::next();
-				
-				auto s = std::make_shared<slot>(
-						std::enable_shared_from_this< array_continuous<T...> >::shared_from_this(),
-						index);
 
+				slot_shared s(
+						new slot_type(
+							esft::shared_from_this(),
+							index)
+						);
+
+				LOG(lg, neb::gfx::sl, debug) << "index = " << index;
+				LOG(lg, neb::gfx::sl, debug) << "size = " << size();
 
 				array_basic_double_buffered<T...>::set(index, value...);
 
 				slots_.push_back(s);
-				
+
 				mark_update(index);
 
 				return s;
@@ -63,19 +60,26 @@ namespace neb { namespace gfx {
 			}
 			void					mark_update_all() {
 				update_begin_ = 0;
-				update_end_ = size();
+				update_end_ = size() - 1;
 			}
 			void					reset_update() {
 				update_begin_ = size_array();
 				update_end_ = 0;
 			}
-			void					update_slots() {
+			void					update_slots()
+			{
+				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+
 				// remove expired instanced
 				bool update = false;
 
 				auto it = slots_.begin();
-				while(it != slots_.end()) {
-					if(it->expired()) {
+
+				while(it != slots_.end())
+				{
+					if(it->expired())
+					{
+						LOG(lg, neb::gfx::sl, debug) << "erased";
 						it = slots_.erase(it);
 						update = true;
 					} else {
@@ -85,28 +89,33 @@ namespace neb { namespace gfx {
 
 				// if instances were removed, copy remaining data to back buffer
 				if(update) swap();
-			}
-			void					swap() {
 
-				int size = 0;
+				mark_update_all();
+			}
+			void					swap()
+			{
+				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+				int nsize = 0;
 				//array_basic_double_buffered<T...>::size_ = 0;
 
 				auto it = slots_.begin();
 				while(it != slots_.end()) {
 					auto s = it->lock();
 
-					array_basic_double_buffered<T...>::copy_data(s->index_, size); //array_basic_double_buffered<T...>::size_);
+					array_basic_double_buffered<T...>::copy_data(s->index_, nsize); //array_basic_double_buffered<T...>::size_);
 
-					s->index_ = size; //array_basic_double_buffered<T...>::size_;
+					s->index_ = nsize; //array_basic_double_buffered<T...>::size_;
 
 					//array_basic_double_buffered<T...>::size_++;
-					size++;
+					nsize++;
 					it++;
 				}
 
 				array_basic_double_buffered<T...>::swap_buffers();
-				array_basic_double_buffered<T...>::set_size(size);
+				array_basic_double_buffered<T...>::set_size(nsize);
 
+				LOG(lg, neb::gfx::sl, debug) << "size = " << nsize << " " << size();
 
 			}
 			template<int I, typename U> U*		get() {
@@ -118,15 +127,17 @@ namespace neb { namespace gfx {
 				mark_update(i);
 			}
 			GLsizei					size() {
-				return array_basic_double_buffered<T...>::size();
+				auto s = array_basic_double_buffered<T...>::size();
+				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this << " size = " << s;
+				return s;
 			}
 			GLsizei					size_array() {
 				return array_basic_double_buffered<T...>::size_array();
 			}
 		public:
-			std::vector<std::weak_ptr<slot>>	slots_;
-			int					update_begin_;
-			int					update_end_;
+			std::vector< std::weak_ptr<slot_type> >		slots_;
+			int						update_begin_;
+			int						update_end_;
 	};
 }}
 

@@ -14,9 +14,10 @@
 #include <neb/core/util/debug.hpp>
 
 #include <neb/gfx/app/__gfx.hpp>
-#include <neb/gfx/window/Base.hh>
-#include <neb/gfx/glsl/uniform/scalar.hpp>
-#include <neb/gfx/glsl/attrib.hh>
+#include <neb/gfx/app/__gfx_glsl.hpp>
+//#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/glsl/program/base.hpp>
+#include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/log.hpp>
 
@@ -80,7 +81,7 @@ void			neb::draw_quad(
 
 }
 void		neb::draw_text(
-		std::shared_ptr<neb::gfx::glsl::program::base> p,
+		std::shared_ptr<neb::gfx::glsl::program::base>,
 		float x, float y, float sx, float sy,
 		neb::core::color::color color,
 		std::string text,
@@ -94,7 +95,8 @@ void		neb::draw_text(
 	sx = 1.0 / (float)window_width;
 	sy = 1.0 / (float)window_height;
 	
-	//auto p = neb::app::base::global()->use_program(neb::program_name::e::TEXT);
+	auto p = neb::gfx::app::__gfx_glsl::global().lock()->program_text_;
+	assert(p);
 
 	LOG(lg, neb::gfx::sl, debug)
 		<< ::std::setw(8) << x
@@ -120,14 +122,14 @@ void		neb::draw_text(
 	neb::core::color::color cursor_color = neb::core::color::color::white();
 	
 	// color
-	p->get_uniform_scalar("font_color")->load((glm::vec4)color);
+	glUniform4fv(p->uniform_table_[neb::gfx::glsl::uniforms::FONT_COLOR], 1, (float*)color);
 
 	// texture
 	GLuint tex;
 	glActiveTexture(GL_TEXTURE0);
 	glGenTextures(1, &tex);
 	glBindTexture(GL_TEXTURE_2D, tex);
-	p->get_uniform_scalar("tex")->load(0);
+	glUniform1i(p->uniform_table_[neb::gfx::glsl::uniforms::TEX], 0);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -159,7 +161,8 @@ void		neb::draw_text(
 	size_t len = text.size();
 	for(size_t i = 0; i < len; i++) {
 		
-		if(i == cursor_pos) p->get_uniform_scalar("font_color")->load((glm::vec4)cursor_color);
+		if(i == cursor_pos)
+			glUniform4fv(p->uniform_table_[neb::gfx::glsl::uniforms::FONT_COLOR], 1, (float*)cursor_color);
 		
 
 		if(FT_Load_Char(face, cstr[i], FT_LOAD_RENDER)) continue;
@@ -200,7 +203,8 @@ void		neb::draw_text(
 		x += (g->advance.x >> 6) * sx;
 		y += (g->advance.y >> 6) * sy;
 
-		if(i == cursor_pos) p->get_uniform_scalar("font_color")->load((glm::vec4)color);
+		if(i == cursor_pos) 
+			glUniform4fv(p->uniform_table_[neb::gfx::glsl::uniforms::FONT_COLOR], 1, (float*)color);
 
 	}
 

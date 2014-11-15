@@ -14,9 +14,11 @@
 #include <neb/gfx/core/light/util/parent.hpp>
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/material.hpp>
-#include <neb/gfx/core/mesh.hh>
+#include <neb/gfx/mesh/tri1.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
-#include <neb/gfx/core/mesh_instanced.hpp>
+#include <neb/gfx/mesh/instanced.hpp>
+
+#include <neb/phx/util/log.hpp>
 
 namespace neb {
 	namespace gfx {
@@ -34,12 +36,13 @@ namespace neb {
 					base();
 					virtual ~base();
 
-					void			init();
+					void			init(neb::core::core::shape::util::parent * const & p);
 					void			release();
 					void			step(gal::etc::timestep const & ts);
 					virtual void		callbackPose(neb::core::pose const & pose_global);
 
 					virtual weak_ptr<neb::core::core::light::base>		createLightPoint();
+					virtual weak_ptr<neb::core::core::light::base>		createLightSpot(glm::vec3);
 					virtual weak_ptr<neb::core::core::light::base>		createLightDirectional(glm::vec3);
 
 
@@ -52,22 +55,30 @@ namespace neb {
 					//		neb::core::core::light::util::count& light_count,
 					//		neb::core::pose const & pose);
 					void						model_load(
-							std::shared_ptr<neb::gfx::glsl::program::threed> p,
+							neb::gfx::glsl::program::base const * const & p,
 							neb::core::pose const & pose);
+					
 					void						init_buffer(
-							std::shared_ptr<neb::gfx::context::base> context,
-							std::shared_ptr<neb::gfx::glsl::program::base> p);
-					void						draw(
-							std::shared_ptr<neb::gfx::context::base>,
-							std::shared_ptr<neb::gfx::glsl::program::threed> p,
+							neb::gfx::glsl::program::base const * const & p);
+
+					virtual void					draw(
+							neb::gfx::glsl::program::base const * const & p,
+							neb::core::pose const & pose);
+					virtual void					drawHF(
+							neb::gfx::glsl::program::base const * const & p,
+							neb::core::pose const & pose);
+					
+					virtual void					drawDebug(
+							neb::gfx::glsl::program::base const * const & p,
 							neb::core::pose const & pose);
 					virtual void					draw_elements(
-							std::shared_ptr<neb::gfx::context::base> context,
-							std::shared_ptr<neb::gfx::glsl::program::threed> p,
+							neb::gfx::glsl::program::base const * const & p,
 							neb::core::pose const & pose);
 					/** @} */
 				public:
 					template<class Archive>	void	serialize(Archive & ar, unsigned int const & version) {
+						LOG(lg, neb::phx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
+		
 						ar & boost::serialization::make_nvp("flag",flag_);
 						ar & boost::serialization::make_nvp("pose",pose_);
 						ar & boost::serialization::make_nvp("scale",scale_);

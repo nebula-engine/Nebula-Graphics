@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include <gal/stl/child.hpp>
 
 #include <neb/core/util/decl.hpp> // gru/config.hpp.in
 
@@ -35,13 +36,14 @@ namespace neb {
 			 */
 			class base:
 				virtual public neb::itf::shared,
-				virtual public neb::gfx::context::util::cast
+				virtual public neb::gfx::context::util::cast,
+				virtual public gal::stl::child<neb::gfx::context::util::parent>
 			{
 				public:
-					//base();
-					base(std::shared_ptr<neb::gfx::context::util::parent> parent);
+					typedef neb::gfx::context::util::parent parent_t;
+					base();
 					//base&						operator=(base const & r);
-					//void						init();
+					virtual void					init(parent_t * const &) = 0;
 					//void						release();
 					virtual void					step(gal::etc::timestep const & ts);
 					virtual void					render();
@@ -49,17 +51,13 @@ namespace neb {
 
 
 					std::weak_ptr<neb::gfx::environ::two>			createEnvironTwo();
-					std::weak_ptr<neb::gfx::environ::three>			createEnvironThree();
+					std::weak_ptr<neb::gfx::environ::SceneDefault>		createEnvironSceneDefault();
+					std::weak_ptr<neb::gfx::environ::NormalMap>		createEnvironNormalMap();
 					std::weak_ptr<neb::gfx::environ::shadow::point>		createEnvironShadowPoint();
 					std::weak_ptr<neb::gfx::environ::shadow_directional>	createEnvironShadowDirectional();
 					std::weak_ptr<neb::gfx::environ::vis_depth>		createEnvironVisDepth();
+
 					void							setDrawable(std::shared_ptr<neb::gfx::drawable::base>);
-				public:
-					/** @brief %Parent
-					 * 
-					 * @note WEAK
-					 */
-					std::weak_ptr<neb::gfx::context::util::parent>			parent_;
 				public:
 					std::shared_ptr<neb::gfx::environ::base>			environ_;
 			};

@@ -3,6 +3,7 @@
 
 #include <gal/etc/timestep.hpp>
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/util/cast.hpp>
 #include <neb/gfx/environ/util/flag.hpp>
@@ -20,9 +21,13 @@ namespace neb { namespace gfx { namespace environ {
 	{
 		public:
 			typedef std::shared_ptr<neb::gfx::glsl::program::base>		program_shared;
+			typedef std::shared_ptr<neb::gfx::camera::view::base>		view_shared;
+			typedef std::shared_ptr<neb::gfx::camera::proj::base>		proj_shared;
+			//typedef neb::gfx::core::light::directional			light_type;
+			//typedef std::shared_ptr<light_type>				light_shared;
+			//typedef std::weak_ptr<light_type>				light_weak;
 		public:
 			virtual ~base() {}
-
 
 			virtual void		init();
 			virtual void		step(gal::etc::timestep const & ts);
@@ -37,18 +42,24 @@ namespace neb { namespace gfx { namespace environ {
 			 */
 			neb::gfx::Viewport					viewport_;
 
-
 			std::weak_ptr<neb::gfx::drawable::base>			drawable_;
-			/** @brief %glsl %program
-			 * 
-			 * @note OWNED
-			 */
-			program_shared					program_;
 
-			neb::gfx::environ::util::flag			flag_;
+			neb::gfx::environ::util::flag				flag_;
+
+			proj_shared						proj_;
 	};
-
-
+	template<typename VIEW> class single:
+		virtual public neb::gfx::environ::base
+	{
+		public:
+			std::shared_ptr<VIEW>		view_;
+	};
+	template<typename VIEW> class multiple:
+		virtual public neb::gfx::environ::base
+	{
+		public:
+			std::shared_ptr<VIEW>		view_[6];
+	};
 }}}
 
 

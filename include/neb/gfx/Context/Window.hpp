@@ -23,8 +23,8 @@ namespace neb {
 				virtual public neb::gfx::context::base
 			{
 				public:
-					window(std::shared_ptr<neb::gfx::window::base> window);
-					virtual void					init();
+					window();
+					virtual void			init(parent_t * const & p);
 			};
 		}
 	}

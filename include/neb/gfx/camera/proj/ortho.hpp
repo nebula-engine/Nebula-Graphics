@@ -14,11 +14,12 @@ namespace neb {namespace gfx {namespace camera {namespace proj {
 		public:
 			ortho(std::shared_ptr<neb::gfx::environ::base>);
 
-			virtual glm::mat4			proj();
+			virtual glm::mat4&			proj();
+			virtual void				calculate();
 
 			virtual void				step(gal::etc::timestep const & ts);
-
-
+			void					set(float,float,float,float,float,float);
+		protected:
 			float					left_;
 			float					right_;
 			float					bottom_;

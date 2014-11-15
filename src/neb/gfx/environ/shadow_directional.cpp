@@ -11,8 +11,9 @@
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/glsl/program/shadow.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/core/light/directional.hpp>
+#include <neb/gfx/RenderDesc.hpp>
 
 neb::gfx::environ::shadow_directional::shadow_directional()
 {
@@ -25,15 +26,16 @@ void		neb::gfx::environ::shadow_directional::init() {
 //	auto light = light_.lock();
 //	assert(light);
 
-	program_ = std::make_shared<neb::gfx::glsl::program::shadow>();
-	program_->init();
+	programs_.d3_.reset(new neb::gfx::glsl::program::base("shadow"));
+	programs_.d3_->init();
 	
+	programs_.d3_inst_.reset(new neb::gfx::glsl::program::base("shadow_inst"));
+	programs_.d3_inst_->init();
 	
 	// camera
 	view_.reset(new neb::gfx::camera::view::shadow_directional(self));
 
 	proj_.reset(new neb::gfx::camera::proj::ortho(self));
-
 
 }
 void		neb::gfx::environ::shadow_directional::step(gal::etc::timestep const & ts) {
@@ -43,6 +45,10 @@ void		neb::gfx::environ::shadow_directional::step(gal::etc::timestep const & ts)
 	if(proj_) proj_->step(ts);	
 	if(view_) view_->step(ts);	
 
+}
+bool		neb::gfx::environ::shadow_directional::shouldRender()
+{
+	return true;
 }
 void		neb::gfx::environ::shadow_directional::render(std::shared_ptr<neb::gfx::context::base> context) {
 
@@ -72,15 +78,24 @@ void		neb::gfx::environ::shadow_directional::render(std::shared_ptr<neb::gfx::co
 	assert(proj_);
 	assert(view_);
 	
-	program_->use();
+	//program_->use();
 
-	proj_->load(program_);
-	view_->load(program_);
+	//proj_->load(program_);
+	//view_->load(program_);
 
 	//glViewPort(0, 0, );
 
-	drawable->draw(context, program_);
-	
+	//drawable->draw(context, program_, 0);
+
+	drawable->draw(
+			RenderDesc(
+				view_.get(),
+				proj_.get(),
+				programs_.d3_.get(),
+				programs_.d3_HF_.get(),
+				programs_.d3_inst_.get())
+		      );
+
 }		
 
 

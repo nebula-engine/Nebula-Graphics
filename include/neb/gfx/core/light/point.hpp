@@ -25,13 +25,19 @@ namespace neb { namespace gfx { namespace core { namespace light {
 		virtual public neb::gfx::core::light::base
 	{
 		public:
-			point(std::shared_ptr<neb::core::core::light::util::parent> parent);
-			virtual void	init();
-			virtual void	load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose);
+			point();
+			virtual type::e		getType();
+			virtual void		init(neb::core::core::light::util::parent * const & p);
+			virtual void		callbackPose(neb::core::pose const &);
+			virtual void		initShadow(std::shared_ptr<neb::gfx::environ::SceneDefault>);
+			virtual void		load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose);
 
-			virtual void	setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ);
+			virtual void		setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ);
 
 
+			virtual void	load(ba::polymorphic_iarchive & ar, unsigned int const &);
+			virtual void	save(ba::polymorphic_oarchive & ar, unsigned int const &) const;
+			BOOST_SERIALIZATION_SPLIT_MEMBER();
 
 	};
 

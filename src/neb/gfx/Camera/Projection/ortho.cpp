@@ -13,10 +13,34 @@ neb::gfx::camera::proj::ortho::ortho(std::shared_ptr<neb::gfx::environ::base> pa
 	near_(0),
 	far_(100)
 {
-
+	calculate();
 }
-glm::mat4			neb::gfx::camera::proj::ortho::proj() {
-	return glm::ortho(left_, right_, bottom_, top_, near_, far_);
+glm::mat4&			neb::gfx::camera::proj::ortho::proj() {
+	return _M_matrix;
+}
+void				neb::gfx::camera::proj::ortho::set(
+		float l,
+		float r,
+		float b,
+		float t,
+		float n,
+		float f
+		)
+{
+	left_ = l;
+	right_ = r;
+	bottom_ = b;
+	top_ = t;
+	near_ = n;
+	far_ = f;
+
+	calculate();
+}
+void				neb::gfx::camera::proj::ortho::calculate()
+{
+	_M_matrix = glm::ortho(left_, right_, bottom_, top_, near_, far_);
+
+	calculate_geometry();
 }
 void				neb::gfx::camera::proj::ortho::step(gal::etc::timestep const & ts) {
 	

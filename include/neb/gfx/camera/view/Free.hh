@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <neb/core/util/typedef.hpp>
+#include <neb/core/input/sink.hpp>
 
 #include <neb/gfx/camera/view/Base.hh>
 
@@ -15,7 +16,10 @@ namespace neb {
 				 * this camera can move freely through the scene
 				 * user input in interpreted as three-component velocity and yaw and pitch rate
 				 */
-				class Free: public neb::gfx::camera::view::base {
+				class Free:
+					virtual public neb::core::input::sink,
+					virtual public neb::gfx::camera::view::base
+				{
 					public:
 						/** @name constructors
 						 * @{
@@ -32,10 +36,10 @@ namespace neb {
 						
 
 
-						virtual void						connect(
-								std::shared_ptr<neb::gfx::window::base> const & window);
-						int						key_fun(
-								std::shared_ptr<neb::gfx::window::base> const & window,
+						virtual void					connect(
+								std::shared_ptr<neb::core::input::source> const &);
+						virtual int					keyFun(
+								std::shared_ptr<neb::core::input::source> const &,
 								int key,
 								int scancode,
 								int action,

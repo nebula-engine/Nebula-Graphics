@@ -9,13 +9,11 @@
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/window/Base.hh>
 
-neb::gfx::context::fbo::fbo(std::shared_ptr<neb::gfx::window::base> parent):
-	neb::gfx::context::base(parent),
-	neb::gfx::context::window(parent),
+neb::gfx::context::fbo::fbo():
 	framebuffer_(0)
 {}
-void		neb::gfx::context::fbo::init() {
-	
+void		neb::gfx::context::fbo::init(parent_t * const & p)
+{
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	assert(self);
 
@@ -62,8 +60,8 @@ void		neb::gfx::context::fbo::render() {
 	
 	if(!environ_->shouldRender()) return;
 
-	assert(environ_->program_);
-	environ_->program_->use();
+	//assert(environ_->program_);
+	//environ_->program_->use();
 	
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());

@@ -11,9 +11,10 @@ namespace neb { namespace gfx {
 		namespace view {
 			class base;
 			class ridealong;
-			class shadow_directional;
 			namespace shadow {
 				class point;
+				class directional;
+				class spot;
 			}
 		}
 

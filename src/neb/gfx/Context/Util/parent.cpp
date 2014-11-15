@@ -19,19 +19,23 @@ void					neb::gfx::context::util::parent::render() {
 }
 std::weak_ptr<C_W>			neb::gfx::context::util::parent::createContextWindow()
 {
-	auto self = isWindowBase();
-	assert(self);
-
-	std::shared_ptr<C_W> context(new C_W(self));
+	//auto self = isWindowBase();
+	//assert(self);
+	
+	return create<C_W>();
+	/*
+	std::shared_ptr<C_W> context(new C_W());
 	
 	insert(context);
 	
 	context->init();
 	
-	return context;
+	return context;*/
 }
 std::weak_ptr<C_FBO>			neb::gfx::context::util::parent::createContextFBO() {
 
+	return create<C_FBO>();
+/*
 	auto self = isWindowBase();
 	assert(self);
 
@@ -41,10 +45,13 @@ std::weak_ptr<C_FBO>			neb::gfx::context::util::parent::createContextFBO() {
 
 	context->init();
 
-	return context;
+	return context;*/
 }
 std::weak_ptr<C_FBOM>			neb::gfx::context::util::parent::createContextFBOMulti() {
 
+	return create<C_FBOM>();
+
+	/*
 	auto self = isWindowBase();
 	assert(self);
 
@@ -54,10 +61,12 @@ std::weak_ptr<C_FBOM>			neb::gfx::context::util::parent::createContextFBOMulti()
 
 	context->init();
 
-	return context;
+	return context;*/
 }
 std::weak_ptr<C_W>			neb::gfx::context::util::parent::createContextVisDepth() {
 
+	return create<C_W>();
+/*
 	auto self = isWindowBase();
 	assert(self);
 	
@@ -69,6 +78,7 @@ std::weak_ptr<C_W>			neb::gfx::context::util::parent::createContextVisDepth() {
 	context->init();
 	
 	return context;
+	*/
 }
 
 

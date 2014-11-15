@@ -16,6 +16,7 @@ namespace neb { namespace gfx {
 		}
 		class shadow_directional;
 		class vis_depth;
+		class NormalMap;
 	}
 
 }}

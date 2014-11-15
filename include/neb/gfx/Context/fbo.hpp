@@ -20,8 +20,8 @@ namespace neb {
 				public neb::gfx::context::window
 			{
 				public:
-					fbo(std::shared_ptr<neb::gfx::window::base> parent);
-					virtual void				init();
+					fbo();
+					virtual void				init(parent_t * const & p);
 					virtual void				render();
 					
 					GLuint					framebuffer_;

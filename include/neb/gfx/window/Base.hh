@@ -9,6 +9,8 @@
 
 #include <neb/core/util/decl.hpp>
 #include <neb/core/core/scene/util/decl.hpp>
+#include <neb/core/input/source.hpp>
+#include <neb/core/input/callback.hpp>
 
 #include <neb/gfx/Context/Base.hh>
 #include <neb/gfx/Context/Util/Parent.hh>
@@ -21,22 +23,25 @@
 #include <neb/gfx/window/__base.hpp>
 #include <neb/gfx/window/util/Flag.hh>
 #include <neb/gfx/window/util/Cast.hh>
-#include <neb/gfx/window/util/signals.hpp>
 
 namespace neb { namespace gfx { namespace window {
 	class base:
 		virtual public neb::gfx::window::__base,
 		virtual public neb::gfx::context::util::parent,
-		virtual public neb::gfx::window::util::cast
+		virtual public neb::gfx::window::util::cast,
+		virtual public neb::core::input::source,
+		virtual public neb::core::input::callback
 	{
 		public:
-			base();
-			base(std::shared_ptr<neb::gfx::window::util::parent> parent);
-			virtual ~base();
+			typedef neb::gfx::window::util::parent parent_t;
+			typedef neb::util::parent<neb::gfx::context::base, neb::gfx::context::util::parent> contexts;
 
-		public:
-			virtual void				__init();
+			base();
+			virtual ~base();
+			virtual void				init(parent_t * const & p);
 			virtual void				release();
+			
+			virtual glm::vec2			getCursorPosNDC();
 
 			/** @name Main Loop @{ */
 			virtual void				render();
@@ -51,27 +56,18 @@ namespace neb { namespace gfx { namespace window {
 			void					callback_mouse_button_fun(GLFWwindow*,int,int,int);
 			void					callback_key_fun(GLFWwindow*,int,int,int,int);
 			void					callbackCharFun(GLFWwindow*,unsigned int);
+
 			std::weak_ptr<neb::gfx::context::window>	createContextTwo();
 			std::weak_ptr<neb::gfx::context::window>	createContextThree();
+			std::weak_ptr<neb::gfx::context::window>	createContextNormalMap();
+
 			void						makeCurrent();
+
+			void						printScreen();
 		public:
-			std::shared_ptr<neb::gfx::window::util::parent>			parent_;
-			/** @brief self
-			 *
-			 * avoid casting shared_from_this
-			 */
-			std::shared_ptr<neb::gfx::window::base>		self_;
-
-			// input signals
-			struct
-			{
-				neb::gfx::window::signals::KeyFun		key_fun_;
-				neb::gfx::window::signals::MouseButtonFun	mouse_button_fun_;
-				neb::gfx::window::signals::CharFun		charFun_;
-			} sig_;
 
 
-			static GLFWwindow*					first_window_;
+			static GLFWwindow*				first_window_;
 
 
 			neb::gfx::window::util::Flag	flag_;
@@ -85,6 +81,9 @@ namespace neb { namespace gfx { namespace window {
 			GLFWwindow*		window_;
 
 			//int			windowID;
+
+			// persistent buffer for screen print
+			std::vector<unsigned char>		screenBuffer_;
 
 		public:
 

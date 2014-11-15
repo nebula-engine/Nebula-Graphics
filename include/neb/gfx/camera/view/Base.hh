@@ -23,7 +23,7 @@ namespace neb {namespace gfx {namespace camera {namespace view {
 			/** @brief Constructor */
 			base(std::shared_ptr< ::neb::gfx::environ::base > parent);
 			/** @brief Load view matrix into GLSL. */
-			void						load(std::shared_ptr<neb::gfx::glsl::program::base> p);
+			void						load(neb::gfx::glsl::program::base const * const p);
 			/** @brief Get view matrix. */
 			virtual glm::mat4				view() = 0;
 			/** @brief Step

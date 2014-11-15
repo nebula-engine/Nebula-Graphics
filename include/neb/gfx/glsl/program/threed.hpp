@@ -7,7 +7,7 @@
 namespace neb { namespace gfx { namespace glsl { namespace program {
 	class threed: public neb::gfx::glsl::program::base {
 		public:
-			threed(): neb::gfx::glsl::program::base() {}
+			threed(std::string name): neb::gfx::glsl::program::base(name) {}
 			virtual ~threed() {}
 
 			virtual void						init();

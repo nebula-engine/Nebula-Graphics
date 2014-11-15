@@ -7,7 +7,7 @@
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
-#include <neb/gfx/environ/base.hpp>
+#include <neb/gfx/environ/three.hpp>
 #include <neb/gfx/core/light/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace environ {
@@ -16,9 +16,9 @@ namespace neb { namespace gfx { namespace environ {
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
-	class vis_depth: virtual public neb::gfx::environ::base {
+	class vis_depth: virtual public neb::gfx::environ::three {
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::program::shadow>	program_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::program::base>	program_shared;
 			typedef std::shared_ptr<neb::gfx::camera::view::base>			view_shared;
 			typedef std::shared_ptr<neb::gfx::camera::proj::base>		proj_shared;
 			typedef neb::gfx::core::light::base		light_type;

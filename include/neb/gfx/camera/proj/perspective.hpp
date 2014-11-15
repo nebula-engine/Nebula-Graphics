@@ -9,13 +9,14 @@ namespace neb {namespace gfx {namespace camera {namespace proj {
 		public:
 			perspective(std::shared_ptr<neb::gfx::environ::base>);
 			//void		init(neb::renderable_shared);
-			virtual glm::mat4				proj();
-
+			virtual glm::mat4&			proj();
+			virtual void				calculate();
 			/** @brief step */
 			void					step(gal::etc::timestep const & ts);
 
 			//
-
+			void					set(float,float,float);
+		private:
 			/** @brief field of view angle */
 			float					fovy_;
 			/** @brief near clipping plane */

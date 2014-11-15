@@ -21,19 +21,23 @@ void	neb::gfx::gui::object::textview::draw(std::shared_ptr<neb::gfx::glsl::progr
 	draw_quad(p, x_, y_, w_, h_, bg_color_);
 	draw_text(p, x_, y_, sx, sy, font_color_, label_);
 }
-int	neb::gfx::gui::object::textview::mouse_button_fun(
-		std::shared_ptr<neb::gfx::window::base> const & window,
+int	neb::gfx::gui::object::textview::mouseButtonFun(
+		std::shared_ptr<neb::core::input::source> const & src,
 		int button,
 		int action,
 		int mods)
 {
 	printf("%s\n", __PRETTY_FUNCTION__);
 
-	return neb::gfx::gui::object::base::mouse_button_fun(window, button, action, mods);
+	return neb::gfx::gui::object::base::mouseButtonFun(src, button, action, mods);
 }
-int	neb::gfx::gui::object::textview::key_fun(
-		std::shared_ptr<neb::gfx::window::base> const & window,
-		int key, int scancode, int action, int mods) {
+int	neb::gfx::gui::object::textview::keyFun(
+		std::shared_ptr<neb::core::input::source> const & src,
+		int key,
+		int scancode,
+		int action,
+		int mods)
+{
 	printf("%s\n", __PRETTY_FUNCTION__);
 	return 0;
 }

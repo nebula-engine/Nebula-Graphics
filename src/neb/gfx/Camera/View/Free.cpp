@@ -5,6 +5,7 @@
 #include <gal/log/log.hpp>
 
 #include <neb/core/util/debug.hpp>
+//#include <neb/core/input/source.hpp>
 
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/camera/view/Free.hh>
@@ -103,12 +104,14 @@ neb::gfx::camera::view::Free::Free(std::shared_ptr<neb::gfx::environ::base> pare
 void	neb::gfx::camera::view::Free::init() {
 
 }
-void			neb::gfx::camera::view::Free::connect(std::shared_ptr<neb::gfx::window::base> const & window) {
+void			neb::gfx::camera::view::Free::connect(std::shared_ptr<neb::core::input::source> const & src)
+{
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
 	
+	/** @todo might have something to do with signal segfault */
+	//connectKeyFun(src, 20);
 	
-	
-	/*conns_.key_fun_ =*/ window->sig_.key_fun_.connect(
+	/*window->sig_.keyFun_.connect(
 			20,
 			neb::gfx::window::signals::KeyFun::slot_type(
 				&neb::gfx::camera::view::Free::key_fun,
@@ -120,7 +123,7 @@ void			neb::gfx::camera::view::Free::connect(std::shared_ptr<neb::gfx::window::b
 				_5
 				).track_foreign(shared_from_this())
 			);
-
+*/
 	/*	conns_.mouse_button_fun_ = window->sig_.mouse_button_fun_.connect(
 		::std::bind(&neb::gfx::gui::layout::base::mouse_button_fun,
 		this,
@@ -132,8 +135,8 @@ void			neb::gfx::camera::view::Free::connect(std::shared_ptr<neb::gfx::window::b
 	 */
 
 }
-int			neb::gfx::camera::view::Free::key_fun(
-		std::shared_ptr<neb::gfx::window::base> const & window,
+int			neb::gfx::camera::view::Free::keyFun(
+		std::shared_ptr<neb::core::input::source> const & src,
 		int key,
 		int scancode,
 		int action,

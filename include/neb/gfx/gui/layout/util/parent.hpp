@@ -10,7 +10,9 @@ namespace neb {
 		namespace gui {
 			namespace layout {
 				namespace util {
-					class parent: public neb::util::parent<neb::gfx::gui::layout::base> {
+					class parent:
+						public neb::util::parent<neb::gfx::gui::layout::base, parent>
+					{
 						public:
 					};
 				}

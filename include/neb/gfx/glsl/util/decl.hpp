@@ -6,10 +6,11 @@ namespace neb { namespace gfx {
 	namespace glsl {
 
 		struct attribs {
-			enum {
+			enum e {
 				COOR,
 				TEX,
 				POSITION,
+				COLOR,
 				NORMAL,
 				TEXCOOR,
 				TANGENT,
@@ -26,13 +27,37 @@ namespace neb { namespace gfx {
 				INSTANCE_SHININESS,
 				COUNT
 			};
+
+			static constexpr char const * string[attribs::COUNT] = {
+				"coor",
+				"tex",
+				"position",
+				"color",
+				"normal",
+				"texcoor",
+				"tangent",
+				"binormal",
+				"instance_model_0",
+				"instance_model_1",
+				"instance_model_2",
+				"instance_model_3",
+				"instance_sampler",
+				"instance_diffuse",
+				"instance_ambient",
+				"instance_specular",
+				"instance_emission",
+				"instance_shininess"
+			};
+
 		};
 
 		struct uniforms {
-			enum {
+			enum e {
 				FLAG,
 				VIEW,
 				PROJ,
+				MODEL,
+				TEX,
 				TEX_IMAGE,
 				TEX_NORMAL_MAP,
 				TEX_SHADOW_MAP,
@@ -57,25 +82,20 @@ namespace neb { namespace gfx {
 				LIGHT_TYPE,
 				LIGHT_CLOSED,
 				LIGHT_COUNT,
+				FONT_COLOR,
+				HF_MIN,
+				HF_MAX,
+				HAS_NORMAL_MAP,
 				COUNT
 			};
-		};
 
-		namespace program {
-			class base;
-			class text;
-			class tex;
-			class threed;
-			class shadow;
-		}
 
-		/** @brief uniforms */
-		namespace uniform {
-
-			static constexpr char const * uniform_string_[uniforms::COUNT] = {
+			static constexpr char const * string[uniforms::COUNT] = {
 				"flag",
 				"view",
 				"proj",
+				"model",
+				"tex",
 				"image",
 				"normal_map",
 				"shadow_map",
@@ -99,26 +119,21 @@ namespace neb { namespace gfx {
 				"light_shadow_sampler_1",
 				"light_type",
 				"light_closed",
-				"light_count"
+				"light_count",
+				"font_color",
+				"hf_min",
+				"hf_max",
+				"has_normal_map"
 			};
+		};
 
-			/** @brief Scalar GLSL Uniforms */
-			namespace Scalar {
-				class base;
-			}
-			/** @brief Vector GLSL Uniforms */
-			namespace Vector {
-				class base;
-			}
+		namespace program {
+			class base;
+			class threed;
 		}
 
 		class shader;
-		class attrib;
 
-		namespace buffer {
-			class tri1;
-			class instanced;
-		}
 	}
 
 }}

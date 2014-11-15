@@ -1,8 +1,8 @@
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/environ/two.hpp>
-#include <neb/gfx/glsl/program/text.hpp>
-
+#include <neb/gfx/glsl/program/base.hpp>
+#include <neb/gfx/RenderDesc.hpp>
 void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> context) {
 	/**
 	 * prepare rendering environment and then call the drawable
@@ -30,7 +30,8 @@ void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> co
 	
 	app->program_text_->use();
 	
-	drawable->draw(context, app->program_text_);
+	//drawable->draw(context, app->program_text_, 0);
+	drawable->draw(RenderDesc());
 }		
 
 

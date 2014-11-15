@@ -8,6 +8,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/base.hpp>
+#include <neb/gfx/environ/shadow/base.hpp>
 #include <neb/gfx/core/light/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace environ {
@@ -16,9 +17,12 @@ namespace neb { namespace gfx { namespace environ {
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
-	class shadow_directional: virtual public neb::gfx::environ::base {
+	class shadow_directional:
+		virtual public neb::gfx::environ::single<neb::gfx::camera::view::shadow::directional>,
+		virtual public neb::gfx::environ::shadow::base<neb::gfx::core::light::directional>
+       	{
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::program::shadow>	program_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::program::base>	program_shared;
 			typedef std::shared_ptr<neb::gfx::camera::view::base>			view_shared;
 			typedef std::shared_ptr<neb::gfx::camera::proj::base>		proj_shared;
 			typedef neb::gfx::core::light::directional		light_type;
@@ -28,8 +32,11 @@ namespace neb { namespace gfx { namespace environ {
 			shadow_directional();
 			virtual void		init();
 			virtual void		step(gal::etc::timestep const & ts);
+
 			virtual void		render(
 					std::shared_ptr<neb::gfx::context::base> context);
+
+			virtual bool		shouldRender();
 		public:
 			/** @brief View Space Camera
 			 * 
@@ -43,7 +50,6 @@ namespace neb { namespace gfx { namespace environ {
 			proj_shared			proj_;
 
 
-			light_weak			light_;
 	};
 
 

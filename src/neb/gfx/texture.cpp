@@ -3,21 +3,30 @@
 
 #include <GL/glew.h>
 
+#include <neb/core/util/config.hpp>
+
 #include <neb/core/color/Color.hh>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
-#include <neb/gfx/glsl/program/tex.hpp>
+#include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <png.h>
 
-std::shared_ptr<neb::gfx::texture>	neb::gfx::texture::makePNG(std::string filename) {
-	auto tex(make_shared<neb::gfx::texture>());
-	tex->load_png(filename);
-	return tex;
+typedef neb::gfx::texture tex;
+
+std::shared_ptr<tex>		neb::gfx::texture::makePNG(std::string filename)
+{
+	std::shared_ptr<tex> t(new tex());
+	
+	t->load_png(filename);
+	
+	t->init_buffer(0);
+
+	return t;
 }
 neb::gfx::texture::texture():
 	w_(0), h_(0), png_image_data_(0)
@@ -29,11 +38,14 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 
+	if(!neb::core::app::__base::is_valid()) return;
+	
+	
 	w_ = w;
 	h_ = h;
-
+	
 	target_ = GL_TEXTURE_2D_ARRAY;
-
+	
 	glGenTextures(1, &o_);
 	checkerror("glGenTextures");
 
@@ -87,12 +99,13 @@ GLuint		neb::gfx::texture::genAndBind(std::shared_ptr<neb::gfx::context::base> c
 	
 	glGenTextures(1, &o);
 	checkerror("glGenTextures");
-	glBindTexture(GL_TEXTURE_2D, o);
+
+	glBindTexture(target_, o);
 	checkerror("glBindTexture");
 
 	return o;
 }
-void	neb::gfx::texture::bind(std::shared_ptr<neb::gfx::context::base> context)
+void		neb::gfx::texture::bind(neb::gfx::glsl::program::base const * const & p)
 {
 	/*GLuint o;
 	
@@ -105,9 +118,7 @@ void	neb::gfx::texture::bind(std::shared_ptr<neb::gfx::context::base> context)
 		o = it->second;
 	}*/
 	
-	
-
-	glBindTexture(GL_TEXTURE_2D, o_);
+	glBindTexture(target_, o_);
 	checkerror("glBindTexture");
 }
 int		neb::gfx::texture::load_png(std::string filename)
@@ -116,7 +127,7 @@ int		neb::gfx::texture::load_png(std::string filename)
 	
 	auto app(neb::core::app::__base::global());
 	
-	filename = app->share_dir_ + "media/texture/" + filename;
+	filename = NEB_SHARE_DIR"/media/texture/" + filename;
 	
 	png_byte header[8];
 
@@ -187,11 +198,20 @@ int		neb::gfx::texture::load_png(std::string filename)
 
 	// get info about png
 	png_get_IHDR(
-			png_ptr, info_ptr,
-			&w_, &h_,
-			&bit_depth, &color_type,
-			NULL, NULL, NULL);
+			png_ptr,
+			info_ptr,
+			&w_,
+			&h_,
+			&bit_depth,
+			&color_type,
+			NULL,
+			NULL,
+			NULL);
 	
+	std::cout << "png info" << std::endl;
+	std::cout << "bit depth  " << bit_depth << std::endl;
+	std::cout << "color type " << color_type << std::endl;
+	std::cout << "w h        " << w_ << " " << h_<< std::endl;
 	
 	
 	// Update the png info struct.
@@ -246,15 +266,20 @@ int		neb::gfx::texture::load_png(std::string filename)
 	return 0;
 }
 GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base> context) {
-	
+
+	// initialize 2D with png data
+
+	target_ = GL_TEXTURE_2D;
+
 	o_ = genAndBind(context);
 
 	//buffers_[context.get()] = o;
 	
-	cout << "w " << w_ << " h " << h_ << " data " << (long int)png_image_data_ << endl;
+	std::cout << "w " << w_ << " h " << h_ << " data " << (long int)png_image_data_ << std::endl;
+
 
 	glTexImage2D(
-			GL_TEXTURE_2D,
+			target_,
 			0,
 			GL_RGB,
 			w_, h_,
@@ -262,13 +287,14 @@ GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base>
 			GL_RGB,
 			GL_UNSIGNED_BYTE,
 			png_image_data_);
+
 	checkerror("glTexImage2D");
 
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameterf(target_, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameterf(target_, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	checkerror("glTexParameterf");
 	
-	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(target_, 0);
 
 	return o_;
 }
@@ -276,9 +302,7 @@ GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base>
 
 
 
-void		neb::gfx::texture::draw(
-		std::shared_ptr<neb::gfx::context::base> context,
-		std::shared_ptr<neb::gfx::glsl::program::base>)
+void			neb::gfx::texture::draw(neb::gfx::RenderDesc const & desc)
 {
 	checkerror("unknown");
 
@@ -295,7 +319,7 @@ void		neb::gfx::texture::draw(
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(texture_target, o_);
-	p->get_uniform_scalar("tex")->load(0);
+	glUniform1i(p->uniform_table_[neb::gfx::glsl::uniforms::TEX], 0);
 
 	glTexParameteri(texture_target, GL_TEXTURE_COMPARE_MODE, GL_NONE );
 	glTexParameteri(texture_target, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE );

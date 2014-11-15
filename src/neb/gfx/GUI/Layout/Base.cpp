@@ -10,78 +10,61 @@
 #include <neb/core/util/debug.hpp>
 #include <neb/core/util/decl.hpp>
 
-#include <neb/gfx/window/Base.hh>
+#include <neb/core/input/source.hpp>
+
 #include <neb/gfx/Context/Base.hh>
 #include <neb/gfx/gui/object/Base.hh>
 #include <neb/gfx/gui/object/edittext.hh>
 #include <neb/gfx/gui/object/terminal.hh>
 #include <neb/gfx/gui/layout/base.hpp>
+#include <neb/gfx/gui/layout/util/parent.hpp>
 #include <neb/gfx/util/log.hpp>
 
-neb::gfx::gui::layout::base::base(std::shared_ptr<neb::gfx::gui::layout::util::parent> parent): parent_(parent) {
+neb::gfx::gui::layout::base::base()
+{
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+}
+void neb::gfx::gui::layout::base::init(parent_t * const & p)
+{
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
+	setParent(p);
+}
+void		neb::gfx::gui::layout::base::step(gal::etc::timestep const & ts)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 }
-void neb::gfx::gui::layout::base::init() {
-
+void			neb::gfx::gui::layout::base::draw(neb::gfx::RenderDesc const & desc)
+{	
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	//jess::clog << NEB_FUNCSIG << std::endl;
-}
-void		neb::gfx::gui::layout::base::step(gal::etc::timestep const & ts) {
-		LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-}
-void		neb::gfx::gui::layout::base::draw(std::shared_ptr<neb::gfx::context::base> context, std::shared_ptr<neb::gfx::glsl::program::base> program) {
-	
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	
 	typedef neb::gfx::gui::object::util::parent O;
 
 	auto lamb = [&] (O::map_type::pointer p) {
 		auto object = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(p);
 		assert(object);
-		object->draw(program);
+		object->draw(desc);
 	};
 
 	O::map_.for_each(lamb);
 
 }
-void neb::gfx::gui::layout::base::connect(std::shared_ptr<neb::gfx::window::base> const & window) {
-
+void			neb::gfx::gui::layout::base::connect(std::shared_ptr<neb::core::input::source> const & src)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	conns_.key_fun_ = window->sig_.key_fun_.connect(
-			10,
-			::std::bind(&neb::gfx::gui::layout::base::key_fun,
-				this,
-				::std::placeholders::_1,
-				::std::placeholders::_2,
-				::std::placeholders::_3,
-				::std::placeholders::_4,
-				::std::placeholders::_5
-				));
-	conns_.charFun_ = window->sig_.charFun_.connect(
-			10,
-			::std::bind(&neb::gfx::gui::layout::base::charFun,
-				this,
-				::std::placeholders::_1,
-				::std::placeholders::_2
-				));
-
-	conns_.mouse_button_fun_ = window->sig_.mouse_button_fun_.connect(
-			10,
-			::std::bind(&neb::gfx::gui::layout::base::mouse_button_fun,
-				this,
-				::std::placeholders::_1,
-				::std::placeholders::_2,
-				::std::placeholders::_3,
-				::std::placeholders::_4
-				));
-
+	connectKeyFun(src, 10);
+	connectCharFun(src, 10);
+	connectMouseButtonFun(src, 10);
 }
-int		neb::gfx::gui::layout::base::key_fun(std::shared_ptr<neb::gfx::window::base> const & window, int key, int scancode, int action, int mode) {
-
+int			neb::gfx::gui::layout::base::keyFun(
+		std::shared_ptr<neb::core::input::source> const & src,
+		int key,
+		int scancode,
+		int action,
+		int mode)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	typedef neb::gfx::gui::object::util::parent O;
@@ -91,14 +74,15 @@ int		neb::gfx::gui::layout::base::key_fun(std::shared_ptr<neb::gfx::window::base
 		auto object = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->second.ptr_);
 		assert(object);
 
-		if(object->key_fun(window, key, scancode, action, mode)) return 1;
+		if(object->keyFun(src, key, scancode, action, mode)) return 1;
 	};
 
 	return 0;
 }
-int		neb::gfx::gui::layout::base::charFun(
-		shared_ptr<neb::gfx::window::base> const & window,
-		unsigned int codepoint) {
+int			neb::gfx::gui::layout::base::charFun(
+		std::shared_ptr<neb::core::input::source> const & window,
+		unsigned int codepoint)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	typedef neb::gfx::gui::object::util::parent O;
@@ -112,18 +96,23 @@ int		neb::gfx::gui::layout::base::charFun(
 
 	return 0;
 }
-int neb::gfx::gui::layout::base::mouse_button_fun(std::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
+int			neb::gfx::gui::layout::base::mouseButtonFun(
+		std::shared_ptr<neb::core::input::source> const & src,
+		int button,
+		int action,
+		int mods)
+{
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	assert(window);
+	assert(src);
 
 	switch(action) {
 		case GLFW_PRESS:
 			switch(button)
 			{
 				case GLFW_MOUSE_BUTTON_LEFT:
-					search(window, button, action, mods);
+					search(src, button, action, mods);
 					break;
 			}
 			break;
@@ -133,12 +122,18 @@ int neb::gfx::gui::layout::base::mouse_button_fun(std::shared_ptr<neb::gfx::wind
 
 	return 0;
 }
-int			neb::gfx::gui::layout::base::search(std::shared_ptr<neb::gfx::window::base> const & window, int button, int action, int mods) {
+int			neb::gfx::gui::layout::base::search(
+		std::shared_ptr<neb::core::input::source> const & src,
+		int button,
+		int action,
+		int mods)
+{
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	assert(window);
+	assert(src);
 
+	/*
 	double x, y;
 	int w, h;
 	glfwGetCursorPos(window->window_, &x, &y);
@@ -150,7 +145,10 @@ int			neb::gfx::gui::layout::base::search(std::shared_ptr<neb::gfx::window::base
 	y = y / (float)h * 2.0 - 1.0;
 
 	printf("%f %f\n", x, y);
-
+	*/
+	
+	glm::vec2 c = src->getCursorPosNDC();
+	
 	typedef neb::gfx::gui::object::util::parent O;
 
 	std::shared_ptr<neb::gfx::gui::object::base> object;
@@ -165,10 +163,10 @@ int			neb::gfx::gui::layout::base::search(std::shared_ptr<neb::gfx::window::base
 				objecttmp->w_,
 				objecttmp->h_);	
 
-		if(x <   objecttmp->x_) return O::map_type::CONTINUE;
-		if(x > ( objecttmp->x_ + objecttmp->w_)) return O::map_type::CONTINUE;
-		if(y >  -objecttmp->y_) return O::map_type::CONTINUE;
-		if(y < (-objecttmp->y_ - objecttmp->h_)) return O::map_type::CONTINUE;
+		if(c.x <   objecttmp->x_) return O::map_type::CONTINUE;
+		if(c.x > ( objecttmp->x_ + objecttmp->w_)) return O::map_type::CONTINUE;
+		if(c.y >  -objecttmp->y_) return O::map_type::CONTINUE;
+		if(c.y < (-objecttmp->y_ - objecttmp->h_)) return O::map_type::CONTINUE;
 
 		object = objecttmp;
 
@@ -177,15 +175,18 @@ int			neb::gfx::gui::layout::base::search(std::shared_ptr<neb::gfx::window::base
 
 	O::map_.for_each_int(lamb);
 
-	if(object) return object->mouse_button_fun(window, button, action, mods);
+	if(object) return object->mouseButtonFun(src, button, action, mods);
 
 	return 0;
 }
 weak_ptr<neb::gfx::gui::object::terminal>		neb::gfx::gui::layout::base::createObjectTerminal() {
-	auto term = sp::make_shared<neb::gfx::gui::object::terminal>();
-	insert(term);
-	term->init();
-	return term;
+
+	return neb::gfx::gui::object::util::parent::create<neb::gfx::gui::object::terminal>();
+
+	//auto term = sp::make_shared<neb::gfx::gui::object::terminal>();
+	//insert(term);
+	//term->init();
+	//return term;
 }
 
 

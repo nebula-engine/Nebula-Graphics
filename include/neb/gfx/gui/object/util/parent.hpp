@@ -9,7 +9,7 @@ namespace neb { namespace gfx { namespace gui { namespace object { namespace uti
 	/** @brief parent
 	*/
 	class parent :
-		virtual public neb::util::parent<neb::gfx::gui::object::base>
+		virtual public neb::util::parent<neb::gfx::gui::object::base, parent>
 	{
 
 	};

@@ -26,6 +26,7 @@ namespace neb { namespace gfx {
 			texture();
 			~texture();
 			virtual void		init() {}
+			virtual void		step(gal::etc::timestep const &) {}
 			void			init_shadow(int,int, std::shared_ptr<neb::gfx::context::base> context);
 
 			int			load_png(std::string filename);
@@ -34,12 +35,10 @@ namespace neb { namespace gfx {
 			GLuint			genAndBind(std::shared_ptr<neb::gfx::context::base> context);
 
 
-			void			bind(std::shared_ptr<neb::gfx::context::base> context);
+			void			bind(neb::gfx::glsl::program::base const * const &);
 			
 			// for visualizing the contents
-			virtual void			draw(
-					std::shared_ptr<neb::gfx::context::base> context,
-					std::shared_ptr<neb::gfx::glsl::program::base> p);
+			virtual void			draw(RenderDesc const &);
 
 			png_uint_32		w_;
 			png_uint_32		h_;

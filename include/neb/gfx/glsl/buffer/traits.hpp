@@ -4,8 +4,10 @@
 #include <neb/gfx/glsl/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace glsl { namespace buffer {
+
 	template<typename BUFFER> struct traits {};
-	template<> struct traits<tri1> {
+	
+/*	template<> struct traits<tri1> {
 		enum {
 			BUFFER_COUNT = 2,
 			ATTRIB_COUNT = 5
@@ -17,6 +19,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			ATTRIB_COUNT = 10
 		};
 	};
+*/
 }}}}
 
 #endif

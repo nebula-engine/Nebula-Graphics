@@ -10,7 +10,6 @@
 #include <neb/core/core/shape/base.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/core/scene/base.hpp>
 #include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
@@ -19,15 +18,21 @@
 #include <neb/gfx/camera/view/Base.hh>
 #include <neb/gfx/environ/shadow/directional.hpp>
 
-neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::parent> parent, int type):
-	neb::core::core::light::base(parent),
+#include <neb/phx/core/scene/base.hpp>
+
+typedef neb::gfx::core::light::base THIS;
+
+neb::gfx::core::light::base::base():
 	ambient_(0.2,0.2,0.2,1.0),
 	diffuse_(neb::core::color::color::white()),
 	specular_(neb::core::color::color::white()),
 	atten_const_(1.0),
 	atten_linear_(0.0),
 	atten_quad_(0.0),
-	type_(type)
+	spot_direction_(vec3(0.0, 0.0, -1.0)),
+	spot_cutoff_(1.0),
+	spot_exponent_(1.0),
+	spot_light_cos_cutoff_(1.0)
 {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -36,44 +41,66 @@ neb::gfx::core::light::base::base(std::shared_ptr<neb::core::core::light::util::
 
 }
 neb::gfx::core::light::base::~base() {}
-void			neb::gfx::core::light::base::init() {
-	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
-	
+void			neb::gfx::core::light::base::init(neb::core::core::light::util::parent * const & p)
+{
+	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+
+	setParent(p);
+
+	// check if detached
+	if(!hasScene())
+	{
+		std::cout << "skip initialization" << std::endl;
+		return;
+	}
+
+	auto scene = dynamic_cast<neb::phx::core::scene::base*>(getScene());
+
+
 	auto pose = getPoseGlobal();
-	
+
 	// register in light_array
 	light_array_ = 0;
-	light_array_slot_ = getScene().lock()->light_array_[light_array_].reg(
-			pose.pos_,
-			ambient_,
-			diffuse_,
-			specular_,
-			atten_const_,
-			atten_linear_,
-			atten_quad_,
-			pose.rot_ * spot_direction_,
-			spot_cutoff_,
-			spot_exponent_,
-			glm::mat4(),
-			glm::mat4(),
-			glm::mat4(),
-			glm::mat4(),
-			glm::mat4(),
-			glm::mat4(),
-			glm::vec3(-1.0),
-			glm::vec3(-1.0),
-			type_
-			);
+
+	if(!light_array_slot_)
+	{
+		if(!scene->light_array_[light_array_]) scene->init_light();
+
+		assert(scene->light_array_[light_array_]);
+		assert(scene->light_array_[light_array_]->size_array() != 0);
+
+		light_array_slot_ = scene->light_array_[light_array_]->reg(
+				pose.pos_,
+				ambient_,
+				diffuse_,
+				specular_,
+				atten_const_,
+				atten_linear_,
+				atten_quad_,
+				pose.rot_ * spot_direction_,
+				spot_cutoff_,
+				spot_exponent_,
+				glm::mat4(),
+				glm::mat4(),
+				glm::mat4(),
+				glm::mat4(),
+				glm::mat4(),
+				glm::mat4(),
+				glm::vec3(-1.0),
+				glm::vec3(-1.0),
+				(int)getType()
+				);
+
+	}
+
 }
 void			neb::gfx::core::light::base::setPose(neb::core::pose const & npose) {
 	pose_ = npose;
 
-	auto s = getScene().lock();
-	
 	auto pose = getPoseGlobal();
-	
-	s->light_array_[light_array_].set_pos(			light_array_slot_, pose.pos_);
-	s->light_array_[light_array_].set_spot_direction(	light_array_slot_, pose.rot_ * spot_direction_);
+
+	light_array_slot_->set<0>(pose.pos_);
+	light_array_slot_->set<7>(pose.rot_ * spot_direction_);
 }
 void			neb::gfx::core::light::base::release() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
@@ -108,13 +135,11 @@ void		neb::gfx::core::light::base::step(gal::etc::timestep const & ts) {
 void	neb::gfx::core::light::base::draw() {	
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
-neb::core::pose		neb::gfx::core::light::base::getPose() {
+neb::core::pose		neb::gfx::core::light::base::getPose()
+{
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto parent(parent_.lock());
-	assert(parent);
-
-	auto p = parent->getPoseGlobal();
+	auto p = getParent()->getPoseGlobal();
 
 	return p;
 }
@@ -224,15 +249,15 @@ void	neb::gfx::core::light::base::RenderShadowPost()
 	glDisable(GL_ALPHA_TEST);
 	checkerror(__PRETTY_FUNCTION__);
 }
-std::weak_ptr<neb::gfx::core::scene::base>	neb::gfx::core::light::base::getScene() {
-	auto parent = parent_.lock();
-	assert(parent);
-
-	auto p2 = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(
-			parent->getScene().lock());
-	assert(p2);
-	return p2;
+void	THIS::load(ba::polymorphic_iarchive & ar, unsigned int const & v)
+{
+	__serialize(ar,v);
 }
+void	THIS::save(ba::polymorphic_oarchive & ar, unsigned int const & v) const
+{
+	const_cast<THIS*>(this)->__serialize(ar,v);
+}
+
 
 
 

@@ -9,7 +9,8 @@
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 
-constexpr char const *		neb::gfx::glsl::attrib::attrib_string_[neb::gfx::glsl::attribs::COUNT];
+constexpr char const *		neb::gfx::glsl::attribs::string[neb::gfx::glsl::attribs::COUNT];
+constexpr char const *		neb::gfx::glsl::uniforms::string[neb::gfx::glsl::uniforms::COUNT];
 
 neb::gfx::glsl::attrib::attrib():
 	o_(-1),

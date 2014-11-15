@@ -5,8 +5,8 @@
 #include <neb/core/util/debug.hpp>
 #include <neb/core/math/geo/polyhedron.hh>
 
-#include <neb/gfx/core/mesh_instanced.hpp>
-#include <neb/gfx/core/scene/base.hpp>
+#include <neb/gfx/mesh/instanced.hpp>
+#include <neb/phx/core/scene/base.hpp>
 #include <neb/gfx/core/shape/box.hpp>
 #include <neb/gfx/util/log.hpp>
 
@@ -20,6 +20,8 @@ void neb::gfx::core::shape::box::box::createMesh() {
 	
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
+	if(!hasScene()) return;
+
 	/*
 	math::geo::cuboid cube(1.0,1.0,1.0);
 	
@@ -27,9 +29,13 @@ void neb::gfx::core::shape::box::box::createMesh() {
 	mesh_->construct(&cube);
 	*/
 	
-	auto scene = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(getScene().lock());
+	auto scene = dynamic_cast<neb::phx::core::scene::base*>(getScene());
 	
-	if(!mesh_slot_) {
+	if(!mesh_slot_)
+	{
+		LOG(lg, neb::gfx::sl, debug) << "mesh registered";
+
+
 		auto model = getPoseGlobal().mat4_cast() * glm::scale(scale_);
 
 		auto dif = neb::core::color::ucolor8888::rand();
@@ -37,7 +43,11 @@ void neb::gfx::core::shape::box::box::createMesh() {
 		auto spc = neb::core::color::color::white();
 		auto emi = neb::core::color::color::black();
 		
-		LOG(lg, neb::gfx::sl, debug) << "diffuse";
+		LOG(lg, neb::gfx::sl, debug) << "diffuse   " << std::hex << dif;
+		LOG(lg, neb::gfx::sl, debug) << "diffuse r " << std::hex << (unsigned int)dif.r;
+		LOG(lg, neb::gfx::sl, debug) << "diffuse g " << std::hex << (unsigned int)dif.g;
+		LOG(lg, neb::gfx::sl, debug) << "diffuse b " << std::hex << (unsigned int)dif.b;
+		LOG(lg, neb::gfx::sl, debug) << "diffuse a " << std::hex << (unsigned int)dif.a;
 		//dif.print();
 		LOG(lg, neb::gfx::sl, debug) << "ambient";
 		//amb.print();
@@ -45,6 +55,8 @@ void neb::gfx::core::shape::box::box::createMesh() {
 		//spc.print();
 		LOG(lg, neb::gfx::sl, debug) << "emission";
 		//emi.print();
+
+		assert(scene->meshes_.cuboid_);
 
 		mesh_slot_ = scene->meshes_.cuboid_->instances_->reg(
 				model,

@@ -8,6 +8,8 @@
 
 #include <gal/etc/timestep.hpp>
 
+#include <PxPhysicsAPI.h>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 
@@ -18,8 +20,11 @@ namespace neb {namespace gfx {namespace camera {namespace proj {
 			/** @brief Constructor */
 			base(std::shared_ptr<neb::gfx::environ::base>);
 
-			virtual glm::mat4				proj() = 0;
-			void						load(std::shared_ptr<neb::gfx::glsl::program::base> p);
+			virtual glm::mat4&				proj() = 0;
+			virtual void					calculate() = 0;
+			void						calculate_geometry();
+			
+			void						load(neb::gfx::glsl::program::base const * const p);
 			/** @brief step
 			 * @todo explain when in timeline this occurs and in which thread and why
 			 */
@@ -27,6 +32,10 @@ namespace neb {namespace gfx {namespace camera {namespace proj {
 		protected:
 			/** @brief Parent */
 			std::weak_ptr<neb::gfx::environ::base>		parent_;
+			// persistence
+			glm::mat4					_M_matrix;
+		public:
+			physx::PxConvexMeshGeometry*			_M_px_geometry;
 	};
 }}}}
 

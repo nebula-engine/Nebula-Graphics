@@ -43,6 +43,7 @@ template<typename... T> void	checkerror(char const * cstr, T... t) {
 		unsigned char const * str = gluErrorString(err);
 		printf(cstr, t...);
 		printf("OpenGL Error: %s\n", str);
+		fflush(stdout);
 		abort();
 	}
 #endif

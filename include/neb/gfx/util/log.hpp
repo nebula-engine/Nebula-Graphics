@@ -7,7 +7,13 @@ namespace neb {
 	namespace gfx {
 		extern severity_level		sl;
 		namespace core {
+			namespace actor {
+				extern severity_level		sl;
+			}
 			namespace shape {
+				extern severity_level		sl;
+			}
+			namespace light {
 				extern severity_level		sl;
 			}
 		}

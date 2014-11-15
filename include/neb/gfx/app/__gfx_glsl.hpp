@@ -18,7 +18,9 @@
 
 
 namespace neb { namespace gfx { namespace app {
-	class __gfx_glsl: virtual public neb::core::app::__base {
+	class __gfx_glsl:
+		virtual public neb::core::app::__base
+	{
 		public:
 			//typedef std::map<int, std::shared_ptr<neb::gfx::glsl::program::base> >		map_program_type;
 			friend class neb::gfx::environ::base;
@@ -35,8 +37,9 @@ namespace neb { namespace gfx { namespace app {
 			void							create_programs();
 			//map_program_type					programs_;
 			//std::shared_ptr<neb::gfx::glsl::program::base>		current_;
-			std::shared_ptr<neb::gfx::glsl::program::text>		program_text_;
-			std::shared_ptr<neb::gfx::glsl::program::tex>		program_tex_;
+			std::shared_ptr<neb::gfx::glsl::program::base>		program_text_;
+			std::shared_ptr<neb::gfx::glsl::program::base>		program_tex_;
+			std::shared_ptr<neb::gfx::glsl::program::base>		program_simple3_;
 
 	};
 }}}

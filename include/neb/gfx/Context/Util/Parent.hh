@@ -12,16 +12,17 @@ namespace neb {
 		namespace context {
 			namespace util {
 				class parent:
-					virtual public neb::util::parent<neb::gfx::context::base>,
+					virtual public neb::util::parent<neb::gfx::context::base, parent>,
 					virtual public neb::gfx::window::util::cast
 				{
 					public:
 						typedef neb::gfx::context::window C_W;
 
 					public:
-						virtual void			__init() {}
-						virtual void			release() {}
-						virtual void			step(gal::etc::timestep const & ts) { neb::util::parent< neb::gfx::context::base >::step(ts); }
+
+						//virtual void			init();
+						//virtual void			release();
+						//virtual void			step(gal::etc::timestep const & ts);
 						virtual void			render();
 
 						std::weak_ptr<neb::gfx::context::fbo>		createContextFBO();

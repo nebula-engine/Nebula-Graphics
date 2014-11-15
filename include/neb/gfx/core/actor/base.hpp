@@ -36,22 +36,20 @@ namespace neb {
 						//base(std::shared_ptr<neb::core::core::actor::util::parent> parent);
 						virtual ~base();
 					public:
-						virtual void					init() = 0;
-						virtual void					__init();
-						virtual void					release();
-						virtual void					step(gal::etc::timestep const & ts);
+						//virtual void					init(neb::core::core::actor::util::parent * const & p) = 0;
+						//virtual void					release() = 0;
+						//virtual void					step(gal::etc::timestep const & ts);
 					public:
 						void						draw(
-								std::shared_ptr<neb::gfx::context::base> context,
-								std::shared_ptr<neb::gfx::glsl::program::threed> p,
+								neb::gfx::glsl::program::base const * const & p,
+								neb::core::pose const & pose);
+						void						drawDebug(
+								neb::gfx::glsl::program::base const * const & p,
+								neb::core::pose const & pose);
+						void						drawHF(
+								neb::gfx::glsl::program::base const * const & p,
 								neb::core::pose const & pose);
 
-						void						load_lights(
-								neb::core::core::light::util::count& light_count,
-								neb::core::pose const &);
-						//virtual weak_ptr<neb::core::shape::base>	createShapeBase();
-						//virtual weak_ptr<neb::core::shape::base>	createShapeBox(glm::vec3 size);
-						//virtual weak_ptr<neb::core::shape::base>	createShapeCube(double size);
 				};
 			}
 		}

@@ -8,6 +8,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/base.hpp>
+#include <neb/gfx/environ/shadow/base.hpp>
 #include <neb/gfx/core/light/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace environ { namespace shadow {
@@ -16,15 +17,17 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
-	class point: virtual public neb::gfx::environ::base {
+	class point:
+		virtual public neb::gfx::environ::shadow::base<neb::gfx::core::light::point>,
+		virtual public neb::gfx::environ::multiple<neb::gfx::camera::view::shadow::point>
+	{
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::program::shadow>		program_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::program::base>			program_shared;
 			typedef std::shared_ptr<neb::gfx::camera::view::shadow::point>		view_shared;
 			typedef std::shared_ptr<neb::gfx::camera::proj::perspective>		proj_shared;
 			typedef neb::gfx::core::light::point					light_type;
 			typedef std::shared_ptr<light_type>					light_shared;
 			typedef std::weak_ptr<light_type>					light_weak;
-			typedef std::weak_ptr<neb::gfx::environ::three>				environ3_weak;
 		public:
 			point();
 			virtual void		init();
@@ -42,19 +45,12 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			 * 
 			 * @note OWNED
 			 */			
-			view_shared			view_[6];
 			/** @brief Clip Space Camera
 			 * 
 			 * @note OWNED
 			 */
-			proj_shared			proj_;
 
-			/** environ that uses the shadow map
-			 * frustrum used to determine which shadowmaps need to be rendered
-			 */
-			environ3_weak			environ3_;
 
-			light_weak			light_;
 	};
 
 

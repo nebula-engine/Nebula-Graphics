@@ -22,8 +22,8 @@ namespace neb {
 						//int			key_down(int);
 						//virtual int		enter();
 
-						virtual int		key_fun(std::shared_ptr<neb::gfx::window::base> const & window, int,int,int,int);
-						virtual int		mouse_button_fun(std::shared_ptr<neb::gfx::window::base> const & window, int,int,int);
+						virtual int		keyFun(std::shared_ptr<neb::core::input::source> const &, int,int,int,int);
+						virtual int		mouseButtonFun(std::shared_ptr<neb::core::input::source> const &, int,int,int);
 						//virtual void		connect();
 
 				};

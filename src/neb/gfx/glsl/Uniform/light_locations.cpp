@@ -1,10 +1,10 @@
 
-#include <neb/gfx/glsl/uniform/array.hpp>
-#include <neb/gfx/glsl/program/threed.hpp>
-#include <neb/gfx/glsl/uniform/vector.hpp>
-#include <neb/gfx/glsl/uniform/scalar.hpp>
+#include <neb/gfx/glsl/uniform/light_array.hpp>
 
-void		neb::gfx::glsl::uniform::light_locations::init(std::shared_ptr<neb::gfx::glsl::program::threed> program) {
+
+constexpr neb::gfx::glsl::uniforms::e		neb::gfx::glsl::uniform::light_locations::names_[neb::gfx::glsl::uniform::light_array::loc_type::N];
+
+/*void		neb::gfx::glsl::uniform::light_locations::init(std::shared_ptr<neb::gfx::glsl::program::base> program) {
 	location[0]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_POSITION];
 	location[1]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_AMBIENT];
 	location[2]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_DIFFUSE];
@@ -31,5 +31,5 @@ void		neb::gfx::glsl::uniform::light_locations::init(std::shared_ptr<neb::gfx::g
 	location[19] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_CLOSED];
 	location[20] = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_COUNT];
 }
-
+*/
 

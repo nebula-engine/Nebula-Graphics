@@ -11,17 +11,7 @@ void	neb::gfx::gui::object::edittext::draw() {
 }
 
 void	neb::gfx::gui::object::edittext::connect() {
-	//std::shared_ptr<neb::window> w = get_window();
-/*
-	conns_.key_fun_ = w->sig_.key_fun_.connect(
-			std::bind(&neb::gfx::gui::object::object::key_fun,
-				this,
-				std::placeholders::_1,
-				std::placeholders::_2,
-				std::placeholders::_3,
-				std::placeholders::_4
-				));
-*/
+
 }
 int	neb::gfx::gui::object::edittext::mouse_button_fun(int button, int action, int mods) {
 	return 0;
