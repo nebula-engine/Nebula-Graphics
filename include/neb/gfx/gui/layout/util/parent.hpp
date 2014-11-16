@@ -5,20 +5,12 @@
 
 #include <neb/gfx/gui/layout/base.hpp>
 
-namespace neb {
-	namespace gfx {
-		namespace gui {
-			namespace layout {
-				namespace util {
-					class parent:
-						public neb::util::parent<neb::gfx::gui::layout::base, parent>
-					{
-						public:
-					};
-				}
-			}
-		}
-	}
-}
+namespace neb { namespace gfx { namespace gui { namespace layout { namespace util {
+	class parent:
+		public nc::util::parent<neb::gfx::gui::layout::base, parent>
+	{
+		public:
+	};
+}}}}}
 
 #endif

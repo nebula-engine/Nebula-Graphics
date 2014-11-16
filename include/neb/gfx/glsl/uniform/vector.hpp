@@ -6,29 +6,28 @@
 
 #include <GLFW/glfw3.h>
 
-#include <neb/core/util/typedef.hpp>
-
 #include <neb/gfx/glsl/util/decl.hpp>
 
+/*
 namespace neb { namespace gfx { namespace glsl { namespace uniform { namespace Vector {
-	/** @brief %Array
+	** @brief %Array
 	 * base class for array GLSL uniform
-	 */
+	 *
 	class base {
 		public:
 			base(std::string);
 			virtual ~base() {}
 			void				locate(std::shared_ptr<neb::gfx::glsl::program::base>);
-			/** @name Load
+			** @name Load
 			 * @{
-			 */
-			virtual void			load(int, vec3 const &) { throw 0; }
-			virtual void			load(int, vec4 const &) { throw 0; }
-			virtual void			load(int, mat4 const &) { throw 0; }
+			 *
+			virtual void			load(int, glm::vec3 const &) { throw 0; }
+			virtual void			load(int, glm::vec4 const &) { throw 0; }
+			virtual void			load(int, glm::mat4 const &) { throw 0; }
 			virtual void			load(int, int) { throw 0; }
 			virtual void			load(int, float*) { throw 0; }
 			virtual void			load(int, float) { throw 0; }
-			/** @} */
+			** @} *
 		public:
 			enum { LEN = 100 };
 			std::string		name_;
@@ -64,6 +63,7 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform { namespace V
 			virtual void		load(int, glm::mat4 const &);
 	};
 }}}}}
+*/
 
 #endif
 

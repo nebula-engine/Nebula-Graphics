@@ -2,7 +2,6 @@
 #define NEBULA_GFX_ENVIRON_VIS_DEPTH_HPP
 
 #include <neb/core/core/actor/util/decl.hpp>
-#include <neb/core/util/typedef.hpp>
 
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
@@ -11,7 +10,6 @@
 #include <neb/gfx/core/light/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace environ {
-
 	/** @brief base
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
@@ -41,12 +39,8 @@ namespace neb { namespace gfx { namespace environ {
 			 * @note OWNED
 			 */
 			proj_shared			proj_;
-
-
 			light_weak			light_;
 	};
-
-
 }}}
 
 

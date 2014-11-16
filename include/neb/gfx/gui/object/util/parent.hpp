@@ -1,6 +1,7 @@
 #ifndef NEBULA_GRAPHICS_GUI_OBJECT_UTIL_PARENT_HH
 #define NEBULA_GRAPHICS_GUI_OBJECT_UTIL_PARENT_HH
 
+#include <neb/core/util/decl.hpp>
 #include <neb/core/util/parent.hpp>
 
 #include <neb/gfx/util/decl.hpp>

@@ -29,7 +29,7 @@ neb::gfx::core::actor::base::~base() {
 }
 void				neb::gfx::core::actor::base::draw(
 		neb::gfx::glsl::program::base const * const & program,
-		neb::core::pose const & pose)
+		neb::core::math::pose const & pose)
 {
 	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -54,7 +54,7 @@ void				neb::gfx::core::actor::base::draw(
 }
 void				neb::gfx::core::actor::base::drawDebug(
 		neb::gfx::glsl::program::base const * const & program,
-		neb::core::pose const & pose)
+		neb::core::math::pose const & pose)
 {
 	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -79,7 +79,7 @@ void				neb::gfx::core::actor::base::drawDebug(
 }
 void				neb::gfx::core::actor::base::drawHF(
 		neb::gfx::glsl::program::base const * const & program,
-		neb::core::pose const & pose)
+		neb::core::math::pose const & pose)
 {
 	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 

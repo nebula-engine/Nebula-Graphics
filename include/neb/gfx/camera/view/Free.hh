@@ -70,7 +70,7 @@ namespace neb { namespace gfx { namespace camera { namespace view {
 
 
 			std::map<int,unsigned int>		key_flag_;
-			std::map<int,vec3>			head_;
+			std::map<int,glm::vec3>			head_;
 			std::map<unsigned int,int>		head_flag_;
 	};
 
