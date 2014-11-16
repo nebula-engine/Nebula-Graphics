@@ -4,8 +4,6 @@
 
 #include <vector>
 
-#include <PxPhysicsAPI.h>
-
 #include <boost/archive/polymorphic_iarchive.hpp>
 #include <boost/archive/polymorphic_oarchive.hpp>
 
@@ -13,8 +11,7 @@
 #include <gal/stl/map.hpp>
 
 #include <neb/core/util/decl.hpp>
-#include <neb/core/util/typedef.hpp>
-#include <neb/core/math/Serialization/glm.hpp>
+#include <neb/core/math/serialization/glm.hpp>
 #include <neb/core/core/actor/util/parent.hpp>
 #include <neb/core/core/scene/base.hpp>
 
@@ -26,12 +23,7 @@
 
 typedef weak_ptr<neb::core::core::actor::base> wbase;
 
-namespace neb {
-	namespace gfx {
-		class RenderDesc;
-	}
-
-	namespace gfx { namespace core { namespace scene {
+namespace neb { namespace gfx { namespace core { namespace scene {
 
 	/** 
 	 * @ingroup group_core
@@ -86,14 +78,14 @@ namespace neb {
 
 
 			// rendering data
-			
+
 			struct
 			{
 				std::shared_ptr<neb::gfx::glsl::program::threed>	_M_d3;
 				std::shared_ptr<neb::gfx::glsl::program::threed>	_M_d3_HF;
 				std::shared_ptr<neb::gfx::glsl::program::threed>	_M_d3_inst;
 			} _M_programs;
-			
+
 			// one for static, one for dynamic
 			std::shared_ptr<neb::gfx::glsl::uniform::light_array>		light_array_[2];
 

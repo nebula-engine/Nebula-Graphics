@@ -5,24 +5,20 @@
 
 #include <neb/gfx/util/decl.hpp>
 
-namespace neb {
-	namespace gfx {
-		namespace context {
-			namespace util {
-				/** @brief %Cast
-				*/
-				class cast:
-					virtual public neb::itf::shared
-				{
-					public:
-						std::shared_ptr<neb::gfx::context::base>			isContextBase();
-						std::shared_ptr<neb::gfx::context::window>			isContextWindow();
-						std::shared_ptr<neb::gfx::context::fbo>				isContextFBO();
-				};
-			}
-		}
-	}
-}
+namespace neb { namespace gfx { namespace context { namespace util {
+
+	/** @brief %Cast
+	 */
+	class cast:
+		virtual public neb::core::itf::shared
+	{
+		public:
+			std::shared_ptr<neb::gfx::context::base>			isContextBase();
+			std::shared_ptr<neb::gfx::context::window>			isContextWindow();
+			std::shared_ptr<neb::gfx::context::fbo>				isContextFBO();
+	};
+
+}}}}
 
 
 #endif

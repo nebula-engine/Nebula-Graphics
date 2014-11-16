@@ -87,8 +87,11 @@ namespace neb {
 			class three;
 		}
 
+		class RenderDesc;
 	}
 }
+
+namespace ng = neb::gfx;
 
 #endif
 

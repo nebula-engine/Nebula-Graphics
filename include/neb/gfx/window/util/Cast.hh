@@ -5,20 +5,16 @@
 
 #include <neb/gfx/util/decl.hpp>
 
-namespace neb {
-	namespace gfx {
-		namespace window {
-			namespace util {
-				class cast:
-					virtual public neb::itf::shared
-				{
-					public:
-						std::shared_ptr<neb::gfx::window::base>		isWindowBase();
-				};
-			}
-		}
-	}
-}
+namespace neb { namespace gfx { namespace window { namespace util {
+
+	class cast:
+		virtual public neb::core::itf::shared
+	{
+		public:
+			std::shared_ptr<neb::gfx::window::base>		isWindowBase();
+	};
+
+}}}}
 
 #endif
 

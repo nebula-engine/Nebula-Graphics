@@ -1,7 +1,6 @@
 #include <gal/log/log.hpp>
 
 #include <neb/core/util/debug.hpp>
-#include <neb/core/util/typedef.hpp>
 
 #include <neb/gfx/Viewport.hpp>
 #include <neb/gfx/util/log.hpp>
@@ -22,6 +21,6 @@ void		neb::gfx::Viewport::resize(int w, int h) {
 	w_ = w;
 	h_ = h;
 	
-	aspect_ = (real)w_ / (real)h_;
+	aspect_ = (float)w_ / (float)h_;
 }
 

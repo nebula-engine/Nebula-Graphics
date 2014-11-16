@@ -9,6 +9,7 @@
 
 #include <nebula/config.hpp>
 
+/*
 namespace neb {
 	namespace camera {
 		class camera: public glutpp::camera_control {
@@ -72,5 +73,5 @@ namespace neb {
 		};
 	}
 }
-
+*/
 #endif

@@ -15,7 +15,7 @@
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
 
-#include <neb/phx/core/scene/base.hpp>
+//#include <neb/phx/core/scene/base.hpp>
 
 void		neb::gfx::environ::three::init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;

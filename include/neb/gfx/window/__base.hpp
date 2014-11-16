@@ -5,23 +5,19 @@
 
 #include <neb/core/itf/shared.hpp>
 
-namespace neb {
-	namespace gfx {
-		namespace window {
-			namespace util {
-				class parent;
-			}
+#include <neb/gfx/util/decl.hpp>
 
-			class __base:
-				virtual public neb::itf::shared,
-				virtual public gal::stl::child<neb::gfx::window::util::parent>
-			{
-				public:
-					virtual void		render() = 0;
-			};
-		}
-	}
-}
+namespace neb { namespace gfx { namespace window {
+
+	class __base:
+		virtual public neb::core::itf::shared,
+		virtual public gal::stl::child<neb::gfx::window::util::parent>
+	{
+		public:
+			virtual void		render() = 0;
+	};
+
+}}}
 
 
 #endif

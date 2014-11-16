@@ -19,7 +19,7 @@
 #include <neb/gfx/core/scene/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 
-#include <neb/phx/core/scene/util/decl.hpp>
+//#include <neb/phx/core/scene/util/decl.hpp>
 
 
 namespace neb { namespace gfx { namespace core { namespace light {

@@ -13,7 +13,7 @@
 #include <neb/gfx/camera/view/Base.hh>
 #include <neb/gfx/Context/fbo.hpp>
 #include <neb/gfx/util/log.hpp>
-#include <neb/phx/core/scene/base.hpp>
+#include <neb/gfx/core/scene/base.hpp>
 
 typedef neb::gfx::core::light::directional THIS;
 
@@ -25,15 +25,13 @@ neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::DIRECTIONAL;
 }
-void			neb::gfx::core::light::directional::init(neb::core::core::light::util::parent * const & p)
+void					THIS::init(neb::core::core::light::util::parent * const & p)
 {
 	setParent(p);
 	
 	neb::gfx::core::light::base::init(p);
 	
-	auto scene = std::dynamic_pointer_cast<neb::phx::core::scene::base>(
-		getScene()->shared_from_this()
-		);
+	auto scene = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(getScene()->shared_from_this());
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::core::light::directional>(shared_from_this());
 	
@@ -55,7 +53,7 @@ void			neb::gfx::core::light::directional::init(neb::core::core::light::util::pa
 	setShadowEnviron(environ);
 
 }
-void		neb::gfx::core::light::directional::callbackPose(neb::core::pose const & gpose)
+void					THIS::callbackPose(neb::core::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
@@ -64,7 +62,7 @@ void		neb::gfx::core::light::directional::callbackPose(neb::core::pose const & g
 	
 	//scene->light_array_[light_array_].set_pos(light_array_slot_, gpose.pos_);
 }
-void		neb::gfx::core::light::directional::setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) {
+void					THIS::setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) {
 	assert(environ);
 	shadow_environ_ = environ;
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow_directional>(environ);
@@ -82,7 +80,7 @@ void		neb::gfx::core::light::directional::setShadowEnviron(std::shared_ptr<neb::
 	glm::mat4 vpb = bias * proj * view;
 	
 	// request texture layers
-	auto scene = dynamic_cast<neb::phx::core::scene::base*>(getScene());
+	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());
 
 	texture_layers_ = scene->tex_shadow_map_->layer_slots_->reg(1);
 
@@ -97,7 +95,7 @@ void		neb::gfx::core::light::directional::setShadowEnviron(std::shared_ptr<neb::
 	light_array_slot_->set<16>(shadow_sampler_[0]);
 
 }
-void		THIS::load(ba::polymorphic_iarchive & ar, unsigned int const &)
+void					THIS::load(ba::polymorphic_iarchive & ar, unsigned int const &)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 

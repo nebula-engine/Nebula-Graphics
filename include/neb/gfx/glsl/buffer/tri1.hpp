@@ -27,7 +27,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 				static const GLenum			target_	= GL_ARRAY_BUFFER;
 				static const GLenum			usage_	= GL_STATIC_DRAW;
 
-				typedef math::geo::vertex data_type;
+				typedef nc::math::geo::vertex		data_type;
 
 				static constexpr GLuint			divisor_[ATTRIB_COUNT] = {
 					0,0,0,0,0

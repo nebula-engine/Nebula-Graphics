@@ -21,7 +21,7 @@
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/util/log.hpp>
 
-#include <neb/phx/core/scene/base.hpp>
+#include <neb/gfx/core/scene/base.hpp>
 
 typedef neb::gfx::core::light::point THIS;
 
@@ -65,11 +65,9 @@ void		neb::gfx::core::light::point::callbackPose(neb::core::pose const & gpose)
 }
 void			neb::gfx::core::light::point::initShadow(std::shared_ptr<neb::gfx::environ::SceneDefault> e3)
 {
-
+	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	// scene
-	auto scene = std::dynamic_pointer_cast<neb::phx::core::scene::base>(
-			getScene()->shared_from_this()
-			);
+	auto scene = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(getScene()->shared_from_this());
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::core::light::point>(shared_from_this());
 
@@ -121,7 +119,7 @@ void		neb::gfx::core::light::point::setShadowEnviron(std::shared_ptr<neb::gfx::e
 
 	}
 
-	auto scene = dynamic_cast<neb::phx::core::scene::base*>(getScene());//getScene();
+	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());//getScene();
 
 	// request texture layers
 	texture_layers_ = scene->tex_shadow_map_->layer_slots_->reg(6);

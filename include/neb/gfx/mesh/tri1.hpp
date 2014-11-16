@@ -21,7 +21,7 @@
 #include <math/geo/polyhedron.hpp>
 */
 
-#include <neb/core/pose.hpp>
+#include <neb/core/math/pose.hpp>
 #include <neb/core/math/geo/decl.hpp>
 
 #include <neb/gfx/material.hpp>
@@ -60,7 +60,7 @@ namespace neb { namespace gfx { namespace mesh {
 			void				serialize(
 					ba::polymorphic_oarchive & ar, unsigned int const & version);
 
-			void				construct(math::geo::polyhedron*);
+			void				construct(nc::math::geo::polyhedron*);
 			void				print(int sl);
 
 			/*		
@@ -69,7 +69,7 @@ namespace neb { namespace gfx { namespace mesh {
 					void				draw_elements(
 					program* p,
 					buffer_shared,
-					neb::core::pose const & pose,
+					neb::core::math::pose const & pose,
 					glm::vec3 scale);
 			 */
 			/**
@@ -77,23 +77,23 @@ namespace neb { namespace gfx { namespace mesh {
 			 */
 			void				drawDebug(
 					program const * const & p,
-					neb::core::pose const & pose,
+					neb::core::math::pose const & pose,
 					glm::vec3 scale);
 			void				drawElements(
 					program const * const & p,
-					neb::core::pose const & pose,
+					neb::core::math::pose const & pose,
 					glm::vec3 scale);
 
 
-			neb::material::material			material_front_;
-
-			void					setVerts(std::vector<math::geo::vertex> const &);
+			ng::material::material			material_front_;
+			
+			void					setVerts(std::vector<nc::math::geo::vertex> const &);
 			void					setIndices(std::vector<index_type> const &);
-
+			
 			GLuint					getNbVerts();
 			GLuint					getNbIndices();
 		private:
-			std::vector<math::geo::vertex>		vertices_;
+			std::vector<nc::math::geo::vertex>	vertices_;
 			std::vector<index_type>			indices_;
 		public:
 			std::shared_ptr<neb::gfx::texture>	texture_;

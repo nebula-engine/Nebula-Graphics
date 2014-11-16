@@ -8,7 +8,7 @@
 #include <boost/serialization/map.hpp>
 #include <boost/signals2.hpp>
 
-#include <neb/core/math/Serialization/glm.hpp>
+#include <neb/core/math/serialization/glm.hpp>
 #include <neb/core/core/actor/base.hpp>
 #include <neb/core/core/shape/base.hpp>
 #include <neb/core/core/shape/util/parent.hpp>
@@ -42,13 +42,13 @@ namespace neb {
 					public:
 						void						draw(
 								neb::gfx::glsl::program::base const * const & p,
-								neb::core::pose const & pose);
+								neb::core::math::pose const & pose);
 						void						drawDebug(
 								neb::gfx::glsl::program::base const * const & p,
-								neb::core::pose const & pose);
+								neb::core::math::pose const & pose);
 						void						drawHF(
 								neb::gfx::glsl::program::base const * const & p,
-								neb::core::pose const & pose);
+								neb::core::math::pose const & pose);
 
 				};
 			}

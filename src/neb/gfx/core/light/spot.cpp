@@ -12,7 +12,7 @@
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 
-#include <neb/phx/core/scene/base.hpp>
+#include <neb/gfx/core/scene/base.hpp>
 
 typedef neb::gfx::core::light::spot THIS;
 

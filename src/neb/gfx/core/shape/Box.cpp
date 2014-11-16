@@ -6,7 +6,7 @@
 #include <neb/core/math/geo/polyhedron.hh>
 
 #include <neb/gfx/mesh/instanced.hpp>
-#include <neb/phx/core/scene/base.hpp>
+#include <neb/gfx/core/scene/base.hpp>
 #include <neb/gfx/core/shape/box.hpp>
 #include <neb/gfx/util/log.hpp>
 

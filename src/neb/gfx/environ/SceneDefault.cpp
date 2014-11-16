@@ -7,7 +7,7 @@
 #include <neb/gfx/environ/SceneDefault.hpp>
 #include <neb/gfx/RenderDesc.hpp>
 
-#include <neb/phx/core/scene/base.hpp>
+#include <neb/gfx/core/scene/base.hpp>
 
 void		neb::gfx::environ::SceneDefault::init()
 {
@@ -88,7 +88,7 @@ void		neb::gfx::environ::SceneDefault::render(std::shared_ptr<neb::gfx::context:
 				)
 		      );
 
-	auto scene = neb::could_be<neb::gfx::drawable::base, neb::phx::core::scene::base>(drawable);
+	auto scene = neb::could_be<neb::gfx::drawable::base, neb::gfx::core::scene::base>(drawable);
 
 	if(scene) scene->drawDebug(
 				RenderDesc(

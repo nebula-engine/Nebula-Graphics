@@ -19,7 +19,7 @@
 #include <neb/gfx/camera/proj/base.hpp>
 #include <neb/gfx/RenderDesc.hpp>
 
-#include <neb/phx/test.hpp>
+//#include <neb/phx/test.hpp>
 
 neb::gfx::environ::shadow::point::point()
 {
@@ -88,12 +88,16 @@ bool		neb::gfx::environ::shadow::point::shouldRender(unsigned int c) {
 	auto e = environ_scene_.lock();
 	if(!e) return false;
 	
-	return query(
-			*proj_->_M_px_geometry,
-			view_[c]->view(),
-			*e->proj_->_M_px_geometry,
-			e->view_->view()
-			);
+
+	/** @todo move to fin */
+	//return query(
+	//		*proj_->_M_px_geometry,
+	//		view_[c]->view(),
+	//		*e->proj_->_M_px_geometry,
+	//		e->view_->view()
+	//		);
+
+	return false;
 
 }
 void		neb::gfx::environ::shadow::point::step(gal::etc::timestep const & ts) {

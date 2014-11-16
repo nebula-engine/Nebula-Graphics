@@ -8,7 +8,6 @@
 #include <vector>
 
 #include <neb/core/util/decl.hpp>
-#include <neb/core/util/typedef.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>

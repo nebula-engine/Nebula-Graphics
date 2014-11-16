@@ -9,7 +9,7 @@
 
 #include <gal/stl/helper.hpp>
 
-#include <neb/core/color/Color.hh>
+#include <neb/core/math/color/color.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
@@ -22,14 +22,15 @@ namespace neb {
 			float,
 			float,
 			float,
-			neb::core::color::color);
+			neb::core::math::color::color);
+	
 	void	draw_text(
 			std::shared_ptr<neb::gfx::glsl::program::base> p,
 			float,
 			float,
 			float,
 			float,
-			neb::core::color::color,
+			neb::core::math::color::color,
 			std::string,
 			std::string::size_type pos = std::string::npos);
 }

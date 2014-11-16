@@ -8,12 +8,14 @@
 
 #include <gal/etc/timestep.hpp>
 
-#include <PxPhysicsAPI.h>
+//#include <PxPhysicsAPI.h>
+
+// neb/phx/camera/proj/base.hpp
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 
-namespace neb {namespace gfx {namespace camera {namespace proj {
+namespace neb { namespace gfx { namespace camera { namespace proj {
 	/** @brief @Base */
 	class base {
 		public:
@@ -34,8 +36,6 @@ namespace neb {namespace gfx {namespace camera {namespace proj {
 			std::weak_ptr<neb::gfx::environ::base>		parent_;
 			// persistence
 			glm::mat4					_M_matrix;
-		public:
-			physx::PxConvexMeshGeometry*			_M_px_geometry;
 	};
 }}}}
 

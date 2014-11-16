@@ -34,7 +34,7 @@ namespace neb { namespace gfx { namespace window {
 	{
 		public:
 			typedef neb::gfx::window::util::parent parent_t;
-			typedef neb::util::parent<neb::gfx::context::base, neb::gfx::context::util::parent> contexts;
+			typedef nc::util::parent<neb::gfx::context::base, neb::gfx::context::util::parent> contexts;
 
 			base();
 			virtual ~base();

@@ -2,7 +2,6 @@
 #define NEBULA_GFX_ENVIRON_NORMAL_MAP_HPP
 
 #include <neb/core/core/actor/util/decl.hpp>
-#include <neb/core/util/typedef.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/camera/util/decl.hpp>

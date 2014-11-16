@@ -21,7 +21,7 @@ namespace neb {
 	namespace gfx {namespace gui {namespace layout {
 	/** @brief %Base */
 	class base:
-		virtual public neb::itf::shared,
+		virtual public neb::core::itf::shared,
 		virtual public neb::gfx::drawable::base,
 		virtual public neb::gfx::gui::object::util::parent,
 		virtual public gal::stl::child<neb::gfx::gui::layout::util::parent>,

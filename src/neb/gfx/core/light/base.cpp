@@ -18,7 +18,7 @@
 #include <neb/gfx/camera/view/Base.hh>
 #include <neb/gfx/environ/shadow/directional.hpp>
 
-#include <neb/phx/core/scene/base.hpp>
+#include <neb/gfx/core/scene/base.hpp>
 
 typedef neb::gfx::core::light::base THIS;
 
@@ -54,7 +54,7 @@ void			neb::gfx::core::light::base::init(neb::core::core::light::util::parent * 
 		return;
 	}
 
-	auto scene = dynamic_cast<neb::phx::core::scene::base*>(getScene());
+	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());
 
 
 	auto pose = getPoseGlobal();

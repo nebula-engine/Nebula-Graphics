@@ -18,7 +18,8 @@
 namespace neb {namespace gfx {namespace camera {namespace view {
 
 	/** @brief @Base */
-	class base: virtual public neb::itf::shared {
+	class base: virtual public neb::core::itf::shared
+	{
 		public:
 			/** @brief Constructor */
 			base(std::shared_ptr< ::neb::gfx::environ::base > parent);
