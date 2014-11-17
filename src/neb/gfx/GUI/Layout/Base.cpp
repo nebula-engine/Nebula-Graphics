@@ -88,7 +88,7 @@ int			neb::gfx::gui::layout::base::charFun(
 	typedef neb::gfx::gui::object::util::parent O;
 
 	for(O::map_type::iterator it = O::map_.begin(); it != O::map_.end(); ++it) {
-		auto object = dynamic_pointer_cast<neb::gfx::gui::object::base>(it->second.ptr_);
+		auto object = std::dynamic_pointer_cast<neb::gfx::gui::object::base>(it->second.ptr_);
 		assert(object);
 
 		if(object->charFun(window, codepoint)) return 1;
@@ -179,7 +179,7 @@ int			neb::gfx::gui::layout::base::search(
 
 	return 0;
 }
-weak_ptr<neb::gfx::gui::object::terminal>		neb::gfx::gui::layout::base::createObjectTerminal() {
+std::weak_ptr<neb::gfx::gui::object::terminal>		neb::gfx::gui::layout::base::createObjectTerminal() {
 
 	return neb::gfx::gui::object::util::parent::create<neb::gfx::gui::object::terminal>();
 

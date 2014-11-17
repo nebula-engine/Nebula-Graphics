@@ -68,12 +68,12 @@ void		neb::gfx::gui::object::terminal::draw(neb::gfx::RenderDesc const & desc) {
 	}
 	LOG(lg, neb::gfx::sl, debug) << "draw lines end";
 
-	string line = console->prompt_end_ + console->line_.container;
+	std::string line = console->prompt_end_ + console->line_.container;
 
 	draw_text(0, x, y, sx, sy, font_color_, line.c_str(), console->line_.pos + console->prompt_end_.size());
 }
 int			neb::gfx::gui::object::terminal::charFun(
-		shared_ptr<neb::core::input::source> const & window,
+		std::shared_ptr<neb::core::input::source> const & window,
 		unsigned int codepoint)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;

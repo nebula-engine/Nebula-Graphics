@@ -39,35 +39,35 @@ neb::gfx::camera::view::Free::Free(std::shared_ptr<neb::gfx::environ::base> pare
 	
 	typedef neb::gfx::camera::view::util::flag view_flag;
 
-	head_[0]  = vec3(  0, d, -s );
-	head_[1]  = vec3(  d, d, -d );
-	head_[2]  = vec3(  s, d,  0 );
-	head_[3]  = vec3(  d, d,  d );
-	head_[4]  = vec3(  0, d,  s );
-	head_[5]  = vec3( -d, d,  d );
-	head_[6]  = vec3( -s, d,  0 );
-	head_[7]  = vec3( -d, d, -d );
+	head_[0]  = glm::vec3(  0, d, -s );
+	head_[1]  = glm::vec3(  d, d, -d );
+	head_[2]  = glm::vec3(  s, d,  0 );
+	head_[3]  = glm::vec3(  d, d,  d );
+	head_[4]  = glm::vec3(  0, d,  s );
+	head_[5]  = glm::vec3( -d, d,  d );
+	head_[6]  = glm::vec3( -s, d,  0 );
+	head_[7]  = glm::vec3( -d, d, -d );
 
-	head_[8]  = vec3(  0, 0, -s );
-	head_[9]  = vec3(  d, 0, -d );
-	head_[10] = vec3(  s, 0,  0 );
-	head_[11] = vec3(  d, 0,  d );
-	head_[12] = vec3(  0, 0,  s );
-	head_[13] = vec3( -d, 0,  d );
-	head_[14] = vec3( -s, 0,  0 );
-	head_[15] = vec3( -d, 0, -d );
+	head_[8]  = glm::vec3(  0, 0, -s );
+	head_[9]  = glm::vec3(  d, 0, -d );
+	head_[10] = glm::vec3(  s, 0,  0 );
+	head_[11] = glm::vec3(  d, 0,  d );
+	head_[12] = glm::vec3(  0, 0,  s );
+	head_[13] = glm::vec3( -d, 0,  d );
+	head_[14] = glm::vec3( -s, 0,  0 );
+	head_[15] = glm::vec3( -d, 0, -d );
 
-	head_[16]  = vec3(  0, -d, -s );
-	head_[17]  = vec3(  d, -d, -d );
-	head_[18]  = vec3(  s, -d,  0 );
-	head_[19]  = vec3(  d, -d,  d );
-	head_[20]  = vec3(  0, -d,  s );
-	head_[21]  = vec3( -d, -d,  d );
-	head_[22]  = vec3( -s, -d,  0 );
-	head_[23]  = vec3( -d, -d, -d );
+	head_[16]  = glm::vec3(  0, -d, -s );
+	head_[17]  = glm::vec3(  d, -d, -d );
+	head_[18]  = glm::vec3(  s, -d,  0 );
+	head_[19]  = glm::vec3(  d, -d,  d );
+	head_[20]  = glm::vec3(  0, -d,  s );
+	head_[21]  = glm::vec3( -d, -d,  d );
+	head_[22]  = glm::vec3( -s, -d,  0 );
+	head_[23]  = glm::vec3( -d, -d, -d );
 
-	head_[24]  = vec3(  0,-s,  0);
-	head_[25]  = vec3(  0, s,  0);
+	head_[24]  = glm::vec3(  0,-s,  0);
+	head_[25]  = glm::vec3(  0, s,  0);
 
 	
 	head_flag_[view_flag::NORTH				| view_flag::DOWN	] = 0;
@@ -244,7 +244,7 @@ void			neb::gfx::camera::view::Free::step(gal::etc::timestep const & ts) {
 	//glm::normalize(look);
 
 	//vec3 x(1,0,0);
-	vec3 y(0,1,0);
+	glm::vec3 y(0,1,0);
 	//vec3 z(0,0,-1);
 
 	//vec3 c = glm::cross(z,look);
@@ -289,11 +289,11 @@ void			neb::gfx::camera::view::Free::step(gal::etc::timestep const & ts) {
 	//printf("yaw_ = %f\n",yaw_);
 
 	// rotate velocity by camera yaw
-	quat q = glm::angleAxis(yaw_,y);
+	glm::quat q = glm::angleAxis(yaw_,y);
 	
 	
 	
-	vec3 v(move());
+	glm::vec3 v(move());
 	v *= ts.dt;
 	v *= 1.0;
 
@@ -303,10 +303,11 @@ void			neb::gfx::camera::view::Free::step(gal::etc::timestep const & ts) {
 
 	//printf("v = %f %f %f\n",v.x,v.y,v.z);
 
-	eye_ += vec4(v, 0.0f);
+	eye_ += glm::vec4(v, 0.0f);
 }
 
-vec3			neb::gfx::camera::view::Free::move() {
+glm::vec3			neb::gfx::camera::view::Free::move()
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::sl, debug) << "flag = " << flag_.val_;
 
@@ -314,7 +315,7 @@ vec3			neb::gfx::camera::view::Free::move() {
 
 	//	return mov;
 
-	vec3 mov(0);
+	glm::vec3 mov(0);
 
 	// ignore all other flags
 	long unsigned int f = flag_.val_ & (
@@ -337,19 +338,17 @@ vec3			neb::gfx::camera::view::Free::move() {
 
 	return mov;
 }
-
-mat4		neb::gfx::camera::view::Free::view() {
+glm::mat4		neb::gfx::camera::view::Free::view()
+{
 	printf("%s\n", __FUNCTION__);
 
-	vec3 x(1,0,0);
-	vec3 up(0,1,0);
-	vec3 look(0,0,-1);
+	glm::vec3 x(1,0,0);
+	glm::vec3 up(0,1,0);
+	glm::vec3 look(0,0,-1);
 	
+	glm::quat rot = glm::angleAxis(yaw_, up);
 	
-	
-	quat rot = glm::angleAxis(yaw_, up);
-	
-	vec3 xp = rot * x;
+	glm::vec3 xp = rot * x;
 	
 	//rot = rot * glm::angleAxis(pitch_ , xp);
 	rot = glm::angleAxis(pitch_ , xp) * rot;
@@ -357,11 +356,11 @@ mat4		neb::gfx::camera::view::Free::view() {
 	up = rot * up;
 	look = rot * look;
 
-	vec3 eye(eye_);//.x(), eye_.y(), eye_.z());
+	glm::vec3 eye(eye_);//.x(), eye_.y(), eye_.z());
 
-	vec3 center = eye + look;
+	glm::vec3 center = eye + look;
 
-	mat4 ret = glm::lookAt(eye, center, up);
+	glm::mat4 ret = glm::lookAt(eye, center, up);
 
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "yaw" << ::std::setw(8) << yaw_;
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "pitch" << ::std::setw(8) << pitch_;
@@ -380,9 +379,4 @@ mat4		neb::gfx::camera::view::Free::view() {
 
 	return ret;
 }
-
-
-
-
-
 

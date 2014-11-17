@@ -84,12 +84,11 @@ void			THIS::model_load(
 		neb::gfx::glsl::program::base const * const & p,
 		neb::core::math::pose const & pose)
 {
-	mat4 space = pose.mat4_cast() * glm::scale(scale_);
+	glm::mat4 space = pose.mat4_cast() * glm::scale(scale_);
 
 	neb::gfx::ogl::glUniform(
 			p->uniform_table_[neb::gfx::glsl::uniforms::MODEL],
-			space
-			);
+			space);
 }
 void			THIS::draw_elements(
 		neb::gfx::glsl::program::base const * const & p,

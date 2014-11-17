@@ -14,7 +14,7 @@
 #include <neb/core/util/debug.hpp>
 #include <neb/core/core/actor/base.hpp>
 
-#include <neb/phx/test.hpp>
+//#include <neb/phx/test.hpp>
 
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/environ/base.hpp>
@@ -38,10 +38,6 @@ void		neb::gfx::camera::proj::base::load(neb::gfx::glsl::program::base const * c
 }
 void		neb::gfx::camera::proj::base::step(gal::etc::timestep const & ts) {
 
-}
-void		neb::gfx::camera::proj::base::calculate_geometry()
-{
-	_M_px_geometry = neb::frustrum_geometry(_M_matrix);
 }
 
 neb::gfx::camera::proj::perspective::perspective(std::shared_ptr<neb::gfx::environ::base> parent):
