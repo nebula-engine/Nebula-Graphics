@@ -9,22 +9,19 @@
 #include <boost/archive/polymorphic_iarchive.hpp>
 #include <boost/archive/polymorphic_oarchive.hpp>
 
+#include <neb/core/core/light/base.hpp>
 #include <neb/core/util/config.hpp>
 #include <neb/core/util/decl.hpp>
 #include <neb/core/itf/shared.hpp>
-#include <neb/core/math/Serialization/glm.hpp>
+#include <neb/core/math/serialization/glm.hpp>
 
 #include <neb/gfx/core/light/base.hpp>
-
 #include <neb/gfx/texture.hpp>
-#include <neb/core/core/light/base.hpp>
-
-
-//#include <math/color.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace light {
-
-
+		/** @brief
+		 *
+		 */
 		class spot: public neb::gfx::core::light::base {
 			private:
 				template<class Archive> void		serializeTemplate(Archive & ar, unsigned int const & version) {
@@ -40,11 +37,11 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				virtual void			init(neb::core::core::light::util::parent * const & p);
 				virtual type::e			getType();
 
-				virtual void			callbackPose(neb::core::pose const & gpose);
+				virtual void			callbackPose(neb::core::math::pose const & gpose);
 
 
 
-				virtual void				load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose);
+				virtual void				load(neb::core::core::light::util::count & light_count, neb::core::math::pose const & pose);
 
 				virtual void			serialize(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) {
 					neb::gfx::core::light::base::serialize(ar, version);

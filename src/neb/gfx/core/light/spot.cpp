@@ -33,7 +33,7 @@ void			THIS::init(neb::core::core::light::util::parent * const & p)
 }
 void			neb::gfx::core::light::spot::load(
 		neb::core::core::light::util::count & light_count,
-		neb::core::pose const & pose) {
+		neb::core::math::pose const & pose) {
 
 /*	neb::gfx::core::light::base::load(light_count.spot, pose);
 	
@@ -56,7 +56,7 @@ void			neb::gfx::core::light::spot::load(
 	light_count.spot++;
 	*/
 }
-void		neb::gfx::core::light::spot::callbackPose(neb::core::pose const & gpose)
+void		neb::gfx::core::light::spot::callbackPose(neb::core::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();

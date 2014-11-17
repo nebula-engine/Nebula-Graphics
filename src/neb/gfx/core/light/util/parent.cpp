@@ -14,7 +14,7 @@
 
 	return scene1;
 }*/
-void			neb::gfx::core::light::util::parent::setPose(neb::core::pose const & pose) {
+void			neb::gfx::core::light::util::parent::setPose(neb::core::math::pose const & pose) {
 	LOG(lg, neb::core::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto lambda_light = [&] (map_type::pointer p) {
@@ -31,7 +31,10 @@ void			neb::gfx::core::light::util::parent::setPose(neb::core::pose const & pose
 	map_.for_each(lambda_light);
 
 }
-void			neb::gfx::core::light::util::parent::load_lights(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) {
+void			neb::gfx::core::light::util::parent::load_lights(
+		neb::core::core::light::util::count & light_count,
+		neb::core::math::pose const & pose)
+{
 	LOG(lg, neb::core::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 
 	assert(0);
@@ -42,9 +45,9 @@ void			neb::gfx::core::light::util::parent::load_lights(neb::core::core::light::
 		assert(light);
 
 		//if(i == neb::core::light::light_max) return L::map_type::BREAK;
-		
+
 		//light->load(light_count, pose);
-		
+
 	};
 
 	map_.for_each(lambda_light);

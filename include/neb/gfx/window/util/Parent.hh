@@ -5,20 +5,15 @@
 
 #include <neb/gfx/window/__base.hpp>
 
-namespace neb {
-	namespace gfx {
-		namespace window {
-			namespace util {
-				class parent:
-					public neb::util::parent<neb::gfx::window::__base, parent>
-				{
-					public:
-						void		render();
-				};
-			}
-		}
-	}
-}
+namespace neb { namespace gfx { namespace window { namespace util {
+
+	class parent:
+		public nc::util::parent<neb::gfx::window::__base, parent>
+	{
+		public:
+			void		render();
+	};
+}}}}
 
 #endif
 

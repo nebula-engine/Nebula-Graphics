@@ -22,14 +22,14 @@
 
 typedef neb::gfx::core::light::base THIS;
 
-neb::gfx::core::light::base::base():
+THIS::base():
 	ambient_(0.2,0.2,0.2,1.0),
-	diffuse_(neb::core::color::color::white()),
-	specular_(neb::core::color::color::white()),
+	diffuse_(neb::core::math::color::color::white()),
+	specular_(neb::core::math::color::color::white()),
 	atten_const_(1.0),
 	atten_linear_(0.0),
 	atten_quad_(0.0),
-	spot_direction_(vec3(0.0, 0.0, -1.0)),
+	spot_direction_(glm::vec3(0.0, 0.0, -1.0)),
 	spot_cutoff_(1.0),
 	spot_exponent_(1.0),
 	spot_light_cos_cutoff_(1.0)
@@ -40,10 +40,12 @@ neb::gfx::core::light::base::base():
 	shadow_sampler_[1] = glm::vec3(-1);
 
 }
-neb::gfx::core::light::base::~base() {}
-void			neb::gfx::core::light::base::init(neb::core::core::light::util::parent * const & p)
+THIS::~base()
 {
-	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+}
+void			THIS::init(nc::core::light::util::parent * const & p)
+{
+	LOG(lg, nc::core::light::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
 
 	setParent(p);
 
@@ -55,7 +57,6 @@ void			neb::gfx::core::light::base::init(neb::core::core::light::util::parent * 
 	}
 
 	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());
-
 
 	auto pose = getPoseGlobal();
 
@@ -94,7 +95,7 @@ void			neb::gfx::core::light::base::init(neb::core::core::light::util::parent * 
 	}
 
 }
-void			neb::gfx::core::light::base::setPose(neb::core::pose const & npose) {
+void			THIS::setPose(neb::core::math::pose const & npose) {
 	pose_ = npose;
 
 	auto pose = getPoseGlobal();
@@ -102,13 +103,13 @@ void			neb::gfx::core::light::base::setPose(neb::core::pose const & npose) {
 	light_array_slot_->set<0>(pose.pos_);
 	light_array_slot_->set<7>(pose.rot_ * spot_direction_);
 }
-void			neb::gfx::core::light::base::release() {
+void			THIS::release() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
-void			neb::gfx::core::light::base::cleanup() {
+void			THIS::cleanup() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
-void			neb::gfx::core::light::base::dim() {
+void			THIS::dim() {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	/*	
 	//printf("diffuse\n");
@@ -123,7 +124,7 @@ void			neb::gfx::core::light::base::dim() {
 	exit(0);
 }
 
-void		neb::gfx::core::light::base::step(gal::etc::timestep const & ts) {
+void			THIS::step(gal::etc::timestep const & ts) {
 	/*
 	   if(shadow_environ_) {
 
@@ -132,10 +133,11 @@ void		neb::gfx::core::light::base::step(gal::etc::timestep const & ts) {
 	   }
 	   */
 }
-void	neb::gfx::core::light::base::draw() {	
+void			THIS::draw()
+{
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 }
-neb::core::pose		neb::gfx::core::light::base::getPose()
+neb::core::math::pose		THIS::getPose()
 {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -143,7 +145,8 @@ neb::core::pose		neb::gfx::core::light::base::getPose()
 
 	return p;
 }
-void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
+void			THIS::load(int o, neb::core::math::pose const & pose)
+{
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
 	/** @todo way to ditinguish lights in shader */
@@ -164,7 +167,8 @@ void			neb::gfx::core::light::base::load(int o, neb::core::pose const & pose) {
 		*/
 
 }
-void	neb::gfx::core::light::base::load_shadow() {
+void			THIS::load_shadow()
+{
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	/*	auto p = neb::master::Global()->current_program();
 
@@ -184,7 +188,7 @@ void	neb::gfx::core::light::base::load_shadow() {
 	uniform_tex_shadow_.load_1i(1);
 	*/
 }
-void	neb::gfx::core::light::base::RenderLightPOV()
+void			THIS::RenderLightPOV()
 {
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	/*
@@ -236,7 +240,7 @@ void	neb::gfx::core::light::base::RenderLightPOV()
 	*/
 	checkerror("unknown");
 }
-void	neb::gfx::core::light::base::RenderShadowPost()
+void	THIS::RenderShadowPost()
 {
 	//Disable textures and texgen
 	glDisable(GL_TEXTURE_2D);

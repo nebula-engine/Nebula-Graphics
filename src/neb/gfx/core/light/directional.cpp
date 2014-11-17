@@ -53,7 +53,7 @@ void					THIS::init(neb::core::core::light::util::parent * const & p)
 	setShadowEnviron(environ);
 
 }
-void					THIS::callbackPose(neb::core::pose const & gpose)
+void					THIS::callbackPose(neb::core::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();

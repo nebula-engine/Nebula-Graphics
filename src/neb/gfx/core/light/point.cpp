@@ -31,7 +31,7 @@ neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::SPOT;
 }
-void	neb::gfx::core::light::point::load(neb::core::core::light::util::count & light_count, neb::core::pose const & pose) {
+void	neb::gfx::core::light::point::load(neb::core::core::light::util::count & light_count, neb::core::math::pose const & pose) {
 
 	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	assert(0);
@@ -56,7 +56,7 @@ void			neb::gfx::core::light::point::init(neb::core::core::light::util::parent *
 	neb::gfx::core::light::base::init(p);
 	
 }	
-void		neb::gfx::core::light::point::callbackPose(neb::core::pose const & gpose)
+void		neb::gfx::core::light::point::callbackPose(neb::core::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
