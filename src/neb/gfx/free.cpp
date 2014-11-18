@@ -27,7 +27,8 @@ void			neb::draw_quad(
 		float y,
 		float w,
 		float h,
-		neb::core::color::color color) {
+		neb::core::math::color::color color)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	//GLint uniform_color = glGetUniformLocation(program, "color");
@@ -80,10 +81,10 @@ void			neb::draw_quad(
 	glPopMatrix();
 
 }
-void		neb::draw_text(
+void			neb::draw_text(
 		std::shared_ptr<neb::gfx::glsl::program::base>,
 		float x, float y, float sx, float sy,
-		neb::core::color::color color,
+		neb::core::math::color::color color,
 		std::string text,
 		std::string::size_type cursor_pos)
 {

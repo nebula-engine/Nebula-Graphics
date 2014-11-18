@@ -36,7 +36,7 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 		public:
 			base();
 			virtual ~base();
-			virtual void				init(parent_t * const & p);
+			void					__init(parent_t * const & p);
 			void					init_light();
 			virtual void				release();
 			void					step(::gal::etc::timestep const & ts);

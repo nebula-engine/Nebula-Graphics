@@ -24,19 +24,22 @@
 #include <neb/gfx/glsl/buffer/tri1.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
-neb::gfx::mesh::tri1::tri1() {
+neb::gfx::mesh::tri1::tri1()
+{
 	//printf("%s\n",__PRETTY_FUNCTION__);
 }
-neb::gfx::mesh::tri1::~tri1() {
+neb::gfx::mesh::tri1::~tri1()
+{
 	//printf("%s\n",__PRETTY_FUNCTION__);
 }
-void	neb::gfx::mesh::tri1::construct(math::geo::polyhedron* poly) {
+void	neb::gfx::mesh::tri1::construct(nc::math::geo::polyhedron* poly)
+{
 
 	std::cout << __PRETTY_FUNCTION__ << this << std::endl;
 
 	assert(poly);
 
-	math::geo::triangle* tris = poly->getTriangles();
+	nc::math::geo::triangle* tris = poly->getTriangles();
 	unsigned int nbTriangles = poly->getNbTriangles();
 	
 	assert(tris);
@@ -66,7 +69,7 @@ void	neb::gfx::mesh::tri1::construct(math::geo::polyhedron* poly) {
 	LOG(lg, neb::gfx::sl, debug) << "indices  " << nbIndices;
 	LOG(lg, neb::gfx::sl, debug) << "vertices " << nbVerts;
 }
-void			neb::gfx::mesh::tri1::setVerts(std::vector<math::geo::vertex> const & verts)
+void			neb::gfx::mesh::tri1::setVerts(std::vector<nc::math::geo::vertex> const & verts)
 {
 	vertices_ = verts;
 }
@@ -146,7 +149,7 @@ void			neb::gfx::mesh::tri1::init_buffer(
 */
 void			neb::gfx::mesh::tri1::drawElements(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::pose const & pose,
+		neb::core::math::pose const & pose,
 		glm::vec3 scale)
 {
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
@@ -232,7 +235,7 @@ void			neb::gfx::mesh::tri1::drawElements(
 }
 void			neb::gfx::mesh::tri1::drawDebug(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::pose const & pose,
+		neb::core::math::pose const & pose,
 		glm::vec3 scale)
 {
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
@@ -386,7 +389,7 @@ void			neb::gfx::mesh::tri1::drawDebug(
    void			neb::gfx::mesh::tri1::draw_elements(
    program_shared						p,
    std::shared_ptr<neb::gfx::glsl::buffer::tri1>		buf,
-   neb::core::pose const & pose,
+   neb::core::math::pose const & pose,
    glm::vec3 scale)
    {
    LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;

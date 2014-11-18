@@ -5,7 +5,7 @@
 
 #include <neb/core/util/config.hpp>
 
-#include <neb/core/color/Color.hh>
+#include <neb/core/math/color/Color.hh>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/texture.hpp>

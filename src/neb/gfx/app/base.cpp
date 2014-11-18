@@ -1,7 +1,8 @@
 
 #include <neb/gfx/app/base.hpp>
 
-weak_ptr<neb::gfx::app::base>		neb::gfx::app::base::initialize() {
+std::weak_ptr<neb::gfx::app::base>		neb::gfx::app::base::initialize()
+{
 	assert(!g_app_);
 	
 	auto app(make_shared<neb::gfx::app::base>());
@@ -19,7 +20,7 @@ weak_ptr<neb::gfx::app::base>		neb::gfx::app::base::initialize() {
 void					neb::gfx::app::base::__init() {
 }
 void					neb::gfx::app::base::release() {
-	neb::app::__core::release();
+	nc::app::__core::release();
 	
 	neb::gfx::app::__gfx::release();
 	//neb::gfx::app::__gfx_glsl::release();
@@ -27,7 +28,7 @@ void					neb::gfx::app::base::release() {
 void					neb::gfx::app::base::step(gal::etc::timestep const & ts) {
 
 	//neb::core::app::__base::step(ts);
-	neb::app::__core::__step(ts);
+	nc::app::__core::__step(ts);
 	
 	neb::gfx::app::__gfx::step(ts);
 	//neb::gfx::app::__gfx_glsl::step(ts);

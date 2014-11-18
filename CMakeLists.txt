@@ -11,7 +11,7 @@ INCLUDE(cmh_build_config)
 SET(SHARED True)
 
 FIND_PACKAGE(glfw)
-
+FIND_PACKAGE(PhysX)
 FIND_PACKAGE(galaxy 0 COMPONENTS
 	std
 	log
