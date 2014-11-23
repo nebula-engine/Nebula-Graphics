@@ -281,8 +281,8 @@ void			neb::gfx::mesh::tri1::drawDebug(
 
 
 			// calculate model space position and normal
-			glm::vec3 p = vec3(model * vec4(vertices_[i].p,1));
-			glm::vec3 n = mat3(model) * vertices_[i].n;
+			glm::vec3 p = glm::vec3(model * glm::vec4(vertices_[i].p,1));
+			glm::vec3 n = glm::mat3(model) * vertices_[i].n;
 			glm::vec3 e = p + n;
 
 			lines.emplace_back(
@@ -300,8 +300,6 @@ void			neb::gfx::mesh::tri1::drawDebug(
 		{
 
 			//glClear(GL_DEPTH_BUFFER_BIT);
-
-
 
 
 			GLint i_color = p->attrib_table_[neb::gfx::glsl::attribs::COLOR];

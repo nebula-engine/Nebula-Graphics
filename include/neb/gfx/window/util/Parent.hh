@@ -8,7 +8,7 @@
 namespace neb { namespace gfx { namespace window { namespace util {
 
 	class parent:
-		public nc::util::parent<neb::gfx::window::__base, parent>
+		public neb::core::util::parent<neb::gfx::window::__base, parent>
 	{
 		public:
 			void		render();

@@ -7,7 +7,7 @@
 #include <neb/core/util/log.hpp>
 #include <neb/core/core/scene/base.hpp>
 
-#include <neb/core/timer/Actor/Base.hpp>
+#include <neb/core/timer/actor/Base.hpp>
 
 //#include <neb/gfx/window/util/signals.hpp>
 #include <neb/gfx/core/actor/base.hpp>

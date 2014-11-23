@@ -44,6 +44,7 @@ namespace neb { namespace gfx { namespace mesh {
 			typedef neb::gfx::glsl::program::base				program;
 			typedef elements<neb::gfx::glsl::buffer::elements<GLushort>, neb::gfx::glsl::buffer::tri1>	base_t;
 		
+			// DO NOT CHANGE! coded in phx heightfield
 			typedef GLushort index_type;
 
 			tri1();

@@ -16,6 +16,9 @@ namespace neb {
 			namespace light {
 				extern severity_level		sl;
 			}
+			namespace scene {
+				extern severity_level		sl;
+			}
 		}
 	}
 }

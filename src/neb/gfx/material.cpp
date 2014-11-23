@@ -28,11 +28,11 @@ float operator<<(float f, tinyxml2::XMLElement* element) {
 }
 */
 
-neb::material::raw::raw() {
-	ambient_ = neb::core::color::color::white();
-	diffuse_ = neb::core::color::color::cyan();
-	specular_ = neb::core::color::color::white();
-	emission_ = neb::core::color::color::black();
+neb::gfx::material::raw::raw() {
+	ambient_ = neb::core::math::color::color::white();
+	diffuse_ = neb::core::math::color::color::cyan();
+	specular_ = neb::core::math::color::color::white();
+	emission_ = neb::core::math::color::color::black();
 	shininess_ = 500;
 }
 /* implement through serialize(ar)
@@ -58,13 +58,13 @@ void	neb::material::raw::load(tinyxml2::XMLElement* element) {
 
 
 
-neb::material::material::material()
+neb::gfx::material::material::material()
 {}
-void	neb::material::material::init()
+void	neb::gfx::material::material::init()
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 }
-void	neb::material::material::load(std::shared_ptr<neb::gfx::glsl::program::base> p) {
+void	neb::gfx::material::material::load(std::shared_ptr<neb::gfx::glsl::program::base> p) {
 /*
 	p->get_uniform_scalar("front.ambient")->load((glm::vec4)raw_.ambient_);
 	p->get_uniform_scalar("front.diffuse")->load((glm::vec4)raw_.diffuse_);
@@ -73,7 +73,7 @@ void	neb::material::material::load(std::shared_ptr<neb::gfx::glsl::program::base
 	p->get_uniform_scalar("front.shininess")->load(raw_.shininess_);
 	*/
 }
-void		neb::material::material::step(gal::etc::timestep const & ts) {
+void		neb::gfx::material::material::step(gal::etc::timestep const & ts) {
 		
 	//raw_.diffuse_.step(time);
 }
