@@ -3,9 +3,8 @@
 
 #include <neb/core/util/parent.hpp>
 #include <neb/gfx/window/util/Cast.hh>
-#include <neb/gfx/Context/Base.hh>
-#include <neb/gfx/Context/Util/decl.hpp>
-
+#include <neb/gfx/context/Base.hh>
+#include <neb/gfx/context/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace context { namespace util {
 
@@ -23,10 +22,10 @@ namespace neb { namespace gfx { namespace context { namespace util {
 			//virtual void			step(gal::etc::timestep const & ts);
 			virtual void			render();
 
-			std::weak_ptr<neb::gfx::context::fbo>		createContextFBO();
-			std::weak_ptr<neb::gfx::context::fbo_multi>	createContextFBOMulti();
-			std::weak_ptr<C_W>				createContextWindow();
-			std::weak_ptr<C_W>				createContextVisDepth();
+			virtual std::weak_ptr<neb::gfx::context::fbo>		createContextFBO() = 0;
+			virtual std::weak_ptr<neb::gfx::context::fbo_multi>	createContextFBOMulti() = 0;
+			virtual std::weak_ptr<C_W>				createContextWindow() = 0;
+			virtual std::weak_ptr<C_W>				createContextVisDepth() = 0;
 	};
 }}}}
 

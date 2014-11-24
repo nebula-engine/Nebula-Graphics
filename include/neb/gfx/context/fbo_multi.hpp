@@ -4,7 +4,7 @@
 #include <memory>
 
 #include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/Context/Window.hpp>
+#include <neb/gfx/context/Window.hpp>
 
 namespace neb {
 	namespace gfx {

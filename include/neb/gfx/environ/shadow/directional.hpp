@@ -7,16 +7,17 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/base.hpp>
+#include <neb/gfx/environ/single.hpp>
 #include <neb/gfx/environ/shadow/base.hpp>
 #include <neb/gfx/core/light/util/decl.hpp>
 
-namespace neb { namespace gfx { namespace environ {
+namespace neb { namespace gfx { namespace environ { namespace shadow {
 
 	/** @brief base
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
-	class shadow_directional:
+	class directional:
 		virtual public neb::gfx::environ::single<neb::gfx::camera::view::shadow::directional>,
 		virtual public neb::gfx::environ::shadow::base<neb::gfx::core::light::directional>
        	{
@@ -28,7 +29,7 @@ namespace neb { namespace gfx { namespace environ {
 			typedef std::shared_ptr<light_type>			light_shared;
 			typedef std::weak_ptr<light_type>			light_weak;
 		public:
-			shadow_directional();
+			directional();
 			virtual void		init();
 			virtual void		step(gal::etc::timestep const & ts);
 
@@ -52,7 +53,6 @@ namespace neb { namespace gfx { namespace environ {
 	};
 
 
-}}}
-
+}}}}
 
 #endif

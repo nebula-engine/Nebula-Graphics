@@ -38,22 +38,22 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 			virtual ~base();
 			void					__init(parent_t * const & p);
 			void					init_light();
-			virtual void				release();
-			void					step(::gal::etc::timestep const & ts);
-
-
+			virtual void				release() = 0;
+			virtual void				step(gal::etc::timestep const & ts) = 0;
+			
+			
 			void					resize(int w, int h);
 
 			void					draw(gfx::RenderDesc const &);
 			void					drawMesh(gfx::RenderDesc const &);
 			void					drawMeshHF(gfx::RenderDesc const &);
 			void					drawMeshInst(gfx::RenderDesc const &);
-			void					drawPhysxVisualization(gfx::RenderDesc const &);
+			virtual void				drawPhysxVisualization(gfx::RenderDesc const &) = 0;
 			void					drawDebug(gfx::RenderDesc const &);
 
 		public:
-			virtual void				load(boost::archive::polymorphic_iarchive & ar, unsigned int const & version);
-			virtual void				save(boost::archive::polymorphic_oarchive & ar, unsigned int const & version) const;
+			virtual void				load(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) = 0;
+			virtual void				save(boost::archive::polymorphic_oarchive & ar, unsigned int const & version) const = 0;
 			BOOST_SERIALIZATION_SPLIT_MEMBER();
 			/** @name convenience functions
 			 * @{

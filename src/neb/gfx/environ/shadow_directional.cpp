@@ -5,7 +5,7 @@
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
-#include <neb/gfx/camera/view/shadow_directional.hpp>
+#include <neb/gfx/camera/view/shadow/directional.hpp>
 #include <neb/gfx/camera/proj/ortho.hpp>
 
 #include <neb/gfx/environ/shadow/directional.hpp>
@@ -15,13 +15,13 @@
 #include <neb/gfx/core/light/directional.hpp>
 #include <neb/gfx/RenderDesc.hpp>
 
-neb::gfx::environ::shadow_directional::shadow_directional()
+neb::gfx::environ::shadow::directional::directional()
 {
 }
-void		neb::gfx::environ::shadow_directional::init() {
+void		neb::gfx::environ::shadow::directional::init() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto self = std::dynamic_pointer_cast<neb::gfx::environ::shadow_directional>(shared_from_this());
+	auto self = std::dynamic_pointer_cast<neb::gfx::environ::shadow::directional>(shared_from_this());
 
 //	auto light = light_.lock();
 //	assert(light);
@@ -33,12 +33,13 @@ void		neb::gfx::environ::shadow_directional::init() {
 	programs_.d3_inst_->init();
 	
 	// camera
-	view_.reset(new neb::gfx::camera::view::shadow_directional(self));
+	view_.reset(new neb::gfx::camera::view::shadow::directional(self));
 
-	proj_.reset(new neb::gfx::camera::proj::ortho(self));
+	createCameraOrtho();
+	//proj_.reset(new neb::gfx::camera::proj::ortho(self));
 
 }
-void		neb::gfx::environ::shadow_directional::step(gal::etc::timestep const & ts) {
+void		neb::gfx::environ::shadow::directional::step(gal::etc::timestep const & ts) {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -46,11 +47,11 @@ void		neb::gfx::environ::shadow_directional::step(gal::etc::timestep const & ts)
 	if(view_) view_->step(ts);	
 
 }
-bool		neb::gfx::environ::shadow_directional::shouldRender()
+bool		neb::gfx::environ::shadow::directional::shouldRender()
 {
 	return true;
 }
-void		neb::gfx::environ::shadow_directional::render(std::shared_ptr<neb::gfx::context::base> context) {
+void		neb::gfx::environ::shadow::directional::render(std::shared_ptr<neb::gfx::context::base> context) {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 

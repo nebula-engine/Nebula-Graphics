@@ -11,7 +11,7 @@
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
 #include <neb/gfx/camera/view/Base.hh>
-#include <neb/gfx/Context/fbo.hpp>
+#include <neb/gfx/context/fbo.hpp>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/core/scene/base.hpp>
 
@@ -38,7 +38,9 @@ void					THIS::init(neb::core::core::light::util::parent * const & p)
 	auto app = neb::gfx::app::glfw::global();
 
 	
-	auto window = app->neb::gfx::window::util::parent::create<neb::gfx::window::base>().lock();
+	//auto window = app->neb::gfx::window::util::parent::create<neb::gfx::window::base>().lock();
+	auto window = app->createWindow().lock();
+	//neb::gfx::window::util::parent::create<neb::gfx::window::base>().lock();
 
 	auto context = window->createContextFBO().lock();
 	
@@ -65,7 +67,7 @@ void					THIS::callbackPose(neb::core::math::pose const & gpose)
 void					THIS::setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) {
 	assert(environ);
 	shadow_environ_ = environ;
-	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow_directional>(environ);
+	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::directional>(environ);
 	assert(e);
 	
 	auto proj = e->proj_->proj();

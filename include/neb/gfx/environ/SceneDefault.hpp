@@ -7,6 +7,7 @@
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/three.hpp>
+#include <neb/gfx/environ/single.hpp>
 
 namespace neb { namespace gfx { namespace environ {
 

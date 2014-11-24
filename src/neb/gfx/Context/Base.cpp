@@ -6,11 +6,10 @@
 #include <neb/core/core/scene/base.hpp>
 
 #include <neb/gfx/window/Base.hh>
-#include <neb/gfx/Context/Base.hh>
-#include <neb/gfx/Context/Window.hpp>
-#include <neb/gfx/Context/Util/Parent.hh>
+#include <neb/gfx/context/Base.hh>
+#include <neb/gfx/context/Window.hpp>
+#include <neb/gfx/context/util/Parent.hh>
 #include <neb/gfx/environ/two.hpp>
-#include <neb/gfx/environ/SceneDefault.hpp>
 #include <neb/gfx/environ/NormalMap.hpp>
 #include <neb/gfx/environ/shadow/point.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>
@@ -59,111 +58,6 @@ void		neb::gfx::context::base::render() {
 	
 	environ_->render(self);
 }		
-std::weak_ptr<neb::gfx::environ::two>			neb::gfx::context::base::createEnvironTwo()
-{
-	auto environ = sp::make_shared<neb::gfx::environ::two>();
-	
-	auto w = getParent()->isWindowBase();
-	if(w)
-	{
-		w->makeCurrent();
-	}
-
-	environ->init();
-
-	environ_ = environ;
-	
-	return environ;
-}
-std::weak_ptr<neb::gfx::environ::SceneDefault>		neb::gfx::context::base::createEnvironSceneDefault() {
-
-	typedef neb::gfx::environ::SceneDefault E;
-	
-	std::shared_ptr<E> environ(new E(), gal::stl::deleter<E>());
-
-	auto w = getParent()->isWindowBase();
-	if(w)
-	{
-		w->makeCurrent();
-	}
-
-	environ->init();
-
-	environ_ = environ;
-
-	return environ;
-}
-std::weak_ptr<neb::gfx::environ::NormalMap>		neb::gfx::context::base::createEnvironNormalMap() {
-
-	typedef neb::gfx::environ::NormalMap E;
-	
-	std::shared_ptr<E> environ(new E(), gal::stl::deleter<E>());
-
-	auto w = getParent()->isWindowBase();
-	if(w)
-	{
-		w->makeCurrent();
-	}
-
-	environ->init();
-
-	environ_ = environ;
-
-	return environ;
-}
-std::weak_ptr<neb::gfx::environ::vis_depth>		neb::gfx::context::base::createEnvironVisDepth() {
-
-	auto environ = std::make_shared<neb::gfx::environ::vis_depth>();
-
-	auto p = getParent();
-	auto w = p->isWindowBase();
-	if(w)
-	{
-		w->makeCurrent();
-	}
-
-	environ->init();
-	
-	environ_ = environ;
-	
-	return environ;
-}
-std::weak_ptr<neb::gfx::environ::shadow_directional>	neb::gfx::context::base::createEnvironShadowDirectional() {
-
-	typedef neb::gfx::environ::shadow_directional E;
-
-	std::shared_ptr<E> environ (new E());
-
-	auto p = getParent();
-	auto w = p->isWindowBase();
-	if(w)
-	{
-		w->makeCurrent();
-	}
-
-	environ->init();
-	
-	environ_ = environ;
-	
-	return environ;
-}
-std::weak_ptr<neb::gfx::environ::shadow::point>		neb::gfx::context::base::createEnvironShadowPoint() {
-
-	auto environ = sp::make_shared<neb::gfx::environ::shadow::point>();
-
-	auto p = getParent();
-	auto w = p->isWindowBase();
-	if(w)
-	{
-		w->makeCurrent();
-	}
-
-	environ->init();
-	
-	environ_ = environ;
-	
-	return environ;
-}
 void							neb::gfx::context::base::setDrawable(std::shared_ptr<neb::gfx::drawable::base> drawable) {
 	assert(environ_);
 	environ_->drawable_ = drawable;

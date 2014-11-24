@@ -4,8 +4,7 @@
 #include <neb/gfx/camera/proj/ortho.hpp>
 
 
-neb::gfx::camera::proj::ortho::ortho(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::camera::proj::base(parent),
+neb::gfx::camera::proj::ortho::ortho():
 	left_(-30),
 	right_(30),
 	bottom_(-30),

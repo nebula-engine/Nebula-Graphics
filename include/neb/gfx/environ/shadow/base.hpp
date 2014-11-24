@@ -5,9 +5,7 @@
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/three.hpp>
 
-
 namespace neb { namespace gfx { namespace environ { namespace shadow {
-
 	/** @brief base
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
@@ -20,8 +18,6 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			typedef std::weak_ptr<neb::gfx::environ::SceneDefault>		environ_scene_weak;
 		public:
 			virtual ~base() {}
-
-
 			virtual void		init() = 0;
 			virtual void		step(gal::etc::timestep const & ts) = 0;
 			//virtual void		resize(int w, int h) = 0;
@@ -29,19 +25,12 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			virtual bool		shouldRender() = 0;
 			virtual bool		shouldRender(unsigned int) { return true; }
 		public:	
-
 			/** environ that uses the shadow map
 			 * frustrum used to determine which shadowmaps need to be rendered
 			 */
 			environ_scene_weak			environ_scene_;
-
 			std::weak_ptr<LIGHT>			light_;
-
-
 	};
-
-
 }}}}
-
 
 #endif

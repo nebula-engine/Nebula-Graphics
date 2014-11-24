@@ -14,7 +14,9 @@ namespace neb { namespace gfx { namespace environ {
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
-	class three: virtual public neb::gfx::environ::base {
+	class three:
+		virtual public neb::gfx::environ::base
+	{
 		public:
 			typedef std::shared_ptr<neb::gfx::glsl::program::base>		program_shared;
 			typedef std::shared_ptr<neb::gfx::camera::view::base>		view_shared;

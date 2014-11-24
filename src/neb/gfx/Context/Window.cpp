@@ -1,4 +1,4 @@
-#include <neb/gfx/Context/Window.hpp>
+#include <neb/gfx/context/Window.hpp>
 #include <neb/gfx/window/Base.hh>
 
 neb::gfx::context::window::window()

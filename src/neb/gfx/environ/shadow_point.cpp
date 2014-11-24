@@ -63,13 +63,11 @@ void		neb::gfx::environ::shadow::point::init() {
 		view_[c]->up_ = up[c];
 	}
 	
-	typedef neb::gfx::camera::proj::perspective pers;
-	
-	pers* p = new pers(self);
+	createCameraPerspective();
 
-	proj_.reset(p);
+	auto p = std::dynamic_pointer_cast<neb::gfx::camera::proj::perspective>(proj_);
+	assert(p);
 	p->set(90.0, 1.0, 100.0);
-
 
 }
 bool		neb::gfx::environ::shadow::point::shouldRender() {

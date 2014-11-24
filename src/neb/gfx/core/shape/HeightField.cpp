@@ -5,6 +5,8 @@
 
 typedef neb::gfx::core::shape::HeightField::Base THIS;
 
+THIS::Base()
+{}
 void			THIS::mesh_from_heightfield(neb::core::math::HeightField::Base* hf, float rowScale, float colScale)
 {
 	unsigned int r = hf->_M_r;

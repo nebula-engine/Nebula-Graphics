@@ -13,7 +13,7 @@
 #include <neb/core/core/shape/base.hpp>
 #include <neb/core/core/shape/util/parent.hpp>
 
-#include <neb/gfx/Context/Util/decl.hpp>
+#include <neb/gfx/context/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 

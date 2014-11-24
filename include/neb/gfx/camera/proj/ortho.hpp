@@ -12,7 +12,7 @@ namespace neb {namespace gfx {namespace camera {namespace proj {
 	/** @brief @Base */
 	class ortho: virtual public neb::gfx::camera::proj::base {
 		public:
-			ortho(std::shared_ptr<neb::gfx::environ::base>);
+			ortho();
 
 			virtual glm::mat4&			proj();
 			virtual void				calculate();

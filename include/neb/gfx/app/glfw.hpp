@@ -12,13 +12,14 @@
 
 #include <gal/itf/shared.hpp>
 
+#include <neb/core/except/base.hpp>
 #include <neb/core/util/decl.hpp>
 #include <neb/core/app/__base.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/gui/layout/util/parent.hpp>
 #include <neb/gfx/window/util/Parent.hh>
-#include <neb/gfx/Context/Util/Parent.hh>
+#include <neb/gfx/context/util/Parent.hh>
 
 namespace neb { namespace gfx {
 	
@@ -33,7 +34,8 @@ namespace neb { namespace gfx {
 		{
 			public:
 				typedef std::map< GLFWwindow*, std::shared_ptr<neb::gfx::window::base> >			glfwwindow_map_type;
-			
+				typedef std::weak_ptr<neb::gfx::window::base>					window_w;
+
 				static neb::gfx::app::glfw * const		global();
 
 				static void					static_error_fun(int,char const *);
@@ -56,8 +58,9 @@ namespace neb { namespace gfx {
 				void						render();
 				
 
-
-				std::weak_ptr<neb::gfx::window::base>		get_window(GLFWwindow*);
+				
+				window_w					createWindow() { throw neb::core::except::NotImplemented(); return window_w(); }
+				window_w					get_window(GLFWwindow*);
 
 			public:
 

@@ -11,7 +11,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/environ/util/decl.hpp>
 #include <neb/gfx/Viewport.hpp>
-#include <neb/gfx/Context/Util/Cast.hh>
+#include <neb/gfx/context/util/Cast.hh>
 //#include <neb/gfx/gui/layout/base.hpp>
 //#include <neb/gfx/window/Base.hh>
 //#include <neb/gfx/drawable/base.hpp>
@@ -50,12 +50,12 @@ namespace neb { namespace gfx { namespace context {
 			virtual void						resize(int w, int h);
 
 
-			std::weak_ptr<neb::gfx::environ::two>			createEnvironTwo();
-			std::weak_ptr<neb::gfx::environ::SceneDefault>		createEnvironSceneDefault();
-			std::weak_ptr<neb::gfx::environ::NormalMap>		createEnvironNormalMap();
-			std::weak_ptr<neb::gfx::environ::shadow::point>		createEnvironShadowPoint();
-			std::weak_ptr<neb::gfx::environ::shadow_directional>	createEnvironShadowDirectional();
-			std::weak_ptr<neb::gfx::environ::vis_depth>		createEnvironVisDepth();
+			virtual std::weak_ptr<neb::gfx::environ::two>			createEnvironTwo() = 0;
+			virtual std::weak_ptr<neb::gfx::environ::SceneDefault>		createEnvironSceneDefault() = 0;
+			virtual std::weak_ptr<neb::gfx::environ::NormalMap>		createEnvironNormalMap() = 0;
+			virtual std::weak_ptr<neb::gfx::environ::shadow::point>		createEnvironShadowPoint() = 0;
+			virtual std::weak_ptr<neb::gfx::environ::shadow::directional>	createEnvironShadowDirectional() = 0;
+			virtual std::weak_ptr<neb::gfx::environ::vis_depth>		createEnvironVisDepth() = 0;
 
 			void							setDrawable(std::shared_ptr<neb::gfx::drawable::base>);
 		public:

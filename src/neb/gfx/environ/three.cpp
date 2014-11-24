@@ -32,7 +32,9 @@ void		neb::gfx::environ::three::init() {
 //		view_.reset(new neb::gfx::camera::view::Free(self));
 //	}
 
-	proj_.reset(new neb::gfx::camera::proj::perspective(self));
+	//proj_.reset(new neb::gfx::camera::proj::perspective(self));
+	createCameraPerspective();
+
 	//camera_->init(shared_from_this());
 
 

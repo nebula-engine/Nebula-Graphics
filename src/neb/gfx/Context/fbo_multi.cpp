@@ -3,7 +3,7 @@
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/Context/fbo_multi.hpp>
+#include <neb/gfx/context/fbo_multi.hpp>
 #include <neb/gfx/environ/base.hpp>
 #include <neb/gfx/environ/shadow/point.hpp>
 #include <neb/gfx/texture.hpp>

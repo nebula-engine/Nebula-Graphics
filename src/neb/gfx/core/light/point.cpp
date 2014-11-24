@@ -17,7 +17,7 @@
 #include <neb/gfx/environ/shadow/point.hpp>
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/camera/view/shadow/point.hpp>
-#include <neb/gfx/Context/fbo_multi.hpp>
+#include <neb/gfx/context/fbo_multi.hpp>
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/util/log.hpp>
 
@@ -73,8 +73,9 @@ void			neb::gfx::core::light::point::initShadow(std::shared_ptr<neb::gfx::enviro
 
 	auto app = neb::gfx::app::glfw::global();
 
-	typedef neb::gfx::window::base Window;
-	auto window = app->neb::gfx::window::util::parent::create<Window>().lock();
+	//typedef neb::gfx::window::base Window;
+	//auto window = app->neb::gfx::window::util::parent::create<Window>().lock();
+	auto window = app->createWindow().lock(); //neb::gfx::window::util::parent::create<Window>().lock();
 	
 
 	auto context = window->createContextFBOMulti().lock();

@@ -8,6 +8,7 @@
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/base.hpp>
 #include <neb/gfx/environ/shadow/base.hpp>
+#include <neb/gfx/environ/single.hpp>
 #include <neb/gfx/core/light/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace environ { namespace shadow {

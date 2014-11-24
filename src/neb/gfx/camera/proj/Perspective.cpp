@@ -18,30 +18,13 @@
 
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/environ/base.hpp>
-#include <neb/gfx/glsl/uniform/scalar.hpp>
+//#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/util/io.hpp>
 #include <neb/gfx/opengl/uniform.hpp>
 
-neb::gfx::camera::proj::base::base(std::shared_ptr<neb::gfx::environ::base> parent):
-	parent_(parent)
-{
-}
-void		neb::gfx::camera::proj::base::load(neb::gfx::glsl::program::base const * const p) {
-	
-	//glViewport(0, 0, parent_->viewport_.w_, parent_->viewport_.h_);
-	
-	neb::gfx::ogl::glUniform(
-			p->uniform_table_[neb::gfx::glsl::uniforms::PROJ],
-			_M_matrix);
-}
-void		neb::gfx::camera::proj::base::step(gal::etc::timestep const & ts) {
-
-}
-
-neb::gfx::camera::proj::perspective::perspective(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::camera::proj::base(parent),
+neb::gfx::camera::proj::perspective::perspective():
 	fovy_(45.0f),
 	zn_(2.0f),
 	zf_(1000.0f)
@@ -63,17 +46,15 @@ void		neb::gfx::camera::proj::perspective::set(float fovy, float near, float far
 	zf_ = far;
 	calculate();
 }
-void		neb::gfx::camera::proj::perspective::calculate() {
-
-	auto parent = parent_.lock();
-	assert(parent);
+void		neb::gfx::camera::proj::perspective::calculate()
+{
+	auto parent = getParent();
 
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "fovy" << ::std::setw(8) << fovy_;
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "aspect" << ::std::setw(8) << parent->viewport_.aspect_;
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zn" << ::std::setw(8) << zn_;
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zf" << ::std::setw(8) << zf_;
 	
-
 	if(parent->viewport_.aspect_ == 0.0) {
 		parent->viewport_.aspect_ = 1.0;
 	}

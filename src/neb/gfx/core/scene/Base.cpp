@@ -16,6 +16,10 @@ typedef neb::gfx::core::scene::base THIS;
 typedef neb::core::core::actor::util::parent A;
 typedef neb::gfx::glsl::program::base P;
 
+THIS::base()
+{}
+THIS::~base()
+{}
 void			THIS::__init(parent_t * const & p)
 {
 	LOG(lg, neb::gfx::core::scene::sl, debug) << __PRETTY_FUNCTION__;

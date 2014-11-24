@@ -5,7 +5,7 @@
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
-#include <neb/gfx/camera/view/shadow_directional.hpp>
+#include <neb/gfx/camera/view/shadow/directional.hpp>
 #include <neb/gfx/camera/proj/ortho.hpp>
 #include <neb/gfx/camera/proj/perspective.hpp>
 
@@ -35,9 +35,11 @@ void		neb::gfx::environ::vis_depth::init() {
 	
 	
 	// camera
-	view_.reset(new neb::gfx::camera::view::shadow_directional(self));
+	view_.reset(new neb::gfx::camera::view::shadow::directional(self));
 
-	proj_.reset(new neb::gfx::camera::proj::ortho(self));
+	//proj_.reset(new neb::gfx::camera::proj::ortho(self));
+	createCameraOrtho();
+
 	//proj_.reset(new neb::gfx::camera::proj::perspective(self));
 
 

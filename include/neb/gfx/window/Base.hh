@@ -12,8 +12,8 @@
 #include <neb/core/input/source.hpp>
 #include <neb/core/input/callback.hpp>
 
-#include <neb/gfx/Context/Base.hh>
-#include <neb/gfx/Context/Util/Parent.hh>
+#include <neb/gfx/context/Base.hh>
+#include <neb/gfx/context/util/Parent.hh>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/texture.hpp>

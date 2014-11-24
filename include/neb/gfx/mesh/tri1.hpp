@@ -28,7 +28,7 @@
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/buffer/tri1.hpp>
-#include <neb/gfx/Context/Util/decl.hpp>
+#include <neb/gfx/context/util/decl.hpp>
 #include <neb/gfx/mesh/base.hpp>
 
 namespace ba = boost::archive;

@@ -24,7 +24,7 @@
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
 #include <neb/gfx/camera/view/Base.hh>
-#include <neb/gfx/Context/Window.hpp>
+#include <neb/gfx/context/Window.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/SceneDefault.hpp>
 #include <neb/gfx/window/Base.hh>
