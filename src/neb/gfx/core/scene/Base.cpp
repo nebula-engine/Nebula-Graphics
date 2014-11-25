@@ -40,15 +40,8 @@ void			THIS::__init(parent_t * const & p)
 		_M_programs._M_d3_inst->init();
 
 		init_light();
-
-		// meshes
-		nc::math::geo::cuboid cube(1.0,1.0,1.0);
-
-		meshes_.cuboid_.reset(new neb::gfx::mesh::instanced);
-		meshes_.cuboid_->mesh_.construct(&cube);
-
-		meshes_.cuboid_->instances_.reset(new neb::gfx::mesh::instanced::instances_type);
-		meshes_.cuboid_->instances_->alloc(2048);
+		
+		initMeshes();
 
 		unsigned int shadow_tex_size = 512;
 
@@ -57,6 +50,20 @@ void			THIS::__init(parent_t * const & p)
 				shadow_tex_size,
 				shadow_tex_size,
 				std::shared_ptr<neb::gfx::context::base>());
+	}
+}
+void			THIS::initMeshes()
+{
+	if(!meshes_.cuboid_)
+	{
+		// meshes
+		nc::math::geo::cuboid cube(1.0,1.0,1.0);
+
+		meshes_.cuboid_.reset(new neb::gfx::mesh::instanced);
+		meshes_.cuboid_->mesh_.construct(&cube);
+
+		meshes_.cuboid_->instances_.reset(new neb::gfx::mesh::instanced::instances_type);
+		meshes_.cuboid_->instances_->alloc(2048);
 	}
 }
 void			THIS::init_light()
@@ -91,7 +98,7 @@ void			THIS::drawMesh(neb::gfx::RenderDesc const & desc)
 	// If program parameter is not NULL, use it and do not load lights.
 	//
 	// For rendering lights, use one of the programs owned by this, which contain persistent data for the lights.
-	
+
 	P* d3;
 
 	if(desc.d3) {

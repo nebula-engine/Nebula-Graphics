@@ -56,6 +56,7 @@ void neb::gfx::core::shape::box::box::createMesh() {
 		LOG(lg, neb::gfx::sl, debug) << "emission";
 		//emi.print();
 
+		scene->initMeshes();
 		assert(scene->meshes_.cuboid_);
 
 		mesh_slot_ = scene->meshes_.cuboid_->instances_->reg(
