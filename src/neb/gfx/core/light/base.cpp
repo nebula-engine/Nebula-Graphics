@@ -57,6 +57,7 @@ void			THIS::init(nc::core::light::util::parent * const & p)
 	}
 
 	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());
+	assert(scene);
 
 	auto pose = getPoseGlobal();
 

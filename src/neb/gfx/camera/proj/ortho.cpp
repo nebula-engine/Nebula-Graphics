@@ -12,7 +12,6 @@ neb::gfx::camera::proj::ortho::ortho():
 	near_(0),
 	far_(100)
 {
-	calculate();
 }
 glm::mat4&			neb::gfx::camera::proj::ortho::proj() {
 	return _M_matrix;

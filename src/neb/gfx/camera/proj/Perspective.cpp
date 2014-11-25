@@ -29,7 +29,7 @@ neb::gfx::camera::proj::perspective::perspective():
 	zn_(2.0f),
 	zf_(1000.0f)
 {
-	calculate();
+	//calculate();
 }
 /*void		neb::gfx::camera::proj::perspective::init(RENDERABLE_S renderable) {
 	GLUTPP_DEBUG_0_FUNCTION;
