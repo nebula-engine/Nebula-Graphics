@@ -1,11 +1,15 @@
-
+#include <neb/core/except/base.hpp>
 #include <neb/gfx/app/base.hpp>
 
 std::weak_ptr<neb::gfx::app::base>		neb::gfx::app::base::initialize()
 {
 	assert(!g_app_);
+
 	
-	auto app(make_shared<neb::gfx::app::base>());
+/*
+	typedef neb::gfx::app::base T;
+
+	auto app = std::shared_ptr<T>(new T());
 
 	g_app_ = app;
 
@@ -16,6 +20,11 @@ std::weak_ptr<neb::gfx::app::base>		neb::gfx::app::base::initialize()
 	app->neb::gfx::app::__gfx_glsl::__init();
 
 	return app;
+	*/
+
+	throw neb::core::except::NotImplemented();
+
+	return std::weak_ptr<neb::gfx::app::base>();
 }
 void					neb::gfx::app::base::__init() {
 }
