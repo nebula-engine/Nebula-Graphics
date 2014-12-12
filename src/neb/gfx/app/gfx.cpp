@@ -33,6 +33,7 @@ void					neb::gfx::app::__gfx::init()
 		printf("Count not open any fonts\n");
 		abort();
 	}
+	
 
 
 }

@@ -8,13 +8,18 @@
 #include <vector>
 
 #include <neb/core/util/decl.hpp>
-
+#include <neb/core/itf/verbosity.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/glsl/program/util/flag.hpp>
 
+
 namespace neb { namespace gfx { namespace glsl { namespace program {
-	class base: public std::enable_shared_from_this<base> {
+	/**/
+	class base:
+		public std::enable_shared_from_this<base>,
+		public neb::core::itf::verbosity
+	{
 		public:
 			
 			enum {

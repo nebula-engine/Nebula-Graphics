@@ -56,8 +56,11 @@ namespace neb { namespace gfx {
 				void						release();
 				void						step(gal::etc::timestep const & ts);
 				void						render();
+				/*
+				 * called after the first OpenGL context is created
+				 */
+				void						onFirstContext();
 				
-
 				
 				window_w					createWindow() { throw neb::core::except::NotImplemented(); return window_w(); }
 				window_w					get_window(GLFWwindow*);

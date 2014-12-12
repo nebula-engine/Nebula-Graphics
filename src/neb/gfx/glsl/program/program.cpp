@@ -16,6 +16,7 @@
 #include <neb/gfx/glsl/shader.hh>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
+#include <neb/gfx/util/log.hpp>
 
 neb::gfx::glsl::program::base::~base() {}
 neb::gfx::glsl::program::base::base(std::string name):
@@ -127,21 +128,21 @@ void			neb::gfx::glsl::program::base::restoreDefaultShaderFlags()
 	glUniform1i(uniform_table_[neb::gfx::glsl::uniforms::FLAG], (GLint)flag_shader_);
 	checkerror("");
 }
-void			neb::gfx::glsl::program::base::locate() {
-
+void	neb::gfx::glsl::program::base::locate()
+{
 	use();
 
 	for(unsigned int c = 0; c < neb::gfx::glsl::attribs::COUNT; c++)
 	{
 		attrib_table_[c] = glGetAttribLocation(o_, neb::gfx::glsl::attribs::string[c]);
-		printf("attrib  %32s %i\n", neb::gfx::glsl::attribs::string[c], attrib_table_[c]);
+		printv(debug, "attrib  %32s %i\n", neb::gfx::glsl::attribs::string[c], attrib_table_[c]);
 		checkerror("");
 	}
 
 	for(unsigned int c = 0; c < neb::gfx::glsl::uniforms::COUNT; c++)
 	{
 		uniform_table_[c] = glGetUniformLocation(o_, neb::gfx::glsl::uniforms::string[c]);
-		printf("uniform %32s %i\n", neb::gfx::glsl::uniforms::string[c], uniform_table_[c]);
+		printv(debug, "uniform %32s %i\n", neb::gfx::glsl::uniforms::string[c], uniform_table_[c]);
 		checkerror("");
 	}
 
@@ -233,7 +234,8 @@ char const * shaderTypeString(GLenum type) {
 
 	return "unknown";
 }
-void		neb::gfx::glsl::program::base::scanUniforms() {
+void		neb::gfx::glsl::program::base::scanUniforms()
+{
 	GLsizei len;
 	GLint size;
 	GLenum type;
@@ -247,44 +249,23 @@ void		neb::gfx::glsl::program::base::scanUniforms() {
 
 		// scalar or vector
 
-
 		std::string name = str_name;
-
-		std::cout << "processing: " << name << std::endl;
-
+		
+		printv(debug, "processing: %s\n", name.c_str());
+		
 		size_t find_open = name.find("[");
 		size_t find_close = name.find("]");
 
 		if(find_open != std::string::npos) {
-
-			if(find_close == std::string::npos) {
-				abort();
-			}
+			if(find_close == std::string::npos) abort();
 
 			name = name.substr(0, find_open);
 
-
-			//auto it = uniform_vector_.find(name);
-			//if(it != uniform_vector_.end()) continue;
-
-			//add_uniform_vector(name, type);
-
-			std::cout
-				<< std::setw(16) << "array"
-				<< std::setw(32) << name
-				<< std::setw(32) << shaderTypeString(type)
-				<< std::endl;
-
-
+			printv(debug, "array  %32s%32s\n", name.c_str(),
+					shaderTypeString(type));
 		} else {
-
-			//add_uniform_scalar(name, type);
-
-			std::cout
-				<< std::setw(16) << "single"
-				<< std::setw(32) << name
-				<< std::setw(32) << shaderTypeString(type)
-				<< std::endl;
+			printv(debug, "single %32s%32s\n", name.c_str(),
+					shaderTypeString(type));
 		}
 	}
 }

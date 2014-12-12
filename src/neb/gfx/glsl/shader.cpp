@@ -43,7 +43,8 @@ std::vector<std::string>		readLines(std::string filename) {
 	}
 	return lines;
 }
-std::vector<std::string>		preprocess(const char * filename) {
+std::vector<std::string>		preprocess(const char * filename)
+{
 	std::vector<std::string> lines1 = readLines(filename);
 	std::vector<std::string> lines2;
 	

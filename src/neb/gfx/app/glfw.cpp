@@ -2,7 +2,9 @@
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/app/glfw.hpp>
 
-neb::gfx::app::glfw * const				neb::gfx::app::glfw::global()
+typedef neb::gfx::app::glfw THIS;
+
+neb::gfx::app::glfw * const				THIS::global()
 {
 	auto app = dynamic_cast<neb::gfx::app::glfw*>(g_app_.get());
 	assert(app);
@@ -66,14 +68,10 @@ void					neb::gfx::app::glfw::init()
 {
 
 	glfwSetErrorCallback(static_error_fun);
-	try
-	{
+	//try {
 		glfwInit();
 		flag_.set(neb::core::app::util::flag::INIT_GLFW);
-	}
-	catch(std::exception& e)
-	{
-	}
+	//} catch(std::exception& e);
 }
 void				neb::gfx::app::glfw::init_glew()
 {
@@ -112,4 +110,15 @@ std::weak_ptr<neb::gfx::window::base>			neb::gfx::app::glfw::get_window(GLFWwind
 	return it->second;
 }
 
+void							THIS::onFirstContext()
+{
+	if(flag_.any(neb::core::app::util::flag::FIRST_CONTEXT)) return;
+	flag_.set(neb::core::app::util::flag::FIRST_CONTEXT);
+	
+	/* Print version info */
+	GLubyte const *version_string = glGetString(GL_VERSION);
+	printf("OpenGL Version: %s\n", version_string);
+
+	exit(0);	
+}
 
