@@ -196,7 +196,7 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 				for(unsigned int i = 0; i < N; i++)
 				{
 					location[i] = p->uniform_table_[D::names_[i]];
-					std::cout << "location[" << i << "] = " << location[i] << std::endl;
+					logprint(neb::gfx::sl, debug, "location[% 4i] = %4i\n", i, location[i]);
 				}
 
 				_M_initialized = true;

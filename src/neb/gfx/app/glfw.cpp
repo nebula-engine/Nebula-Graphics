@@ -116,9 +116,18 @@ void							THIS::onFirstContext()
 	flag_.set(neb::core::app::util::flag::FIRST_CONTEXT);
 	
 	/* Print version info */
+	GLubyte const *vendor_string = glGetString(GL_VENDOR);
+	GLubyte const *renderer_string = glGetString(GL_RENDERER);
 	GLubyte const *version_string = glGetString(GL_VERSION);
-	printf("OpenGL Version: %s\n", version_string);
+	GLubyte const *shading_lang_version_string = glGetString(GL_SHADING_LANGUAGE_VERSION);
+	GLubyte const *extensions_string = glGetString(GL_EXTENSIONS);
 
-	exit(0);	
+	printf("OpenGL Vendor:                   %s\n", vendor_string);
+	printf("OpenGL Renderer:                 %s\n", renderer_string);
+	printf("OpenGL Version:                  %s\n", version_string);
+	printf("OpenGL Shading Language Version: %s\n", shading_lang_version_string);
+	printf("OpenGL Extensions:               %s\n", extensions_string);
+	
+	//exit(0);	
 }
 
