@@ -56,7 +56,7 @@ void	neb::gfx::glsl::program::base::add_shaders(std::vector<neb::gfx::glsl::shad
 	
 	for(unsigned int i = 0; i < s.size(); ++i )
 	{
-		printf("shader %i attached to program %i\n",s[i].o_,o_);
+		printv(info, "shader %i attached to program %i\n",s[i].o_,o_);
 		
 		glAttachShader(o_, s.at(i).o_);
 		checkerror("glAttachShader");
@@ -103,11 +103,11 @@ void	neb::gfx::glsl::program::base::compile() {
 		GLchar* compiler_log = (GLchar*)malloc(blen);
 
 		glGetInfoLogARB(o_, blen, &slen, compiler_log);
-		printf("compiler_log:%s\n", compiler_log);
+		printv(warning, "compiler_log:%s\n", compiler_log);
 		free (compiler_log);
 	}
 
-	printf("program=%i\n",o_);
+	printv(debug, "program=%i\n",o_);
 
 }
 void	neb::gfx::glsl::program::base::use() const {
@@ -245,7 +245,6 @@ void		neb::gfx::glsl::program::base::scanUniforms()
 
 		if(isGLError()) break;
 
-		//printf("name=%32s type=%s\n", str_name, shaderTypeString(type));
 
 		// scalar or vector
 

@@ -56,7 +56,7 @@ std::vector<std::string>		preprocess(const char * filename)
 
 			std::string filename_inc = line.substr(b+1, e-b-1);
 
-			std::cout << "include " << filename_inc << std::endl;
+			//printf("include %s\n", filename_inc.c_str());
 
 			auto linesi = preprocess(filename_inc.c_str());
 
@@ -94,7 +94,7 @@ void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 
 	if (!o_)
 	{
-		printf("create shader failed\n");
+		printv(critical, "create shader failed\n");
 		exit(0);
 	}
 
@@ -112,18 +112,18 @@ void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 
 	if(len>0)
 	{
-		fprintf(stderr, "%s: %s\n", filename, buffer);
+		printv(error, "%s: %s\n", filename, buffer);
 	}
 
 	if(!status)
 	{
 		glDeleteShader(o_);
-		printf("compile failed\n");
+		printv(critical, "compile failed\n");
 		exit(0);
 	}
 
 
-	printf("shader file '%s' loaded\n",filename);
+	printv(info, "shader file '%s' loaded\n", filename);
 }
 /*
    int isExtensionSupported(const char *extension)
