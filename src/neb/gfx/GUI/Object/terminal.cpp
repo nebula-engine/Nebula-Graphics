@@ -16,9 +16,12 @@ typedef gal::console::temp<gal::console::backend::python, gal::console::frontend
 neb::gfx::gui::object::terminal::terminal():
 	history_current_(0),
 	page_offset_(0),
-	max_line_count_(10)
-{}
-void		neb::gfx::gui::object::terminal::init(parent_t * const & p) {
+	max_line_count_(20)
+{
+}
+void			neb::gfx::gui::object::terminal::init(
+		parent_t * const & p)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	neb::gfx::gui::object::base::init(p);
@@ -26,9 +29,11 @@ void		neb::gfx::gui::object::terminal::init(parent_t * const & p) {
 	auto app = neb::core::app::__base::global();
 
 	console_ = app->console_;
-
 }
-void		neb::gfx::gui::object::terminal::draw(neb::gfx::RenderDesc const & desc) {
+
+void 			neb::gfx::gui::object::terminal::draw(
+		neb::gfx::RenderDesc const & desc)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto console(console_.lock());
@@ -38,12 +43,12 @@ void		neb::gfx::gui::object::terminal::draw(neb::gfx::RenderDesc const & desc) {
 
 	float sx = 1.0/ 600.0;
 	float sy = 1.0/ 600.0;
-
-	//draw_quad(x_, y_, w_, h_, bg_color_);
-
 	float x = x_ - 0.9;
 	float y = y_ + 0.9;
 	float line_height = 0.075;
+
+	//draw_quad(x_, y_, w_, h_, bg_color_);
+
 
 	LOG(lg, neb::gfx::sl, debug) << "copy lines";
 	std::vector<std::string> lines(console->lines_.begin(), console->lines_.end());
@@ -66,6 +71,7 @@ void		neb::gfx::gui::object::terminal::draw(neb::gfx::RenderDesc const & desc) {
 		draw_text(0, x, y, sx, sy, font_color_, lines[i].c_str());
 		y -= line_height;
 	}
+
 	LOG(lg, neb::gfx::sl, debug) << "draw lines end";
 
 	std::string line = console->prompt_end_ + console->line_.container;
