@@ -9,7 +9,7 @@
 namespace neb { namespace gfx { namespace app {
 	/** @brief base */
 	class base:
-		virtual public nc::app::__core,
+		virtual public neb::core::app::base,
 		virtual public neb::gfx::app::__gfx,
 		virtual public neb::gfx::app::__gfx_glsl
 	{

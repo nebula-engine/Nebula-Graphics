@@ -38,7 +38,7 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 
-	if(!neb::core::app::__base::is_valid()) return;
+	if(!neb::core::app::base::is_valid()) return;
 	
 	
 	w_ = w;
@@ -125,7 +125,7 @@ int		neb::gfx::texture::load_png(std::string filename)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 	
-	auto app(neb::core::app::__base::global());
+	auto app(neb::core::app::base::global());
 	
 	filename = NEB_SHARE_DIR"/media/texture/" + filename;
 	

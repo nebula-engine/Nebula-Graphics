@@ -26,7 +26,7 @@ void			neb::gfx::gui::object::terminal::init(
 
 	neb::gfx::gui::object::base::init(p);
 
-	auto app = neb::core::app::__base::global();
+	auto app = neb::core::app::base::global();
 
 	console_ = app->console_;
 }
