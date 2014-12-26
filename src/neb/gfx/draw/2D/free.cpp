@@ -183,17 +183,20 @@ void			neb::draw_text(
 				g->bitmap.buffer
 			    );
 
-		float x2 = x + g->bitmap_left * sx;
+		//float x2 = x + g->bitmap_left * sx;
 		float y2 = -y - g->bitmap_top * sy;
 		float w = g->bitmap.width * sx;
 		float h = g->bitmap.rows * sy;
 
+		float xspace = g->bitmap_left * sx;
+
 		GLfloat box[4][4] = 
 		{
-			{x2,     -y2    , 0, 0},
-			{x2 + w, -y2    , 1, 0},
-			{x2,     -y2 - h, 0, 1},
-			{x2 + w, -y2 - h, 1, 1},
+			{x,              -y2    , -xspace, 0},
+			{x + xspace + w, -y2    , 1,       0},
+
+			{x,              -y2 - h, -xspace, 1},
+			{x + xspace + w, -y2 - h, 1,       1},
 		};
 
 		//printf("glyph %i %i %i\n",g->bitmap.width,g->bitmap.rows,(int)sizeof box);
