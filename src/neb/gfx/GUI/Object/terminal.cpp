@@ -110,7 +110,7 @@ int			neb::gfx::gui::object::terminal::keyFun(
 
 	size_t N = console->lines_.size();
 
-	if(action == GLFW_PRESS) {
+	if((action == GLFW_PRESS) || (action == GLFW_REPEAT)) {
 		switch(key) {
 			case GLFW_KEY_ESCAPE:
 				flag_.toggle(neb::gfx::gui::object::util::flag::ENABLED);
@@ -121,8 +121,13 @@ int			neb::gfx::gui::object::terminal::keyFun(
 			case GLFW_KEY_BACKSPACE:
 				console->line_.backspace();
 				break;
+			case GLFW_KEY_HOME:
+				console->line_.home();
+				break;
+			case GLFW_KEY_END:
+				console->line_.end();
+				break;
 			case GLFW_KEY_ENTER:
-
 				if(!console->line_.container.empty())
 					history_.push_back(console->line_.container);
 
