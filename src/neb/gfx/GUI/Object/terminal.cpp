@@ -13,11 +13,23 @@
 
 typedef gal::console::temp<gal::console::backend::python, gal::console::frontend::store> console_type;
 
-neb::gfx::gui::object::terminal::terminal():
+typedef neb::gfx::gui::object::terminal THIS;
+
+THIS::terminal():
 	history_current_(0),
 	page_offset_(0),
 	max_line_count_(20)
 {
+}
+void			THIS::preloop()
+{
+	auto app = neb::core::app::base::global();
+
+	for(auto s: app->_M_preloop_scripts_python) {
+		auto console = console_.lock();
+		assert(console);
+		console->eval("execfile(" + s + ")");
+	}
 }
 void			neb::gfx::gui::object::terminal::init(
 		parent_t * const & p)

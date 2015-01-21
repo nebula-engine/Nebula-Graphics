@@ -20,6 +20,7 @@ namespace neb { namespace gfx { namespace gui { namespace object {
 			virtual void			init(parent_t * const & p);
 			virtual void			step(gal::etc::timestep const &) {}
 			virtual void			draw(RenderDesc const &);
+			virtual void			preloop();
 
 			virtual int			keyFun(
 					std::shared_ptr<neb::core::input::source> const &, int,int,int,int);
