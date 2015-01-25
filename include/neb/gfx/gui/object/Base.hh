@@ -34,7 +34,7 @@ namespace neb { namespace gfx { namespace gui { namespace object {
 
 			virtual void			init(parent_t * const & p);
 			virtual void			draw(neb::gfx::RenderDesc const &) = 0;
-
+			virtual void			preloop() = 0;
 			virtual int			keyFun(
 					std::shared_ptr<neb::core::input::source> const &, int, int, int, int) = 0;
 			virtual int			mouseButtonFun(

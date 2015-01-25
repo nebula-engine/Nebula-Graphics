@@ -23,12 +23,15 @@ THIS::terminal():
 }
 void			THIS::preloop()
 {
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
 	auto app = neb::core::app::base::global();
 
 	for(auto s: app->_M_preloop_scripts_python) {
 		auto console = console_.lock();
 		assert(console);
-		console->eval("execfile(" + s + ")");
+
+		console->eval("execfile(\"" + s + "\")");
 	}
 }
 void			neb::gfx::gui::object::terminal::init(
