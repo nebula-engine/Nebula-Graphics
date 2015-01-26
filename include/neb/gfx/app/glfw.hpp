@@ -34,7 +34,7 @@ namespace neb { namespace gfx {
 		{
 			public:
 				typedef std::map< GLFWwindow*, std::shared_ptr<neb::gfx::window::base> >			glfwwindow_map_type;
-				typedef std::weak_ptr<neb::gfx::window::base>					window_w;
+				typedef std::weak_ptr<neb::core::window::base>					window_w;
 
 				static neb::gfx::app::glfw * const		global();
 
@@ -62,7 +62,7 @@ namespace neb { namespace gfx {
 				void						onFirstContext();
 				
 				
-				window_w					createWindow() { throw neb::core::except::NotImplemented(); return window_w(); }
+				//virtual window_w				createWindow() { throw neb::core::except::NotImplemented(); return window_w(); }
 				window_w					get_window(GLFWwindow*);
 
 			public:

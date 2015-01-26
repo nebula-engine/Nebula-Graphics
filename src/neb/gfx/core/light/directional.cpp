@@ -1,4 +1,8 @@
+
 #include <neb/core/core/light/util/parent.hpp>
+#include <neb/core/window/Base.hpp>
+#include <neb/core/context/FBO.hpp>
+#include <neb/core/environ/shadow/Directional.hpp>
 
 #include <neb/gfx/core/light/directional.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>
@@ -48,9 +52,9 @@ void					THIS::init(neb::core::core::light::util::parent * const & p)
 	
 	context->setDrawable(scene);
 	
-	context->texture_ = scene->tex_shadow_map_;
+	context->setTexture(scene->tex_shadow_map_);
 
-	environ->light_ = self;
+	environ->setLight(self);
 
 	setShadowEnviron(environ);
 
@@ -64,7 +68,8 @@ void					THIS::callbackPose(neb::core::math::pose const & gpose)
 	
 	//scene->light_array_[light_array_].set_pos(light_array_slot_, gpose.pos_);
 }
-void					THIS::setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) {
+void					THIS::setShadowEnviron(std::shared_ptr<neb::core::environ::Base> environ)
+{
 	assert(environ);
 	shadow_environ_ = environ;
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::directional>(environ);

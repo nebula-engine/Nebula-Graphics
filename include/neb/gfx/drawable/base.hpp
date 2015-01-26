@@ -2,7 +2,7 @@
 #define NEBULA_GRAPHICS_DRAWABLE_BASE_HPP
 
 #include <neb/core/itf/shared.hpp>
-
+#include <neb/core/drawable/Base.hpp>
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
@@ -12,7 +12,10 @@ namespace neb { namespace gfx { namespace drawable {
 	 * 
 	 * Contains content to draw in a context (scene, layout, etc.).
 	 */
-	class base: virtual public neb::core::itf::shared {
+	class base:
+		virtual public neb::core::itf::shared,
+		virtual public neb::core::drawable::Base
+	{
 		public:
 			//virtual void			init() = 0;
 			/** @brief draw
