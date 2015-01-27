@@ -3,6 +3,8 @@
 
 #include <gal/etc/timestep.hpp>
 
+#include <neb/core/environ/Base.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
@@ -16,6 +18,7 @@ namespace neb { namespace gfx { namespace environ {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	class base:
+		virtual public neb::core::environ::Base,
 		virtual public neb::gfx::environ::util::cast
 	{
 		public:

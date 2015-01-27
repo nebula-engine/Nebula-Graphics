@@ -12,6 +12,7 @@
 #include <neb/core/util/decl.hpp>
 #include <neb/core/itf/shared.hpp>
 #include <neb/core/math/serialization/glm.hpp>
+#include <neb/core/environ/util/decl.hpp>
 
 #include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/texture.hpp>
@@ -34,7 +35,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 					neb::core::core::light::util::count & light_count,
 					neb::core::math::pose const & pose);
 			virtual void		setShadowEnviron(
-						std::shared_ptr<neb::gfx::environ::base> environ);
+					std::shared_ptr<neb::core::environ::Base> environ);
 
 
 			virtual void	load(ba::polymorphic_iarchive & ar, unsigned int const &);

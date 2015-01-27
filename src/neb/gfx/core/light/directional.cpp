@@ -71,8 +71,11 @@ void					THIS::callbackPose(neb::core::math::pose const & gpose)
 void					THIS::setShadowEnviron(std::shared_ptr<neb::core::environ::Base> environ)
 {
 	assert(environ);
-	shadow_environ_ = environ;
+	
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::directional>(environ);
+
+	shadow_environ_ = e;
+	
 	assert(e);
 	
 	auto proj = e->proj_->proj();

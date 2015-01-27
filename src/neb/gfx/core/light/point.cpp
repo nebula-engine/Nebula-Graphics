@@ -4,8 +4,10 @@
 
 #include <neb/core/util/debug.hpp>
 #include <neb/core/util/log.hpp>
-
+#include <neb/core/window/Base.hpp>
 #include <neb/core/core/light/util/parent.hpp>
+#include <neb/core/context/FBOM.hpp>
+#include <neb/core/environ/shadow/Directional.hpp>
 
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
@@ -15,6 +17,7 @@
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/environ/shadow/point.hpp>
+#include <neb/gfx/environ/SceneDefault.hpp>
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/camera/view/shadow/point.hpp>
 #include <neb/gfx/context/fbo_multi.hpp>
@@ -56,49 +59,51 @@ void			neb::gfx::core::light::point::init(neb::core::core::light::util::parent *
 	neb::gfx::core::light::base::init(p);
 	
 }	
-void		neb::gfx::core::light::point::callbackPose(neb::core::math::pose const & gpose)
+void			THIS::callbackPose(neb::core::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
 	
 	light_array_slot_->set<0>(gpose.pos_);
 }
-void			neb::gfx::core::light::point::initShadow(std::shared_ptr<neb::gfx::environ::SceneDefault> e3)
+void			THIS::initShadow(
+		std::shared_ptr<neb::gfx::environ::SceneDefault> e3)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	// scene
 	auto scene = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(getScene()->shared_from_this());
-
+	
 	auto self = std::dynamic_pointer_cast<neb::gfx::core::light::point>(shared_from_this());
-
+	
 	auto app = neb::gfx::app::glfw::global();
 
 	//typedef neb::gfx::window::base Window;
 	//auto window = app->neb::gfx::window::util::parent::create<Window>().lock();
 	auto window = app->createWindow().lock(); //neb::gfx::window::util::parent::create<Window>().lock();
 	
-
 	auto context = window->createContextFBOMulti().lock();
 
 	auto environ = context->createEnvironShadowPoint().lock();
 
 	context->setDrawable(scene);
 
-	context->texture_ = scene->tex_shadow_map_;
+	context->setTexture(scene->tex_shadow_map_);
 
-	environ->light_ = self;
+	environ->setLight(self);
 
 	setShadowEnviron(environ);
 
 	// where shadows are rendered
-	environ->environ_scene_ = e3;
+	environ->setSceneEnviron(e3);
 
 }
-void		neb::gfx::core::light::point::setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) {
+void		neb::gfx::core::light::point::setShadowEnviron(std::shared_ptr<neb::core::environ::Base> environ) {
 	assert(environ);
-	shadow_environ_ = environ;
+
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::point>(environ);
 	assert(e);
+
+	shadow_environ_ = e;
 
 	auto proj = e->proj_->proj();
 

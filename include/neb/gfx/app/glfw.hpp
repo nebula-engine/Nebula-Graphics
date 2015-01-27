@@ -34,7 +34,7 @@ namespace neb { namespace gfx {
 		{
 			public:
 				typedef std::map< GLFWwindow*, std::shared_ptr<neb::gfx::window::base> >			glfwwindow_map_type;
-				typedef std::weak_ptr<neb::core::window::base>					window_w;
+				typedef std::weak_ptr<neb::core::window::Base>					window_w;
 
 				static neb::gfx::app::glfw * const		global();
 
