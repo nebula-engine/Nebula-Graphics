@@ -5,8 +5,9 @@
 
 #include <gal/stl/child.hpp>
 
-#include <neb/core/util/decl.hpp> // gru/config.hpp.in
-
+#include <neb/core/context/util/decl.hpp>
+#include <neb/core/context/Base.hpp>
+#include <neb/core/util/decl.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/environ/util/decl.hpp>
@@ -34,12 +35,11 @@ namespace neb { namespace gfx { namespace context {
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
 	class base:
-		virtual public neb::core::itf::shared,
-		virtual public neb::gfx::context::util::cast,
-		virtual public gal::stl::child<neb::gfx::context::util::parent>
+		virtual public neb::core::context::Base,
+		virtual public neb::gfx::context::util::cast
 	{
 		public:
-			typedef neb::gfx::context::util::parent parent_t;
+			typedef neb::core::context::util::Parent parent_t;
 
 			base();
 			//base&							operator=(base const & r);
@@ -49,9 +49,7 @@ namespace neb { namespace gfx { namespace context {
 			virtual void						render();
 			virtual void						resize(int w, int h);
 
-
-
-			void							setDrawable(std::shared_ptr<neb::gfx::drawable::base>);
+			virtual void						setDrawable(std::shared_ptr<neb::gfx::drawable::base>);
 		public:
 			std::shared_ptr<neb::gfx::environ::base>		environ_;
 	};

@@ -3,6 +3,8 @@
 
 #include <memory>
 
+#include <neb/core/context/FBO.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/context/Window.hpp>
 
@@ -15,7 +17,8 @@ namespace neb { namespace gfx { namespace context {
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
 	class fbo:
-		public neb::gfx::context::window
+		virtual public neb::core::context::FBO,
+		virtual public neb::gfx::context::window
 	{
 		public:
 			fbo();

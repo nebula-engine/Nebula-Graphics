@@ -61,13 +61,13 @@ namespace neb { namespace gfx { namespace window {
 			std::weak_ptr<neb::core::context::window>	createContextNormalMap();
 			*/
 
-			void						makeCurrent();
+			virtual void				makeCurrent();
 
-			void						printScreen();
+			void					printScreen();
 		public:
 
 
-			static GLFWwindow*				first_window_;
+			static GLFWwindow*			first_window_;
 
 
 			neb::gfx::window::util::Flag	flag_;

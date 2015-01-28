@@ -6,12 +6,14 @@
 #include <neb/gfx/context/fbo_multi.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
 
-typedef neb::gfx::context::fbo		C_FBO;
-typedef neb::gfx::context::fbo_multi	C_FBOM;
-typedef neb::gfx::context::window	C_W;
+typedef neb::core::context::FBO		C_FBO;
+typedef neb::core::context::FBOM	C_FBOM;
+typedef neb::core::context::Window	C_W;
 
-void					neb::gfx::context::util::parent::render() {
+typedef neb::gfx::context::util::parent THIS;
 
+void				THIS::render()
+{
 	auto lamb = [&] (pointer p) {
 		p->render();
 	};
@@ -33,7 +35,7 @@ std::weak_ptr<C_W>		THIS::createContextTwo() {
 
 		auto environ = context->createEnvironTwo().lock();
 
-		//context->init(this);
+		context->init(this);
 
 		w = context;
 	}

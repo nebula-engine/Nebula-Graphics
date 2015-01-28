@@ -28,4 +28,3 @@ namespace neb { namespace gfx { namespace context {
 }}}
 
 #endif
-
