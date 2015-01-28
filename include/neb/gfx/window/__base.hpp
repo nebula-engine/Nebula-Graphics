@@ -10,8 +10,7 @@
 namespace neb { namespace gfx { namespace window {
 
 	class __base:
-		virtual public neb::core::itf::shared,
-		virtual public gal::stl::child<neb::gfx::window::util::parent>
+		virtual public neb::core::itf::shared
 	{
 		public:
 			virtual void		render() = 0;

@@ -50,12 +50,6 @@ namespace neb { namespace gfx { namespace context {
 			virtual void						resize(int w, int h);
 
 
-			virtual std::weak_ptr<neb::gfx::environ::two>			createEnvironTwo() = 0;
-			virtual std::weak_ptr<neb::gfx::environ::SceneDefault>		createEnvironSceneDefault() = 0;
-			virtual std::weak_ptr<neb::gfx::environ::NormalMap>		createEnvironNormalMap() = 0;
-			virtual std::weak_ptr<neb::gfx::environ::shadow::point>		createEnvironShadowPoint() = 0;
-			virtual std::weak_ptr<neb::gfx::environ::shadow::directional>	createEnvironShadowDirectional() = 0;
-			virtual std::weak_ptr<neb::gfx::environ::vis_depth>		createEnvironVisDepth() = 0;
 
 			void							setDrawable(std::shared_ptr<neb::gfx::drawable::base>);
 		public:

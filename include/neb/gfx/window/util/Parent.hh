@@ -1,17 +1,17 @@
 #ifndef NEBULA_GRAPHICS_WINDOW_UTIL_PARENT_HH
 #define NEBULA_GRAPHICS_WINDOW_UTIL_PARENT_HH
 
-#include <neb/core/util/parent.hpp>
+#include <neb/core/window/util/Parent.hpp>
 
 #include <neb/gfx/window/__base.hpp>
 
 namespace neb { namespace gfx { namespace window { namespace util {
 
 	class parent:
-		public neb::core::util::parent<neb::gfx::window::__base, parent>
+		virtual public neb::core::window::util::Parent
 	{
 		public:
-			void		render();
+			virtual void		render();
 	};
 }}}}
 

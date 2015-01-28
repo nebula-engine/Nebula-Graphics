@@ -1,6 +1,9 @@
 #ifndef NEBULA_GFX_ENVIRON_SHADOW_BASE_HPP
 #define NEBULA_GFX_ENVIRON_SHADOW_BASE_HPP
 
+#include <neb/core/core/light/base.hpp>
+#include <neb/core/environ/shadow/Base.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/environ/three.hpp>
@@ -11,6 +14,7 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	template<typename LIGHT> class base:
+		virtual public neb::core::environ::shadow::Base,
 		virtual public neb::gfx::environ::three
 	{
 		public:
@@ -24,11 +28,24 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			virtual void		render(std::shared_ptr<neb::gfx::context::base> context) = 0;
 			virtual bool		shouldRender() = 0;
 			virtual bool		shouldRender(unsigned int) { return true; }
+			virtual void		setLight(std::shared_ptr<neb::core::core::light::base> light)
+			{
+				auto l = std::dynamic_pointer_cast<LIGHT>(light);
+				assert(l);
+				light_ = l;
+			}
+			virtual void		setSceneEnviron(std::shared_ptr<neb::core::environ::Base> environ)
+			{
+				auto e = std::dynamic_pointer_cast<neb::gfx::environ::SceneDefault>(environ);
+				assert(e);
+				environ_scene_ = e;
+			}
 		public:	
 			/** environ that uses the shadow map
 			 * frustrum used to determine which shadowmaps need to be rendered
 			 */
 			environ_scene_weak			environ_scene_;
+
 			std::weak_ptr<LIGHT>			light_;
 	};
 }}}}

@@ -4,6 +4,7 @@
 #include <memory>
 
 #include <neb/core/util/decl.hpp>
+#include <neb/core/context/Window.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/context/Base.hh>
@@ -17,6 +18,7 @@ namespace neb { namespace gfx { namespace context {
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
 	class window:
+		virtual public neb::core::context::Window,
 		virtual public neb::gfx::context::base
 	{
 		public:

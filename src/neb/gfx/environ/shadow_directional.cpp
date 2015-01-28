@@ -8,6 +8,7 @@
 #include <neb/gfx/camera/view/shadow/directional.hpp>
 #include <neb/gfx/camera/proj/ortho.hpp>
 
+#include <neb/gfx/environ/SceneDefault.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/util/log.hpp>

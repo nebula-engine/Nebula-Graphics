@@ -15,14 +15,12 @@
 #include <neb/core/core/scene/util/decl.hpp>
 #include <neb/core/core/actor/base.hpp>
 #include <neb/core/core/light/base.hpp>
+#include <neb/core/context/Window.hpp>
 
 #include <neb/gfx/free.hpp>
-
 #include <neb/gfx/opengl/png.hpp>
-
 #include <neb/gfx/app/glfw.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
-
 #include <neb/gfx/camera/view/Base.hh>
 #include <neb/gfx/context/Window.hpp>
 #include <neb/gfx/environ/two.hpp>
@@ -297,75 +295,7 @@ void			neb::gfx::window::base::resize()
 	C::map_.for_each(lamb);
 
 }
-std::weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextTwo() {
 
-	auto self = isWindowBase();
-	assert(self);
-
-	std::weak_ptr<neb::gfx::context::window> w;
-	{
-		auto context = createContextWindow().lock();
-		//auto context(make_shared<>(self));
-		//assert(context);
-		//insert(context);
-
-		auto environ = context->createEnvironTwo().lock();
-
-		//context->init(this);
-
-		w = context;
-	}
-	assert(!w.expired());
-	return w;
-}
-std::weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextThree() {
-
-	auto self = isWindowBase();
-	assert(self);
-
-	std::weak_ptr<neb::gfx::context::window> w;
-	{
-		auto context = createContextWindow().lock();
-		//	auto context = std::make_shared<neb::gfx::context::window>(self);
-		//	assert(context);
-		//	insert(context);
-
-		auto environ = context->createEnvironSceneDefault().lock();
-
-		context->init(this);
-
-		//assert(environ->view_);
-		//environ->view_->connect(self);
-
-		w = context;
-	}
-	assert(!w.expired());
-	return w;
-}
-std::weak_ptr<neb::gfx::context::window>		neb::gfx::window::base::createContextNormalMap() {
-
-	auto self = isWindowBase();
-	assert(self);
-
-	std::weak_ptr<neb::gfx::context::window> w;
-	{
-		auto context = createContextWindow().lock();
-		//	auto context = std::make_shared<neb::gfx::context::window>(self);
-		//	assert(context);
-		//	insert(context);
-
-		auto environ = context->createEnvironNormalMap().lock();
-
-		context->init(this);
-
-		//assert(environ->view_);
-		//environ->view_->connect(self);
-
-		w = context;
-	}
-	assert(!w.expired());
-	return w;
-}
 void						neb::gfx::window::base::makeCurrent() {
 	assert(window_ != NULL);
 	glfwMakeContextCurrent(window_);
