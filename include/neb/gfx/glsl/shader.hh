@@ -2,6 +2,7 @@
 #define __GLUTPP_SHADER_H__
 
 #include <GLFW/glfw3.h>
+
 #include <neb/core/itf/verbosity.hpp>
 
 namespace neb { namespace gfx { namespace glsl {

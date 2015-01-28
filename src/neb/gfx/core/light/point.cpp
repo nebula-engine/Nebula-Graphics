@@ -95,9 +95,10 @@ void			THIS::initShadow(
 
 	// where shadows are rendered
 	environ->setSceneEnviron(e3);
-
 }
-void		neb::gfx::core::light::point::setShadowEnviron(std::shared_ptr<neb::core::environ::Base> environ) {
+void			neb::gfx::core::light::point::setShadowEnviron(
+		std::shared_ptr<neb::core::environ::Base> environ)
+{
 	assert(environ);
 
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::point>(environ);
@@ -137,7 +138,6 @@ void		neb::gfx::core::light::point::setShadowEnviron(std::shared_ptr<neb::core::
 	shadow_sampler_[1].y = texture_layers_->operator[](4);
 	shadow_sampler_[1].z = texture_layers_->operator[](5);
 
-
 	light_array_slot_->set<10>(shadow_vpb_[0]);
 	light_array_slot_->set<11>(shadow_vpb_[1]);
 	light_array_slot_->set<12>(shadow_vpb_[2]);
@@ -145,12 +145,8 @@ void		neb::gfx::core::light::point::setShadowEnviron(std::shared_ptr<neb::core::
 	light_array_slot_->set<14>(shadow_vpb_[4]);
 	light_array_slot_->set<15>(shadow_vpb_[5]);
 
-
 	light_array_slot_->set<16>(shadow_sampler_[0]);
 	light_array_slot_->set<17>(shadow_sampler_[1]);
-
-
-
 }
 void		THIS::load(ba::polymorphic_iarchive & ar, unsigned int const & v)
 {

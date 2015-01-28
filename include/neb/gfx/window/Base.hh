@@ -11,6 +11,7 @@
 #include <neb/core/core/scene/util/decl.hpp>
 #include <neb/core/input/source.hpp>
 #include <neb/core/input/callback.hpp>
+#include <neb/core/window/Base.hpp>
 
 #include <neb/gfx/context/Base.hh>
 #include <neb/gfx/context/util/Parent.hh>
@@ -26,6 +27,7 @@
 
 namespace neb { namespace gfx { namespace window {
 	class base:
+		virtual public neb::core::window::Base,
 		virtual public neb::gfx::window::__base,
 		virtual public neb::gfx::context::util::parent,
 		virtual public neb::gfx::window::util::cast,

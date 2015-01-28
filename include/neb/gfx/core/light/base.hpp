@@ -9,10 +9,11 @@
 
 #include <gal/etc/slots.hpp>
 
-#include <neb/core/util/decl.hpp>
-#include <neb/core/math/serialization/glm.hpp>
 #include <neb/core/core/light/base.hpp>
+#include <neb/core/environ/util/decl.hpp>
+#include <neb/core/math/serialization/glm.hpp>
 #include <neb/core/math/color/color.hpp>
+#include <neb/core/util/decl.hpp>
 
 #include <neb/gfx/glsl/uniform/light_array.hpp>
 #include <neb/gfx/core/scene/util/decl.hpp>
@@ -50,7 +51,8 @@ namespace neb { namespace gfx { namespace core { namespace light {
 			neb::core::math::pose				getPose();
 			glm::vec4					getPos();
 			void						setPose(neb::core::math::pose const & pose);
-			virtual void					setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) = 0;
+			virtual void					setShadowEnviron(std::shared_ptr<neb::core::environ::Base> environ);
+			//virtual void					setSceneEnviron(std::shared_ptr<neb::core::environ::base> environ);
 		protected:
 			template<class Archive> void			__serialize(Archive & ar, unsigned int const & version)
 			{

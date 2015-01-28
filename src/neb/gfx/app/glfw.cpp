@@ -17,9 +17,9 @@ void							neb::gfx::app::glfw::static_error_fun(int error, char const * descrip
 }
 void							neb::gfx::app::glfw::static_window_pos_fun(GLFWwindow* window, int x, int y){
 	//GLUTPP_DEBUG_0_FUNCTION;
-
+	
 	auto w = neb::gfx::app::glfw::global()->get_window(window).lock();
-
+	
 	w->callback_window_pos_fun(window,x,y);
 }
 void							neb::gfx::app::glfw::static_window_size_fun(GLFWwindow* window, int width, int h){
@@ -103,7 +103,7 @@ void				neb::gfx::app::glfw::render()
 	neb::gfx::window::util::parent::render();
 
 }
-std::weak_ptr<neb::gfx::window::base>			neb::gfx::app::glfw::get_window(GLFWwindow* window) {
+std::weak_ptr<neb::core::window::Base>			neb::gfx::app::glfw::get_window(GLFWwindow* window) {
 	auto it = windows_glfw_.find(window);
 	assert(it != windows_glfw_.cend());
 	assert(it->second);

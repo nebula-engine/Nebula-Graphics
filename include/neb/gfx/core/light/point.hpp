@@ -14,14 +14,10 @@
 #include <neb/core/math/serialization/glm.hpp>
 #include <neb/core/environ/util/decl.hpp>
 
-#include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/core/light/base.hpp>
 
-
 namespace neb { namespace gfx { namespace core { namespace light {
-
-
 	class point:
 		virtual public neb::gfx::core::light::base
 	{
@@ -37,15 +33,10 @@ namespace neb { namespace gfx { namespace core { namespace light {
 			virtual void		setShadowEnviron(
 					std::shared_ptr<neb::core::environ::Base> environ);
 
-
 			virtual void	load(ba::polymorphic_iarchive & ar, unsigned int const &);
 			virtual void	save(ba::polymorphic_oarchive & ar, unsigned int const &) const;
 			BOOST_SERIALIZATION_SPLIT_MEMBER();
-
 	};
-
-
-
 }}}}
 
 #endif

@@ -2,6 +2,8 @@
 #define NEBULA_GRAPHICS_CONTEXT_UTIL_PARENT_HH
 
 #include <neb/core/util/parent.hpp>
+#include <neb/core/context/util/decl.hpp>
+
 #include <neb/gfx/window/util/Cast.hh>
 #include <neb/gfx/context/Base.hh>
 #include <neb/gfx/context/util/decl.hpp>
@@ -13,7 +15,7 @@ namespace neb { namespace gfx { namespace context { namespace util {
 		virtual public neb::gfx::window::util::cast
 	{
 		public:
-			typedef neb::gfx::context::window C_W;
+			typedef neb::core::context::Window C_W;
 
 		public:
 
