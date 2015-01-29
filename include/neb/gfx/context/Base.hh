@@ -39,7 +39,7 @@ namespace neb { namespace gfx { namespace context {
 		virtual public neb::gfx::context::util::cast
 	{
 		public:
-			typedef neb::core::context::util::Parent parent_t;
+			//typedef neb::core::context::util::Parent parent_t;
 
 			base();
 			//base&							operator=(base const & r);

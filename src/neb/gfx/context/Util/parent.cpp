@@ -78,7 +78,7 @@ std::weak_ptr<C_W>		THIS::createContextNormalMap() {
 		//	assert(context);
 		//	insert(context);
 
-		auto environ = context->createEnvironNormalMap().lock();
+		auto environ = context->createEnvironVisualizationNormal().lock();
 
 		context->init(this);
 

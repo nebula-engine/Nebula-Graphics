@@ -7,6 +7,7 @@
 #include <neb/core/window/Base.hpp>
 #include <neb/core/core/light/util/parent.hpp>
 #include <neb/core/context/FBOM.hpp>
+#include <neb/core/environ/shadow/Point.hpp>
 #include <neb/core/environ/shadow/Directional.hpp>
 
 #include <neb/gfx/app/__gfx.hpp>

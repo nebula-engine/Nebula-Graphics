@@ -1,18 +1,21 @@
-#include <neb/gfx/context/Window.hpp>
-#include <neb/gfx/window/Base.hh>
+#include <neb/core/window/Base.hpp>
 
-neb::gfx::context::window::window()
+#include <neb/gfx/context/Window.hpp>
+
+typedef neb::gfx::context::window THIS;
+
+THIS::window()
 {
 }
-void		neb::gfx::context::window::init(parent_t * const & p)
+void		THIS::init(parent_t * const & p)
 {
 	setParent(p);
 	
 	//neb::gfx::context::base::init(p);
 
-	auto window = getParent()->isWindowBase();
+	auto window = getParent()->is_fnd_window_base();
 
-	resize(window->w_, window->h_);
+	resize(window->get_width(), window->get_height());
 }
 
 
