@@ -17,12 +17,12 @@ namespace neb { namespace gfx { namespace context {
 	 * @todo allow for manual ordering of context::window objects in window's context map
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
-	class window:
+	class Window:
 		virtual public neb::core::context::Window,
 		virtual public neb::gfx::context::base
 	{
 		public:
-			window();
+			Window();
 			virtual void			init(parent_t * const & p);
 	};
 }}}

@@ -2,9 +2,9 @@
 
 #include <neb/gfx/context/Window.hpp>
 
-typedef neb::gfx::context::window THIS;
+typedef neb::gfx::context::Window THIS;
 
-THIS::window()
+THIS::Window()
 {
 }
 void		THIS::init(parent_t * const & p)

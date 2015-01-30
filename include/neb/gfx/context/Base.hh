@@ -49,7 +49,8 @@ namespace neb { namespace gfx { namespace context {
 			virtual void						render();
 			virtual void						resize(int w, int h);
 
-			virtual void						setDrawable(std::shared_ptr<neb::gfx::drawable::base>);
+			virtual void						setDrawable(std::shared_ptr<neb::core::drawable::Base>);
+			virtual void						setEnviron(std::shared_ptr<neb::core::environ::Base>);
 		public:
 			std::shared_ptr<neb::gfx::environ::base>		environ_;
 	};

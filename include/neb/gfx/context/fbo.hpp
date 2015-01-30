@@ -18,7 +18,7 @@ namespace neb { namespace gfx { namespace context {
 	 */
 	class fbo:
 		virtual public neb::core::context::FBO,
-		virtual public neb::gfx::context::window
+		virtual public neb::gfx::context::Window
 	{
 		public:
 			fbo();

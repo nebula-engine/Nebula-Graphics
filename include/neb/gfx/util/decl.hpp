@@ -68,7 +68,7 @@ namespace neb {
 				class parent;
 			}
 			class base;
-			class window;
+			class Window;
 			class fbo;
 		}
 
