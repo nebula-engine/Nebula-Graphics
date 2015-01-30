@@ -25,15 +25,16 @@
 #include <neb/gfx/context/Window.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/SceneDefault.hpp>
-#include <neb/gfx/window/Base.hh>
 #include <neb/gfx/window/util/Parent.hh>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
 
+#include <neb/gfx/window/Base.hh>
 
+typedef neb::gfx::window::base THIS;
 
-GLFWwindow* neb::gfx::window::base::first_window_ = NULL;
+GLFWwindow* THIS::first_window_ = NULL;
 
 neb::gfx::window::base::base():
 	x_(1200),
@@ -347,6 +348,14 @@ void						neb::gfx::window::base::printScreen()
 
 	save_png_libpng(buffer, &screenBuffer_[0], w_, h_);
 
+}
+int		THIS::get_width()
+{
+	return w_;
+}
+int		THIS::get_height()
+{
+	return h_;
 }
 
 

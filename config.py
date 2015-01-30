@@ -1,3 +1,4 @@
+"""
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8.8)
 
 INCLUDE($ENV{HOME}/.config.cmake)
@@ -54,5 +55,12 @@ SET(libs
 INCLUDE(cmh_library)
 
 #add_subdirectory(test)
+"""
+
+l = Library("nebula_gfx")
+
+l.inc_dirs.append("/usr/include/freetype2")
+
+l.make()
 
 

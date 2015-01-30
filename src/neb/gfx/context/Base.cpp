@@ -5,6 +5,7 @@
 #include <neb/core/util/debug.hpp>
 #include <neb/core/core/scene/base.hpp>
 
+#include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/context/Base.hh>
 #include <neb/gfx/context/Window.hpp>

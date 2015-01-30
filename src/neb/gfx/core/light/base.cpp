@@ -10,15 +10,15 @@
 #include <neb/core/core/shape/base.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/window/Base.hh>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
 #include <neb/gfx/camera/view/Base.hh>
 #include <neb/gfx/environ/shadow/directional.hpp>
-
 #include <neb/gfx/core/scene/base.hpp>
+
+#include <neb/gfx/core/light/base.hpp>
 
 typedef neb::gfx::core::light::base THIS;
 
@@ -261,6 +261,12 @@ void	THIS::load(ba::polymorphic_iarchive & ar, unsigned int const & v)
 void	THIS::save(ba::polymorphic_oarchive & ar, unsigned int const & v) const
 {
 	const_cast<THIS*>(this)->__serialize(ar,v);
+}
+void	THIS::setShadowEnviron(std::shared_ptr<neb::core::environ::Base> environ)
+{
+	auto e = std::dynamic_pointer_cast<neb::gfx::environ::base>(environ);
+	assert(e);
+	shadow_environ_ = e;
 }
 
 

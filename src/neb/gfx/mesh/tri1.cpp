@@ -12,7 +12,7 @@
 #include <neb/core/math/geo/polygon.hpp>
 #include <neb/core/util/debug.hpp>
 
-#include <PxPhysicsAPI.h>
+//#include <PxPhysicsAPI.h>
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/mesh/tri1.hpp>
@@ -262,7 +262,7 @@ void			neb::gfx::mesh::tri1::drawDebug(
 		//physx::PxU32 nbtriangles = rb.getNbTriangles();
 		//const physx::PxDebugTriangle* triangles = rb.getTriangles();
 
-
+#if 0
 		physx::PxU32 nblines = vertices_.size();
 		physx::PxU32 nbtriangles = 0;
 
@@ -293,10 +293,11 @@ void			neb::gfx::mesh::tri1::drawDebug(
 
 
 		physx::PxDebugTriangle* triangles = NULL;
-
+#endif		
 
 		//auto e = neb::could_be<neb::gfx::environ::base, neb::gfx::environ::three>(context->environ_);
 		//if(e)
+#if 0
 		{
 
 			//glClear(GL_DEPTH_BUFFER_BIT);
@@ -378,6 +379,8 @@ void			neb::gfx::mesh::tri1::drawDebug(
 
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
+#endif
+
 	}
 
 }

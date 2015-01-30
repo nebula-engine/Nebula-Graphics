@@ -3,6 +3,7 @@
 
 #include <neb/core/itf/shared.hpp>
 #include <neb/core/drawable/Base.hpp>
+
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
@@ -26,7 +27,9 @@ namespace neb { namespace gfx { namespace drawable {
 			 */
 			virtual void			draw(RenderDesc const &) = 0;
 	};
-	class two: virtual public neb::gfx::drawable::base {
+	class two:
+		virtual public neb::gfx::drawable::base
+	{
 		public:
 			//virtual void			init() {}
 	};
