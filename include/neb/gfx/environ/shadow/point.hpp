@@ -2,6 +2,7 @@
 #define NEBULA_GFX_ENVIRON_SHADOW_POINT_HPP
 
 #include <neb/core/core/actor/util/decl.hpp>
+#include <neb/core/environ/shadow/Point.hpp>
 
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
@@ -18,6 +19,7 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	class point:
+		virtual public neb::core::environ::shadow::Point,
 		virtual public neb::gfx::environ::shadow::base<neb::gfx::core::light::point>,
 		virtual public neb::gfx::environ::multiple<neb::gfx::camera::view::shadow::point>
 	{

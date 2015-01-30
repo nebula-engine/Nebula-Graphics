@@ -2,6 +2,7 @@
 #define NEBULA_GFX_ENVIRON_NORMAL_MAP_HPP
 
 #include <neb/core/core/actor/util/decl.hpp>
+#include <neb/core/environ/visualization/Normal.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/camera/util/decl.hpp>
@@ -16,6 +17,7 @@ namespace neb { namespace gfx { namespace environ {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	class NormalMap:
+		virtual public neb::core::environ::visualization::Normal,
 		virtual public neb::gfx::environ::single<neb::gfx::camera::view::base>,
 		virtual public neb::gfx::environ::three
 	{

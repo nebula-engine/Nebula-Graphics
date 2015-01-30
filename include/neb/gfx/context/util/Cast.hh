@@ -6,7 +6,6 @@
 #include <neb/gfx/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace context { namespace util {
-
 	/** @brief %Cast
 	 */
 	class cast:
@@ -17,13 +16,6 @@ namespace neb { namespace gfx { namespace context { namespace util {
 			std::shared_ptr<neb::gfx::context::window>			isContextWindow();
 			std::shared_ptr<neb::gfx::context::fbo>				isContextFBO();
 	};
-
 }}}}
 
-
 #endif
-
-
-
-
-

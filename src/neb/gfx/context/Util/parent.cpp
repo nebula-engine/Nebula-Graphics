@@ -26,7 +26,7 @@ std::weak_ptr<C_W>		THIS::createContextTwo() {
 	auto self = isWindowBase();
 	assert(self);
 
-	std::weak_ptr<neb::gfx::context::window> w;
+	std::weak_ptr<C_W> w;
 	{
 		auto context = createContextWindow().lock();
 		//auto context(make_shared<>(self));
@@ -47,7 +47,7 @@ std::weak_ptr<C_W>		THIS::createContextThree() {
 	auto self = isWindowBase();
 	assert(self);
 
-	std::weak_ptr<neb::gfx::context::window> w;
+	std::weak_ptr<C_W> w;
 	{
 		auto context = createContextWindow().lock();
 		//	auto context = std::make_shared<neb::gfx::context::window>(self);
@@ -71,7 +71,7 @@ std::weak_ptr<C_W>		THIS::createContextNormalMap() {
 	auto self = isWindowBase();
 	assert(self);
 
-	std::weak_ptr<neb::gfx::context::window> w;
+	std::weak_ptr<C_W> w;
 	{
 		auto context = createContextWindow().lock();
 		//	auto context = std::make_shared<neb::gfx::context::window>(self);

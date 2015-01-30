@@ -2,6 +2,7 @@
 #define NEBULA_GFX_ENVIRON_VIS_DEPTH_HPP
 
 #include <neb/core/core/actor/util/decl.hpp>
+#include <neb/core/environ/visualization/Depth.hpp>
 
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
@@ -14,7 +15,10 @@ namespace neb { namespace gfx { namespace environ {
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
-	class vis_depth: virtual public neb::gfx::environ::three {
+	class vis_depth:
+		virtual public neb::core::environ::visualization::Depth,
+		virtual public neb::gfx::environ::three
+	{
 		public:
 			typedef std::shared_ptr<neb::gfx::glsl::program::base>	program_shared;
 			typedef std::shared_ptr<neb::gfx::camera::view::base>			view_shared;

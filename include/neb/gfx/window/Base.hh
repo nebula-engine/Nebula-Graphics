@@ -61,6 +61,9 @@ namespace neb { namespace gfx { namespace window {
 			std::weak_ptr<neb::core::context::window>	createContextNormalMap();
 			*/
 
+			virtual int				get_width();
+			virtual int				get_height();
+
 			virtual void				makeCurrent();
 
 			void					printScreen();
