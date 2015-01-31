@@ -61,6 +61,12 @@ l = Library("nebula_gfx")
 
 l.inc_dirs.append("/usr/include/freetype2")
 
+l.require("galaxy_std")
+l.require("galaxy_log")
+l.require("galaxy_console")
+l.require("nebula_core")
+
 l.make()
+
 
 
