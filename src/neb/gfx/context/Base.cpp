@@ -20,9 +20,11 @@
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/util/log.hpp>
 
+typedef neb::gfx::context::base THIS;
+
 /*neb::gfx::context::base::base() {
 }*/
-neb::gfx::context::base::base()
+THIS::base()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }
@@ -67,6 +69,11 @@ void							neb::gfx::context::base::setDrawable(
 	assert(environ_);
 	environ_->drawable_ = d;
 }
-
+void			THIS::setEnviron(std::shared_ptr<neb::core::environ::Base> env)
+{
+	auto e = std::dynamic_pointer_cast<neb::gfx::environ::base>(env);
+	assert(e);
+	environ_ = e;
+}
 
 
