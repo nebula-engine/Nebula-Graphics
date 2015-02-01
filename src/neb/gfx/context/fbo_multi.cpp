@@ -10,7 +10,9 @@
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/window/Base.hh>
 
-neb::gfx::context::fbo_multi::fbo_multi():
+typedef neb::gfx::context::fbo_multi THIS;
+
+THIS::fbo_multi():
 	framebuffer_(0)
 {
 	layer_ = 0;
@@ -108,5 +110,10 @@ void		neb::gfx::context::fbo_multi::render() {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	checkerror("glBindFramebuffer");
 }
-
+void			THIS::setTexture(std::shared_ptr<neb::core::itf::shared> texture)
+{
+	auto t = std::dynamic_pointer_cast<neb::gfx::texture>(texture);
+	assert(t);
+	texture_ = t;
+}
 

@@ -27,6 +27,7 @@ namespace neb { namespace gfx { namespace context {
 
 			virtual std::weak_ptr<neb::core::environ::shadow::Directional>		createEnvironShadowDirectional() = 0;
 
+			virtual void				setTexture(std::shared_ptr<neb::core::itf::shared> texture);
 
 			GLuint					framebuffer_;
 
