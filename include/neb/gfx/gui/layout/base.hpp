@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 
 #include <neb/core/input/sink.hpp>
+#include <neb/core/gui/layout/Base.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/gui/object/Base.hh>
@@ -21,7 +22,7 @@ namespace neb {
 	namespace gfx {namespace gui {namespace layout {
 	/** @brief %Base */
 	class base:
-		virtual public neb::core::itf::shared,
+		virtual public neb::core::gui::layout::Base,
 		virtual public neb::gfx::drawable::base,
 		virtual public neb::gfx::gui::object::util::parent,
 		virtual public gal::stl::child<neb::gfx::gui::layout::util::parent>,
@@ -31,6 +32,7 @@ namespace neb {
 			typedef neb::gfx::gui::layout::util::parent parent_t;
 
 			base();
+			virtual ~base() {}
 			virtual void				init(parent_t * const & p);
 			virtual void				release() {}
 
