@@ -15,10 +15,10 @@
 #include <iterator>
 #include <algorithm>
 
-#include <neb/core/util/config.hpp>
+#include <neb/core/util/config.hpp> // neb/core/util/config.hpp.in
 
 #include <neb/gfx/free.hpp>
-#include <neb/gfx/util/config.hpp>
+#include <neb/gfx/util/config.hpp> // neb/gfx/util/config.hpp.in
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/shader.hh>
 #include <neb/gfx/app/__gfx_glsl.hpp>
