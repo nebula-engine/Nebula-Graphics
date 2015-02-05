@@ -44,7 +44,8 @@ neb::gfx::window::base::base():
 	window_(NULL)
 {
 }
-neb::gfx::window::base::~base() {
+neb::gfx::window::base::~base()
+{
 }
 void			neb::gfx::window::base::init(parent_t * const & p)
 {
@@ -69,7 +70,6 @@ void			neb::gfx::window::base::init(parent_t * const & p)
 		return;
 	}
 	
-
 	auto self = std::dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this());
 	
 	if(window_)
@@ -169,17 +169,16 @@ void			neb::gfx::window::base::init(parent_t * const & p)
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_NORMALIZE);
 
-
-
 	checkerror("unknown");
 }
-void		neb::gfx::window::base::release() {
+void		THIS::release()
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
 
 	glfwDestroyWindow(window_);
 }
-void		neb::gfx::window::base::render() {
+void		THIS::render()
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	assert(window_ != NULL);
@@ -191,7 +190,10 @@ void		neb::gfx::window::base::render() {
 
 	typedef neb::gfx::context::util::parent C;
 
-	auto lamb = [] (C::map_type::pointer p) {
+	auto lamb = [] (C::map_type::pointer p)
+	{
+		LOG(lg, neb::gfx::sl, debug) << "lamb";
+	
 		auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
 		assert(context);
 		context->render();

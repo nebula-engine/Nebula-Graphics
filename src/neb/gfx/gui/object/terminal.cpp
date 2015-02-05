@@ -13,6 +13,7 @@
 
 typedef gal::console::temp<gal::console::backend::python, gal::console::frontend::store> console_type;
 
+namespace NS = neb::gfx::gui::object;
 typedef neb::gfx::gui::object::terminal THIS;
 
 THIS::terminal():
@@ -34,7 +35,7 @@ void			THIS::preloop()
 		console->eval("execfile(\"" + s + "\")");
 	}
 }
-void			neb::gfx::gui::object::terminal::init(
+void			THIS::init(
 		parent_t * const & p)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -45,11 +46,10 @@ void			neb::gfx::gui::object::terminal::init(
 
 	console_ = app->console_;
 }
-
-void 			neb::gfx::gui::object::terminal::draw(
+void 			THIS::draw(
 		neb::gfx::RenderDesc const & desc)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, NS::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto console(console_.lock());
 	if(!console) return;
@@ -93,11 +93,11 @@ void 			neb::gfx::gui::object::terminal::draw(
 
 	draw_text(0, x, y, sx, sy, font_color_, line.c_str(), console->line_.pos + console->prompt_end_.size());
 }
-int			neb::gfx::gui::object::terminal::charFun(
+int			THIS::charFun(
 		std::shared_ptr<neb::core::input::source> const & window,
 		unsigned int codepoint)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::gui::object::sl_callback, debug) << __PRETTY_FUNCTION__;
 
 	auto console(console_.lock());
 	if(!console) return 0;
@@ -107,14 +107,14 @@ int			neb::gfx::gui::object::terminal::charFun(
 	}
 	return 1;
 }
-int			neb::gfx::gui::object::terminal::keyFun(
+int			THIS::keyFun(
 		std::shared_ptr<neb::core::input::source> const & window,
 		int key,
 		int scancode,
 		int action,
 		int mods)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::gui::object::sl_callback, debug) << __PRETTY_FUNCTION__;
 
 	auto console(console_.lock());
 	if(!console) return 0;

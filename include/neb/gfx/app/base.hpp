@@ -1,8 +1,6 @@
 #ifndef NEB_GFX_APP_BASE_HPP
 #define NEB_GFX_APP_BASE_HPP
 
-#include <neb/core/app/__core.hpp>
-
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
