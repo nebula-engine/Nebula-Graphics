@@ -29,7 +29,7 @@ namespace neb { namespace gfx {
 		 * graphics and window handling
 		 */
 		class glfw:
-			virtual public neb::core::app::base,
+			virtual public neb::core::app::Base,
 			virtual public neb::gfx::window::util::parent
 		{
 			public:
