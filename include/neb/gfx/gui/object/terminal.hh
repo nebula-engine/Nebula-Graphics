@@ -30,7 +30,7 @@ namespace neb { namespace gfx { namespace gui { namespace object {
 
 
 
-			std::weak_ptr<neb::core::app::base::console_type>		console_;
+			std::weak_ptr<neb::core::app::Base::console_type>	console_;
 
 			// display
 			std::vector<std::string>		history_;

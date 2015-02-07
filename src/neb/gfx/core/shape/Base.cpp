@@ -35,7 +35,7 @@ void					THIS::init(neb::core::core::shape::util::parent * const & p)
 
 	setParent(p);
 
-	if(!neb::core::app::base::is_valid()) return;
+	if(!neb::core::app::Base::is_valid()) return;
 
 	createMesh();
 }
