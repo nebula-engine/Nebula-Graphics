@@ -29,7 +29,7 @@ std::weak_ptr<neb::gfx::app::base>		neb::gfx::app::base::initialize()
 void					neb::gfx::app::base::__init() {
 }
 void					neb::gfx::app::base::release() {
-	nc::app::base::release();
+	neb::core::app::Base::release();
 	
 	neb::gfx::app::__gfx::release();
 	//neb::gfx::app::__gfx_glsl::release();
@@ -37,7 +37,7 @@ void					neb::gfx::app::base::release() {
 void					neb::gfx::app::base::step(gal::etc::timestep const & ts) {
 
 	//neb::core::app::__base::step(ts);
-	nc::app::base::__step(ts);
+	neb::core::app::Base::__step(ts);
 	
 	neb::gfx::app::__gfx::step(ts);
 	//neb::gfx::app::__gfx_glsl::step(ts);
