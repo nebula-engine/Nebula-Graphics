@@ -14,7 +14,8 @@
 #include FT_FREETYPE_H
 
 #include <neb/core/util/decl.hpp>
-#include <neb/core/app/__base.hpp>
+#include <neb/core/app/Base.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 
 namespace neb { namespace gfx {

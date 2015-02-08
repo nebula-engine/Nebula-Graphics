@@ -68,7 +68,7 @@ void					THIS::setPose(neb::fnd::math::pose const & pose) {
 	neb::gfx::core::light::util::parent::setPose(npose);
 }
 void					THIS::draw(
-		neb::gfx::glsl::program::base const * const & p,
+		neb::gfx::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 	auto npose = pose * pose_;
@@ -76,12 +76,12 @@ void					THIS::draw(
 	draw_elements(p, npose);
 }
 void			THIS::drawHF(
-		neb::gfx::glsl::program::base const * const & p,
+		neb::gfx::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 }
 void			THIS::model_load(
-		neb::gfx::glsl::program::base const * const & p,
+		neb::gfx::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 	glm::mat4 space = pose.mat4_cast() * glm::scale(scale_);
@@ -91,7 +91,7 @@ void			THIS::model_load(
 			space);
 }
 void			THIS::draw_elements(
-		neb::gfx::glsl::program::base const * const & p,
+		neb::gfx::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
@@ -104,7 +104,7 @@ void			THIS::draw_elements(
 	}
 }
 void			THIS::drawDebug(
-		neb::gfx::glsl::program::base const * const & p,
+		neb::gfx::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;

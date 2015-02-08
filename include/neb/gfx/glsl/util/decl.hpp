@@ -2,9 +2,7 @@
 #define NEB_GFX_GLSL_UTIL_DECL_HPP
 
 namespace neb { namespace gfx {
-
 	namespace glsl {
-
 		struct attribs {
 			enum e {
 				COOR,
@@ -126,14 +124,11 @@ namespace neb { namespace gfx {
 				"has_normal_map"
 			};
 		};
-
 		namespace program {
-			class base;
+			class Base;
 			class threed;
 		}
-
 		class shader;
-
 	}
 
 }}

@@ -1,5 +1,5 @@
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/app/glfw.hpp>
 
 typedef neb::gfx::app::glfw THIS;

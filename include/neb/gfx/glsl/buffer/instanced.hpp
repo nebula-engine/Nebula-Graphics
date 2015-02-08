@@ -56,7 +56,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 		array_type::FLOAT > >
 		{
 			public:
-				typedef std::shared_ptr<neb::gfx::glsl::program::base>		program_shared;
+				typedef std::shared_ptr<neb::gfx::glsl::program::Base>		program_shared;
 				typedef neb::gfx::glsl::buffer::base<instanced>			buffer_base_type;
 
 				//static const glm::mat4 m;

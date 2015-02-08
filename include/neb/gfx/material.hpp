@@ -42,7 +42,7 @@ namespace neb { namespace gfx { namespace material {
 			 *
 			 * load into OpenGL
 			 */
-			void		load(std::shared_ptr<neb::gfx::glsl::program::base> p);
+			void		load(std::shared_ptr<neb::gfx::glsl::program::Base> p);
 			raw		raw_;
 	};
 

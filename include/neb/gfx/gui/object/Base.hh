@@ -9,7 +9,7 @@
 
 #include <neb/core/itf/shared.hpp>
 #include <neb/core/math/color/color.hpp>
-
+#include <neb/core/tmp/Child.hpp>
 #include <neb/core/input/sink.hpp>
 #include <neb/core/type_traits.hpp>
 
@@ -20,18 +20,18 @@
 
 
 namespace neb { namespace gfx { namespace gui { namespace object {
-
 	class base:
 		virtual public neb::fnd::input::sink,
 		virtual public neb::fnd::itf::shared,
+		virtual public neb::fnd::tmp::Child<neb::gfx::gui::object::util::parent>,
 		virtual public neb::gfx::gui::object::util::parent
 	{
 		public:
 			typedef neb::fnd::util::parent<neb::gfx::gui::object::base, neb::gfx::gui::object::util::parent> parent_t;
-
+			using neb::fnd::tmp::Child<neb::gfx::gui::object::util::parent>::get_app;
 			base();
 			virtual ~base() {}
-
+			
 			virtual void			init(parent_t * const & p);
 			virtual void			draw(neb::gfx::RenderDesc const &) = 0;
 			virtual void			preloop() = 0;

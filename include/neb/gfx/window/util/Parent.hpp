@@ -3,12 +3,11 @@
 
 #include <neb/core/window/util/Parent.hpp>
 
-#include <neb/gfx/window/__base.hpp>
+#include <neb/gfx/window/Base.hpp>
 
 namespace neb { namespace gfx { namespace window { namespace util {
-
 	class parent:
-		virtual public neb::core::window::util::Parent
+		virtual public neb::fnd::window::util::Parent
 	{
 		public:
 			virtual void		render();

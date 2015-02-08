@@ -14,7 +14,7 @@
 typedef neb::gfx::camera::view::manual THIS;
 
 THIS::manual(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::camera::view::base(parent),
+	neb::gfx::camera::view::Base(parent),
 	eye_(0, 0, 30),
 	center_(0, 0, 0),
 	up_(0, 1, 0)

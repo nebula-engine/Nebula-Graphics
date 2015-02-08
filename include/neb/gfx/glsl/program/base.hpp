@@ -1,5 +1,5 @@
-#ifndef __DRAW_H__
-#define __DRAW_H__
+#ifndef NEB_GFX_GLSL_PROGRAM_BASE_HPP
+#define NEB_GFX_GLSL_PROGRAM_BASE_HPP
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -8,28 +8,24 @@
 #include <vector>
 
 #include <neb/core/util/decl.hpp>
-#include <neb/core/itf/verbosity.hpp>
+#include <neb/core/glsl/program/Base.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/glsl/program/util/flag.hpp>
 
-
 namespace neb { namespace gfx { namespace glsl { namespace program {
 	/**/
-	class base:
-		public std::enable_shared_from_this<base>,
-		public neb::fnd::itf::verbosity
+	class Base:
+		virtual public neb::fnd::glsl::program::Base
 	{
 		public:
-			
 			enum {
 				VERT = 0,
 				FRAG = 1
 			};
-
-			base(std::string);
-			virtual ~base();
-			
+			Base(std::string);
+			virtual ~Base();
 			virtual void		init();
 			void			restoreDefaultShaderFlags();
 			void			add_shader(std::string, GLenum);
@@ -38,6 +34,7 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 			void			use() const;
 			void			locate();
 			void			scanUniforms();
+			virtual int		get_uniform_table_value(int key) const;
 
 			GLuint			o_;
 			std::string		name_;

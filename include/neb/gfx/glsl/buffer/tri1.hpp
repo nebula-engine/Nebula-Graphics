@@ -21,13 +21,13 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 		public neb::gfx::glsl::buffer::base< templ<array_type::VEC3,array_type::VEC3,array_type::VEC2,array_type::VEC3,array_type::VEC3> >
 		{
 			public:
-				typedef std::shared_ptr<neb::gfx::glsl::program::base> program_shared;
+				typedef std::shared_ptr<neb::gfx::glsl::program::Base> program_shared;
 
 
 				static const GLenum			target_	= GL_ARRAY_BUFFER;
 				static const GLenum			usage_	= GL_STATIC_DRAW;
 
-				typedef nc::math::geo::vertex		data_type;
+				typedef neb::fnd::math::geo::vertex		data_type;
 
 				static constexpr GLuint			divisor_[ATTRIB_COUNT] = {
 					0,0,0,0,0

@@ -9,16 +9,16 @@
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/camera/view/Ridealong.hpp>
 
+typedef neb::gfx::camera::view::Ridealong THIS;
 
-
-neb::gfx::camera::view::ridealong::ridealong(
+THIS::Ridealong(
 		std::shared_ptr<neb::gfx::environ::base> parent,
 		weak_ptr<neb::fnd::core::actor::base> actor):
-	neb::gfx::camera::view::base(parent),
+	neb::gfx::camera::view::Base(parent),
 	actor_(actor)
 {
 }
-glm::mat4		neb::gfx::camera::view::ridealong::view()
+glm::mat4		THIS::view()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
@@ -40,7 +40,7 @@ glm::mat4		neb::gfx::camera::view::ridealong::view()
 	
 	return glm::mat4(ret);
 }
-void neb::gfx::camera::view::ridealong::step(gal::etc::timestep const & ts)
+void			THIS::step(gal::etc::timestep const & ts)
 {	
 }
 

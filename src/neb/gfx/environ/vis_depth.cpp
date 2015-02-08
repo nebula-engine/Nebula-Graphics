@@ -27,20 +27,20 @@ void		neb::gfx::environ::vis_depth::init() {
 //	auto light = light_.lock();
 //	assert(light);
 
-	programs_.d3_.reset(new neb::gfx::glsl::program::base("vis/depth"));
+	programs_.d3_.reset(new neb::gfx::glsl::program::Base("vis/depth"));
 	programs_.d3_->init();
 
-	programs_.d3_inst_.reset(new neb::gfx::glsl::program::base("vis/depth_inst"));
+	programs_.d3_inst_.reset(new neb::gfx::glsl::program::Base("vis/depth_inst"));
 	programs_.d3_inst_->init();
 	
 	
 	// camera
-	view_.reset(new neb::gfx::camera::view::shadow::directional(self));
+	view_.reset(new neb::gfx::camera::view::shadow::Directional(self));
 
-	//proj_.reset(new neb::gfx::camera::proj::ortho(self));
+	//proj_.reset(new neb::gfx::camera::proj::Ortho(self));
 	createCameraOrtho();
 
-	//proj_.reset(new neb::gfx::camera::proj::perspective(self));
+	//proj_.reset(new neb::gfx::camera::proj::Perspective(self));
 
 
 }

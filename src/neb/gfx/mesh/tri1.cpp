@@ -148,7 +148,7 @@ void			neb::gfx::mesh::tri1::init_buffer(
 }
 */
 void			neb::gfx::mesh::tri1::drawElements(
-		neb::gfx::glsl::program::base const * const & p,
+		neb::gfx::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose,
 		glm::vec3 scale)
 {
@@ -234,7 +234,7 @@ void			neb::gfx::mesh::tri1::drawElements(
 
 }
 void			neb::gfx::mesh::tri1::drawDebug(
-		neb::gfx::glsl::program::base const * const & p,
+		neb::gfx::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose,
 		glm::vec3 scale)
 {

@@ -12,7 +12,7 @@ namespace neb { namespace gfx { namespace camera { namespace view {
 	 * user input in interpreted as three-component velocity and yaw and pitch rate
 	 */
 	class manual:
-		virtual public neb::gfx::camera::view::base
+		virtual public neb::gfx::camera::view::Base
 	{
 		public:
 			/** @name constructors

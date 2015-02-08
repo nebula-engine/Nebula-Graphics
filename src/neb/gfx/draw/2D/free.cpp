@@ -22,7 +22,7 @@
 #include <neb/gfx/util/log.hpp>
 
 void			neb::draw_quad(
-		std::shared_ptr<neb::gfx::glsl::program::base> p,
+		std::shared_ptr<neb::gfx::glsl::program::Base> p,
 		float x,
 		float y,
 		float w,
@@ -82,7 +82,7 @@ void			neb::draw_quad(
 
 }
 void			neb::draw_text(
-		std::shared_ptr<neb::gfx::glsl::program::base>,
+		std::shared_ptr<neb::gfx::glsl::program::Base>,
 		float x,
 		float y,
 		float sx,

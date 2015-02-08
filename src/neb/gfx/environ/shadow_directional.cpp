@@ -27,17 +27,17 @@ void		neb::gfx::environ::shadow::directional::init() {
 //	auto light = light_.lock();
 //	assert(light);
 
-	programs_.d3_.reset(new neb::gfx::glsl::program::base("shadow"));
+	programs_.d3_.reset(new neb::gfx::glsl::program::Base("shadow"));
 	programs_.d3_->init();
 	
-	programs_.d3_inst_.reset(new neb::gfx::glsl::program::base("shadow_inst"));
+	programs_.d3_inst_.reset(new neb::gfx::glsl::program::Base("shadow_inst"));
 	programs_.d3_inst_->init();
 	
 	// camera
-	view_.reset(new neb::gfx::camera::view::shadow::directional(self));
+	view_.reset(new neb::gfx::camera::view::shadow::Directional(self));
 
 	createCameraOrtho();
-	//proj_.reset(new neb::gfx::camera::proj::ortho(self));
+	//proj_.reset(new neb::gfx::camera::proj::Ortho(self));
 
 }
 void		neb::gfx::environ::shadow::directional::step(gal::etc::timestep const & ts) {

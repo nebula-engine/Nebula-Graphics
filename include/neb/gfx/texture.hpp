@@ -35,7 +35,7 @@ namespace neb { namespace gfx {
 			GLuint			genAndBind(std::shared_ptr<neb::gfx::context::base> context);
 
 
-			void			bind(neb::gfx::glsl::program::base const * const &);
+			void			bind(neb::gfx::glsl::program::Base const * const &);
 			
 			// for visualizing the contents
 			virtual void			draw(RenderDesc const &);

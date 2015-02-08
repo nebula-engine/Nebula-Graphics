@@ -14,12 +14,12 @@
 
 #include <neb/core/except/base.hpp>
 #include <neb/core/util/decl.hpp>
-#include <neb/core/app/__base.hpp>
+#include <neb/core/app/Base.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/gui/layout/util/parent.hpp>
-#include <neb/gfx/window/util/Parent.hh>
-#include <neb/gfx/context/util/Parent.hh>
+#include <neb/gfx/window/util/Parent.hpp>
+#include <neb/gfx/context/util/Parent.hpp>
 
 namespace neb { namespace gfx {
 	

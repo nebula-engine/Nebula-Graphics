@@ -20,8 +20,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 
-
-typedef weak_ptr<neb::fnd::core::actor::base> wbase;
+typedef std::weak_ptr<neb::fnd::core::actor::base> wbase;
 
 namespace neb { namespace gfx { namespace core { namespace scene {
 

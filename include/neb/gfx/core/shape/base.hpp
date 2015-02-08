@@ -20,94 +20,72 @@
 
 #include <neb/gfx/util/log.hpp>
 
-namespace neb {
-	namespace gfx {
-		namespace context {
-			class base;
-		}
+namespace neb { namespace gfx { namespace core { namespace shape {
+	class base:
+		virtual public neb::fnd::core::shape::base,
+		virtual public neb::gfx::core::light::util::parent
+	{
+		public:
+			base();
+			virtual ~base();
 
-		namespace core { namespace shape {
-			class base:
-				virtual public neb::fnd::core::shape::base,
-				virtual public neb::gfx::core::light::util::parent
-			{
-				public:
-					
-					base();
-					virtual ~base();
+			void			init(neb::fnd::core::shape::util::parent * const & p);
+			void			release();
+			void			step(gal::etc::timestep const & ts);
+			virtual void		callbackPose(neb::fnd::math::pose const & pose_global);
 
-					void			init(neb::fnd::core::shape::util::parent * const & p);
-					void			release();
-					void			step(gal::etc::timestep const & ts);
-					virtual void		callbackPose(neb::fnd::math::pose const & pose_global);
-
-					virtual weak_ptr<neb::fnd::core::light::base>		createLightPoint();
-					virtual weak_ptr<neb::fnd::core::light::base>		createLightSpot(glm::vec3);
-					virtual weak_ptr<neb::fnd::core::light::base>		createLightDirectional(glm::vec3);
+			virtual weak_ptr<neb::fnd::core::light::base>		createLightPoint();
+			virtual weak_ptr<neb::fnd::core::light::base>		createLightSpot(glm::vec3);
+			virtual weak_ptr<neb::fnd::core::light::base>		createLightDirectional(glm::vec3);
 
 
-					void							setPose(neb::fnd::math::pose const & pose);
-					virtual void						createMesh();
+			void							setPose(neb::fnd::math::pose const & pose);
+			virtual void						createMesh();
 
 
-					/** @name Rendering @{ */
-					//void						load_lights(
-					//		neb::fnd::core::light::util::count& light_count,
-					//		neb::fnd::math::pose const & pose);
-					void						model_load(
-							neb::gfx::glsl::program::base const * const & p,
-							neb::fnd::math::pose const & pose);
-					void						init_buffer(
-							neb::gfx::glsl::program::base const * const & p);
-					virtual void					draw(
-							neb::gfx::glsl::program::base const * const & p,
-							neb::fnd::math::pose const & pose);
-					virtual void					drawHF(
-							neb::gfx::glsl::program::base const * const & p,
-							neb::fnd::math::pose const & pose);
-					virtual void					drawDebug(
-							neb::gfx::glsl::program::base const * const & p,
-							neb::fnd::math::pose const & pose);
-					virtual void					draw_elements(
-							neb::gfx::glsl::program::base const * const & p,
-							neb::fnd::math::pose const & pose);
-					/** @} */
-				public:
-					template<class Archive>	void	serialize(Archive & ar, unsigned int const & version) {
-						LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
-		
-						ar & boost::serialization::make_nvp("flag",flag_);
-						ar & boost::serialization::make_nvp("pose",pose_);
-						ar & boost::serialization::make_nvp("scale",scale_);
-						ar & boost::serialization::make_nvp("image",image_);
-						ar & boost::serialization::make_nvp("normal",normal_);
-						ar & boost::serialization::make_nvp("material",material_);
-					}
+			/** @name Rendering @{ */
+			//void						load_lights(
+			//		neb::fnd::core::light::util::count& light_count,
+			//		neb::fnd::math::pose const & pose);
+			void						model_load(
+					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::math::pose const & pose);
+			void						init_buffer(
+					neb::gfx::glsl::program::Base const * const & p);
+			virtual void					draw(
+					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::math::pose const & pose);
+			virtual void					drawHF(
+					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::math::pose const & pose);
+			virtual void					drawDebug(
+					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::math::pose const & pose);
+			virtual void					draw_elements(
+					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::math::pose const & pose);
+			/** @} */
+		public:
+			template<class Archive>	void	serialize(Archive & ar, unsigned int const & version) {
+				LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 
-				public:
-					std::weak_ptr<nc::core::shape::util::parent>		parent_;
-
-				public:
-					/** @brief Material. */
-					ng::material::raw					material_;
-				public:
-
-					// draw data
-					/** @brief ID */
-					std::shared_ptr<ng::mesh::tri1>				mesh_;
-					//neb::program_name::e					program_;
-					/** @brief Parent */
-					
-					std::shared_ptr<ng::mesh::instanced::slot_type>		mesh_slot_;
-			};
-		}}
-	}
-}
-
+				ar & boost::serialization::make_nvp("flag",flag_);
+				ar & boost::serialization::make_nvp("pose",pose_);
+				ar & boost::serialization::make_nvp("scale",scale_);
+				ar & boost::serialization::make_nvp("image",image_);
+				ar & boost::serialization::make_nvp("normal",normal_);
+				ar & boost::serialization::make_nvp("material",material_);
+			}
+		public:
+			/** @brief Material. */
+			neb::gfx::material::raw					material_;
+			// draw data
+			/** @brief ID */
+			std::shared_ptr<neb::gfx::mesh::tri1>			mesh_;
+			//neb::program_name::e					program_;
+			/** @brief Parent */
+			std::shared_ptr<neb::gfx::mesh::instanced::slot_type>		mesh_slot_;
+	};
+}}}}
 
 #endif
-
-
-
-
-

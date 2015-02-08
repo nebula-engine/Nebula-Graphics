@@ -10,6 +10,7 @@
 
 #include <neb/core/util/decl.hpp>
 #include <neb/core/itf/shared.hpp>
+#include <neb/core/glsl/program/util/decl.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
@@ -18,13 +19,13 @@
 namespace neb {namespace gfx {namespace camera {namespace view {
 
 	/** @brief @Base */
-	class base: virtual public neb::fnd::itf::shared
+	class Base: virtual public neb::fnd::itf::shared
 	{
 		public:
 			/** @brief Constructor */
-			base(std::shared_ptr< ::neb::gfx::environ::base > parent);
+			Base(std::shared_ptr< ::neb::gfx::environ::base > parent);
 			/** @brief Load view matrix into GLSL. */
-			void						load(neb::gfx::glsl::program::base const * const p);
+			void						load(neb::fnd::glsl::program::Base const * const p);
 			/** @brief Get view matrix. */
 			virtual glm::mat4				view() = 0;
 			/** @brief Step

@@ -17,7 +17,7 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform { namespace V
 		public:
 			base(std::string);
 			virtual ~base() {}
-			void				locate(std::shared_ptr<neb::gfx::glsl::program::base>);
+			void				locate(std::shared_ptr<neb::gfx::glsl::program::Base>);
 			** @name Load
 			 * @{
 			 *

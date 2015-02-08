@@ -105,7 +105,7 @@ GLuint		neb::gfx::texture::genAndBind(std::shared_ptr<neb::gfx::context::base> c
 
 	return o;
 }
-void		neb::gfx::texture::bind(neb::gfx::glsl::program::base const * const & p)
+void		neb::gfx::texture::bind(neb::gfx::glsl::program::Base const * const & p)
 {
 	/*GLuint o;
 	

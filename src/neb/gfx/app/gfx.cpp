@@ -1,7 +1,6 @@
-
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/app/__gfx.hpp>
-#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/gui/layout/base.hpp>
 
 void					neb::gfx::app::__gfx::init()

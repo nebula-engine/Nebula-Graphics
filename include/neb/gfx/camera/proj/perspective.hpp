@@ -3,12 +3,12 @@
 
 #include <neb/gfx/camera/proj/base.hpp>
 
-namespace neb { namespace gfx {namespace camera {namespace proj {
-	class perspective:
-		virtual public base
+namespace neb { namespace gfx {namespace camera { namespace proj {
+	class Perspective:
+		virtual public neb::gfx::camera::proj::Base
 	{
 		public:
-			perspective();
+			Perspective();
 			virtual glm::mat4&			proj();
 			virtual void				calculate();
 			/** @brief step */

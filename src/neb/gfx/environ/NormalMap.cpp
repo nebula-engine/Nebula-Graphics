@@ -2,8 +2,8 @@
 #include <neb/core/util/cast.hpp>
 
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/camera/view/ridealong.hh>
-#include <neb/gfx/camera/view/manual.hpp>
+#include <neb/gfx/camera/view/Ridealong.hpp>
+#include <neb/gfx/camera/view/Manual.hpp>
 #include <neb/gfx/environ/NormalMap.hpp>
 #include <neb/gfx/RenderDesc.hpp>
 
@@ -17,16 +17,16 @@ void		THIS::init()
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
 	
-	neb::gfx::environ::single<neb::gfx::camera::view::base>::init();
+	neb::gfx::environ::single<neb::gfx::camera::view::Base>::init();
 	neb::gfx::environ::three::init();
 
-	programs_.d3_.reset(new neb::gfx::glsl::program::base("3d"));
+	programs_.d3_.reset(new neb::gfx::glsl::program::Base("3d"));
 	programs_.d3_->init();
 
-	programs_.d3_HF_.reset(new neb::gfx::glsl::program::base("normal_map"));
+	programs_.d3_HF_.reset(new neb::gfx::glsl::program::Base("normal_map"));
 	programs_.d3_HF_->init();
 
-	programs_.d3_inst_.reset(new neb::gfx::glsl::program::base("3d_inst"));
+	programs_.d3_inst_.reset(new neb::gfx::glsl::program::Base("3d_inst"));
 	programs_.d3_inst_->init();
 
 

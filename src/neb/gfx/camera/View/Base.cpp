@@ -4,18 +4,20 @@
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 
-neb::gfx::camera::view::base::base(std::shared_ptr<neb::gfx::environ::base> parent):
+typedef neb::gfx::camera::view::Base THIS;
+
+THIS::Base(std::shared_ptr<neb::gfx::environ::base> parent):
 	parent_(parent)
 {
 }
-void		neb::gfx::camera::view::base::load(neb::gfx::glsl::program::base const * const p) {
-	
+void		THIS::load(neb::fnd::glsl::program::Base const * const p)
+{
 	assert(p);
 
 	auto v = view();
 
 	glUniformMatrix4fv(
-			p->uniform_table_[neb::gfx::glsl::uniforms::VIEW],
+			p->get_uniform_table_value(neb::gfx::glsl::uniforms::VIEW),
 			1,
 			GL_FALSE,
 			&v[0][0]);

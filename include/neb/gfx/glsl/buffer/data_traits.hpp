@@ -19,7 +19,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 
 
 
-				int		init(neb::gfx::glsl::program::base const * const & p)
+				int		init(neb::gfx::glsl::program::Base const * const & p)
 				{
 						}
 

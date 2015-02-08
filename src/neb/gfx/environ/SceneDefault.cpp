@@ -2,8 +2,8 @@
 #include <neb/core/util/cast.hpp>
 
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/camera/view/ridealong.hh>
-#include <neb/gfx/camera/view/Free.hh>
+#include <neb/gfx/camera/view/Ridealong.hpp>
+#include <neb/gfx/camera/view/Free.hpp>
 #include <neb/gfx/environ/SceneDefault.hpp>
 #include <neb/gfx/RenderDesc.hpp>
 
@@ -15,7 +15,7 @@ void		neb::gfx::environ::SceneDefault::init()
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
 	
-	neb::gfx::environ::single<neb::gfx::camera::view::base>::init();
+	neb::gfx::environ::single<neb::gfx::camera::view::Base>::init();
 	neb::gfx::environ::three::init();
 
 	//programs_.reset(new neb::gfx::glsl::program::threed("3d"));
@@ -26,17 +26,13 @@ void		neb::gfx::environ::SceneDefault::init()
 	if(!view_) {
 		view_.reset(new neb::gfx::camera::view::Free(self));
 	}
-
-
 }
-
-
-std::weak_ptr<neb::gfx::camera::view::ridealong>		neb::gfx::environ::SceneDefault::createViewridealong(
+std::weak_ptr<neb::gfx::camera::view::Ridealong>		neb::gfx::environ::SceneDefault::createViewridealong(
 		std::weak_ptr<neb::fnd::core::actor::base> actor)
 {
 	auto self(std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this()));
 
-	typedef neb::gfx::camera::view::ridealong T;
+	typedef neb::gfx::camera::view::Ridealong T;
 	
 	std::shared_ptr<T> view(new T(self, actor));
 
@@ -44,7 +40,6 @@ std::weak_ptr<neb::gfx::camera::view::ridealong>		neb::gfx::environ::SceneDefaul
 
 	return view;
 }
-
 void		neb::gfx::environ::SceneDefault::render(std::shared_ptr<neb::gfx::context::base> context) {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;

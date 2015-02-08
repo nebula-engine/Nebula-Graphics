@@ -37,7 +37,7 @@ namespace neb { namespace gfx { namespace mesh {
 	template<typename... BUFFERS> class base
 	{
 		public:
-			typedef neb::gfx::glsl::program::base			P;
+			typedef neb::gfx::glsl::program::Base			P;
 			typedef std::tuple< std::shared_ptr<BUFFERS>... >	buffer_tuple;
 			typedef std::map<P const *, buffer_tuple>		program_buffer_map;
 
@@ -124,7 +124,7 @@ namespace neb { namespace gfx { namespace mesh {
 
 
 			}
-			template<typename BUFFER> std::shared_ptr<BUFFER>	getBuffer(neb::gfx::glsl::program::base const * const & p)
+			template<typename BUFFER> std::shared_ptr<BUFFER>	getBuffer(neb::gfx::glsl::program::Base const * const & p)
 			{
 				std::shared_ptr<BUFFER> b(new BUFFER());
 				b->init(p);
@@ -155,7 +155,7 @@ namespace neb { namespace gfx { namespace mesh {
 			using B::unbind;
 			using B::vertexAttribPointer;
 
-			typedef neb::gfx::glsl::program::base			P;
+			typedef neb::gfx::glsl::program::Base			P;
 			typedef std::tuple<std::shared_ptr<BUFFERS>...>		buffer_tuple;
 			typedef std::map<P const *, buffer_tuple>		program_buffer_map;
 
@@ -166,7 +166,7 @@ namespace neb { namespace gfx { namespace mesh {
 
 		protected:
 			void			drawElements(
-					neb::gfx::glsl::program::base const * const & p,
+					neb::gfx::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose,
 					glm::vec3 scale,
 					GLsizei count)
@@ -180,7 +180,7 @@ namespace neb { namespace gfx { namespace mesh {
 
 			}
 			void			drawElements(
-					neb::gfx::glsl::program::base const * const &	p,
+					neb::gfx::glsl::program::Base const * const &	p,
 					buffer_tuple const &				bt,
 					neb::fnd::math::pose const &			pose,
 					glm::vec3					scale,

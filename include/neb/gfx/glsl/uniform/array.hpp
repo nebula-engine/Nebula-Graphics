@@ -18,12 +18,11 @@
 #include <neb/gfx/util/array.hpp>
 #include <neb/gfx/util/slot.hpp>
 
-
 #include <neb/gfx/glsl/program/base.hpp>
 
 namespace neb { namespace gfx { namespace glsl { namespace uniform {
+	typedef neb::gfx::glsl::program::Base P;
 	template<int I, typename D> class locations;
-
 	/** @brief array
 	 * abstract class for managing sequential data arrays.
 	 * So data for arrays of uniforms can be loaded faster.
@@ -35,8 +34,6 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 	 * lights
 	 *
 	 */
-	typedef neb::gfx::glsl::program::base		P;
-
 	template<typename LOC_DER, class... T> class array:
 		public std::enable_shared_from_this< array< LOC_DER, T... > >,
 		public neb::gfx::array<T...>

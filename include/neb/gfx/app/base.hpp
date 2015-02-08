@@ -9,7 +9,7 @@ namespace neb { namespace gfx { namespace app {
 	class base:
 		virtual public neb::fnd::app::Base,
 		virtual public neb::gfx::app::__gfx,
-		virtual public neb::gfx::app::__gfx_glsl
+		virtual public neb::gfx::app::glsl
 	{
 		public:
 			static weak_ptr<neb::gfx::app::base>		initialize();

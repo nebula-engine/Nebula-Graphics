@@ -18,7 +18,7 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 		virtual public neb::gfx::environ::three
 	{
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::program::base>		program_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::program::Base>		program_shared;
 			typedef std::weak_ptr<neb::gfx::environ::SceneDefault>		environ_scene_weak;
 		public:
 			virtual ~base() {}

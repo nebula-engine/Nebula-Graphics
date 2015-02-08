@@ -26,7 +26,7 @@ void			THIS::preloop()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto app = neb::fnd::app::Base::global();
+	auto app = get_app();
 
 	for(auto s: app->_M_preloop_scripts_python) {
 		auto console = console_.lock();
@@ -42,7 +42,7 @@ void			THIS::init(
 
 	neb::gfx::gui::object::base::init(p);
 
-	auto app = neb::fnd::app::Base::global();
+	auto app = get_app();
 
 	console_ = app->console_;
 }

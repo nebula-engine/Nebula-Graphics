@@ -10,11 +10,11 @@
 #include <neb/core/core/shape/base.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
-#include <neb/gfx/camera/view/Base.hh>
+#include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/core/scene/base.hpp>
 
@@ -43,9 +43,9 @@ THIS::base():
 THIS::~base()
 {
 }
-void			THIS::init(nc::core::light::util::parent * const & p)
+void			THIS::init(neb::fnd::core::light::util::parent * const & p)
 {
-	LOG(lg, nc::core::light::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
 
 	setParent(p);
 

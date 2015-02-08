@@ -7,7 +7,7 @@
 #include <neb/core/context/Window.hpp>
 
 #include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/context/Base.hh>
+#include <neb/gfx/context/Base.hpp>
 
 namespace neb { namespace gfx { namespace context {
 	/** @brief %Context

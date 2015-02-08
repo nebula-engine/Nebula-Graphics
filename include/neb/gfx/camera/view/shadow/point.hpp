@@ -5,13 +5,14 @@
 #include <neb/gfx/core/light/util/decl.hpp>
 
 namespace neb {namespace gfx {namespace camera {namespace view { namespace shadow {
-
 	/** @brief @Base */
-	class point: virtual public neb::gfx::camera::view::base {
+	class Point:
+		virtual public neb::gfx::camera::view::Base
+	{
 		public:
 			typedef std::weak_ptr<neb::gfx::core::light::point>	light_weak;
 			/** @brief Constructor */
-			point(std::shared_ptr< ::neb::gfx::environ::base > parent);
+			Point(std::shared_ptr< ::neb::gfx::environ::base > parent);
 			/** @brief Get view matrix. */
 			virtual glm::mat4			view();
 			/** @brief Step

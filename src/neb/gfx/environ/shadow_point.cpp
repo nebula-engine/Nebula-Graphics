@@ -8,7 +8,6 @@
 
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/camera/view/shadow/point.hpp>
-
 #include <neb/gfx/environ/shadow/point.hpp>
 #include <neb/gfx/environ/three.hpp>
 #include <neb/gfx/environ/SceneDefault.hpp>
@@ -33,10 +32,10 @@ void		neb::gfx::environ::shadow::point::init() {
 //	auto light = light_.lock();
 //	assert(light);
 
-	programs_.d3_.reset(new neb::gfx::glsl::program::base("shadow"));
+	programs_.d3_.reset(new neb::gfx::glsl::program::Base("shadow"));
 	programs_.d3_->init();
 
-	programs_.d3_inst_.reset(new neb::gfx::glsl::program::base("shadow_inst"));
+	programs_.d3_inst_.reset(new neb::gfx::glsl::program::Base("shadow_inst"));
 	programs_.d3_inst_->init();
 	
 	static const glm::vec3 look[6] = {
@@ -59,14 +58,14 @@ void		neb::gfx::environ::shadow::point::init() {
 	// camera
 	
 	for(int c = 0; c < 6; c++) {
-		view_[c].reset(new neb::gfx::camera::view::shadow::point(self));
+		view_[c].reset(new neb::gfx::camera::view::shadow::Point(self));
 		view_[c]->look_ = look[c];
 		view_[c]->up_ = up[c];
 	}
 	
 	createCameraPerspective();
 
-	auto p = std::dynamic_pointer_cast<neb::gfx::camera::proj::perspective>(proj_);
+	auto p = std::dynamic_pointer_cast<neb::gfx::camera::proj::Perspective>(proj_);
 	assert(p);
 	p->set(90.0, 1.0, 100.0);
 

@@ -12,34 +12,34 @@
 #include <gal/itf/shared.hpp>
 
 #include <neb/core/util/decl.hpp>
-#include <neb/core/app/__base.hpp>
+#include <neb/core/app/Base.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 
-
 namespace neb { namespace gfx { namespace app {
-	class __gfx_glsl:
+	class glsl:
 		virtual public neb::fnd::app::Base
 	{
 		public:
-			//typedef std::map<int, std::shared_ptr<neb::gfx::glsl::program::base> >		map_program_type;
+			//typedef std::map<int, std::shared_ptr<neb::gfx::glsl::program::Base> >		map_program_type;
 			friend class neb::gfx::environ::base;
 			friend class neb::gfx::environ::two;
 			friend class neb::gfx::environ::three;
 		public:
-			static std::weak_ptr<neb::gfx::app::__gfx_glsl>		global();
+			static std::weak_ptr<neb::gfx::app::glsl>		global();
 		protected:
 			void							__init();
-			//std::shared_ptr<neb::gfx::glsl::program::base>		use_program(neb::program_name::e);
-			//std::shared_ptr<neb::gfx::glsl::program::base>		get_program(neb::program_name::e);
+			//std::shared_ptr<neb::gfx::glsl::program::Base>		use_program(neb::program_name::e);
+			//std::shared_ptr<neb::gfx::glsl::program::Base>		get_program(neb::program_name::e);
 		public:
-			//std::shared_ptr<neb::gfx::glsl::program::base>		current_program();
+			//std::shared_ptr<neb::gfx::glsl::program::Base>		current_program();
 			void							create_programs();
 			//map_program_type					programs_;
-			//std::shared_ptr<neb::gfx::glsl::program::base>		current_;
-			std::shared_ptr<neb::gfx::glsl::program::base>		program_text_;
-			std::shared_ptr<neb::gfx::glsl::program::base>		program_tex_;
-			std::shared_ptr<neb::gfx::glsl::program::base>		program_simple3_;
+			//std::shared_ptr<neb::gfx::glsl::program::Base>		current_;
+			std::shared_ptr<neb::gfx::glsl::program::Base>		program_text_;
+			std::shared_ptr<neb::gfx::glsl::program::Base>		program_tex_;
+			std::shared_ptr<neb::gfx::glsl::program::Base>		program_simple3_;
 
 	};
 }}}

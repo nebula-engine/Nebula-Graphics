@@ -1,10 +1,10 @@
-
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <neb/gfx/camera/proj/ortho.hpp>
 
+typedef neb::gfx::camera::proj::Ortho THIS;
 
-neb::gfx::camera::proj::ortho::ortho():
+THIS::Ortho():
 	left_(-30),
 	right_(30),
 	bottom_(-30),
@@ -13,10 +13,10 @@ neb::gfx::camera::proj::ortho::ortho():
 	far_(100)
 {
 }
-glm::mat4&			neb::gfx::camera::proj::ortho::proj() {
+glm::mat4&			neb::gfx::camera::proj::Ortho::proj() {
 	return _M_matrix;
 }
-void				neb::gfx::camera::proj::ortho::set(
+void				neb::gfx::camera::proj::Ortho::set(
 		float l,
 		float r,
 		float b,
@@ -34,13 +34,13 @@ void				neb::gfx::camera::proj::ortho::set(
 
 	calculate();
 }
-void				neb::gfx::camera::proj::ortho::calculate()
+void				neb::gfx::camera::proj::Ortho::calculate()
 {
 	_M_matrix = glm::ortho(left_, right_, bottom_, top_, near_, far_);
 
 	calculate_geometry();
 }
-void				neb::gfx::camera::proj::ortho::step(gal::etc::timestep const & ts) {
+void				neb::gfx::camera::proj::Ortho::step(gal::etc::timestep const & ts) {
 	
 }
 

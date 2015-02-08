@@ -4,7 +4,7 @@
 #include <neb/gfx/core/light/point.hpp>
 
 neb::gfx::camera::view::shadow::point::point(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::camera::view::base(parent)
+	neb::gfx::camera::view::Base(parent)
 {
 	assert(parent);
 

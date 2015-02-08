@@ -11,8 +11,8 @@ namespace neb { namespace gfx { namespace camera { namespace proj { namespace ut
 		virtual public gal::itf::shared
 	{
 		public:
-			std::shared_ptr<neb::gfx::camera::proj::perspective>	isPerspective();
-			std::shared_ptr<neb::gfx::camera::proj::ortho>		isOrtho();
+			std::shared_ptr<neb::gfx::camera::proj::Perspective>	isPerspective();
+			std::shared_ptr<neb::gfx::camera::proj::Ortho>		isOrtho();
 	};
 }}}}}
 

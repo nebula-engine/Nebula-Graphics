@@ -18,8 +18,8 @@
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/util/log.hpp>
 
-neb::gfx::glsl::program::base::~base() {}
-neb::gfx::glsl::program::base::base(std::string name):
+neb::gfx::glsl::program::Base::~base() {}
+neb::gfx::glsl::program::Base::base(std::string name):
 	o_(0),
 	name_(name)
 {
@@ -30,7 +30,7 @@ neb::gfx::glsl::program::base::base(std::string name):
 	//flag_shader_def_.set(neb::gfx::glsl::program::util::flag_shader::SHADOW);
 
 }
-void	neb::gfx::glsl::program::base::init()
+void	neb::gfx::glsl::program::Base::init()
 {
 	//NEBULA_GLSL_PROGRAM_FUNC;
 
@@ -50,7 +50,7 @@ void	neb::gfx::glsl::program::base::init()
 
 
 }
-void	neb::gfx::glsl::program::base::add_shaders(std::vector<neb::gfx::glsl::shader> s)
+void	neb::gfx::glsl::program::Base::add_shaders(std::vector<neb::gfx::glsl::shader> s)
 {
 	//GRU_GLSL_PROGRAM_FUNC
 	
@@ -62,7 +62,7 @@ void	neb::gfx::glsl::program::base::add_shaders(std::vector<neb::gfx::glsl::shad
 		checkerror("glAttachShader");
 	}
 }
-void	neb::gfx::glsl::program::base::add_shader(std::string filename, GLenum type)
+void	neb::gfx::glsl::program::Base::add_shader(std::string filename, GLenum type)
 {
 	neb::gfx::glsl::shader s;
 	s.load(filename.c_str(), type);
@@ -82,7 +82,7 @@ void	neb::gfx::glsl::program::base::add_shader(std::string filename, GLenum type
 			abort();
 	}
 }
-void	neb::gfx::glsl::program::base::compile() {
+void	neb::gfx::glsl::program::Base::compile() {
 	//GRU_GLSL_PROGRAM_FUNC
 	
 	assert(shader_[VERT] == 1);
@@ -110,7 +110,7 @@ void	neb::gfx::glsl::program::base::compile() {
 	printv(debug, "program=%i\n",o_);
 
 }
-void	neb::gfx::glsl::program::base::use() const {
+void	neb::gfx::glsl::program::Base::use() const {
 	
 	checkerror("unknown");
 	
@@ -121,14 +121,14 @@ void	neb::gfx::glsl::program::base::use() const {
 	//glUniform1i(uniform_table_[neb::gfx::glsl::uniforms::FLAG], flag_shader_.val_);
 	//checkerror("");
 }
-void			neb::gfx::glsl::program::base::restoreDefaultShaderFlags()
+void			neb::gfx::glsl::program::Base::restoreDefaultShaderFlags()
 {
 	flag_shader_ = flag_shader_def_;
 
 	glUniform1i(uniform_table_[neb::gfx::glsl::uniforms::FLAG], (GLint)flag_shader_);
 	checkerror("");
 }
-void	neb::gfx::glsl::program::base::locate()
+void	neb::gfx::glsl::program::Base::locate()
 {
 	use();
 
@@ -234,7 +234,7 @@ char const * shaderTypeString(GLenum type) {
 
 	return "unknown";
 }
-void		neb::gfx::glsl::program::base::scanUniforms()
+void		neb::gfx::glsl::program::Base::scanUniforms()
 {
 	GLsizei len;
 	GLint size;

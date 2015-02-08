@@ -31,39 +31,32 @@
 #include <neb/gfx/context/util/decl.hpp>
 #include <neb/gfx/mesh/base.hpp>
 
-namespace ba = boost::archive;
-
 namespace neb { namespace gfx { namespace mesh {
 
-	class tri1: public elements<neb::gfx::glsl::buffer::elements<GLushort>, neb::gfx::glsl::buffer::tri1>
+	class tri1:
+		virtual public elements<neb::gfx::glsl::buffer::elements<GLushort>, neb::gfx::glsl::buffer::tri1>
 	{
 		public:
-			//typedef std::map<neb::gfx::glsl::program::base*, buffer*>	program_buffer_map;
-
+			//typedef std::map<neb::gfx::glsl::program::Base*, buffer*>	program_buffer_map;
 			typedef neb::gfx::glsl::buffer::tri1				buffer;
-			typedef neb::gfx::glsl::program::base				program;
+			typedef neb::gfx::glsl::program::Base				program;
 			typedef elements<neb::gfx::glsl::buffer::elements<GLushort>, neb::gfx::glsl::buffer::tri1>	base_t;
-		
 			// DO NOT CHANGE! coded in phx heightfield
 			typedef GLushort index_type;
 
 			tri1();
 			~tri1();
-
 			virtual GLsizeiptr*		begin();
 			virtual GLsizeiptr*		end();
 			virtual GLvoid** const		data();
 			GLsizeiptr*			size_array();
 			GLsizeiptr*			size();
-
 			void				serialize(
-					ba::polymorphic_iarchive & ar, unsigned int const & version);
+					boost::archive::polymorphic_iarchive & ar, unsigned int const & version);
 			void				serialize(
-					ba::polymorphic_oarchive & ar, unsigned int const & version);
-
-			void				construct(nc::math::geo::polyhedron*);
+					boost::archive::polymorphic_oarchive & ar, unsigned int const & version);
+			void				construct(neb::fnd::math::geo::polyhedron*);
 			void				print(int sl);
-
 			/*		
 					void				init_buffer(
 					program* p);
@@ -84,21 +77,18 @@ namespace neb { namespace gfx { namespace mesh {
 					program const * const & p,
 					neb::fnd::math::pose const & pose,
 					glm::vec3 scale);
-
-
-			ng::material::material			material_front_;
-			
-			void					setVerts(std::vector<nc::math::geo::vertex> const &);
-			void					setIndices(std::vector<index_type> const &);
-			
-			GLuint					getNbVerts();
-			GLuint					getNbIndices();
+			void						setVerts(std::vector<neb::fnd::math::geo::vertex> const &);
+			void						setIndices(std::vector<index_type> const &);
+			GLuint						getNbVerts();
+			GLuint						getNbIndices();
 		private:
-			std::vector<nc::math::geo::vertex>	vertices_;
-			std::vector<index_type>			indices_;
+			std::vector<neb::fnd::math::geo::vertex>	vertices_;
+			std::vector<index_type>				indices_;
 		public:
-			std::shared_ptr<neb::gfx::texture>	texture_;
-			std::shared_ptr<neb::gfx::texture>	normal_map_;
+			std::shared_ptr<neb::gfx::texture>		texture_;
+			std::shared_ptr<neb::gfx::texture>		normal_map_;
+
+			neb::gfx::material::material			material_front_;
 	};
 }}}
 

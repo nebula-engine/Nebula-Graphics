@@ -27,7 +27,7 @@
 neb::gfx::camera::proj::base::base()
 {
 }
-void		neb::gfx::camera::proj::base::load(neb::gfx::glsl::program::base const * const p) {
+void		neb::gfx::camera::proj::base::load(neb::gfx::glsl::program::Base const * const p) {
 	
 	//glViewport(0, 0, parent_->viewport_.w_, parent_->viewport_.h_);
 	

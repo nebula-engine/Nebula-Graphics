@@ -74,7 +74,7 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 				neb::gfx::glsl::uniforms::LIGHT_COUNT
 			};
 
-			//void		init(std::shared_ptr<neb::gfx::glsl::program::base> program);
+			//void		init(std::shared_ptr<neb::gfx::glsl::program::Base> program);
 	};
 }}}}
 

@@ -12,7 +12,7 @@ neb::gfx::gui::object::textview::textview() {
 void	neb::gfx::gui::object::textview::clear_label() {
 	label_.clear();
 }
-void	neb::gfx::gui::object::textview::draw(std::shared_ptr<neb::gfx::glsl::program::base> p) {
+void	neb::gfx::gui::object::textview::draw(std::shared_ptr<neb::gfx::glsl::program::Base> p) {
 	//printf("%s\n",__PRETTY_FUNCTION__);
 
 	float sx = 1.0/600.0;

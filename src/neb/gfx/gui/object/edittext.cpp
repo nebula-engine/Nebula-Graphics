@@ -1,5 +1,5 @@
 
-#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/gui/layout/base.hpp>
 #include <neb/gfx/gui/object/edittext.hh>
 

@@ -9,19 +9,19 @@ namespace neb { namespace gfx {
 		}
 
 		namespace view {
-			class base;
-			class ridealong;
+			class Base;
+			class Ridealong;
 			namespace shadow {
-				class point;
-				class directional;
-				class spot;
+				class Point;
+				class Directional;
+				class Spot;
 			}
 		}
 
 		namespace proj {
-			class base;
-			class perspective;
-			class ortho;
+			class Base;
+			class Perspective;
+			class Ortho;
 		}
 
 

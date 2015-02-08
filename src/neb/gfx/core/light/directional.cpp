@@ -7,14 +7,13 @@
 #include <neb/gfx/core/light/directional.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
-//#include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/app/glfw.hpp>
 #include <neb/gfx/core/light/base.hpp>
-#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
-#include <neb/gfx/camera/view/Base.hh>
+#include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/context/fbo.hpp>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/core/scene/base.hpp>

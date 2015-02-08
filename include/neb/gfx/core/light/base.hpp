@@ -87,7 +87,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 			std::shared_ptr<neb::gfx::environ::base>	shadow_environ_;				
 			// other properties
 			int						light_array_;
-			ng::glsl::uniform::light_array::slot_shared	light_array_slot_;
+			neb::gfx::glsl::uniform::light_array::slot_shared	light_array_slot_;
 			std::shared_ptr<gal::etc::slots::ticket>	texture_layers_;
 			std::shared_ptr<neb::gfx::texture>		texture_shadow_map_;
 	};

@@ -12,7 +12,8 @@ namespace neb { namespace gfx { namespace gui { namespace object { namespace uti
 	class parent :
 		virtual public neb::fnd::util::parent<neb::gfx::gui::object::base, parent>
 	{
-
+		public:
+			neb::fnd::app::Base* const	get_app() const;
 	};
 }}}}}
 

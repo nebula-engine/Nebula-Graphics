@@ -64,7 +64,7 @@ void	neb::gfx::material::material::init()
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 }
-void	neb::gfx::material::material::load(std::shared_ptr<neb::gfx::glsl::program::base> p) {
+void	neb::gfx::material::material::load(std::shared_ptr<neb::gfx::glsl::program::Base> p) {
 /*
 	p->get_uniform_scalar("front.ambient")->load((glm::vec4)raw_.ambient_);
 	p->get_uniform_scalar("front.diffuse")->load((glm::vec4)raw_.diffuse_);

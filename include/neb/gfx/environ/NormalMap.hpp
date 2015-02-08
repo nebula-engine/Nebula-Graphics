@@ -18,13 +18,13 @@ namespace neb { namespace gfx { namespace environ {
 	 */
 	class NormalMap:
 		virtual public neb::fnd::environ::visualization::Normal,
-		virtual public neb::gfx::environ::single<neb::gfx::camera::view::base>,
+		virtual public neb::gfx::environ::single<neb::gfx::camera::view::Base>,
 		virtual public neb::gfx::environ::three
 	{
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::program::base>		program_shared;
-			typedef std::shared_ptr<neb::gfx::camera::view::base>		view_shared;
-			typedef std::shared_ptr<neb::gfx::camera::proj::base>		proj_shared;
+			typedef std::shared_ptr<neb::gfx::glsl::program::Base>		program_shared;
+			typedef std::shared_ptr<neb::gfx::camera::view::Base>		view_shared;
+			typedef std::shared_ptr<neb::gfx::camera::proj::Base>		proj_shared;
 		public:
 			virtual void		init();
 

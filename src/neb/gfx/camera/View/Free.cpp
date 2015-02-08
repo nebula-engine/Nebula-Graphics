@@ -12,7 +12,7 @@
 #include <neb/gfx/util/log.hpp>
 
 neb::gfx::camera::view::Free::Free(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::camera::view::base(parent),
+	neb::gfx::camera::view::Base(parent),
 	pitch_(0),
 	yaw_(0),
 	eye_(0, 0, 0, 0),

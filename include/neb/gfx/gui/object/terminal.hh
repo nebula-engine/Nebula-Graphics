@@ -3,11 +3,9 @@
 
 #include <deque>
 
-#include <neb/core/app/__base.hpp>
+#include <neb/core/app/Base.hpp>
 
 #include <neb/gfx/gui/object/Base.hh>
-
-
 
 namespace neb { namespace gfx { namespace gui { namespace object {
 	class terminal:
@@ -15,23 +13,17 @@ namespace neb { namespace gfx { namespace gui { namespace object {
 	{
 		public:
 			typedef typename neb::gfx::gui::object::base::parent_t parent_t;
-
 			terminal();
 			virtual void			init(parent_t * const & p);
 			virtual void			step(gal::etc::timestep const &) {}
 			virtual void			draw(RenderDesc const &);
 			virtual void			preloop();
-
 			virtual int			keyFun(
-					std::shared_ptr<neb::core::input::source> const &, int,int,int,int);
+					std::shared_ptr<neb::fnd::input::source> const &, int,int,int,int);
 			virtual int			charFun(
-					std::shared_ptr<neb::core::input::source> const &,
+					std::shared_ptr<neb::fnd::input::source> const &,
 					unsigned int codepoint);
-
-
-
-			std::weak_ptr<neb::core::app::Base::console_type>	console_;
-
+			std::weak_ptr<neb::fnd::app::Base::console_type>	console_;
 			// display
 			std::vector<std::string>		history_;
 			unsigned int				history_current_;

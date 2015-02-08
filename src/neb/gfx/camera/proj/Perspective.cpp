@@ -24,29 +24,31 @@
 #include <neb/gfx/util/io.hpp>
 #include <neb/gfx/opengl/uniform.hpp>
 
-neb::gfx::camera::proj::perspective::perspective():
+typedef neb::gfx::camera::proj::Perspective THIS;
+
+THIS::Perspective():
 	fovy_(45.0f),
 	zn_(2.0f),
 	zf_(1000.0f)
 {
 	//calculate();
 }
-/*void		neb::gfx::camera::proj::perspective::init(RENDERABLE_S renderable) {
+/*void		neb::gfx::camera::proj::Perspective::init(RENDERABLE_S renderable) {
 	GLUTPP_DEBUG_0_FUNCTION;
 	
 	renderable_ = renderable;
 }*/
-glm::mat4&		neb::gfx::camera::proj::perspective::proj() {
+glm::mat4&		THIS::proj() {
 	return _M_matrix;
 }
-void		neb::gfx::camera::proj::perspective::set(float fovy, float near, float far)
+void			THIS::set(float fovy, float near, float far)
 {
 	fovy_ = fovy;
 	zn_ = near;
 	zf_ = far;
 	calculate();
 }
-void		neb::gfx::camera::proj::perspective::calculate()
+void			THIS::calculate()
 {
 	auto parent = getParent();
 
@@ -63,13 +65,10 @@ void		neb::gfx::camera::proj::perspective::calculate()
 
 	calculate_geometry();
 }
-void		neb::gfx::camera::proj::perspective::step(gal::etc::timestep const & ts) {
+void			THIS::step(gal::etc::timestep const & ts)
+{
 
 }
-
-
-
-
 
 
 

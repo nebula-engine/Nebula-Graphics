@@ -1,11 +1,12 @@
-
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
 #include <neb/gfx/camera/view/shadow/directional.hpp>
 #include <neb/gfx/core/light/directional.hpp>
 
-neb::gfx::camera::view::shadow::directional::directional(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::camera::view::base(parent)
+typedef neb::gfx::camera::view::shadow::Directional THIS;
+
+THIS::Directional(std::shared_ptr<neb::gfx::environ::base> parent):
+	neb::gfx::camera::view::Base(parent)
 {
 	assert(parent);
 
@@ -13,7 +14,7 @@ neb::gfx::camera::view::shadow::directional::directional(std::shared_ptr<neb::gf
 	//light_ = light;
 
 }
-glm::mat4				neb::gfx::camera::view::shadow::directional::view() {
+glm::mat4				neb::gfx::camera::view::shadow::Directional::view() {
 
 	auto parent = parent_.lock();
 	assert(parent);
@@ -53,7 +54,7 @@ glm::mat4				neb::gfx::camera::view::shadow::directional::view() {
 	return glm::lookAt(eye, center, up);
 
 }
-void					neb::gfx::camera::view::shadow::directional::step(gal::etc::timestep const & ts) {
+void					neb::gfx::camera::view::shadow::Directional::step(gal::etc::timestep const & ts) {
 }
 
 

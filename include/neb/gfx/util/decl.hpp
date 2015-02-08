@@ -91,9 +91,4 @@ namespace neb {
 	}
 }
 
-namespace ng = neb::gfx;
-
 #endif
-
-
-

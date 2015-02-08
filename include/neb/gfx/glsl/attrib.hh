@@ -8,12 +8,12 @@
 #include <neb/gfx/glsl/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace glsl {
-	class attrib {
+	class attrib
+	{
 		public:
-
 			attrib();
 			void		init(char const *, GLuint);
-			int		locate(std::shared_ptr<neb::gfx::glsl::program::base> p);
+			int		locate(std::shared_ptr<neb::gfx::glsl::program::Base> p);
 			void		enable();
 			void		disable();
 

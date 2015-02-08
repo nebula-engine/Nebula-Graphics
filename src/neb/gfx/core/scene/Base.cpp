@@ -1,9 +1,9 @@
 
-#include <neb/core/math/geo/polyhedron.hh>
+#include <neb/core/math/geo/polyhedron.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
-#include <neb/gfx/camera/view/Base.hh>
+#include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/core/actor/base.hpp>
 #include <neb/gfx/core/scene/base.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
@@ -13,8 +13,9 @@
 #include <neb/gfx/util/log.hpp>
 
 typedef neb::gfx::core::scene::base THIS;
+
 typedef neb::fnd::core::actor::util::parent A;
-typedef neb::gfx::glsl::program::base P;
+typedef neb::gfx::glsl::program::Base P;
 
 THIS::base()
 {}
@@ -57,7 +58,7 @@ void			THIS::initMeshes()
 	if(!meshes_.cuboid_)
 	{
 		// meshes
-		nc::math::geo::cuboid cube(1.0,1.0,1.0);
+		neb::fnd::math::geo::cuboid cube(1.0,1.0,1.0);
 
 		meshes_.cuboid_.reset(new neb::gfx::mesh::instanced);
 		meshes_.cuboid_->mesh_.construct(&cube);
@@ -207,9 +208,10 @@ void			THIS::drawMeshInst(neb::gfx::RenderDesc const & desc)
 void			THIS::drawDebug(
 		neb::gfx::RenderDesc const & desc)
 {
-	auto app(neb::gfx::app::__gfx_glsl::global().lock());
+	//auto app(neb::gfx::app::glsl::global().lock());
+	auto app = get_app();
 
-	auto p = app->program_simple3_;
+	auto p = app->get_program_simple3();
 	p->use();
 
 	desc.p->load(p.get());

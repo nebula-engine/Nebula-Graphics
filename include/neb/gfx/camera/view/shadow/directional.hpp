@@ -6,11 +6,13 @@
 
 namespace neb { namespace gfx { namespace camera { namespace view { namespace shadow {
 	/** @brief @Base */
-	class directional: virtual public neb::gfx::camera::view::base {
+	class Directional:
+		virtual public neb::gfx::camera::view::Base
+	{
 		public:
 			typedef std::weak_ptr<neb::gfx::core::light::directional>	light_weak;
 			/** @brief Constructor */
-			directional(std::shared_ptr<neb::gfx::environ::base> parent);
+			Directional(std::shared_ptr<neb::gfx::environ::base> parent);
 			/** @brief Get view matrix. */
 			virtual glm::mat4			view();
 			/** @brief Step

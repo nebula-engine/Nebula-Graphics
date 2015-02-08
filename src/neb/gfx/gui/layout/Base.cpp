@@ -12,7 +12,7 @@
 
 #include <neb/core/input/source.hpp>
 
-#include <neb/gfx/context/Base.hh>
+#include <neb/gfx/context/Base.hpp>
 #include <neb/gfx/gui/object/Base.hh>
 #include <neb/gfx/gui/object/edittext.hh>
 #include <neb/gfx/gui/object/terminal.hh>

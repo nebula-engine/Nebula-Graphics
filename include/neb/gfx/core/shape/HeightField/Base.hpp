@@ -19,10 +19,10 @@ namespace neb { namespace gfx { namespace core { namespace shape { namespace Hei
 			virtual void				step(gal::etc::timestep  const & ts) = 0;
 			// dont render normally. function is empty
 			virtual void				draw(
-							neb::gfx::glsl::program::base const * const & p,
+							neb::gfx::glsl::program::Base const * const & p,
 							neb::fnd::math::pose const & pose);
 			virtual void				drawHF(
-							neb::gfx::glsl::program::base const * const & p,
+							neb::gfx::glsl::program::Base const * const & p,
 							neb::fnd::math::pose const & pose);
 			//virtual void	load(ba::polymorphic_iarchive & ar, unsigned int const &);
 			//virtual void	save(ba::polymorphic_oarchive & ar, unsigned int const &) const;

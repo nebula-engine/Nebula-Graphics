@@ -17,7 +17,7 @@
 
 namespace neb {
 	void	draw_quad(
-			std::shared_ptr<neb::gfx::glsl::program::base> p,
+			std::shared_ptr<neb::gfx::glsl::program::Base> p,
 			float,
 			float,
 			float,
@@ -25,7 +25,7 @@ namespace neb {
 			neb::fnd::math::color::color);
 	
 	void	draw_text(
-			std::shared_ptr<neb::gfx::glsl::program::base> p,
+			std::shared_ptr<neb::gfx::glsl::program::Base> p,
 			float,
 			float,
 			float,

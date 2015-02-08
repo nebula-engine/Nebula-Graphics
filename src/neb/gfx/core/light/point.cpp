@@ -13,7 +13,7 @@
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/app/glfw.hpp>
-#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/core/light/point.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/glsl/program/base.hpp>

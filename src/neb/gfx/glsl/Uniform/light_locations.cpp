@@ -4,7 +4,7 @@
 
 constexpr neb::gfx::glsl::uniforms::e		neb::gfx::glsl::uniform::light_locations::names_[neb::gfx::glsl::uniform::light_array::loc_type::N];
 
-/*void		neb::gfx::glsl::uniform::light_locations::init(std::shared_ptr<neb::gfx::glsl::program::base> program) {
+/*void		neb::gfx::glsl::uniform::light_locations::init(std::shared_ptr<neb::gfx::glsl::program::Base> program) {
 	location[0]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_POSITION];
 	location[1]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_AMBIENT];
 	location[2]  = program->uniform_table_[neb::gfx::glsl::uniforms::LIGHT_DIFFUSE];

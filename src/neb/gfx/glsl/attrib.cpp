@@ -24,7 +24,7 @@ void	neb::gfx::glsl::attrib::init(char const * name, GLuint o_bind)
 	LOG(lg, neb::gfx::sl, debug) << "attrib " << name_;
 	
 }
-int	neb::gfx::glsl::attrib::locate(std::shared_ptr<neb::gfx::glsl::program::base> p) {
+int	neb::gfx::glsl::attrib::locate(std::shared_ptr<neb::gfx::glsl::program::Base> p) {
 	glBindAttribLocation(p->o_, o_bind_, name_);
 	checkerror("glBindAttribLocation");
 	

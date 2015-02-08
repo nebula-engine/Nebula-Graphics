@@ -11,10 +11,10 @@
 
 namespace neb { namespace gfx { namespace camera { namespace view {
 	class Ridealong:
-		virtual public neb::gfx::camera::view::base
+		virtual public neb::gfx::camera::view::Base
 	{
 		public:
-			ridealong(
+			Ridealong(
 					std::shared_ptr<neb::gfx::environ::base>,
 					std::weak_ptr<neb::fnd::core::actor::base> actor);
 

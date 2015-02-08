@@ -10,10 +10,7 @@
 #include <neb/gfx/glsl/program/base.hpp>
 
 namespace neb { namespace gfx { namespace glsl { namespace buffer {
-
-
 	template< array_type::e... > class templ;
-		
 	/** @brief base
 	 *
 	 * derived classes must implement
@@ -23,7 +20,6 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 	 */
 	//template< template< array_type::e... A > class D_, array_type::e... A > class base
 	//template< class D_, array_type::e... A > class base;
-
 	template< class D_ > class __base
 	{
 		public:
@@ -95,9 +91,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			GLuint			buffer_;
 
 	};
-
 	template< class D_ > class base;
-
 	template< array_type::e... A > class base< templ<A...> >: public __base< templ<A...> >
 	{
 		public:
@@ -112,7 +106,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			};
 
 			base() {}
-			int		init(neb::gfx::glsl::program::base const * const & p)
+			int		init(neb::gfx::glsl::program::Base const * const & p)
 			{
 				glGenBuffers(1, &buffer_);
 				checkerror("glGenBuffers");
@@ -154,7 +148,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			static const GLenum	target_	= GL_ELEMENT_ARRAY_BUFFER;
 			static const GLenum	usage_	= GL_STATIC_DRAW;
 
-			int		init(neb::gfx::glsl::program::base const * const & p)
+			int		init(neb::gfx::glsl::program::Base const * const & p)
 			{
 				glGenBuffers(1, &buffer_);
 				checkerror("glGenBuffers");

@@ -7,12 +7,12 @@
 #include <neb/gfx/camera/proj/base.hpp>
 
 namespace neb {namespace gfx {namespace camera {namespace proj {
-
-
 	/** @brief @Base */
-	class ortho: virtual public neb::gfx::camera::proj::base {
+	class Ortho:
+		virtual public neb::gfx::camera::proj::Base
+	{
 		public:
-			ortho();
+			Ortho();
 
 			virtual glm::mat4&			proj();
 			virtual void				calculate();

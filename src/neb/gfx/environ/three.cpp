@@ -6,8 +6,8 @@
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
-#include <neb/gfx/camera/view/Free.hh>
-#include <neb/gfx/camera/view/ridealong.hh>
+#include <neb/gfx/camera/view/Free.hpp>
+#include <neb/gfx/camera/view/Ridealong.hpp>
 #include <neb/gfx/camera/proj/perspective.hpp>
 
 #include <neb/gfx/environ/three.hpp>
@@ -32,7 +32,7 @@ void		neb::gfx::environ::three::init() {
 //		view_.reset(new neb::gfx::camera::view::Free(self));
 //	}
 
-	//proj_.reset(new neb::gfx::camera::proj::perspective(self));
+	//proj_.reset(new neb::gfx::camera::proj::Perspective(self));
 	createCameraPerspective();
 
 	//camera_->init(shared_from_this());
