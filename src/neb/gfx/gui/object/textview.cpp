@@ -22,7 +22,7 @@ void	neb::gfx::gui::object::textview::draw(std::shared_ptr<neb::gfx::glsl::progr
 	draw_text(p, x_, y_, sx, sy, font_color_, label_);
 }
 int	neb::gfx::gui::object::textview::mouseButtonFun(
-		std::shared_ptr<neb::core::input::source> const & src,
+		std::shared_ptr<neb::fnd::input::source> const & src,
 		int button,
 		int action,
 		int mods)
@@ -32,7 +32,7 @@ int	neb::gfx::gui::object::textview::mouseButtonFun(
 	return neb::gfx::gui::object::base::mouseButtonFun(src, button, action, mods);
 }
 int	neb::gfx::gui::object::textview::keyFun(
-		std::shared_ptr<neb::core::input::source> const & src,
+		std::shared_ptr<neb::fnd::input::source> const & src,
 		int key,
 		int scancode,
 		int action,

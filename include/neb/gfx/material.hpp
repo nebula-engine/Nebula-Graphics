@@ -24,10 +24,10 @@ namespace neb { namespace gfx { namespace material {
 			ar & boost::serialization::make_nvp("shininess",shininess_);
 		}
 
-		neb::core::math::color::color		ambient_;
-		neb::core::math::color::color		diffuse_;
-		neb::core::math::color::color		specular_;
-		neb::core::math::color::color		emission_;
+		neb::fnd::math::color::color		ambient_;
+		neb::fnd::math::color::color		diffuse_;
+		neb::fnd::math::color::color		specular_;
+		neb::fnd::math::color::color		emission_;
 		float				shininess_;
 	};
 

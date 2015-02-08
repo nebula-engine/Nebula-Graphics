@@ -12,7 +12,7 @@
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/environ/util/decl.hpp>
 #include <neb/gfx/Viewport.hpp>
-#include <neb/gfx/context/util/Cast.hh>
+#include <neb/gfx/context/util/Cast.hpp>
 //#include <neb/gfx/gui/layout/base.hpp>
 //#include <neb/gfx/window/Base.hh>
 //#include <neb/gfx/drawable/base.hpp>
@@ -35,11 +35,11 @@ namespace neb { namespace gfx { namespace context {
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
 	class base:
-		virtual public neb::core::context::Base,
+		virtual public neb::fnd::context::Base,
 		virtual public neb::gfx::context::util::cast
 	{
 		public:
-			//typedef neb::core::context::util::Parent parent_t;
+			//typedef neb::fnd::context::util::Parent parent_t;
 
 			base();
 			//base&							operator=(base const & r);
@@ -49,8 +49,8 @@ namespace neb { namespace gfx { namespace context {
 			virtual void						render();
 			virtual void						resize(int w, int h);
 
-			virtual void						setDrawable(std::shared_ptr<neb::core::drawable::Base>);
-			virtual void						setEnviron(std::shared_ptr<neb::core::environ::Base>);
+			virtual void						setDrawable(std::shared_ptr<neb::fnd::drawable::Base>);
+			virtual void						setEnviron(std::shared_ptr<neb::fnd::environ::Base>);
 		public:
 			std::shared_ptr<neb::gfx::environ::base>		environ_;
 	};

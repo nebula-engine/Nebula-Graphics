@@ -26,7 +26,7 @@ void			THIS::preloop()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto app = neb::core::app::Base::global();
+	auto app = neb::fnd::app::Base::global();
 
 	for(auto s: app->_M_preloop_scripts_python) {
 		auto console = console_.lock();
@@ -42,7 +42,7 @@ void			THIS::init(
 
 	neb::gfx::gui::object::base::init(p);
 
-	auto app = neb::core::app::Base::global();
+	auto app = neb::fnd::app::Base::global();
 
 	console_ = app->console_;
 }
@@ -94,7 +94,7 @@ void 			THIS::draw(
 	draw_text(0, x, y, sx, sy, font_color_, line.c_str(), console->line_.pos + console->prompt_end_.size());
 }
 int			THIS::charFun(
-		std::shared_ptr<neb::core::input::source> const & window,
+		std::shared_ptr<neb::fnd::input::source> const & window,
 		unsigned int codepoint)
 {
 	LOG(lg, neb::gfx::gui::object::sl_callback, debug) << __PRETTY_FUNCTION__;
@@ -108,7 +108,7 @@ int			THIS::charFun(
 	return 1;
 }
 int			THIS::keyFun(
-		std::shared_ptr<neb::core::input::source> const & window,
+		std::shared_ptr<neb::fnd::input::source> const & window,
 		int key,
 		int scancode,
 		int action,

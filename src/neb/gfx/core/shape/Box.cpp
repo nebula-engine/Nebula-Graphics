@@ -38,10 +38,10 @@ void neb::gfx::core::shape::box::box::createMesh() {
 
 		auto model = getPoseGlobal().mat4_cast() * glm::scale(scale_);
 
-		auto dif = neb::core::math::color::ucolor8888::rand();
-		auto amb = neb::core::math::color::color::gray(0.2);
-		auto spc = neb::core::math::color::color::white();
-		auto emi = neb::core::math::color::color::black();
+		auto dif = neb::fnd::math::color::ucolor8888::rand();
+		auto amb = neb::fnd::math::color::color::gray(0.2);
+		auto spc = neb::fnd::math::color::color::white();
+		auto emi = neb::fnd::math::color::color::black();
 		
 		LOG(lg, neb::gfx::sl, debug) << "diffuse   " << std::hex << dif;
 		LOG(lg, neb::gfx::sl, debug) << "diffuse r " << std::hex << (unsigned int)dif.r;

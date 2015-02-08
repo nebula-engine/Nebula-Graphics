@@ -7,8 +7,8 @@
 #include <neb/core/util/debug.hpp>
 //#include <neb/core/input/source.hpp>
 
-#include <neb/gfx/window/Base.hh>
-#include <neb/gfx/camera/view/manual.hpp>
+#include <neb/gfx/window/Base.hpp>
+#include <neb/gfx/camera/view/Manual.hpp>
 #include <neb/gfx/util/log.hpp>
 
 typedef neb::gfx::camera::view::manual THIS;

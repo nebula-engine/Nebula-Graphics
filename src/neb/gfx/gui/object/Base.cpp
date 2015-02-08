@@ -8,18 +8,18 @@ neb::gfx::gui::object::base::base():
 	y_(0.0),
 	w_(0.3),
 	h_(0.3),
-	font_color_(neb::core::math::color::color::magenta()),
+	font_color_(neb::fnd::math::color::color::magenta()),
 	bg_color_()
 {}
 void		neb::gfx::gui::object::base::init(parent_t * const & p)
 {
 	//neb::itf::shared::init(p);
 }
-int		neb::gfx::gui::object::base::mouseButtonFun(std::shared_ptr<neb::core::input::source> const & src, int,int,int)
+int		neb::gfx::gui::object::base::mouseButtonFun(std::shared_ptr<neb::fnd::input::source> const & src, int,int,int)
 {
 	printf("%s\n", __PRETTY_FUNCTION__);
 
-	font_color_ = neb::core::math::color::color::green();
+	font_color_ = neb::fnd::math::color::color::green();
 
 	return 1;
 }

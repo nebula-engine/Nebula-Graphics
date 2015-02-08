@@ -35,9 +35,9 @@ neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::SPOT;
 }
-void	neb::gfx::core::light::point::load(neb::core::core::light::util::count & light_count, neb::core::math::pose const & pose) {
+void	neb::gfx::core::light::point::load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose) {
 
-	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	assert(0);
 	/*        
 		  neb::gfx::core::light::base::load(light_count.point, pose);
@@ -51,16 +51,16 @@ void	neb::gfx::core::light::point::load(neb::core::core::light::util::count & li
 		  light_count.point++;
 		  */
 }
-void			neb::gfx::core::light::point::init(neb::core::core::light::util::parent * const & p)
+void			neb::gfx::core::light::point::init(neb::fnd::core::light::util::parent * const & p)
 {
-	LOG(lg, neb::core::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
 	setParent(p);
 
 	neb::gfx::core::light::base::init(p);
 	
 }	
-void			THIS::callbackPose(neb::core::math::pose const & gpose)
+void			THIS::callbackPose(neb::fnd::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
@@ -98,7 +98,7 @@ void			THIS::initShadow(
 	environ->setSceneEnviron(e3);
 }
 void			neb::gfx::core::light::point::setShadowEnviron(
-		std::shared_ptr<neb::core::environ::Base> environ)
+		std::shared_ptr<neb::fnd::environ::Base> environ)
 {
 	assert(environ);
 
@@ -151,18 +151,18 @@ void			neb::gfx::core::light::point::setShadowEnviron(
 }
 void		THIS::load(ba::polymorphic_iarchive & ar, unsigned int const & v)
 {
-	LOG(lg, neb::core::core::shape::sl, debug) << __FUNCSIG__;
+	LOG(lg, neb::fnd::core::shape::sl, debug) << __FUNCSIG__;
 
 	gal::itf::shared::serialize(ar, v);
-	neb::core::core::light::base::load(ar, v);
+	neb::fnd::core::light::base::load(ar, v);
 	neb::gfx::core::light::base::load(ar, v);
 }
 void		THIS::save(ba::polymorphic_oarchive & ar, unsigned int const & v) const
 {
-	LOG(lg, neb::core::core::shape::sl, debug) << __FUNCSIG__;
+	LOG(lg, neb::fnd::core::shape::sl, debug) << __FUNCSIG__;
 
 	const_cast<THIS*>(this)->gal::itf::shared::serialize(ar, v);
-	neb::core::core::light::base::save(ar, v);
+	neb::fnd::core::light::base::save(ar, v);
 	neb::gfx::core::light::base::save(ar, v);
 }
 

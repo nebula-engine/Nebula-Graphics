@@ -6,9 +6,9 @@
 #include <neb/gfx/context/fbo_multi.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
 
-typedef neb::core::context::FBO		C_FBO;
-typedef neb::core::context::FBOM	C_FBOM;
-typedef neb::core::context::Window	C_W;
+typedef neb::fnd::context::FBO		C_FBO;
+typedef neb::fnd::context::FBOM	C_FBOM;
+typedef neb::fnd::context::Window	C_W;
 
 typedef neb::gfx::context::util::parent THIS;
 

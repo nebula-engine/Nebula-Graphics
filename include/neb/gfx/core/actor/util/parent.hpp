@@ -5,7 +5,7 @@
 
 namespace neb { namespace gfx { namespace core { namespace actor { namespace util {
 	class parent:
-		virtual public neb::core::core::actor::util::parent
+		virtual public neb::fnd::core::actor::util::parent
 	{
 
 	};

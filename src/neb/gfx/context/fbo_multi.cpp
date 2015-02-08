@@ -110,7 +110,7 @@ void		neb::gfx::context::fbo_multi::render() {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	checkerror("glBindFramebuffer");
 }
-void			THIS::setTexture(std::shared_ptr<neb::core::itf::shared> texture)
+void			THIS::setTexture(std::shared_ptr<neb::fnd::itf::shared> texture)
 {
 	auto t = std::dynamic_pointer_cast<neb::gfx::texture>(texture);
 	assert(t);

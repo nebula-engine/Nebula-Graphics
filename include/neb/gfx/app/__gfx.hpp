@@ -33,7 +33,7 @@ namespace neb { namespace gfx {
 		 * graphics and window handling
 		 */
 		class __gfx:
-			virtual public neb::core::app::Base
+			virtual public neb::fnd::app::Base
 		{
 			public:
 			

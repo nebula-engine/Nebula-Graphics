@@ -64,7 +64,7 @@ void			neb::gfx::window::base::init(parent_t * const & p)
 	
 	auto app = neb::gfx::app::glfw::global();
 
-	if(!app->flag_.any(neb::core::app::util::flag::INIT_GLFW))
+	if(!app->flag_.any(neb::fnd::app::util::flag::INIT_GLFW))
 	{
 		std::cout << "glfw not initializaed" << std::endl;
 		return;

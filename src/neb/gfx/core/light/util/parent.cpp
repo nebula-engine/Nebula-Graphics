@@ -14,15 +14,15 @@
 
 	return scene1;
 }*/
-void			neb::gfx::core::light::util::parent::setPose(neb::core::math::pose const & pose) {
-	LOG(lg, neb::core::core::shape::sl, debug) << __PRETTY_FUNCTION__;
+void			neb::gfx::core::light::util::parent::setPose(neb::fnd::math::pose const & pose) {
+	LOG(lg, neb::fnd::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto lambda_light = [&] (map_type::pointer p) {
 		
 		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::base>(p);
 		assert(light);
 		
-		//if(i == neb::core::light::light_max) return L::map_type::BREAK;
+		//if(i == neb::fnd::light::light_max) return L::map_type::BREAK;
 		
 		light->setPose(pose);
 		
@@ -32,10 +32,10 @@ void			neb::gfx::core::light::util::parent::setPose(neb::core::math::pose const 
 
 }
 void			neb::gfx::core::light::util::parent::load_lights(
-		neb::core::core::light::util::count & light_count,
-		neb::core::math::pose const & pose)
+		neb::fnd::core::light::util::count & light_count,
+		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::core::core::shape::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::fnd::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 
 	assert(0);
 
@@ -44,7 +44,7 @@ void			neb::gfx::core::light::util::parent::load_lights(
 		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::base>(p);
 		assert(light);
 
-		//if(i == neb::core::light::light_max) return L::map_type::BREAK;
+		//if(i == neb::fnd::light::light_max) return L::map_type::BREAK;
 
 		//light->load(light_count, pose);
 

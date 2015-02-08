@@ -27,7 +27,7 @@ void			neb::draw_quad(
 		float y,
 		float w,
 		float h,
-		neb::core::math::color::color color)
+		neb::fnd::math::color::color color)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -87,7 +87,7 @@ void			neb::draw_text(
 		float y,
 		float sx,
 		float sy,
-		neb::core::math::color::color color,
+		neb::fnd::math::color::color color,
 		std::string text,
 		std::string::size_type cursor_pos)
 {
@@ -123,7 +123,7 @@ void			neb::draw_text(
 	FT_GlyphSlot g = face->glyph;
 
 	// cursor color
-	neb::core::math::color::color cursor_color = nc::math::color::color::white();
+	neb::fnd::math::color::color cursor_color = nc::math::color::color::white();
 	
 	// color
 	glUniform4fv(p->uniform_table_[neb::gfx::glsl::uniforms::FONT_COLOR], 1, (float*)color);

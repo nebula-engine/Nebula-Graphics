@@ -14,8 +14,8 @@ namespace neb { namespace gfx { namespace drawable {
 	 * Contains content to draw in a context (scene, layout, etc.).
 	 */
 	class base:
-		virtual public neb::core::itf::shared,
-		virtual public neb::core::drawable::Base
+		virtual public neb::fnd::itf::shared,
+		virtual public neb::fnd::drawable::Base
 	{
 		public:
 			//virtual void			init() = 0;

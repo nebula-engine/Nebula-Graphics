@@ -9,7 +9,7 @@ namespace neb {
 			namespace scene {
 				namespace util {
 					class parent:
-						virtual public neb::core::core::scene::util::parent
+						virtual public neb::fnd::core::scene::util::parent
 					{};
 				}
 			}

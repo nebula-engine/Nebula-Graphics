@@ -29,29 +29,29 @@ THIS::base()
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }
 THIS::~base() {}
-void					THIS::init(neb::core::core::shape::util::parent * const & p)
+void					THIS::init(neb::fnd::core::shape::util::parent * const & p)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	setParent(p);
 
-	if(!neb::core::app::Base::is_valid()) return;
+	if(!neb::fnd::app::Base::is_valid()) return;
 
 	createMesh();
 }
 void					THIS::release()
 {
-	neb::core::core::shape::base::release();
+	neb::fnd::core::shape::base::release();
 }
 void					THIS::step(gal::etc::timestep const & ts) {
 
 	//material_front_.step(ts);
 }
-void					THIS::callbackPose(neb::core::math::pose const & gpose) {
+void					THIS::callbackPose(neb::fnd::math::pose const & gpose) {
 	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
 
-	neb::core::core::shape::base::__callbackPose(gpose);
+	neb::fnd::core::shape::base::__callbackPose(gpose);
 
 	if(mesh_slot_) {
 		auto model = gpose.mat4_cast() * glm::scale(scale_);
@@ -60,7 +60,7 @@ void					THIS::callbackPose(neb::core::math::pose const & gpose) {
 		LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
 	}
 }
-void					THIS::setPose(neb::core::math::pose const & pose) {
+void					THIS::setPose(neb::fnd::math::pose const & pose) {
 	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto npose = pose * pose_;
@@ -69,7 +69,7 @@ void					THIS::setPose(neb::core::math::pose const & pose) {
 }
 void					THIS::draw(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {
 	auto npose = pose * pose_;
 	
@@ -77,12 +77,12 @@ void					THIS::draw(
 }
 void			THIS::drawHF(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {
 }
 void			THIS::model_load(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {
 	glm::mat4 space = pose.mat4_cast() * glm::scale(scale_);
 
@@ -92,7 +92,7 @@ void			THIS::model_load(
 }
 void			THIS::draw_elements(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
 
@@ -105,7 +105,7 @@ void			THIS::draw_elements(
 }
 void			THIS::drawDebug(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
 	
@@ -116,24 +116,24 @@ void			THIS::drawDebug(
 		mesh_->drawDebug(p, pose, scale_);
 	}
 }
-std::weak_ptr<neb::core::core::light::base>		THIS::createLightPoint()
+std::weak_ptr<neb::fnd::core::light::base>		THIS::createLightPoint()
 {
-	auto self(std::dynamic_pointer_cast<neb::core::core::shape::base>(shared_from_this()));
+	auto self(std::dynamic_pointer_cast<neb::fnd::core::shape::base>(shared_from_this()));
 
 	typedef neb::gfx::core::light::point L;
 
 	auto light = std::shared_ptr<L>(new L());
 
-	neb::core::core::light::util::parent::insert(light);
+	neb::fnd::core::light::util::parent::insert(light);
 
 	light->init(this);
 
 	return light;
 }
-std::weak_ptr<neb::core::core::light::base>		THIS::createLightSpot(glm::vec3 d)
+std::weak_ptr<neb::fnd::core::light::base>		THIS::createLightSpot(glm::vec3 d)
 {
 
-	auto self(std::dynamic_pointer_cast<neb::core::core::shape::base>(shared_from_this()));
+	auto self(std::dynamic_pointer_cast<neb::fnd::core::shape::base>(shared_from_this()));
 
 	typedef neb::gfx::core::light::spot L;
 
@@ -141,16 +141,16 @@ std::weak_ptr<neb::core::core::light::base>		THIS::createLightSpot(glm::vec3 d)
 
 	light->spot_direction_ = d;
 
-	neb::core::core::light::util::parent::insert(light);
+	neb::fnd::core::light::util::parent::insert(light);
 
 	light->init(this);
 
 	return light;
 }
-std::weak_ptr<neb::core::core::light::base>		THIS::createLightDirectional(glm::vec3 d)
+std::weak_ptr<neb::fnd::core::light::base>		THIS::createLightDirectional(glm::vec3 d)
 {
 
-	auto self(std::dynamic_pointer_cast<neb::core::core::shape::base>(shared_from_this()));
+	auto self(std::dynamic_pointer_cast<neb::fnd::core::shape::base>(shared_from_this()));
 
 	typedef neb::gfx::core::light::directional L;
 	
@@ -158,7 +158,7 @@ std::weak_ptr<neb::core::core::light::base>		THIS::createLightDirectional(glm::v
 
 	light->pose_.pos_ = d;
 
-	neb::core::core::light::util::parent::insert(light);
+	neb::fnd::core::light::util::parent::insert(light);
 
 	light->init(this);
 

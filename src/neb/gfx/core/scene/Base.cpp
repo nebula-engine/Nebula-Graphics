@@ -13,7 +13,7 @@
 #include <neb/gfx/util/log.hpp>
 
 typedef neb::gfx::core::scene::base THIS;
-typedef neb::core::core::actor::util::parent A;
+typedef neb::fnd::core::actor::util::parent A;
 typedef neb::gfx::glsl::program::base P;
 
 THIS::base()
@@ -123,7 +123,7 @@ void			THIS::drawMesh(neb::gfx::RenderDesc const & desc)
 	auto la = [&] (A::map_type::pointer p) {
 		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(p);
 		assert(actor);
-		actor->draw(d3, neb::core::math::pose());
+		actor->draw(d3, neb::fnd::math::pose());
 	};
 
 	A::map_.for_each(la);
@@ -161,7 +161,7 @@ void			THIS::drawMeshHF(neb::gfx::RenderDesc const & desc)
 	auto la = [&] (A::map_type::pointer ptr) {
 		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(ptr);
 		assert(actor);
-		actor->drawHF(p, neb::core::math::pose());
+		actor->drawHF(p, neb::fnd::math::pose());
 	};
 
 	A::map_.for_each(la);
@@ -219,7 +219,7 @@ void			THIS::drawDebug(
 	auto la = [&] (A::map_type::pointer ptr) {
 		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(ptr);
 		assert(actor);
-		actor->drawDebug(p.get(), neb::core::math::pose());
+		actor->drawDebug(p.get(), neb::fnd::math::pose());
 	};
 
 	A::map_.for_each(la);

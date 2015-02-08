@@ -11,7 +11,7 @@ namespace neb { namespace gfx { namespace environ {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable
 	 */
 	class two:
-		virtual public neb::core::environ::Two,
+		virtual public neb::fnd::environ::Two,
 		virtual public neb::gfx::environ::base
 	{
 		public:

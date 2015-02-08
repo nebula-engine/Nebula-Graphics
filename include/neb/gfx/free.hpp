@@ -22,7 +22,7 @@ namespace neb {
 			float,
 			float,
 			float,
-			neb::core::math::color::color);
+			neb::fnd::math::color::color);
 	
 	void	draw_text(
 			std::shared_ptr<neb::gfx::glsl::program::base> p,
@@ -30,7 +30,7 @@ namespace neb {
 			float,
 			float,
 			float,
-			neb::core::math::color::color,
+			neb::fnd::math::color::color,
 			std::string,
 			std::string::size_type pos = std::string::npos);
 }

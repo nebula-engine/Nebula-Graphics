@@ -18,25 +18,25 @@
 
 //neb::gfx::core::actor::base::base()
 
-/*neb::gfx::core::actor::base::base(std::shared_ptr<neb::core::core::actor::util::parent> parent):
-	gal::stl::child<neb::core::core::actor::base
-	neb::core::core::actor::base(parent)
+/*neb::gfx::core::actor::base::base(std::shared_ptr<neb::fnd::core::actor::util::parent> parent):
+	gal::stl::child<neb::fnd::core::actor::base
+	neb::fnd::core::actor::base(parent)
 {
-	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 }*/
 neb::gfx::core::actor::base::~base() {
-	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 }
 void				neb::gfx::core::actor::base::draw(
 		neb::gfx::glsl::program::base const * const & program,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto npose = pose * pose_;
 
-	typedef neb::core::core::actor::util::parent A;
-	typedef neb::core::core::shape::util::parent S;
+	typedef neb::fnd::core::actor::util::parent A;
+	typedef neb::fnd::core::shape::util::parent S;
 
 	A::map_.for_each([&] (A::map_type::pointer p) {
 			auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(p);
@@ -54,14 +54,14 @@ void				neb::gfx::core::actor::base::draw(
 }
 void				neb::gfx::core::actor::base::drawDebug(
 		neb::gfx::glsl::program::base const * const & program,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto npose = pose * pose_;
 
-	typedef neb::core::core::actor::util::parent A;
-	typedef neb::core::core::shape::util::parent S;
+	typedef neb::fnd::core::actor::util::parent A;
+	typedef neb::fnd::core::shape::util::parent S;
 
 	A::map_.for_each([&] (A::map_type::pointer p) {
 			auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(p);
@@ -79,14 +79,14 @@ void				neb::gfx::core::actor::base::drawDebug(
 }
 void				neb::gfx::core::actor::base::drawHF(
 		neb::gfx::glsl::program::base const * const & program,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::core::core::actor::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto npose = pose * pose_;
 
-	typedef neb::core::core::actor::util::parent A;
-	typedef neb::core::core::shape::util::parent S;
+	typedef neb::fnd::core::actor::util::parent A;
+	typedef neb::fnd::core::shape::util::parent S;
 
 	A::map_.for_each([&] (A::map_type::pointer p) {
 			auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(p);

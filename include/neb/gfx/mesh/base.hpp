@@ -167,7 +167,7 @@ namespace neb { namespace gfx { namespace mesh {
 		protected:
 			void			drawElements(
 					neb::gfx::glsl::program::base const * const & p,
-					neb::core::math::pose const & pose,
+					neb::fnd::math::pose const & pose,
 					glm::vec3 scale,
 					GLsizei count)
 			{
@@ -182,7 +182,7 @@ namespace neb { namespace gfx { namespace mesh {
 			void			drawElements(
 					neb::gfx::glsl::program::base const * const &	p,
 					buffer_tuple const &				bt,
-					neb::core::math::pose const &			pose,
+					neb::fnd::math::pose const &			pose,
 					glm::vec3					scale,
 					GLsizei						count)
 			{

@@ -50,7 +50,7 @@ void			neb::gfx::gui::layout::base::draw(neb::gfx::RenderDesc const & desc)
 	O::map_.for_each(lamb);
 
 }
-void			neb::gfx::gui::layout::base::connect(std::shared_ptr<neb::core::input::source> const & src)
+void			neb::gfx::gui::layout::base::connect(std::shared_ptr<neb::fnd::input::source> const & src)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -59,7 +59,7 @@ void			neb::gfx::gui::layout::base::connect(std::shared_ptr<neb::core::input::so
 	connectMouseButtonFun(src, 10);
 }
 int			neb::gfx::gui::layout::base::keyFun(
-		std::shared_ptr<neb::core::input::source> const & src,
+		std::shared_ptr<neb::fnd::input::source> const & src,
 		int key,
 		int scancode,
 		int action,
@@ -80,7 +80,7 @@ int			neb::gfx::gui::layout::base::keyFun(
 	return 0;
 }
 int			neb::gfx::gui::layout::base::charFun(
-		std::shared_ptr<neb::core::input::source> const & window,
+		std::shared_ptr<neb::fnd::input::source> const & window,
 		unsigned int codepoint)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -97,7 +97,7 @@ int			neb::gfx::gui::layout::base::charFun(
 	return 0;
 }
 int			neb::gfx::gui::layout::base::mouseButtonFun(
-		std::shared_ptr<neb::core::input::source> const & src,
+		std::shared_ptr<neb::fnd::input::source> const & src,
 		int button,
 		int action,
 		int mods)
@@ -123,7 +123,7 @@ int			neb::gfx::gui::layout::base::mouseButtonFun(
 	return 0;
 }
 int			neb::gfx::gui::layout::base::search(
-		std::shared_ptr<neb::core::input::source> const & src,
+		std::shared_ptr<neb::fnd::input::source> const & src,
 		int button,
 		int action,
 		int mods)

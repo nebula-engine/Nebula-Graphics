@@ -82,15 +82,15 @@ std::shared_ptr<neb::gfx::gui::layout::base>	create_layout(
 
 	return layout;
 }
-std::shared_ptr<neb::core::actor::base>		create_actor(std::shared_ptr<neb::core::core::scene::base> scene) {
+std::shared_ptr<neb::fnd::actor::base>		create_actor(std::shared_ptr<neb::fnd::core::scene::base> scene) {
 
-	auto actor = scene->cii<neb::gfx::core::actor::base, std::shared_ptr<neb::core::core::scene::base>>(scene);
+	auto actor = scene->cii<neb::gfx::core::actor::base, std::shared_ptr<neb::fnd::core::scene::base>>(scene);
 	
 	// shape	
 	auto shape = sp::make_shared<neb::gfx::core::shape::box>(actor);
 	
 	
-	actor->neb::core::shape::util::parent::insert(shape);
+	actor->neb::fnd::shape::util::parent::insert(shape);
 	//actor->insert(shape);
 	
 	
@@ -98,7 +98,7 @@ std::shared_ptr<neb::core::actor::base>		create_actor(std::shared_ptr<neb::core:
 	
 	return actor;	
 }
-/*std::shared_ptr<neb::core::actor::base>		create_actor2(std::shared_ptr<neb::core::core::scene::base> scene) {
+/*std::shared_ptr<neb::fnd::actor::base>		create_actor2(std::shared_ptr<neb::fnd::core::scene::base> scene) {
 	auto actor = sp::make_shared<neb::gfx::core::actor::base>(scene);
 	
 	scene->insert(actor);
@@ -107,26 +107,26 @@ std::shared_ptr<neb::core::actor::base>		create_actor(std::shared_ptr<neb::core:
 	
 	// shape	
 	
-	//auto shape = sp::make_shared<neb::core::shape::empty>(actor);
+	//auto shape = sp::make_shared<neb::fnd::shape::empty>(actor);
 	
-	//actor->neb::core::shape::util::parent::insert(shape);
+	//actor->neb::fnd::shape::util::parent::insert(shape);
 	
 	//shape->init();
 	
-	auto shape = actor->neb::core::shape::util::parent::cii< neb::core::shape::empty, std::shared_ptr<neb::core::actor::base> >(actor);
+	auto shape = actor->neb::fnd::shape::util::parent::cii< neb::fnd::shape::empty, std::shared_ptr<neb::fnd::actor::base> >(actor);
 	
 	// light
-	auto light = sp::make_shared<neb::core::light::Point>(shape);
+	auto light = sp::make_shared<neb::fnd::light::Point>(shape);
 	
-	shape->neb::core::light::util::parent::insert(light);
+	shape->neb::fnd::light::util::parent::insert(light);
 	
 	light->init();
 	
 	// another light
 	
-	light = sp::make_shared<neb::core::light::Point>(shape);
+	light = sp::make_shared<neb::fnd::light::Point>(shape);
 	
-	shape->neb::core::light::util::parent::insert(light);
+	shape->neb::fnd::light::util::parent::insert(light);
 	
 	light->init();
 
@@ -134,7 +134,7 @@ std::shared_ptr<neb::core::actor::base>		create_actor(std::shared_ptr<neb::core:
 
 	return actor;	
 }*/
-std::shared_ptr<neb::core::core::scene::base>			create_scene(
+std::shared_ptr<neb::fnd::core::scene::base>			create_scene(
 		std::shared_ptr<neb::gfx::context::window> context) {
 	
 	auto app = neb::app::__core::global().lock();
@@ -142,7 +142,7 @@ std::shared_ptr<neb::core::core::scene::base>			create_scene(
 	auto scene = sp::make_shared<neb::gfx::core::scene::base>(app);
 	assert(scene);	
 	
-	app->neb::core::core::scene::util::parent::insert(scene);
+	app->neb::fnd::core::scene::util::parent::insert(scene);
 	
 	scene->init();
 	

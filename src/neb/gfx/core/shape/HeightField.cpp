@@ -7,7 +7,7 @@ typedef neb::gfx::core::shape::HeightField::Base THIS;
 
 THIS::Base()
 {}
-void			THIS::mesh_from_heightfield(neb::core::math::HeightField::Base* hf, float rowScale, float colScale)
+void			THIS::mesh_from_heightfield(neb::fnd::math::HeightField::Base* hf, float rowScale, float colScale)
 {
 	unsigned int r = hf->_M_r;
 	unsigned int c = hf->_M_c;
@@ -17,7 +17,7 @@ void			THIS::mesh_from_heightfield(neb::core::math::HeightField::Base* hf, float
 	unsigned int nbTriangles = (r - 1) * (c - 1) * 2;
 	unsigned int nbIndices = nbTriangles * 3;
 
-	std::vector<neb::core::math::geo::vertex> vertices(nbVerts);
+	std::vector<neb::fnd::math::geo::vertex> vertices(nbVerts);
 	std::vector<unsigned short> indices(nbIndices);
 	
 	
@@ -111,11 +111,11 @@ void			THIS::mesh_from_heightfield(neb::core::math::HeightField::Base* hf, float
 }
 void			THIS::draw(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {}
 void			THIS::drawHF(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::math::pose const & pose)
+		neb::fnd::math::pose const & pose)
 {
 	auto npose = pose * pose_;
 

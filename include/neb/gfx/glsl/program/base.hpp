@@ -18,7 +18,7 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 	/**/
 	class base:
 		public std::enable_shared_from_this<base>,
-		public neb::core::itf::verbosity
+		public neb::fnd::itf::verbosity
 	{
 		public:
 			

@@ -7,8 +7,8 @@
 #include <neb/core/util/debug.hpp>
 //#include <neb/core/input/source.hpp>
 
-#include <neb/gfx/window/Base.hh>
-#include <neb/gfx/camera/view/Free.hh>
+#include <neb/gfx/window/Base.hpp>
+#include <neb/gfx/camera/view/Free.hpp>
 #include <neb/gfx/util/log.hpp>
 
 neb::gfx::camera::view::Free::Free(std::shared_ptr<neb::gfx::environ::base> parent):
@@ -104,7 +104,7 @@ neb::gfx::camera::view::Free::Free(std::shared_ptr<neb::gfx::environ::base> pare
 void	neb::gfx::camera::view::Free::init() {
 
 }
-void			neb::gfx::camera::view::Free::connect(std::shared_ptr<neb::core::input::source> const & src)
+void			neb::gfx::camera::view::Free::connect(std::shared_ptr<neb::fnd::input::source> const & src)
 {
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
 	
@@ -136,7 +136,7 @@ void			neb::gfx::camera::view::Free::connect(std::shared_ptr<neb::core::input::s
 
 }
 int			neb::gfx::camera::view::Free::keyFun(
-		std::shared_ptr<neb::core::input::source> const & src,
+		std::shared_ptr<neb::fnd::input::source> const & src,
 		int key,
 		int scancode,
 		int action,

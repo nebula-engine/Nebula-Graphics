@@ -14,7 +14,7 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	template<typename LIGHT> class base:
-		virtual public neb::core::environ::shadow::Base,
+		virtual public neb::fnd::environ::shadow::Base,
 		virtual public neb::gfx::environ::three
 	{
 		public:
@@ -28,13 +28,13 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			virtual void		render(std::shared_ptr<neb::gfx::context::base> context) = 0;
 			virtual bool		shouldRender() = 0;
 			virtual bool		shouldRender(unsigned int) { return true; }
-			virtual void		setLight(std::shared_ptr<neb::core::core::light::base> light)
+			virtual void		setLight(std::shared_ptr<neb::fnd::core::light::base> light)
 			{
 				auto l = std::dynamic_pointer_cast<LIGHT>(light);
 				assert(l);
 				light_ = l;
 			}
-			virtual void		setSceneEnviron(std::shared_ptr<neb::core::environ::Base> environ)
+			virtual void		setSceneEnviron(std::shared_ptr<neb::fnd::environ::Base> environ)
 			{
 				auto e = std::dynamic_pointer_cast<neb::gfx::environ::SceneDefault>(environ);
 				assert(e);

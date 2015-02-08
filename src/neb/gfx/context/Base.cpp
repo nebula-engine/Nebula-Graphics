@@ -62,14 +62,14 @@ void		neb::gfx::context::base::render() {
 	environ_->render(self);
 }		
 void							neb::gfx::context::base::setDrawable(
-		std::shared_ptr<neb::core::drawable::Base> drawable)
+		std::shared_ptr<neb::fnd::drawable::Base> drawable)
 {
 	auto d = std::dynamic_pointer_cast<neb::gfx::drawable::base>(drawable);
 	assert(d);
 	assert(environ_);
 	environ_->drawable_ = d;
 }
-void			THIS::setEnviron(std::shared_ptr<neb::core::environ::Base> env)
+void			THIS::setEnviron(std::shared_ptr<neb::fnd::environ::Base> env)
 {
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::base>(env);
 	assert(e);

@@ -17,7 +17,7 @@ namespace neb { namespace gfx { namespace environ {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	class NormalMap:
-		virtual public neb::core::environ::visualization::Normal,
+		virtual public neb::fnd::environ::visualization::Normal,
 		virtual public neb::gfx::environ::single<neb::gfx::camera::view::base>,
 		virtual public neb::gfx::environ::three
 	{

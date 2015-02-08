@@ -19,7 +19,7 @@
 
 namespace neb { namespace gfx { namespace app {
 	class __gfx_glsl:
-		virtual public neb::core::app::Base
+		virtual public neb::fnd::app::Base
 	{
 		public:
 			//typedef std::map<int, std::shared_ptr<neb::gfx::glsl::program::base> >		map_program_type;

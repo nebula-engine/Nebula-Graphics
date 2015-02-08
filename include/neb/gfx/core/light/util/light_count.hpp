@@ -1,7 +1,7 @@
 #ifndef NEBULA_CORE_LIGHT_COUNT
 #define NEBULA_CORE_LIGHT_COUNT
 
-namespace neb { namespace core { namespace light { namespace util {
+namespace neb { namespace fnd { namespace light { namespace util {
 
 	struct count {
 		count(): point(0), spot(0), directional(0) {}

@@ -25,7 +25,7 @@ namespace neb {
 					 * @note inheritance of neb::util::parent is non-virtual
 					 */
 					class parent :
-						virtual public neb::core::core::shape::util::parent
+						virtual public neb::fnd::core::shape::util::parent
 					{
 					public:
 						virtual ~parent() {}

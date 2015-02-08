@@ -22,11 +22,11 @@ namespace neb {
 	namespace gfx {namespace gui {namespace layout {
 	/** @brief %Base */
 	class base:
-		virtual public neb::core::gui::layout::Base,
+		virtual public neb::fnd::gui::layout::Base,
 		virtual public neb::gfx::drawable::base,
 		virtual public neb::gfx::gui::object::util::parent,
 		virtual public gal::stl::child<neb::gfx::gui::layout::util::parent>,
-		virtual public neb::core::input::sink
+		virtual public neb::fnd::input::sink
 	{
 		public:
 			typedef neb::gfx::gui::layout::util::parent parent_t;
@@ -44,18 +44,18 @@ namespace neb {
 
 			
 			void						connect(
-					std::shared_ptr<neb::core::input::source> const & window);
+					std::shared_ptr<neb::fnd::input::source> const & window);
 			int						search(
-					std::shared_ptr<neb::core::input::source> const &,
+					std::shared_ptr<neb::fnd::input::source> const &,
 					int button,
 					int action,
 					int mods);
 			int						mouseButtonFun(
-					std::shared_ptr<neb::core::input::source> const &,int button, int action, int mods);
+					std::shared_ptr<neb::fnd::input::source> const &,int button, int action, int mods);
 			int						keyFun(
-					std::shared_ptr<neb::core::input::source> const &,int,int,int,int);
+					std::shared_ptr<neb::fnd::input::source> const &,int,int,int,int);
 			int						charFun(
-					std::shared_ptr<neb::core::input::source> const &,
+					std::shared_ptr<neb::fnd::input::source> const &,
 					unsigned int codepoint);
 
 

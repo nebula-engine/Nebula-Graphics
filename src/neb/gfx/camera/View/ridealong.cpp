@@ -7,13 +7,13 @@
 #include <neb/core/core/actor/base.hpp>
 
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/camera/view/ridealong.hh>
+#include <neb/gfx/camera/view/Ridealong.hpp>
 
 
 
 neb::gfx::camera::view::ridealong::ridealong(
 		std::shared_ptr<neb::gfx::environ::base> parent,
-		weak_ptr<neb::core::core::actor::base> actor):
+		weak_ptr<neb::fnd::core::actor::base> actor):
 	neb::gfx::camera::view::base(parent),
 	actor_(actor)
 {

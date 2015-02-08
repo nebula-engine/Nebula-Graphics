@@ -7,15 +7,15 @@
 namespace neb { namespace gfx { namespace core { namespace light { namespace util {
 
 	class parent:
-		virtual public neb::core::core::light::util::parent
+		virtual public neb::fnd::core::light::util::parent
 	{
 		public:
 			virtual ~parent() {}
 			void			setPose(
-					neb::core::math::pose const & pose);
+					neb::fnd::math::pose const & pose);
 			void			load_lights(
-					neb::core::core::light::util::count & light_count,
-					neb::core::math::pose const & pose);
+					neb::fnd::core::light::util::count & light_count,
+					neb::fnd::math::pose const & pose);
 	};
 
 }}}}}

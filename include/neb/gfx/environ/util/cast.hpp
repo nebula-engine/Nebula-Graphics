@@ -8,7 +8,7 @@
 namespace neb { namespace gfx { namespace environ { namespace util {
 
 	class cast:
-		virtual public neb::core::itf::shared
+		virtual public neb::fnd::itf::shared
 	{
 		public:
 			std::shared_ptr<neb::gfx::environ::two>		isEnvironTwo();

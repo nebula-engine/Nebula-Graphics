@@ -149,7 +149,7 @@ void			neb::gfx::mesh::tri1::init_buffer(
 */
 void			neb::gfx::mesh::tri1::drawElements(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::math::pose const & pose,
+		neb::fnd::math::pose const & pose,
 		glm::vec3 scale)
 {
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
@@ -235,7 +235,7 @@ void			neb::gfx::mesh::tri1::drawElements(
 }
 void			neb::gfx::mesh::tri1::drawDebug(
 		neb::gfx::glsl::program::base const * const & p,
-		neb::core::math::pose const & pose,
+		neb::fnd::math::pose const & pose,
 		glm::vec3 scale)
 {
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
@@ -249,7 +249,7 @@ void			neb::gfx::mesh::tri1::drawDebug(
 	// debug vis
 	//auto app(neb::gfx::app::__gfx_glsl::global().lock());
 
-	//if(!flag_.all(neb::core::core::scene::util::flag::PHYSX_VISUALIZATION)) return;
+	//if(!flag_.all(neb::fnd::core::scene::util::flag::PHYSX_VISUALIZATION)) return;
 
 	// visual debugging
 	//if(px_scene_)
@@ -390,7 +390,7 @@ void			neb::gfx::mesh::tri1::drawDebug(
    void			neb::gfx::mesh::tri1::draw_elements(
    program_shared						p,
    std::shared_ptr<neb::gfx::glsl::buffer::tri1>		buf,
-   neb::core::math::pose const & pose,
+   neb::fnd::math::pose const & pose,
    glm::vec3 scale)
    {
    LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;

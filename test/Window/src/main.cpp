@@ -87,15 +87,15 @@ std::shared_ptr<neb::gfx::gui::layout::base>	create_layout(
 
 	return layout;
 }
-std::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor(std::shared_ptr<neb::core::scene::local> scene) {
+std::shared_ptr<neb::fnd::actor::rigiddynamic::local>		create_actor(std::shared_ptr<neb::fnd::scene::local> scene) {
 
-	auto actor = scene->cii<neb::core::actor::rigiddynamic::local, std::shared_ptr<neb::core::scene::local>>(scene);
+	auto actor = scene->cii<neb::fnd::actor::rigiddynamic::local, std::shared_ptr<neb::fnd::scene::local>>(scene);
 
 	// shape	
-	auto shape = sp::make_shared<neb::core::shape::box>(actor);
+	auto shape = sp::make_shared<neb::fnd::shape::box>(actor);
 	
 	
-	actor->neb::core::shape::util::parent::insert(shape);
+	actor->neb::fnd::shape::util::parent::insert(shape);
 	//actor->insert(shape);
 	
 	
@@ -103,8 +103,8 @@ std::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor(std::shared
 	
 	return actor;	
 }
-std::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor2(std::shared_ptr<neb::core::scene::local> scene) {
-	auto actor = sp::make_shared<neb::core::actor::rigiddynamic::local>(scene);
+std::shared_ptr<neb::fnd::actor::rigiddynamic::local>		create_actor2(std::shared_ptr<neb::fnd::scene::local> scene) {
+	auto actor = sp::make_shared<neb::fnd::actor::rigiddynamic::local>(scene);
 	
 	scene->insert(actor);
 	
@@ -112,26 +112,26 @@ std::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor2(std::share
 	
 	// shape	
 	/*
-	auto shape = sp::make_shared<neb::core::shape::empty>(actor);
+	auto shape = sp::make_shared<neb::fnd::shape::empty>(actor);
 	
-	actor->neb::core::shape::util::parent::insert(shape);
+	actor->neb::fnd::shape::util::parent::insert(shape);
 	
 	shape->init();
 	*/
-	auto shape = actor->neb::core::shape::util::parent::cii< neb::core::shape::empty, std::shared_ptr<neb::core::actor::rigiddynamic::local> >(actor);
+	auto shape = actor->neb::fnd::shape::util::parent::cii< neb::fnd::shape::empty, std::shared_ptr<neb::fnd::actor::rigiddynamic::local> >(actor);
 	
 	// light
-	auto light = sp::make_shared<neb::core::light::Point>(shape);
+	auto light = sp::make_shared<neb::fnd::light::Point>(shape);
 	
-	shape->neb::core::light::util::parent::insert(light);
+	shape->neb::fnd::light::util::parent::insert(light);
 	
 	light->init();
 	
 	// another light
 	
-	light = sp::make_shared<neb::core::light::Point>(shape);
+	light = sp::make_shared<neb::fnd::light::Point>(shape);
 	
-	shape->neb::core::light::util::parent::insert(light);
+	shape->neb::fnd::light::util::parent::insert(light);
 	
 	light->init();
 
@@ -139,16 +139,16 @@ std::shared_ptr<neb::core::actor::rigiddynamic::local>		create_actor2(std::share
 
 	return actor;	
 }
-std::shared_ptr<neb::core::scene::local>			create_scene(
+std::shared_ptr<neb::fnd::scene::local>			create_scene(
 		std::shared_ptr<neb::gfx::context::window> context) {
 	
 	auto app = neb::app::base::global();
 	assert(app);
 	
-	auto scene = sp::make_shared<neb::core::scene::local>(app);
+	auto scene = sp::make_shared<neb::fnd::scene::local>(app);
 	assert(scene);	
 	
-	app->neb::core::scene::util::parent::insert(scene);
+	app->neb::fnd::scene::util::parent::insert(scene);
 	
 	scene->init();
 	
@@ -190,7 +190,7 @@ std::shared_ptr<neb::game::map::base>			create_map(
 	
 	auto map = sp::make_shared<neb::game::map::base>(app);
 	
-	app->neb::core::scene::util::parent::insert(map);
+	app->neb::fnd::scene::util::parent::insert(map);
 	
 	map->init();
 	
@@ -232,7 +232,7 @@ std::shared_ptr<neb::game::map::base>			create_maze(
 	
 	auto map = sp::make_shared<neb::ext::maze::game::map::maze2>(app, ivec2(15,15));
 	
-	app->neb::core::scene::util::parent::insert(map);
+	app->neb::fnd::scene::util::parent::insert(map);
 	
 	map->init();
 

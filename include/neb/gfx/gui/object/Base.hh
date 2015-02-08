@@ -22,12 +22,12 @@
 namespace neb { namespace gfx { namespace gui { namespace object {
 
 	class base:
-		virtual public neb::core::input::sink,
-		virtual public neb::core::itf::shared,
+		virtual public neb::fnd::input::sink,
+		virtual public neb::fnd::itf::shared,
 		virtual public neb::gfx::gui::object::util::parent
 	{
 		public:
-			typedef nc::util::parent<neb::gfx::gui::object::base, neb::gfx::gui::object::util::parent> parent_t;
+			typedef neb::fnd::util::parent<neb::gfx::gui::object::base, neb::gfx::gui::object::util::parent> parent_t;
 
 			base();
 			virtual ~base() {}
@@ -36,11 +36,11 @@ namespace neb { namespace gfx { namespace gui { namespace object {
 			virtual void			draw(neb::gfx::RenderDesc const &) = 0;
 			virtual void			preloop() = 0;
 			virtual int			keyFun(
-					std::shared_ptr<neb::core::input::source> const &, int, int, int, int) = 0;
+					std::shared_ptr<neb::fnd::input::source> const &, int, int, int, int) = 0;
 			virtual int			mouseButtonFun(
-					std::shared_ptr<neb::core::input::source> const &, int, int, int);
+					std::shared_ptr<neb::fnd::input::source> const &, int, int, int);
 			virtual int			charFun(
-					std::shared_ptr<neb::core::input::source> const &,
+					std::shared_ptr<neb::fnd::input::source> const &,
 					unsigned int codepoint) {return 0;}
 
 			//virtual void			connect();
@@ -67,8 +67,8 @@ namespace neb { namespace gfx { namespace gui { namespace object {
 			float							w_;
 			float							h_;
 
-			neb::core::math::color::color				font_color_;
-			neb::core::math::color::color				bg_color_;
+			neb::fnd::math::color::color				font_color_;
+			neb::fnd::math::color::color				bg_color_;
 
 			std::string						label_;
 			// connections

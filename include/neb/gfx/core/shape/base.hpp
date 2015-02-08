@@ -28,7 +28,7 @@ namespace neb {
 
 		namespace core { namespace shape {
 			class base:
-				virtual public neb::core::core::shape::base,
+				virtual public neb::fnd::core::shape::base,
 				virtual public neb::gfx::core::light::util::parent
 			{
 				public:
@@ -36,41 +36,41 @@ namespace neb {
 					base();
 					virtual ~base();
 
-					void			init(neb::core::core::shape::util::parent * const & p);
+					void			init(neb::fnd::core::shape::util::parent * const & p);
 					void			release();
 					void			step(gal::etc::timestep const & ts);
-					virtual void		callbackPose(neb::core::math::pose const & pose_global);
+					virtual void		callbackPose(neb::fnd::math::pose const & pose_global);
 
-					virtual weak_ptr<neb::core::core::light::base>		createLightPoint();
-					virtual weak_ptr<neb::core::core::light::base>		createLightSpot(glm::vec3);
-					virtual weak_ptr<neb::core::core::light::base>		createLightDirectional(glm::vec3);
+					virtual weak_ptr<neb::fnd::core::light::base>		createLightPoint();
+					virtual weak_ptr<neb::fnd::core::light::base>		createLightSpot(glm::vec3);
+					virtual weak_ptr<neb::fnd::core::light::base>		createLightDirectional(glm::vec3);
 
 
-					void							setPose(neb::core::math::pose const & pose);
+					void							setPose(neb::fnd::math::pose const & pose);
 					virtual void						createMesh();
 
 
 					/** @name Rendering @{ */
 					//void						load_lights(
-					//		neb::core::core::light::util::count& light_count,
-					//		neb::core::math::pose const & pose);
+					//		neb::fnd::core::light::util::count& light_count,
+					//		neb::fnd::math::pose const & pose);
 					void						model_load(
 							neb::gfx::glsl::program::base const * const & p,
-							neb::core::math::pose const & pose);
+							neb::fnd::math::pose const & pose);
 					void						init_buffer(
 							neb::gfx::glsl::program::base const * const & p);
 					virtual void					draw(
 							neb::gfx::glsl::program::base const * const & p,
-							neb::core::math::pose const & pose);
+							neb::fnd::math::pose const & pose);
 					virtual void					drawHF(
 							neb::gfx::glsl::program::base const * const & p,
-							neb::core::math::pose const & pose);
+							neb::fnd::math::pose const & pose);
 					virtual void					drawDebug(
 							neb::gfx::glsl::program::base const * const & p,
-							neb::core::math::pose const & pose);
+							neb::fnd::math::pose const & pose);
 					virtual void					draw_elements(
 							neb::gfx::glsl::program::base const * const & p,
-							neb::core::math::pose const & pose);
+							neb::fnd::math::pose const & pose);
 					/** @} */
 				public:
 					template<class Archive>	void	serialize(Archive & ar, unsigned int const & version) {

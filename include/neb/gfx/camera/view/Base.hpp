@@ -18,7 +18,7 @@
 namespace neb {namespace gfx {namespace camera {namespace view {
 
 	/** @brief @Base */
-	class base: virtual public neb::core::itf::shared
+	class base: virtual public neb::fnd::itf::shared
 	{
 		public:
 			/** @brief Constructor */

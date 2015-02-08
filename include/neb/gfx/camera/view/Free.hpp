@@ -5,7 +5,7 @@
 
 #include <neb/core/input/sink.hpp>
 
-#include <neb/gfx/camera/view/Base.hh>
+#include <neb/gfx/camera/view/Base.hpp>
 
 namespace neb { namespace gfx { namespace camera { namespace view {
 
@@ -14,7 +14,7 @@ namespace neb { namespace gfx { namespace camera { namespace view {
 	 * user input in interpreted as three-component velocity and yaw and pitch rate
 	 */
 	class Free:
-		virtual public neb::core::input::sink,
+		virtual public neb::fnd::input::sink,
 		virtual public neb::gfx::camera::view::base
 	{
 		public:
@@ -34,9 +34,9 @@ namespace neb { namespace gfx { namespace camera { namespace view {
 
 
 			virtual void					connect(
-					std::shared_ptr<neb::core::input::source> const &);
+					std::shared_ptr<neb::fnd::input::source> const &);
 			virtual int					keyFun(
-					std::shared_ptr<neb::core::input::source> const &,
+					std::shared_ptr<neb::fnd::input::source> const &,
 					int key,
 					int scancode,
 					int action,

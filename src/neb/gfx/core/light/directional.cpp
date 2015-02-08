@@ -29,7 +29,7 @@ neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::DIRECTIONAL;
 }
-void					THIS::init(neb::core::core::light::util::parent * const & p)
+void					THIS::init(neb::fnd::core::light::util::parent * const & p)
 {
 	setParent(p);
 	
@@ -59,7 +59,7 @@ void					THIS::init(neb::core::core::light::util::parent * const & p)
 	setShadowEnviron(environ);
 
 }
-void					THIS::callbackPose(neb::core::math::pose const & gpose)
+void					THIS::callbackPose(neb::fnd::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
@@ -68,7 +68,7 @@ void					THIS::callbackPose(neb::core::math::pose const & gpose)
 	
 	//scene->light_array_[light_array_].set_pos(light_array_slot_, gpose.pos_);
 }
-void					THIS::setShadowEnviron(std::shared_ptr<neb::core::environ::Base> environ)
+void					THIS::setShadowEnviron(std::shared_ptr<neb::fnd::environ::Base> environ)
 {
 	assert(environ);
 	
@@ -110,14 +110,14 @@ void					THIS::load(ba::polymorphic_iarchive & ar, unsigned int const &)
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
 	BOOST_SERIALIZATION_BASE_OBJECT_NVP(gal::itf::shared);
-	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::core::core::light::base);
+	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
 }
 void		THIS::save(ba::polymorphic_oarchive & ar, unsigned int const &) const
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
 	BOOST_SERIALIZATION_BASE_OBJECT_NVP(gal::itf::shared);
-	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::core::core::light::base);
+	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
 }
 
 

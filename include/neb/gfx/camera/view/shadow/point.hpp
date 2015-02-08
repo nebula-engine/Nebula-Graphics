@@ -1,7 +1,7 @@
 #ifndef __GLUTPP_CAMERA_VIEW_SHADOW_POINT_
 #define __GLUTPP_CAMERA_VIEW_SHADOW_POINT_
 
-#include <neb/gfx/camera/view/Base.hh>
+#include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/core/light/util/decl.hpp>
 
 namespace neb {namespace gfx {namespace camera {namespace view { namespace shadow {

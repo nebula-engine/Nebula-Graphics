@@ -70,7 +70,7 @@ namespace neb { namespace gfx { namespace mesh {
 					void				draw_elements(
 					program* p,
 					buffer_shared,
-					neb::core::math::pose const & pose,
+					neb::fnd::math::pose const & pose,
 					glm::vec3 scale);
 			 */
 			/**
@@ -78,11 +78,11 @@ namespace neb { namespace gfx { namespace mesh {
 			 */
 			void				drawDebug(
 					program const * const & p,
-					neb::core::math::pose const & pose,
+					neb::fnd::math::pose const & pose,
 					glm::vec3 scale);
 			void				drawElements(
 					program const * const & p,
-					neb::core::math::pose const & pose,
+					neb::fnd::math::pose const & pose,
 					glm::vec3 scale);
 
 

@@ -153,7 +153,7 @@ int	client_main(char const * addr, short unsigned int port) {
 	//app->activate_layout(box::LAYOUT_GAME);
 
 }*/
-std::shared_ptr<neb::Actor::RigidBody::base> create_player_actor(std::shared_ptr<neb::core::scene::base> scene) {
+std::shared_ptr<neb::Actor::RigidBody::base> create_player_actor(std::shared_ptr<neb::fnd::scene::base> scene) {
 
 	typedef neb::Actor::base A;
 	typedef neb::WrapperTyped<A> W;
@@ -178,7 +178,7 @@ std::shared_ptr<neb::Actor::RigidBody::base> create_player_actor(std::shared_ptr
 
 	return rigidbody;
 }
-void	create_player(std::shared_ptr<neb::gfx::window::base> wnd, std::shared_ptr<neb::core::scene::base> scene) {
+void	create_player(std::shared_ptr<neb::gfx::window::base> wnd, std::shared_ptr<neb::fnd::scene::base> scene) {
 	
 	auto rigidbody = create_player_actor(scene);
 
@@ -206,10 +206,10 @@ int	server_main(short unsigned int port) {
 
 	app->reset_server(port);
 	
-	typedef neb::util::parent< neb::core::scene::base > S;
+	typedef neb::util::parent< neb::fnd::scene::base > S;
 	typedef neb::util::parent< neb::gfx::window::base > W;
 
-	typedef neb::WrapperTyped<neb::core::scene::base>	Wrapper;
+	typedef neb::WrapperTyped<neb::fnd::scene::base>	Wrapper;
 
 	{
 		// Scene

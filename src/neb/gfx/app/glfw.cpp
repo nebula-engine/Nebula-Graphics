@@ -70,12 +70,12 @@ void					neb::gfx::app::glfw::init()
 	glfwSetErrorCallback(static_error_fun);
 	//try {
 		glfwInit();
-		flag_.set(neb::core::app::util::flag::INIT_GLFW);
+		flag_.set(neb::fnd::app::util::flag::INIT_GLFW);
 	//} catch(std::exception& e);
 }
 void				neb::gfx::app::glfw::init_glew()
 {
-	if(!flag_.any(neb::core::app::util::flag::INIT_GLEW))
+	if(!flag_.any(neb::fnd::app::util::flag::INIT_GLEW))
 	{
 		GLenum err = glewInit();
 		if (err != GLEW_OK)
@@ -84,7 +84,7 @@ void				neb::gfx::app::glfw::init_glew()
 			exit(EXIT_FAILURE);
 		}
 
-		flag_.set(neb::core::app::util::flag::INIT_GLEW);
+		flag_.set(neb::fnd::app::util::flag::INIT_GLEW);
 	}
 }
 void				neb::gfx::app::glfw::release()
@@ -103,7 +103,7 @@ void				neb::gfx::app::glfw::render()
 	neb::gfx::window::util::parent::render();
 
 }
-std::weak_ptr<neb::core::window::Base>			neb::gfx::app::glfw::get_window(GLFWwindow* window) {
+std::weak_ptr<neb::fnd::window::Base>			neb::gfx::app::glfw::get_window(GLFWwindow* window) {
 	auto it = windows_glfw_.find(window);
 	assert(it != windows_glfw_.cend());
 	assert(it->second);
@@ -112,8 +112,8 @@ std::weak_ptr<neb::core::window::Base>			neb::gfx::app::glfw::get_window(GLFWwin
 
 void							THIS::onFirstContext()
 {
-	if(flag_.any(neb::core::app::util::flag::FIRST_CONTEXT)) return;
-	flag_.set(neb::core::app::util::flag::FIRST_CONTEXT);
+	if(flag_.any(neb::fnd::app::util::flag::FIRST_CONTEXT)) return;
+	flag_.set(neb::fnd::app::util::flag::FIRST_CONTEXT);
 	
 	/* Print version info */
 	GLubyte const *vendor_string = glGetString(GL_VENDOR);

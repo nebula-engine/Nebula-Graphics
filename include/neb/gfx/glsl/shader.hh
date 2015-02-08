@@ -7,7 +7,7 @@
 
 namespace neb { namespace gfx { namespace glsl {
 	class shader:
-		public neb::core::itf::verbosity
+		public neb::fnd::itf::verbosity
 	{
 		public:
 			void	load(const char * filename, GLenum shader_type);

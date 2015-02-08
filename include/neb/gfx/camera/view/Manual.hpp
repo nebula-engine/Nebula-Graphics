@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include <neb/gfx/camera/view/Base.hh>
+#include <neb/gfx/camera/view/Base.hpp>
 
 namespace neb { namespace gfx { namespace camera { namespace view {
 

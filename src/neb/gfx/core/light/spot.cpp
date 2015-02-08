@@ -23,7 +23,7 @@ neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::SPOT;
 }
-void			THIS::init(neb::core::core::light::util::parent * const & p)
+void			THIS::init(neb::fnd::core::light::util::parent * const & p)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -32,8 +32,8 @@ void			THIS::init(neb::core::core::light::util::parent * const & p)
 	neb::gfx::core::light::base::init(p);
 }
 void			neb::gfx::core::light::spot::load(
-		neb::core::core::light::util::count & light_count,
-		neb::core::math::pose const & pose) {
+		neb::fnd::core::light::util::count & light_count,
+		neb::fnd::math::pose const & pose) {
 
 /*	neb::gfx::core::light::base::load(light_count.spot, pose);
 	
@@ -56,7 +56,7 @@ void			neb::gfx::core::light::spot::load(
 	light_count.spot++;
 	*/
 }
-void		neb::gfx::core::light::spot::callbackPose(neb::core::math::pose const & gpose)
+void		neb::gfx::core::light::spot::callbackPose(neb::fnd::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
@@ -131,14 +131,14 @@ void		THIS::load(ba::polymorphic_iarchive & ar, unsigned int const &)
 	LOG(lg, neb::gfx::core::light::sl, debug) << __FUNCSIG__;
 
 	BOOST_SERIALIZATION_BASE_OBJECT_NVP(gal::itf::shared);
-	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::core::core::light::base);
+	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
 }
 void		THIS::save(ba::polymorphic_oarchive & ar, unsigned int const &) const
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __FUNCSIG__;
 
 	BOOST_SERIALIZATION_BASE_OBJECT_NVP(gal::itf::shared);
-	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::core::core::light::base);
+	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
 }
 
 

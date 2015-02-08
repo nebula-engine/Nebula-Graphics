@@ -9,7 +9,7 @@ namespace neb { namespace gfx { namespace context { namespace util {
 	/** @brief %Cast
 	 */
 	class cast:
-		virtual public neb::core::itf::shared
+		virtual public neb::fnd::itf::shared
 	{
 		public:
 			std::shared_ptr<neb::gfx::context::base>			isContextBase();

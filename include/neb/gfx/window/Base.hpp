@@ -11,31 +11,29 @@
 #include <neb/core/core/scene/util/decl.hpp>
 #include <neb/core/window/Base.hpp>
 
-#include <neb/gfx/context/Base.hh>
-#include <neb/gfx/context/util/Parent.hh>
+#include <neb/gfx/context/Base.hpp>
+#include <neb/gfx/context/util/Parent.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/shader.hh>
 #include <neb/gfx/gui/layout/base.hpp>
-#include <neb/gfx/window/__base.hpp>
-#include <neb/gfx/window/util/Flag.hh>
-#include <neb/gfx/window/util/Cast.hh>
+#include <neb/gfx/window/util/Flag.hpp>
+#include <neb/gfx/window/util/Cast.hpp>
 
 namespace neb { namespace gfx { namespace window {
-	class base:
-		virtual public neb::core::window::Base,
-		virtual public neb::gfx::window::__base,
+	class Base:
+		virtual public neb::fnd::window::Base,
 		virtual public neb::gfx::context::util::parent,
 		virtual public neb::gfx::window::util::cast
 {
 		public:
 			//typedef neb::gfx::window::util::parent parent_t;
-			//typedef nc::util::parent<neb::core::context::Base, neb::core::context::util::Parent> contexts;
+			//typedef nc::util::parent<neb::fnd::context::Base, neb::fnd::context::util::Parent> contexts;
 
-			base();
-			virtual ~base();
+			Base();
+			virtual ~Base();
 			virtual void				init(parent_t * const & p);
 			virtual void				release();
 			
@@ -56,9 +54,9 @@ namespace neb { namespace gfx { namespace window {
 			void					callbackCharFun(GLFWwindow*,unsigned int);
 
 			/*
-			std::weak_ptr<neb::core::context::Window>	createContextTwo();
-			std::weak_ptr<neb::core::context::Window>	createContextThree();
-			std::weak_ptr<neb::core::context::window>	createContextNormalMap();
+			std::weak_ptr<neb::fnd::context::Window>	createContextTwo();
+			std::weak_ptr<neb::fnd::context::Window>	createContextThree();
+			std::weak_ptr<neb::fnd::context::window>	createContextNormalMap();
 			*/
 
 			virtual int				get_width();

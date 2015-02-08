@@ -17,7 +17,7 @@ namespace neb { namespace gfx { namespace context {
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
 	class fbo_multi:
-		virtual public neb::core::context::FBOM,
+		virtual public neb::fnd::context::FBOM,
 		virtual public neb::gfx::context::Window
 	{
 		public:
@@ -25,9 +25,9 @@ namespace neb { namespace gfx { namespace context {
 			virtual void				init(parent_t * const & p);
 			virtual void				render();
 
-			virtual std::weak_ptr<neb::core::environ::shadow::Directional>		createEnvironShadowDirectional() = 0;
+			virtual std::weak_ptr<neb::fnd::environ::shadow::Directional>		createEnvironShadowDirectional() = 0;
 
-			virtual void				setTexture(std::shared_ptr<neb::core::itf::shared> texture);
+			virtual void				setTexture(std::shared_ptr<neb::fnd::itf::shared> texture);
 
 			GLuint					framebuffer_;
 

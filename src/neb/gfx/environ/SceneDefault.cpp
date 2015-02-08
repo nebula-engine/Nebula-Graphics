@@ -32,7 +32,7 @@ void		neb::gfx::environ::SceneDefault::init()
 
 
 std::weak_ptr<neb::gfx::camera::view::ridealong>		neb::gfx::environ::SceneDefault::createViewridealong(
-		std::weak_ptr<neb::core::core::actor::base> actor)
+		std::weak_ptr<neb::fnd::core::actor::base> actor)
 {
 	auto self(std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this()));
 

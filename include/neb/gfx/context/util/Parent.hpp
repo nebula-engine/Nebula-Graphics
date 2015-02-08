@@ -4,18 +4,18 @@
 #include <neb/core/context/util/decl.hpp>
 #include <neb/core/context/util/Parent.hpp>
 
-#include <neb/gfx/window/util/Cast.hh>
-#include <neb/gfx/context/Base.hh>
+#include <neb/gfx/window/util/Cast.hpp>
+#include <neb/gfx/context/Base.hpp>
 #include <neb/gfx/context/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace context { namespace util {
 
 	class parent:
-		virtual public neb::core::context::util::Parent,
+		virtual public neb::fnd::context::util::Parent,
 		virtual public neb::gfx::window::util::cast
 	{
 		public:
-			typedef neb::core::context::Window C_W;
+			typedef neb::fnd::context::Window C_W;
 
 		public:
 			//virtual void			init();
@@ -27,8 +27,8 @@ namespace neb { namespace gfx { namespace context { namespace util {
 			 *
 			 * implemented by neb::fin::context::util::Parent
 			 */
-			virtual std::weak_ptr<neb::core::context::FBO>		createContextFBO() = 0;
-			virtual std::weak_ptr<neb::core::context::FBOM>		createContextFBOMulti() = 0;
+			virtual std::weak_ptr<neb::fnd::context::FBO>		createContextFBO() = 0;
+			virtual std::weak_ptr<neb::fnd::context::FBOM>		createContextFBOMulti() = 0;
 			virtual std::weak_ptr<C_W>				createContextWindow() = 0;
 			virtual std::weak_ptr<C_W>				createContextVisDepth() = 0;
 

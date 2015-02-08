@@ -16,7 +16,7 @@ namespace neb { namespace gfx { namespace environ {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	class vis_depth:
-		virtual public neb::core::environ::visualization::Depth,
+		virtual public neb::fnd::environ::visualization::Depth,
 		virtual public neb::gfx::environ::three
 	{
 		public:

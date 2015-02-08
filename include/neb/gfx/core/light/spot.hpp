@@ -34,14 +34,14 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				}
 			public:
 				spot();
-				virtual void			init(neb::core::core::light::util::parent * const & p);
+				virtual void			init(neb::fnd::core::light::util::parent * const & p);
 				virtual type::e			getType();
 
-				virtual void			callbackPose(neb::core::math::pose const & gpose);
+				virtual void			callbackPose(neb::fnd::math::pose const & gpose);
 
 
 
-				virtual void				load(neb::core::core::light::util::count & light_count, neb::core::math::pose const & pose);
+				virtual void				load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose);
 
 				virtual void			serialize(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) {
 					neb::gfx::core::light::base::serialize(ar, version);
