@@ -23,7 +23,7 @@ namespace neb {
 				class parent;
 			}
 
-			class base;
+			class Base;
 		}
 
 		class texture;

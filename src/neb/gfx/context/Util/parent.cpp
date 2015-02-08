@@ -1,7 +1,7 @@
 
 #include <neb/core/context/Base.hpp>
 
-#include <neb/gfx/context/util/Parent.hh>
+#include <neb/gfx/context/util/Parent.hpp>
 #include <neb/gfx/context/fbo.hpp>
 #include <neb/gfx/context/fbo_multi.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
@@ -21,9 +21,9 @@ void				THIS::render()
 	map_.for_each(lamb);
 
 }
-std::weak_ptr<C_W>		THIS::createContextTwo() {
-
-	auto self = isWindowBase();
+std::weak_ptr<C_W>		THIS::createContextTwo()
+{
+	auto self = is_gfx_window_base();
 	assert(self);
 
 	std::weak_ptr<C_W> w;
@@ -42,9 +42,9 @@ std::weak_ptr<C_W>		THIS::createContextTwo() {
 	assert(!w.expired());
 	return w;
 }
-std::weak_ptr<C_W>		THIS::createContextThree() {
-
-	auto self = isWindowBase();
+std::weak_ptr<C_W>		THIS::createContextThree()
+{
+	auto self = is_gfx_window_base();
 	assert(self);
 
 	std::weak_ptr<C_W> w;
@@ -66,9 +66,9 @@ std::weak_ptr<C_W>		THIS::createContextThree() {
 	assert(!w.expired());
 	return w;
 }
-std::weak_ptr<C_W>		THIS::createContextNormalMap() {
-
-	auto self = isWindowBase();
+std::weak_ptr<C_W>		THIS::createContextNormalMap()
+{
+	auto self = is_gfx_window_base();
 	assert(self);
 
 	std::weak_ptr<C_W> w;

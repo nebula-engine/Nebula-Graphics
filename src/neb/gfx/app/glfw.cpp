@@ -103,13 +103,13 @@ void				neb::gfx::app::glfw::render()
 	neb::gfx::window::util::parent::render();
 
 }
-std::weak_ptr<neb::fnd::window::Base>			neb::gfx::app::glfw::get_window(GLFWwindow* window) {
+std::weak_ptr<neb::fnd::window::Base>			neb::gfx::app::glfw::get_window(GLFWwindow* window)
+{
 	auto it = windows_glfw_.find(window);
 	assert(it != windows_glfw_.cend());
 	assert(it->second);
 	return it->second;
 }
-
 void							THIS::onFirstContext()
 {
 	if(flag_.any(neb::fnd::app::util::flag::FIRST_CONTEXT)) return;

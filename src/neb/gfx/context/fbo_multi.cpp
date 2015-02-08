@@ -8,7 +8,7 @@
 #include <neb/gfx/environ/shadow/point.hpp>
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
-#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/window/Base.hpp>
 
 typedef neb::gfx::context::fbo_multi THIS;
 

@@ -11,7 +11,7 @@ namespace neb { namespace gfx { namespace window { namespace util {
 		virtual public neb::fnd::itf::shared
 	{
 		public:
-			std::shared_ptr<neb::gfx::window::base>		isWindowBase();
+			std::shared_ptr<neb::gfx::window::Base>		is_gfx_window_base();
 	};
 
 }}}}

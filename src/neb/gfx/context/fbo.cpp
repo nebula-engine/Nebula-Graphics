@@ -7,7 +7,7 @@
 #include <neb/gfx/environ/base.hpp>
 #include <neb/gfx/texture.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
-#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/window/Base.hpp>
 
 neb::gfx::context::fbo::fbo():
 	framebuffer_(0)

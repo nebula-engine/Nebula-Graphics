@@ -33,7 +33,7 @@ namespace neb { namespace gfx {
 			virtual public neb::gfx::window::util::parent
 		{
 			public:
-				typedef std::map< GLFWwindow*, std::shared_ptr<neb::gfx::window::base> >			glfwwindow_map_type;
+				typedef std::map< GLFWwindow*, std::shared_ptr<neb::gfx::window::Base> >	glfwwindow_map_type;
 				typedef std::weak_ptr<neb::fnd::window::Base>					window_w;
 
 				static neb::gfx::app::glfw * const		global();

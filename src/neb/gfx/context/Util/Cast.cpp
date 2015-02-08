@@ -1,5 +1,5 @@
-#include <neb/gfx/context/util/Cast.hh>
-#include <neb/gfx/context/Base.hh>
+#include <neb/gfx/context/util/Cast.hpp>
+#include <neb/gfx/context/Base.hpp>
 #include <neb/gfx/context/Window.hpp>
 #include <neb/gfx/context/fbo.hpp>
 
