@@ -6,17 +6,17 @@
 #include <neb/core/core/scene/base.hpp>
 
 #include <neb/gfx/drawable/base.hpp>
-#include <neb/gfx/window/Base.hh>
-#include <neb/gfx/context/Base.hh>
+#include <neb/gfx/window/Base.hpp>
+#include <neb/gfx/context/Base.hpp>
 #include <neb/gfx/context/Window.hpp>
-#include <neb/gfx/context/util/Parent.hh>
+#include <neb/gfx/context/util/Parent.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/NormalMap.hpp>
 #include <neb/gfx/environ/shadow/point.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
 #include <neb/gfx/gui/layout/base.hpp>
-#include <neb/gfx/camera/view/Free.hh>
+#include <neb/gfx/camera/view/Free.hpp>
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/util/log.hpp>
 

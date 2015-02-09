@@ -8,7 +8,7 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/math/geo/polyhedron.hh>
+#include <neb/core/math/geo/polyhedron.hpp>
 #include <neb/core/math/geo/polygon.hpp>
 #include <neb/core/util/debug.hpp>
 
@@ -32,14 +32,14 @@ neb::gfx::mesh::tri1::~tri1()
 {
 	//printf("%s\n",__PRETTY_FUNCTION__);
 }
-void	neb::gfx::mesh::tri1::construct(nc::math::geo::polyhedron* poly)
+void	neb::gfx::mesh::tri1::construct(neb::fnd::math::geo::polyhedron* poly)
 {
 
 	std::cout << __PRETTY_FUNCTION__ << this << std::endl;
 
 	assert(poly);
 
-	nc::math::geo::triangle* tris = poly->getTriangles();
+	neb::fnd::math::geo::triangle* tris = poly->getTriangles();
 	unsigned int nbTriangles = poly->getNbTriangles();
 	
 	assert(tris);
@@ -69,7 +69,7 @@ void	neb::gfx::mesh::tri1::construct(nc::math::geo::polyhedron* poly)
 	LOG(lg, neb::gfx::sl, debug) << "indices  " << nbIndices;
 	LOG(lg, neb::gfx::sl, debug) << "vertices " << nbVerts;
 }
-void			neb::gfx::mesh::tri1::setVerts(std::vector<nc::math::geo::vertex> const & verts)
+void			neb::gfx::mesh::tri1::setVerts(std::vector<neb::fnd::math::geo::vertex> const & verts)
 {
 	vertices_ = verts;
 }

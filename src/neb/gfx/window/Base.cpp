@@ -21,22 +21,21 @@
 #include <neb/gfx/opengl/png.hpp>
 #include <neb/gfx/app/glfw.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/camera/view/Base.hh>
+#include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/context/Window.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/SceneDefault.hpp>
-#include <neb/gfx/window/util/Parent.hh>
+#include <neb/gfx/window/util/Parent.hpp>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
+#include <neb/gfx/window/Base.hpp>
 
-#include <neb/gfx/window/Base.hh>
-
-typedef neb::gfx::window::base THIS;
+typedef neb::gfx::window::Base THIS;
 
 GLFWwindow* THIS::first_window_ = NULL;
 
-neb::gfx::window::base::base():
+THIS::Base():
 	x_(1200),
 	y_(0),
 	w_(600),
@@ -44,10 +43,10 @@ neb::gfx::window::base::base():
 	window_(NULL)
 {
 }
-neb::gfx::window::base::~base()
+THIS::~Base()
 {
 }
-void			neb::gfx::window::base::init(parent_t * const & p)
+void			THIS::init(parent_t * const & p)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
@@ -70,7 +69,7 @@ void			neb::gfx::window::base::init(parent_t * const & p)
 		return;
 	}
 	
-	auto self = std::dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this());
+	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
 	
 	if(window_)
 	{
@@ -137,7 +136,7 @@ void			neb::gfx::window::base::init(parent_t * const & p)
 
 	app->init_glew();
 
-	auto app2 = neb::gfx::app::__gfx_glsl::global().lock();
+	auto app2 = neb::gfx::app::glsl::global().lock();
 
 	app2->create_programs();
 
@@ -207,9 +206,10 @@ void		THIS::render()
 	// screen print every frame (use for video?)
 	//save_png("test.png",w_,h_);
 }
-void neb::gfx::window::base::callback_window_refresh_fun(GLFWwindow*) {
+void			THIS::callback_window_refresh_fun(GLFWwindow*)
+{
 }
-void			neb::gfx::window::base::step(gal::etc::timestep const & ts) {
+void			THIS::step(gal::etc::timestep const & ts) {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	contexts::step(ts);
@@ -221,7 +221,8 @@ void			neb::gfx::window::base::step(gal::etc::timestep const & ts) {
 	}
 
 }
-void neb::gfx::window::base::callback_window_size_fun(GLFWwindow* window, int w, int h) {
+void			THIS::callback_window_size_fun(GLFWwindow* window, int w, int h)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	w_ = w;
@@ -231,7 +232,8 @@ void neb::gfx::window::base::callback_window_size_fun(GLFWwindow* window, int w,
 
 	callback_window_refresh_fun(window);
 }
-void neb::gfx::window::base::callback_window_pos_fun(GLFWwindow* window, int x, int y) {
+void			THIS::callback_window_pos_fun(GLFWwindow* window, int x, int y)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	x_ = x;
@@ -239,18 +241,19 @@ void neb::gfx::window::base::callback_window_pos_fun(GLFWwindow* window, int x, 
 
 	callback_window_refresh_fun(window);
 }
-void		neb::gfx::window::base::callback_window_close_fun(GLFWwindow* window){
+void			THIS::callback_window_close_fun(GLFWwindow* window)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
 }
-void		neb::gfx::window::base::callback_mouse_button_fun(GLFWwindow* window, int button, int action, int mods) {
+void			THIS::callback_mouse_button_fun(GLFWwindow* window, int button, int action, int mods)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto self = std::dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this());
+	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
 
 	sig_.mouseButtonFun_(self, button, action, mods);
 }
-void			neb::gfx::window::base::callback_key_fun(
+void			THIS::callback_key_fun(
 		GLFWwindow* window,
 		int key,
 		int scancode,
@@ -259,7 +262,7 @@ void			neb::gfx::window::base::callback_key_fun(
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto self = std::dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this());
+	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
 
 	if(action == GLFW_PRESS)
 	{
@@ -273,15 +276,15 @@ void			neb::gfx::window::base::callback_key_fun(
 
 	sig_.keyFun_(self, key, scancode, action, mods);
 }
-void			neb::gfx::window::base::callbackCharFun(GLFWwindow* window, unsigned int codepoint)
+void			THIS::callbackCharFun(GLFWwindow* window, unsigned int codepoint)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto self = std::dynamic_pointer_cast<neb::gfx::window::base>(shared_from_this());
+	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
 
 	sig_.charFun_(self, codepoint);
 }
-void			neb::gfx::window::base::resize()
+void			THIS::resize()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -298,18 +301,17 @@ void			neb::gfx::window::base::resize()
 	C::map_.for_each(lamb);
 
 }
-
-void						neb::gfx::window::base::makeCurrent() {
+void			THIS::makeCurrent()
+{
 	assert(window_ != NULL);
 	glfwMakeContextCurrent(window_);
 }
-glm::vec2					neb::gfx::window::base::getCursorPosNDC()
+glm::vec2		THIS::getCursorPosNDC()
 {
 	return glm::vec2();
 }
-void						neb::gfx::window::base::printScreen()
+void			THIS::printScreen()
 {
-
 	if(screenBuffer_.capacity() < (w_ * h_ * 3u)) screenBuffer_.reserve(w_*h_*3);
 
 	glReadPixels(
@@ -321,7 +323,6 @@ void						neb::gfx::window::base::printScreen()
 			GL_UNSIGNED_BYTE,
 			(GLvoid *)&screenBuffer_[0]
 		    );
-	
 	
 	
 	// invert pixels (stolen from SOILs source code)
@@ -349,7 +350,6 @@ void						neb::gfx::window::base::printScreen()
 	strftime(buffer,80,"screenshot_%Y-%m-%d_%H:%M:%S.png",timeinfo);
 
 	save_png_libpng(buffer, &screenBuffer_[0], w_, h_);
-
 }
 int		THIS::get_width()
 {

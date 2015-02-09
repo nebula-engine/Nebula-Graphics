@@ -33,17 +33,12 @@ namespace neb {namespace gfx {namespace camera {namespace view {
 			 * @todo explain when in timeline this occurs and in which thread and why
 			 */
 			virtual void					step(gal::etc::timestep const & ts) = 0;
-
 			virtual void					connect(
-					std::shared_ptr<neb::gfx::window::base> const & window) {}
-
+					std::shared_ptr<neb::gfx::window::Base> const & window);
 		public:
 			std::weak_ptr<neb::gfx::environ::base>		parent_;
-
 			neb::gfx::camera::view::util::flag		flag_;
 	};
 }}}}
 
 #endif
-
-

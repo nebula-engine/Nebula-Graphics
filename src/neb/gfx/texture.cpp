@@ -9,7 +9,7 @@
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/texture.hpp>
-#include <neb/gfx/window/Base.hh>
+#include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
@@ -125,7 +125,8 @@ int		neb::gfx::texture::load_png(std::string filename)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 	
-	auto app(neb::fnd::app::Base::global());
+	//auto app(neb::fnd::app::Base::global());
+	auto app = get_app();
 	
 	filename = NEB_SHARE_DIR"/media/texture/" + filename;
 	

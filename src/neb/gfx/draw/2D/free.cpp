@@ -123,7 +123,7 @@ void			neb::draw_text(
 	FT_GlyphSlot g = face->glyph;
 
 	// cursor color
-	neb::fnd::math::color::color cursor_color = nc::math::color::color::white();
+	neb::fnd::math::color::color cursor_color = neb::fnd::math::color::color::white();
 	
 	// color
 	glUniform4fv(p->uniform_table_[neb::gfx::glsl::uniforms::FONT_COLOR], 1, (float*)color);
