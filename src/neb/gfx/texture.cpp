@@ -9,6 +9,7 @@
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/texture/Base.hpp>
+#include <neb/gfx/texture/util/Parent.hpp>
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
@@ -16,9 +17,9 @@
 #include <neb/gfx/glsl/attrib.hh>
 #include <png.h>
 
-typedef neb::gfx::texture THIS;
+typedef neb::gfx::texture::Base THIS;
 
-void				THIS::init()
+void				THIS::init(parent_t * const parent)
 {
 }
 void				THIS::step(gal::etc::timestep const &)
@@ -34,19 +35,18 @@ std::shared_ptr<THIS>		THIS::makePNG(std::string filename)
 
 	return t;
 }
-neb::gfx::texture::texture():
+THIS::Base():
 	w_(0), h_(0), png_image_data_(0)
 {
 }
-neb::gfx::texture::~texture()
+THIS::~Base()
 {
 }
-void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::context::base>)
+void			THIS::init_shadow(int w,int h, std::shared_ptr<neb::gfx::context::base>)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 
 	if(!neb::fnd::app::Base::is_valid()) return;
-	
 	
 	w_ = w;
 	h_ = h;
@@ -100,7 +100,7 @@ void			neb::gfx::texture::init_shadow(int w,int h, std::shared_ptr<neb::gfx::con
 	checkerror("glBindTexture");
 
 }
-GLuint		neb::gfx::texture::genAndBind(std::shared_ptr<neb::gfx::context::base> context)
+GLuint			THIS::genAndBind(std::shared_ptr<neb::gfx::context::base> context)
 {
 	GLuint o;
 	
@@ -112,7 +112,7 @@ GLuint		neb::gfx::texture::genAndBind(std::shared_ptr<neb::gfx::context::base> c
 
 	return o;
 }
-void		neb::gfx::texture::bind(neb::gfx::glsl::program::Base const * const & p)
+void			THIS::bind(neb::gfx::glsl::program::Base const * const & p)
 {
 	/*GLuint o;
 	
@@ -128,7 +128,7 @@ void		neb::gfx::texture::bind(neb::gfx::glsl::program::Base const * const & p)
 	glBindTexture(target_, o_);
 	checkerror("glBindTexture");
 }
-int		neb::gfx::texture::load_png(std::string filename)
+int			THIS::load_png(std::string filename)
 {
 	printf("%s\n",__PRETTY_FUNCTION__);
 	
@@ -273,8 +273,8 @@ int		neb::gfx::texture::load_png(std::string filename)
 	fclose(fp);
 	return 0;
 }
-GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base> context) {
-
+GLuint			THIS::init_buffer(std::shared_ptr<neb::gfx::context::base> context)
+{
 	// initialize 2D with png data
 
 	target_ = GL_TEXTURE_2D;
@@ -284,7 +284,6 @@ GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base>
 	//buffers_[context.get()] = o;
 	
 	std::cout << "w " << w_ << " h " << h_ << " data " << (long int)png_image_data_ << std::endl;
-
 
 	glTexImage2D(
 			target_,
@@ -306,16 +305,14 @@ GLuint			neb::gfx::texture::init_buffer(std::shared_ptr<neb::gfx::context::base>
 
 	return o_;
 }
-
-
-
-
-void			neb::gfx::texture::draw(neb::gfx::RenderDesc const & desc)
+void			THIS::draw(neb::gfx::RenderDesc const & desc)
 {
 	checkerror("unknown");
 
-	auto app = neb::gfx::app::__gfx_glsl::global().lock();
-	auto p = app->program_tex_;
+	//auto app = neb::gfx::app::__gfx_glsl::global().lock();
+	auto app = get_app();
+
+	auto p = app->get_program_tex();
 	p->use();
 
 	// texture
@@ -327,7 +324,7 @@ void			neb::gfx::texture::draw(neb::gfx::RenderDesc const & desc)
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(texture_target, o_);
-	glUniform1i(p->uniform_table_[neb::gfx::glsl::uniforms::TEX], 0);
+	glUniform1i(p->get_uniform_table_value(neb::gfx::glsl::uniforms::TEX), 0);
 
 	glTexParameteri(texture_target, GL_TEXTURE_COMPARE_MODE, GL_NONE );
 	glTexParameteri(texture_target, GL_DEPTH_TEXTURE_MODE, GL_LUMINANCE );
@@ -341,7 +338,7 @@ void			neb::gfx::texture::draw(neb::gfx::RenderDesc const & desc)
 	 */
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-	auto attrib_coord = p->attrib_table_[neb::gfx::glsl::attribs::COOR];
+	auto attrib_coord = p->get_attrib_table_value(neb::gfx::glsl::attribs::COOR);
 
 	// vbo
 	GLuint vbo;
@@ -380,23 +377,13 @@ void			neb::gfx::texture::draw(neb::gfx::RenderDesc const & desc)
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	checkerror("glDrawArrays");
 
-
-
 	checkerror("unknown");
-
 
 	glDisableVertexAttribArray(attrib_coord);
 	
-	
-
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindTexture(texture_target, 0);
 
 	checkerror("unknown");
-
-
 }
-
-
-
 

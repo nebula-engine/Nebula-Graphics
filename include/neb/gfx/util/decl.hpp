@@ -26,8 +26,6 @@ namespace neb {
 			class Base;
 		}
 
-		class texture;
-
 		namespace mesh {
 			//template<typename BUFFER> class base;
 			class tri1;
