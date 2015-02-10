@@ -15,7 +15,7 @@
 #include <neb/gfx/context/util/Parent.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
-#include <neb/gfx/texture.hpp>
+#include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/shader.hh>
 #include <neb/gfx/gui/layout/base.hpp>

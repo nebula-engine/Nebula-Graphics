@@ -8,7 +8,7 @@
 #include <neb/core/math/color/color.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/texture.hpp>
+#include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
@@ -16,11 +16,17 @@
 #include <neb/gfx/glsl/attrib.hh>
 #include <png.h>
 
-typedef neb::gfx::texture tex;
+typedef neb::gfx::texture THIS;
 
-std::shared_ptr<tex>		neb::gfx::texture::makePNG(std::string filename)
+void				THIS::init()
 {
-	std::shared_ptr<tex> t(new tex());
+}
+void				THIS::step(gal::etc::timestep const &)
+{
+}
+std::shared_ptr<THIS>		THIS::makePNG(std::string filename)
+{
+	std::shared_ptr<THIS> t(new THIS());
 	
 	t->load_png(filename);
 	
@@ -30,7 +36,8 @@ std::shared_ptr<tex>		neb::gfx::texture::makePNG(std::string filename)
 }
 neb::gfx::texture::texture():
 	w_(0), h_(0), png_image_data_(0)
-{}
+{
+}
 neb::gfx::texture::~texture()
 {
 }

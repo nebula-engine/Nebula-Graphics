@@ -12,11 +12,16 @@
 
 #include <gal/etc/slots.hpp>
 
+#include <neb/core/tmp/Child.hpp>
+
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/drawable/base.hpp>
 
 namespace neb { namespace gfx {
-	class texture: public neb::gfx::drawable::base {
+	class texture:
+		virtual public neb::gfx::drawable::base,
+		virtual public neb::fnd::tmp::Child<neb::gfx::texture::util::Parent>
+	{
 		public:
 
 			typedef std::map< neb::gfx::context::base*, GLuint >		map_t;
@@ -25,8 +30,8 @@ namespace neb { namespace gfx {
 
 			texture();
 			~texture();
-			virtual void		init() {}
-			virtual void		step(gal::etc::timestep const &) {}
+			virtual void		init();
+			virtual void		step(gal::etc::timestep const &);
 			void			init_shadow(int,int, std::shared_ptr<neb::gfx::context::base> context);
 
 			int			load_png(std::string filename);
