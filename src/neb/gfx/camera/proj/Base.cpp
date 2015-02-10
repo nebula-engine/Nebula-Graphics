@@ -24,18 +24,21 @@
 #include <neb/gfx/opengl/uniform.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
 
-neb::gfx::camera::proj::base::base()
+typedef neb::gfx::camera::proj::Base THIS;
+
+THIS::Base()
 {
 }
-void		neb::gfx::camera::proj::base::load(neb::gfx::glsl::program::Base const * const p) {
-	
+void		THIS::load(neb::fnd::glsl::program::Base const * const p)
+{	
 	//glViewport(0, 0, parent_->viewport_.w_, parent_->viewport_.h_);
 	
 	neb::gfx::ogl::glUniform(
-			p->uniform_table_[neb::gfx::glsl::uniforms::PROJ],
+			p->get_uniform_table_value(neb::gfx::glsl::uniforms::PROJ),
 			_M_matrix);
 }
-void		neb::gfx::camera::proj::base::step(gal::etc::timestep const & ts) {
+void		THIS::step(gal::etc::timestep const & ts)
+{
 
 }
 

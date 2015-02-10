@@ -9,7 +9,7 @@
 #include <neb/gfx/glsl/program/threed.hpp>
 #include <neb/gfx/mesh/instanced.hpp>
 #include <neb/gfx/RenderDesc.hpp>
-#include <neb/gfx/texture.hpp>
+#include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/util/log.hpp>
 
 typedef neb::gfx::core::scene::base THIS;
@@ -46,7 +46,8 @@ void			THIS::__init(parent_t * const & p)
 
 		unsigned int shadow_tex_size = 512;
 
-		tex_shadow_map_ = std::make_shared<neb::gfx::texture>();
+		tex_shadow_map_.reset(new neb::gfx::texture::Base());
+
 		tex_shadow_map_->init_shadow(
 				shadow_tex_size,
 				shadow_tex_size,

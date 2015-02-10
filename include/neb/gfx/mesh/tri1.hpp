@@ -27,6 +27,7 @@
 #include <neb/gfx/material.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/texture/util/decl.hpp>
 #include <neb/gfx/glsl/buffer/tri1.hpp>
 #include <neb/gfx/context/util/decl.hpp>
 #include <neb/gfx/mesh/base.hpp>
@@ -39,7 +40,7 @@ namespace neb { namespace gfx { namespace mesh {
 		public:
 			//typedef std::map<neb::gfx::glsl::program::Base*, buffer*>	program_buffer_map;
 			typedef neb::gfx::glsl::buffer::tri1				buffer;
-			typedef neb::gfx::glsl::program::Base				program;
+			typedef neb::fnd::glsl::program::Base				program;
 			typedef elements<neb::gfx::glsl::buffer::elements<GLushort>, neb::gfx::glsl::buffer::tri1>	base_t;
 			// DO NOT CHANGE! coded in phx heightfield
 			typedef GLushort index_type;
@@ -85,9 +86,8 @@ namespace neb { namespace gfx { namespace mesh {
 			std::vector<neb::fnd::math::geo::vertex>	vertices_;
 			std::vector<index_type>				indices_;
 		public:
-			std::shared_ptr<neb::gfx::texture>		texture_;
-			std::shared_ptr<neb::gfx::texture>		normal_map_;
-
+			std::shared_ptr<neb::gfx::texture::Base>	texture_;
+			std::shared_ptr<neb::gfx::texture::Base>	normal_map_;
 			neb::gfx::material::material			material_front_;
 	};
 }}}

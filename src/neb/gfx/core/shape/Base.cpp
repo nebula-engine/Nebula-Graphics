@@ -43,11 +43,13 @@ void					THIS::release()
 {
 	neb::fnd::core::shape::base::release();
 }
-void					THIS::step(gal::etc::timestep const & ts) {
+void					THIS::step(gal::etc::timestep const & ts)
+{
 
 	//material_front_.step(ts);
 }
-void					THIS::callbackPose(neb::fnd::math::pose const & gpose) {
+void					THIS::callbackPose(neb::fnd::math::pose const & gpose)
+{
 	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
 
@@ -60,7 +62,8 @@ void					THIS::callbackPose(neb::fnd::math::pose const & gpose) {
 		LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
 	}
 }
-void					THIS::setPose(neb::fnd::math::pose const & pose) {
+void					THIS::setPose(neb::fnd::math::pose const & pose)
+{
 	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto npose = pose * pose_;
@@ -68,7 +71,7 @@ void					THIS::setPose(neb::fnd::math::pose const & pose) {
 	neb::gfx::core::light::util::parent::setPose(npose);
 }
 void					THIS::draw(
-		neb::gfx::glsl::program::Base const * const & p,
+		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 	auto npose = pose * pose_;
@@ -76,7 +79,7 @@ void					THIS::draw(
 	draw_elements(p, npose);
 }
 void			THIS::drawHF(
-		neb::gfx::glsl::program::Base const * const & p,
+		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 }
@@ -91,7 +94,7 @@ void			THIS::model_load(
 			space);
 }
 void			THIS::draw_elements(
-		neb::gfx::glsl::program::Base const * const & p,
+		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
@@ -104,7 +107,7 @@ void			THIS::draw_elements(
 	}
 }
 void			THIS::drawDebug(
-		neb::gfx::glsl::program::Base const * const & p,
+		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;

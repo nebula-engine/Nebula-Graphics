@@ -30,9 +30,7 @@ THIS::Base(std::string name):
 	shader_[0] = 0;
 	shader_[1] = 0;
 
-	
 	//flag_shader_def_.set(neb::gfx::glsl::program::util::flag_shader::SHADOW);
-
 }
 void	neb::gfx::glsl::program::Base::init()
 {
@@ -51,8 +49,6 @@ void	neb::gfx::glsl::program::Base::init()
 	
 	scanUniforms();
 	locate();
-
-
 }
 void	neb::gfx::glsl::program::Base::add_shaders(std::vector<neb::gfx::glsl::shader> s)
 {
@@ -86,7 +82,8 @@ void	neb::gfx::glsl::program::Base::add_shader(std::string filename, GLenum type
 			abort();
 	}
 }
-void	neb::gfx::glsl::program::Base::compile() {
+void	neb::gfx::glsl::program::Base::compile()
+{
 	//GRU_GLSL_PROGRAM_FUNC
 	
 	assert(shader_[VERT] == 1);
@@ -154,7 +151,8 @@ void	neb::gfx::glsl::program::Base::locate()
 	restoreDefaultShaderFlags();
 
 }
-char const * shaderTypeString(GLenum type) {
+char const * shaderTypeString(GLenum type)
+{
 	std::map<GLenum,char const *> m;
 
 	m[GL_FLOAT]		="float";

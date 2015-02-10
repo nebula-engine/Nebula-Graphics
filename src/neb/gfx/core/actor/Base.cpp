@@ -24,11 +24,14 @@
 {
 	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 }*/
-neb::gfx::core::actor::base::~base() {
+
+typedef neb::gfx::core::actor::base THIS;
+
+THIS::~base() {
 	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 }
-void				neb::gfx::core::actor::base::draw(
-		neb::gfx::glsl::program::Base const * const & program,
+void				THIS::draw(
+		neb::fnd::glsl::program::Base const * const & program,
 		neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
@@ -39,7 +42,7 @@ void				neb::gfx::core::actor::base::draw(
 	typedef neb::fnd::core::shape::util::parent S;
 
 	A::map_.for_each([&] (A::map_type::pointer p) {
-			auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(p);
+			auto actor = std::dynamic_pointer_cast<THIS>(p);
 			assert(actor);
 			actor->draw(program, npose);
 			});
@@ -52,8 +55,8 @@ void				neb::gfx::core::actor::base::draw(
 
 
 }
-void				neb::gfx::core::actor::base::drawDebug(
-		neb::gfx::glsl::program::Base const * const & program,
+void				THIS::drawDebug(
+		neb::fnd::glsl::program::Base const * const & program,
 		neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
@@ -64,7 +67,7 @@ void				neb::gfx::core::actor::base::drawDebug(
 	typedef neb::fnd::core::shape::util::parent S;
 
 	A::map_.for_each([&] (A::map_type::pointer p) {
-			auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(p);
+			auto actor = std::dynamic_pointer_cast<THIS>(p);
 			assert(actor);
 			actor->drawDebug(program, npose);
 			});
@@ -77,8 +80,8 @@ void				neb::gfx::core::actor::base::drawDebug(
 
 
 }
-void				neb::gfx::core::actor::base::drawHF(
-		neb::gfx::glsl::program::Base const * const & program,
+void				THIS::drawHF(
+		neb::fnd::glsl::program::Base const * const & program,
 		neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
@@ -89,7 +92,7 @@ void				neb::gfx::core::actor::base::drawHF(
 	typedef neb::fnd::core::shape::util::parent S;
 
 	A::map_.for_each([&] (A::map_type::pointer p) {
-			auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(p);
+			auto actor = std::dynamic_pointer_cast<THIS>(p);
 			assert(actor);
 			actor->drawHF(program, npose);
 			});

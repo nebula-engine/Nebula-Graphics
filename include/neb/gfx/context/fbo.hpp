@@ -6,6 +6,7 @@
 #include <neb/core/context/FBO.hpp>
 
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/texture/util/decl.hpp>
 #include <neb/gfx/context/Window.hpp>
 
 namespace neb { namespace gfx { namespace context {
@@ -32,7 +33,7 @@ namespace neb { namespace gfx { namespace context {
 
 			GLuint					framebuffer_;
 
-			std::weak_ptr<neb::gfx::texture>	texture_;
+			std::weak_ptr<neb::gfx::texture::Base>	texture_;
 			GLint					layer_;
 	};
 }}}

@@ -12,7 +12,7 @@
 #include <neb/core/core/light/util/light_count.hpp>
 
 #include <neb/gfx/core/light/util/parent.hpp>
-#include <neb/gfx/texture.hpp>
+#include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/material.hpp>
 #include <neb/gfx/mesh/tri1.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
@@ -28,21 +28,15 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 		public:
 			base();
 			virtual ~base();
-
 			void			init(neb::fnd::core::shape::util::parent * const & p);
 			void			release();
 			void			step(gal::etc::timestep const & ts);
 			virtual void		callbackPose(neb::fnd::math::pose const & pose_global);
-
 			virtual weak_ptr<neb::fnd::core::light::base>		createLightPoint();
 			virtual weak_ptr<neb::fnd::core::light::base>		createLightSpot(glm::vec3);
 			virtual weak_ptr<neb::fnd::core::light::base>		createLightDirectional(glm::vec3);
-
-
 			void							setPose(neb::fnd::math::pose const & pose);
 			virtual void						createMesh();
-
-
 			/** @name Rendering @{ */
 			//void						load_lights(
 			//		neb::fnd::core::light::util::count& light_count,
@@ -53,16 +47,16 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 			void						init_buffer(
 					neb::gfx::glsl::program::Base const * const & p);
 			virtual void					draw(
-					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
 			virtual void					drawHF(
-					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
 			virtual void					drawDebug(
-					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
 			virtual void					draw_elements(
-					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
 			/** @} */
 		public:

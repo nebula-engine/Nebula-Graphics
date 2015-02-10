@@ -37,7 +37,7 @@ namespace neb { namespace gfx { namespace mesh {
 	template<typename... BUFFERS> class base
 	{
 		public:
-			typedef neb::gfx::glsl::program::Base			P;
+			typedef neb::fnd::glsl::program::Base			P;
 			typedef std::tuple< std::shared_ptr<BUFFERS>... >	buffer_tuple;
 			typedef std::map<P const *, buffer_tuple>		program_buffer_map;
 
@@ -124,7 +124,8 @@ namespace neb { namespace gfx { namespace mesh {
 
 
 			}
-			template<typename BUFFER> std::shared_ptr<BUFFER>	getBuffer(neb::gfx::glsl::program::Base const * const & p)
+			template<typename BUFFER> std::shared_ptr<BUFFER>	getBuffer(
+					neb::fnd::glsl::program::Base const * const & p)
 			{
 				std::shared_ptr<BUFFER> b(new BUFFER());
 				b->init(p);
@@ -155,7 +156,7 @@ namespace neb { namespace gfx { namespace mesh {
 			using B::unbind;
 			using B::vertexAttribPointer;
 
-			typedef neb::gfx::glsl::program::Base			P;
+			typedef neb::fnd::glsl::program::Base			P;
 			typedef std::tuple<std::shared_ptr<BUFFERS>...>		buffer_tuple;
 			typedef std::map<P const *, buffer_tuple>		program_buffer_map;
 
@@ -166,7 +167,7 @@ namespace neb { namespace gfx { namespace mesh {
 
 		protected:
 			void			drawElements(
-					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose,
 					glm::vec3 scale,
 					GLsizei count)
@@ -180,7 +181,7 @@ namespace neb { namespace gfx { namespace mesh {
 
 			}
 			void			drawElements(
-					neb::gfx::glsl::program::Base const * const &	p,
+					neb::fnd::glsl::program::Base const * const &	p,
 					buffer_tuple const &				bt,
 					neb::fnd::math::pose const &			pose,
 					glm::vec3					scale,
@@ -194,10 +195,10 @@ namespace neb { namespace gfx { namespace mesh {
 				LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
 				glm::mat4 model = pose.mat4_cast() * glm::scale(scale);
 
-				assert(p->uniform_table_[neb::gfx::glsl::uniforms::MODEL] != -1);
+				assert(p->get_uniform_table_value(neb::gfx::glsl::uniforms::MODEL) != -1);
 
 				neb::gfx::ogl::glUniform(
-						p->uniform_table_[neb::gfx::glsl::uniforms::MODEL],
+						p->get_uniform_table_value(neb::gfx::glsl::uniforms::MODEL),
 						model
 						);
 

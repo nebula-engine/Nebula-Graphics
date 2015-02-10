@@ -19,11 +19,11 @@
 #include <neb/gfx/glsl/uniform/light_array.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
+#include <neb/gfx/texture/util/decl.hpp>
 
 typedef std::weak_ptr<neb::fnd::core::actor::base> wbase;
 
 namespace neb { namespace gfx { namespace core { namespace scene {
-
 	/** 
 	 * @ingroup group_core
 	 * @brief base
@@ -42,17 +42,13 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 			void					initMeshes();
 			virtual void				release() = 0;
 			virtual void				step(gal::etc::timestep const & ts) = 0;
-			
-			
 			void					resize(int w, int h);
-
 			void					draw(gfx::RenderDesc const &);
 			void					drawMesh(gfx::RenderDesc const &);
 			void					drawMeshHF(gfx::RenderDesc const &);
 			void					drawMeshInst(gfx::RenderDesc const &);
 			virtual void				drawPhysxVisualization(gfx::RenderDesc const &) = 0;
 			void					drawDebug(gfx::RenderDesc const &);
-
 		public:
 			virtual void				load(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) = 0;
 			virtual void				save(boost::archive::polymorphic_oarchive & ar, unsigned int const & version) const = 0;
@@ -75,12 +71,7 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 			 */
 			virtual weak_ptr<neb::fnd::core::actor::base>		createActorRigidDynamicUninitialized() = 0;
 			/** @} */
-
-
-
-
 			// rendering data
-
 			struct
 			{
 				std::shared_ptr<neb::gfx::glsl::program::threed>	_M_d3;
@@ -91,7 +82,7 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 			// one for static, one for dynamic
 			std::shared_ptr<neb::gfx::glsl::uniform::light_array>		light_array_[2];
 
-			std::shared_ptr<neb::gfx::texture>				tex_shadow_map_;
+			std::shared_ptr<neb::gfx::texture::Base>			tex_shadow_map_;
 
 			// standard meshes
 			struct {

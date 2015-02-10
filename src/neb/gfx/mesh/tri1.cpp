@@ -16,7 +16,7 @@
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/mesh/tri1.hpp>
-#include <neb/gfx/texture.hpp>
+#include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
 #include <neb/gfx/glsl/attrib.hh>
@@ -148,7 +148,7 @@ void			neb::gfx::mesh::tri1::init_buffer(
 }
 */
 void			neb::gfx::mesh::tri1::drawElements(
-		neb::gfx::glsl::program::Base const * const & p,
+		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose,
 		glm::vec3 scale)
 {
@@ -174,12 +174,12 @@ void			neb::gfx::mesh::tri1::drawElements(
 			// perhaps something to do wth texture target types or whatever...
 			normal_map_->bind(p);
 		}
-		neb::gfx::ogl::glUniform(p->uniform_table_[neb::gfx::glsl::uniforms::TEX_NORMAL_MAP], tex_num);
+		neb::gfx::ogl::glUniform(p->get_uniform_table_value(neb::gfx::glsl::uniforms::TEX_NORMAL_MAP), tex_num);
 
-		neb::gfx::ogl::glUniform(p->uniform_table_[neb::gfx::glsl::uniforms::HAS_NORMAL_MAP], true);
+		neb::gfx::ogl::glUniform(p->get_uniform_table_value(neb::gfx::glsl::uniforms::HAS_NORMAL_MAP), true);
 	} else {
 		LOG(lg, neb::gfx::sl, info) << "do not activate normal map";
-		neb::gfx::ogl::glUniform(p->uniform_table_[neb::gfx::glsl::uniforms::HAS_NORMAL_MAP], false);
+		neb::gfx::ogl::glUniform(p->get_uniform_table_value(neb::gfx::glsl::uniforms::HAS_NORMAL_MAP), false);
 	}
 
 	checkerror("unknown");
@@ -234,7 +234,7 @@ void			neb::gfx::mesh::tri1::drawElements(
 
 }
 void			neb::gfx::mesh::tri1::drawDebug(
-		neb::gfx::glsl::program::Base const * const & p,
+		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose,
 		glm::vec3 scale)
 {
@@ -244,7 +244,6 @@ void			neb::gfx::mesh::tri1::drawDebug(
 	// model matrix
 	LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
 	glm::mat4 model = pose.mat4_cast() * glm::scale(scale);
-
 
 	// debug vis
 	//auto app(neb::gfx::app::__gfx_glsl::global().lock());

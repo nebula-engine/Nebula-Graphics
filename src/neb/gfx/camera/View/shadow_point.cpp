@@ -3,17 +3,17 @@
 #include <neb/gfx/camera/view/shadow/point.hpp>
 #include <neb/gfx/core/light/point.hpp>
 
-neb::gfx::camera::view::shadow::point::point(std::shared_ptr<neb::gfx::environ::base> parent):
+typedef neb::gfx::camera::view::shadow::Point THIS;
+
+THIS::Point(std::shared_ptr<neb::gfx::environ::base> parent):
 	neb::gfx::camera::view::Base(parent)
 {
 	assert(parent);
 
-
 	//light_ = light;
-
 }
-glm::mat4				neb::gfx::camera::view::shadow::point::view() {
-
+glm::mat4		THIS::view()
+{
 	auto parent = parent_.lock();
 	assert(parent);
 
@@ -34,9 +34,9 @@ glm::mat4				neb::gfx::camera::view::shadow::point::view() {
 	glm::vec3 eye = light->getPoseGlobal().pos_;
 	
 	return glm::lookAt(eye, eye + look_, up_);
-
 }
-void					neb::gfx::camera::view::shadow::point::step(gal::etc::timestep const & ts) {
+void			THIS::step(gal::etc::timestep const & ts)
+{
 }
 
 

@@ -96,6 +96,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 	{
 		public:
 			typedef templ<A...> D;
+			typedef neb::fnd::glsl::program::Base PROGRAM;
 
 			using __base<D>::buffer_;
 
@@ -106,14 +107,14 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			};
 
 			base() {}
-			int		init(neb::gfx::glsl::program::Base const * const & p)
+			int		init(PROGRAM const * const & p)
 			{
 				glGenBuffers(1, &buffer_);
 				checkerror("glGenBuffers");
 
 				for(int i = 0; i < ATTRIB_COUNT; i++)
 				{
-					index_[i] = p->attrib_table_[D::attribute_[i]];
+					index_[i] = p->get_attrib_table_value(D::attribute_[i]);
 				}
 				return 0;
 			}
@@ -148,7 +149,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 			static const GLenum	target_	= GL_ELEMENT_ARRAY_BUFFER;
 			static const GLenum	usage_	= GL_STATIC_DRAW;
 
-			int		init(neb::gfx::glsl::program::Base const * const & p)
+			int		init(neb::fnd::glsl::program::Base const * const & p)
 			{
 				glGenBuffers(1, &buffer_);
 				checkerror("glGenBuffers");

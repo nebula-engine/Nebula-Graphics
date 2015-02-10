@@ -14,7 +14,7 @@
 #include <neb/core/math/serialization/glm.hpp>
 #include <neb/core/environ/util/decl.hpp>
 
-#include <neb/gfx/texture.hpp>
+#include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/core/light/base.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace light {

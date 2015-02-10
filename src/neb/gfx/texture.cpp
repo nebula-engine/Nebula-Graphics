@@ -112,7 +112,7 @@ GLuint			THIS::genAndBind(std::shared_ptr<neb::gfx::context::base> context)
 
 	return o;
 }
-void			THIS::bind(neb::gfx::glsl::program::Base const * const & p)
+void			THIS::bind(neb::fnd::glsl::program::Base const * const & p)
 {
 	/*GLuint o;
 	

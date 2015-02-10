@@ -34,6 +34,7 @@ namespace neb { namespace gfx { namespace glsl { namespace program {
 			void			use() const;
 			void			locate();
 			void			scanUniforms();
+			virtual int		get_attrib_table_value(int key) const;
 			virtual int		get_uniform_table_value(int key) const;
 
 			GLuint			o_;

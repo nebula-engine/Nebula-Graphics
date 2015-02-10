@@ -12,6 +12,7 @@
 #include <neb/core/core/actor/base.hpp>
 #include <neb/core/core/shape/base.hpp>
 #include <neb/core/core/shape/util/parent.hpp>
+#include <neb/core/glsl/program/util/decl.hpp>
 
 #include <neb/gfx/context/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>

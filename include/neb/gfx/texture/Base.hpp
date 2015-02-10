@@ -34,7 +34,7 @@ namespace neb { namespace gfx { namespace texture {
 			int			load_png(std::string filename);
 			GLuint			init_buffer(std::shared_ptr<neb::gfx::context::base> context);
 			GLuint			genAndBind(std::shared_ptr<neb::gfx::context::base> context);
-			void			bind(neb::gfx::glsl::program::Base const * const &);
+			void			bind(neb::fnd::glsl::program::Base const * const &);
 			// for visualizing the contents
 			virtual void			draw(RenderDesc const &);
 			png_uint_32		w_;

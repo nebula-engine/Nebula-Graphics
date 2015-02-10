@@ -22,7 +22,7 @@
 #include <neb/gfx/camera/proj/perspective.hpp>
 #include <neb/gfx/camera/view/shadow/point.hpp>
 #include <neb/gfx/context/fbo_multi.hpp>
-#include <neb/gfx/texture.hpp>
+#include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/util/log.hpp>
 
 #include <neb/gfx/core/scene/base.hpp>

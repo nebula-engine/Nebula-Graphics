@@ -5,7 +5,7 @@
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/context/fbo.hpp>
 #include <neb/gfx/environ/base.hpp>
-#include <neb/gfx/texture.hpp>
+#include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/window/Base.hpp>
 

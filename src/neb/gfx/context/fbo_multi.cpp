@@ -6,7 +6,7 @@
 #include <neb/gfx/context/fbo_multi.hpp>
 #include <neb/gfx/environ/base.hpp>
 #include <neb/gfx/environ/shadow/point.hpp>
-#include <neb/gfx/texture.hpp>
+#include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/window/Base.hpp>
 
@@ -112,7 +112,7 @@ void		neb::gfx::context::fbo_multi::render() {
 }
 void			THIS::setTexture(std::shared_ptr<neb::fnd::itf::shared> texture)
 {
-	auto t = std::dynamic_pointer_cast<neb::gfx::texture>(texture);
+	auto t = std::dynamic_pointer_cast<neb::gfx::texture::Base>(texture);
 	assert(t);
 	texture_ = t;
 }

@@ -18,6 +18,7 @@
 #include <neb/gfx/glsl/uniform/light_array.hpp>
 #include <neb/gfx/core/scene/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/texture/util/decl.hpp>
 
 //#include <neb/phx/core/scene/util/decl.hpp>
 
@@ -86,10 +87,10 @@ namespace neb { namespace gfx { namespace core { namespace light {
 			//std::shared_ptr<neb::gfx::window::base>	shadow_environ_;
 			std::shared_ptr<neb::gfx::environ::base>	shadow_environ_;				
 			// other properties
-			int						light_array_;
+			int							light_array_;
 			neb::gfx::glsl::uniform::light_array::slot_shared	light_array_slot_;
-			std::shared_ptr<gal::etc::slots::ticket>	texture_layers_;
-			std::shared_ptr<neb::gfx::texture>		texture_shadow_map_;
+			std::shared_ptr<gal::etc::slots::ticket>		texture_layers_;
+			std::shared_ptr<neb::gfx::texture::Base>		texture_shadow_map_;
 	};
 
 }}}}
