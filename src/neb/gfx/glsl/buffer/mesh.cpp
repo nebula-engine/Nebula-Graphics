@@ -1,13 +1,12 @@
 #include <gal/log/log.hpp>
 
-#include <neb/core/math/geo/polyhedron.hh>
+#include <neb/core/math/geo/polyhedron.hpp>
 
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/buffer/tri1.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
-
 
 //constexpr GLenum		neb::gfx::glsl::buffer::tri1::target_[BUFFER_COUNT];// = {
 //constexpr GLenum		neb::gfx::glsl::buffer::tri1::usage_[BUFFER_COUNT];// = {

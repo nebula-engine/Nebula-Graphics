@@ -15,8 +15,10 @@
 
 #include <neb/core/util/decl.hpp>
 #include <neb/core/app/Base.hpp>
+#include <neb/core/math/color/color.hpp>
 
 #include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/glsl/util/decl.hpp>
 
 namespace neb { namespace gfx {
 	
@@ -42,14 +44,27 @@ namespace neb { namespace gfx {
 				void						release();
 				void						step(gal::etc::timestep const & ts);
 				void						render();
+				void			draw_quad(
+						std::shared_ptr<neb::gfx::glsl::program::Base> p,
+						float x,
+						float y,
+						float w,
+						float h,
+						neb::fnd::math::color::color color);
+				void			draw_text(
+						std::shared_ptr<neb::gfx::glsl::program::Base>,
+						float x,
+						float y,
+						float sx,
+						float sy,
+						neb::fnd::math::color::color color,
+						std::string text,
+						std::string::size_type cursor_pos);
 
 
-				static std::weak_ptr<neb::gfx::app::__gfx>		global();
-
-
-		// replaced with gal::parent::create()
-		//		std::weak_ptr<neb::gfx::gui::layout::base>	createLayout();
-		//		std::weak_ptr<neb::gfx::window::base>		createWindow();
+				// replaced with gal::parent::create()
+				//		std::weak_ptr<neb::gfx::gui::layout::base>	createLayout();
+				//		std::weak_ptr<neb::gfx::window::base>		createWindow();
 			public:
 
 				//GLFWwindow*								currentIdleWindow_;
@@ -57,7 +72,7 @@ namespace neb { namespace gfx {
 				FT_Library								ft_;
 				FT_Face									face_;
 		};
-}}}
+	}}}
 
 #endif
 

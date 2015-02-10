@@ -18,8 +18,12 @@
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/util/log.hpp>
 
-neb::gfx::glsl::program::Base::~base() {}
-neb::gfx::glsl::program::Base::base(std::string name):
+typedef neb::gfx::glsl::program::Base THIS;
+
+THIS::~Base()
+{
+}
+THIS::Base(std::string name):
 	o_(0),
 	name_(name)
 {
