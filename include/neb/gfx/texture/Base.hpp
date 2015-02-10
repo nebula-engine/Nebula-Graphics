@@ -13,6 +13,7 @@
 #include <gal/etc/slots.hpp>
 
 #include <neb/core/tmp/Child.hpp>
+#include <neb/core/glsl/program/util/decl.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/texture/util/decl.hpp>

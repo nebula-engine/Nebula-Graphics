@@ -33,6 +33,7 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 		virtual public neb::gfx::drawable::base
 	{
 		public:
+			using CHILD::get_app;
 			base();
 			virtual ~base();
 		protected:
