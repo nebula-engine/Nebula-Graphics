@@ -133,7 +133,7 @@ int			THIS::load_png(std::string filename)
 	printf("%s\n",__PRETTY_FUNCTION__);
 	
 	//auto app(neb::fnd::app::Base::global());
-	auto app = get_app();
+	auto app = get_fnd_app();
 	
 	filename = NEB_SHARE_DIR"/media/texture/" + filename;
 	
@@ -310,7 +310,7 @@ void			THIS::draw(neb::gfx::RenderDesc const & desc)
 	checkerror("unknown");
 
 	//auto app = neb::gfx::app::__gfx_glsl::global().lock();
-	auto app = get_app();
+	auto app = get_fnd_app();
 
 	auto p = app->get_program_tex();
 	p->use();

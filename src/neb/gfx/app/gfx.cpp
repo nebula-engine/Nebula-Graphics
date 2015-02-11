@@ -191,7 +191,7 @@ void			THIS::draw_text(
 	sx = 1.0 / (float)window_width;
 	sy = 1.0 / (float)window_height;
 	
-	auto app = get_app();
+	auto app = get_fnd_app();
 	
 	auto p = app->get_program_text();
 

@@ -28,12 +28,15 @@ std::weak_ptr<THIS>			THIS::initialize()
 void					THIS::__init()
 {
 }
-void					THIS::release()
+/*void					THIS::release()
 {
 	neb::fnd::app::Base::release();
 	
 	neb::gfx::app::draw::release();
 	//neb::gfx::app::__gfx_glsl::release();
+}*/
+void					THIS::__release()
+{
 }
 void					THIS::step(gal::etc::timestep const & ts)
 {

@@ -8,7 +8,7 @@ namespace neb { namespace gfx { namespace texture { namespace util {
 		virtual public neb::gfx::core::light::util::Cast
 	{
 		public:
-			neb::fnd::app::Base*		get_app();
+			neb::fnd::app::Base*		get_fnd_app();
 	};
 }}}}
 

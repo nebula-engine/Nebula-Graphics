@@ -30,6 +30,7 @@
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
 #include <neb/gfx/window/Base.hpp>
+#include <neb/gfx/app/base.hpp>
 
 typedef neb::gfx::window::Base THIS;
 
@@ -136,7 +137,7 @@ void			THIS::init(parent_t * const & p)
 
 	app->init_glew();
 
-	auto app2 = neb::gfx::app::glsl::global().lock();
+	auto app2 = get_gfx_app();
 
 	app2->create_programs();
 

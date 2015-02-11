@@ -28,7 +28,7 @@ namespace neb { namespace gfx { namespace window {
 		virtual public neb::fnd::window::Base,
 		virtual public neb::gfx::context::util::parent,
 		virtual public neb::gfx::window::util::cast,
-		virtual public neb::gfx::tmp::Child<neb::fnd::window::util::parent>
+		virtual public neb::gfx::tmp::Child<neb::fnd::window::util::Parent>
 	{
 		public:
 			//typedef neb::gfx::window::util::parent parent_t;

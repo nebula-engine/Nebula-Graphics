@@ -6,11 +6,11 @@
 
 #include <glm/glm.hpp>
 
-#include <gal/stl/child.hpp>
 #include <gal/etc/timestep.hpp>
 
 #include <neb/core/glsl/program/util/decl.hpp>
 
+#include <neb/gfx/tmp/Child.hpp>
 #include <neb/gfx/camera/proj/util/cast.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
@@ -19,7 +19,7 @@
 namespace neb { namespace gfx { namespace camera { namespace proj {
 	/** @brief @Base */
 	class Base:
-		virtual public gal::stl::child<neb::gfx::environ::base>,
+		virtual public neb::gfx::tmp::Child<neb::gfx::environ::base>,
 		virtual public neb::gfx::camera::proj::util::cast
 	{
 		public:

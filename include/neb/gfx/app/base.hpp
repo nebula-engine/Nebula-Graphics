@@ -17,9 +17,10 @@ namespace neb { namespace gfx { namespace app {
 			static weak_ptr<neb::gfx::app::Base>		initialize();
 		protected:
 			virtual void					__init();
+			virtual void					__release();
 		public:
 			virtual void					render();
-			virtual void					release();
+			virtual void					release() = 0;
 			virtual void					step(gal::etc::timestep const & ts);
 			void						loop();
 	};

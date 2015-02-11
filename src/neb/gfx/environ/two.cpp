@@ -19,7 +19,7 @@ void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> co
 
 	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	//auto app = neb::gfx::app::glsl::global().lock();
-	auto app = get_app();
+	auto app = get_fnd_app();
 
 	/** wrong for color maybe! */	
 	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
