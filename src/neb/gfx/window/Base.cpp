@@ -61,7 +61,7 @@ void			THIS::init(parent_t * const & p)
 	};
 
 	
-	auto app = neb::gfx::app::glfw::global();
+	auto app = get_gfx_app();
 
 	if(!app->flag_.any(neb::fnd::app::util::flag::INIT_GLFW))
 	{

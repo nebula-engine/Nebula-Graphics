@@ -26,7 +26,7 @@
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/gui/layout/base.hpp>
 
-typedef neb::gfx::app::__gfx THIS;
+typedef neb::gfx::app::draw THIS;
 
 void		THIS::init()
 {
@@ -61,10 +61,10 @@ void		THIS::init()
 
 
 }
-void				neb::gfx::app::__gfx::release()
+void			THIS::release()
 {
 }
-void				neb::gfx::app::__gfx::step(gal::etc::timestep const & ts) {
+void			THIS::step(gal::etc::timestep const & ts) {
 
 	//neb::gfx::window::util::parent::step(ts);
 
@@ -72,7 +72,7 @@ void				neb::gfx::app::__gfx::step(gal::etc::timestep const & ts) {
 
 	//neb::gfx::gui::layout::util::parent::step(ts);
 }
-void				neb::gfx::app::__gfx::render()
+void			THIS::render()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -341,16 +341,6 @@ void			THIS::draw_text(
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

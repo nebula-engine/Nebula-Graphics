@@ -19,9 +19,7 @@
 #include <neb/gfx/core/scene/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/texture/util/decl.hpp>
-
-//#include <neb/phx/core/scene/util/decl.hpp>
-
+#include <neb/gfx/tmp/Child.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace light {
 
@@ -33,7 +31,10 @@ namespace neb { namespace gfx { namespace core { namespace light {
 		};
 	};
 
-	class base: virtual public neb::fnd::core::light::base {
+	class base:
+		virtual public neb::fnd::core::light::base,
+		virtual public neb::gfx::tmp::Child<neb::fnd::core::light::util::parent>
+	{
 		public:
 			base();
 			~base() = 0;

@@ -10,9 +10,7 @@
 #include <neb/core/environ/shadow/Point.hpp>
 #include <neb/core/environ/shadow/Directional.hpp>
 
-#include <neb/gfx/app/__gfx.hpp>
-#include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/app/glfw.hpp>
+#include <neb/gfx/app/base.hpp>
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/core/light/point.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
@@ -76,7 +74,7 @@ void			THIS::initShadow(
 	
 	auto self = std::dynamic_pointer_cast<neb::gfx::core::light::point>(shared_from_this());
 	
-	auto app = neb::gfx::app::glfw::global();
+	auto app = get_gfx_app();
 
 	//typedef neb::gfx::window::base Window;
 	//auto window = app->neb::gfx::window::util::parent::create<Window>().lock();

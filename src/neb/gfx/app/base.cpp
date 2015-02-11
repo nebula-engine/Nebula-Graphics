@@ -1,18 +1,17 @@
 #include <neb/core/except/base.hpp>
 #include <neb/gfx/app/base.hpp>
 
-std::weak_ptr<neb::gfx::app::base>		neb::gfx::app::base::initialize()
+typedef neb::gfx::app::Base THIS;
+
+std::weak_ptr<THIS>			THIS::initialize()
 {
 	assert(!g_app_);
-
-	
 /*
-	typedef neb::gfx::app::base T;
+	typedef THIS T;
 
 	auto app = std::shared_ptr<T>(new T());
 
 	g_app_ = app;
-
 
 	//app->neb::app::__core::init();
 	
@@ -24,25 +23,28 @@ std::weak_ptr<neb::gfx::app::base>		neb::gfx::app::base::initialize()
 
 	throw neb::fnd::except::NotImplemented();
 
-	return std::weak_ptr<neb::gfx::app::base>();
+	return std::weak_ptr<THIS>();
 }
-void					neb::gfx::app::base::__init() {
+void					THIS::__init()
+{
 }
-void					neb::gfx::app::base::release() {
+void					THIS::release()
+{
 	neb::fnd::app::Base::release();
 	
-	neb::gfx::app::__gfx::release();
+	neb::gfx::app::draw::release();
 	//neb::gfx::app::__gfx_glsl::release();
 }
-void					neb::gfx::app::base::step(gal::etc::timestep const & ts) {
-
+void					THIS::step(gal::etc::timestep const & ts)
+{
 	//neb::fnd::app::__base::step(ts);
 	neb::fnd::app::Base::__step(ts);
 	
-	neb::gfx::app::__gfx::step(ts);
+	neb::gfx::app::draw::step(ts);
 	//neb::gfx::app::__gfx_glsl::step(ts);
 }
-void					neb::gfx::app::base::loop() {
+void					THIS::loop()
+{
 	while(!flag_.any(neb::fnd::app::util::flag::E::SHOULD_RELEASE)) {
 		::std::cout << "loop1" << ::std::endl;
 		ts_.step(glfwGetTime());

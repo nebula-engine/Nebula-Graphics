@@ -26,8 +26,6 @@ namespace neb { namespace gfx { namespace app {
 			friend class neb::gfx::environ::base;
 			friend class neb::gfx::environ::two;
 			friend class neb::gfx::environ::three;
-		public:
-			static std::weak_ptr<neb::gfx::app::glsl>		global();
 		protected:
 			void							__init();
 			//std::shared_ptr<neb::gfx::glsl::program::Base>		use_program(neb::program_name::e);

@@ -11,6 +11,7 @@
 #include <neb/core/core/scene/util/decl.hpp>
 #include <neb/core/window/Base.hpp>
 
+#include <neb/gfx/tmp/Child.hpp>
 #include <neb/gfx/context/Base.hpp>
 #include <neb/gfx/context/util/Parent.hpp>
 #include <neb/gfx/util/decl.hpp>
@@ -26,8 +27,9 @@ namespace neb { namespace gfx { namespace window {
 	class Base:
 		virtual public neb::fnd::window::Base,
 		virtual public neb::gfx::context::util::parent,
-		virtual public neb::gfx::window::util::cast
-{
+		virtual public neb::gfx::window::util::cast,
+		virtual public neb::gfx::tmp::Child<neb::fnd::window::util::parent>
+	{
 		public:
 			//typedef neb::gfx::window::util::parent parent_t;
 			//typedef neb::fnd::util::parent<neb::fnd::context::Base, neb::fnd::context::util::Parent> contexts;
@@ -36,7 +38,7 @@ namespace neb { namespace gfx { namespace window {
 			virtual ~Base();
 			virtual void				init(parent_t * const & p);
 			virtual void				release();
-			
+
 			virtual glm::vec2			getCursorPosNDC();
 
 			/** @name Main Loop @{ */
@@ -54,10 +56,10 @@ namespace neb { namespace gfx { namespace window {
 			void					callbackCharFun(GLFWwindow*,unsigned int);
 
 			/*
-			std::weak_ptr<neb::fnd::context::Window>	createContextTwo();
-			std::weak_ptr<neb::fnd::context::Window>	createContextThree();
-			std::weak_ptr<neb::fnd::context::window>	createContextNormalMap();
-			*/
+			   std::weak_ptr<neb::fnd::context::Window>	createContextTwo();
+			   std::weak_ptr<neb::fnd::context::Window>	createContextThree();
+			   std::weak_ptr<neb::fnd::context::window>	createContextNormalMap();
+			   */
 
 			virtual int				get_width();
 			virtual int				get_height();

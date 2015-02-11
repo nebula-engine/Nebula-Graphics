@@ -6,8 +6,7 @@
 
 #include <neb/gfx/core/light/directional.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>
-#include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/app/glfw.hpp>
+#include <neb/gfx/app/base.hpp>
 #include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/free.hpp>
@@ -38,7 +37,7 @@ void					THIS::init(neb::fnd::core::light::util::parent * const & p)
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::core::light::directional>(shared_from_this());
 	
-	auto app = neb::gfx::app::glfw::global();
+	auto app = get_gfx_app();
 
 	
 	//auto window = app->neb::gfx::window::util::parent::create<neb::gfx::window::base>().lock();
