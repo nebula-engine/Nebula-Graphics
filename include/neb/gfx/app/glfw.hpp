@@ -20,6 +20,7 @@
 #include <neb/gfx/gui/layout/util/parent.hpp>
 #include <neb/gfx/window/util/Parent.hpp>
 #include <neb/gfx/context/util/Parent.hpp>
+#include <neb/gfx/JoystickState.hpp>
 
 namespace neb { namespace gfx { namespace app {
 	/** @brief gfx
@@ -62,9 +63,11 @@ namespace neb { namespace gfx { namespace app {
 			//virtual window_w				createWindow()
 			//{ throw neb::fnd::except::NotImplemented(); return window_w(); }
 			window_w					get_window(GLFWwindow*);
+			void						update_joysticks();
 		public:
 			//GLFWwindow*					currentIdleWindow_;
 			glfwwindow_map_type				windows_glfw_;
+			neb::gfx::joystick_state			_M_joystick_state[16];
 	};
 }}}
 
