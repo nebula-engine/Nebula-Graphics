@@ -10,6 +10,7 @@
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/gui/object/Base.hh>
+#include <neb/gfx/gui/object/util/decl.hpp>
 #include <neb/gfx/gui/object/util/parent.hpp>
 #include <neb/gfx/drawable/base.hpp>
 //#include <neb/gfx/window/Base.hh>

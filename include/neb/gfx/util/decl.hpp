@@ -46,16 +46,6 @@ namespace neb {
 
 			}
 
-			/** @brief %Object */
-			namespace object {
-				/** @brief %utilities */
-				namespace util {
-					class parent;
-				}
-
-				class base;
-				class terminal;
-			}
 
 		}
 

@@ -140,5 +140,12 @@ void							THIS::update_joysticks()
 		_M_joystick_state[i].update();
 	}
 }
+neb::gfx::app::glfw*					THIS::get_gfx_app_glfw()
+{
+	assert(g_app_);
+	auto a = dynamic_cast<neb::gfx::app::glfw*>(g_app_.get());
+	assert(a);
+	return a;
+}
 
 

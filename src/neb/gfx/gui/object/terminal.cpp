@@ -26,7 +26,7 @@ void			THIS::preloop()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto app = get_app();
+	auto app = get_fnd_app();
 
 	for(auto s: app->_M_preloop_scripts_python) {
 		auto console = console_.lock();

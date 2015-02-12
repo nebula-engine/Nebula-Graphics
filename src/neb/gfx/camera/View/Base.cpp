@@ -24,7 +24,7 @@ void		THIS::load(neb::fnd::glsl::program::Base const * const p)
 
 	checkerror("glUniformMatrix4fv");
 }
-void				connect(
+void		THIS::connect(
 		std::shared_ptr<neb::gfx::window::Base> const & window)
 {
 }
