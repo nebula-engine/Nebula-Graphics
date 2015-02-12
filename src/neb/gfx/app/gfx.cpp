@@ -191,9 +191,10 @@ void			THIS::draw_text(
 	sx = 1.0 / (float)window_width;
 	sy = 1.0 / (float)window_height;
 	
-	auto app = get_fnd_app();
+	//auto app = get_fnd_app();
 	
-	auto p = app->get_program_text();
+	//auto p = app->get_program_text();
+	auto p = get_program_text();
 
 	LOG(lg, neb::gfx::sl, debug)
 		<< std::setw(8) << x

@@ -63,7 +63,19 @@ std::shared_ptr<neb::gfx::glsl::program::Base>		neb::gfx::app::__gfx_glsl::curre
 	assert(p);
 
 	return p;
-}*/
+	}*/
+std::shared_ptr<neb::fnd::glsl::program::Base>		THIS::get_program_text()
+{
+	return program_text_;
+}
+std::shared_ptr<neb::fnd::glsl::program::Base>		THIS::get_program_tex()
+{
+	return program_tex_;
+}
+std::shared_ptr<neb::fnd::glsl::program::Base>		THIS::get_program_simple3()
+{
+	return program_simple3_;
+}
 
 
 

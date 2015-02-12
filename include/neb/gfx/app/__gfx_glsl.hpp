@@ -33,6 +33,9 @@ namespace neb { namespace gfx { namespace app {
 		public:
 			//std::shared_ptr<neb::gfx::glsl::program::Base>		current_program();
 			void							create_programs();
+			virtual std::shared_ptr<neb::fnd::glsl::program::Base>		get_program_text();
+			virtual std::shared_ptr<neb::fnd::glsl::program::Base>		get_program_tex();
+			virtual std::shared_ptr<neb::fnd::glsl::program::Base>		get_program_simple3();
 			//map_program_type					programs_;
 			//std::shared_ptr<neb::gfx::glsl::program::Base>		current_;
 			std::shared_ptr<neb::gfx::glsl::program::Base>		program_text_;
