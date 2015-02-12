@@ -10,7 +10,13 @@ namespace neb { namespace gfx { namespace tmp {
 		virtual public neb::fnd::tmp::Child<T>
 	{
 		public:
-		neb::gfx::app::Base*	get_gfx_app();
+		neb::gfx::app::Base* const	get_gfx_app()
+		{
+			auto a = neb::fnd::tmp::Child<T>::get_fnd_app();
+			auto g = dynamic_cast<neb::gfx::app::Base*>(a);
+			assert(g);
+			return g;
+		}
 	};
 }}}
 
