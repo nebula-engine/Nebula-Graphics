@@ -15,7 +15,7 @@ namespace neb { namespace gfx {
 			unsigned char		_M_axes_count;
 			unsigned char		_M_button_count;
 
-			neb::fnd::input::signal::JoystickButtonFun	_M_button_signal;
+			neb::fnd::input::signals::JoystickButtonFun	_M_button_signal;
 	};
 }}
 

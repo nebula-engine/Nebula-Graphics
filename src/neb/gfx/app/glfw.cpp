@@ -134,4 +134,11 @@ void							THIS::onFirstContext()
 	
 	//exit(0);	
 }
+void							THIS::update_joysticks()
+{
+	for(int i = 0; i <= GLFW_JOYSTICK_LAST; i++) {
+		_M_joystick_state[i].update();
+	}
+}
+
 

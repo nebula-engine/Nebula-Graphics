@@ -54,7 +54,10 @@ void					THIS::loop()
 		step(ts_);
 	}
 }
-
+void					THIS::render()
+{
+	neb::gfx::app::glfw::render();
+}
 
 
 

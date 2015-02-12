@@ -67,7 +67,7 @@ namespace neb { namespace gfx { namespace app {
 		public:
 			//GLFWwindow*					currentIdleWindow_;
 			glfwwindow_map_type				windows_glfw_;
-			neb::gfx::joystick_state			_M_joystick_state[16];
+			neb::gfx::JoystickState				_M_joystick_state[16];
 	};
 }}}
 

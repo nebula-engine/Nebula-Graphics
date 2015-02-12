@@ -16,7 +16,7 @@
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/camera/view/util/flag.hpp>
 
-namespace neb {namespace gfx {namespace camera {namespace view {
+namespace neb { namespace gfx { namespace camera { namespace view {
 
 	/** @brief @Base */
 	class Base: virtual public neb::fnd::itf::shared
