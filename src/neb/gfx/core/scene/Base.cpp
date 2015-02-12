@@ -210,7 +210,7 @@ void			THIS::drawDebug(
 		neb::gfx::RenderDesc const & desc)
 {
 	//auto app(neb::gfx::app::glsl::global().lock());
-	auto app = get_app();
+	auto app = get_fnd_app();
 
 	auto p = app->get_program_simple3();
 	p->use();
