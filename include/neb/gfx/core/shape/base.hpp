@@ -32,9 +32,9 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 			void			release();
 			void			step(gal::etc::timestep const & ts);
 			virtual void		callbackPose(neb::fnd::math::pose const & pose_global);
-			virtual weak_ptr<neb::fnd::core::light::base>		createLightPoint();
-			virtual weak_ptr<neb::fnd::core::light::base>		createLightSpot(glm::vec3);
-			virtual weak_ptr<neb::fnd::core::light::base>		createLightDirectional(glm::vec3);
+			virtual std::weak_ptr<neb::fnd::core::light::base>		createLightPoint();
+			virtual std::weak_ptr<neb::fnd::core::light::base>		createLightSpot(glm::vec3);
+			virtual std::weak_ptr<neb::fnd::core::light::base>		createLightDirectional(glm::vec3);
 			void							setPose(neb::fnd::math::pose const & pose);
 			virtual void						createMesh();
 			/** @name Rendering @{ */

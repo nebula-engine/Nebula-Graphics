@@ -9,21 +9,20 @@
 
 #include <neb/core/itf/shared.hpp>
 #include <neb/core/math/color/color.hpp>
-#include <neb/core/tmp/Child.hpp>
 #include <neb/core/input/sink.hpp>
 #include <neb/core/type_traits.hpp>
 
+#include <neb/gfx/tmp/Child.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/gui/object/util/parent.hpp>
 #include <neb/gfx/gui/object/util/flag.hpp>
 
-
 namespace neb { namespace gfx { namespace gui { namespace object {
 	class base:
 		virtual public neb::fnd::input::sink,
 		virtual public neb::fnd::itf::shared,
-		virtual public neb::fnd::tmp::Child<neb::gfx::gui::object::util::parent>,
+		virtual public neb::gfx::tmp::Child<neb::gfx::gui::object::util::parent>,
 		virtual public neb::gfx::gui::object::util::parent
 	{
 		public:

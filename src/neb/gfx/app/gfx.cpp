@@ -28,7 +28,7 @@
 
 typedef neb::gfx::app::draw THIS;
 
-void		THIS::init()
+void		THIS::__init()
 {
 
 	std::vector<std::string> fontfiles({
@@ -57,31 +57,22 @@ void		THIS::init()
 		printf("Count not open any fonts\n");
 		abort();
 	}
-	
-
-
 }
 void			THIS::release()
 {
 }
-void			THIS::step(gal::etc::timestep const & ts) {
-
+void			THIS::step(gal::etc::timestep const & ts)
+{
 	//neb::gfx::window::util::parent::step(ts);
-
 	//neb::gfx::context::util::parent::step(ts);
-
 	//neb::gfx::gui::layout::util::parent::step(ts);
 }
 void			THIS::render()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
 	//neb::gfx::window::util::parent::render();
-
 	//neb::gfx::context::util::parent::render();
-
 }
-
 //void							neb::gfx::app::__gfx::release() {
 //}
 /*std::weak_ptr<neb::gfx::gui::layout::base>		neb::gfx::app::__gfx::createLayout()
@@ -114,7 +105,6 @@ void			THIS::render()
 }*/
 
 void			THIS::draw_quad(
-		std::shared_ptr<neb::gfx::glsl::program::Base> p,
 		float x,
 		float y,
 		float w,
@@ -174,7 +164,6 @@ void			THIS::draw_quad(
 
 }
 void			THIS::draw_text(
-		std::shared_ptr<neb::gfx::glsl::program::Base>,
 		float x,
 		float y,
 		float sx,

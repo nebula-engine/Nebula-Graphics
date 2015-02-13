@@ -29,19 +29,17 @@ namespace neb { namespace gfx { namespace app {
 		virtual public neb::fnd::app::Base
 	{
 		public:
-			void						init();
-			void						release();
-			void						step(gal::etc::timestep const & ts);
-			void						render();
+			void			__init();
+			void			release();
+			void			step(gal::etc::timestep const & ts);
+			void			render();
 			void			draw_quad(
-					std::shared_ptr<neb::gfx::glsl::program::Base> p,
 					float x,
 					float y,
 					float w,
 					float h,
 					neb::fnd::math::color::color color);
 			void			draw_text(
-					std::shared_ptr<neb::gfx::glsl::program::Base>,
 					float x,
 					float y,
 					float sx,

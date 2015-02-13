@@ -51,7 +51,7 @@ namespace neb { namespace gfx { namespace app {
 			 */
 			static neb::gfx::app::glfw*			get_gfx_app_glfw();
 		public:
-			void						init();
+			void						__init();
 			void						init_glew();
 			void						release();
 			void						step(gal::etc::timestep const & ts);

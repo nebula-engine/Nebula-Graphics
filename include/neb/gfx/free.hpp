@@ -16,6 +16,7 @@
 
 
 namespace neb {
+/*
 	void	draw_quad(
 			std::shared_ptr<neb::gfx::glsl::program::Base> p,
 			float,
@@ -33,7 +34,8 @@ namespace neb {
 			neb::fnd::math::color::color,
 			std::string,
 			std::string::size_type pos = std::string::npos);
-}
+*/
+			}
 
 template<typename... T> void	checkerror(char const * cstr, T... t) {
 

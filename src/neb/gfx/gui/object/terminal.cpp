@@ -7,6 +7,7 @@
 
 #include <neb/core/util/debug.hpp>
 
+#include <neb/gfx/app/base.hpp>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/gui/object/terminal.hh>
@@ -14,6 +15,7 @@
 typedef gal::console::temp<gal::console::backend::python, gal::console::frontend::store> console_type;
 
 namespace NS = neb::gfx::gui::object;
+
 typedef neb::gfx::gui::object::terminal THIS;
 
 THIS::terminal():
@@ -50,6 +52,10 @@ void 			THIS::draw(
 		neb::gfx::RenderDesc const & desc)
 {
 	LOG(lg, NS::sl, debug) << __PRETTY_FUNCTION__;
+	
+	//typedef neb::gfx::glsl::program::base P;
+
+	auto app = get_gfx_app();
 
 	auto console(console_.lock());
 	if(!console) return;
@@ -63,7 +69,6 @@ void 			THIS::draw(
 	float line_height = 0.075;
 
 	//draw_quad(x_, y_, w_, h_, bg_color_);
-
 
 	LOG(lg, neb::gfx::sl, debug) << "copy lines";
 	std::vector<std::string> lines(console->lines_.begin(), console->lines_.end());
@@ -81,9 +86,16 @@ void 			THIS::draw(
 	LOG(lg, neb::gfx::sl, debug)
 		<< "draw lines b = " << b << " e = " << e << " size = " << lines.size()
 		<< " offset = " << page_offset_;
-
+		
 	for(int i = b; i < e; i++) {
-		draw_text(0, x, y, sx, sy, font_color_, lines[i].c_str());
+		app->draw_text(
+				x,
+				y,
+				sx,
+				sy,
+				font_color_,
+				lines[i].c_str(),
+				0);
 		y -= line_height;
 	}
 
@@ -91,7 +103,14 @@ void 			THIS::draw(
 
 	std::string line = console->prompt_end_ + console->line_.container;
 
-	draw_text(0, x, y, sx, sy, font_color_, line.c_str(), console->line_.pos + console->prompt_end_.size());
+	app->draw_text(
+			x,
+			y,
+			sx,
+			sy,
+			font_color_,
+			line.c_str(),
+			console->line_.pos + console->prompt_end_.size());
 }
 int			THIS::charFun(
 		std::shared_ptr<neb::fnd::input::source> const & window,

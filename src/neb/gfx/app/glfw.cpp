@@ -71,7 +71,7 @@ void			THIS::staticCharFun(
 	auto w = get_gfx_app_glfw()->get_window(window).lock();
 	w->callbackCharFun(window, codepoint);
 }
-void			THIS::init()
+void			THIS::__init()
 {
 	glfwSetErrorCallback(static_error_fun);
 	//try {
