@@ -1,6 +1,8 @@
 #ifndef NEB_GFX_CORE_LIGHT_UTIL_CAST_HPP
 #define NEB_GFX_CORE_LIGHT_UTIL_CAST_HPP
 
+#include <neb/core/itf/shared.hpp>
+
 #include <neb/gfx/core/light/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace light { namespace util {

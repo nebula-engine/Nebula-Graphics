@@ -21,39 +21,41 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 		GLfloat	f;
 	};
 
-	typedef templ<array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::FLOAT> instanced;
+	typedef templ<
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::FLOAT> instanced;
 
-	template<> class templ<array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::FLOAT>:
+	template<> class templ<
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::FLOAT>:
 			public neb::gfx::glsl::buffer::base<
 			templ<
-			array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::VEC4,
-		array_type::FLOAT > >
+			neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::VEC4,
+		neb::gfx::ogl::array_type::FLOAT > >
 		{
 			public:
 				typedef std::shared_ptr<neb::gfx::glsl::program::Base>		program_shared;

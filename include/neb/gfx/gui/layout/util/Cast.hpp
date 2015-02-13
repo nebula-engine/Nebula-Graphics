@@ -9,6 +9,7 @@ namespace neb { namespace gfx { namespace gui { namespace layout { namespace uti
 	class Cast:
 		virtual public neb::fnd::itf::shared
 	{
+		public:
 		std::shared_ptr<neb::gfx::gui::layout::base>		is_gfx_gui_layout_base();
 	};
 }}}}}

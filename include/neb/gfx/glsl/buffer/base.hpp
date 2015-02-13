@@ -10,7 +10,7 @@
 #include <neb/gfx/glsl/program/base.hpp>
 
 namespace neb { namespace gfx { namespace glsl { namespace buffer {
-	template< array_type::e... > class templ;
+	template< neb::gfx::ogl::array_type::e... > class templ;
 	/** @brief base
 	 *
 	 * derived classes must implement
@@ -92,7 +92,9 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 
 	};
 	template< class D_ > class base;
-	template< array_type::e... A > class base< templ<A...> >: public __base< templ<A...> >
+	template< neb::gfx::ogl::array_type::e... A >
+	class base< templ<A...> >:
+		public __base< templ<A...> >
 	{
 		public:
 			typedef templ<A...> D;

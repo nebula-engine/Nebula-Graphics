@@ -1,51 +1,55 @@
 #ifndef NEB_GFX_OGL_VERTEX_HPP
 #define NEB_GFX_OGL_VERTEX_HPP
 
+#include <cassert>
+
 #include <gal/stl/helper.hpp>
 
 #include <GL/glew.h>
 
-struct array_type {
-	enum e {
-		VEC2,
-		VEC3,
-		VEC4,
-		FLOAT
-	};
-};
-
-template<array_type::e T> struct array_traits {};
-template<> struct array_traits<array_type::FLOAT>
-{
-	static const GLint		size = 1;
-	static const GLenum		type = GL_FLOAT;
-	static const GLboolean		normalized = GL_FALSE;
-	static const long		bytes = 4;
-};
-template<> struct array_traits<array_type::VEC2>
-{
-	static const GLint		size = 2;
-	static const GLenum		type = GL_FLOAT;
-	static const GLboolean		normalized = GL_FALSE;
-	static const long		bytes = 8;
-};
-template<> struct array_traits<array_type::VEC3>
-{
-	static const GLint		size = 3;
-	static const GLenum		type = GL_FLOAT;
-	static const GLboolean		normalized = GL_FALSE;
-	static const long		bytes = 12;
-};
-template<> struct array_traits<array_type::VEC4>
-{
-	static const GLint		size = 4;
-	static const GLenum		type = GL_FLOAT;
-	static const GLboolean		normalized = GL_FALSE;
-	static const long		bytes = 16;
-};
-
+#include <neb/gfx/free.hpp>
 
 namespace neb { namespace gfx { namespace ogl {
+
+	struct array_type {
+		enum e {
+			VEC2,
+			VEC3,
+			VEC4,
+			FLOAT
+		};
+	};
+
+	template<array_type::e T> struct array_traits {};
+
+	template<> struct array_traits<array_type::FLOAT>
+	{
+		static const GLint		size = 1;
+		static const GLenum		type = GL_FLOAT;
+		static const GLboolean		normalized = GL_FALSE;
+		static const long		bytes = 4;
+	};
+	template<> struct array_traits<array_type::VEC2>
+	{
+		static const GLint		size = 2;
+		static const GLenum		type = GL_FLOAT;
+		static const GLboolean		normalized = GL_FALSE;
+		static const long		bytes = 8;
+	};
+	template<> struct array_traits<array_type::VEC3>
+	{
+		static const GLint		size = 3;
+		static const GLenum		type = GL_FLOAT;
+		static const GLboolean		normalized = GL_FALSE;
+		static const long		bytes = 12;
+	};
+	template<> struct array_traits<array_type::VEC4>
+	{
+		static const GLint		size = 4;
+		static const GLenum		type = GL_FLOAT;
+		static const GLboolean		normalized = GL_FALSE;
+		static const long		bytes = 16;
+	};
 
 	/** @brief vertexAttribPointer
 	 *
@@ -135,6 +139,8 @@ namespace neb { namespace gfx { namespace ogl {
 			const GLenum		usage);
 
 }}}
+
+
 
 #endif
 

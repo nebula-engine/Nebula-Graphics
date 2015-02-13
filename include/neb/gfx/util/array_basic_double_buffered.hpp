@@ -13,8 +13,7 @@
 #include <neb/gfx/opengl/uniform.hpp>
 #include <neb/gfx/util/io.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
-
-
+#include <neb/gfx/util/log.hpp>
 
 namespace neb { namespace gfx {
 	template<class... T> class array_basic_double_buffered {

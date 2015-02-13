@@ -6,6 +6,7 @@
 #include <memory>
 #include <iostream>
 #include <iomanip>
+#include <cassert>
 
 #include <gal/stl/helper.hpp>
 

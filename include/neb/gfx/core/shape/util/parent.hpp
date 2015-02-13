@@ -8,41 +8,27 @@
 
 #include <gal/itf/shared.hpp>
 
-#include <neb/core/interface/Pose.hh>
+#include <neb/core/math/pose.hpp>
 #include <neb/core/util/parent.hpp>
 #include <neb/core/core/actor/util/decl.hpp>
-#include <neb/core/core/actor/util/cast.hpp>
+#include <neb/core/core/actor/util/Cast.hpp>
 #include <neb/core/core/shape/util/cast.hpp>
+#include <neb/core/core/shape/util/parent.hpp>
 
-namespace neb {
-	namespace gfx {
-		namespace core {
-			namespace shape {
-				namespace util {
-					/** @brief @parent
-					 * abstract class for parent of a shape
-					 *
-					 * @note inheritance of neb::util::parent is non-virtual
-					 */
-					class parent :
-						virtual public neb::fnd::core::shape::util::parent
-					{
-					public:
-						virtual ~parent() {}
-					};
+namespace neb { namespace gfx { namespace core { namespace shape { namespace util {
+	/** @brief @parent
+	 * abstract class for parent of a shape
+	 *
+	 * @note inheritance of neb::util::parent is non-virtual
+	 */
+	class parent :
+		virtual public neb::fnd::core::shape::util::parent
+	{
+		public:
+			virtual ~parent() {}
+	};
 
 
-				}
-			}
-		}
-	}
-}
-
+}}}}}
 
 #endif
-
-
-
-
-
-

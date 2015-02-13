@@ -42,7 +42,7 @@ void			THIS::init(
 
 	neb::gfx::gui::object::base::init(p);
 
-	auto app = get_app();
+	auto app = get_fnd_app();
 
 	console_ = app->console_;
 }
