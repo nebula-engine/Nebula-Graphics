@@ -42,6 +42,8 @@ void			THIS::init(
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
+	setParent(p);
+
 	neb::gfx::gui::object::base::init(p);
 
 	auto app = get_fnd_app();

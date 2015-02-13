@@ -179,7 +179,8 @@ int			neb::gfx::gui::layout::base::search(
 
 	return 0;
 }
-std::weak_ptr<neb::gfx::gui::object::terminal>		neb::gfx::gui::layout::base::createObjectTerminal() {
+std::weak_ptr<neb::gfx::gui::object::terminal>		neb::gfx::gui::layout::base::createObjectTerminal()
+{
 
 	return neb::gfx::gui::object::util::parent::create<neb::gfx::gui::object::terminal>();
 

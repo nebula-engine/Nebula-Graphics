@@ -26,7 +26,8 @@ namespace neb { namespace gfx { namespace gui { namespace object {
 		virtual public neb::gfx::gui::object::util::parent
 	{
 		public:
-			typedef neb::fnd::util::parent<neb::gfx::gui::object::base, neb::gfx::gui::object::util::parent> parent_t;
+			//typedef neb::fnd::util::parent<neb::gfx::gui::object::base, neb::gfx::gui::object::util::parent> parent_t;
+			typedef neb::gfx::gui::object::util::parent parent_t;
 			//using neb::fnd::tmp::Child<neb::gfx::gui::object::util::parent>::get_fnd_app;
 			using CHILD::get_fnd_app;
 			base();
