@@ -243,7 +243,7 @@ void			neb::gfx::mesh::tri1::drawDebug(
 
 	// model matrix
 	LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
-	glm::mat4 model = pose.mat4_cast() * glm::scale(scale);
+	//glm::mat4 model = pose.mat4_cast() * glm::scale(scale);
 
 	// debug vis
 	//auto app(neb::gfx::app::__gfx_glsl::global().lock());

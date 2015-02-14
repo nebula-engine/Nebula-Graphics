@@ -1,5 +1,5 @@
-#ifndef NEBULA_GRAPHICS_GUI_LAYOUT_UTIL_PARENT_HH
-#define NEBULA_GRAPHICS_GUI_LAYOUT_UTIL_PARENT_HH
+#ifndef NEBULA_GFX_GUI_LAYOUT_UTIL_PARENT_HH
+#define NEBULA_GFX_GUI_LAYOUT_UTIL_PARENT_HH
 
 #include <neb/core/util/parent.hpp>
 
@@ -10,6 +10,7 @@ namespace neb { namespace gfx { namespace gui { namespace layout { namespace uti
 		public neb::fnd::util::parent<neb::gfx::gui::layout::base, parent>
 	{
 		public:
+			neb::fnd::app::Base*		get_fnd_app();
 	};
 }}}}}
 

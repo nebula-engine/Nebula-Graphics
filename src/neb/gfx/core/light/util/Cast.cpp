@@ -14,17 +14,21 @@ typedef neb::gfx::core::light::directional	D;
 std::shared_ptr<B>	THIS::is_gfx_light_base()
 {
 	auto l = std::dynamic_pointer_cast<B>(shared_from_this());
+	return l;
 }
 std::shared_ptr<S>	THIS::is_gfx_light_spot()
 {
 	auto l = std::dynamic_pointer_cast<S>(shared_from_this());
+	return l;
 }
 std::shared_ptr<P>	THIS::is_gfx_light_point()
 {
 	auto l = std::dynamic_pointer_cast<P>(shared_from_this());
+	return l;
 }
 std::shared_ptr<D>	THIS::is_gfx_light_directional()
 {
 	auto l = std::dynamic_pointer_cast<D>(shared_from_this());
+	return l;
 }
 

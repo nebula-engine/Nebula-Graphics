@@ -133,7 +133,7 @@ int			THIS::load_png(std::string filename)
 	printf("%s\n",__PRETTY_FUNCTION__);
 	
 	//auto app(neb::fnd::app::Base::global());
-	auto app = get_fnd_app();
+	//auto app = get_fnd_app();
 	
 	filename = NEB_SHARE_DIR"/media/texture/" + filename;
 	
