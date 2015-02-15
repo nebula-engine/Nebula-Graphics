@@ -9,9 +9,11 @@
 
 #include <neb/gfx/core/scene/base.hpp>
 
-void		neb::gfx::environ::SceneDefault::init()
+void		neb::gfx::environ::SceneDefault::init(parent_t * const & p)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	setParent(p);
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
 	

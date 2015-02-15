@@ -1,3 +1,5 @@
+#include <neb/core/app/Base.hpp>
+
 #include <neb/gfx/gui/layout/util/parent.hpp>
 
 typedef neb::gfx::gui::layout::util::parent THIS;

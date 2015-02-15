@@ -22,7 +22,7 @@ namespace neb { namespace gfx { namespace environ {
 			typedef std::shared_ptr<neb::gfx::camera::view::Base>		view_shared;
 			typedef std::shared_ptr<neb::gfx::camera::proj::Base>		proj_shared;
 		public:
-			virtual void		init() = 0;
+			virtual void		init(parent_t * const & p) = 0;
 
 			//virtual void		step(gal::etc::timestep const & ts) = 0;
 
