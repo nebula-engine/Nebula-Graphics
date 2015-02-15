@@ -17,9 +17,7 @@ namespace neb { namespace gfx { namespace glsl { namespace buffer {
 		neb::gfx::ogl::array_type::e... A>
 	class data_traits_base
 	{
-		int		init(neb::gfx::glsl::program::Base const * const & p)
-		{
-		}
+		void		init(neb::gfx::glsl::program::Base const * const & p) {}
 		//GLint		index_[ATTRIB_COUNT];
 		GLint		index_[D<T,A...>::ATTRIB_COUNT];
 		GLuint		buffer_;

@@ -19,8 +19,11 @@
 neb::gfx::environ::vis_depth::vis_depth()
 {
 }
-void		neb::gfx::environ::vis_depth::init() {
+void		neb::gfx::environ::vis_depth::init(parent_t * const & p)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	setParent(p);
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::vis_depth>(shared_from_this());
 
