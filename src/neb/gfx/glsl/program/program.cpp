@@ -272,7 +272,7 @@ void		neb::gfx::glsl::program::Base::scanUniforms()
 }
 int		THIS::get_attrib_table_value(int k) const
 {
-	return uniform_table_[k];
+	return attrib_table_[k];
 }
 int		THIS::get_uniform_table_value(int k) const
 {

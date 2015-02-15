@@ -30,6 +30,7 @@ typedef neb::gfx::app::draw THIS;
 
 void		THIS::__init()
 {
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	std::vector<std::string> fontfiles({
 		"/usr/share/fonts/msttcorefonts/cour.ttf",
@@ -47,7 +48,7 @@ void		THIS::__init()
 	for(auto s : fontfiles) {
 		result = FT_New_Face(ft_, s.c_str(), 0, &face_);
 		if(result) {
-			::std::cout << "Could not open font " << s << ::std::endl;
+			::std::cout << "could not open font " << s << ::std::endl;
 		} else {
 			break;
 		}
@@ -173,6 +174,7 @@ void			THIS::draw_text(
 		std::string::size_type cursor_pos)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << "\"" << text << "\"";
 
 	int window_width, window_height;
 	glfwGetWindowSize(glfwGetCurrentContext(), &window_width, &window_height);
@@ -187,8 +189,7 @@ void			THIS::draw_text(
 
 	LOG(lg, neb::gfx::sl, debug)
 		<< std::setw(8) << x
-		<< std::setw(8) << y
-		<< text;
+		<< std::setw(8) << y;
 
 	// face
 	FT_Face& face  = face_;
@@ -199,7 +200,7 @@ void			THIS::draw_text(
 
 	if(FT_Load_Char(face, 'X', FT_LOAD_RENDER))
 	{
-		printf("Could not load character 'X'\n");
+		printf("could not load character 'X'\n");
 		exit(1);
 	}
 
@@ -213,6 +214,7 @@ void			THIS::draw_text(
 			p->get_uniform_table_value(neb::gfx::glsl::uniforms::FONT_COLOR),
 			1,
 			(float*)color);
+	checkerror("glUniform4fv ");
 
 
 	// texture
@@ -223,6 +225,7 @@ void			THIS::draw_text(
 	glUniform1i(
 			p->get_uniform_table_value(neb::gfx::glsl::uniforms::TEX),
 			0);
+	checkerror("glUniform1i ");
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -236,12 +239,16 @@ void			THIS::draw_text(
 
 	// vbo
 	GLuint vbo;
-	glGenBuffers(1, &vbo);
+	glGenBuffers(1, &vbo); checkerror("glGenBuffers ");
+	
 	glEnableVertexAttribArray(attrib_coord);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	// this line fucks everything up -- not anymore! needed to bind attrib location using layout in shader
-	glVertexAttribPointer(attrib_coord, 4, GL_FLOAT, GL_FALSE, 0, 0);
+	checkerror("glEnableVertexAttribArray %i ",
+			attrib_coord);
 
+	glBindBuffer(GL_ARRAY_BUFFER, vbo); checkerror("glBindBuffer ");
+
+	// this line fucks everything up -- not anymore! needed to bind attrib location using layout in shader
+	glVertexAttribPointer(attrib_coord, 4, GL_FLOAT, GL_FALSE, 0, 0); checkerror("glVertexAttribPointer ");
 
 	// prep environment
 	glDisable(GL_DEPTH_TEST);
@@ -249,14 +256,18 @@ void			THIS::draw_text(
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_CULL_FACE);
 	
+
+	checkerror("unknown1 ");
+
 	// draw
 	const char * cstr = text.c_str();
 	size_t len = text.size();
 	for(size_t i = 0; i < len; i++) {
 		
-		if(i == cursor_pos)
+		if(i == cursor_pos) {
 			glUniform4fv(p->get_uniform_table_value(neb::gfx::glsl::uniforms::FONT_COLOR), 1, (float*)cursor_color);
-		
+			checkerror("glUniform4fv ");
+		}
 
 		if(FT_Load_Char(face, cstr[i], FT_LOAD_RENDER)) continue;
 
@@ -271,6 +282,11 @@ void			THIS::draw_text(
 				GL_UNSIGNED_BYTE,
 				g->bitmap.buffer
 			    );
+		checkerror("glTexImage2D %i %i %i ",
+				g->bitmap.width,
+				g->bitmap.rows,
+				g->bitmap.buffer
+				);
 
 		//float x2 = x + g->bitmap_left * sx;
 		//float y2 = -y - g->bitmap_top * sy;
@@ -311,14 +327,17 @@ void			THIS::draw_text(
 
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
+		checkerror("glBufferData ");
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		checkerror("glDrawArrays ");
 
 		x += (g->advance.x >> 6) * sx;
 		y += (g->advance.y >> 6) * sy;
 
-		if(i == cursor_pos) 
+		if(i == cursor_pos) {
 			glUniform4fv(p->get_uniform_table_value(neb::gfx::glsl::uniforms::FONT_COLOR), 1, (float*)color);
-
+			checkerror("glUniform4fv ");
+		}
 	}
 
 
