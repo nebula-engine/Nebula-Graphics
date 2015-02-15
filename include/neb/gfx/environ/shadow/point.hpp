@@ -32,7 +32,7 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			typedef std::weak_ptr<light_type>					light_weak;
 		public:
 			point();
-			virtual void		init();
+			virtual void		init(parent_t * const & p);
 			virtual void		step(gal::etc::timestep const & ts);
 			virtual void		render(
 					std::shared_ptr<neb::gfx::context::base> context) { abort(); }

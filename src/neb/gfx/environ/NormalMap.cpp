@@ -11,14 +11,16 @@
 
 typedef neb::gfx::environ::NormalMap THIS;
 
-void		THIS::init()
+void		THIS::init(parent_t * const & p)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
+	setParent(p);
+
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
 	
-	neb::gfx::environ::single<neb::gfx::camera::view::Base>::init();
-	neb::gfx::environ::three::init();
+	neb::gfx::environ::single<neb::gfx::camera::view::Base>::init(p);
+	neb::gfx::environ::three::init(p);
 
 	programs_.d3_.reset(new neb::gfx::glsl::program::Base("3d"));
 	programs_.d3_->init();
@@ -29,16 +31,11 @@ void		THIS::init()
 	programs_.d3_inst_.reset(new neb::gfx::glsl::program::Base("3d_inst"));
 	programs_.d3_inst_->init();
 
-
 	// camera
 	if(!view_) {
 		view_.reset(new neb::gfx::camera::view::manual(self));
 	}
-
-
 }
-
-
 void		THIS::render(std::shared_ptr<neb::gfx::context::base> context)
 {
 

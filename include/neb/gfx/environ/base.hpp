@@ -32,7 +32,7 @@ namespace neb { namespace gfx { namespace environ {
 			/** @brief */
 			virtual ~base() {}
 			/** @brief */
-			virtual void		init();
+			virtual void		init(parent_t * const & p);
 			/** @brief */
 			virtual void		step(gal::etc::timestep const & ts);
 			/** @brief */

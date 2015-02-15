@@ -19,8 +19,11 @@
 neb::gfx::environ::shadow::directional::directional()
 {
 }
-void		neb::gfx::environ::shadow::directional::init() {
+void		neb::gfx::environ::shadow::directional::init(parent_t * const & p)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	setParent(p);
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::shadow::directional>(shared_from_this());
 

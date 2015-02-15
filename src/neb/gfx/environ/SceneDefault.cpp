@@ -17,12 +17,11 @@ void		neb::gfx::environ::SceneDefault::init(parent_t * const & p)
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
 	
-	neb::gfx::environ::single<neb::gfx::camera::view::Base>::init();
-	neb::gfx::environ::three::init();
+	neb::gfx::environ::single<neb::gfx::camera::view::Base>::init(p);
+	neb::gfx::environ::three::init(p);
 
 	//programs_.reset(new neb::gfx::glsl::program::threed("3d"));
 	//programs_->init();
-
 
 	// camera
 	if(!view_) {

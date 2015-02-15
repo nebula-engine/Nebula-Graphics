@@ -17,11 +17,13 @@
 
 //#include <neb/phx/core/scene/base.hpp>
 
-void		neb::gfx::environ::three::init() {
+void		neb::gfx::environ::three::init(parent_t * const & p)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	auto self = std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
+	setParent(p);
 
+	auto self = std::dynamic_pointer_cast<neb::gfx::environ::three>(shared_from_this());
 
 	//programs_.reset(new neb::gfx::glsl::program::threed("3d"));
 	//programs_->init();
@@ -36,9 +38,6 @@ void		neb::gfx::environ::three::init() {
 	createCameraPerspective();
 
 	//camera_->init(shared_from_this());
-
-
-
 }
 /*void		neb::gfx::environ::three::step(gal::etc::timestep const & ts) {
 

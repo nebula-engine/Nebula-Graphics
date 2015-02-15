@@ -24,8 +24,11 @@
 neb::gfx::environ::shadow::point::point()
 {
 }
-void		neb::gfx::environ::shadow::point::init() {
+void		neb::gfx::environ::shadow::point::init(parent_t * const & p)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	setParent(p);
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::environ::shadow::point>(shared_from_this());
 
@@ -65,9 +68,9 @@ void		neb::gfx::environ::shadow::point::init() {
 	
 	createCameraPerspective();
 
-	auto p = std::dynamic_pointer_cast<neb::gfx::camera::proj::Perspective>(proj_);
-	assert(p);
-	p->set(90.0, 1.0, 100.0);
+	auto proj = std::dynamic_pointer_cast<neb::gfx::camera::proj::Perspective>(proj_);
+	assert(proj);
+	proj->set(90.0, 1.0, 100.0);
 
 }
 bool		neb::gfx::environ::shadow::point::shouldRender() {

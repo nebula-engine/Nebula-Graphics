@@ -13,7 +13,8 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
-	template<typename LIGHT> class base:
+	template<typename LIGHT>
+	class base:
 		virtual public neb::fnd::environ::shadow::Base,
 		virtual public neb::gfx::environ::three
 	{
@@ -22,7 +23,7 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			typedef std::weak_ptr<neb::gfx::environ::SceneDefault>		environ_scene_weak;
 		public:
 			virtual ~base() {}
-			virtual void		init() = 0;
+			virtual void		init(parent_t * const & p) = 0;
 			virtual void		step(gal::etc::timestep const & ts) = 0;
 			//virtual void		resize(int w, int h) = 0;
 			virtual void		render(std::shared_ptr<neb::gfx::context::base> context) = 0;
