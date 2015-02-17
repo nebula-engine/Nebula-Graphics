@@ -75,5 +75,9 @@ void			THIS::setEnviron(std::shared_ptr<neb::fnd::environ::Base> env)
 	assert(e);
 	environ_ = e;
 }
+std::shared_ptr<neb::fnd::environ::Base>	THIS::get_environ()
+{
+	return environ_;
+}
 
 

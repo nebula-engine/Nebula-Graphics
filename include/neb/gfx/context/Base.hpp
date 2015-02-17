@@ -21,7 +21,6 @@
 //#include <neb/core/scene/base.hpp>
 
 namespace neb { namespace gfx { namespace context {
-
 	/** @brief Context
 	 *
 	 * A rectangle on which to render.
@@ -40,7 +39,6 @@ namespace neb { namespace gfx { namespace context {
 	{
 		public:
 			//typedef neb::fnd::context::util::Parent parent_t;
-
 			base();
 			//base&							operator=(base const & r);
 			virtual void						init(parent_t * const &) = 0;
@@ -48,9 +46,9 @@ namespace neb { namespace gfx { namespace context {
 			virtual void						step(gal::etc::timestep const & ts);
 			virtual void						render();
 			virtual void						resize(int w, int h);
-
 			virtual void						setDrawable(std::shared_ptr<neb::fnd::drawable::Base>);
 			virtual void						setEnviron(std::shared_ptr<neb::fnd::environ::Base>);
+			virtual std::shared_ptr<neb::fnd::environ::Base>	get_environ();
 		public:
 			std::shared_ptr<neb::gfx::environ::base>		environ_;
 	};
