@@ -2,6 +2,7 @@
 #define NEBULA_GFX_ENVIRON_THREE_HPP
 
 #include <neb/core/core/actor/util/decl.hpp>
+#include <neb/core/camera/util/decl.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/camera/util/decl.hpp>
@@ -22,26 +23,16 @@ namespace neb { namespace gfx { namespace environ {
 			typedef std::shared_ptr<neb::gfx::camera::view::Base>		view_shared;
 			typedef std::shared_ptr<neb::gfx::camera::proj::Base>		proj_shared;
 		public:
-			virtual void		init(parent_t * const & p) = 0;
-
-			//virtual void		step(gal::etc::timestep const & ts) = 0;
-
-			virtual void		render(
+			virtual void			init(parent_t * const & p) = 0;
+			virtual void			render(
 					std::shared_ptr<neb::gfx::context::base> context) = 0;
-
 		public:
-
 			struct {
 				program_shared			d3_;
 				program_shared			d3_HF_;
 				program_shared			d3_inst_;
 			} programs_;
-
-
 	};
-
-
 }}}
-
 
 #endif

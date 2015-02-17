@@ -15,7 +15,7 @@
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
 
-//#include <neb/phx/core/scene/base.hpp>
+typedef neb::gfx::environ::three THIS;
 
 void		neb::gfx::environ::three::init(parent_t * const & p)
 {
@@ -39,14 +39,6 @@ void		neb::gfx::environ::three::init(parent_t * const & p)
 
 	//camera_->init(shared_from_this());
 }
-/*void		neb::gfx::environ::three::step(gal::etc::timestep const & ts) {
-
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
-	//if(proj_) proj_->step(ts);	
-	//if(view_) view_->step(ts);	
-
-}*/
 
 
 
