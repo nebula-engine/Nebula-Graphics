@@ -38,7 +38,8 @@ THIS::Perspective():
 	
 	renderable_ = renderable;
 }*/
-glm::mat4&		THIS::proj() {
+glm::mat4&		THIS::proj()
+{
 	return _M_matrix;
 }
 void			THIS::set(float fovy, float near, float far)
@@ -50,6 +51,8 @@ void			THIS::set(float fovy, float near, float far)
 }
 void			THIS::calculate()
 {
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
 	auto parent = getParent();
 
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "fovy" << ::std::setw(8) << fovy_;

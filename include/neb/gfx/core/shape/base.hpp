@@ -42,7 +42,7 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 			//		neb::fnd::core::light::util::count& light_count,
 			//		neb::fnd::math::pose const & pose);
 			void						model_load(
-					neb::gfx::glsl::program::Base const * const & p,
+					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
 			void						init_buffer(
 					neb::gfx::glsl::program::Base const * const & p);
@@ -56,6 +56,9 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
 			virtual void					draw_elements(
+					neb::fnd::glsl::program::Base const * const & p,
+					neb::fnd::math::pose const & pose);
+			virtual void					draw_legacy(
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
 			/** @} */

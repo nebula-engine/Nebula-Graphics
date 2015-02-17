@@ -82,8 +82,9 @@ GLvoid** const		neb::gfx::mesh::instanced::data() {
 void			neb::gfx::mesh::instanced::draw(
 		neb::gfx::mesh::instanced::program_type* program)
 {
-
 	assert(program);
+
+	if(instances_->size() == 0) return;
 
 /*	if(!buffers_inst_[program])
 	{	

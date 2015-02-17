@@ -122,14 +122,14 @@ void			THIS::drawMesh(neb::gfx::RenderDesc const & desc)
 	light_array_[0]->load_uniform(d3);
 
 	// individual meshes
-	auto la = [&] (A::map_type::pointer p) {
+	auto la = [&] (A::map_type::pointer p)
+	{
 		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(p);
 		assert(actor);
 		actor->draw(d3, neb::fnd::math::pose());
 	};
 
 	A::map_.for_each(la);
-
 }
 void			THIS::drawMeshHF(neb::gfx::RenderDesc const & desc)
 {

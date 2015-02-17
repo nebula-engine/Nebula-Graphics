@@ -10,24 +10,27 @@
 #include <neb/gfx/core/shape/box.hpp>
 #include <neb/gfx/util/log.hpp>
 
+typedef neb::gfx::core::shape::box THIS;
 
-neb::gfx::core::shape::box::box()
+THIS::box()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }
-void neb::gfx::core::shape::box::box::createMesh() {
-	//mesh_.load("cube.obj");
-	
+void neb::gfx::core::shape::box::box::createMesh()
+{
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	if(0) {
+		create_mesh_instance();
+	} else if(0) {
+		create_mesh_standalone();
+	}
+}
+void	THIS::create_mesh_instance()
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	if(!hasScene()) return;
-
-	/*
-	math::geo::cuboid cube(1.0,1.0,1.0);
-	
-	mesh_.reset(new neb::gfx::mesh);
-	mesh_->construct(&cube);
-	*/
 	
 	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());
 	
@@ -69,10 +72,139 @@ void neb::gfx::core::shape::box::box::createMesh() {
 				100.0
 				);
 	}
-	
-	//mesh_->texture_.reset(new neb::gfx::texture);
-	//mesh_->texture_->load_png("/nfs/stak/students/r/rymalc/Documents/Pictures/crab.png", bufs);
+}
+void	THIS::create_mesh_standalone()
+{
+	neb::fnd::math::geo::cuboid cube(1.0,1.0,1.0);
+
+	mesh_.reset(new neb::gfx::mesh::tri1);
+	mesh_->construct(&cube);
+}
+void			THIS::draw_legacy(
+		neb::fnd::glsl::program::Base const * const & p,
+		neb::fnd::math::pose const & pose)
+{
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+
+	// load model matrix
+	//LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
+	model_load(p, pose);
+
+	//glUseProgram(0);
+	//glPushMatrix();
+	//glTranslatef(pose.pos_.x, pose.pos_.y, pose.pos_.z);
+
+	LOG(lg, neb::gfx::sl, debug) << scale_.x << " " << scale_.y << " " << scale_.z;
+	LOG(lg, neb::gfx::sl, debug) << pose.pos_.x << " " << pose.pos_.y << " " << pose.pos_.z;
+
+
+	// draw
+	glBegin(GL_TRIANGLES);
+	{
+		// front faces
+		glNormal3f(0,0,1);
+		// face v0-v1-v2
+		glColor3f(1,1,1);
+		glVertex3f(1,1,1);
+		glColor3f(1,1,0);
+		glVertex3f(-1,1,1);
+		glColor3f(1,0,0);
+		glVertex3f(-1,-1,1);
+		// face v2-v3-v0
+		glColor3f(1,0,0);
+		glVertex3f(-1,-1,1);
+		glColor3f(1,0,1);
+		glVertex3f(1,-1,1);
+		glColor3f(1,1,1);
+		glVertex3f(1,1,1);
+
+		// right faces
+		glNormal3f(1,0,0);
+		// face v0-v3-v4
+		glColor3f(1,1,1);
+		glVertex3f(1,1,1);
+		glColor3f(1,0,1);
+		glVertex3f(1,-1,1);
+		glColor3f(0,0,1);
+		glVertex3f(1,-1,-1);
+		// face v4-v5-v0
+		glColor3f(0,0,1);
+		glVertex3f(1,-1,-1);
+		glColor3f(0,1,1);
+		glVertex3f(1,1,-1);
+		glColor3f(1,1,1);
+		glVertex3f(1,1,1);
+
+		// top faces
+		glNormal3f(0,1,0);
+		// face v0-v5-v6
+		glColor3f(1,1,1);
+		glVertex3f(1,1,1);
+		glColor3f(0,1,1);
+		glVertex3f(1,1,-1);
+		glColor3f(0,1,0);
+		glVertex3f(-1,1,-1);
+		// face v6-v1-v0
+		glColor3f(0,1,0);
+		glVertex3f(-1,1,-1);
+		glColor3f(1,1,0);
+		glVertex3f(-1,1,1);
+		glColor3f(1,1,1);
+		glVertex3f(1,1,1);
+
+		// left faces
+		glNormal3f(-1,0,0);
+		// face  v1-v6-v7
+		glColor3f(1,1,0);
+		glVertex3f(-1,1,1);
+		glColor3f(0,1,0);
+		glVertex3f(-1,1,-1);
+		glColor3f(0,0,0);
+		glVertex3f(-1,-1,-1);
+		// face v7-v2-v1
+		glColor3f(0,0,0);
+		glVertex3f(-1,-1,-1);
+		glColor3f(1,0,0);
+		glVertex3f(-1,-1,1);
+		glColor3f(1,1,0);
+		glVertex3f(-1,1,1);
+
+		// bottom faces
+		glNormal3f(0,-1,0);
+		// face v7-v4-v3
+		glColor3f(0,0,0);
+		glVertex3f(-1,-1,-1);
+		glColor3f(0,0,1);
+		glVertex3f(1,-1,-1);
+		glColor3f(1,0,1);
+		glVertex3f(1,-1,1);
+		// face v3-v2-v7
+		glColor3f(1,0,1);
+		glVertex3f(1,-1,1);
+		glColor3f(1,0,0);
+		glVertex3f(-1,-1,1);
+		glColor3f(0,0,0);
+		glVertex3f(-1,-1,-1);
+
+		// back faces
+		glNormal3f(0,0,-1);
+		// face v4-v7-v6
+		glColor3f(0,0,1);
+		glVertex3f(1,-1,-1);
+		glColor3f(0,0,0);
+		glVertex3f(-1,-1,-1);
+		glColor3f(0,1,0);
+		glVertex3f(-1,1,-1);
+		// face v6-v5-v4
+		glColor3f(0,1,0);
+		glVertex3f(-1,1,-1);
+		glColor3f(0,1,1);
+		glVertex3f(1,1,-1);
+		glColor3f(0,0,1);
+		glVertex3f(1,-1,-1);
+	}
+	glEnd();
+
+	//glPopMatrix();
 
 }
-
-

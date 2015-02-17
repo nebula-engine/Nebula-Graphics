@@ -30,12 +30,11 @@ void		THIS::init(parent_t * const & p)
 		view_.reset(new neb::gfx::camera::view::Free(self));
 	}
 }
-void		neb::gfx::environ::SceneDefault::render(std::shared_ptr<neb::gfx::context::base> context) {
-
+void		neb::gfx::environ::SceneDefault::render(std::shared_ptr<neb::gfx::context::base> context)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	// prepare rendering environment and then call the drawable
-
 	
 	auto drawable = drawable_.lock();
 

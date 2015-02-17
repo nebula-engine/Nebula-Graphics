@@ -84,14 +84,16 @@ void			THIS::drawHF(
 {
 }
 void			THIS::model_load(
-		neb::gfx::glsl::program::Base const * const & p,
+		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
 	glm::mat4 space = pose.mat4_cast() * glm::scale(scale_);
 
-	neb::gfx::ogl::glUniform(
-			p->uniform_table_[neb::gfx::glsl::uniforms::MODEL],
-			space);
+	auto v = p->get_uniform_table_value(neb::gfx::glsl::uniforms::MODEL);
+
+	assert(v != -1);
+
+	neb::gfx::ogl::glUniform(v, space);
 }
 void			THIS::draw_elements(
 		neb::fnd::glsl::program::Base const * const & p,
@@ -101,9 +103,10 @@ void			THIS::draw_elements(
 
 	assert(p);
 
-	if(mesh_)
-	{
+	if(mesh_) {
 		mesh_->drawElements(p, pose, scale_);
+	} else {
+		draw_legacy(p, pose);
 	}
 }
 void			THIS::drawDebug(
@@ -171,7 +174,11 @@ void						THIS::createMesh()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }
-
+void						THIS::draw_legacy(
+		neb::fnd::glsl::program::Base const * const & p,
+		neb::fnd::math::pose const & pose)
+{
+}
 
 
 
