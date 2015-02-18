@@ -103,105 +103,105 @@ void			THIS::draw_legacy(
 	{
 		// front faces
 		glNormal3f(0,0,1);
-		// face v0-v1-v2
-		glColor3f(1,1,1);
-		glVertex3f(1,1,1);
-		glColor3f(1,1,0);
-		glVertex3f(-1,1,1);
-		glColor3f(1,0,0);
-		glVertex3f(-1,-1,1);
+		// face v0-v0.5-v2
+		glColor3f(0.5,0.5,0.5);
+		glVertex3f(0.5,0.5,0.5);
+		glColor3f(0.5,0.5,0);
+		glVertex3f(-0.5,0.5,0.5);
+		glColor3f(0.5,0,0);
+		glVertex3f(-0.5,-0.5,0.5);
 		// face v2-v3-v0
-		glColor3f(1,0,0);
-		glVertex3f(-1,-1,1);
-		glColor3f(1,0,1);
-		glVertex3f(1,-1,1);
-		glColor3f(1,1,1);
-		glVertex3f(1,1,1);
+		glColor3f(0.5,0,0);
+		glVertex3f(-0.5,-0.5,0.5);
+		glColor3f(0.5,0,0.5);
+		glVertex3f(0.5,-0.5,0.5);
+		glColor3f(0.5,0.5,0.5);
+		glVertex3f(0.5,0.5,0.5);
 
 		// right faces
 		glNormal3f(1,0,0);
 		// face v0-v3-v4
-		glColor3f(1,1,1);
-		glVertex3f(1,1,1);
-		glColor3f(1,0,1);
-		glVertex3f(1,-1,1);
-		glColor3f(0,0,1);
-		glVertex3f(1,-1,-1);
+		glColor3f(0.5,0.5,0.5);
+		glVertex3f(0.5,0.5,0.5);
+		glColor3f(0.5,0,0.5);
+		glVertex3f(0.5,-0.5,0.5);
+		glColor3f(0,0,0.5);
+		glVertex3f(0.5,-0.5,-0.5);
 		// face v4-v5-v0
-		glColor3f(0,0,1);
-		glVertex3f(1,-1,-1);
-		glColor3f(0,1,1);
-		glVertex3f(1,1,-1);
-		glColor3f(1,1,1);
-		glVertex3f(1,1,1);
+		glColor3f(0,0,0.5);
+		glVertex3f(0.5,-0.5,-0.5);
+		glColor3f(0,0.5,0.5);
+		glVertex3f(0.5,0.5,-0.5);
+		glColor3f(0.5,0.5,0.5);
+		glVertex3f(0.5,0.5,0.5);
 
 		// top faces
 		glNormal3f(0,1,0);
 		// face v0-v5-v6
-		glColor3f(1,1,1);
-		glVertex3f(1,1,1);
-		glColor3f(0,1,1);
-		glVertex3f(1,1,-1);
-		glColor3f(0,1,0);
-		glVertex3f(-1,1,-1);
-		// face v6-v1-v0
-		glColor3f(0,1,0);
-		glVertex3f(-1,1,-1);
-		glColor3f(1,1,0);
-		glVertex3f(-1,1,1);
-		glColor3f(1,1,1);
-		glVertex3f(1,1,1);
+		glColor3f(0.5,0.5,0.5);
+		glVertex3f(0.5,0.5,0.5);
+		glColor3f(0,0.5,0.5);
+		glVertex3f(0.5,0.5,-0.5);
+		glColor3f(0,0.5,0);
+		glVertex3f(-0.5,0.5,-0.5);
+		// face v6-v0.5-v0
+		glColor3f(0,0.5,0);
+		glVertex3f(-0.5,0.5,-0.5);
+		glColor3f(0.5,0.5,0);
+		glVertex3f(-0.5,0.5,0.5);
+		glColor3f(0.5,0.5,0.5);
+		glVertex3f(0.5,0.5,0.5);
 
 		// left faces
 		glNormal3f(-1,0,0);
-		// face  v1-v6-v7
-		glColor3f(1,1,0);
-		glVertex3f(-1,1,1);
-		glColor3f(0,1,0);
-		glVertex3f(-1,1,-1);
+		// face  v0.5-v6-v7
+		glColor3f(0.5,0.5,0);
+		glVertex3f(-0.5,0.5,0.5);
+		glColor3f(0,0.5,0);
+		glVertex3f(-0.5,0.5,-0.5);
 		glColor3f(0,0,0);
-		glVertex3f(-1,-1,-1);
-		// face v7-v2-v1
+		glVertex3f(-0.5,-0.5,-0.5);
+		// face v7-v2-v0.5
 		glColor3f(0,0,0);
-		glVertex3f(-1,-1,-1);
-		glColor3f(1,0,0);
-		glVertex3f(-1,-1,1);
-		glColor3f(1,1,0);
-		glVertex3f(-1,1,1);
+		glVertex3f(-0.5,-0.5,-0.5);
+		glColor3f(0.5,0,0);
+		glVertex3f(-0.5,-0.5,0.5);
+		glColor3f(0.5,0.5,0);
+		glVertex3f(-0.5,0.5,0.5);
 
 		// bottom faces
 		glNormal3f(0,-1,0);
 		// face v7-v4-v3
 		glColor3f(0,0,0);
-		glVertex3f(-1,-1,-1);
-		glColor3f(0,0,1);
-		glVertex3f(1,-1,-1);
-		glColor3f(1,0,1);
-		glVertex3f(1,-1,1);
+		glVertex3f(-0.5,-0.5,-0.5);
+		glColor3f(0,0,0.5);
+		glVertex3f(0.5,-0.5,-0.5);
+		glColor3f(0.5,0,0.5);
+		glVertex3f(0.5,-0.5,0.5);
 		// face v3-v2-v7
-		glColor3f(1,0,1);
-		glVertex3f(1,-1,1);
-		glColor3f(1,0,0);
-		glVertex3f(-1,-1,1);
+		glColor3f(0.5,0,0.5);
+		glVertex3f(0.5,-0.5,0.5);
+		glColor3f(0.5,0,0);
+		glVertex3f(-0.5,-0.5,0.5);
 		glColor3f(0,0,0);
-		glVertex3f(-1,-1,-1);
+		glVertex3f(-0.5,-0.5,-0.5);
 
 		// back faces
 		glNormal3f(0,0,-1);
 		// face v4-v7-v6
-		glColor3f(0,0,1);
-		glVertex3f(1,-1,-1);
+		glColor3f(0,0,0.5);
+		glVertex3f(0.5,-0.5,-0.5);
 		glColor3f(0,0,0);
-		glVertex3f(-1,-1,-1);
-		glColor3f(0,1,0);
-		glVertex3f(-1,1,-1);
+		glVertex3f(-0.5,-0.5,-0.5);
+		glColor3f(0,0.5,0);
+		glVertex3f(-0.5,0.5,-0.5);
 		// face v6-v5-v4
-		glColor3f(0,1,0);
-		glVertex3f(-1,1,-1);
-		glColor3f(0,1,1);
-		glVertex3f(1,1,-1);
-		glColor3f(0,0,1);
-		glVertex3f(1,-1,-1);
+		glColor3f(0,0.5,0);
+		glVertex3f(-0.5,0.5,-0.5);
+		glColor3f(0,0.5,0.5);
+		glVertex3f(0.5,0.5,-0.5);
+		glColor3f(0,0,0.5);
+		glVertex3f(0.5,-0.5,-0.5);
 	}
 	glEnd();
 
