@@ -53,7 +53,7 @@ void			THIS::init(
 void 			THIS::draw(
 		neb::gfx::RenderDesc const & desc)
 {
-	LOG(lg, NS::sl, debug) << __PRETTY_FUNCTION__;
+	printv(debug, "%s\n", __PRETTY_FUNCTION__);
 	
 	//typedef neb::gfx::glsl::program::base P;
 

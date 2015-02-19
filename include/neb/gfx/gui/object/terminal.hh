@@ -10,10 +10,11 @@
 
 namespace neb { namespace gfx { namespace gui { namespace object {
 	class terminal:
-		public neb::fnd::itf::verbosity,
+		public neb::fnd::itf::verbosity<neb::gfx::gui::object::terminal>,
 		virtual public neb::gfx::gui::object::base
 	{
 		public:
+			using neb::fnd::itf::verbosity<neb::gfx::gui::object::terminal>::printv;
 			typedef typename neb::gfx::gui::object::base::parent_t parent_t;
 			terminal();
 			virtual void			init(parent_t * const & p);

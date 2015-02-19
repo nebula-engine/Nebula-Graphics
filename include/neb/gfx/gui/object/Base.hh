@@ -7,6 +7,7 @@
 
 #include <gal/stl/child.hpp>
 
+#include <neb/core/itf/verbosity.hpp>
 #include <neb/core/itf/shared.hpp>
 #include <neb/core/math/color/color.hpp>
 #include <neb/core/input/sink.hpp>
@@ -20,6 +21,7 @@
 
 namespace neb { namespace gfx { namespace gui { namespace object {
 	class base:
+		public neb::fnd::itf::verbosity<neb::gfx::gui::object::base>,
 		virtual public neb::fnd::input::sink,
 		virtual public neb::fnd::itf::shared,
 		virtual public neb::gfx::tmp::Child<neb::gfx::gui::object::util::parent>,
