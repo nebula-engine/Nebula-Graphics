@@ -3,12 +3,14 @@
 
 #include <deque>
 
+#include <neb/core/itf/verbosity.hpp>
 #include <neb/core/app/Base.hpp>
 
 #include <neb/gfx/gui/object/Base.hh>
 
 namespace neb { namespace gfx { namespace gui { namespace object {
 	class terminal:
+		public neb::fnd::itf::verbosity,
 		virtual public neb::gfx::gui::object::base
 	{
 		public:
