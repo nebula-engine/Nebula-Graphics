@@ -14,7 +14,7 @@
 #include <neb/gfx/camera/proj/base.hpp>
 #include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/context/fbo.hpp>
-#include <neb/gfx/util/log.hpp>
+//#include <neb/gfx/util/log.hpp> removed by c_header_checker
 #include <neb/gfx/core/scene/base.hpp>
 
 typedef neb::gfx::core::light::directional THIS;

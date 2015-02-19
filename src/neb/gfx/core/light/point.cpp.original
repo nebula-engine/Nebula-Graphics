@@ -4,9 +4,9 @@
 
 #include <neb/core/util/debug.hpp>
 #include <neb/core/util/log.hpp>
-#include <neb/core/window/Base.hpp>
+//#include <neb/core/window/Base.hpp> removed by c_header_checker
 #include <neb/core/core/light/util/parent.hpp>
-//#include <neb/core/context/FBOM.hpp> removed by c_header_checker
+#include <neb/core/context/FBOM.hpp>
 #include <neb/core/environ/shadow/Point.hpp>
 #include <neb/core/environ/shadow/Directional.hpp>
 

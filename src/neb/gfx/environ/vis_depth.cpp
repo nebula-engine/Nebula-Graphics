@@ -7,7 +7,7 @@
 
 #include <neb/gfx/camera/view/shadow/directional.hpp>
 #include <neb/gfx/camera/proj/ortho.hpp>
-#include <neb/gfx/camera/proj/perspective.hpp>
+//#include <neb/gfx/camera/proj/perspective.hpp> removed by c_header_checker
 
 #include <neb/gfx/environ/vis_depth.hpp>
 #include <neb/gfx/drawable/base.hpp>

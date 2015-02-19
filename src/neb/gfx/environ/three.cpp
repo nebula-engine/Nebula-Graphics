@@ -11,7 +11,7 @@
 #include <neb/gfx/camera/proj/perspective.hpp>
 
 #include <neb/gfx/environ/three.hpp>
-#include <neb/gfx/drawable/base.hpp>
+//#include <neb/gfx/drawable/base.hpp> removed by c_header_checker
 #include <neb/gfx/util/log.hpp>
 //#include <neb/gfx/glsl/program/threed.hpp> removed by c_header_checker
 

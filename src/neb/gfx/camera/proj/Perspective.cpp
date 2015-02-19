@@ -21,7 +21,7 @@
 //#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/util/io.hpp>
+//#include <neb/gfx/util/io.hpp> removed by c_header_checker
 //#include <neb/gfx/opengl/uniform.hpp> removed by c_header_checker
 
 typedef neb::gfx::camera::proj::Perspective THIS;

@@ -14,7 +14,7 @@
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
-#include <neb/gfx/core/light/directional.hpp>
+//#include <neb/gfx/core/light/directional.hpp> removed by c_header_checker
 #include <neb/gfx/core/light/point.hpp>
 //#include <neb/gfx/camera/proj/base.hpp> removed by c_header_checker
 #include <neb/gfx/RenderDesc.hpp>

@@ -14,7 +14,7 @@
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
-#include <neb/gfx/camera/view/Base.hpp>
+//#include <neb/gfx/camera/view/Base.hpp> removed by c_header_checker
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/core/scene/base.hpp>
 

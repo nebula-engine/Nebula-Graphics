@@ -2,7 +2,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <gal/log/log.hpp>
+//#include <gal/log/log.hpp> removed by c_header_checker
 
 //#include <neb/core/util/debug.hpp> removed by c_header_checker
 //#include <neb/core/input/source.hpp>

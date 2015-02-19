@@ -13,7 +13,7 @@
 #include <neb/gfx/core/actor/base.hpp>
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/gfx/window/Base.hpp>
-#include <neb/gfx/util/decl.hpp>
+//#include <neb/gfx/util/decl.hpp> removed by c_header_checker
 //#include <neb/gfx/util/log.hpp> removed by c_header_checker
 
 //neb::gfx::core::actor::base::base()

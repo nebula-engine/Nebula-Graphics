@@ -10,9 +10,9 @@
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/light/spot.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
-#include <neb/gfx/glsl/program/base.hpp>
+//#include <neb/gfx/glsl/program/base.hpp> removed by c_header_checker
 
-//#include <neb/gfx/core/scene/base.hpp> removed by c_header_checker
+#include <neb/gfx/core/scene/base.hpp>
 
 typedef neb::gfx::core::light::spot THIS;
 

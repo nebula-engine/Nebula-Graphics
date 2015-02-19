@@ -19,7 +19,7 @@
 #include <neb/gfx/environ/base.hpp>
 //#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
-#include <neb/gfx/util/log.hpp>
+//#include <neb/gfx/util/log.hpp> removed by c_header_checker
 //#include <neb/gfx/util/io.hpp> removed by c_header_checker
 #include <neb/gfx/opengl/uniform.hpp>
 #include <neb/gfx/camera/proj/base.hpp>

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+//#include <stdlib.h> removed by c_header_checker
 #include <string.h>
 
 #include <ft2build.h>
@@ -18,7 +18,7 @@
 //#include <neb/gfx/window/Base.hh>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
-#include <neb/gfx/free.hpp>
+//#include <neb/gfx/free.hpp> removed by c_header_checker
 //#include <neb/gfx/util/log.hpp> removed by c_header_checker
 
 int		isExtensionSupported(const char *extension) {

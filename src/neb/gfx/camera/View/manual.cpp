@@ -4,7 +4,7 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/util/debug.hpp>
+//#include <neb/core/util/debug.hpp> removed by c_header_checker
 //#include <neb/core/input/source.hpp>
 
 //#include <neb/gfx/window/Base.hpp> removed by c_header_checker

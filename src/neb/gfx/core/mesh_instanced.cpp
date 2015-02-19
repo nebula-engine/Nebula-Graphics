@@ -3,7 +3,7 @@
 #include <neb/gfx/mesh/instanced.hpp>
 #include <neb/gfx/glsl/buffer/instanced.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
-#include <neb/gfx/glsl/attrib.hh>
+//#include <neb/gfx/glsl/attrib.hh> removed by c_header_checker
 //#include <neb/gfx/free.hpp> removed by c_header_checker
 
 
