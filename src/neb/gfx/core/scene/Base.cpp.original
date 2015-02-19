@@ -10,7 +10,7 @@
 #include <neb/gfx/mesh/instanced.hpp>
 #include <neb/gfx/RenderDesc.hpp>
 #include <neb/gfx/texture/Base.hpp>
-//#include <neb/gfx/util/log.hpp> removed by c_header_checker
+#include <neb/gfx/util/log.hpp>
 
 typedef neb::gfx::core::scene::base THIS;
 

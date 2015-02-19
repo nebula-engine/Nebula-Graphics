@@ -1,7 +1,7 @@
 
 #include <neb/core/util/cast.hpp>
 
-#include <neb/gfx/util/log.hpp>
+//#include <neb/gfx/util/log.hpp> removed by c_header_checker
 #include <neb/gfx/camera/view/Ridealong.hpp>
 #include <neb/gfx/camera/view/Free.hpp>
 #include <neb/gfx/environ/SceneDefault.hpp>

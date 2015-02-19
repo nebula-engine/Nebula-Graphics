@@ -1,5 +1,5 @@
 #include <iomanip>
-#include <sstream>
+//#include <sstream> removed by c_header_checker
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/opengl/uniform.hpp>

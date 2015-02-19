@@ -2,12 +2,12 @@
 #include <neb/core/util/cast.hpp>
 
 #include <neb/gfx/util/log.hpp>
-#include <neb/gfx/camera/view/Ridealong.hpp>
+//#include <neb/gfx/camera/view/Ridealong.hpp> removed by c_header_checker
 #include <neb/gfx/camera/view/Manual.hpp>
 #include <neb/gfx/environ/NormalMap.hpp>
 #include <neb/gfx/RenderDesc.hpp>
 
-//#include <neb/gfx/core/scene/base.hpp> removed by c_header_checker
+#include <neb/gfx/core/scene/base.hpp>
 
 typedef neb::gfx::environ::NormalMap THIS;
 

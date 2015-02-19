@@ -7,7 +7,7 @@
 #include <neb/core/util/debug.hpp>
 //#include <neb/core/input/source.hpp>
 
-#include <neb/gfx/window/Base.hpp>
+//#include <neb/gfx/window/Base.hpp> removed by c_header_checker
 #include <neb/gfx/camera/view/Manual.hpp>
 #include <neb/gfx/util/log.hpp>
 

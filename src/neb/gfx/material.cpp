@@ -1,4 +1,4 @@
-#include <stdio.h>
+//#include <stdio.h> removed by c_header_checker
 
 //#include <neb/core/core/scene/base.hpp>
 

@@ -2,7 +2,7 @@
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
-//#include <neb/gfx/glsl/uniform/scalar.hpp> removed by c_header_checker
+#include <neb/gfx/glsl/uniform/scalar.hpp>
 
 typedef neb::gfx::camera::view::Base THIS;
 

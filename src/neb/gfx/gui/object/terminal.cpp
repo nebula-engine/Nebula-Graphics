@@ -72,11 +72,13 @@ void 			THIS::draw(
 
 	//draw_quad(x_, y_, w_, h_, bg_color_);
 
-	LOG(lg, neb::gfx::sl, debug) << "copy lines";
+	printv(debug, "copy lines\n", __PRETTY_FUNCTION__);
+
 	std::vector<std::string> lines(console->lines_.begin(), console->lines_.end());
 	int b, e;
 
-	LOG(lg, neb::gfx::sl, debug) << "determine begin and end";
+	printv(debug, "determine begin and end\n", __PRETTY_FUNCTION__);
+
 	if(lines.size() < max_line_count_) {
 		b = 0;
 		e = lines.size();
@@ -85,9 +87,7 @@ void 			THIS::draw(
 		e = lines.size() - page_offset_;
 	}
 
-	LOG(lg, neb::gfx::sl, debug)
-		<< "draw lines b = " << b << " e = " << e << " size = " << lines.size()
-		<< " offset = " << page_offset_;
+	printv(debug, "draw lines b = %i e = %i size = %lu offset = %i\n", b, e, lines.size(), page_offset_);
 		
 	for(int i = b; i < e; i++) {
 		app->draw_text(
@@ -101,7 +101,7 @@ void 			THIS::draw(
 		y -= line_height;
 	}
 
-	LOG(lg, neb::gfx::sl, debug) << "draw lines end";
+	printv(debug, "draw lines end\n", __PRETTY_FUNCTION__);
 
 	std::string line = console->prompt_end_ + console->line_.container;
 
@@ -118,7 +118,7 @@ int			THIS::charFun(
 		std::shared_ptr<neb::fnd::input::source> const & window,
 		unsigned int codepoint)
 {
-	LOG(lg, neb::gfx::gui::object::sl_callback, debug) << __PRETTY_FUNCTION__;
+	printv(debug, "%s\n", __PRETTY_FUNCTION__);
 
 	auto console(console_.lock());
 	if(!console) return 0;
@@ -135,7 +135,7 @@ int			THIS::keyFun(
 		int action,
 		int mods)
 {
-	LOG(lg, neb::gfx::gui::object::sl_callback, debug) << __PRETTY_FUNCTION__;
+	printv(debug, "%s\n", __PRETTY_FUNCTION__);
 
 	auto console(console_.lock());
 	if(!console) return 0;

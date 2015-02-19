@@ -3,7 +3,7 @@
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/environ/two.hpp>
-#include <neb/gfx/glsl/program/base.hpp>
+//#include <neb/gfx/glsl/program/base.hpp> removed by c_header_checker
 #include <neb/gfx/RenderDesc.hpp>
 
 void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> context) {
