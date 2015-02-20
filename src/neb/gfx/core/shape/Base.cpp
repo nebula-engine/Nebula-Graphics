@@ -48,12 +48,12 @@ void					THIS::step(gal::etc::timestep const & ts)
 
 	//material_front_.step(ts);
 }
-void					THIS::callbackPose(neb::fnd::math::pose const & gpose)
+void					THIS::v_set_pose_data(neb::fnd::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
 
-	neb::fnd::core::shape::base::__callbackPose(gpose);
+	neb::fnd::core::shape::base::__set_pose_data(gpose);
 
 	if(mesh_slot_) {
 		auto model = gpose.mat4_cast() * glm::scale(scale_);
@@ -62,14 +62,14 @@ void					THIS::callbackPose(neb::fnd::math::pose const & gpose)
 		LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
 	}
 }
-void					THIS::setPose(neb::fnd::math::pose const & pose)
+/*void					THIS::setPose(neb::fnd::math::pose const & pose)
 {
 	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	
 	auto npose = pose * pose_;
 
 	neb::gfx::core::light::util::parent::setPose(npose);
-}
+}*/
 void					THIS::draw(
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)

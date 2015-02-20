@@ -26,39 +26,43 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 		virtual public neb::gfx::core::light::util::parent
 	{
 		public:
+			typedef neb::fnd::core::light::base L;
 			base();
 			virtual ~base();
-			void			init(neb::fnd::core::shape::util::parent * const & p);
-			void			release();
-			void			step(gal::etc::timestep const & ts);
-			virtual void		callbackPose(neb::fnd::math::pose const & pose_global);
-			virtual std::weak_ptr<neb::fnd::core::light::base>		createLightPoint();
-			virtual std::weak_ptr<neb::fnd::core::light::base>		createLightSpot(glm::vec3);
-			virtual std::weak_ptr<neb::fnd::core::light::base>		createLightDirectional(glm::vec3);
-			void							setPose(neb::fnd::math::pose const & pose);
-			virtual void						createMesh();
+			void					init(neb::fnd::core::shape::util::parent * const & p);
+			void					release();
+			void					step(gal::etc::timestep const & ts);
+			/*
+			 * overrides neb::fnd::core::shape::Base::v_set_pose_data
+			 */
+			virtual void				v_set_pose_data(neb::fnd::math::pose const & pose_global);
+			virtual std::weak_ptr<L>		createLightPoint();
+			virtual std::weak_ptr<L>		createLightSpot(glm::vec3);
+			virtual std::weak_ptr<L>		createLightDirectional(glm::vec3);
+			void					setPose(neb::fnd::math::pose const & pose);
+			virtual void				createMesh();
 			/** @name Rendering @{ */
 			//void						load_lights(
 			//		neb::fnd::core::light::util::count& light_count,
 			//		neb::fnd::math::pose const & pose);
-			void						model_load(
+			void					model_load(
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
-			void						init_buffer(
+			void					init_buffer(
 					neb::gfx::glsl::program::Base const * const & p);
-			virtual void					draw(
+			virtual void				draw(
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
-			virtual void					drawHF(
+			virtual void				drawHF(
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
-			virtual void					drawDebug(
+			virtual void				drawDebug(
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
-			virtual void					draw_elements(
+			virtual void				draw_elements(
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
-			virtual void					draw_legacy(
+			virtual void				draw_legacy(
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
 			/** @} */
