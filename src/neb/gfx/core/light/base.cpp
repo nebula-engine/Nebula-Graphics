@@ -17,7 +17,6 @@
 //#include <neb/gfx/camera/view/Base.hpp> removed by c_header_checker
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/core/scene/base.hpp>
-
 #include <neb/gfx/core/light/base.hpp>
 
 typedef neb::gfx::core::light::base THIS;
@@ -45,13 +44,12 @@ THIS::~base()
 }
 void			THIS::init(neb::fnd::core::light::util::parent * const & p)
 {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+	printv(debug, "%s\n", __PRETTY_FUNCTION__);
 
 	setParent(p);
 
 	// check if detached
-	if(!hasScene())
-	{
+	if(!hasScene()) {
 		std::cout << "skip initialization" << std::endl;
 		return;
 	}
@@ -70,6 +68,33 @@ void			THIS::init(neb::fnd::core::light::util::parent * const & p)
 
 		assert(scene->light_array_[light_array_]);
 		assert(scene->light_array_[light_array_]->size_array() != 0);
+
+		printv(debug,
+				"pose     %12f %12f %12f\n",
+				pose.pos_.x,
+				pose.pos_.y,
+				pose.pos_.z);
+		printv(debug,
+				"type     %i\n",
+				(int)getType());
+		printv(debug,
+				"ambient  %12f %12f %12f %12f\n",
+				ambient_.r,
+				ambient_.g,
+				ambient_.b,
+				ambient_.a);
+		printv(debug,
+				"diffuse  %12f %12f %12f %12f\n",
+				diffuse_.r,
+				diffuse_.g,
+				diffuse_.b,
+				diffuse_.a);
+		printv(debug,
+				"specular %12f %12f %12f %12f\n",
+				specular_.r,
+				specular_.g,
+				specular_.b,
+				specular_.a);
 
 		light_array_slot_ = scene->light_array_[light_array_]->reg(
 				pose.pos_,
@@ -92,9 +117,7 @@ void			THIS::init(neb::fnd::core::light::util::parent * const & p)
 				glm::vec3(-1.0),
 				(int)getType()
 				);
-
 	}
-
 }
 void			THIS::setPose(neb::fnd::math::pose const & npose) {
 	pose_ = npose;

@@ -32,10 +32,12 @@ namespace neb { namespace gfx { namespace core { namespace light {
 	};
 
 	class base:
+		public neb::fnd::itf::verbosity<neb::gfx::core::light::base>,
 		virtual public neb::fnd::core::light::base,
 		virtual public neb::gfx::tmp::Child<neb::fnd::core::light::util::parent>
 	{
 		public:
+			using neb::fnd::itf::verbosity<neb::gfx::core::light::base>::printv;
 			base();
 			~base() = 0;
 			virtual void					init(neb::fnd::core::light::util::parent * const & p);

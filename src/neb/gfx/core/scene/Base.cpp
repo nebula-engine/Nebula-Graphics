@@ -121,6 +121,8 @@ void			THIS::drawMesh(neb::gfx::RenderDesc const & desc)
 	assert(light_array_[0]);
 	light_array_[0]->load_uniform(d3);
 
+	assert(light_array_[0]->size() > 0);
+
 	// individual meshes
 	auto la = [&] (A::map_type::pointer p)
 	{

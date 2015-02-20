@@ -89,7 +89,9 @@ void			THIS::draw_legacy(
 	// load model matrix
 	//LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
 	model_load(p, pose);
-
+	
+	//material_.load(p);
+	
 	//glUseProgram(0);
 	//glPushMatrix();
 	//glTranslatef(pose.pos_.x, pose.pos_.y, pose.pos_.z);

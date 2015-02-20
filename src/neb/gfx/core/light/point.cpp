@@ -31,7 +31,7 @@ THIS::point()
 {}
 neb::gfx::core::light::type::e		THIS::getType()
 {
-	return neb::gfx::core::light::type::SPOT;
+	return neb::gfx::core::light::type::POINT;
 }
 void	neb::gfx::core::light::point::load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose) {
 
