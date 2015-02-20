@@ -11,7 +11,7 @@
 #include <neb/core/itf/shared.hpp>
 #include <neb/core/math/color/color.hpp>
 #include <neb/core/input/sink.hpp>
-#include <neb/core/type_traits.hpp>
+//#include <neb/core/type_traits.hpp>
 
 #include <neb/gfx/tmp/Child.hpp>
 #include <neb/gfx/util/decl.hpp>
