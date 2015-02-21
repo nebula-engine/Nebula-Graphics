@@ -36,9 +36,9 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 			 * overrides neb::fnd::core::shape::Base::v_set_pose_data
 			 */
 			virtual void				v_set_pose_data(neb::fnd::math::pose const & pose_global);
-			virtual std::weak_ptr<L>		createLightPoint();
-			virtual std::weak_ptr<L>		createLightSpot(glm::vec3);
-			virtual std::weak_ptr<L>		createLightDirectional(glm::vec3);
+			//virtual std::weak_ptr<L>		createLightPoint();
+			//virtual std::weak_ptr<L>		createLightSpot(glm::vec3);
+			//virtual std::weak_ptr<L>		createLightDirectional(glm::vec3);
 			void					setPose(neb::fnd::math::pose const & pose);
 			virtual void				createMesh();
 			/** @name Rendering @{ */

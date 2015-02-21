@@ -122,54 +122,6 @@ void			THIS::drawDebug(
 		mesh_->drawDebug(p, pose, scale_);
 	}
 }
-std::weak_ptr<neb::fnd::core::light::base>		THIS::createLightPoint()
-{
-	auto self(std::dynamic_pointer_cast<neb::fnd::core::shape::base>(shared_from_this()));
-
-	typedef neb::gfx::core::light::point L;
-
-	auto light = std::shared_ptr<L>(new L());
-
-	neb::fnd::core::light::util::parent::insert(light);
-
-	light->init(this);
-
-	return light;
-}
-std::weak_ptr<neb::fnd::core::light::base>		THIS::createLightSpot(glm::vec3 d)
-{
-
-	auto self(std::dynamic_pointer_cast<neb::fnd::core::shape::base>(shared_from_this()));
-
-	typedef neb::gfx::core::light::spot L;
-
-	auto light = std::shared_ptr<L>(new L(), gal::stl::deleter<L>());
-
-	light->spot_direction_ = d;
-
-	neb::fnd::core::light::util::parent::insert(light);
-
-	light->init(this);
-
-	return light;
-}
-std::weak_ptr<neb::fnd::core::light::base>		THIS::createLightDirectional(glm::vec3 d)
-{
-
-	auto self(std::dynamic_pointer_cast<neb::fnd::core::shape::base>(shared_from_this()));
-
-	typedef neb::gfx::core::light::directional L;
-	
-	auto light = std::shared_ptr<L>(new L(), gal::stl::deleter<L>());
-
-	light->pose_.pos_ = d;
-
-	neb::fnd::core::light::util::parent::insert(light);
-
-	light->init(this);
-
-	return light;
-}
 void						THIS::createMesh()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;

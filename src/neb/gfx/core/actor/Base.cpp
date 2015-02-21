@@ -8,6 +8,7 @@
 #include <neb/core/core/scene/base.hpp>
 
 #include <neb/core/timer/actor/Base.hpp>
+#include <neb/core/plug/gfx/core/shape/Base.hpp>
 
 //#include <neb/gfx/window/util/signals.hpp>
 #include <neb/gfx/core/actor/base.hpp>
@@ -47,11 +48,16 @@ void				THIS::draw(
 			actor->draw(program, npose);
 			});
 
-	S::map_.for_each([&] (S::map_type::pointer p) {
-			auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
-			assert(shape);
-			shape->draw(program, npose);
-			});
+	auto lambda_shape = [&] (S::map_type::pointer p)
+	{
+		//auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
+		//assert(shape);
+		if(p->_M_graphics_object)
+			p->_M_graphics_object->draw(program, npose);
+
+	};
+
+	S::map_.for_each(lambda_shape);
 
 
 }
@@ -73,9 +79,9 @@ void				THIS::drawDebug(
 			});
 
 	S::map_.for_each([&] (S::map_type::pointer p) {
-			auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
-			assert(shape);
-			shape->drawDebug(program, npose);
+			//auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
+			//assert(shape);
+			//shape->drawDebug(program, npose);
 			});
 
 
@@ -98,9 +104,9 @@ void				THIS::drawHF(
 			});
 
 	S::map_.for_each([&] (S::map_type::pointer p) {
-			auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
-			assert(shape);
-			shape->drawHF(program, npose);
+			//auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
+			//assert(shape);
+			//shape->drawHF(program, npose);
 			});
 
 
