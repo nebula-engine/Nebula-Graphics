@@ -53,7 +53,7 @@ void				THIS::draw(
 		//auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
 		//assert(shape);
 		if(p->_M_graphics_object)
-			p->_M_graphics_object->draw(program, npose);
+			p->_M_graphics_object->draw(p.get(), program, npose);
 
 	};
 
