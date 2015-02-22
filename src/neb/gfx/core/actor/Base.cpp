@@ -28,7 +28,8 @@
 
 typedef neb::gfx::core::actor::base THIS;
 
-THIS::~base() {
+THIS::~base()
+{
 	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
 }
 void				THIS::draw(
@@ -42,24 +43,27 @@ void				THIS::draw(
 	typedef neb::fnd::core::actor::util::parent A;
 	typedef neb::fnd::core::shape::util::parent S;
 
-	A::map_.for_each([&] (A::map_type::pointer p) {
-			auto actor = std::dynamic_pointer_cast<THIS>(p);
-			assert(actor);
-			actor->draw(program, npose);
-			});
+	auto lambda_actor = [=] (A::map_type::pointer p)
+	{
+		auto actor = std::dynamic_pointer_cast<THIS>(p);
+		assert(actor);
+		actor->draw(program, npose);
+	};
 
-	auto lambda_shape = [&] (S::map_type::pointer p)
+	auto lambda_shape = [=] (S::map_type::pointer p)
 	{
 		//auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
 		//assert(shape);
-		if(p->_M_graphics_object)
-			p->_M_graphics_object->draw(p.get(), program, npose);
+		//shape->draw(program, npose);
+		if(p->_M_graphics_object) {
+			auto pose3 = npose * p->pose_;
+			p->_M_graphics_object->draw(p.get(), program, pose3);
+		}
 
 	};
 
+	A::map_.for_each(lambda_actor);
 	S::map_.for_each(lambda_shape);
-
-
 }
 void				THIS::drawDebug(
 		neb::fnd::glsl::program::Base const * const & program,
