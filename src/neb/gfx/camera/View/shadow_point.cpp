@@ -5,17 +5,20 @@
 
 typedef neb::gfx::camera::view::shadow::Point THIS;
 
-THIS::Point(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::camera::view::Base(parent)
+THIS::Point()
 {
-	assert(parent);
-
 	//light_ = light;
 }
+/*
+void			THIS::init(parent_t * const & p)
+{
+	setParent(p);
+}
+*/
 glm::mat4		THIS::view()
 {
-	auto parent = parent_.lock();
-	assert(parent);
+/*
+	auto parent = getParent();
 
 	std::shared_ptr<neb::gfx::core::light::point> light;
 
@@ -32,8 +35,11 @@ glm::mat4		THIS::view()
 	assert(light);
 	
 	glm::vec3 eye = light->getPoseGlobal().pos_;
-	
+
 	return glm::lookAt(eye, eye + look_, up_);
+*/
+	abort();
+	return glm::mat4();
 }
 void			THIS::step(gal::etc::timestep const & ts)
 {

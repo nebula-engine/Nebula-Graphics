@@ -4,15 +4,14 @@
 
 //#include <gal/log/log.hpp> removed by c_header_checker
 
-//#include <neb/core/util/debug.hpp> removed by c_header_checker
-//#include <neb/core/input/source.hpp>
+//#include <neb/fnd/util/debug.hpp> removed by c_header_checker
+//#include <neb/fnd/input/source.hpp>
 
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/camera/view/Free.hpp>
 #include <neb/gfx/util/log.hpp>
 
-neb::gfx::camera::view::Free::Free(std::shared_ptr<neb::gfx::environ::base> parent):
-	neb::gfx::camera::view::Base(parent),
+neb::gfx::camera::view::Free::Free():
 	pitch_(0),
 	yaw_(0),
 	eye_(0, 0, 0, 0),
@@ -101,8 +100,9 @@ neb::gfx::camera::view::Free::Free(std::shared_ptr<neb::gfx::environ::base> pare
 	head_flag_[view_flag::DOWN		] = 25;
 
 }
-void	neb::gfx::camera::view::Free::init() {
-
+void	neb::gfx::camera::view::Free::init(parent_t * const & p)
+{
+	setParent(p);
 }
 void			neb::gfx::camera::view::Free::connect(std::shared_ptr<neb::fnd::input::source> const & src)
 {

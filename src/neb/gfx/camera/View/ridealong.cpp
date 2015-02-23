@@ -3,26 +3,31 @@
 
 //#include <gal/log/log.hpp> removed by c_header_checker
 
-//#include <neb/core/util/debug.hpp> removed by c_header_checker
-#include <neb/core/core/actor/base.hpp>
+//#include <neb/fnd/util/debug.hpp> removed by c_header_checker
+#include <neb/fnd/core/actor/base.hpp>
 
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/camera/view/Ridealong.hpp>
 
 typedef neb::gfx::camera::view::Ridealong THIS;
 
-THIS::Ridealong(
-		std::shared_ptr<neb::gfx::environ::base> parent,
-		weak_ptr<neb::fnd::core::actor::base> actor):
-	neb::gfx::camera::view::Base(parent),
-	actor_(actor)
+THIS::Ridealong()
 {
 }
+/*
+void			THIS::init(parent_t * const & p)
+{
+	setParent(p);
+}
+*/
 glm::mat4		THIS::view()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	
-	auto actor = actor_.lock();
+
+	auto cam = getParent()->is_fnd_camera_view_ridealong();
+	assert(cam);
+
+	auto actor = cam->actor_.lock();
 	if(!actor) return glm::mat4();
 
 	glm::vec3 translate_vec(actor->pose_.pos_);

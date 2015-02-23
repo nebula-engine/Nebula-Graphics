@@ -1,7 +1,7 @@
 #include <gal/log/log.hpp>
 
 
-#include <neb/core/util/debug.hpp>
+#include <neb/fnd/util/debug.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
@@ -14,7 +14,7 @@
 //#include <neb/gfx/util/log.hpp> removed by c_header_checker
 //#include <neb/gfx/glsl/program/base.hpp> removed by c_header_checker
 #include <neb/gfx/core/light/directional.hpp>
-#include <neb/gfx/RenderDesc.hpp>
+#include <neb/fnd/RenderDesc.hpp>
 
 neb::gfx::environ::shadow::directional::directional()
 {
@@ -37,7 +37,12 @@ void		neb::gfx::environ::shadow::directional::init(parent_t * const & p)
 	programs_.d3_inst_->init();
 	
 	// camera
-	view_.reset(new neb::gfx::camera::view::shadow::Directional(self));
+/*
+	view_.reset(new neb::gfx::camera::view::shadow::Directional());
+	view_->init(this);
+*/
+	abort();
+
 
 	createCameraOrtho();
 	//proj_.reset(new neb::gfx::camera::proj::Ortho(self));
@@ -64,7 +69,7 @@ void		neb::gfx::environ::shadow::directional::render(std::shared_ptr<neb::gfx::c
 	 */
 
 	
-	auto drawable = drawable_.lock();
+	auto drawable = getParent()->drawable_.lock();
 
 	if(!drawable) {
 		LOG(lg, neb::gfx::sl, warning) << "environ has no drawable";
@@ -92,14 +97,17 @@ void		neb::gfx::environ::shadow::directional::render(std::shared_ptr<neb::gfx::c
 
 	//drawable->draw(context, program_, 0);
 
+	/*
 	drawable->draw(
-			RenderDesc(
+			neb::fnd::RenderDesc(
 				view_.get(),
 				proj_.get(),
 				programs_.d3_.get(),
 				programs_.d3_HF_.get(),
 				programs_.d3_inst_.get())
 		      );
+		      */
+	abort();
 
 }		
 

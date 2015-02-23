@@ -1,7 +1,7 @@
 #ifndef NEBULA_GFX_ENVIRON_UTIL_CAST_HPP
 #define NEBULA_GFX_ENVIRON_UTIL_CAST_HPP
 
-#include <neb/core/itf/shared.hpp>
+#include <neb/fnd/itf/shared.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 

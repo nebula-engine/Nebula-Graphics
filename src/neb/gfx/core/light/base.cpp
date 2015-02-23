@@ -3,11 +3,11 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/util/debug.hpp>
-#include <neb/core/util/decl.hpp>
-#include <neb/core/util/log.hpp>
-#include <neb/core/core/scene/base.hpp>
-#include <neb/core/core/shape/base.hpp>
+#include <neb/fnd/util/debug.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/util/log.hpp>
+#include <neb/fnd/core/scene/base.hpp>
+#include <neb/fnd/core/shape/base.hpp>
 
 //#include <neb/gfx/app/__gfx_glsl.hpp> removed by c_header_checker
 #include <neb/gfx/window/Base.hpp>

@@ -15,19 +15,10 @@ namespace neb { namespace gfx { namespace camera { namespace view {
 		virtual public neb::gfx::camera::view::Base
 	{
 		public:
-			/** @name constructors
-			 * @{
-			 */
-			manual(std::shared_ptr<neb::gfx::environ::base> parent);
-			//Free(math::vec3<double> eye, double yaw, double pitch);
-			/** @} */
-
-			/** @brief view matrix */
+			manual();
 			virtual glm::mat4			view();
 			virtual void				step(gal::etc::timestep const & ts);
-
-			void					init();
-
+			void					init(parent_t * const & p);
 			glm::vec3				eye_;
 			glm::vec3				center_;
 			glm::vec3				up_;

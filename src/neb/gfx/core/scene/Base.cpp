@@ -1,5 +1,9 @@
 
-#include <neb/core/math/geo/polyhedron.hpp>
+#include <neb/fnd/math/geo/polyhedron.hpp>
+#include <neb/fnd/RenderDesc.hpp>
+#include <neb/fnd/DebugBuffer.hpp>
+#include <neb/fnd/camera/proj/Base.hpp>
+#include <neb/fnd/camera/view/Base.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
@@ -8,14 +12,13 @@
 #include <neb/gfx/core/scene/base.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
 #include <neb/gfx/mesh/instanced.hpp>
-#include <neb/gfx/RenderDesc.hpp>
 #include <neb/gfx/texture/Base.hpp>
 //#include <neb/gfx/util/log.hpp> removed by c_header_checker
 
 typedef neb::gfx::core::scene::base THIS;
 
 typedef neb::fnd::core::actor::util::parent A;
-typedef neb::gfx::glsl::program::Base P;
+typedef neb::fnd::glsl::program::Base P;
 
 THIS::base()
 {}
@@ -82,7 +85,7 @@ void			THIS::init_light()
 		light_array_[1]->alloc(32);
 	}
 }
-void			THIS::draw(neb::gfx::RenderDesc const & desc)
+void			THIS::draw(neb::fnd::RenderDesc const & desc)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -93,7 +96,7 @@ void			THIS::draw(neb::gfx::RenderDesc const & desc)
 	drawMeshHF(desc);
 	drawMeshInst(desc);
 }
-void			THIS::drawMesh(neb::gfx::RenderDesc const & desc)
+void			THIS::drawMesh(neb::fnd::RenderDesc const & desc)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -133,7 +136,7 @@ void			THIS::drawMesh(neb::gfx::RenderDesc const & desc)
 
 	A::map_.for_each(la);
 }
-void			THIS::drawMeshHF(neb::gfx::RenderDesc const & desc)
+void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -171,7 +174,7 @@ void			THIS::drawMeshHF(neb::gfx::RenderDesc const & desc)
 	A::map_.for_each(la);
 
 }
-void			THIS::drawMeshInst(neb::gfx::RenderDesc const & desc)
+void			THIS::drawMeshInst(neb::fnd::RenderDesc const & desc)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -199,7 +202,7 @@ void			THIS::drawMeshInst(neb::gfx::RenderDesc const & desc)
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(tex_shadow_map_->target_, tex_shadow_map_->o_);
 
-		GLint loc = d3_inst->uniform_table_[neb::gfx::glsl::uniforms::TEX_SHADOW_MAP];
+		GLint loc = d3_inst->get_uniform_table_value(neb::gfx::glsl::uniforms::TEX_SHADOW_MAP);
 		neb::gfx::ogl::glUniform(loc, 0);
 	}
 
@@ -209,12 +212,14 @@ void			THIS::drawMeshInst(neb::gfx::RenderDesc const & desc)
 
 }
 void			THIS::drawDebug(
-		neb::gfx::RenderDesc const & desc)
+		neb::fnd::RenderDesc const & desc)
 {
 	//auto app(neb::gfx::app::glsl::global().lock());
 	auto app = get_fnd_app();
 
-	auto p = app->get_program_simple3();
+	auto g = app->_M_graphics_object;
+	assert(g);
+	auto p = g->get_program_simple3();
 	p->use();
 
 	desc.p->load(p.get());
@@ -233,4 +238,104 @@ void			THIS::drawDebug(
 void			THIS::resize(int w, int h)
 {
 }
+void			THIS::draw_debug_buffer(
+		neb::fnd::RenderDesc const & desc,
+		neb::fnd::DebugBuffer const & db)
+{
+	auto g = get_fnd_app()->_M_graphics_object;
+	assert(g);
+
+	auto p = g->get_program_simple3();
+	p->use();
+
+	desc.p->load(p.get());
+	desc.v->load(p.get());
+
+	glClear(GL_DEPTH_BUFFER_BIT);
+
+
+	/*
+	LOG(lg, neb::phx::core::scene::sl, debug) << "Debug visualization";
+	LOG(lg, neb::phx::core::scene::sl, debug) << "number of points    " << rb.getNbPoints();
+	LOG(lg, neb::phx::core::scene::sl, debug) << "number of lines     " << nblines;
+	LOG(lg, neb::phx::core::scene::sl, debug) << "number of triangles " << nbtriangles;
+	*/
+
+	GLint i_color = p->get_attrib_table_value(neb::gfx::glsl::attribs::COLOR);
+
+	glEnableVertexAttribArray(p->get_attrib_table_value(neb::gfx::glsl::attribs::POSITION));
+	if(i_color > -1)
+		glEnableVertexAttribArray(i_color);
+
+	GLuint buf;
+	glGenBuffers(1, &buf);
+	glBindBuffer(GL_ARRAY_BUFFER, buf);
+
+
+	// lines
+	glBufferData(
+			GL_ARRAY_BUFFER,
+			sizeof(neb::fnd::DebugLine) * db.nblines,
+			db.lines,
+			GL_STREAM_DRAW
+		    );
+
+	glVertexAttribPointer(
+			p->get_attrib_table_value(neb::gfx::glsl::attribs::POSITION),
+			3,
+			GL_FLOAT,
+			GL_FALSE,
+			16,
+			0);
+
+
+	if(i_color > -1)
+		glVertexAttribIPointer(
+				p->get_attrib_table_value(neb::gfx::glsl::attribs::COLOR),
+				1,
+				GL_UNSIGNED_INT,
+				16,
+				(GLvoid*)12);
+
+	glDrawArrays(GL_LINES, 0, db.nblines * 2);
+
+	checkerror("");
+
+	// triangles
+	glBufferData(
+			GL_ARRAY_BUFFER,
+			sizeof(neb::fnd::DebugTriangle) * db.nbtriangles,
+			db.triangles,
+			GL_STREAM_DRAW
+		    );
+
+	glVertexAttribPointer(
+			p->get_attrib_table_value(neb::gfx::glsl::attribs::POSITION),
+			3,
+			GL_FLOAT,
+			GL_FALSE,
+			16,
+			0);
+
+
+	if(i_color > -1)
+		glVertexAttribIPointer(
+				p->get_attrib_table_value(neb::gfx::glsl::attribs::COLOR),
+				1,
+				GL_UNSIGNED_INT,
+				16,
+				(GLvoid*)12);
+
+	glDrawArrays(GL_TRIANGLES, 0, db.nbtriangles * 3);
+
+	checkerror("");
+
+	// cleanup
+	glDisableVertexAttribArray(p->get_attrib_table_value(neb::gfx::glsl::attribs::POSITION));
+	if(i_color > -1)
+		glDisableVertexAttribArray(p->get_attrib_table_value(neb::gfx::glsl::attribs::COLOR));
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
 

@@ -22,7 +22,8 @@ namespace neb { namespace gfx { namespace app {
 			virtual void					render();
 			virtual void					release() = 0;
 			virtual void					step(gal::etc::timestep const & ts);
-			void						loop();
+			virtual void					loop();
+			virtual void					update();
 	};
 }}}
 

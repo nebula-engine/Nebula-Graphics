@@ -11,8 +11,8 @@
 
 //#include <glm/gtc/matrix_transform.hpp>
 
-#include <neb/core/util/debug.hpp>
-#include <neb/core/core/actor/base.hpp>
+#include <neb/fnd/util/debug.hpp>
+#include <neb/fnd/core/actor/base.hpp>
 
 //#include <neb/phx/test.hpp>
 

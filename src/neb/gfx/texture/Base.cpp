@@ -3,9 +3,9 @@
 
 #include <GL/glew.h>
 
-#include <neb/core/util/config.hpp>
+#include <neb/fnd/util/config.hpp>
 
-#include <neb/core/math/color/color.hpp>
+#include <neb/fnd/math/color/color.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/texture/Base.hpp>
@@ -305,14 +305,16 @@ GLuint			THIS::init_buffer(std::shared_ptr<neb::gfx::context::base> context)
 
 	return o_;
 }
-void			THIS::draw(neb::gfx::RenderDesc const & desc)
+void			THIS::draw(neb::fnd::RenderDesc const & desc)
 {
 	checkerror("unknown");
 
 	//auto app = neb::gfx::app::__gfx_glsl::global().lock();
 	auto app = get_fnd_app();
+	auto g = app->_M_graphics_object;
+	assert(g);
 
-	auto p = app->get_program_tex();
+	auto p = g->get_program_tex();
 	p->use();
 
 	// texture

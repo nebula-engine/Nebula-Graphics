@@ -1,8 +1,8 @@
 #include <gal/log/log.hpp>
 
 
-#include <neb/core/util/debug.hpp>
-#include <neb/core/util/cast.hpp>
+#include <neb/fnd/util/debug.hpp>
+#include <neb/fnd/util/cast.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 

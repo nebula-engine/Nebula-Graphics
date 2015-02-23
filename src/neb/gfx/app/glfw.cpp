@@ -1,3 +1,5 @@
+#include <neb/fnd/app/Base.hpp>
+
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/app/glfw.hpp>
@@ -18,7 +20,7 @@ void			THIS::static_window_pos_fun(
 	
 	auto w = get_gfx_app_glfw()->get_window(window).lock();
 	
-	w->callback_window_pos_fun(window,x,y);
+	w->callback_window_pos_fun(/*window,*/x,y);
 }
 void			THIS::static_window_size_fun(
 		GLFWwindow* window, int width, int h)
@@ -27,7 +29,7 @@ void			THIS::static_window_size_fun(
 
 	auto w = get_gfx_app_glfw()->get_window(window).lock();
 
-	w->callback_window_size_fun(window, width, h);
+	w->callback_window_size_fun(/*window, */width, h);
 }
 void			THIS::static_window_close_fun(
 		GLFWwindow* window)
@@ -36,7 +38,7 @@ void			THIS::static_window_close_fun(
 
 	auto w = get_gfx_app_glfw()->get_window(window).lock();
 
-	w->callback_window_close_fun(window);
+	w->callback_window_close_fun(/*window*/);
 }
 void			THIS::static_window_refresh_fun(
 		GLFWwindow* window)
@@ -45,7 +47,7 @@ void			THIS::static_window_refresh_fun(
 
 	auto w = get_gfx_app_glfw()->get_window(window).lock();
 
-	w->callback_window_refresh_fun(window);
+	w->callback_window_refresh_fun(/*window*/);
 }
 void			THIS::static_mouse_button_fun(
 		GLFWwindow* window, int button, int action, int mods)
@@ -76,12 +78,12 @@ void			THIS::__init()
 	glfwSetErrorCallback(static_error_fun);
 	//try {
 		glfwInit();
-		flag_.set(neb::fnd::app::util::flag::INIT_GLFW);
+		getParent()->flag_.set(neb::fnd::app::util::flag::INIT_GLFW);
 	//} catch(std::exception& e);
 }
 void			THIS::init_glew()
 {
-	if(!flag_.any(neb::fnd::app::util::flag::INIT_GLEW))
+	if(!getParent()->flag_.any(neb::fnd::app::util::flag::INIT_GLEW))
 	{
 		GLenum err = glewInit();
 		if (err != GLEW_OK)
@@ -90,7 +92,7 @@ void			THIS::init_glew()
 			exit(EXIT_FAILURE);
 		}
 
-		flag_.set(neb::fnd::app::util::flag::INIT_GLEW);
+		getParent()->flag_.set(neb::fnd::app::util::flag::INIT_GLEW);
 	}
 }
 void			THIS::release()
@@ -98,14 +100,7 @@ void			THIS::release()
 }
 void			THIS::step(gal::etc::timestep const & ts)
 {
-	neb::gfx::window::util::parent::step(ts);
-}
-void			THIS::render()
-{
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
-	neb::gfx::window::util::parent::render();
-
+	//neb::gfx::window::util::parent::step(ts);
 }
 std::weak_ptr<neb::fnd::window::Base>			THIS::get_window(GLFWwindow* window)
 {
@@ -116,8 +111,8 @@ std::weak_ptr<neb::fnd::window::Base>			THIS::get_window(GLFWwindow* window)
 }
 void							THIS::onFirstContext()
 {
-	if(flag_.any(neb::fnd::app::util::flag::FIRST_CONTEXT)) return;
-	flag_.set(neb::fnd::app::util::flag::FIRST_CONTEXT);
+	if(getParent()->flag_.any(neb::fnd::app::util::flag::FIRST_CONTEXT)) return;
+	getParent()->flag_.set(neb::fnd::app::util::flag::FIRST_CONTEXT);
 	
 	/* Print version info */
 	GLubyte const *vendor_string = glGetString(GL_VENDOR);
@@ -142,10 +137,15 @@ void							THIS::update_joysticks()
 }
 neb::gfx::app::glfw*					THIS::get_gfx_app_glfw()
 {
-	assert(g_app_);
-	auto a = dynamic_cast<neb::gfx::app::glfw*>(g_app_.get());
+	auto a = neb::fnd::app::Base::g_app_;
 	assert(a);
-	return a;
+	
+	auto go = a->_M_graphics_object;
+	assert(go);
+
+	auto g = std::dynamic_pointer_cast<neb::gfx::app::glfw>(go);
+	assert(g);
+	return g.get();
 }
 
 

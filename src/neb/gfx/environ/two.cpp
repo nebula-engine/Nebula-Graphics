@@ -1,25 +1,27 @@
-#include <neb/core/glsl/program/Base.hpp>
+#include <neb/fnd/glsl/program/Base.hpp>
+#include <neb/fnd/plug/gfx/app/Base.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/environ/two.hpp>
 //#include <neb/gfx/glsl/program/base.hpp> removed by c_header_checker
-#include <neb/gfx/RenderDesc.hpp>
+#include <neb/fnd/RenderDesc.hpp>
 
-void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> context) {
+void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> context)
+{
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
 
 	//GLUTPP_DEBUG_1_FUNCTION;
 	
-	auto drawable = drawable_.lock();
+	auto drawable = getParent()->drawable_.lock();
 
 	if(!drawable) return;
 
 	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	//auto app = neb::gfx::app::glsl::global().lock();
-	auto app = get_fnd_app();
+	auto app = get_fnd_app()->_M_graphics_object;
 
 	/** wrong for color maybe! */	
 	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
@@ -34,7 +36,7 @@ void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> co
 	app->get_program_text()->use();
 	
 	//drawable->draw(context, app->program_text_, 0);
-	drawable->draw(RenderDesc());
+	drawable->draw(neb::fnd::RenderDesc());
 }		
 
 

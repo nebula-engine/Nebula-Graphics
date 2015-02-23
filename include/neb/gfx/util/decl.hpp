@@ -74,8 +74,6 @@ namespace neb {
 			class two;
 			class three;
 		}
-
-		class RenderDesc;
 	}
 }
 

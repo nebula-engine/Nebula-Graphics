@@ -4,7 +4,7 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/util/debug.hpp>
+#include <neb/fnd/util/debug.hpp>
 
 #include <neb/gfx/util/io.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
@@ -20,7 +20,7 @@
 #include <neb/gfx/mesh/instanced.hpp>
 #include <neb/gfx/opengl/uniform.hpp>
 
-#include <neb/core/math/geo/polygon.hpp>
+#include <neb/fnd/math/geo/polygon.hpp>
 
 typedef neb::gfx::core::shape::base THIS;
 

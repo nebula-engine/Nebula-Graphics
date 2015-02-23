@@ -3,7 +3,7 @@
 
 #include <GLFW/glfw3.h>
 
-#include <neb/core/itf/verbosity.hpp>
+#include <neb/fnd/itf/verbosity.hpp>
 
 namespace neb { namespace gfx { namespace glsl {
 	class shader:

@@ -11,7 +11,7 @@
 #include <cassert>
 #include <iomanip>
 
-#include <neb/core/util/debug.hpp>
+#include <neb/fnd/util/debug.hpp>
 
 #include <neb/gfx/glsl/shader.hh>
 #include <neb/gfx/free.hpp>

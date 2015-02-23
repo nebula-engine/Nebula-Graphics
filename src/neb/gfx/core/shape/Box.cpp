@@ -2,8 +2,8 @@
 
 #include <glm/gtx/transform.hpp>
 
-#include <neb/core/util/debug.hpp>
-#include <neb/core/math/geo/polyhedron.hpp>
+#include <neb/fnd/util/debug.hpp>
+#include <neb/fnd/math/geo/polyhedron.hpp>
 
 #include <neb/gfx/mesh/instanced.hpp>
 #include <neb/gfx/core/scene/base.hpp>

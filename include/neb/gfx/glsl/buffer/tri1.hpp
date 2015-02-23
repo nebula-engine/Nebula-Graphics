@@ -5,7 +5,7 @@
 
 #include <GL/glew.h>
 
-#include <neb/core/math/geo/vertex.hpp>
+#include <neb/fnd/math/geo/vertex.hpp>
 
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/glsl/buffer/base.hpp>

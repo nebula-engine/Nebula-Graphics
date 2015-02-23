@@ -1,7 +1,7 @@
 #ifndef NEBULA_GFX_ENVIRON_SHADOW_SPOT_HPP
 #define NEBULA_GFX_ENVIRON_SHADOW_SPOT_HPP
 
-#include <neb/core/core/actor/util/decl.hpp>
+#include <neb/fnd/core/actor/util/decl.hpp>
 
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>

@@ -1,6 +1,6 @@
-#include <neb/gfx/RenderDesc.hpp>
+#include <neb/fnd/RenderDesc.hpp>
 
-typedef neb::gfx::RenderDesc THIS;
+typedef neb::fnd::RenderDesc THIS;
 
 THIS::RenderDesc():
 	v(0),
@@ -10,11 +10,11 @@ THIS::RenderDesc():
 {
 }
 THIS::RenderDesc(
-		camera::view::Base* nv,
-		camera::proj::Base* np,
-		glsl::program::Base* nd3,
-		glsl::program::Base* nd3_HF,
-		glsl::program::Base* nd3_inst):
+		neb::fnd::camera::view::Base* nv,
+		neb::fnd::camera::proj::Base* np,
+		neb::fnd::glsl::program::Base* nd3,
+		neb::fnd::glsl::program::Base* nd3_HF,
+		neb::fnd::glsl::program::Base* nd3_inst):
 	v(nv),
 	p(np),
 	d3(nd3),

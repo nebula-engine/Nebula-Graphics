@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include <neb/core/input/sink.hpp>
+#include <neb/fnd/input/sink.hpp>
 
 #include <neb/gfx/camera/view/Base.hpp>
 
@@ -17,17 +17,10 @@ namespace neb { namespace gfx { namespace camera { namespace view {
 		virtual public neb::gfx::camera::view::Base
 	{
 		public:
-			/** @name constructors
-			 * @{
-			 */
-			Free(std::shared_ptr<neb::gfx::environ::base> parent);
-			//Free(math::vec3<double> eye, double yaw, double pitch);
-			/** @} */
-
-			/** @brief view matrix */
+			Free();
 			virtual glm::mat4				view();
 			virtual void					step(gal::etc::timestep const & ts);
-			void						init();
+			void						init(parent_t * const & p);
 			virtual void					connect(
 					std::shared_ptr<neb::fnd::input::source> const &);
 			virtual int					keyFun(

@@ -3,7 +3,7 @@
 
 #include <gal/etc/timestep.hpp>
 
-#include <neb/core/environ/Base.hpp>
+#include <neb/fnd/plug/gfx/environ/Base.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/camera/util/decl.hpp>
@@ -18,13 +18,13 @@ namespace neb { namespace gfx { namespace environ {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	class base:
-		virtual public neb::fnd::environ::Base,
+		virtual public neb::fnd::plug::gfx::environ::Base,
 		virtual public neb::gfx::environ::util::cast
 	{
 		public:
-			typedef std::shared_ptr<neb::gfx::glsl::program::Base>		program_shared;
-			typedef std::shared_ptr<neb::gfx::camera::view::Base>		view_shared;
-			typedef std::shared_ptr<neb::gfx::camera::proj::Base>		proj_shared;
+			typedef std::shared_ptr<neb::fnd::glsl::program::Base>		program_shared;
+			typedef std::shared_ptr<neb::fnd::camera::view::Base>		view_shared;
+			typedef std::shared_ptr<neb::fnd::camera::proj::Base>		proj_shared;
 			//typedef neb::gfx::core::light::directional			light_type;
 			//typedef std::shared_ptr<light_type>				light_shared;
 			//typedef std::weak_ptr<light_type>				light_weak;
@@ -53,9 +53,7 @@ namespace neb { namespace gfx { namespace environ {
 			 * sub-rectangle within target
 			 */
 			neb::gfx::Viewport					viewport_;
-			std::weak_ptr<neb::gfx::drawable::base>			drawable_;
 			neb::gfx::environ::util::flag				flag_;
-			proj_shared						proj_;
 	};
 }}}
 

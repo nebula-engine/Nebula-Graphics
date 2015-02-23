@@ -1,8 +1,8 @@
 
-#include <neb/core/core/light/util/parent.hpp>
-#include <neb/core/window/Base.hpp>
-#include <neb/core/context/FBO.hpp>
-#include <neb/core/environ/shadow/Directional.hpp>
+#include <neb/fnd/core/light/util/parent.hpp>
+#include <neb/fnd/window/Base.hpp>
+#include <neb/fnd/context/FBO.hpp>
+#include <neb/fnd/environ/shadow/Directional.hpp>
 
 #include <neb/gfx/core/light/directional.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>

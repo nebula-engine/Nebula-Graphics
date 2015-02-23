@@ -8,12 +8,12 @@
 
 #include <gal/itf/shared.hpp>
 
-#include <neb/core/math/pose.hpp>
-#include <neb/core/util/parent.hpp>
-#include <neb/core/core/actor/util/decl.hpp>
-#include <neb/core/core/actor/util/Cast.hpp>
-#include <neb/core/core/shape/util/cast.hpp>
-#include <neb/core/core/shape/util/parent.hpp>
+#include <neb/fnd/math/pose.hpp>
+#include <neb/fnd/util/parent.hpp>
+#include <neb/fnd/core/actor/util/decl.hpp>
+#include <neb/fnd/core/actor/util/Cast.hpp>
+#include <neb/fnd/core/shape/util/cast.hpp>
+#include <neb/fnd/core/shape/util/parent.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace shape { namespace util {
 	/** @brief @parent

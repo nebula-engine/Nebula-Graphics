@@ -7,7 +7,7 @@
 
 #include <gal/etc/timestep.hpp>
 
-#include <neb/core/math/color/color.hpp>
+#include <neb/fnd/math/color/color.hpp>
 
 #include <neb/gfx/glsl/util/decl.hpp>
 

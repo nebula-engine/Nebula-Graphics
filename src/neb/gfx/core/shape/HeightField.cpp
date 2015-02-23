@@ -1,5 +1,5 @@
 
-#include <neb/core/math/HeightField.hpp>
+#include <neb/fnd/math/HeightField.hpp>
 
 #include <neb/gfx/core/shape/HeightField/Base.hpp>
 

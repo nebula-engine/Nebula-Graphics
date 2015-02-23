@@ -13,9 +13,9 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include <neb/core/util/decl.hpp>
-#include <neb/core/app/Base.hpp>
-#include <neb/core/math/color/color.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/plug/gfx/app/Base.hpp>
+#include <neb/fnd/math/color/color.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
@@ -26,7 +26,7 @@ namespace neb { namespace gfx { namespace app {
 	 * graphics and window handling
 	 */
 	class draw:
-		virtual public neb::fnd::app::Base
+		virtual public neb::fnd::plug::gfx::app::Base
 	{
 		public:
 			void			__init();

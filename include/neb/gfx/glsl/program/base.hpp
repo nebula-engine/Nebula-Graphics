@@ -7,8 +7,8 @@
 #include <map>
 #include <vector>
 
-#include <neb/core/util/decl.hpp>
-#include <neb/core/glsl/program/Base.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/glsl/program/Base.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>

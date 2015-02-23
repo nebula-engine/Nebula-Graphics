@@ -1,8 +1,9 @@
 #ifndef NEBULA_GRAPHICS_DRAWABLE_BASE_HPP
 #define NEBULA_GRAPHICS_DRAWABLE_BASE_HPP
 
-#include <neb/core/itf/shared.hpp>
-#include <neb/core/drawable/Base.hpp>
+#include <neb/fnd/itf/shared.hpp>
+#include <neb/fnd/drawable/Base.hpp>
+#include <neb/fnd/util/decl.hpp>
 
 #include <neb/gfx/camera/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
@@ -25,7 +26,7 @@ namespace neb { namespace gfx { namespace drawable {
 			 *
 			 * draw into prepared rendering context
 			 */
-			virtual void			draw(RenderDesc const &) = 0;
+			virtual void			draw(neb::fnd::RenderDesc const &) = 0;
 	};
 	class two:
 		virtual public neb::gfx::drawable::base

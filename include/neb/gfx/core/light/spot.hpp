@@ -9,11 +9,11 @@
 #include <boost/archive/polymorphic_iarchive.hpp>
 #include <boost/archive/polymorphic_oarchive.hpp>
 
-#include <neb/core/core/light/base.hpp>
-#include <neb/core/util/config.hpp>
-#include <neb/core/util/decl.hpp>
-#include <neb/core/itf/shared.hpp>
-#include <neb/core/math/serialization/glm.hpp>
+#include <neb/fnd/core/light/base.hpp>
+#include <neb/fnd/util/config.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/itf/shared.hpp>
+#include <neb/fnd/math/serialization/glm.hpp>
 
 #include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/texture/Base.hpp>

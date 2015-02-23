@@ -5,9 +5,10 @@
 
 #include <gal/stl/child.hpp>
 
-#include <neb/core/context/util/decl.hpp>
-#include <neb/core/context/Base.hpp>
-#include <neb/core/util/decl.hpp>
+#include <neb/fnd/context/util/decl.hpp>
+#include <neb/fnd/util/decl.hpp>
+
+#include <neb/fnd/plug/gfx/context/Base.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/environ/util/decl.hpp>
@@ -17,8 +18,7 @@
 //#include <neb/gfx/window/Base.hh>
 //#include <neb/gfx/drawable/base.hpp>
 
-
-//#include <neb/core/scene/base.hpp>
+//#include <neb/fnd/scene/base.hpp>
 
 namespace neb { namespace gfx { namespace context {
 	/** @brief Context
@@ -34,7 +34,7 @@ namespace neb { namespace gfx { namespace context {
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
 	class base:
-		virtual public neb::fnd::context::Base,
+		virtual public neb::fnd::plug::gfx::context::Base,
 		virtual public neb::gfx::context::util::cast
 	{
 		public:
@@ -48,9 +48,9 @@ namespace neb { namespace gfx { namespace context {
 			virtual void						resize(int w, int h);
 			virtual void						setDrawable(std::shared_ptr<neb::fnd::drawable::Base>);
 			virtual void						setEnviron(std::shared_ptr<neb::fnd::environ::Base>);
-			virtual std::shared_ptr<neb::fnd::environ::Base>	get_environ();
+			//virtual std::shared_ptr<neb::fnd::environ::Base>	get_environ();
 		public:
-			std::shared_ptr<neb::gfx::environ::base>		environ_;
+			//std::shared_ptr<neb::gfx::environ::base>		environ_;
 	};
 
 }}}

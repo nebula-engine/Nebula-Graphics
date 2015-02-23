@@ -1,17 +1,17 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <neb/app/Base.hh>
-#include <neb/core/actor/base.hpp>
+#include <neb/fnd/actor/base.hpp>
 #include <neb/util/wrapper.hpp>
 #include <neb/gfx/Context/Window.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
 #include <neb/gfx/GUI/Object/terminal.hh>
-#include <neb/core/light/Spot.hh>
-#include <neb/core/scene/Local.hh>
-#include <neb/core/shape/Box.hh>
-#include <neb/core/shape/empty.hpp>
-#include <neb/core/actor/RigidDynamic/Local.hh>
+#include <neb/fnd/light/Spot.hh>
+#include <neb/fnd/scene/Local.hh>
+#include <neb/fnd/shape/Box.hh>
+#include <neb/fnd/shape/empty.hpp>
+#include <neb/fnd/actor/RigidDynamic/Local.hh>
 #include <neb/game/map/base.hpp>
 #include <neb/ext/maze/game/map/maze2.hpp>
 #include <neb/util/command.hpp>

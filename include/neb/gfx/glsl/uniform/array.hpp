@@ -21,7 +21,7 @@
 #include <neb/gfx/glsl/program/base.hpp>
 
 namespace neb { namespace gfx { namespace glsl { namespace uniform {
-	typedef neb::gfx::glsl::program::Base P;
+	typedef neb::fnd::glsl::program::Base P;
 	template<int I, typename D> class locations;
 	/** @brief array
 	 * abstract class for managing sequential data arrays.
@@ -192,7 +192,7 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 
 				for(unsigned int i = 0; i < N; i++)
 				{
-					location[i] = p->uniform_table_[D::names_[i]];
+					location[i] = p->get_uniform_table_value(D::names_[i]);
 					logprint(neb::gfx::sl, debug, "location[% 4i] = %4i\n", i, location[i]);
 				}
 

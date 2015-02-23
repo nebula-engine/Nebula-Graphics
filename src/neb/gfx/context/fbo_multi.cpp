@@ -50,23 +50,26 @@ void		neb::gfx::context::fbo_multi::init(parent_t * const & p)
 	checkerror("");
 
 }
-void		neb::gfx::context::fbo_multi::render() {
+void		neb::gfx::context::fbo_multi::render()
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
 	auto tex = texture_.lock();
 	assert(tex);
-	
-	if(!environ_) {
+
+	auto env = getParent()->neb::fnd::environ::util::Parent::front();
+
+	if(!env) {
 		LOG(lg, neb::gfx::sl, warning) << "context has no environ";
 		return;
 	}
 	checkerror("unknown");
 
-	if(!environ_->shouldRender()) return;
+	//if(!env->shouldRender()) return;
 
-	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::point>(environ_);
+	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::point>(env);
 	assert(e);
 
 	//assert(environ_->program_);
@@ -77,7 +80,7 @@ void		neb::gfx::context::fbo_multi::render() {
 
 	for(unsigned int c = 0; c < layer_count_; c++) {
 
-		if(!environ_->shouldRender(c)) return;
+		if(!e->shouldRender(c)) return;
 	
 
 		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_);

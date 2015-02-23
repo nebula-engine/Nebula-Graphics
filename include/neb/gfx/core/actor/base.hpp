@@ -8,11 +8,11 @@
 #include <boost/serialization/map.hpp>
 #include <boost/signals2.hpp>
 
-#include <neb/core/math/serialization/glm.hpp>
-#include <neb/core/core/actor/base.hpp>
-#include <neb/core/core/shape/base.hpp>
-#include <neb/core/core/shape/util/parent.hpp>
-#include <neb/core/glsl/program/util/decl.hpp>
+#include <neb/fnd/math/serialization/glm.hpp>
+#include <neb/fnd/core/actor/base.hpp>
+#include <neb/fnd/core/shape/base.hpp>
+#include <neb/fnd/core/shape/util/parent.hpp>
+#include <neb/fnd/glsl/program/util/decl.hpp>
 
 #include <neb/gfx/context/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>

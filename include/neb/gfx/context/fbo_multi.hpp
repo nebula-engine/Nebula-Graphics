@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include <neb/core/context/FBOM.hpp>
+#include <neb/fnd/context/FBOM.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/texture/util/decl.hpp>
@@ -18,7 +18,7 @@ namespace neb { namespace gfx { namespace context {
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
 	class fbo_multi:
-		virtual public neb::fnd::context::FBOM,
+		//virtual public neb::fnd::context::FBOM,
 		virtual public neb::gfx::context::Window
 	{
 		public:

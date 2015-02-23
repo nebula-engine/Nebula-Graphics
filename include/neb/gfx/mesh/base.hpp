@@ -8,7 +8,7 @@
 
 #include <GL/glew.h>
 
-#include <neb/core/math/pose.hpp>
+#include <neb/fnd/math/pose.hpp>
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/log.hpp>

@@ -1,8 +1,8 @@
 #ifndef NEBULA_GFX_ENVIRON_THREE_HPP
 #define NEBULA_GFX_ENVIRON_THREE_HPP
 
-#include <neb/core/core/actor/util/decl.hpp>
-#include <neb/core/camera/util/decl.hpp>
+#include <neb/fnd/core/actor/util/decl.hpp>
+#include <neb/fnd/camera/util/decl.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/camera/util/decl.hpp>

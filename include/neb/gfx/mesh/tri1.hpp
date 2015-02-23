@@ -21,8 +21,8 @@
 #include <math/geo/polyhedron.hpp>
 */
 
-#include <neb/core/math/pose.hpp>
-#include <neb/core/math/geo/decl.hpp>
+#include <neb/fnd/math/pose.hpp>
+#include <neb/fnd/math/geo/decl.hpp>
 
 #include <neb/gfx/material.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>

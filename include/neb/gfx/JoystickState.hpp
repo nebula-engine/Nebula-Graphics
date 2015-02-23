@@ -1,7 +1,7 @@
 #ifndef NEB_GFX_JOYSTICKSTATE_HPP
 #define NEB_GFX_JOYSTICKSTATE_HPP
 
-#include <neb/core/input/signals.hpp>
+#include <neb/fnd/input/signals.hpp>
 
 namespace neb { namespace gfx {
 	class JoystickState

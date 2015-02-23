@@ -1,11 +1,10 @@
 
-//#include <neb/core/util/cast.hpp> removed by c_header_checker
+#include <neb/fnd/RenderDesc.hpp>
 
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/camera/view/Ridealong.hpp>
 #include <neb/gfx/camera/view/Manual.hpp>
 #include <neb/gfx/environ/NormalMap.hpp>
-#include <neb/gfx/RenderDesc.hpp>
 
 //#include <neb/gfx/core/scene/base.hpp> removed by c_header_checker
 
@@ -30,11 +29,13 @@ void		THIS::init(parent_t * const & p)
 
 	programs_.d3_inst_.reset(new neb::gfx::glsl::program::Base("3d_inst"));
 	programs_.d3_inst_->init();
-
+	
 	// camera
-	if(!view_) {
-		view_.reset(new neb::gfx::camera::view::manual(self));
+	/*
+	if(!getParent()->view_) {
+		getParent()->view_.reset(new neb::gfx::camera::view::manual(self));
 	}
+	*/
 }
 void		THIS::render(std::shared_ptr<neb::gfx::context::base> context)
 {
@@ -43,8 +44,7 @@ void		THIS::render(std::shared_ptr<neb::gfx::context::base> context)
 
 	// prepare rendering environment and then call the drawable
 
-	
-	auto drawable = drawable_.lock();
+	auto drawable = getParent()->drawable_.lock();
 
 	if(!drawable) {
 		LOG(lg, neb::gfx::sl, warning) << "drawable is NULL";
@@ -66,11 +66,14 @@ void		THIS::render(std::shared_ptr<neb::gfx::context::base> context)
 	//program_->use();
 	
 	viewport_.load();
-	
+
+	auto proj = getParent()->proj_;
+	auto view = getParent()->get_view();
+
 	drawable->draw(
-			RenderDesc(
-				view_.get(),
-				proj_.get(),
+			neb::fnd::RenderDesc(
+				view.get(),
+				proj.get(),
 				programs_.d3_.get(),
 				programs_.d3_HF_.get(),
 				programs_.d3_inst_.get()

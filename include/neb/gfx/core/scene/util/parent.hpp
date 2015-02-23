@@ -1,7 +1,7 @@
 #ifndef NEB_GFX_CORE_SCENE_UTIL_PARENT_HPP
 #define NEB_GFX_CORE_SCENE_UTIL_PARENT_HPP
 
-#include <neb/core/core/scene/util/parent.hpp>
+#include <neb/fnd/core/scene/util/parent.hpp>
 
 namespace neb {
 	namespace gfx {

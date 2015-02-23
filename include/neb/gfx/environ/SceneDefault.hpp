@@ -1,8 +1,8 @@
 #ifndef NEBULA_GFX_ENVIRON_SCENE_DEF_HPP
 #define NEBULA_GFX_ENVIRON_SCENE_DEF_HPP
 
-#include <neb/core/core/actor/util/decl.hpp>
-#include <neb/core/environ/SceneDefault.hpp>
+#include <neb/fnd/core/actor/util/decl.hpp>
+#include <neb/fnd/environ/SceneDefault.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/camera/util/decl.hpp>
@@ -17,7 +17,7 @@ namespace neb { namespace gfx { namespace environ {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	class SceneDefault:
-		virtual public neb::fnd::environ::SceneDefault,
+		//virtual public neb::fnd::environ::SceneDefault,
 		virtual public neb::gfx::environ::single<neb::gfx::camera::view::Base>,
 		virtual public neb::gfx::environ::three
 	{

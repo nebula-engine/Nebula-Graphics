@@ -1,8 +1,8 @@
 #ifndef NEB_GFX_SHAPE_HEIGHT_FIELD_HH
 #define NEB_GFX_SHAPE_HEIGHT_FIELD_HH
 
-#include <neb/core/core/shape/HeightField.hpp>
-#include <neb/core/math/geo/util/decl.hpp>
+#include <neb/fnd/core/shape/HeightField.hpp>
+#include <neb/fnd/math/geo/util/decl.hpp>
 
 #include <neb/gfx/core/shape/base.hpp>
 

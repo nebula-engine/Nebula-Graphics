@@ -15,7 +15,7 @@
 #include <iterator>
 #include <algorithm>
 
-#include <neb/core/util/config.hpp> // neb/core/util/config.hpp.in
+#include <neb/fnd/util/config.hpp> // neb/fnd/util/config.hpp.in
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/config.hpp> // neb/gfx/util/config.hpp.in

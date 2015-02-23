@@ -44,21 +44,25 @@ void		neb::gfx::context::fbo::init(parent_t * const & p)
 	checkerror("");
 
 }
-void		neb::gfx::context::fbo::render() {
+void		neb::gfx::context::fbo::render()
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
 	auto tex = texture_.lock();
 	assert(tex);
-	
-	if(!environ_) {
+
+	auto e = getParent()->neb::fnd::environ::util::Parent::front();
+
+	if(!e) {
 		LOG(lg, neb::gfx::sl, warning) << "context has no environ";
 		return;
 	}
 	checkerror("unknown");
 	
-	if(!environ_->shouldRender()) return;
+	/// @TODO whats going on here?
+	//if(!e->shouldRender()) return;
 
 	//assert(environ_->program_);
 	//environ_->program_->use();
@@ -99,14 +103,12 @@ void		neb::gfx::context::fbo::render() {
 		abort();
 	}
 
-
-
 	glViewport(0, 0, tex->w_, tex->h_);
 	
-	environ_->render(self);
 	
 	
-
+	e->render(self->getParent());
+	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	checkerror("glBindFramebuffer");
 }

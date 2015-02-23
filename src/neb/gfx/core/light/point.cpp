@@ -2,13 +2,14 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <neb/core/util/debug.hpp>
-#include <neb/core/util/log.hpp>
-#include <neb/core/window/Base.hpp>
-#include <neb/core/core/light/util/parent.hpp>
-//#include <neb/core/context/FBOM.hpp> removed by c_header_checker
-#include <neb/core/environ/shadow/Point.hpp>
-#include <neb/core/environ/shadow/Directional.hpp>
+#include <neb/fnd/util/debug.hpp>
+#include <neb/fnd/util/log.hpp>
+#include <neb/fnd/window/Base.hpp>
+#include <neb/fnd/core/light/util/parent.hpp>
+//#include <neb/fnd/context/FBOM.hpp> removed by c_header_checker
+#include <neb/fnd/environ/shadow/Point.hpp>
+#include <neb/fnd/environ/shadow/Directional.hpp>
+#include <neb/fnd/camera/proj/Base.hpp>
 
 #include <neb/gfx/app/base.hpp>
 #include <neb/gfx/window/Base.hpp>
@@ -93,7 +94,8 @@ void			THIS::initShadow(
 	setShadowEnviron(environ);
 
 	// where shadows are rendered
-	environ->setSceneEnviron(e3);
+	//environ->setSceneEnviron(e3);
+	abort();
 }
 void			neb::gfx::core::light::point::setShadowEnviron(
 		std::shared_ptr<neb::fnd::environ::Base> environ)
@@ -105,7 +107,7 @@ void			neb::gfx::core::light::point::setShadowEnviron(
 
 	shadow_environ_ = e;
 
-	auto proj = e->proj_->proj();
+	//auto proj = e->getParent()->proj_->proj();
 
 	static const glm::mat4 bias(
 			0.5f, 0.0f, 0.0f, 0.0f,
@@ -113,17 +115,19 @@ void			neb::gfx::core::light::point::setShadowEnviron(
 			0.0f, 0.0f, 0.5f, 0.0f,
 			0.5f, 0.5f, 0.5f, 1.0f);
 
-	glm::mat4 pb = bias * proj;
+	//glm::mat4 pb = bias * proj;
 	glm::mat4 vpb;
 
+	/*
 	for(GLint layer = 0; layer < 6; layer++) {
 
 		auto view = e->view_[layer]->view();
 
 		vpb = pb * view;
 		shadow_vpb_[layer] = vpb;
-
 	}
+	*/
+	abort();
 
 	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());//getScene();
 

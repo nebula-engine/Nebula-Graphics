@@ -1,4 +1,4 @@
-#include <neb/core/except/base.hpp>
+#include <neb/fnd/except/base.hpp>
 #include <neb/gfx/app/base.hpp>
 
 typedef neb::gfx::app::Base THIS;
@@ -54,9 +54,15 @@ void					THIS::loop()
 		step(ts_);
 	}
 }
-void					THIS::render()
+/*void					THIS::render()
 {
 	neb::gfx::app::glfw::render();
+}*/
+void		THIS::update()
+{
+	glfwPollEvents();
+
+	neb::gfx::app::glfw::update_joysticks();
 }
 
 

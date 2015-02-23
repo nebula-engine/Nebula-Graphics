@@ -8,7 +8,7 @@
 
 #include <gal/etc/timestep.hpp>
 
-#include <neb/core/glsl/program/util/decl.hpp>
+#include <neb/fnd/glsl/program/util/decl.hpp>
 
 #include <neb/gfx/tmp/Child.hpp>
 #include <neb/gfx/camera/proj/util/cast.hpp>

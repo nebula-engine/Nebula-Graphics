@@ -2,7 +2,8 @@
 #include <gal/log/log.hpp>
 
 
-#include <neb/core/util/debug.hpp>
+#include <neb/fnd/util/debug.hpp>
+#include <neb/fnd/RenderDesc.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
@@ -17,7 +18,6 @@
 //#include <neb/gfx/core/light/directional.hpp> removed by c_header_checker
 #include <neb/gfx/core/light/point.hpp>
 //#include <neb/gfx/camera/proj/base.hpp> removed by c_header_checker
-#include <neb/gfx/RenderDesc.hpp>
 
 //#include <neb/phx/test.hpp>
 
@@ -40,7 +40,8 @@ void		neb::gfx::environ::shadow::point::init(parent_t * const & p)
 
 	programs_.d3_inst_.reset(new neb::gfx::glsl::program::Base("shadow_inst"));
 	programs_.d3_inst_->init();
-	
+
+	/*
 	static const glm::vec3 look[6] = {
 		glm::vec3( 1, 0, 0),
 		glm::vec3(-1, 0, 0),
@@ -57,21 +58,27 @@ void		neb::gfx::environ::shadow::point::init(parent_t * const & p)
 		glm::vec3( 1, 0, 0),
 		glm::vec3( 1, 0, 0)
 	};
+	*/
 
 	// camera
 	
 	for(int c = 0; c < 6; c++) {
+		/*
 		view_[c].reset(new neb::gfx::camera::view::shadow::Point(self));
 		view_[c]->look_ = look[c];
 		view_[c]->up_ = up[c];
+		*/
+		abort();
 	}
 	
 	createCameraPerspective();
 
-	auto proj = std::dynamic_pointer_cast<neb::gfx::camera::proj::Perspective>(proj_);
+	/*
+	auto proj = std::dynamic_pointer_cast<neb::gfx::camera::proj::Perspective>(getParent()->proj_);
 	assert(proj);
 	proj->set(90.0, 1.0, 100.0);
-
+	*/
+	abort();
 }
 bool		neb::gfx::environ::shadow::point::shouldRender() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -105,9 +112,11 @@ void		neb::gfx::environ::shadow::point::step(gal::etc::timestep const & ts) {
 
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
+	/*
 	if(proj_) proj_->step(ts);	
 	if(view_) view_[0]->step(ts);	
-
+	*/
+	abort();
 }
 void			neb::gfx::environ::shadow::point::render(
 		std::shared_ptr<neb::gfx::context::base> context,
@@ -121,7 +130,7 @@ void			neb::gfx::environ::shadow::point::render(
 	 */
 
 	
-	auto drawable = drawable_.lock();
+	auto drawable = getParent()->drawable_.lock();
 
 	if(!drawable) {
 		LOG(lg, neb::gfx::sl, warning) << "environ has no drawable";
@@ -137,6 +146,7 @@ void			neb::gfx::environ::shadow::point::render(
 	//glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 
+	/*
 	assert(proj_);
 	assert(view_[layer]);
 
@@ -156,7 +166,8 @@ void			neb::gfx::environ::shadow::point::render(
 				programs_.d3_inst_.get()
 				)
 		      );
-
+	*/
+	abort();
 }		
 
 

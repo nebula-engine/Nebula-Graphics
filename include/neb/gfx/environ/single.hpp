@@ -9,14 +9,14 @@ namespace neb { namespace gfx { namespace environ {
 		virtual public neb::gfx::environ::base
 	{
 		public:
-			std::shared_ptr<VIEW>		view_;
+			//std::shared_ptr<VIEW>		view_;
 	};
 	/***/
 	template<typename VIEW> class multiple:
 		virtual public neb::gfx::environ::base
 	{
 		public:
-			std::shared_ptr<VIEW>		view_[6];
+			//std::shared_ptr<VIEW>		view_[6];
 	};
 }}}
 

@@ -12,8 +12,9 @@
 
 #include <gal/etc/slots.hpp>
 
-#include <neb/core/tmp/Child.hpp>
-#include <neb/core/glsl/program/util/decl.hpp>
+#include <neb/fnd/tmp/Child.hpp>
+#include <neb/fnd/glsl/program/util/decl.hpp>
+#include <neb/fnd/util/decl.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/texture/util/decl.hpp>
@@ -37,7 +38,7 @@ namespace neb { namespace gfx { namespace texture {
 			GLuint			genAndBind(std::shared_ptr<neb::gfx::context::base> context);
 			void			bind(neb::fnd::glsl::program::Base const * const &);
 			// for visualizing the contents
-			virtual void			draw(RenderDesc const &);
+			virtual void		draw(neb::fnd::RenderDesc const &);
 			png_uint_32		w_;
 			png_uint_32		h_;
 			png_byte*		png_image_data_;

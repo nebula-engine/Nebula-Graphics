@@ -1,6 +1,6 @@
 #include <gal/log/log.hpp>
 
-#include <neb/core/math/geo/polyhedron.hpp>
+#include <neb/fnd/math/geo/polyhedron.hpp>
 
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/free.hpp>

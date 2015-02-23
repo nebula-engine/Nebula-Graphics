@@ -12,7 +12,7 @@ namespace neb {namespace gfx {namespace camera {namespace view { namespace shado
 		public:
 			typedef std::weak_ptr<neb::gfx::core::light::point>	light_weak;
 			/** @brief Constructor */
-			Point(std::shared_ptr< ::neb::gfx::environ::base > parent);
+			Point();
 			/** @brief Get view matrix. */
 			virtual glm::mat4			view();
 			/** @brief Step
@@ -24,7 +24,7 @@ namespace neb {namespace gfx {namespace camera {namespace view { namespace shado
 			glm::vec3				look_;
 			glm::vec3				up_;
 
-			light_weak				light_;
+			//light_weak				light_;
 	};
 }}}}}
 

@@ -1,7 +1,7 @@
 #ifndef NEBULA_LIGHT_DIRECTIONAL_HH
 #define NEBULA_LIGHT_DIRECTIONAL_HH
 
-#include <neb/core/environ/util/decl.hpp>
+#include <neb/fnd/environ/util/decl.hpp>
 #include <neb/gfx/core/light/base.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace light {

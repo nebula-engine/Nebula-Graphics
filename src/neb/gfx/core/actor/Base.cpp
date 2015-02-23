@@ -1,14 +1,14 @@
 #include <gal/log/log.hpp>
 
-#include <neb/core/util/debug.hpp>
+#include <neb/fnd/util/debug.hpp>
 
-#include <neb/core/util/decl.hpp>
-#include <neb/core/util/config.hpp>
-#include <neb/core/util/log.hpp>
-#include <neb/core/core/scene/base.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/util/config.hpp>
+#include <neb/fnd/util/log.hpp>
+#include <neb/fnd/core/scene/base.hpp>
 
-#include <neb/core/timer/actor/Base.hpp>
-#include <neb/core/plug/gfx/core/shape/Base.hpp>
+#include <neb/fnd/timer/actor/Base.hpp>
+#include <neb/fnd/plug/gfx/core/shape/Base.hpp>
 
 //#include <neb/gfx/window/util/signals.hpp>
 #include <neb/gfx/core/actor/base.hpp>

@@ -9,11 +9,11 @@
 
 #include <gal/etc/slots.hpp>
 
-#include <neb/core/core/light/base.hpp>
-#include <neb/core/environ/util/decl.hpp>
-#include <neb/core/math/serialization/glm.hpp>
-#include <neb/core/math/color/color.hpp>
-#include <neb/core/util/decl.hpp>
+#include <neb/fnd/core/light/base.hpp>
+#include <neb/fnd/environ/util/decl.hpp>
+#include <neb/fnd/math/serialization/glm.hpp>
+#include <neb/fnd/math/color/color.hpp>
+#include <neb/fnd/util/decl.hpp>
 
 #include <neb/gfx/glsl/uniform/light_array.hpp>
 #include <neb/gfx/core/scene/util/decl.hpp>

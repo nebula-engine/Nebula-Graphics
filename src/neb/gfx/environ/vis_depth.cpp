@@ -1,7 +1,7 @@
 #include <gal/log/log.hpp>
 
 
-#include <neb/core/util/debug.hpp>
+#include <neb/fnd/util/debug.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
@@ -14,7 +14,7 @@
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 //#include <neb/gfx/core/light/directional.hpp> removed by c_header_checker
-#include <neb/gfx/RenderDesc.hpp>
+#include <neb/fnd/RenderDesc.hpp>
 
 neb::gfx::environ::vis_depth::vis_depth()
 {
@@ -38,7 +38,12 @@ void		neb::gfx::environ::vis_depth::init(parent_t * const & p)
 	
 	
 	// camera
-	view_.reset(new neb::gfx::camera::view::shadow::Directional(self));
+	/// @TODO the view needs to be created in fnd...
+	/*
+	view_.reset(new neb::gfx::camera::view::shadow::Directional());
+	view_->init(this);
+	*/
+	abort();
 
 	//proj_.reset(new neb::gfx::camera::proj::Ortho(self));
 	createCameraOrtho();
@@ -64,7 +69,7 @@ void		neb::gfx::environ::vis_depth::render(std::shared_ptr<neb::gfx::context::ba
 	 */
 
 	
-	auto drawable = drawable_.lock();
+	auto drawable = getParent()->drawable_.lock();
 
 	if(!drawable) {
 		LOG(lg, neb::gfx::sl, warning) << "environ has no drawable";
@@ -80,15 +85,17 @@ void		neb::gfx::environ::vis_depth::render(std::shared_ptr<neb::gfx::context::ba
 	//glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 
+	/*
 	drawable->draw(
-			RenderDesc(
+			neb::fnd::RenderDesc(
 				view_.get(),
 				proj_.get(),
 				programs_.d3_.get(),
 				programs_.d3_HF_.get(),
 				programs_.d3_inst_.get())
 		      );
-	
+	*/
+	abort();
 }		
 
 

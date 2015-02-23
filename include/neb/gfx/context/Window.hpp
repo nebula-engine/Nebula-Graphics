@@ -3,8 +3,8 @@
 
 #include <memory>
 
-#include <neb/core/util/decl.hpp>
-#include <neb/core/context/Window.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/context/Window.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/context/Base.hpp>
@@ -18,12 +18,14 @@ namespace neb { namespace gfx { namespace context {
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
 	class Window:
-		virtual public neb::fnd::context::Window,
+		//virtual public neb::fnd::context::Window,
 		virtual public neb::gfx::context::base
 	{
 		public:
 			Window();
 			virtual void			init(parent_t * const & p);
+			//virtual void			step(gal::etc::timestep const & ts);
+			
 	};
 }}}
 

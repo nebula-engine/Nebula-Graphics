@@ -2,8 +2,8 @@
 #include <gal/log/log.hpp>
 #include <gal/stl/deleter.hpp>
 
-#include <neb/core/util/debug.hpp>
-#include <neb/core/core/scene/base.hpp>
+#include <neb/fnd/util/debug.hpp>
+#include <neb/fnd/core/scene/base.hpp>
 
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/window/Base.hpp>
@@ -38,19 +38,26 @@ THIS::base()
 void		neb::gfx::context::base::release() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }*/
-void		neb::gfx::context::base::resize(int w, int h) {
-	if(environ_) environ_->resize(w,h);
+void		neb::gfx::context::base::resize(int w, int h)
+{
+	auto e = getParent()->neb::fnd::environ::util::Parent::front();
+	/// @TODO fix this
+	//if(e) e->resize(w,h);
 }
-void		neb::gfx::context::base::step(gal::etc::timestep const & ts) {
+void		neb::gfx::context::base::step(gal::etc::timestep const & ts)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	if(environ_) environ_->step(ts);	
+	auto e = getParent()->neb::fnd::environ::util::Parent::front();
+	/// @TODO fix this
+	//if(e) e->step(ts);	
 }
 void		neb::gfx::context::base::render() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
-	if(!environ_)
+	auto e = getParent()->neb::fnd::environ::util::Parent::front();
+	if(!e)
 	{
 		LOG(lg, neb::gfx::sl, warning) << "context has no environ";
 		return;
@@ -59,25 +66,23 @@ void		neb::gfx::context::base::render() {
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	assert(self);
 	
-	environ_->render(self);
+	e->render(self->getParent());
 }		
 void							neb::gfx::context::base::setDrawable(
 		std::shared_ptr<neb::fnd::drawable::Base> drawable)
 {
 	auto d = std::dynamic_pointer_cast<neb::gfx::drawable::base>(drawable);
 	assert(d);
-	assert(environ_);
-	environ_->drawable_ = d;
-}
-void			THIS::setEnviron(std::shared_ptr<neb::fnd::environ::Base> env)
-{
-	auto e = std::dynamic_pointer_cast<neb::gfx::environ::base>(env);
+
+	auto e = getParent()->neb::fnd::environ::util::Parent::front();
 	assert(e);
-	environ_ = e;
+
+	e->drawable_ = d;
 }
+/*
 std::shared_ptr<neb::fnd::environ::Base>	THIS::get_environ()
 {
 	return environ_;
 }
-
+*/
 

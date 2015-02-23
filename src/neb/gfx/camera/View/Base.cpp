@@ -6,10 +6,15 @@
 
 typedef neb::gfx::camera::view::Base THIS;
 
-THIS::Base(std::shared_ptr<neb::gfx::environ::base> parent):
-	parent_(parent)
+THIS::Base()
 {
 }
+/*
+void		THIS::init(parent_t * const & p)
+{
+	setParent(p);
+}
+*/
 void		THIS::load(neb::fnd::glsl::program::Base const * const p)
 {
 	assert(p);

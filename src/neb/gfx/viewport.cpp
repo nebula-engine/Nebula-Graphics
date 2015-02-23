@@ -1,6 +1,6 @@
 //#include <gal/log/log.hpp> removed by c_header_checker
 
-//#include <neb/core/util/debug.hpp> removed by c_header_checker
+//#include <neb/fnd/util/debug.hpp> removed by c_header_checker
 
 #include <neb/gfx/Viewport.hpp>
 #include <neb/gfx/util/log.hpp>

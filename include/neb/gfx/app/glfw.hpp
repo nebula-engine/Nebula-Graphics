@@ -12,9 +12,9 @@
 
 #include <gal/itf/shared.hpp>
 
-#include <neb/core/except/base.hpp>
-#include <neb/core/util/decl.hpp>
-#include <neb/core/app/Base.hpp>
+#include <neb/fnd/except/base.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/plug/gfx/app/Base.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/gui/layout/util/parent.hpp>
@@ -28,8 +28,7 @@ namespace neb { namespace gfx { namespace app {
 	 * graphics and window handling
 	 */
 	class glfw:
-		virtual public neb::fnd::app::Base,
-		virtual public neb::gfx::window::util::parent
+		virtual public neb::fnd::plug::gfx::app::Base
 	{
 		public:
 			typedef std::map< GLFWwindow*, std::shared_ptr<neb::gfx::window::Base> >	glfwwindow_map_type;

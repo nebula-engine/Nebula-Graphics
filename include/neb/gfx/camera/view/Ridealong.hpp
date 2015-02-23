@@ -4,8 +4,8 @@
 #include <memory>
 #include <map>
 
-#include <neb/core/core/actor/util/decl.hpp>
-#include <neb/core/camera/view/Ridealong.hpp>
+#include <neb/fnd/core/actor/util/decl.hpp>
+#include <neb/fnd/camera/view/Ridealong.hpp>
 
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/camera/view/Base.hpp>
@@ -13,19 +13,13 @@
 
 namespace neb { namespace gfx { namespace camera { namespace view {
 	class Ridealong:
-		virtual public neb::fnd::camera::view::Ridealong,
+		//virtual public neb::fnd::camera::view::Ridealong,
 		virtual public neb::gfx::camera::view::Base
 	{
 		public:
-			Ridealong(
-					std::shared_ptr<neb::gfx::environ::base>,
-					std::weak_ptr<neb::fnd::core::actor::base> actor);
-
+			Ridealong();
 			virtual glm::mat4				view();
-
 			virtual void					step(gal::etc::timestep const & ts);
-
-			std::weak_ptr<neb::fnd::core::actor::base>	actor_;
 	};
 }}}}
 

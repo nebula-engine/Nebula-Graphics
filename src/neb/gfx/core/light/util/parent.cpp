@@ -1,7 +1,7 @@
 #include <gal/log/log.hpp>
 
-#include <neb/core/util/debug.hpp>
-#include <neb/core/util/log.hpp>
+#include <neb/fnd/util/debug.hpp>
+#include <neb/fnd/util/log.hpp>
 
 #include <neb/gfx/core/light/base.hpp>
 #include <neb/gfx/core/light/util/parent.hpp>

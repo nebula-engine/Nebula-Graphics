@@ -3,7 +3,6 @@
 
 #include <neb/gfx/glsl/uniform/array.hpp>
 
-
 namespace neb { namespace gfx { namespace glsl { namespace uniform {
 	//template<int I> class locations;
 	class light_locations;

@@ -8,22 +8,25 @@
 
 #include <gal/etc/timestep.hpp>
 
-#include <neb/core/util/decl.hpp>
-#include <neb/core/itf/shared.hpp>
-#include <neb/core/glsl/program/util/decl.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/itf/shared.hpp>
+#include <neb/fnd/glsl/program/util/decl.hpp>
+#include <neb/fnd/plug/gfx/camera/view/Base.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/camera/view/util/flag.hpp>
 
 namespace neb { namespace gfx { namespace camera { namespace view {
-
 	/** @brief @Base */
-	class Base: virtual public neb::fnd::itf::shared
+	class Base:
+		virtual public neb::fnd::itf::shared,
+		virtual public neb::fnd::plug::gfx::camera::view::Base
 	{
 		public:
 			/** @brief Constructor */
-			Base(std::shared_ptr< ::neb::gfx::environ::base > parent);
+			Base();
+			virtual void					init(parent_t * const & p);
 			/** @brief Load view matrix into GLSL. */
 			void						load(neb::fnd::glsl::program::Base const * const p);
 			/** @brief Get view matrix. */
@@ -36,7 +39,7 @@ namespace neb { namespace gfx { namespace camera { namespace view {
 			virtual void					connect(
 					std::shared_ptr<neb::gfx::window::Base> const & window);
 		public:
-			std::weak_ptr<neb::gfx::environ::base>		parent_;
+			//std::weak_ptr<neb::gfx::environ::base>		parent_;
 			neb::gfx::camera::view::util::flag		flag_;
 	};
 }}}}

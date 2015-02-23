@@ -8,8 +8,8 @@
 
 #include <gal/etc/timestep.hpp>
 
-#include <neb/core/core/shape/base.hpp>
-#include <neb/core/core/light/util/light_count.hpp>
+#include <neb/fnd/core/shape/base.hpp>
+#include <neb/fnd/core/light/util/light_count.hpp>
 
 #include <neb/gfx/core/light/util/parent.hpp>
 #include <neb/gfx/texture/Base.hpp>

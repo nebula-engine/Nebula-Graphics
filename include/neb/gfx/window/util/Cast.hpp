@@ -1,7 +1,7 @@
 #ifndef NEBULA_GRAPHICS_WINDOW_UTIL_CAST_HH
 #define NEBULA_GRAPHICS_WINDOW_UTIL_CAST_HH
 
-#include <neb/core/itf/shared.hpp>
+#include <neb/fnd/itf/shared.hpp>
 
 #include <neb/gfx/util/decl.hpp>
 

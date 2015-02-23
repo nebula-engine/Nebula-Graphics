@@ -11,11 +11,11 @@
 
 #include <gal/log/log.hpp>
 
-#include <neb/core/util/debug.hpp>
-#include <neb/core/core/scene/util/decl.hpp>
-#include <neb/core/core/actor/base.hpp>
-#include <neb/core/core/light/base.hpp>
-#include <neb/core/context/Window.hpp>
+#include <neb/fnd/util/debug.hpp>
+#include <neb/fnd/core/scene/util/decl.hpp>
+#include <neb/fnd/core/actor/base.hpp>
+#include <neb/fnd/core/light/base.hpp>
+#include <neb/fnd/context/Window.hpp>
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/opengl/png.hpp>

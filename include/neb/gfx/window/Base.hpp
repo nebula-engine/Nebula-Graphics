@@ -7,9 +7,9 @@
 
 #include <gal/etc/timestep.hpp>
 
-#include <neb/core/util/decl.hpp>
-#include <neb/core/core/scene/util/decl.hpp>
-#include <neb/core/window/Base.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/core/scene/util/decl.hpp>
+#include <neb/fnd/window/Base.hpp>
 
 #include <neb/gfx/tmp/Child.hpp>
 #include <neb/gfx/context/Base.hpp>
@@ -25,7 +25,7 @@
 
 namespace neb { namespace gfx { namespace window {
 	class Base:
-		virtual public neb::fnd::window::Base,
+		//virtual public neb::fnd::window::Base,
 		virtual public neb::gfx::context::util::parent,
 		virtual public neb::gfx::window::util::cast,
 		virtual public neb::gfx::tmp::Child<neb::fnd::window::util::Parent>

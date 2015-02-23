@@ -1,5 +1,5 @@
 
-#include <neb/core/math/geo/polyhedron.hpp>
+#include <neb/fnd/math/geo/polyhedron.hpp>
 
 #include <neb/gfx/util/config.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>

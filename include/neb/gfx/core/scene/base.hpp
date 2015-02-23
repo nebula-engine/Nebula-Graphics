@@ -10,10 +10,10 @@
 #include <gal/etc/flag.hpp>
 #include <gal/stl/map.hpp>
 
-#include <neb/core/util/decl.hpp>
-#include <neb/core/math/serialization/glm.hpp>
-#include <neb/core/core/actor/util/parent.hpp>
-#include <neb/core/core/scene/base.hpp>
+#include <neb/fnd/util/decl.hpp>
+#include <neb/fnd/math/serialization/glm.hpp>
+#include <neb/fnd/core/actor/util/parent.hpp>
+#include <neb/fnd/core/scene/base.hpp>
 
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/glsl/uniform/light_array.hpp>
@@ -44,13 +44,15 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 			virtual void				release() = 0;
 			virtual void				step(gal::etc::timestep const & ts) = 0;
 			void					resize(int w, int h);
-			void					draw(gfx::RenderDesc const &);
-			void					drawMesh(gfx::RenderDesc const &);
-			void					drawMeshHF(gfx::RenderDesc const &);
-			void					drawMeshInst(gfx::RenderDesc const &);
-			virtual void				drawPhysxVisualization(gfx::RenderDesc const &) = 0;
-			void					drawDebug(gfx::RenderDesc const &);
-		public:
+			void					draw(neb::fnd::RenderDesc const &);
+			void					drawMesh(neb::fnd::RenderDesc const &);
+			void					drawMeshHF(neb::fnd::RenderDesc const &);
+			void					drawMeshInst(neb::fnd::RenderDesc const &);
+			virtual void				drawPhysxVisualization(neb::fnd::RenderDesc const &) = 0;
+			void					drawDebug(neb::fnd::RenderDesc const &);
+			void					draw_debug_buffer(
+					neb::fnd::RenderDesc const & desc,
+					neb::fnd::DebugBuffer const & db);
 			virtual void				load(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) = 0;
 			virtual void				save(boost::archive::polymorphic_oarchive & ar, unsigned int const & version) const = 0;
 			BOOST_SERIALIZATION_SPLIT_MEMBER();
