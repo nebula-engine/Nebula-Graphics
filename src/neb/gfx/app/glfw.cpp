@@ -142,8 +142,7 @@ neb::gfx::app::glfw*					THIS::get_gfx_app_glfw()
 	auto a = neb::fnd::app::Base::g_app_;
 	assert(a);
 	
-	auto go = a->_M_graphics_object;
-	assert(go);
+	auto go = a->G::get_object();
 
 	auto g = std::dynamic_pointer_cast<neb::gfx::app::glfw>(go);
 	assert(g);

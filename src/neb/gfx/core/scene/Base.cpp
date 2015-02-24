@@ -217,7 +217,7 @@ void			THIS::drawDebug(
 	//auto app(neb::gfx::app::glsl::global().lock());
 	auto app = get_fnd_app();
 
-	auto g = app->_M_graphics_object;
+	auto g = app->get_object();
 	assert(g);
 	auto p = g->get_program_simple3();
 	p->use();
@@ -242,7 +242,7 @@ void			THIS::draw_debug_buffer(
 		neb::fnd::RenderDesc const & desc,
 		neb::fnd::DebugBuffer const & db)
 {
-	auto g = get_fnd_app()->_M_graphics_object;
+	auto g = get_fnd_app()->get_object();
 	assert(g);
 
 	auto p = g->get_program_simple3();
