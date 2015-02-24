@@ -9,7 +9,7 @@
 
 #include <neb/fnd/util/decl.hpp>
 #include <neb/fnd/core/scene/util/decl.hpp>
-#include <neb/fnd/window/Base.hpp>
+#include <neb/fnd/plug/gfx/window/Base.hpp>
 
 #include <neb/gfx/tmp/Child.hpp>
 #include <neb/gfx/context/Base.hpp>
@@ -25,10 +25,10 @@
 
 namespace neb { namespace gfx { namespace window {
 	class Base:
-		//virtual public neb::fnd::window::Base,
-		virtual public neb::gfx::context::util::parent,
-		virtual public neb::gfx::window::util::cast,
-		virtual public neb::gfx::tmp::Child<neb::fnd::window::util::Parent>
+		virtual public neb::fnd::plug::gfx::window::Base,
+		//virtual public neb::gfx::context::util::parent,
+		virtual public neb::gfx::window::util::cast
+		//virtual public neb::gfx::tmp::Child<neb::fnd::window::util::Parent>
 	{
 		public:
 			//typedef neb::gfx::window::util::parent parent_t;

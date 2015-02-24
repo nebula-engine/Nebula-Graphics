@@ -21,6 +21,7 @@
 #include <neb/gfx/opengl/png.hpp>
 #include <neb/gfx/app/glfw.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
+#include <neb/gfx/app/base.hpp>
 #include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/context/Window.hpp>
 #include <neb/gfx/environ/two.hpp>
@@ -57,7 +58,7 @@ void			THIS::init(parent_t * const & p)
 	
 
 	
-	auto app = get_gfx_app();
+	auto app = get_fnd_app();
 
 	if(!app->flag_.any(neb::fnd::app::util::flag::INIT_GLFW))
 	{
@@ -65,6 +66,9 @@ void			THIS::init(parent_t * const & p)
 		return;
 	}
 	
+	auto g = std::dynamic_pointer_cast<neb::gfx::app::Base>(app->_M_graphics_object);
+	assert(g);
+
 	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
 	
 	if(window_)
@@ -124,21 +128,15 @@ void			THIS::init(parent_t * const & p)
 			neb::gfx::app::glfw::staticCharFun);
 
 	// add window to app's window map
-	app->windows_glfw_[window_] = self;
+	g->windows_glfw_[window_] = p->is_fnd_window_base();
 
 
 	//if(all(neb::app::base::option::SHADERS)) create_programs();
 
 
-	app->init_glew();
+	g->init_glew();
 
-	auto app2 = get_gfx_app();
-
-	app2->create_programs();
-
-
-
-
+	g->create_programs();
 
 
 
@@ -183,7 +181,7 @@ void		THIS::render()
 
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
-	typedef neb::gfx::context::util::parent C;
+	typedef neb::fnd::context::util::Parent C;
 
 	auto lamb = [] (C::map_type::pointer p)
 	{
@@ -194,7 +192,7 @@ void		THIS::render()
 		context->render();
 	};
 
-	C::map_.for_each(lamb);
+	getParent()->C::map_.for_each(lamb);
 
 	glFinish();
 	glfwSwapBuffers(window_);
@@ -205,9 +203,12 @@ void		THIS::render()
 void			THIS::callback_window_refresh_fun(GLFWwindow*)
 {
 }
-void			THIS::step(gal::etc::timestep const & ts) {
+void			THIS::step(gal::etc::timestep const & ts)
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
+	/// @ TODO move to fnd
+	/*
 	contexts::step(ts);
 
 	if(glfwWindowShouldClose(window_))
@@ -215,7 +216,7 @@ void			THIS::step(gal::etc::timestep const & ts) {
 		getParent()->erase(_M_index);
 		return;
 	}
-
+	*/
 }
 void			THIS::callback_window_size_fun(GLFWwindow* window, int w, int h)
 {
@@ -241,52 +242,13 @@ void			THIS::callback_window_close_fun(GLFWwindow* window)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }
-void			THIS::callback_mouse_button_fun(GLFWwindow* window, int button, int action, int mods)
-{
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
-	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
-
-	sig_.mouseButtonFun_(self, button, action, mods);
-}
-void			THIS::callback_key_fun(
-		GLFWwindow* window,
-		int key,
-		int scancode,
-		int action,
-		int mods)
-{
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
-	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
-
-	if(action == GLFW_PRESS)
-	{
-		switch(key)
-		{
-			case GLFW_KEY_F1:
-				if(callback_.key_press_.F1_) if(callback_.key_press_.F1_(key, scancode, action, mods)) return;
-				break;
-		}
-	}
-
-	sig_.keyFun_(self, key, scancode, action, mods);
-}
-void			THIS::callbackCharFun(GLFWwindow* window, unsigned int codepoint)
-{
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-
-	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
-
-	sig_.charFun_(self, codepoint);
-}
 void			THIS::resize()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	glViewport(0, 0, w_, h_);
 
-	typedef neb::gfx::context::util::parent C;
+	typedef neb::fnd::context::util::Parent C;
 
 	auto lamb = [&] (C::map_type::pointer p) {
 		auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
@@ -294,7 +256,7 @@ void			THIS::resize()
 		context->resize(w_, h_);
 	};
 
-	C::map_.for_each(lamb);
+	getParent()->C::map_.for_each(lamb);
 
 }
 void			THIS::makeCurrent()

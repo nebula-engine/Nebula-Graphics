@@ -18,7 +18,7 @@ void			THIS::static_window_pos_fun(
 {
 	//GLUTPP_DEBUG_0_FUNCTION;
 	
-	auto w = get_gfx_app_glfw()->get_window(window).lock();
+	auto w = get_gfx_app_glfw()->get_window(window);
 	
 	w->callback_window_pos_fun(/*window,*/x,y);
 }
@@ -27,7 +27,7 @@ void			THIS::static_window_size_fun(
 {
 	//GLUTPP_DEBUG_0_FUNCTION;
 
-	auto w = get_gfx_app_glfw()->get_window(window).lock();
+	auto w = get_gfx_app_glfw()->get_window(window);
 
 	w->callback_window_size_fun(/*window, */width, h);
 }
@@ -36,7 +36,7 @@ void			THIS::static_window_close_fun(
 {
 	//GLUTPP_DEBUG_0_FUNCTION;
 
-	auto w = get_gfx_app_glfw()->get_window(window).lock();
+	auto w = get_gfx_app_glfw()->get_window(window);
 
 	w->callback_window_close_fun(/*window*/);
 }
@@ -45,7 +45,7 @@ void			THIS::static_window_refresh_fun(
 {
 	//GLUTPP_DEBUG_0_FUNCTION;
 
-	auto w = get_gfx_app_glfw()->get_window(window).lock();
+	auto w = get_gfx_app_glfw()->get_window(window);
 
 	w->callback_window_refresh_fun(/*window*/);
 }
@@ -54,7 +54,7 @@ void			THIS::static_mouse_button_fun(
 {
 	//GLUTPP_DEBUG_0_FUNCTION;
 
-	auto w = get_gfx_app_glfw()->get_window(window).lock();
+	auto w = get_gfx_app_glfw()->get_window(window);
 
 	w->callback_mouse_button_fun(/*window, */button, action, mods);
 }
@@ -63,14 +63,14 @@ void			THIS::static_key_fun(
 {
 	//GLUTPP_DEBUG_0_FUNCTION;
 
-	auto w = get_gfx_app_glfw()->get_window(window).lock();
+	auto w = get_gfx_app_glfw()->get_window(window);
 
 	w->callback_key_fun(/*window, */key, scancode, action, mods);
 }
 void			THIS::staticCharFun(
 		GLFWwindow* window, unsigned int codepoint)
 {
-	auto w = get_gfx_app_glfw()->get_window(window).lock();
+	auto w = get_gfx_app_glfw()->get_window(window);
 	w->callbackCharFun(/*window, */codepoint);
 }
 void			THIS::__init()
@@ -102,12 +102,14 @@ void			THIS::step(gal::etc::timestep const & ts)
 {
 	//neb::gfx::window::util::parent::step(ts);
 }
-std::weak_ptr<neb::fnd::window::Base>			THIS::get_window(GLFWwindow* window)
+neb::fnd::window::Base*			THIS::get_window(GLFWwindow* window)
 {
 	auto it = windows_glfw_.find(window);
 	assert(it != windows_glfw_.cend());
-	assert(it->second);
-	return it->second;
+	auto w = it->second.lock();
+	assert(w);
+
+	return w.get();
 }
 void							THIS::onFirstContext()
 {

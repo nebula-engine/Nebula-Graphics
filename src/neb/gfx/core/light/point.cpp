@@ -87,7 +87,7 @@ void			THIS::initShadow(
 
 	context->setDrawable(scene);
 
-	context->setTexture(scene->tex_shadow_map_);
+	context->_M_graphics_object->setTexture(scene->tex_shadow_map_);
 
 	environ->setLight(self);
 
