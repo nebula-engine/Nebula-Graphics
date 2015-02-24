@@ -92,9 +92,11 @@ bool		neb::gfx::environ::shadow::point::shouldRender() {
 	
 	return true;
 }
-bool		neb::gfx::environ::shadow::point::shouldRender(unsigned int c) {
-	auto e = environ_scene_.lock();
-	if(!e) return false;
+bool		neb::gfx::environ::shadow::point::shouldRender(unsigned int c)
+{
+	/** @TODO fix this */
+	//auto e = environ_scene_.lock();
+	//if(!e) return false;
 	
 
 	/** @todo move to fin */

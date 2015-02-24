@@ -44,10 +44,6 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 			}
 			*/
 		public:	
-			/** environ that uses the shadow map
-			 * frustrum used to determine which shadowmaps need to be rendered
-			 */
-			environ_scene_weak			environ_scene_;
 
 	};
 }}}}

@@ -311,8 +311,7 @@ void			THIS::draw(neb::fnd::RenderDesc const & desc)
 
 	//auto app = neb::gfx::app::__gfx_glsl::global().lock();
 	auto app = get_fnd_app();
-	auto g = app->_M_graphics_object;
-	assert(g);
+	auto g = app->G::get_object();
 
 	auto p = g->get_program_tex();
 	p->use();

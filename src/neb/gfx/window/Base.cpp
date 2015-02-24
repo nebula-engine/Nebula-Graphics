@@ -66,8 +66,7 @@ void			THIS::init(parent_t * const & p)
 		return;
 	}
 	
-	auto g = std::dynamic_pointer_cast<neb::gfx::app::Base>(app->_M_graphics_object);
-	assert(g);
+	auto g = std::dynamic_pointer_cast<neb::gfx::app::Base>(app->G::get_object());
 
 	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
 	
