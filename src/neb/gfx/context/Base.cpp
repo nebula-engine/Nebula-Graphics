@@ -68,17 +68,6 @@ void		neb::gfx::context::base::render() {
 	
 	e->render(self->getParent());
 }		
-void							neb::gfx::context::base::setDrawable(
-		std::shared_ptr<neb::fnd::drawable::Base> drawable)
-{
-	auto d = std::dynamic_pointer_cast<neb::gfx::drawable::base>(drawable);
-	assert(d);
-
-	auto e = getParent()->neb::fnd::environ::util::Parent::front();
-	assert(e);
-
-	e->drawable_ = d;
-}
 /*
 std::shared_ptr<neb::fnd::environ::Base>	THIS::get_environ()
 {

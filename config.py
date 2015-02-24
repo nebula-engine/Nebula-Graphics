@@ -57,7 +57,7 @@ INCLUDE(cmh_library)
 #add_subdirectory(test)
 """
 
-l = Static("nebula_gfx")
+l = Dynamic("nebula_plugin_gfx1")
 
 l.inc_dirs.append("/usr/include/freetype2")
 
@@ -65,6 +65,7 @@ l.require("galaxy_std")
 l.require("galaxy_log")
 l.require("galaxy_console")
 l.require("nebula_core")
+l.require("glfw")
 
 l.make()
 

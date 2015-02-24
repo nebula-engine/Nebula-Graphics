@@ -75,7 +75,7 @@ void			THIS::initShadow(
 	
 	auto self = std::dynamic_pointer_cast<neb::gfx::core::light::point>(shared_from_this());
 	
-	auto app = get_gfx_app();
+	auto app = get_fnd_app();
 
 	//typedef neb::gfx::window::base Window;
 	//auto window = app->neb::gfx::window::util::parent::create<Window>().lock();

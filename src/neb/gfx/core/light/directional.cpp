@@ -37,7 +37,7 @@ void					THIS::init(neb::fnd::core::light::util::parent * const & p)
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::core::light::directional>(shared_from_this());
 	
-	auto app = get_gfx_app();
+	auto app = get_fnd_app();
 
 	
 	//auto window = app->neb::gfx::window::util::parent::create<neb::gfx::window::base>().lock();

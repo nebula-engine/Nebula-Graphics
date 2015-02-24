@@ -32,7 +32,7 @@ namespace neb { namespace gfx { namespace app {
 			void			__init();
 			void			release();
 			void			step(gal::etc::timestep const & ts);
-			void			render();
+			//void			render();
 			void			draw_quad(
 					float x,
 					float y,

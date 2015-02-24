@@ -68,12 +68,14 @@ void			THIS::step(gal::etc::timestep const & ts)
 	//neb::gfx::context::util::parent::step(ts);
 	//neb::gfx::gui::layout::util::parent::step(ts);
 }
+/*
 void			THIS::render()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	//neb::gfx::window::util::parent::render();
 	//neb::gfx::context::util::parent::render();
 }
+*/
 //void							neb::gfx::app::__gfx::release() {
 //}
 /*std::weak_ptr<neb::gfx::gui::layout::base>		neb::gfx::app::__gfx::createLayout()

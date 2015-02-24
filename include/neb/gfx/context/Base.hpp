@@ -46,8 +46,8 @@ namespace neb { namespace gfx { namespace context {
 			virtual void						step(gal::etc::timestep const & ts);
 			virtual void						render();
 			virtual void						resize(int w, int h);
-			virtual void						setDrawable(std::shared_ptr<neb::fnd::drawable::Base>);
-			virtual void						setEnviron(std::shared_ptr<neb::fnd::environ::Base>);
+			//virtual void						setDrawable(std::shared_ptr<neb::fnd::drawable::Base>);
+			//virtual void						setEnviron(std::shared_ptr<neb::fnd::environ::Base>);
 			//virtual std::shared_ptr<neb::fnd::environ::Base>	get_environ();
 		public:
 			//std::shared_ptr<neb::gfx::environ::base>		environ_;
