@@ -61,10 +61,10 @@ l = Dynamic("nebula_plugin_gfx1")
 
 l.inc_dirs.append("/usr/include/freetype2")
 
-l.require("galaxy_std")
-l.require("galaxy_log")
-l.require("galaxy_console")
-l.require("nebula_core")
+l.require("galaxy_std", whole=True)
+l.require("galaxy_log", whole=True)
+l.require("galaxy_console", whole=True)
+l.require("nebula_core", whole=True)
 l.require("glfw")
 
 l.make()
