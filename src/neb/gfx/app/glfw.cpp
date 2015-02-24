@@ -56,7 +56,7 @@ void			THIS::static_mouse_button_fun(
 
 	auto w = get_gfx_app_glfw()->get_window(window).lock();
 
-	w->callback_mouse_button_fun(window, button, action, mods);
+	w->callback_mouse_button_fun(/*window, */button, action, mods);
 }
 void			THIS::static_key_fun(
 		GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -65,13 +65,13 @@ void			THIS::static_key_fun(
 
 	auto w = get_gfx_app_glfw()->get_window(window).lock();
 
-	w->callback_key_fun(window, key, scancode, action, mods);
+	w->callback_key_fun(/*window, */key, scancode, action, mods);
 }
 void			THIS::staticCharFun(
 		GLFWwindow* window, unsigned int codepoint)
 {
 	auto w = get_gfx_app_glfw()->get_window(window).lock();
-	w->callbackCharFun(window, codepoint);
+	w->callbackCharFun(/*window, */codepoint);
 }
 void			THIS::__init()
 {

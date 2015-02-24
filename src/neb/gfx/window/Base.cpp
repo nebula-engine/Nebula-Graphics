@@ -55,11 +55,6 @@ void			THIS::init(parent_t * const & p)
 
 	setParent(p);
 	
-	// callback
-	callback_.key_press_.F1_ = [this](int,int,int,int)->int {
-		printScreen();
-		return 1;
-	};
 
 	
 	auto app = get_gfx_app();
