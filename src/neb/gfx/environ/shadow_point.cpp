@@ -20,8 +20,9 @@
 //#include <neb/gfx/camera/proj/base.hpp> removed by c_header_checker
 
 //#include <neb/phx/test.hpp>
+typedef neb::gfx::environ::shadow::point THIS;
 
-neb::gfx::environ::shadow::point::point()
+THIS::point()
 {
 }
 void		neb::gfx::environ::shadow::point::init(parent_t * const & p)
@@ -71,7 +72,7 @@ void		neb::gfx::environ::shadow::point::init(parent_t * const & p)
 		abort();
 	}
 	
-	createCameraPerspective();
+	//createCameraPerspective();
 
 	/*
 	auto proj = std::dynamic_pointer_cast<neb::gfx::camera::proj::Perspective>(getParent()->proj_);
@@ -80,7 +81,8 @@ void		neb::gfx::environ::shadow::point::init(parent_t * const & p)
 	*/
 	abort();
 }
-bool		neb::gfx::environ::shadow::point::shouldRender() {
+bool		THIS::shouldRender()
+{
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 	
 	assert(programs_.d3_);

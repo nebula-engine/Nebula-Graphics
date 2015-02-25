@@ -60,9 +60,10 @@ void		neb::gfx::context::base::render() {
 	if(!e)
 	{
 		LOG(lg, neb::gfx::sl, warning) << "context has no environ";
+		abort();
 		return;
 	}
-
+	
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	assert(self);
 	
@@ -74,4 +75,9 @@ std::shared_ptr<neb::fnd::environ::Base>	THIS::get_environ()
 	return environ_;
 }
 */
+void		THIS::setTexture(
+					std::shared_ptr<neb::fnd::itf::shared> tex)
+{
+	abort();
+}
 

@@ -44,7 +44,7 @@ void		neb::gfx::environ::shadow::directional::init(parent_t * const & p)
 	abort();
 
 
-	createCameraOrtho();
+	//createCameraOrtho();
 	//proj_.reset(new neb::gfx::camera::proj::Ortho(self));
 
 }

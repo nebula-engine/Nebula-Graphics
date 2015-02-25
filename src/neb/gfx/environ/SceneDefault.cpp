@@ -34,9 +34,9 @@ void		THIS::init(parent_t * const & p)
 	}
 	*/
 }
-void		neb::gfx::environ::SceneDefault::render(std::shared_ptr<neb::gfx::context::base> context)
+void		THIS::render(neb::fnd::context::Base * const & context)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
 
 	// prepare rendering environment and then call the drawable
 	
@@ -44,6 +44,7 @@ void		neb::gfx::environ::SceneDefault::render(std::shared_ptr<neb::gfx::context:
 
 	if(!drawable) {
 		LOG(lg, neb::gfx::sl, warning) << "drawable is NULL";
+		abort();
 		return;
 	}
 

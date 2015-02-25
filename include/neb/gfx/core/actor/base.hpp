@@ -9,10 +9,10 @@
 #include <boost/signals2.hpp>
 
 #include <neb/fnd/math/serialization/glm.hpp>
-#include <neb/fnd/core/actor/base.hpp>
 #include <neb/fnd/core/shape/base.hpp>
 #include <neb/fnd/core/shape/util/parent.hpp>
 #include <neb/fnd/glsl/program/util/decl.hpp>
+#include <neb/fnd/plug/gfx/core/actor/Base.hpp>
 
 #include <neb/gfx/context/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
@@ -25,7 +25,7 @@ namespace neb { namespace gfx { namespace core { namespace actor {
 	 * no need to derive this class for different actor types.
 	 */
 	class base:
-		virtual public neb::fnd::core::actor::base
+		virtual public neb::fnd::plug::gfx::core::actor::Base
 	{
 		public:
 			/** @brief default constructor */
@@ -34,9 +34,9 @@ namespace neb { namespace gfx { namespace core { namespace actor {
 			//base(std::shared_ptr<neb::fnd::core::actor::util::parent> parent);
 			virtual ~base();
 		public:
-			//virtual void					init(neb::fnd::core::actor::util::parent * const & p) = 0;
+			virtual void					init(parent_t * const & p);
 			//virtual void					release() = 0;
-			//virtual void					step(gal::etc::timestep const & ts);
+			virtual void					step(gal::etc::timestep const & ts);
 		public:
 			void						draw(
 					neb::fnd::glsl::program::Base const * const & p,

@@ -38,15 +38,15 @@ namespace neb { namespace gfx { namespace environ {
 			/** @brief */
 			virtual void		resize(int w, int h);
 			/** @brief */
-			virtual void		render(std::shared_ptr<neb::gfx::context::base> context) = 0;
+			virtual void		render(neb::fnd::context::Base * const & context) = 0;
 			/** @brief */
 			virtual bool		shouldRender();
 			/** @brief */
 			virtual bool		shouldRender(unsigned int) { return true; }
 			/** @brief */
-			virtual proj_shared	createCameraPerspective() = 0;// { throw 0; return proj_shared(); }
+			//virtual proj_shared	createCameraPerspective() = 0;// { throw 0; return proj_shared(); }
 			/** @brief */
-			virtual proj_shared	createCameraOrtho() = 0;// { throw 0; return proj_shared(); }
+			//virtual proj_shared	createCameraOrtho() = 0;// { throw 0; return proj_shared(); }
 		public:	
 			/** @brief %Viewport
 			 * 

@@ -17,6 +17,7 @@ void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> co
 	
 	auto drawable = getParent()->drawable_.lock();
 
+	assert(drawable);
 	if(!drawable) return;
 
 	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());

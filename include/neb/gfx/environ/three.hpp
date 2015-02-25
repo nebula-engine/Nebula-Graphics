@@ -24,8 +24,7 @@ namespace neb { namespace gfx { namespace environ {
 			typedef std::shared_ptr<neb::gfx::camera::proj::Base>		proj_shared;
 		public:
 			virtual void			init(parent_t * const & p) = 0;
-			virtual void			render(
-					std::shared_ptr<neb::gfx::context::base> context) = 0;
+			virtual void			render(neb::fnd::context::Base * const & context) = 0;
 		public:
 			struct {
 				program_shared			d3_;

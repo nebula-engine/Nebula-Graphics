@@ -48,7 +48,7 @@ void					THIS::init(neb::fnd::core::light::util::parent * const & p)
 	
 	auto environ = context->createEnvironShadowDirectional().lock();
 	
-	context->setDrawable(scene);
+	environ->set_drawable(scene);
 	
 	context->setTexture(scene->tex_shadow_map_);
 

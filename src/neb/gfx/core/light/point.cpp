@@ -85,9 +85,9 @@ void			THIS::initShadow(
 
 	auto environ = context->createEnvironShadowPoint().lock();
 
-	context->setDrawable(scene);
+	environ->set_drawable(scene);
 
-	context->_M_graphics_object->setTexture(scene->tex_shadow_map_);
+	context->G::get_object()->setTexture(scene->tex_shadow_map_);
 
 	environ->setLight(self);
 

@@ -49,6 +49,8 @@ namespace neb { namespace gfx { namespace context {
 			//virtual void						setDrawable(std::shared_ptr<neb::fnd::drawable::Base>);
 			//virtual void						setEnviron(std::shared_ptr<neb::fnd::environ::Base>);
 			//virtual std::shared_ptr<neb::fnd::environ::Base>	get_environ();
+			virtual void		setTexture(
+					std::shared_ptr<neb::fnd::itf::shared> tex);
 		public:
 			//std::shared_ptr<neb::gfx::environ::base>		environ_;
 	};

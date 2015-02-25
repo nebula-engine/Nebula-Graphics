@@ -30,7 +30,7 @@ typedef neb::gfx::app::draw THIS;
 
 void		THIS::__init()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printf("%s\n", __PRETTY_FUNCTION__);
 
 	std::vector<std::string> fontfiles({
 		"/usr/share/fonts/msttcorefonts/cour.ttf",
@@ -188,6 +188,7 @@ void			THIS::draw_text(
 	
 	//auto p = app->get_program_text();
 	auto p = get_program_text();
+	p->use();
 
 	LOG(lg, neb::gfx::sl, debug)
 		<< std::setw(8) << x
@@ -212,11 +213,12 @@ void			THIS::draw_text(
 	neb::fnd::math::color::color cursor_color = neb::fnd::math::color::color::white();
 	
 	// color
+	auto loc = p->get_uniform_table_value(neb::gfx::glsl::uniforms::FONT_COLOR);
 	glUniform4fv(
-			p->get_uniform_table_value(neb::gfx::glsl::uniforms::FONT_COLOR),
+			loc,
 			1,
 			(float*)color);
-	checkerror("glUniform4fv ");
+	checkerror("glUniform4fv %i", loc);
 
 
 	// texture

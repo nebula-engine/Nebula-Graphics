@@ -46,7 +46,7 @@ void		neb::gfx::environ::vis_depth::init(parent_t * const & p)
 	abort();
 
 	//proj_.reset(new neb::gfx::camera::proj::Ortho(self));
-	createCameraOrtho();
+	//createCameraOrtho();
 
 	//proj_.reset(new neb::gfx::camera::proj::Perspective(self));
 

@@ -186,9 +186,10 @@ void		THIS::render()
 	{
 		LOG(lg, neb::gfx::sl, debug) << "lamb";
 	
-		auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
-		assert(context);
-		context->render();
+		//auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
+		//assert(context);
+		//context->render();
+		p->render();
 	};
 
 	getParent()->C::map_.for_each(lamb);
