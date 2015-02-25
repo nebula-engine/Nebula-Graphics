@@ -23,6 +23,7 @@ namespace neb { namespace gfx { namespace app {
 			virtual void					step(gal::etc::timestep const & ts);
 			//virtual void					loop();
 			virtual void					update();
+			virtual double			get_time();
 	};
 }}}
 

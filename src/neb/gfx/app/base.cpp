@@ -30,6 +30,10 @@ std::weak_ptr<THIS>			THIS::initialize()
 void					THIS::__init()
 {
 }
+double					THIS::get_time()
+{
+	return glfwGetTime();
+}
 /*void					THIS::release()
 {
 	neb::fnd::app::Base::release();
