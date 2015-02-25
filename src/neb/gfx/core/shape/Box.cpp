@@ -16,7 +16,21 @@ THIS::box()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }
-void neb::gfx::core::shape::box::box::createMesh()
+void			THIS::init(parent_t * const & p)
+{
+	setParent(p);
+}
+void			THIS::step(gal::etc::timestep const & ts)
+{
+}
+void			THIS::model_load(
+					FND * const & ptr,
+					neb::fnd::glsl::program::Base const * const & p,
+					neb::fnd::math::pose const & pose)
+{
+	abort();
+}
+void			THIS::createMesh()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -214,3 +228,20 @@ void			THIS::draw_legacy(
 	//glPopMatrix();
 
 }
+void			THIS::draw(
+		FND * const & ptr,
+		neb::fnd::glsl::program::Base const * const & program,
+		neb::fnd::math::pose const & pose)
+{
+	abort();
+}
+void			THIS::v_set_pose_data(
+		FND * const & ptr,
+		neb::fnd::math::pose const & global_pose)
+{
+}
+
+
+
+
+

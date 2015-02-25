@@ -9,6 +9,7 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 	{
 		public:
 			box();
+			virtual void			init(parent_t * const & p);
 			virtual void			createMesh();
 			void				create_mesh_instance();
 			void				create_mesh_standalone();
@@ -16,8 +17,6 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 					FND * const & ptr,
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
-
-			virtual void			init(parent_t * const & p);
 			virtual void			draw(
 					FND * const & ptr,
 					neb::fnd::glsl::program::Base const * const & program,

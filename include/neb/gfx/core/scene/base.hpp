@@ -14,6 +14,8 @@
 #include <neb/fnd/math/serialization/glm.hpp>
 #include <neb/fnd/core/actor/util/parent.hpp>
 #include <neb/fnd/core/scene/base.hpp>
+#include <neb/fnd/plug/gfx/core/scene/Base.hpp>
+#include <neb/fnd/plug/Object.hpp>
 
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/glsl/uniform/light_array.hpp>
@@ -29,33 +31,33 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 	 * @brief base
 	 */
 	class base:
-		virtual public neb::fnd::core::scene::base,
-		virtual public neb::gfx::drawable::base
+		virtual public neb::gfx::drawable::base,
+		virtual public neb::fnd::plug::gfx::core::scene::Base
 	{
 		public:
 			using CHILD::get_fnd_app;
 			base();
 			virtual ~base();
 		protected:
-			void					__init(parent_t * const & p);
+			void					init(parent_t * const & p);
 		public:
 			void					init_light();
 			void					initMeshes();
-			virtual void				release() = 0;
-			virtual void				step(gal::etc::timestep const & ts) = 0;
+			virtual void				release();
+			virtual void				step(gal::etc::timestep const & ts);
 			void					resize(int w, int h);
 			void					draw(neb::fnd::RenderDesc const &);
 			void					drawMesh(neb::fnd::RenderDesc const &);
 			void					drawMeshHF(neb::fnd::RenderDesc const &);
 			void					drawMeshInst(neb::fnd::RenderDesc const &);
-			virtual void				drawPhysxVisualization(neb::fnd::RenderDesc const &) = 0;
+			//virtual void				drawPhysxVisualization(neb::fnd::RenderDesc const &) = 0;
 			void					drawDebug(neb::fnd::RenderDesc const &);
 			void					draw_debug_buffer(
 					neb::fnd::RenderDesc const & desc,
 					neb::fnd::DebugBuffer const & db);
-			virtual void				load(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) = 0;
-			virtual void				save(boost::archive::polymorphic_oarchive & ar, unsigned int const & version) const = 0;
-			BOOST_SERIALIZATION_SPLIT_MEMBER();
+			//virtual void				load(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) = 0;
+			//virtual void				save(boost::archive::polymorphic_oarchive & ar, unsigned int const & version) const = 0;
+			//BOOST_SERIALIZATION_SPLIT_MEMBER();
 			/** @name convenience functions
 			 * @{
 			 */
@@ -65,14 +67,14 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 			 *
 			 * @warning return actor is not initialized
 			 */
-			virtual weak_ptr<neb::fnd::core::actor::base>		createActorRigidStaticUninitialized() = 0;
+			//virtual weak_ptr<neb::fnd::core::actor::base>		createActorRigidStaticUninitialized() = 0;
 			/** @brief create rigidstatic
 			 *
 			 * @note typeof returned actor will be determined by final implementation of this
 			 *
 			 * @warning return actor is not initialized
 			 */
-			virtual weak_ptr<neb::fnd::core::actor::base>		createActorRigidDynamicUninitialized() = 0;
+			//virtual weak_ptr<neb::fnd::core::actor::base>		createActorRigidDynamicUninitialized() = 0;
 			/** @} */
 			// rendering data
 			struct

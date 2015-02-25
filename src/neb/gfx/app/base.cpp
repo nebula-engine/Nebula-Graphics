@@ -27,6 +27,15 @@ std::weak_ptr<THIS>			THIS::initialize()
 	return std::weak_ptr<THIS>();
 }
 */
+void					THIS::init(parent_t * const & p)
+{
+	setParent(p);
+
+	neb::gfx::app::draw::__init();
+	neb::gfx::app::glfw::__init();
+	neb::gfx::app::glsl::__init();
+
+}
 void					THIS::__init()
 {
 }
@@ -34,13 +43,11 @@ double					THIS::get_time()
 {
 	return glfwGetTime();
 }
-/*void					THIS::release()
+void					THIS::release()
 {
-	neb::fnd::app::Base::release();
-	
 	neb::gfx::app::draw::release();
 	//neb::gfx::app::__gfx_glsl::release();
-}*/
+}
 void					THIS::__release()
 {
 }

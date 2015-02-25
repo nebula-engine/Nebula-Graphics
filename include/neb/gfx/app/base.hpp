@@ -15,11 +15,12 @@ namespace neb { namespace gfx { namespace app {
 		public:
 			//static weak_ptr<neb::gfx::app::Base>		initialize();
 		protected:
+			virtual void					init(parent_t * const & p);
 			virtual void					__init();
 			virtual void					__release();
 		public:
 			//virtual void					render();
-			virtual void					release() = 0;
+			virtual void					release();
 			virtual void					step(gal::etc::timestep const & ts);
 			//virtual void					loop();
 			virtual void					update();

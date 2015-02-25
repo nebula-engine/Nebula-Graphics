@@ -24,7 +24,10 @@ THIS::base()
 {}
 THIS::~base()
 {}
-void			THIS::__init(parent_t * const & p)
+void			THIS::release()
+{
+}
+void			THIS::init(parent_t * const & p)
 {
 	LOG(lg, neb::gfx::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -104,6 +107,8 @@ void			THIS::drawMesh(neb::fnd::RenderDesc const & desc)
 	//
 	// For rendering lights, use one of the programs owned by this, which contain persistent data for the lights.
 
+	auto parent = getParent();
+
 	P* d3;
 
 	if(desc.d3) {
@@ -134,11 +139,12 @@ void			THIS::drawMesh(neb::fnd::RenderDesc const & desc)
 		actor->draw(d3, neb::fnd::math::pose());
 	};
 
-	A::map_.for_each(la);
+	parent->A::map_.for_each(la);
 }
 void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	auto parent = getParent();
 
 	// If program parameter is not NULL, use it and do not load lights.
 	//
@@ -171,7 +177,7 @@ void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 		actor->drawHF(p, neb::fnd::math::pose());
 	};
 
-	A::map_.for_each(la);
+	parent->A::map_.for_each(la);
 
 }
 void			THIS::drawMeshInst(neb::fnd::RenderDesc const & desc)
@@ -215,6 +221,7 @@ void			THIS::drawDebug(
 		neb::fnd::RenderDesc const & desc)
 {
 	//auto app(neb::gfx::app::glsl::global().lock());
+	auto parent = getParent();
 	auto app = get_fnd_app();
 
 	auto g = app->get_object();
@@ -232,7 +239,7 @@ void			THIS::drawDebug(
 		actor->drawDebug(p.get(), neb::fnd::math::pose());
 	};
 
-	A::map_.for_each(la);
+	parent->A::map_.for_each(la);
 
 }
 void			THIS::resize(int w, int h)
@@ -336,6 +343,9 @@ void			THIS::draw_debug_buffer(
 		glDisableVertexAttribArray(p->get_attrib_table_value(neb::gfx::glsl::attribs::COLOR));
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+void		THIS::step(gal::etc::timestep const & ts)
+{
 }
 
 
