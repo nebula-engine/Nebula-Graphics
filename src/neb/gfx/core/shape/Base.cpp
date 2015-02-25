@@ -29,7 +29,7 @@ THIS::base()
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }
 THIS::~base() {}
-void					THIS::init(neb::fnd::core::shape::util::parent * const & p)
+void					THIS::init(parent_t * const & p)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -41,7 +41,7 @@ void					THIS::init(neb::fnd::core::shape::util::parent * const & p)
 }
 void					THIS::release()
 {
-	neb::fnd::core::shape::base::release();
+	//neb::fnd::core::shape::base::release();
 }
 void					THIS::step(gal::etc::timestep const & ts)
 {
@@ -53,10 +53,12 @@ void					THIS::v_set_pose_data(neb::fnd::math::pose const & gpose)
 	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
 
-	neb::fnd::core::shape::base::__set_pose_data(gpose);
+	//neb::fnd::core::shape::base::__set_pose_data(gpose);
+
+	auto p = getParent();
 
 	if(mesh_slot_) {
-		auto model = gpose.mat4_cast() * glm::scale(scale_);
+		auto model = gpose.mat4_cast() * glm::scale(p->scale_);
 		
 		mesh_slot_->set<0>(model);
 		LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
@@ -74,7 +76,9 @@ void					THIS::draw(
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
-	auto npose = pose * pose_;
+	auto parent = getParent();
+
+	auto npose = pose * parent->pose_;
 	
 	draw_elements(p, npose);
 }
@@ -87,7 +91,9 @@ void			THIS::model_load(
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
-	glm::mat4 space = pose.mat4_cast() * glm::scale(scale_);
+	auto parent = getParent();
+
+	glm::mat4 space = pose.mat4_cast() * glm::scale(parent->scale_);
 
 	auto v = p->get_uniform_table_value(neb::gfx::glsl::uniforms::MODEL);
 
@@ -101,10 +107,12 @@ void			THIS::draw_elements(
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
 
+	auto parent = getParent();
+
 	assert(p);
 
 	if(mesh_) {
-		mesh_->drawElements(p, pose, scale_);
+		mesh_->drawElements(p, pose, parent->scale_);
 	} else {
 		draw_legacy(p, pose);
 	}
@@ -115,11 +123,13 @@ void			THIS::drawDebug(
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
 	
+	auto parent = getParent();
+
 	assert(p);
 	
 	if(mesh_)
 	{
-		mesh_->drawDebug(p, pose, scale_);
+		mesh_->drawDebug(p, pose, parent->scale_);
 	}
 }
 void						THIS::createMesh()

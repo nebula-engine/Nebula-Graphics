@@ -30,16 +30,19 @@ void	THIS::create_mesh_instance()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
-	if(!hasScene()) return;
-	
-	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());
+	/// @TODO fix this
+	//if(!hasScene()) return;
+
+	auto p = getParent();
+
+	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(p->getScene());
 	
 	if(!mesh_slot_)
 	{
 		LOG(lg, neb::gfx::sl, debug) << "mesh registered";
 
 
-		auto model = getPoseGlobal().mat4_cast() * glm::scale(scale_);
+		auto model = p->getPoseGlobal().mat4_cast() * glm::scale(p->scale_);
 
 		auto dif = neb::fnd::math::color::ucolor8888::rand();
 		auto amb = neb::fnd::math::color::color::gray(0.2);
@@ -81,6 +84,7 @@ void	THIS::create_mesh_standalone()
 	mesh_->construct(&cube);
 }
 void			THIS::draw_legacy(
+		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
@@ -88,7 +92,7 @@ void			THIS::draw_legacy(
 
 	// load model matrix
 	//LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
-	model_load(p, pose);
+	model_load(ptr, p, pose);
 	
 	//material_.load(p);
 	
@@ -96,8 +100,8 @@ void			THIS::draw_legacy(
 	//glPushMatrix();
 	//glTranslatef(pose.pos_.x, pose.pos_.y, pose.pos_.z);
 
-	LOG(lg, neb::gfx::sl, debug) << scale_.x << " " << scale_.y << " " << scale_.z;
-	LOG(lg, neb::gfx::sl, debug) << pose.pos_.x << " " << pose.pos_.y << " " << pose.pos_.z;
+	//LOG(lg, neb::gfx::sl, debug) << scale_.x << " " << scale_.y << " " << scale_.z;
+	//LOG(lg, neb::gfx::sl, debug) << pose.pos_.x << " " << pose.pos_.y << " " << pose.pos_.z;
 
 
 	// draw

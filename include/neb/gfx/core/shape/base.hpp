@@ -10,6 +10,7 @@
 
 #include <neb/fnd/core/shape/base.hpp>
 #include <neb/fnd/core/light/util/light_count.hpp>
+#include <neb/fnd/plug/gfx/core/shape/Base.hpp>
 
 #include <neb/gfx/core/light/util/parent.hpp>
 #include <neb/gfx/texture/Base.hpp>
@@ -22,14 +23,14 @@
 
 namespace neb { namespace gfx { namespace core { namespace shape {
 	class base:
-		virtual public neb::fnd::core::shape::base,
-		virtual public neb::gfx::core::light::util::parent
+		virtual public neb::fnd::plug::gfx::core::shape::Base
+		//virtual public neb::gfx::core::light::util::parent
 	{
 		public:
 			typedef neb::fnd::core::light::base L;
 			base();
 			virtual ~base();
-			void					init(neb::fnd::core::shape::util::parent * const & p);
+			void					init(parent_t * const & p);
 			void					release();
 			void					step(gal::etc::timestep const & ts);
 			/*
@@ -67,6 +68,7 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 					neb::fnd::math::pose const & pose);
 			/** @} */
 		public:
+			/*
 			template<class Archive>	void	serialize(Archive & ar, unsigned int const & version) {
 				LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 
@@ -77,6 +79,7 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 				ar & boost::serialization::make_nvp("normal",normal_);
 				ar & boost::serialization::make_nvp("material",material_);
 			}
+			*/
 		public:
 			/** @brief Material. */
 			neb::gfx::material::raw					material_;

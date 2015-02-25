@@ -13,25 +13,10 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 			void				create_mesh_instance();
 			void				create_mesh_standalone();
 			virtual void			draw_legacy(
+					FND * const & ptr,
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
-	};
-}}}}
 
-#endif
-
-#ifndef NEB_PLUG_GFX1_CORE_SHAPE_BOX_HPP
-#define NEB_PLUG_GFX1_CORE_SHAPE_BOX_HPP
-
-#include <neb/fnd/plug/gfx/core/shape/Base.hpp>
-
-namespace neb { namespace plug { namespace gfx1 { namespace core { namespace shape {
-	/** @brief Base
-	 */
-	class Box:
-		virtual public neb::fnd::plug::gfx::core::shape::Base
-	{
-		public:
 			virtual void			init(parent_t * const & p);
 			virtual void			draw(
 					FND * const & ptr,
@@ -45,7 +30,8 @@ namespace neb { namespace plug { namespace gfx1 { namespace core { namespace sha
 					FND * const & ptr,
 					neb::fnd::glsl::program::Base const * const & p,
 					neb::fnd::math::pose const & pose);
+
 	};
-}}}}}
+}}}}
 
 #endif
