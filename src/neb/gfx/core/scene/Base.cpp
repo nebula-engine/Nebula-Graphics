@@ -4,6 +4,7 @@
 #include <neb/fnd/DebugBuffer.hpp>
 #include <neb/fnd/camera/proj/Base.hpp>
 #include <neb/fnd/camera/view/Base.hpp>
+#include <neb/fnd/core/actor/Base.hpp>
 
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/camera/proj/base.hpp>
@@ -136,9 +137,13 @@ void			THIS::drawMesh(neb::fnd::RenderDesc const & desc)
 	// individual meshes
 	auto la = [&] (A::map_type::pointer p)
 	{
-		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(p);
+		auto actor = std::dynamic_pointer_cast<neb::fnd::core::actor::base>(p);
 		assert(actor);
-		actor->draw(d3, neb::fnd::math::pose());
+		auto g = actor->G::get_object();
+		assert(g);
+		auto g2 = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(g);
+		assert(g2);
+		g2->draw(d3, neb::fnd::math::pose());
 	};
 
 	parent->A::map_.for_each(la);
@@ -174,9 +179,14 @@ void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 
 	// individual meshes
 	auto la = [&] (A::map_type::pointer ptr) {
-		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(ptr);
+		auto actor = std::dynamic_pointer_cast<neb::fnd::core::actor::base>(ptr);
+		//auto actor = dynamic_cast<neb::fnd::core::actor::base*>(ptr);
 		assert(actor);
-		actor->drawHF(p, neb::fnd::math::pose());
+		auto g = actor->G::get_object();
+		assert(g);
+		auto g2 = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(g);
+		assert(g2);
+		g2->drawHF(p, neb::fnd::math::pose());
 	};
 
 	parent->A::map_.for_each(la);
@@ -236,9 +246,13 @@ void			THIS::drawDebug(
 
 	// individual meshes
 	auto la = [&] (A::map_type::pointer ptr) {
-		auto actor = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(ptr);
+		auto actor = std::dynamic_pointer_cast<neb::fnd::core::actor::base>(p);
 		assert(actor);
-		actor->drawDebug(p.get(), neb::fnd::math::pose());
+		auto g = actor->G::get_object();
+		assert(g);
+		auto g2 = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(g);
+		assert(g2);
+		g2->drawDebug(p.get(), neb::fnd::math::pose());
 	};
 
 	parent->A::map_.for_each(la);

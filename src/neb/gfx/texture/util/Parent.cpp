@@ -1,6 +1,6 @@
 #include <neb/gfx/texture/util/Parent.hpp>
-#include <neb/gfx/core/light/util/parent.hpp>
-#include <neb/gfx/core/light/base.hpp>
+#include <neb/gfx/core/light/util/Parent.hpp>
+#include <neb/gfx/core/light/Base.hpp>
 
 typedef neb::gfx::texture::util::Parent THIS;
 

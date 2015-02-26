@@ -1,15 +1,15 @@
 #include <neb/gfx/core/light/util/Cast.hpp>
-#include <neb/gfx/core/light/base.hpp>
-#include <neb/gfx/core/light/spot.hpp>
-#include <neb/gfx/core/light/point.hpp>
-#include <neb/gfx/core/light/directional.hpp>
+#include <neb/gfx/core/light/Base.hpp>
+#include <neb/gfx/core/light/Spot.hpp>
+#include <neb/gfx/core/light/Point.hpp>
+#include <neb/gfx/core/light/Directional.hpp>
 
 typedef neb::gfx::core::light::util::Cast THIS;
 
-typedef neb::gfx::core::light::base		B;
-typedef neb::gfx::core::light::spot		S;
-typedef neb::gfx::core::light::point		P;
-typedef neb::gfx::core::light::directional	D;
+typedef neb::gfx::core::light::Base		B;
+typedef neb::gfx::core::light::Spot		S;
+typedef neb::gfx::core::light::Point		P;
+typedef neb::gfx::core::light::Directional	D;
 
 std::shared_ptr<B>	THIS::is_gfx_light_base()
 {

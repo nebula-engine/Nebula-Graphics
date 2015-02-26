@@ -13,7 +13,7 @@
 #include <neb/gfx/drawable/base.hpp>
 //#include <neb/gfx/util/log.hpp> removed by c_header_checker
 //#include <neb/gfx/glsl/program/base.hpp> removed by c_header_checker
-#include <neb/gfx/core/light/directional.hpp>
+#include <neb/gfx/core/light/Directional.hpp>
 #include <neb/fnd/RenderDesc.hpp>
 
 neb::gfx::environ::shadow::directional::directional()

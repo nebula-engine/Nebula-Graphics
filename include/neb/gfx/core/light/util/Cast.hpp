@@ -10,10 +10,10 @@ namespace neb { namespace gfx { namespace core { namespace light { namespace uti
 		virtual public neb::fnd::itf::shared
 	{
 		public:
-			typedef neb::gfx::core::light::base		B;
-			typedef neb::gfx::core::light::spot		S;
-			typedef neb::gfx::core::light::point		P;
-			typedef neb::gfx::core::light::directional	D;
+			typedef neb::gfx::core::light::Base		B;
+			typedef neb::gfx::core::light::Spot		S;
+			typedef neb::gfx::core::light::Point		P;
+			typedef neb::gfx::core::light::Directional	D;
 			std::shared_ptr<B>	is_gfx_light_base();
 			std::shared_ptr<S>	is_gfx_light_spot();
 			std::shared_ptr<P>	is_gfx_light_point();

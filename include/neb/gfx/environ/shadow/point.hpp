@@ -20,14 +20,14 @@ namespace neb { namespace gfx { namespace environ { namespace shadow {
 	 */
 	class point:
 		//virtual public neb::fnd::environ::shadow::Point,
-		virtual public neb::gfx::environ::shadow::base<neb::gfx::core::light::point>,
+		virtual public neb::gfx::environ::shadow::base<neb::gfx::core::light::Point>,
 		virtual public neb::gfx::environ::multiple<neb::gfx::camera::view::shadow::Point>
 	{
 		public:
 			typedef std::shared_ptr<neb::gfx::glsl::program::Base>			program_shared;
 			typedef std::shared_ptr<neb::gfx::camera::view::shadow::Point>		view_shared;
 			typedef std::shared_ptr<neb::gfx::camera::proj::Perspective>		proj_shared;
-			typedef neb::gfx::core::light::point					light_type;
+			typedef neb::gfx::core::light::Point					light_type;
 			typedef std::shared_ptr<light_type>					light_shared;
 			typedef std::weak_ptr<light_type>					light_weak;
 		public:

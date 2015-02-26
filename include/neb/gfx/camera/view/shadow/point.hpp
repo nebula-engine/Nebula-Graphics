@@ -10,7 +10,7 @@ namespace neb {namespace gfx {namespace camera {namespace view { namespace shado
 		virtual public neb::gfx::camera::view::Base
 	{
 		public:
-			typedef std::weak_ptr<neb::gfx::core::light::point>	light_weak;
+			typedef std::weak_ptr<neb::gfx::core::light::Point>	light_weak;
 			/** @brief Constructor */
 			Point();
 			/** @brief Get view matrix. */

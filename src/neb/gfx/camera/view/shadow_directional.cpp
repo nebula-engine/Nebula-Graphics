@@ -4,7 +4,7 @@
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
 #include <neb/gfx/camera/view/shadow/directional.hpp>
-#include <neb/gfx/core/light/directional.hpp>
+#include <neb/gfx/core/light/Directional.hpp>
 
 typedef neb::gfx::camera::view::shadow::Directional THIS;
 

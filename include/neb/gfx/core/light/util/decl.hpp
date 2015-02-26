@@ -9,10 +9,10 @@ namespace neb { namespace gfx { namespace core {
 			class parent;
 		}
 		
-		class base;
-		class point;
-		class spot;
-		class directional;
+		class Base;
+		class Point;
+		class Spot;
+		class Directional;
 	}
 }}}
 

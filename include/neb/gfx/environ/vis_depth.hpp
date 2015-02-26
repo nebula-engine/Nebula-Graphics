@@ -23,7 +23,7 @@ namespace neb { namespace gfx { namespace environ {
 			typedef std::shared_ptr<neb::gfx::glsl::program::Base>	program_shared;
 			typedef std::shared_ptr<neb::gfx::camera::view::Base>	view_shared;
 			typedef std::shared_ptr<neb::gfx::camera::proj::Base>	proj_shared;
-			typedef neb::gfx::core::light::base		light_type;
+			typedef neb::gfx::core::light::Base		light_type;
 			typedef std::shared_ptr<light_type>			light_shared;
 			typedef std::weak_ptr<light_type>			light_weak;
 		public:

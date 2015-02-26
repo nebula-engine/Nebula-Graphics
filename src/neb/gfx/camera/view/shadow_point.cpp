@@ -1,7 +1,7 @@
 #include <neb/gfx/environ/shadow/point.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
 #include <neb/gfx/camera/view/shadow/point.hpp>
-#include <neb/gfx/core/light/point.hpp>
+#include <neb/gfx/core/light/Point.hpp>
 
 typedef neb::gfx::camera::view::shadow::Point THIS;
 

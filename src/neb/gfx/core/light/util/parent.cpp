@@ -3,8 +3,8 @@
 #include <neb/fnd/util/debug.hpp>
 #include <neb/fnd/util/log.hpp>
 
-#include <neb/gfx/core/light/base.hpp>
-#include <neb/gfx/core/light/util/parent.hpp>
+#include <neb/gfx/core/light/Base.hpp>
+#include <neb/gfx/core/light/util/Parent.hpp>
 
 /*std::weak_ptr<neb::gfx::core::scene::base>		neb::gfx::core::light::util::parent::getScene() {
 	auto shape = isShapeBase();
@@ -19,7 +19,7 @@ void			neb::gfx::core::light::util::parent::setPose(neb::fnd::math::pose const &
 	
 	auto lambda_light = [&] (map_type::pointer p) {
 		
-		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::base>(p);
+		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::Base>(p);
 		assert(light);
 		
 		//if(i == neb::fnd::light::light_max) return L::map_type::BREAK;
@@ -41,7 +41,7 @@ void			neb::gfx::core::light::util::parent::load_lights(
 
 	auto lambda_light = [&] (map_type::pointer p) {
 
-		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::base>(p);
+		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::Base>(p);
 		assert(light);
 
 		//if(i == neb::fnd::light::light_max) return L::map_type::BREAK;
