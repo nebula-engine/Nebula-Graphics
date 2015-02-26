@@ -13,7 +13,7 @@ void		THIS::init(parent_t * const & p)
 {
 	setParent(p);
 }
-void		THIS::load(neb::fnd::glsl::program::Base const * const p)
+void		THIS::load(neb::fnd::glsl::program::Base * const & p)
 {
 	assert(p);
 

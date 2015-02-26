@@ -13,6 +13,7 @@
 
 #include <neb/fnd/util/debug.hpp>
 #include <neb/fnd/core/actor/base.hpp>
+#include <neb/fnd/camera/proj/Base.hpp>
 
 //#include <neb/phx/test.hpp>
 
@@ -38,9 +39,19 @@ THIS::Perspective():
 	
 	renderable_ = renderable;
 }*/
-glm::mat4&		THIS::proj()
+glm::mat4		THIS::proj()
 {
 	return _M_matrix;
+}
+void			THIS::init(parent_t * const & parent)
+{
+	setParent(parent);
+}
+void			THIS::calculate_geometry()
+{
+}
+void			THIS::release()
+{
 }
 void			THIS::set(float fovy, float near, float far)
 {
@@ -54,17 +65,21 @@ void			THIS::calculate()
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 
 	auto parent = getParent();
+	auto fnd_env = parent->getParent();
+	auto env = std::dynamic_pointer_cast<neb::gfx::environ::base>(fnd_env->G::get_object());
+	
+	neb::gfx::Viewport& vp = env->viewport_;
 
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "fovy" << ::std::setw(8) << fovy_;
-	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "aspect" << ::std::setw(8) << parent->viewport_.aspect_;
+	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "aspect" << ::std::setw(8) << vp.aspect_;
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zn" << ::std::setw(8) << zn_;
 	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zf" << ::std::setw(8) << zf_;
 	
-	if(parent->viewport_.aspect_ == 0.0) {
-		parent->viewport_.aspect_ = 1.0;
+	if(vp.aspect_ == 0.0) {
+		vp.aspect_ = 1.0;
 	}
 
-	_M_matrix = glm::perspective(fovy_, parent->viewport_.aspect_, zn_, zf_);
+	_M_matrix = glm::perspective(fovy_, vp.aspect_, zn_, zf_);
 
 	calculate_geometry();
 }

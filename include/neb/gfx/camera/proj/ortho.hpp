@@ -13,10 +13,10 @@ namespace neb {namespace gfx {namespace camera {namespace proj {
 	{
 		public:
 			Ortho();
-
-			virtual glm::mat4&			proj();
+			virtual void				init(parent_t * const & parent);
+			virtual void				calculate_geometry();
+			virtual glm::mat4			proj();
 			virtual void				calculate();
-
 			virtual void				step(gal::etc::timestep const & ts);
 			void					set(float,float,float,float,float,float);
 		protected:

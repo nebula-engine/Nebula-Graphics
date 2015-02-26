@@ -9,11 +9,13 @@ namespace neb { namespace gfx {namespace camera { namespace proj {
 	{
 		public:
 			Perspective();
-			virtual glm::mat4&			proj();
+			virtual glm::mat4			proj();
 			virtual void				calculate();
+			virtual void				init(parent_t * const &);
+			virtual void				calculate_geometry();
 			/** @brief step */
-			void					step(gal::etc::timestep const & ts);
-
+			virtual void				step(gal::etc::timestep const & ts);
+			virtual void				release();
 			//
 			void					set(float,float,float);
 		private:

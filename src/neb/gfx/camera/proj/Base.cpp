@@ -29,7 +29,7 @@ typedef neb::gfx::camera::proj::Base THIS;
 THIS::Base()
 {
 }
-void		THIS::load(neb::fnd::glsl::program::Base const * const p)
+void		THIS::load(neb::fnd::glsl::program::Base * const & p)
 {	
 	//glViewport(0, 0, parent_->viewport_.w_, parent_->viewport_.h_);
 	

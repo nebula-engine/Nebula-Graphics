@@ -28,7 +28,7 @@ namespace neb { namespace gfx { namespace camera { namespace view {
 			Base();
 			virtual void					init(parent_t * const & p);
 			/** @brief Load view matrix into GLSL. */
-			void						load(neb::fnd::glsl::program::Base const * const p);
+			void						load(neb::fnd::glsl::program::Base * const & p);
 			/** @brief Get view matrix. */
 			virtual glm::mat4				view() = 0;
 			/** @brief Step

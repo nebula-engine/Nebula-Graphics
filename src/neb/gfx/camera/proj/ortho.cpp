@@ -13,7 +13,17 @@ THIS::Ortho():
 	far_(100)
 {
 }
-glm::mat4&			neb::gfx::camera::proj::Ortho::proj() {
+void				THIS::init(parent_t * const & parent)
+{
+	setParent(parent);
+
+	neb::gfx::camera::proj::Base::init(parent);
+}
+void				THIS::calculate_geometry()
+{
+}
+glm::mat4			THIS::proj()
+{
 	return _M_matrix;
 }
 void				neb::gfx::camera::proj::Ortho::set(
