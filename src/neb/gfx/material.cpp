@@ -1,7 +1,6 @@
 //#include <stdio.h> removed by c_header_checker
 
-//#include <neb/fnd/core/scene/base.hpp>
-
+//#include <neb/fnd/core/scene/Base.hpp>
 //#include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/material.hpp>
 //#include <neb/gfx/glsl/program/threed.hpp>

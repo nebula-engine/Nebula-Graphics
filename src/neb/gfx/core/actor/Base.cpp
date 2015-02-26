@@ -5,11 +5,10 @@
 #include <neb/fnd/util/decl.hpp>
 #include <neb/fnd/util/config.hpp>
 #include <neb/fnd/util/log.hpp>
-#include <neb/fnd/core/scene/base.hpp>
-
+#include <neb/fnd/core/scene/Base.hpp>
 #include <neb/fnd/timer/actor/Base.hpp>
 #include <neb/fnd/plug/gfx/core/shape/Base.hpp>
-#include <neb/fnd/core/actor/base.hpp>
+#include <neb/fnd/core/actor/Base.hpp>
 
 //#include <neb/gfx/window/util/signals.hpp>
 #include <neb/gfx/core/actor/base.hpp>

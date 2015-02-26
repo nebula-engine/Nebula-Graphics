@@ -3,8 +3,7 @@
 #include <gal/stl/deleter.hpp>
 
 #include <neb/fnd/util/debug.hpp>
-#include <neb/fnd/core/scene/base.hpp>
-
+#include <neb/fnd/core/scene/Base.hpp>
 #include <neb/gfx/drawable/base.hpp>
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/context/Base.hpp>

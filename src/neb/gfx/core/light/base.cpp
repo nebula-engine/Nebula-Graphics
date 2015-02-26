@@ -6,7 +6,7 @@
 #include <neb/fnd/util/debug.hpp>
 #include <neb/fnd/util/decl.hpp>
 #include <neb/fnd/util/log.hpp>
-#include <neb/fnd/core/scene/base.hpp>
+#include <neb/fnd/core/scene/Base.hpp>
 #include <neb/fnd/core/shape/base.hpp>
 
 //#include <neb/gfx/app/__gfx_glsl.hpp> removed by c_header_checker

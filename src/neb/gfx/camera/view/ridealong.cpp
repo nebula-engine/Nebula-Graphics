@@ -4,7 +4,7 @@
 //#include <gal/log/log.hpp> removed by c_header_checker
 
 //#include <neb/fnd/util/debug.hpp> removed by c_header_checker
-#include <neb/fnd/core/actor/base.hpp>
+#include <neb/fnd/core/actor/Base.hpp>
 
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/camera/view/Ridealong.hpp>
