@@ -8,30 +8,30 @@
 
 #include <neb/gfx/util/log.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/core/light/spot.hpp>
+#include <neb/gfx/core/light/Spot.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 
 //#include <neb/gfx/core/scene/base.hpp> removed by c_header_checker
 
-typedef neb::gfx::core::light::spot THIS;
+typedef neb::gfx::core::light::Spot THIS;
 
-THIS::spot()
+THIS::Spot()
 {
 }
 neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::SPOT;
 }
-void			THIS::init(neb::fnd::core::light::util::parent * const & p)
+void			THIS::init(parent_t * const & p)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
 	setParent(p);
 
-	neb::gfx::core::light::base::init(p);
+	neb::gfx::core::light::Base::init(p);
 }
-void			neb::gfx::core::light::spot::load(
+void			THIS::load(
 		neb::fnd::core::light::util::count & light_count,
 		neb::fnd::math::pose const & pose) {
 
@@ -56,7 +56,9 @@ void			neb::gfx::core::light::spot::load(
 	light_count.spot++;
 	*/
 }
-void		neb::gfx::core::light::spot::callbackPose(neb::fnd::math::pose const & gpose)
+void		THIS::v_set_pose_data(
+		FND * const & fnd,
+		neb::fnd::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
@@ -64,7 +66,7 @@ void		neb::gfx::core::light::spot::callbackPose(neb::fnd::math::pose const & gpo
 	light_array_slot_->set<0>(gpose.pos_);
 	light_array_slot_->set<7>(gpose.rot_ * spot_direction_);
 }
-void		neb::gfx::core::light::spot::setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) {
+void		THIS::setShadowEnviron(std::shared_ptr<neb::gfx::environ::base> environ) {
 /*
 	assert(environ);
 	shadow_environ_ = environ;
@@ -131,14 +133,14 @@ void		THIS::load(ba::polymorphic_iarchive & ar, unsigned int const &)
 	LOG(lg, neb::gfx::core::light::sl, debug) << __FUNCSIG__;
 
 	BOOST_SERIALIZATION_BASE_OBJECT_NVP(gal::itf::shared);
-	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
+	//BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::Base);
 }
 void		THIS::save(ba::polymorphic_oarchive & ar, unsigned int const &) const
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __FUNCSIG__;
 
 	BOOST_SERIALIZATION_BASE_OBJECT_NVP(gal::itf::shared);
-	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
+	//BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::Base);
 }
 
 

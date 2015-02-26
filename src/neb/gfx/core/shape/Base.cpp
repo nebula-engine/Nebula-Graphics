@@ -9,9 +9,9 @@
 #include <neb/gfx/util/io.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/core/shape/base.hpp>
-#include <neb/gfx/core/light/point.hpp>
-#include <neb/gfx/core/light/spot.hpp>
-#include <neb/gfx/core/light/directional.hpp>
+#include <neb/gfx/core/light/Point.hpp>
+#include <neb/gfx/core/light/Spot.hpp>
+#include <neb/gfx/core/light/Directional.hpp>
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>

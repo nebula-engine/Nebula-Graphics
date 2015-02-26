@@ -13,7 +13,7 @@ typedef neb::gfx::core::light::Point P;
 typedef neb::gfx::core::light::Spot S;
 typedef neb::gfx::core::light::Directional D;
 
-extern "C" T0*	shape_create(int i)
+extern "C" T0*	light_create(int i)
 {
 	switch(i) {
 	case NS0::type::POINT:
@@ -23,12 +23,13 @@ extern "C" T0*	shape_create(int i)
 	case NS0::type::DIRECTIONAL:
 		return new D;
 	default:
+		printf("error: invalid type: %i\n", i);
 		abort();
 	}
 	
 	return 0;
 }
-extern "C" void	shape_destroy(T0* t)
+extern "C" void	light_destroy(T0* t)
 {
 	std::cout << __PRETTY_FUNCTION__ << std::endl;
 	delete t;

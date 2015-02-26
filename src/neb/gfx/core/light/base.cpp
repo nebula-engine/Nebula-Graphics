@@ -17,11 +17,11 @@
 //#include <neb/gfx/camera/view/Base.hpp> removed by c_header_checker
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/core/scene/base.hpp>
-#include <neb/gfx/core/light/base.hpp>
+#include <neb/gfx/core/light/Base.hpp>
 
-typedef neb::gfx::core::light::base THIS;
+typedef neb::gfx::core::light::Base THIS;
 
-THIS::base():
+THIS::Base():
 	ambient_(0.2,0.2,0.2,1.0),
 	diffuse_(neb::fnd::math::color::color::white()),
 	specular_(neb::fnd::math::color::color::white()),
@@ -39,25 +39,28 @@ THIS::base():
 	shadow_sampler_[1] = glm::vec3(-1);
 
 }
-THIS::~base()
+THIS::~Base()
 {
 }
-void			THIS::init(neb::fnd::core::light::util::parent * const & p)
+void			THIS::init(parent_t * const & p)
 {
 	printv(debug, "%s\n", __PRETTY_FUNCTION__);
 
 	setParent(p);
 
 	// check if detached
+	/*
 	if(!hasScene()) {
 		std::cout << "skip initialization" << std::endl;
 		return;
 	}
-
-	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());
-	assert(scene);
-
-	auto pose = getPoseGlobal();
+	*/
+	
+	auto scene_fnd = dynamic_cast<neb::fnd::core::scene::base*>(getParent()->getScene());
+	assert(scene_fnd);
+	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(scene_fnd->G::get_object().get());
+	
+	auto pose = getParent()->getPoseGlobal();
 
 	// register in light_array
 	light_array_ = 0;
@@ -119,10 +122,11 @@ void			THIS::init(neb::fnd::core::light::util::parent * const & p)
 				);
 	}
 }
-void			THIS::setPose(neb::fnd::math::pose const & npose) {
-	pose_ = npose;
+void			THIS::setPose(neb::fnd::math::pose const & npose)
+{
+	getParent()->pose_ = npose;
 
-	auto pose = getPoseGlobal();
+	auto pose = getParent()->getPoseGlobal();
 
 	light_array_slot_->set<0>(pose.pos_);
 	light_array_slot_->set<7>(pose.rot_ * spot_direction_);

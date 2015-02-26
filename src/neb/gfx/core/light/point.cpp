@@ -5,7 +5,7 @@
 #include <neb/fnd/util/debug.hpp>
 #include <neb/fnd/util/log.hpp>
 #include <neb/fnd/window/Base.hpp>
-#include <neb/fnd/core/light/util/parent.hpp>
+//#include <neb/fnd/core/light/util/parent.hpp>
 //#include <neb/fnd/context/FBOM.hpp> removed by c_header_checker
 #include <neb/fnd/environ/shadow/Point.hpp>
 #include <neb/fnd/environ/shadow/Directional.hpp>
@@ -13,7 +13,7 @@
 
 #include <neb/gfx/app/base.hpp>
 #include <neb/gfx/window/Base.hpp>
-#include <neb/gfx/core/light/point.hpp>
+#include <neb/gfx/core/light/Point.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/environ/shadow/point.hpp>
@@ -23,18 +23,17 @@
 #include <neb/gfx/context/fbo_multi.hpp>
 #include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/util/log.hpp>
-
 #include <neb/gfx/core/scene/base.hpp>
 
-typedef neb::gfx::core::light::point THIS;
+typedef neb::gfx::core::light::Point THIS;
 
-THIS::point()
+THIS::Point()
 {}
 neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::POINT;
 }
-void	neb::gfx::core::light::point::load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose) {
+void	THIS::load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose) {
 
 	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	assert(0);
@@ -50,16 +49,17 @@ void	neb::gfx::core::light::point::load(neb::fnd::core::light::util::count & lig
 		  light_count.point++;
 		  */
 }
-void			neb::gfx::core::light::point::init(neb::fnd::core::light::util::parent * const & p)
+void			THIS::init(parent_t * const & p)
 {
 	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
 	setParent(p);
 
-	neb::gfx::core::light::base::init(p);
-	
+	neb::gfx::core::light::Base::init(p);
 }	
-void			THIS::callbackPose(neb::fnd::math::pose const & gpose)
+void			THIS::v_set_pose_data(
+		FND * const & fnd,
+		neb::fnd::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
@@ -71,9 +71,11 @@ void			THIS::initShadow(
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	// scene
+
+	/*
 	auto scene = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(getScene()->shared_from_this());
 	
-	auto self = std::dynamic_pointer_cast<neb::gfx::core::light::point>(shared_from_this());
+	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
 	
 	auto app = get_fnd_app();
 
@@ -95,9 +97,10 @@ void			THIS::initShadow(
 
 	// where shadows are rendered
 	//environ->setSceneEnviron(e3);
+	*/
 	abort();
 }
-void			neb::gfx::core::light::point::setShadowEnviron(
+void			THIS::setShadowEnviron(
 		std::shared_ptr<neb::fnd::environ::Base> environ)
 {
 	assert(environ);
@@ -129,6 +132,7 @@ void			neb::gfx::core::light::point::setShadowEnviron(
 	*/
 	abort();
 
+	/*
 	auto scene = dynamic_cast<neb::gfx::core::scene::base*>(getScene());//getScene();
 
 	// request texture layers
@@ -150,22 +154,22 @@ void			neb::gfx::core::light::point::setShadowEnviron(
 
 	light_array_slot_->set<16>(shadow_sampler_[0]);
 	light_array_slot_->set<17>(shadow_sampler_[1]);
+	*/
 }
 void		THIS::load(ba::polymorphic_iarchive & ar, unsigned int const & v)
 {
 	LOG(lg, neb::fnd::core::shape::sl, debug) << __FUNCSIG__;
 
 	gal::itf::shared::serialize(ar, v);
-	neb::fnd::core::light::base::load(ar, v);
-	neb::gfx::core::light::base::load(ar, v);
+	neb::gfx::core::light::Base::load(ar, v);
 }
 void		THIS::save(ba::polymorphic_oarchive & ar, unsigned int const & v) const
 {
 	LOG(lg, neb::fnd::core::shape::sl, debug) << __FUNCSIG__;
 
 	const_cast<THIS*>(this)->gal::itf::shared::serialize(ar, v);
-	neb::fnd::core::light::base::save(ar, v);
-	neb::gfx::core::light::base::save(ar, v);
+	//neb::fnd::core::light::base::save(ar, v);
+	neb::gfx::core::light::Base::save(ar, v);
 }
 
 

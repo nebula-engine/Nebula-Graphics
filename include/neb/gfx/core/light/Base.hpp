@@ -41,7 +41,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 			using neb::fnd::itf::verbosity<neb::gfx::core::light::Base>::printv;
 			Base();
 			~Base() = 0;
-			virtual void					init(neb::fnd::core::light::util::parent * const & p);
+			virtual void					init(parent_t * const & p);
 			virtual type::e					getType() = 0;
 			virtual void					release();
 			virtual void					cleanup();

@@ -12,7 +12,7 @@
 #include <neb/fnd/core/light/util/light_count.hpp>
 #include <neb/fnd/plug/gfx/core/shape/Base.hpp>
 
-#include <neb/gfx/core/light/util/parent.hpp>
+#include <neb/gfx/core/light/util/Parent.hpp>
 #include <neb/gfx/texture/Base.hpp>
 #include <neb/gfx/material.hpp>
 #include <neb/gfx/mesh/tri1.hpp>

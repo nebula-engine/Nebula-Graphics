@@ -4,10 +4,10 @@
 #include <neb/fnd/context/FBO.hpp>
 #include <neb/fnd/environ/shadow/Directional.hpp>
 
-#include <neb/gfx/core/light/directional.hpp>
+#include <neb/gfx/core/light/Directional.hpp>
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/app/base.hpp>
-#include <neb/gfx/core/light/base.hpp>
+#include <neb/gfx/core/light/Base.hpp>
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/glsl/uniform/vector.hpp>
@@ -17,9 +17,9 @@
 //#include <neb/gfx/util/log.hpp> removed by c_header_checker
 #include <neb/gfx/core/scene/base.hpp>
 
-typedef neb::gfx::core::light::directional THIS;
+typedef neb::gfx::core::light::Directional THIS;
 
-THIS::directional()
+THIS::Directional()
 {
 
 }
@@ -27,12 +27,14 @@ neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::DIRECTIONAL;
 }
-void					THIS::init(neb::fnd::core::light::util::parent * const & p)
+void					THIS::init(parent_t * const & p)
 {
 	setParent(p);
 	
-	neb::gfx::core::light::base::init(p);
+	neb::gfx::core::light::Base::init(p);
 	
+
+	/* shadow stuff
 	auto scene = std::dynamic_pointer_cast<neb::gfx::core::scene::base>(getScene()->shared_from_this());
 
 	auto self = std::dynamic_pointer_cast<neb::gfx::core::light::directional>(shared_from_this());
@@ -55,9 +57,11 @@ void					THIS::init(neb::fnd::core::light::util::parent * const & p)
 	environ->setLight(self);
 
 	setShadowEnviron(environ);
-
+	*/
 }
-void					THIS::callbackPose(neb::fnd::math::pose const & gpose)
+void					THIS::v_set_pose_data(
+		FND * const & fnd,
+		neb::fnd::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
@@ -68,6 +72,8 @@ void					THIS::callbackPose(neb::fnd::math::pose const & gpose)
 }
 void					THIS::setShadowEnviron(std::shared_ptr<neb::fnd::environ::Base> environ)
 {
+	abort();
+	/*
 	assert(environ);
 	
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::directional>(environ);
@@ -101,21 +107,21 @@ void					THIS::setShadowEnviron(std::shared_ptr<neb::fnd::environ::Base> environ
 	light_array_slot_->set<10>(shadow_vpb_[0]);
 			
 	light_array_slot_->set<16>(shadow_sampler_[0]);
-
+	*/
 }
 void					THIS::load(ba::polymorphic_iarchive & ar, unsigned int const &)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
 	BOOST_SERIALIZATION_BASE_OBJECT_NVP(gal::itf::shared);
-	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
+	//BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
 }
 void		THIS::save(ba::polymorphic_oarchive & ar, unsigned int const &) const
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 
 	BOOST_SERIALIZATION_BASE_OBJECT_NVP(gal::itf::shared);
-	BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
+	//BOOST_SERIALIZATION_BASE_OBJECT_NVP(neb::fnd::core::light::base);
 }
 
 
