@@ -60,13 +60,6 @@ namespace neb {
 			class fbo;
 		}
 
-		/**@brief %environ */
-		namespace environ {
-			class base;
-			class two;
-			class three;
-			class SceneDefault;
-		}
 
 		/**@brief %environ */
 		namespace drawable {

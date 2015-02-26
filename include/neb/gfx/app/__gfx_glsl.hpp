@@ -15,6 +15,7 @@
 #include <neb/fnd/app/Base.hpp>
 #include <neb/fnd/plug/gfx/app/Base.hpp>
 
+#include <neb/gfx/environ/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 
@@ -25,7 +26,7 @@ namespace neb { namespace gfx { namespace app {
 		public:
 			//typedef std::map<int, std::shared_ptr<neb::gfx::glsl::program::Base> >		map_program_type;
 			friend class neb::gfx::environ::base;
-			friend class neb::gfx::environ::two;
+			friend class neb::gfx::environ::Two;
 			friend class neb::gfx::environ::three;
 		protected:
 			void								__init();

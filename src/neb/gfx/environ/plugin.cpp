@@ -10,7 +10,7 @@ namespace NS1 = neb::gfx::environ;
 typedef NS0::Base T0;
 
 typedef NS1::SceneDefault SD;
-typedef NS1::SceneDefault T;
+typedef NS1::Two T;
 
 extern "C" T0*	environ_create(int i)
 {

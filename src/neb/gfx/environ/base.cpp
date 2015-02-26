@@ -2,6 +2,7 @@
 
 void		neb::gfx::environ::base::init(parent_t * const & p)
 {
+	setParent(p);
 }
 void		neb::gfx::environ::base::step(gal::etc::timestep const & ts)
 {

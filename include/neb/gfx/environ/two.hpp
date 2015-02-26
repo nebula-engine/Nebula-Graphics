@@ -10,12 +10,12 @@ namespace neb { namespace gfx { namespace environ {
 	 *
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable
 	 */
-	class two:
+	class Two:
 		virtual public neb::gfx::environ::base
 	{
 		public:
 			virtual void		render(
-					std::shared_ptr<neb::gfx::context::base> context);
+					neb::fnd::context::Base * const & context);
 			//std::shared_ptr<neb::gfx::drawable::two>		drawable_;
 	};
 }}}

@@ -8,9 +8,11 @@ namespace neb { namespace gfx {
 		namespace util {
 		}
 
+
 		class base;
-		class two;
+		class Two;
 		class three;
+		class SceneDefault;
 		namespace shadow {
 			class point;
 			class spot;

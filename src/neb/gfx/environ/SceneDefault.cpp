@@ -67,7 +67,11 @@ void		THIS::render(neb::fnd::context::Base * const & context)
 	//proj_->load(program_);
 	//view_->load(program_);
 
+	assert(getParent()->get_view());
 	auto view = getParent()->get_view().get();
+	
+
+	assert(getParent()->proj_);
 	auto proj = getParent()->proj_.get();
 	
 

@@ -3,6 +3,7 @@
 
 #include <neb/fnd/itf/shared.hpp>
 
+#include <neb/gfx/environ/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace environ { namespace util {
@@ -11,7 +12,7 @@ namespace neb { namespace gfx { namespace environ { namespace util {
 		virtual public neb::fnd::itf::shared
 	{
 		public:
-			std::shared_ptr<neb::gfx::environ::two>		isEnvironTwo();
+			std::shared_ptr<neb::gfx::environ::Two>		isEnvironTwo();
 			std::shared_ptr<neb::gfx::environ::three>	isEnvironThree();
 	};
 

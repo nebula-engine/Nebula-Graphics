@@ -15,11 +15,12 @@
 #include <neb/fnd/math/color/color.hpp>
 #include <neb/fnd/util/decl.hpp>
 
-#include <neb/gfx/glsl/uniform/light_array.hpp>
 #include <neb/gfx/core/scene/util/decl.hpp>
-#include <neb/gfx/util/decl.hpp>
+#include <neb/gfx/environ/util/decl.hpp>
+#include <neb/gfx/glsl/uniform/light_array.hpp>
 #include <neb/gfx/texture/util/decl.hpp>
 #include <neb/gfx/tmp/Child.hpp>
+#include <neb/gfx/util/decl.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace light {
 

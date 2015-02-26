@@ -7,7 +7,8 @@
 //#include <neb/gfx/glsl/program/base.hpp> removed by c_header_checker
 #include <neb/fnd/RenderDesc.hpp>
 
-void		neb::gfx::environ::two::render(std::shared_ptr<neb::gfx::context::base> context)
+void			neb::gfx::environ::Two::render(
+		neb::fnd::context::Base * const & context)
 {
 	/**
 	 * prepare rendering environment and then call the drawable

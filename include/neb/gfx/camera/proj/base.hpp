@@ -12,6 +12,7 @@
 
 #include <neb/gfx/tmp/Child.hpp>
 #include <neb/gfx/camera/proj/util/cast.hpp>
+#include <neb/gfx/environ/util/decl.hpp>
 #include <neb/gfx/util/decl.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 
