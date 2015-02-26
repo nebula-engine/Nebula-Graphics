@@ -9,11 +9,12 @@
 
 #include <gal/etc/slots.hpp>
 
-#include <neb/fnd/core/light/base.hpp>
 #include <neb/fnd/environ/util/decl.hpp>
 #include <neb/fnd/math/serialization/glm.hpp>
 #include <neb/fnd/math/color/color.hpp>
 #include <neb/fnd/util/decl.hpp>
+
+#include <neb/fnd/plug/gfx/core/light/Base.hpp>
 
 #include <neb/gfx/core/scene/util/decl.hpp>
 #include <neb/gfx/environ/util/decl.hpp>
@@ -32,15 +33,14 @@ namespace neb { namespace gfx { namespace core { namespace light {
 		};
 	};
 
-	class base:
-		public neb::fnd::itf::verbosity<neb::gfx::core::light::base>,
-		virtual public neb::fnd::core::light::base,
-		virtual public neb::gfx::tmp::Child<neb::fnd::core::light::util::parent>
+	class Base:
+		public neb::fnd::itf::verbosity<neb::gfx::core::light::Base>,
+		virtual public neb::fnd::plug::gfx::core::light::Base
 	{
 		public:
-			using neb::fnd::itf::verbosity<neb::gfx::core::light::base>::printv;
-			base();
-			~base() = 0;
+			using neb::fnd::itf::verbosity<neb::gfx::core::light::Base>::printv;
+			Base();
+			~Base() = 0;
 			virtual void					init(neb::fnd::core::light::util::parent * const & p);
 			virtual type::e					getType() = 0;
 			virtual void					release();
@@ -69,8 +69,8 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				ar & boost::serialization::make_nvp("atten_quad",atten_quad_);
 			}
 		public:
-			virtual void					load(ba::polymorphic_iarchive & ar, unsigned int const &);
-			virtual void					save(ba::polymorphic_oarchive & ar, unsigned int const &) const;
+			virtual void					load(boost::archive::polymorphic_iarchive & ar, unsigned int const &);
+			virtual void					save(boost::archive::polymorphic_oarchive & ar, unsigned int const &) const;
 			BOOST_SERIALIZATION_SPLIT_MEMBER();
 		public:
 			std::string					light_type_string_;

@@ -2,14 +2,16 @@
 #define NEBULA_LIGHT_DIRECTIONAL_HH
 
 #include <neb/fnd/environ/util/decl.hpp>
-#include <neb/gfx/core/light/base.hpp>
+#include <neb/gfx/core/light/Base.hpp>
 
 namespace neb { namespace gfx { namespace core { namespace light {
 	/** @brief
 	 */
-	class directional: virtual public neb::gfx::core::light::base {
+	class Directional:
+		virtual public neb::gfx::core::light::Base
+	{
 		public:
-			directional();
+			Directional();
 			virtual void		init(neb::fnd::core::light::util::parent * const & p);
 			virtual type::e		getType();
 			virtual void		callbackPose(neb::fnd::math::pose const &);

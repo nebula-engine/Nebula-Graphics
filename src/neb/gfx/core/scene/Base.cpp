@@ -31,6 +31,8 @@ void			THIS::init(parent_t * const & p)
 {
 	LOG(lg, neb::gfx::core::scene::sl, debug) << __PRETTY_FUNCTION__;
 
+	setParent(p);
+
 	// graphics
 
 	// use _M_programs._M_d3 as completion flag

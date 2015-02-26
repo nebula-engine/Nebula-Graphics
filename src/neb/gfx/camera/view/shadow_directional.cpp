@@ -1,5 +1,5 @@
 #include <neb/fnd/camera/view/Base.hpp>
-#include <neb/fnd/camera/view/shadow/directional.hpp>
+#include <neb/fnd/camera/view/shadow/Directional.hpp>
 
 #include <neb/gfx/environ/shadow/directional.hpp>
 #include <neb/gfx/environ/vis_depth.hpp>
