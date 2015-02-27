@@ -172,7 +172,7 @@ void		THIS::render()
 
 	auto lamb = [] (C::map_type::pointer p)
 	{
-		printv(DEBUG, "lamb");
+		//printv(DEBUG, "lamb");
 	
 		//auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
 		//assert(context);
