@@ -3,16 +3,15 @@
 
 #include <GLFW/glfw3.h>
 
-#include <neb/fnd/itf/verbosity.hpp>
+#include <gal/stl/verbosity.hpp>
 
 namespace neb { namespace gfx { namespace glsl {
 	class shader:
-		public neb::fnd::itf::verbosity<neb::gfx::glsl::shader>
+		public gal::tmp::Verbosity<neb::gfx::glsl::shader>
 	{
-		public:
-			void	load(const char * filename, GLenum shader_type);
-
-			GLuint	o_;
+	public:
+		void		load(const char * filename, GLenum shader_type);
+		GLuint		o_;
 	};
 }}}
 

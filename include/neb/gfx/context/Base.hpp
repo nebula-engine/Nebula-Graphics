@@ -4,6 +4,7 @@
 #include <memory>
 
 #include <gal/stl/child.hpp>
+#include <gal/stl/verbosity.hpp>
 
 #include <neb/fnd/context/util/decl.hpp>
 #include <neb/fnd/util/decl.hpp>
@@ -34,10 +35,12 @@ namespace neb { namespace gfx { namespace context {
 	 * such that things like layouts are render ON TOP of existing scene.'
 	 */
 	class base:
+		virtual public gal::tmp::Verbosity<neb::gfx::context::base>,
 		virtual public neb::fnd::plug::gfx::context::Base,
 		virtual public neb::gfx::context::util::cast
 	{
 		public:
+			using gal::tmp::Verbosity<neb::gfx::context::base>::printv;
 			//typedef neb::fnd::context::util::Parent parent_t;
 			base();
 			//base&							operator=(base const & r);

@@ -1,4 +1,9 @@
 #include <neb/fnd/except/base.hpp>
+
+#include <neb/gfx/core/scene/base.hpp>
+#include <neb/gfx/core/actor/base.hpp>
+#include <neb/gfx/core/shape/base.hpp>
+#include <neb/gfx/core/light/Base.hpp>
 #include <neb/gfx/app/base.hpp>
 
 typedef neb::gfx::app::Base THIS;
@@ -30,6 +35,12 @@ std::weak_ptr<THIS>			THIS::initialize()
 void					THIS::init(parent_t * const & p)
 {
 	setParent(p);
+
+	// gfx
+	gal::tmp::VerbosityRegister::reg<neb::gfx::core::scene::base>("neb gfx core scene base");
+	gal::tmp::VerbosityRegister::reg<neb::gfx::core::actor::base>("neb gfx core actor base");
+	gal::tmp::VerbosityRegister::reg<neb::gfx::core::shape::base>("neb gfx core shape base");
+	gal::tmp::VerbosityRegister::reg<neb::gfx::core::light::Base>("neb gfx core light base");
 
 	neb::gfx::app::draw::__init();
 	neb::gfx::app::glfw::__init();

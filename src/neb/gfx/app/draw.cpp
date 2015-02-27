@@ -8,20 +8,14 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-//#include <GL/gl.h>
-
-#include <gal/log/log.hpp>
 
 #include <neb/fnd/util/debug.hpp>
 
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/app/__gfx_glsl.hpp>
-//#include <neb/gfx/window/Base.hh>
 #include <neb/gfx/glsl/program/base.hpp>
 #include <neb/gfx/glsl/util/decl.hpp>
 #include <neb/gfx/free.hpp>
-#include <neb/gfx/util/log.hpp>
-#include <neb/gfx/util/log.hpp>
 #include <neb/gfx/app/__gfx.hpp>
 #include <neb/gfx/window/Base.hpp>
 #include <neb/gfx/gui/layout/base.hpp>
@@ -30,7 +24,7 @@ typedef neb::gfx::app::draw THIS;
 
 void		THIS::__init()
 {
-	printf("%s\n", __PRETTY_FUNCTION__);
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	std::vector<std::string> fontfiles({
 		"/usr/share/fonts/msttcorefonts/cour.ttf",
@@ -40,7 +34,7 @@ void		THIS::__init()
 	//FT_Library ft;
 	if(FT_Init_FreeType(&ft_))
 	{
-		printf("could not find freetype library\n");
+		printv(gal::tmp::CRITICAL, "could not find freetype library\n");
 		exit(0);
 	}
 
@@ -48,14 +42,14 @@ void		THIS::__init()
 	for(auto s : fontfiles) {
 		result = FT_New_Face(ft_, s.c_str(), 0, &face_);
 		if(result) {
-			::std::cout << "could not open font " << s << ::std::endl;
+			printv(gal::tmp::INFO, "could not open font %s\n", s.c_str());
 		} else {
 			break;
 		}
 	}
-
+	
 	if(result) {
-		printf("Count not open any fonts\n");
+		printv(gal::tmp::CRITICAL, "Count not open any fonts\n");
 		abort();
 	}
 }
@@ -114,7 +108,7 @@ void			THIS::draw_quad(
 		float h,
 		neb::fnd::math::color::color color)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	//GLint uniform_color = glGetUniformLocation(program, "color");
 	//GLint attribute_coord = glGetAttribLocation(program, "coord");
@@ -175,9 +169,9 @@ void			THIS::draw_text(
 		std::string text,
 		std::string::size_type cursor_pos)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	LOG(lg, neb::gfx::sl, debug) << "\"" << text << "\"";
-
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(gal::tmp::DEBUG, "text: \"%s\"\n", text.c_str());
+	
 	int window_width, window_height;
 	glfwGetWindowSize(glfwGetCurrentContext(), &window_width, &window_height);
 	
@@ -189,10 +183,8 @@ void			THIS::draw_text(
 	//auto p = app->get_program_text();
 	auto p = get_program_text();
 	p->use();
-
-	LOG(lg, neb::gfx::sl, debug)
-		<< std::setw(8) << x
-		<< std::setw(8) << y;
+	
+	printv(gal::tmp::DEBUG, "%8i %8i\n", x, y);
 
 	// face
 	FT_Face& face  = face_;
@@ -203,7 +195,7 @@ void			THIS::draw_text(
 
 	if(FT_Load_Char(face, 'X', FT_LOAD_RENDER))
 	{
-		printf("could not load character 'X'\n");
+		printv(gal::tmp::CRITICAL, "could not load character 'X'\n");
 		exit(1);
 	}
 

@@ -27,7 +27,6 @@
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/SceneDefault.hpp>
 #include <neb/gfx/window/util/Parent.hpp>
-#include <neb/gfx/util/log.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
 #include <neb/gfx/window/Base.hpp>
@@ -50,13 +49,11 @@ THIS::~Base()
 }
 void			THIS::init(parent_t * const & p)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+
 	if(p == NULL) return;
 
 	setParent(p);
-	
-
 	
 	auto app = get_fnd_app();
 
@@ -166,12 +163,14 @@ void			THIS::init(parent_t * const & p)
 void		THIS::release()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	glfwDestroyWindow(window_);
 }
 void		THIS::render()
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	assert(window_ != NULL);
 	glfwMakeContextCurrent(window_);
@@ -206,6 +205,7 @@ void			THIS::callback_window_refresh_fun(GLFWwindow*)
 void			THIS::step(gal::etc::timestep const & ts)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	/// @ TODO move to fnd
 	/*
@@ -221,6 +221,7 @@ void			THIS::step(gal::etc::timestep const & ts)
 void			THIS::callback_window_size_fun(GLFWwindow* window, int w, int h)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	w_ = w;
 	h_ = h;
@@ -232,6 +233,7 @@ void			THIS::callback_window_size_fun(GLFWwindow* window, int w, int h)
 void			THIS::callback_window_pos_fun(GLFWwindow* window, int x, int y)
 {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	x_ = x;
 	y_ = y;
@@ -240,11 +242,11 @@ void			THIS::callback_window_pos_fun(GLFWwindow* window, int x, int y)
 }
 void			THIS::callback_window_close_fun(GLFWwindow* window)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 }
 void			THIS::resize()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	glViewport(0, 0, w_, h_);
 

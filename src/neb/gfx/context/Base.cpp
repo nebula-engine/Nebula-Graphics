@@ -17,7 +17,6 @@
 #include <neb/gfx/gui/layout/base.hpp>
 #include <neb/gfx/camera/view/Free.hpp>
 #include <neb/gfx/camera/proj/perspective.hpp>
-#include <neb/gfx/util/log.hpp>
 
 typedef neb::gfx::context::base THIS;
 
@@ -25,7 +24,7 @@ typedef neb::gfx::context::base THIS;
 }*/
 THIS::base()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 }
 /*neb::gfx::context::base&		neb::gfx::context::base::operator=(neb::gfx::context::base const & r){
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -37,28 +36,29 @@ THIS::base()
 void		neb::gfx::context::base::release() {
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
 }*/
-void		neb::gfx::context::base::resize(int w, int h)
+void		THIS::resize(int w, int h)
 {
-	auto e = getParent()->neb::fnd::environ::util::Parent::front();
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 	/// @TODO fix this
 	//if(e) e->resize(w,h);
 }
-void		neb::gfx::context::base::step(gal::etc::timestep const & ts)
+void		THIS::step(gal::etc::timestep const & ts)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 	auto e = getParent()->neb::fnd::environ::util::Parent::front();
 	/// @TODO fix this
 	//if(e) e->step(ts);	
 }
-void		neb::gfx::context::base::render() {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+void		THIS::render()
+{
+	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
 	auto e = getParent()->neb::fnd::environ::util::Parent::front();
 	if(!e)
 	{
-		LOG(lg, neb::gfx::sl, warning) << "context has no environ";
+		printv(gal::tmp::CRITICAL, "context has no environ\n");
 		abort();
 		return;
 	}

@@ -13,6 +13,8 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
+#include <gal/stl/verbosity.hpp>
+
 #include <neb/fnd/util/decl.hpp>
 #include <neb/fnd/plug/gfx/app/Base.hpp>
 #include <neb/fnd/math/color/color.hpp>
@@ -26,9 +28,11 @@ namespace neb { namespace gfx { namespace app {
 	 * graphics and window handling
 	 */
 	class draw:
+		virtual public gal::tmp::Verbosity<neb::gfx::app::draw>,
 		virtual public neb::fnd::plug::gfx::app::Base
 	{
 		public:
+			using gal::tmp::Verbosity<neb::gfx::app::draw>::printv;
 			void			__init();
 			void			release();
 			void			step(gal::etc::timestep const & ts);
