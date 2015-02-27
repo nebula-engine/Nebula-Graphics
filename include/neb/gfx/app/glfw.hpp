@@ -10,6 +10,7 @@
 #include <boost/asio/io_service.hpp>
 #include <boost/archive/polymorphic_xml_iarchive.hpp>
 
+#include <gal/stl/verbosity.hpp>
 #include <gal/itf/shared.hpp>
 
 #include <neb/fnd/except/base.hpp>
@@ -28,9 +29,11 @@ namespace neb { namespace gfx { namespace app {
 	 * graphics and window handling
 	 */
 	class glfw:
+		public gal::tmp::Verbosity<neb::gfx::app::glfw>,
 		virtual public neb::fnd::plug::gfx::app::Base
 	{
 		public:
+			using gal::tmp::Verbosity<neb::gfx::app::glfw>::printv;
 			typedef neb::fnd::window::Base WINDOW;
 			typedef std::map< GLFWwindow*, std::weak_ptr<WINDOW> >		glfwwindow_map_type;
 			typedef std::weak_ptr<neb::fnd::window::Base>			window_w;

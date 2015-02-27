@@ -5,16 +5,21 @@
 #include <vector>
 #include <memory>
 
+#include <gal/stl/verbosity.hpp>
+
 #include <neb/gfx/util/array_basic_double_buffered.hpp>
 #include <neb/gfx/util/slot.hpp>
 
 namespace neb { namespace gfx {
 
-	template<class... T> class array_continuous:
+	template<class... T>
+	class array_continuous:
+		public gal::tmp::Verbosity< neb::gfx::array_continuous<T...> >,
 		public std::enable_shared_from_this< array_continuous<T...> >,
 		public array_basic_double_buffered<T...>
 	{
 		public:
+			using gal::tmp::Verbosity< neb::gfx::array_continuous<T...> >::printv;
 			typedef std::enable_shared_from_this< array_continuous<T...> > esft;
 
 			typedef typename gens<sizeof...(T)>::type seq_type;
@@ -33,7 +38,7 @@ namespace neb { namespace gfx {
 			}
 			slot_shared			reg(T... value)
 			{
-				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+				printv_func(DEBUG);
 
 				int index = array_basic_double_buffered<T...>::next();
 
@@ -43,8 +48,8 @@ namespace neb { namespace gfx {
 							index)
 						);
 
-				LOG(lg, neb::gfx::sl, debug) << "index = " << index;
-				LOG(lg, neb::gfx::sl, debug) << "size = " << size();
+				printv(DEBUG, "index = %i\n", index);
+				printv(DEBUG, "size  = %i\n", size());
 
 				array_basic_double_buffered<T...>::set(index, value...);
 
@@ -68,7 +73,7 @@ namespace neb { namespace gfx {
 			}
 			void					update_slots()
 			{
-				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+				printv_func(DEBUG);
 
 				// remove expired instanced
 				bool update = false;
@@ -79,7 +84,7 @@ namespace neb { namespace gfx {
 				{
 					if(it->expired())
 					{
-						LOG(lg, neb::gfx::sl, debug) << "erased";
+						printv(DEBUG, "erased\n");
 						it = slots_.erase(it);
 						update = true;
 					} else {
@@ -94,7 +99,7 @@ namespace neb { namespace gfx {
 			}
 			void					swap()
 			{
-				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+				printv_func(DEBUG);
 
 				int nsize = 0;
 				//array_basic_double_buffered<T...>::size_ = 0;
@@ -115,7 +120,7 @@ namespace neb { namespace gfx {
 				array_basic_double_buffered<T...>::swap_buffers();
 				array_basic_double_buffered<T...>::set_size(nsize);
 
-				LOG(lg, neb::gfx::sl, debug) << "size = " << nsize << " " << size();
+				printv(DEBUG, "size = %i %i\n", nsize, size());
 
 			}
 			template<int I, typename U> U*		get() {
@@ -126,9 +131,13 @@ namespace neb { namespace gfx {
 
 				mark_update(i);
 			}
-			GLsizei					size() {
+			GLsizei					size()
+			{
 				auto s = array_basic_double_buffered<T...>::size();
-				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this << " size = " << s;
+				
+				printv_func(DEBUG);
+				printv(DEBUG, "size = \n", s);
+
 				return s;
 			}
 			GLsizei					size_array() {

@@ -15,7 +15,6 @@
 #include <neb/gfx/glsl/attrib.hh>
 #include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program/threed.hpp>
-#include <neb/gfx/util/log.hpp>
 #include <neb/gfx/mesh/tri1.hpp>
 #include <neb/gfx/mesh/instanced.hpp>
 #include <neb/gfx/opengl/uniform.hpp>
@@ -26,12 +25,12 @@ typedef neb::gfx::core::shape::base THIS;
 
 THIS::base()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 }
 THIS::~base() {}
 void					THIS::init(parent_t * const & p)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	setParent(p);
 
@@ -48,10 +47,12 @@ void					THIS::step(gal::etc::timestep const & ts)
 
 	//material_front_.step(ts);
 }
-void					THIS::v_set_pose_data(neb::fnd::math::pose const & gpose)
+void				THIS::v_set_pose_data(
+		FND * const & ptr,
+		neb::fnd::math::pose const & gpose)
 {
-	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
-	LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
+	printv_func(DEBUG);
+	//LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
 
 	//neb::fnd::core::shape::base::__set_pose_data(gpose);
 
@@ -61,7 +62,7 @@ void					THIS::v_set_pose_data(neb::fnd::math::pose const & gpose)
 		auto model = gpose.mat4_cast() * glm::scale(p->scale_);
 		
 		mesh_slot_->set<0>(model);
-		LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
+		//LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
 	}
 }
 /*void					THIS::setPose(neb::fnd::math::pose const & pose)
@@ -73,6 +74,7 @@ void					THIS::v_set_pose_data(neb::fnd::math::pose const & gpose)
 	neb::gfx::core::light::util::parent::setPose(npose);
 }*/
 void					THIS::draw(
+		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
@@ -80,7 +82,7 @@ void					THIS::draw(
 
 	auto npose = pose * parent->pose_;
 	
-	draw_elements(p, npose);
+	draw_elements(ptr, p, npose);
 }
 void			THIS::drawHF(
 		neb::fnd::glsl::program::Base const * const & p,
@@ -88,9 +90,12 @@ void			THIS::drawHF(
 {
 }
 void			THIS::model_load(
+		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
+	printv_func(DEBUG);
+
 	auto parent = getParent();
 
 	glm::mat4 space = pose.mat4_cast() * glm::scale(parent->scale_);
@@ -102,10 +107,11 @@ void			THIS::model_load(
 	neb::gfx::ogl::glUniform(v, space);
 }
 void			THIS::draw_elements(
+		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+	printv_func(DEBUG);
 
 	auto parent = getParent();
 
@@ -114,14 +120,14 @@ void			THIS::draw_elements(
 	if(mesh_) {
 		mesh_->drawElements(p, pose, parent->scale_);
 	} else {
-		draw_legacy(p, pose);
+		draw_legacy(ptr, p, pose);
 	}
 }
 void			THIS::drawDebug(
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+	printv_func(DEBUG);
 	
 	auto parent = getParent();
 
@@ -134,12 +140,13 @@ void			THIS::drawDebug(
 }
 void						THIS::createMesh()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 }
 void						THIS::draw_legacy(
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
+	printv_func(DEBUG);
 }
 
 

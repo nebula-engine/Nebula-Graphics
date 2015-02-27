@@ -6,6 +6,7 @@
 
 #include <glm/glm.hpp>
 
+#include <gal/stl/verbosity.hpp>
 #include <gal/etc/timestep.hpp>
 
 #include <neb/fnd/util/decl.hpp>
@@ -20,10 +21,12 @@
 namespace neb { namespace gfx { namespace camera { namespace view {
 	/** @brief @Base */
 	class Base:
+		public gal::tmp::Verbosity<neb::gfx::camera::view::Base>,
 		virtual public neb::fnd::itf::shared,
 		virtual public neb::fnd::plug::gfx::camera::view::Base
 	{
 		public:
+			using gal::tmp::Verbosity<neb::gfx::camera::view::Base>::printv;
 			/** @brief Constructor */
 			Base();
 			virtual void					init(parent_t * const & p);

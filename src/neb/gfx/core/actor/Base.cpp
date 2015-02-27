@@ -60,10 +60,11 @@ void			THIS::draw(
 		//auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
 		//assert(shape);
 		//shape->draw(program, npose);
-		if(p->G::has_object()) {
+
+		//if(p->G::has_object()) {
 			auto pose3 = npose * p->pose_;
 			p->G::get_object()->draw(p.get(), program, pose3);
-		}
+		//}
 
 	};
 

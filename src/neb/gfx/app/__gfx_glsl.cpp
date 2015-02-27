@@ -21,7 +21,7 @@ void		THIS::__init()
 }
 void		THIS::create_programs()
 {
-	printf("%s\n", __PRETTY_FUNCTION__);
+	printv_func(DEBUG);
 
 	std::shared_ptr<neb::gfx::glsl::program::Base> p;
 

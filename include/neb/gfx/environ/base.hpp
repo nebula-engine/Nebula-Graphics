@@ -1,6 +1,7 @@
 #ifndef NEBULA_GFX_ENVIRON_BASE_HPP
 #define NEBULA_GFX_ENVIRON_BASE_HPP
 
+#include <gal/stl/verbosity.hpp>
 #include <gal/etc/timestep.hpp>
 
 #include <neb/fnd/plug/gfx/environ/Base.hpp>
@@ -18,10 +19,12 @@ namespace neb { namespace gfx { namespace environ {
 	 * Abstract class that contains functions and data needed to render a specific kind of drawable.
 	 */
 	class base:
+		public gal::tmp::Verbosity<neb::gfx::environ::base>,
 		virtual public neb::fnd::plug::gfx::environ::Base,
 		virtual public neb::gfx::environ::util::cast
 	{
 		public:
+			using gal::tmp::Verbosity<neb::gfx::environ::base>::printv;
 			typedef std::shared_ptr<neb::fnd::glsl::program::Base>		program_shared;
 			typedef std::shared_ptr<neb::fnd::camera::view::Base>		view_shared;
 			typedef std::shared_ptr<neb::fnd::camera::proj::Base>		proj_shared;

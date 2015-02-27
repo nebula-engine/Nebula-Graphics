@@ -22,13 +22,14 @@ void			THIS::init(parent_t * const & p)
 */
 glm::mat4		THIS::view()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	auto cam = getParent()->is_fnd_camera_view_ridealong();
 	assert(cam);
 
 	auto actor = cam->actor_.lock();
-	if(!actor) return glm::mat4();
+	assert(actor);
+	//if(!actor) return glm::mat4();
 
 	glm::vec3 translate_vec(actor->pose_.pos_);
 	glm::quat rotation(actor->pose_.rot_);

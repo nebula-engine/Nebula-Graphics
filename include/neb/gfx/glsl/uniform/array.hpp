@@ -34,11 +34,14 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 	 * lights
 	 *
 	 */
-	template<typename LOC_DER, class... T> class array:
+	template<typename LOC_DER, class... T>
+	class array:
+		public gal::tmp::Verbosity< array< LOC_DER, T... > >,
 		public std::enable_shared_from_this< array< LOC_DER, T... > >,
 		public neb::gfx::array<T...>
 	{
 		public:
+			using gal::tmp::Verbosity< array< LOC_DER, T... > >::printv;
 			typedef locations<sizeof...(T), LOC_DER>				loc_type;
 			typedef typename gens<sizeof...(T)>::type				seq_type;
 			typedef std::map<P*, loc_type>						loc_map;
@@ -54,7 +57,7 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 
 			virtual slot_shared			reg(T... initial)
 			{
-				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+				printv_func(DEBUG);
 
 				int i = neb::gfx::array<T...>::reg_array(initial...);
 
@@ -94,7 +97,7 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 			}
 			void					unreg(int i)
 			{
-				LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+				printv_func(DEBUG);
 
 				neb::gfx::array<T...>::unreg_array(i);
 
@@ -130,7 +133,7 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 							loc.location[sizeof...(T)+1],
 							(int)size());
 
-					LOG(lg, neb::gfx::sl, debug) << "load_uniform size=" << size();
+					printv(DEBUG, "load_uniform size = %i\n", size());
 
 					loc.load_any = 0;
 				}
@@ -143,16 +146,15 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 
 				if(loc.load[I] == 1)
 				{
-					LOG(lg, neb::gfx::sl, debug) << "load_uniform__ I=" << I << " loc=" << loc.location[I];
+					printv(DEBUG, "load_uniform__ I=%i loc=%i", I, loc.location[I]);
 
 					for(int i = 0; i < size(); i++)
 					{
 						//std::get<I>(neb::gfx::array_basic<T...>::data_)[i]
 						//neb::gfx::array_basic<T...>::get<I,U>(i)
 
-						LOG(lg, neb::gfx::sl, debug)
-							<< std::setw(32) << neb::gfx::array_basic<T...>::template get<I,U>(i)
-							<< " closed=" << isClosed(i);
+						//printv(DEBUG, neb::gfx::array_basic<T...>::template get<I,U>(i));
+						printv(DEBUG, "closed=%i\n", isClosed(i));
 					}
 
 					neb::gfx::ogl::glUniformv(
@@ -166,8 +168,12 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 			}
 			loc_map		_M_locations;
 	};
-	template<int I, typename D> class locations {
+	template<int I, typename D>
+	class locations:
+		public gal::tmp::Verbosity< neb::gfx::glsl::uniform::locations< I, D > >
+	{
 		public:
+			using gal::tmp::Verbosity< neb::gfx::glsl::uniform::locations< I, D > >::printv;
 			enum {
 				N = I + 2
 			};
@@ -193,7 +199,7 @@ namespace neb { namespace gfx { namespace glsl { namespace uniform {
 				for(unsigned int i = 0; i < N; i++)
 				{
 					location[i] = p->get_uniform_table_value(D::names_[i]);
-					logprint(neb::gfx::sl, debug, "location[% 4i] = %4i\n", i, location[i]);
+					printv(DEBUG, "location[% 4i] = %4i\n", i, location[i]);
 				}
 
 				_M_initialized = true;

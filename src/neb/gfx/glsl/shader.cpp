@@ -19,7 +19,6 @@
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/config.hpp> // neb/gfx/util/config.hpp.in
-#include <neb/gfx/util/log.hpp>
 #include <neb/gfx/glsl/shader.hh>
 #include <neb/gfx/app/__gfx_glsl.hpp>
 
@@ -31,7 +30,7 @@ std::vector<std::string>		readLines(std::string filename)
 
 	
 	if(!ifs.is_open()) {
-		std::cout << "file not found " << filename << std::endl;
+		printf("file not found %s\n", filename.c_str());
 		abort();
 	}
 
@@ -68,8 +67,8 @@ std::vector<std::string>		preprocess(const char * filename)
 }
 void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 {	
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	LOG(lg, neb::gfx::sl, debug) << "loading " << filename;
+	printv_func(DEBUG);
+	printv(DEBUG, "loading %s\n", filename);
 
 	// read text
 	
@@ -79,9 +78,8 @@ void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 	std::copy(lines.begin(), lines.end(), std::ostream_iterator<std::string>(ss, "\n"));
 
 	int c = 0;
-	for(auto str : lines) {
-		LOG(lg, neb::gfx::sl, debug) << std::setw(3) << c++ << ":" << str;
-	}
+	for(auto str : lines)
+		printv(DEBUG, "%3i:%s\n", c++, str.c_str());
 
 	std::string str(ss.str());
 	const char * data = str.c_str();
@@ -92,7 +90,7 @@ void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 
 	if (!o_)
 	{
-		printv(critical, "create shader failed\n");
+		printv(CRITICAL, "create shader failed\n");
 		exit(0);
 	}
 
@@ -110,18 +108,17 @@ void			neb::gfx::glsl::shader::load(const char * filename, GLenum shader_type)
 
 	if(len>0)
 	{
-		printv(error, "%s: %s\n", filename, buffer);
+		printv(ERROR, "%s: %s\n", filename, buffer);
 	}
 
 	if(!status)
 	{
 		glDeleteShader(o_);
-		printv(critical, "compile failed\n");
+		printv(CRITICAL, "compile failed\n");
 		exit(0);
 	}
 
-
-	printv(info, "shader file '%s' loaded\n", filename);
+	printv(DEBUG, "shader file '%s' loaded\n", filename);
 }
 /*
    int isExtensionSupported(const char *extension)

@@ -8,13 +8,12 @@
 #include <neb/gfx/mesh/instanced.hpp>
 #include <neb/gfx/core/scene/base.hpp>
 #include <neb/gfx/core/shape/box.hpp>
-#include <neb/gfx/util/log.hpp>
 
 typedef neb::gfx::core::shape::box THIS;
 
 THIS::box()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 }
 void			THIS::init(parent_t * const & p)
 {
@@ -23,16 +22,9 @@ void			THIS::init(parent_t * const & p)
 void			THIS::step(gal::etc::timestep const & ts)
 {
 }
-void			THIS::model_load(
-					FND * const & ptr,
-					neb::fnd::glsl::program::Base const * const & p,
-					neb::fnd::math::pose const & pose)
-{
-	abort();
-}
 void			THIS::createMesh()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	if(0) {
 		create_mesh_instance();
@@ -42,7 +34,7 @@ void			THIS::createMesh()
 }
 void	THIS::create_mesh_instance()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	/// @TODO fix this
 	//if(!hasScene()) return;
@@ -53,7 +45,7 @@ void	THIS::create_mesh_instance()
 	
 	if(!mesh_slot_)
 	{
-		LOG(lg, neb::gfx::sl, debug) << "mesh registered";
+		//LOG(lg, neb::gfx::sl, debug) << "mesh registered";
 
 
 		auto model = p->getPoseGlobal().mat4_cast() * glm::scale(p->scale_);
@@ -62,7 +54,8 @@ void	THIS::create_mesh_instance()
 		auto amb = neb::fnd::math::color::color::gray(0.2);
 		auto spc = neb::fnd::math::color::color::white();
 		auto emi = neb::fnd::math::color::color::black();
-		
+
+		/*		
 		LOG(lg, neb::gfx::sl, debug) << "diffuse   " << std::hex << dif;
 		LOG(lg, neb::gfx::sl, debug) << "diffuse r " << std::hex << (unsigned int)dif.r;
 		LOG(lg, neb::gfx::sl, debug) << "diffuse g " << std::hex << (unsigned int)dif.g;
@@ -75,6 +68,7 @@ void	THIS::create_mesh_instance()
 		//spc.print();
 		LOG(lg, neb::gfx::sl, debug) << "emission";
 		//emi.print();
+		*/
 
 		scene->initMeshes();
 		assert(scene->meshes_.cuboid_);
@@ -102,7 +96,7 @@ void			THIS::draw_legacy(
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	// load model matrix
 	//LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
@@ -228,18 +222,7 @@ void			THIS::draw_legacy(
 	//glPopMatrix();
 
 }
-void			THIS::draw(
-		FND * const & ptr,
-		neb::fnd::glsl::program::Base const * const & program,
-		neb::fnd::math::pose const & pose)
-{
-	abort();
-}
-void			THIS::v_set_pose_data(
-		FND * const & ptr,
-		neb::fnd::math::pose const & global_pose)
-{
-}
+
 
 
 

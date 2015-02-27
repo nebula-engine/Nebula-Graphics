@@ -21,9 +21,11 @@
 
 namespace neb { namespace gfx { namespace app {
 	class glsl:
+		public gal::tmp::Verbosity<neb::gfx::app::glsl>,
 		virtual public neb::fnd::plug::gfx::app::Base
 	{
 		public:
+			using gal::tmp::Verbosity<neb::gfx::app::glsl>::printv;
 			//typedef std::map<int, std::shared_ptr<neb::gfx::glsl::program::Base> >		map_program_type;
 			friend class neb::gfx::environ::base;
 			friend class neb::gfx::environ::Two;

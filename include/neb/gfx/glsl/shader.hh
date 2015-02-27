@@ -10,6 +10,7 @@ namespace neb { namespace gfx { namespace glsl {
 		public gal::tmp::Verbosity<neb::gfx::glsl::shader>
 	{
 	public:
+		using gal::tmp::Verbosity<neb::gfx::glsl::shader>::printv;
 		void		load(const char * filename, GLenum shader_type);
 		GLuint		o_;
 	};

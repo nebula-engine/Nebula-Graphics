@@ -31,10 +31,12 @@ namespace neb { namespace gfx { namespace core { namespace scene {
 	 * @brief base
 	 */
 	class base:
+		public gal::tmp::Verbosity<neb::gfx::core::scene::base>,
 		virtual public neb::gfx::drawable::base,
 		virtual public neb::fnd::plug::gfx::core::scene::Base
 	{
 		public:
+			using gal::tmp::Verbosity<neb::gfx::core::scene::base>::printv;
 			using CHILD::get_fnd_app;
 			base();
 			virtual ~base();

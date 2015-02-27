@@ -123,11 +123,11 @@ void							THIS::onFirstContext()
 	GLubyte const *shading_lang_version_string = glGetString(GL_SHADING_LANGUAGE_VERSION);
 	GLubyte const *extensions_string = glGetString(GL_EXTENSIONS);
 
-	printf("OpenGL Vendor:                   %s\n", vendor_string);
-	printf("OpenGL Renderer:                 %s\n", renderer_string);
-	printf("OpenGL Version:                  %s\n", version_string);
-	printf("OpenGL Shading Language Version: %s\n", shading_lang_version_string);
-	printf("OpenGL Extensions:               %s\n", extensions_string);
+	printv(DEBUG, "OpenGL Vendor:                   %s\n", vendor_string);
+	printv(DEBUG, "OpenGL Renderer:                 %s\n", renderer_string);
+	printv(DEBUG, "OpenGL Version:                  %s\n", version_string);
+	printv(DEBUG, "OpenGL Shading Language Version: %s\n", shading_lang_version_string);
+	printv(DEBUG, "OpenGL Extensions:               %s\n", extensions_string);
 	
 	//exit(0);	
 }

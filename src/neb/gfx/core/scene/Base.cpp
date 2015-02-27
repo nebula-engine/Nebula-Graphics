@@ -30,7 +30,7 @@ void			THIS::release()
 }
 void			THIS::init(parent_t * const & p)
 {
-	LOG(lg, neb::gfx::core::scene::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	setParent(p);
 
@@ -79,7 +79,7 @@ void			THIS::initMeshes()
 }
 void			THIS::init_light()
 {
-	LOG(lg, neb::gfx::core::scene::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	if(!light_array_[0])
 	{
@@ -93,7 +93,7 @@ void			THIS::init_light()
 }
 void			THIS::draw(neb::fnd::RenderDesc const & desc)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	assert(desc.p);
 	assert(desc.v);
@@ -104,7 +104,7 @@ void			THIS::draw(neb::fnd::RenderDesc const & desc)
 }
 void			THIS::drawMesh(neb::fnd::RenderDesc const & desc)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	// If program parameter is not NULL, use it and do not load lights.
 	//
@@ -150,7 +150,8 @@ void			THIS::drawMesh(neb::fnd::RenderDesc const & desc)
 }
 void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
+	
 	auto parent = getParent();
 
 	// If program parameter is not NULL, use it and do not load lights.
@@ -194,7 +195,7 @@ void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 }
 void			THIS::drawMeshInst(neb::fnd::RenderDesc const & desc)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	P* d3_inst;
 

@@ -13,7 +13,7 @@ typedef neb::gfx::environ::SceneDefault THIS;
 
 void		THIS::init(parent_t * const & p)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	setParent(p);
 
@@ -36,7 +36,7 @@ void		THIS::init(parent_t * const & p)
 }
 void		THIS::render(neb::fnd::context::Base * const & context)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__ << " " << this;
+	printv_func(DEBUG);
 
 	// prepare rendering environment and then call the drawable
 	
