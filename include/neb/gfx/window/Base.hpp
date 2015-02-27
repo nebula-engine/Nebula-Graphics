@@ -6,6 +6,7 @@
 #include <map>
 
 #include <gal/etc/timestep.hpp>
+#include <gal/stl/verbosity.hpp>
 
 #include <neb/fnd/util/decl.hpp>
 #include <neb/fnd/core/scene/util/decl.hpp>
@@ -25,6 +26,7 @@
 
 namespace neb { namespace gfx { namespace window {
 	class Base:
+		public gal::tmp::Verbosity<neb::gfx::window::Base>,
 		virtual public neb::fnd::plug::gfx::window::Base,
 		//virtual public neb::gfx::context::util::parent,
 		virtual public neb::gfx::window::util::cast

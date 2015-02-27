@@ -8,6 +8,8 @@
 #include <boost/serialization/map.hpp>
 #include <boost/signals2.hpp>
 
+#include <gal/stl/verbosity.hpp>
+
 #include <neb/fnd/math/serialization/glm.hpp>
 #include <neb/fnd/core/shape/base.hpp>
 #include <neb/fnd/core/shape/util/parent.hpp>
@@ -25,6 +27,7 @@ namespace neb { namespace gfx { namespace core { namespace actor {
 	 * no need to derive this class for different actor types.
 	 */
 	class base:
+		public gal::tmp::Verbosity<neb::gfx::core::actor::base>,
 		virtual public neb::fnd::plug::gfx::core::actor::Base
 	{
 		public:

@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include <gal/log/log.hpp>
-
 #include <neb/fnd/util/debug.hpp>
 #include <neb/fnd/util/decl.hpp>
-#include <neb/fnd/util/log.hpp>
 #include <neb/fnd/core/scene/Base.hpp>
 #include <neb/fnd/core/shape/base.hpp>
 
@@ -33,7 +30,7 @@ THIS::Base():
 	spot_exponent_(1.0),
 	spot_light_cos_cutoff_(1.0)
 {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	shadow_sampler_[0] = glm::vec3(-1);
 	shadow_sampler_[1] = glm::vec3(-1);
@@ -44,7 +41,7 @@ THIS::~Base()
 }
 void			THIS::init(parent_t * const & p)
 {
-	printv(debug, "%s\n", __PRETTY_FUNCTION__);
+	printv_func(DEBUG);
 
 	setParent(p);
 
@@ -131,14 +128,17 @@ void			THIS::setPose(neb::fnd::math::pose const & npose)
 	light_array_slot_->set<0>(pose.pos_);
 	light_array_slot_->set<7>(pose.rot_ * spot_direction_);
 }
-void			THIS::release() {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+void			THIS::release()
+{
+	printv_func(DEBUG);
 }
-void			THIS::cleanup() {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+void			THIS::cleanup()
+{
+	printv_func(DEBUG);
 }
-void			THIS::dim() {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+void			THIS::dim()
+{
+	printv_func(DEBUG);
 	/*	
 	//printf("diffuse\n");
 	//diffuse_.print();
@@ -151,8 +151,8 @@ void			THIS::dim() {
 	printf("UNSUPPORTED\n");
 	exit(0);
 }
-
-void			THIS::step(gal::etc::timestep const & ts) {
+void			THIS::step(gal::etc::timestep const & ts)
+{
 	/*
 	   if(shadow_environ_) {
 
@@ -163,11 +163,11 @@ void			THIS::step(gal::etc::timestep const & ts) {
 }
 void			THIS::draw()
 {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 }
 neb::fnd::math::pose		THIS::getPose()
 {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	auto p = getParent()->getPoseGlobal();
 
@@ -175,7 +175,7 @@ neb::fnd::math::pose		THIS::getPose()
 }
 void			THIS::load(int o, neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	/** @todo way to ditinguish lights in shader */
 	/*	
@@ -197,7 +197,7 @@ void			THIS::load(int o, neb::fnd::math::pose const & pose)
 }
 void			THIS::load_shadow()
 {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 	/*	auto p = neb::master::Global()->current_program();
 
 		math::mat44 biasMatrix(
@@ -218,7 +218,7 @@ void			THIS::load_shadow()
 }
 void			THIS::RenderLightPOV()
 {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 	/*
 	   std::shared_ptr<scene> scene = scene_.lock();
 
@@ -295,10 +295,5 @@ void	THIS::setShadowEnviron(std::shared_ptr<neb::fnd::environ::Base> environ)
 	assert(e);
 	shadow_environ_ = e;
 }
-
-
-
-
-
 
 

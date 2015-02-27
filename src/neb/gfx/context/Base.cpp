@@ -24,7 +24,7 @@ typedef neb::gfx::context::base THIS;
 }*/
 THIS::base()
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
 }
 /*neb::gfx::context::base&		neb::gfx::context::base::operator=(neb::gfx::context::base const & r){
 	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
@@ -38,27 +38,27 @@ void		neb::gfx::context::base::release() {
 }*/
 void		THIS::resize(int w, int h)
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
 	/// @TODO fix this
 	//if(e) e->resize(w,h);
 }
 void		THIS::step(gal::etc::timestep const & ts)
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
 	auto e = getParent()->neb::fnd::environ::util::Parent::front();
 	/// @TODO fix this
 	//if(e) e->step(ts);	
 }
 void		THIS::render()
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
 	auto e = getParent()->neb::fnd::environ::util::Parent::front();
 	if(!e)
 	{
-		printv(gal::tmp::CRITICAL, "context has no environ\n");
+		printv(CRITICAL, "context has no environ\n");
 		abort();
 		return;
 	}

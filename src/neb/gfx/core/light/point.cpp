@@ -3,7 +3,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <neb/fnd/util/debug.hpp>
-#include <neb/fnd/util/log.hpp>
 #include <neb/fnd/window/Base.hpp>
 //#include <neb/fnd/core/light/util/parent.hpp>
 //#include <neb/fnd/context/FBOM.hpp> removed by c_header_checker
@@ -22,21 +21,22 @@
 #include <neb/gfx/camera/view/shadow/point.hpp>
 #include <neb/gfx/context/fbo_multi.hpp>
 #include <neb/gfx/texture/Base.hpp>
-#include <neb/gfx/util/log.hpp>
 #include <neb/gfx/core/scene/base.hpp>
 
 typedef neb::gfx::core::light::Point THIS;
 
 THIS::Point()
-{}
+{
+}
 neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::POINT;
 }
-void	THIS::load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose) {
-
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
-	assert(0);
+void	THIS::load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose)
+{
+	printv_func(DEBUG);
+	
+	abort();
 	/*        
 		  neb::gfx::core::light::base::load(light_count.point, pose);
 
@@ -51,7 +51,7 @@ void	THIS::load(neb::fnd::core::light::util::count & light_count, neb::fnd::math
 }
 void			THIS::init(parent_t * const & p)
 {
-	LOG(lg, neb::fnd::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	setParent(p);
 
@@ -61,15 +61,15 @@ void			THIS::v_set_pose_data(
 		FND * const & fnd,
 		neb::fnd::math::pose const & gpose)
 {
-	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
-	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();
+	printv_func(DEBUG);
+	//printv(DEBUG, gpose.mat4_cast());
 	
 	light_array_slot_->set<0>(gpose.pos_);
 }
 void			THIS::initShadow(
 		std::shared_ptr<neb::gfx::environ::SceneDefault> e3)
 {
-	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 	// scene
 
 	/*
@@ -103,6 +103,8 @@ void			THIS::initShadow(
 void			THIS::setShadowEnviron(
 		std::shared_ptr<neb::fnd::environ::Base> environ)
 {
+	printv_func(DEBUG);
+
 	assert(environ);
 
 	auto e = std::dynamic_pointer_cast<neb::gfx::environ::shadow::point>(environ);
@@ -158,14 +160,14 @@ void			THIS::setShadowEnviron(
 }
 void		THIS::load(ba::polymorphic_iarchive & ar, unsigned int const & v)
 {
-	LOG(lg, neb::fnd::core::shape::sl, debug) << __FUNCSIG__;
+	printv_func(DEBUG);
 
 	gal::itf::shared::serialize(ar, v);
 	neb::gfx::core::light::Base::load(ar, v);
 }
 void		THIS::save(ba::polymorphic_oarchive & ar, unsigned int const & v) const
 {
-	LOG(lg, neb::fnd::core::shape::sl, debug) << __FUNCSIG__;
+	printv_func(DEBUG);
 
 	const_cast<THIS*>(this)->gal::itf::shared::serialize(ar, v);
 	//neb::fnd::core::light::base::save(ar, v);

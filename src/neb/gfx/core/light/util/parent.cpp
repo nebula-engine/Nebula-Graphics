@@ -1,7 +1,6 @@
 #include <gal/log/log.hpp>
 
 #include <neb/fnd/util/debug.hpp>
-#include <neb/fnd/util/log.hpp>
 
 #include <neb/gfx/core/light/Base.hpp>
 #include <neb/gfx/core/light/util/Parent.hpp>
@@ -14,8 +13,9 @@
 
 	return scene1;
 }*/
-void			neb::gfx::core::light::util::parent::setPose(neb::fnd::math::pose const & pose) {
-	LOG(lg, neb::fnd::core::shape::sl, debug) << __PRETTY_FUNCTION__;
+void			neb::gfx::core::light::util::parent::setPose(neb::fnd::math::pose const & pose)
+{
+	printv_func(DEBUG);
 	
 	auto lambda_light = [&] (map_type::pointer p) {
 		
@@ -35,7 +35,7 @@ void			neb::gfx::core::light::util::parent::load_lights(
 		neb::fnd::core::light::util::count & light_count,
 		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::fnd::core::shape::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	assert(0);
 

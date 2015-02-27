@@ -4,18 +4,14 @@
 
 #include <neb/fnd/util/decl.hpp>
 #include <neb/fnd/util/config.hpp>
-#include <neb/fnd/util/log.hpp>
 #include <neb/fnd/core/scene/Base.hpp>
 #include <neb/fnd/timer/actor/Base.hpp>
 #include <neb/fnd/plug/gfx/core/shape/Base.hpp>
 #include <neb/fnd/core/actor/Base.hpp>
 
-//#include <neb/gfx/window/util/signals.hpp>
 #include <neb/gfx/core/actor/base.hpp>
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/gfx/window/Base.hpp>
-//#include <neb/gfx/util/decl.hpp> removed by c_header_checker
-//#include <neb/gfx/util/log.hpp> removed by c_header_checker
 
 //neb::gfx::core::actor::base::base()
 
@@ -30,7 +26,7 @@ typedef neb::gfx::core::actor::base THIS;
 
 THIS::~base()
 {
-	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 }
 void			THIS::init(parent_t * const & p)
 {
@@ -43,7 +39,7 @@ void			THIS::draw(
 		neb::fnd::glsl::program::Base const * const & program,
 		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	auto parent = getParent();
 
@@ -78,7 +74,7 @@ void				THIS::drawDebug(
 		neb::fnd::glsl::program::Base const * const & program,
 		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	auto parent = getParent();
 
@@ -105,7 +101,7 @@ void				THIS::drawHF(
 		neb::fnd::glsl::program::Base const * const & program,
 		neb::fnd::math::pose const & pose)
 {
-	LOG(lg, neb::fnd::core::actor::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	auto parent = getParent();
 

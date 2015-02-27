@@ -24,7 +24,7 @@ typedef neb::gfx::app::draw THIS;
 
 void		THIS::__init()
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	std::vector<std::string> fontfiles({
 		"/usr/share/fonts/msttcorefonts/cour.ttf",
@@ -34,7 +34,7 @@ void		THIS::__init()
 	//FT_Library ft;
 	if(FT_Init_FreeType(&ft_))
 	{
-		printv(gal::tmp::CRITICAL, "could not find freetype library\n");
+		printv(CRITICAL, "could not find freetype library\n");
 		exit(0);
 	}
 
@@ -42,14 +42,14 @@ void		THIS::__init()
 	for(auto s : fontfiles) {
 		result = FT_New_Face(ft_, s.c_str(), 0, &face_);
 		if(result) {
-			printv(gal::tmp::INFO, "could not open font %s\n", s.c_str());
+			printv(INFO, "could not open font %s\n", s.c_str());
 		} else {
 			break;
 		}
 	}
 	
 	if(result) {
-		printv(gal::tmp::CRITICAL, "Count not open any fonts\n");
+		printv(CRITICAL, "Count not open any fonts\n");
 		abort();
 	}
 }
@@ -108,7 +108,7 @@ void			THIS::draw_quad(
 		float h,
 		neb::fnd::math::color::color color)
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	//GLint uniform_color = glGetUniformLocation(program, "color");
 	//GLint attribute_coord = glGetAttribLocation(program, "coord");
@@ -169,8 +169,8 @@ void			THIS::draw_text(
 		std::string text,
 		std::string::size_type cursor_pos)
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
-	printv(gal::tmp::DEBUG, "text: \"%s\"\n", text.c_str());
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "text: \"%s\"\n", text.c_str());
 	
 	int window_width, window_height;
 	glfwGetWindowSize(glfwGetCurrentContext(), &window_width, &window_height);
@@ -184,7 +184,7 @@ void			THIS::draw_text(
 	auto p = get_program_text();
 	p->use();
 	
-	printv(gal::tmp::DEBUG, "%8i %8i\n", x, y);
+	printv(DEBUG, "%8i %8i\n", x, y);
 
 	// face
 	FT_Face& face  = face_;
@@ -195,7 +195,7 @@ void			THIS::draw_text(
 
 	if(FT_Load_Char(face, 'X', FT_LOAD_RENDER))
 	{
-		printv(gal::tmp::CRITICAL, "could not load character 'X'\n");
+		printv(CRITICAL, "could not load character 'X'\n");
 		exit(1);
 	}
 

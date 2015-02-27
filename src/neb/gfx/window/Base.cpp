@@ -49,7 +49,7 @@ THIS::~Base()
 }
 void			THIS::init(parent_t * const & p)
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	if(p == NULL) return;
 
@@ -67,14 +67,9 @@ void			THIS::init(parent_t * const & p)
 
 	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
 	
-	if(window_)
-	{
-		return;
-	}
-
+	if(window_) return;
 
 	// create window
-	//
 	
 	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -93,7 +88,7 @@ void			THIS::init(parent_t * const & p)
 
 	if(window_ == NULL) {
 		glfwTerminate();
-		LOG(lg, neb::gfx::sl, critical) << "glfwCreateWindow failed";
+		printv(DEBUG, "glfwCreateWindow failed\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -126,22 +121,18 @@ void			THIS::init(parent_t * const & p)
 	// add window to app's window map
 	g->windows_glfw_[window_] = p->is_fnd_window_base();
 
-
 	//if(all(neb::app::base::option::SHADERS)) create_programs();
-
 
 	g->init_glew();
 
 	g->create_programs();
-
-
 
 	//printf("%s\n",glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 	//Check for necessary extensions
 	if(!GL_ARB_depth_texture || !GL_ARB_shadow)
 	{
-		printf("I require ARB_depth_texture and ARB_shadow extensionsn\n");
+		printv(CRITICAL, "I require ARB_depth_texture and ARB_shadow extensionsn\n");
 		exit(0);//return false;
 	}
 
@@ -162,15 +153,13 @@ void			THIS::init(parent_t * const & p)
 }
 void		THIS::release()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv_func(DEBUG);
 
 	glfwDestroyWindow(window_);
 }
 void		THIS::render()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv_func(DEBUG);
 
 	assert(window_ != NULL);
 	glfwMakeContextCurrent(window_);
@@ -183,7 +172,7 @@ void		THIS::render()
 
 	auto lamb = [] (C::map_type::pointer p)
 	{
-		LOG(lg, neb::gfx::sl, debug) << "lamb";
+		printv(DEBUG, "lamb");
 	
 		//auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
 		//assert(context);
@@ -204,8 +193,7 @@ void			THIS::callback_window_refresh_fun(GLFWwindow*)
 }
 void			THIS::step(gal::etc::timestep const & ts)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv_func(DEBUG);
 
 	/// @ TODO move to fnd
 	/*
@@ -220,8 +208,7 @@ void			THIS::step(gal::etc::timestep const & ts)
 }
 void			THIS::callback_window_size_fun(GLFWwindow* window, int w, int h)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv_func(DEBUG);
 
 	w_ = w;
 	h_ = h;
@@ -232,8 +219,7 @@ void			THIS::callback_window_size_fun(GLFWwindow* window, int w, int h)
 }
 void			THIS::callback_window_pos_fun(GLFWwindow* window, int x, int y)
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv_func(DEBUG);
 
 	x_ = x;
 	y_ = y;
@@ -242,11 +228,11 @@ void			THIS::callback_window_pos_fun(GLFWwindow* window, int x, int y)
 }
 void			THIS::callback_window_close_fun(GLFWwindow* window)
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
 }
 void			THIS::resize()
 {
-	printv(gal::tmp::DEBUG, "%s\n", __PRETTY_FUNCTION__);
+	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
 
 	glViewport(0, 0, w_, h_);
 
