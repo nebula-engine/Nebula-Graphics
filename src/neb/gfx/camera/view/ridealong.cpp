@@ -43,7 +43,9 @@ glm::mat4		THIS::view()
 	glm::mat4 ret = glm::affineInverse(actor->pose_.mat4_cast());
 	
 	ret = glm::translate(ret, offset_vec);
-	
+
+	printv(DEBUG, ret);
+
 	return glm::mat4(ret);
 }
 void			THIS::step(gal::etc::timestep const & ts)

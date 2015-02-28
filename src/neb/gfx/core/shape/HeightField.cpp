@@ -111,12 +111,12 @@ void			THIS::mesh_from_heightfield(neb::fnd::math::HeightField::Base* hf, float 
 }
 void			THIS::draw(
 		neb::gfx::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {}
 void			THIS::drawHF(
 		FND * const & ptr,
 		neb::gfx::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	auto npose = pose * pose_;
 

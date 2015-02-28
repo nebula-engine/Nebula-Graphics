@@ -20,11 +20,11 @@ namespace neb { namespace gfx { namespace core { namespace shape { namespace Hei
 			// dont render normally. function is empty
 			virtual void				draw(
 							neb::gfx::glsl::program::Base const * const & p,
-							neb::fnd::math::pose const & pose);
+							gal::math::pose const & pose);
 			virtual void				drawHF(
 						FND * const & ptr,
 						neb::gfx::glsl::program::Base const * const & p,
-							neb::fnd::math::pose const & pose);
+							gal::math::pose const & pose);
 			//virtual void	load(ba::polymorphic_iarchive & ar, unsigned int const &);
 			//virtual void	save(ba::polymorphic_oarchive & ar, unsigned int const &) const;
 

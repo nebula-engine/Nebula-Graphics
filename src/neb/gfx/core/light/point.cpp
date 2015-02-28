@@ -32,7 +32,7 @@ neb::gfx::core::light::type::e		THIS::getType()
 {
 	return neb::gfx::core::light::type::POINT;
 }
-void	THIS::load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose)
+void	THIS::load(neb::fnd::core::light::util::count & light_count, gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 	
@@ -59,7 +59,7 @@ void			THIS::init(parent_t * const & p)
 }	
 void			THIS::v_set_pose_data(
 		FND * const & fnd,
-		neb::fnd::math::pose const & gpose)
+		gal::math::pose const & gpose)
 {
 	printv_func(DEBUG);
 	//printv(DEBUG, gpose.mat4_cast());

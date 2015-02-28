@@ -33,7 +33,7 @@ void			THIS::init(parent_t * const & p)
 }
 void			THIS::load(
 		neb::fnd::core::light::util::count & light_count,
-		neb::fnd::math::pose const & pose) {
+		gal::math::pose const & pose) {
 
 /*	neb::gfx::core::light::base::load(light_count.spot, pose);
 	
@@ -58,7 +58,7 @@ void			THIS::load(
 }
 void		THIS::v_set_pose_data(
 		FND * const & fnd,
-		neb::fnd::math::pose const & gpose)
+		gal::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();

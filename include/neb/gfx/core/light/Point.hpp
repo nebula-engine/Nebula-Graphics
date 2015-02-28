@@ -28,11 +28,11 @@ namespace neb { namespace gfx { namespace core { namespace light {
 			virtual void		init(parent_t * const & p);
 			virtual void		v_set_pose_data(
 					FND * const & ptr,
-					neb::fnd::math::pose const & global_pose);
+					gal::math::pose const & global_pose);
 			virtual void		initShadow(std::shared_ptr<neb::gfx::environ::SceneDefault>);
 			virtual void		load(
 					neb::fnd::core::light::util::count & light_count,
-					neb::fnd::math::pose const & pose);
+					gal::math::pose const & pose);
 			virtual void		setShadowEnviron(
 					std::shared_ptr<neb::fnd::environ::Base> environ);
 

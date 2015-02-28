@@ -15,7 +15,7 @@ namespace neb { namespace gfx { namespace core { namespace light {
 			virtual void		init(parent_t * const & p);
 			virtual void		v_set_pose_data(
 					FND * const & ptr,
-					neb::fnd::math::pose const & global_pose);
+					gal::math::pose const & global_pose);
 			virtual type::e		getType();
 			virtual void		setShadowEnviron(std::shared_ptr<neb::fnd::environ::Base> environ);
 			virtual void	load(ba::polymorphic_iarchive & ar, unsigned int const &);

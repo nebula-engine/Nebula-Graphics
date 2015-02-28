@@ -94,14 +94,16 @@ void	THIS::create_mesh_standalone()
 void			THIS::draw_legacy(
 		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 
 	// load model matrix
 	//LOG(lg, neb::gfx::sl, debug) << "load modelview matrix";
 	model_load(ptr, p, pose);
-	
+
+	printv(DEBUG, pose);
+
 	//material_.load(p);
 	
 	//glUseProgram(0);

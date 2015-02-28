@@ -143,7 +143,7 @@ void			THIS::drawMesh(neb::fnd::RenderDesc const & desc)
 		assert(g);
 		auto g2 = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(g);
 		assert(g2);
-		g2->draw(d3, neb::fnd::math::pose());
+		g2->draw(d3, gal::math::pose());
 	};
 
 	parent->A::map_.for_each(la);
@@ -187,7 +187,7 @@ void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 		assert(g);
 		auto g2 = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(g);
 		assert(g2);
-		g2->drawHF(p, neb::fnd::math::pose());
+		g2->drawHF(p, gal::math::pose());
 	};
 
 	parent->A::map_.for_each(la);
@@ -253,7 +253,7 @@ void			THIS::drawDebug(
 		assert(g);
 		auto g2 = std::dynamic_pointer_cast<neb::gfx::core::actor::base>(g);
 		assert(g2);
-		g2->drawDebug(p.get(), neb::fnd::math::pose());
+		g2->drawDebug(p.get(), gal::math::pose());
 	};
 
 	parent->A::map_.for_each(la);

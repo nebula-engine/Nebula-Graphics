@@ -119,7 +119,7 @@ void			THIS::init(parent_t * const & p)
 				);
 	}
 }
-void			THIS::setPose(neb::fnd::math::pose const & npose)
+void			THIS::setPose(gal::math::pose const & npose)
 {
 	getParent()->pose_ = npose;
 
@@ -165,7 +165,7 @@ void			THIS::draw()
 {
 	printv_func(DEBUG);
 }
-neb::fnd::math::pose		THIS::getPose()
+gal::math::pose		THIS::getPose()
 {
 	printv_func(DEBUG);
 
@@ -173,7 +173,7 @@ neb::fnd::math::pose		THIS::getPose()
 
 	return p;
 }
-void			THIS::load(int o, neb::fnd::math::pose const & pose)
+void			THIS::load(int o, gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 

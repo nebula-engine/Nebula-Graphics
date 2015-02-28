@@ -32,7 +32,7 @@ THIS::Base(std::string name):
 
 	//flag_shader_def_.set(neb::gfx::glsl::program::util::flag_shader::SHADOW);
 }
-void	neb::gfx::glsl::program::Base::init()
+void			THIS::init()
 {
 	//NEBULA_GLSL_PROGRAM_FUNC;
 
@@ -50,7 +50,7 @@ void	neb::gfx::glsl::program::Base::init()
 	scanUniforms();
 	locate();
 }
-void	neb::gfx::glsl::program::Base::add_shaders(std::vector<neb::gfx::glsl::shader> s)
+void			THIS::add_shaders(std::vector<neb::gfx::glsl::shader> s)
 {
 	//GRU_GLSL_PROGRAM_FUNC
 	
@@ -62,7 +62,7 @@ void	neb::gfx::glsl::program::Base::add_shaders(std::vector<neb::gfx::glsl::shad
 		checkerror("glAttachShader");
 	}
 }
-void	neb::gfx::glsl::program::Base::add_shader(std::string filename, GLenum type)
+void			THIS::add_shader(std::string filename, GLenum type)
 {
 	neb::gfx::glsl::shader s;
 	s.load(filename.c_str(), type);
@@ -111,8 +111,11 @@ void	neb::gfx::glsl::program::Base::compile()
 	printv(debug, "program=%i\n",o_);
 
 }
-void	neb::gfx::glsl::program::Base::use() const {
-	
+void			THIS::use() const
+{
+	printv_func(DEBUG);
+	printv(DEBUG, "%s\n", name_.c_str());
+
 	checkerror("unknown");
 	
 	glUseProgram(o_);

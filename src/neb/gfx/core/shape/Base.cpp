@@ -49,7 +49,7 @@ void					THIS::step(gal::etc::timestep const & ts)
 }
 void				THIS::v_set_pose_data(
 		FND * const & ptr,
-		neb::fnd::math::pose const & gpose)
+		gal::math::pose const & gpose)
 {
 	printv_func(DEBUG);
 	//LOG(lg, neb::gfx::core::shape::sl, debug) << gpose.mat4_cast();
@@ -65,7 +65,7 @@ void				THIS::v_set_pose_data(
 		//LOG(lg, neb::gfx::core::shape::sl, debug) << "slot " << mesh_slot_->index_;
 	}
 }
-/*void					THIS::setPose(neb::fnd::math::pose const & pose)
+/*void					THIS::setPose(gal::math::pose const & pose)
 {
 	LOG(lg, neb::gfx::core::shape::sl, debug) << __PRETTY_FUNCTION__;
 	
@@ -76,7 +76,7 @@ void				THIS::v_set_pose_data(
 void					THIS::draw(
 		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	auto parent = getParent();
 
@@ -86,13 +86,13 @@ void					THIS::draw(
 }
 void			THIS::drawHF(
 		neb::fnd::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 }
 void			THIS::model_load(
 		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 
@@ -109,7 +109,7 @@ void			THIS::model_load(
 void			THIS::draw_elements(
 		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 
@@ -125,7 +125,7 @@ void			THIS::draw_elements(
 }
 void			THIS::drawDebug(
 		neb::fnd::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 	
@@ -145,7 +145,7 @@ void						THIS::createMesh()
 void						THIS::draw_legacy(
 		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 }

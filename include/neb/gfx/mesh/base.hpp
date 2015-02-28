@@ -8,7 +8,7 @@
 
 #include <GL/glew.h>
 
-#include <neb/fnd/math/pose.hpp>
+#include <gal/math/pose.hpp>
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/util/log.hpp>
@@ -168,7 +168,7 @@ namespace neb { namespace gfx { namespace mesh {
 		protected:
 			void			drawElements(
 					neb::fnd::glsl::program::Base const * const & p,
-					neb::fnd::math::pose const & pose,
+					gal::math::pose const & pose,
 					glm::vec3 scale,
 					GLsizei count)
 			{
@@ -183,7 +183,7 @@ namespace neb { namespace gfx { namespace mesh {
 			void			drawElements(
 					neb::fnd::glsl::program::Base const * const &	p,
 					buffer_tuple const &				bt,
-					neb::fnd::math::pose const &			pose,
+					gal::math::pose const &			pose,
 					glm::vec3					scale,
 					GLsizei						count)
 			{

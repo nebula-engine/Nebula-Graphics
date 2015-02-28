@@ -21,7 +21,7 @@
 #include <math/geo/polyhedron.hpp>
 */
 
-#include <neb/fnd/math/pose.hpp>
+#include <gal/math/pose.hpp>
 #include <neb/fnd/math/geo/decl.hpp>
 
 #include <neb/gfx/material.hpp>
@@ -64,7 +64,7 @@ namespace neb { namespace gfx { namespace mesh {
 					void				draw_elements(
 					program* p,
 					buffer_shared,
-					neb::fnd::math::pose const & pose,
+					gal::math::pose const & pose,
 					glm::vec3 scale);
 			 */
 			/**
@@ -72,11 +72,11 @@ namespace neb { namespace gfx { namespace mesh {
 			 */
 			void				drawDebug(
 					program const * const & p,
-					neb::fnd::math::pose const & pose,
+					gal::math::pose const & pose,
 					glm::vec3 scale);
 			void				drawElements(
 					program const * const & p,
-					neb::fnd::math::pose const & pose,
+					gal::math::pose const & pose,
 					glm::vec3 scale);
 			void						setVerts(std::vector<neb::fnd::math::geo::vertex> const &);
 			void						setIndices(std::vector<index_type> const &);

@@ -52,6 +52,8 @@ void					THIS::init(parent_t * const & p)
 
 	gal::tmp::VerbosityRegister::reg<neb::gfx::camera::proj::Base>("neb gfx camera proj base");
 
+	gal::tmp::VerbosityRegister::reg<neb::fnd::glsl::program::Base>("neb gfx glsl program base");
+
 	neb::gfx::app::draw::__init();
 	neb::gfx::app::glfw::__init();
 	neb::gfx::app::glsl::__init();

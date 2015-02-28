@@ -10,7 +10,7 @@
 #include <gal/etc/slots.hpp>
 
 #include <neb/fnd/environ/util/decl.hpp>
-#include <neb/fnd/math/serialization/glm.hpp>
+#include <gal/math/serialization/glm.hpp>
 #include <neb/fnd/math/color/color.hpp>
 #include <neb/fnd/util/decl.hpp>
 
@@ -46,16 +46,16 @@ namespace neb { namespace gfx { namespace core { namespace light {
 			virtual void					release();
 			virtual void					cleanup();
 			virtual void					step(gal::etc::timestep const & ts);
-			//virtual void					load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose) = 0;
-			void						load(int o, neb::fnd::math::pose const & pose);
+			//virtual void					load(neb::fnd::core::light::util::count & light_count, gal::math::pose const & pose) = 0;
+			void						load(int o, gal::math::pose const & pose);
 			void						load_shadow();
 			void						draw();
 			void						dim();
 			void						RenderShadowPost();
 			void						RenderLightPOV();
-			neb::fnd::math::pose				getPose();
+			gal::math::pose				getPose();
 			glm::vec4					getPos();
-			void						setPose(neb::fnd::math::pose const & pose);
+			void						setPose(gal::math::pose const & pose);
 			virtual void					setShadowEnviron(std::shared_ptr<neb::fnd::environ::Base> environ);
 			//virtual void					setSceneEnviron(std::shared_ptr<neb::fnd::environ::base> environ);
 		protected:

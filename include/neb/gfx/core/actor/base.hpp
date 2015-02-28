@@ -43,13 +43,13 @@ namespace neb { namespace gfx { namespace core { namespace actor {
 		public:
 			void						draw(
 					neb::fnd::glsl::program::Base const * const & p,
-					neb::fnd::math::pose const & pose);
+					gal::math::pose const & pose);
 			void						drawDebug(
 					neb::fnd::glsl::program::Base const * const & p,
-					neb::fnd::math::pose const & pose);
+					gal::math::pose const & pose);
 			void						drawHF(
 					neb::fnd::glsl::program::Base const * const & p,
-					neb::fnd::math::pose const & pose);
+					gal::math::pose const & pose);
 
 	};
 }}}}

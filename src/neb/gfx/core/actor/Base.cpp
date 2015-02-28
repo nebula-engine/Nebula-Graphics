@@ -37,7 +37,7 @@ void			THIS::step(gal::etc::timestep const & ts)
 }
 void			THIS::draw(
 		neb::fnd::glsl::program::Base const * const & program,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 
@@ -73,7 +73,7 @@ void			THIS::draw(
 }
 void				THIS::drawDebug(
 		neb::fnd::glsl::program::Base const * const & program,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 
@@ -100,7 +100,7 @@ void				THIS::drawDebug(
 }
 void				THIS::drawHF(
 		neb::fnd::glsl::program::Base const * const & program,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 

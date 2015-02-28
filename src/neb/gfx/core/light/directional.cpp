@@ -61,7 +61,7 @@ void					THIS::init(parent_t * const & p)
 }
 void					THIS::v_set_pose_data(
 		FND * const & fnd,
-		neb::fnd::math::pose const & gpose)
+		gal::math::pose const & gpose)
 {
 	LOG(lg, neb::gfx::core::light::sl, debug) << __PRETTY_FUNCTION__;
 	LOG(lg, neb::gfx::core::light::sl, debug) << gpose.mat4_cast();

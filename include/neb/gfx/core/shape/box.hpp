@@ -16,17 +16,17 @@ namespace neb { namespace gfx { namespace core { namespace shape {
 			virtual void			draw_legacy(
 					FND * const & ptr,
 					neb::fnd::glsl::program::Base const * const & p,
-					neb::fnd::math::pose const & pose);
+					gal::math::pose const & pose);
 			virtual void			step(gal::etc::timestep const & ts);
 		/*
 			virtual void			v_set_pose_data(
 					FND * const & ptr,
-					neb::fnd::math::pose const & global_pose);
+					gal::math::pose const & global_pose);
 					*/
 /*			virtual void			model_load(
 					FND * const & ptr,
 					neb::fnd::glsl::program::Base const * const & p,
-					neb::fnd::math::pose const & pose);
+					gal::math::pose const & pose);
 */
 	};
 }}}}

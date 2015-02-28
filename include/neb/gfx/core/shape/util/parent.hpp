@@ -8,7 +8,7 @@
 
 #include <gal/itf/shared.hpp>
 
-#include <neb/fnd/math/pose.hpp>
+#include <gal/math/pose.hpp>
 #include <neb/fnd/util/parent.hpp>
 #include <neb/fnd/core/actor/util/decl.hpp>
 #include <neb/fnd/core/actor/util/Cast.hpp>

@@ -149,7 +149,7 @@ void			neb::gfx::mesh::tri1::init_buffer(
 */
 void			neb::gfx::mesh::tri1::drawElements(
 		neb::fnd::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose,
+		gal::math::pose const & pose,
 		glm::vec3 scale)
 {
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
@@ -235,7 +235,7 @@ void			neb::gfx::mesh::tri1::drawElements(
 }
 void			neb::gfx::mesh::tri1::drawDebug(
 		neb::fnd::glsl::program::Base const * const & p,
-		neb::fnd::math::pose const & pose,
+		gal::math::pose const & pose,
 		glm::vec3 scale)
 {
 	LOG(lg, neb::gfx::sl, info) << __PRETTY_FUNCTION__;
@@ -389,7 +389,7 @@ void			neb::gfx::mesh::tri1::drawDebug(
    void			neb::gfx::mesh::tri1::draw_elements(
    program_shared						p,
    std::shared_ptr<neb::gfx::glsl::buffer::tri1>		buf,
-   neb::fnd::math::pose const & pose,
+   gal::math::pose const & pose,
    glm::vec3 scale)
    {
    LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;

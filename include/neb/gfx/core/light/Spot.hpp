@@ -39,9 +39,9 @@ namespace neb { namespace gfx { namespace core { namespace light {
 				virtual void			init(parent_t * const & p);
 				virtual void			v_set_pose_data(
 						FND * const & ptr,
-						neb::fnd::math::pose const & global_pose);
+						gal::math::pose const & global_pose);
 				virtual type::e			getType();
-				virtual void				load(neb::fnd::core::light::util::count & light_count, neb::fnd::math::pose const & pose);
+				virtual void				load(neb::fnd::core::light::util::count & light_count, gal::math::pose const & pose);
 
 				virtual void			serialize(boost::archive::polymorphic_iarchive & ar, unsigned int const & version) {
 					neb::gfx::core::light::Base::serialize(ar, version);

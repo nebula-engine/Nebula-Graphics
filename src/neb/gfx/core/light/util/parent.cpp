@@ -13,7 +13,7 @@
 
 	return scene1;
 }*/
-void			neb::gfx::core::light::util::parent::setPose(neb::fnd::math::pose const & pose)
+void			neb::gfx::core::light::util::parent::setPose(gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 	
@@ -33,7 +33,7 @@ void			neb::gfx::core::light::util::parent::setPose(neb::fnd::math::pose const &
 }
 void			neb::gfx::core::light::util::parent::load_lights(
 		neb::fnd::core::light::util::count & light_count,
-		neb::fnd::math::pose const & pose)
+		gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 

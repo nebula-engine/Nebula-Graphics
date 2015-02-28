@@ -14,10 +14,10 @@ namespace neb { namespace gfx { namespace core { namespace light { namespace uti
 		public:
 			virtual ~parent() {}
 			void			setPose(
-					neb::fnd::math::pose const & pose);
+					gal::math::pose const & pose);
 			void			load_lights(
 					neb::fnd::core::light::util::count & light_count,
-					neb::fnd::math::pose const & pose);
+					gal::math::pose const & pose);
 	};
 }}}}}
 
