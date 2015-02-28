@@ -22,7 +22,8 @@ namespace neb { namespace gfx { namespace core { namespace shape { namespace Hei
 							neb::gfx::glsl::program::Base const * const & p,
 							neb::fnd::math::pose const & pose);
 			virtual void				drawHF(
-							neb::gfx::glsl::program::Base const * const & p,
+						FND * const & ptr,
+						neb::gfx::glsl::program::Base const * const & p,
 							neb::fnd::math::pose const & pose);
 			//virtual void	load(ba::polymorphic_iarchive & ar, unsigned int const &);
 			//virtual void	save(ba::polymorphic_oarchive & ar, unsigned int const &) const;

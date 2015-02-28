@@ -143,6 +143,7 @@ void						THIS::createMesh()
 	printv_func(DEBUG);
 }
 void						THIS::draw_legacy(
+		FND * const & ptr,
 		neb::fnd::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {

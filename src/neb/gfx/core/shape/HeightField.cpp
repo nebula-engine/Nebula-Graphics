@@ -114,6 +114,7 @@ void			THIS::draw(
 		neb::fnd::math::pose const & pose)
 {}
 void			THIS::drawHF(
+		FND * const & ptr,
 		neb::gfx::glsl::program::Base const * const & p,
 		neb::fnd::math::pose const & pose)
 {
@@ -126,8 +127,8 @@ void			THIS::drawHF(
 	neb::gfx::ogl::glUniform(p->uniform_table_[neb::gfx::glsl::uniforms::HF_MAX], max_y_);
 
 
-	draw_elements(p, npose);
+	draw_elements(ptr, p, npose);
 
-	
+
 }
 

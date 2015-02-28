@@ -62,8 +62,8 @@ void			THIS::draw(
 		//shape->draw(program, npose);
 
 		//if(p->G::has_object()) {
-			auto pose3 = npose * p->pose_;
-			p->G::get_object()->draw(p.get(), program, pose3);
+		auto pose3 = npose * p->pose_;
+		p->G::get_object()->draw(p.get(), program, pose3);
 		//}
 
 	};

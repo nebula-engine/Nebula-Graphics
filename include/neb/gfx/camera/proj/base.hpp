@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 
 #include <gal/etc/timestep.hpp>
+#include <gal/stl/verbosity.hpp>
 
 #include <neb/fnd/glsl/program/util/decl.hpp>
 
@@ -22,10 +23,12 @@
 namespace neb { namespace gfx { namespace camera { namespace proj {
 	/** @brief @Base */
 	class Base:
+		public gal::tmp::Verbosity<neb::gfx::camera::proj::Base>,
 		virtual public neb::fnd::plug::gfx::camera::proj::Base,
 		virtual public neb::gfx::camera::proj::util::cast
 	{
 		public:
+			using gal::tmp::Verbosity<neb::gfx::camera::proj::Base>::printv;
 			/** @brief Constructor */
 			Base();
 			/***/

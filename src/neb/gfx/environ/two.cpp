@@ -10,6 +10,8 @@
 void			neb::gfx::environ::Two::render(
 		neb::fnd::context::Base * const & context)
 {
+	printv_func(DEBUG);
+
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
@@ -19,7 +21,7 @@ void			neb::gfx::environ::Two::render(
 	auto drawable = getParent()->drawable_.lock();
 
 	assert(drawable);
-	if(!drawable) return;
+	//if(!drawable) return;
 
 	//auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	//auto app = neb::gfx::app::glsl::global().lock();

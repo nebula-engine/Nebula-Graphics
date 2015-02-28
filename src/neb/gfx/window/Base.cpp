@@ -169,6 +169,7 @@ void		THIS::render()
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 	typedef neb::fnd::context::util::Parent C;
+	typedef neb::fnd::environ::util::Parent E;
 
 	auto lamb = [] (C::map_type::pointer p)
 	{
@@ -177,7 +178,13 @@ void		THIS::render()
 		//auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
 		//assert(context);
 		//context->render();
-		p->render();
+		
+		// experiment: skip rendering of 2D
+		if(p->E::front()->is_fnd_environ_two()) {
+		
+		} else {
+			p->render();
+		}
 	};
 
 	getParent()->C::map_.for_each(lamb);

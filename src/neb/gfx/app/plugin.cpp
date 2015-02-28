@@ -12,8 +12,6 @@ typedef NS1::Base T;
 extern "C" T0*	app_create(int)
 {
 	return new T;
-	
-	return 0;
 }
 extern "C" void	app_destroy(T0* t)
 {

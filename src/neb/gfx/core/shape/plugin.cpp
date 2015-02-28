@@ -15,6 +15,8 @@ extern "C" T0*	shape_create(int i)
 	switch(i) {
 	case NS0::type::CUBOID:
 		return new C;
+	case NS0::type::BASE:
+		return new B;
 	default:
 		abort();
 	}

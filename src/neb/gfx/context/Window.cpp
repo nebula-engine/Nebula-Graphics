@@ -9,6 +9,8 @@ THIS::Window()
 }
 void		THIS::init(parent_t * const & p)
 {
+	printv_func(DEBUG);
+
 	setParent(p);
 	
 	//neb::gfx::context::base::init(p);

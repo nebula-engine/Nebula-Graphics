@@ -31,8 +31,11 @@ THIS::Base()
 }
 void		THIS::load(neb::fnd::glsl::program::Base * const & p)
 {	
+	printv_func(DEBUG);
 	//glViewport(0, 0, parent_->viewport_.w_, parent_->viewport_.h_);
-	
+
+	printv(DEBUG, _M_matrix);
+
 	neb::gfx::ogl::glUniform(
 			p->get_uniform_table_value(neb::gfx::glsl::uniforms::PROJ),
 			_M_matrix);

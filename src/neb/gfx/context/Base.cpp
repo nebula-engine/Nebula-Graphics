@@ -55,18 +55,29 @@ void		THIS::render()
 	/**
 	 * prepare rendering environment and then call the drawable
 	 */
-	auto e = getParent()->neb::fnd::environ::util::Parent::front();
-	if(!e)
-	{
-		printv(CRITICAL, "context has no environ\n");
-		abort();
-		return;
-	}
+	//auto e = getParent()->neb::fnd::environ::util::Parent::front();
+	//if(!e)
+	//{
+	//	printv(CRITICAL, "context has no environ\n");
+	//	abort();
+	//	return;
+	//}
 	
 	auto self = std::dynamic_pointer_cast<neb::gfx::context::base>(shared_from_this());
 	assert(self);
 	
-	e->render(self->getParent());
+	//e->render(self->getParent());
+	
+	auto parent = getParent();
+	
+	typedef neb::fnd::environ::util::Parent E;
+
+	auto lamb = [&] (E::map_type::pointer p)
+	{
+		p->render(parent);
+	};
+	
+	parent->E::map_.for_each(lamb);
 }		
 /*
 std::shared_ptr<neb::fnd::environ::Base>	THIS::get_environ()

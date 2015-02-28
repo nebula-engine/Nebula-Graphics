@@ -21,7 +21,6 @@
 #include <neb/gfx/environ/base.hpp>
 //#include <neb/gfx/glsl/uniform/scalar.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
-#include <neb/gfx/util/log.hpp>
 //#include <neb/gfx/util/io.hpp> removed by c_header_checker
 //#include <neb/gfx/opengl/uniform.hpp> removed by c_header_checker
 
@@ -41,11 +40,14 @@ THIS::Perspective():
 }*/
 glm::mat4		THIS::proj()
 {
+	printv_func(DEBUG);
 	return _M_matrix;
 }
 void			THIS::init(parent_t * const & parent)
 {
 	setParent(parent);
+
+	calculate();
 }
 void			THIS::calculate_geometry()
 {
@@ -55,14 +57,17 @@ void			THIS::release()
 }
 void			THIS::set(float fovy, float near, float far)
 {
+	printv_func(DEBUG);
+
 	fovy_ = fovy;
 	zn_ = near;
 	zf_ = far;
+
 	calculate();
 }
 void			THIS::calculate()
 {
-	LOG(lg, neb::gfx::sl, debug) << __PRETTY_FUNCTION__;
+	printv_func(DEBUG);
 
 	auto parent = getParent();
 	auto fnd_env = parent->getParent();
@@ -70,10 +75,10 @@ void			THIS::calculate()
 	
 	neb::gfx::Viewport& vp = env->viewport_;
 
-	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "fovy" << ::std::setw(8) << fovy_;
-	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "aspect" << ::std::setw(8) << vp.aspect_;
-	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zn" << ::std::setw(8) << zn_;
-	LOG(lg, neb::gfx::sl, debug) << ::std::setw(8) << "zf" << ::std::setw(8) << zf_;
+	printv(DEBUG, "fovy   %f\n", fovy_);
+	printv(DEBUG, "aspect %f\n", vp.aspect_);
+	printv(DEBUG, "zn     %f\n", zn_);
+	printv(DEBUG, "zf     %f\n", zf_);
 	
 	if(vp.aspect_ == 0.0) {
 		vp.aspect_ = 1.0;
