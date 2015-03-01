@@ -5,6 +5,7 @@
 #include <neb/gfx/core/shape/base.hpp>
 #include <neb/gfx/core/light/Base.hpp>
 #include <neb/gfx/app/base.hpp>
+#include <neb/gfx/Viewport.hpp>
 
 typedef neb::gfx::app::Base THIS;
 
@@ -53,6 +54,8 @@ void					THIS::init(parent_t * const & p)
 	gal::tmp::VerbosityRegister::reg<neb::gfx::camera::proj::Base>("neb gfx camera proj base");
 
 	gal::tmp::VerbosityRegister::reg<neb::fnd::glsl::program::Base>("neb gfx glsl program base");
+
+	gal::tmp::VerbosityRegister::reg<neb::gfx::Viewport>("neb gfx viewport");
 
 	neb::gfx::app::draw::__init();
 	neb::gfx::app::glfw::__init();

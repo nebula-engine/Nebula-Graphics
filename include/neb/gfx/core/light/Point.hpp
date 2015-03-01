@@ -11,7 +11,7 @@
 #include <neb/fnd/util/config.hpp>
 #include <neb/fnd/util/decl.hpp>
 #include <neb/fnd/itf/shared.hpp>
-#include <neb/fnd/math/serialization/glm.hpp>
+#include <gal/math/serialization/glm.hpp>
 #include <neb/fnd/environ/util/decl.hpp>
 #include <neb/fnd/core/light/util/light_count.hpp>
 

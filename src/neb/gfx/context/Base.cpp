@@ -39,8 +39,17 @@ void		neb::gfx::context::base::release() {
 void		THIS::resize(int w, int h)
 {
 	printv(DEBUG, "%s\n", __PRETTY_FUNCTION__);
-	/// @TODO fix this
-	//if(e) e->resize(w,h);
+	
+	auto parent = getParent();
+	
+	typedef neb::fnd::environ::util::Parent E;
+
+	auto lamb = [&] (E::map_type::pointer p)
+	{
+		p->resize(w, h);
+	};
+	
+	parent->E::map_.for_each(lamb);
 }
 void		THIS::step(gal::etc::timestep const & ts)
 {

@@ -3,19 +3,20 @@
 
 #include <GL/glew.h>
 
-namespace neb {
-	namespace gfx {
-		class Viewport {
-			public:
-				Viewport();
-				virtual void		load();
-				virtual void		resize(int w, int h);
+#include <gal/stl/verbosity.hpp>
 
-				GLuint			x_, y_, w_, h_;
-				GLfloat			aspect_;
-
-		};
-	}
-}
+namespace neb { namespace gfx {
+	class Viewport:
+		public gal::tmp::Verbosity<neb::gfx::Viewport>
+	{
+		public:
+			using gal::tmp::Verbosity<neb::gfx::Viewport>::printv;
+			Viewport();
+			virtual void		load();
+			virtual void		resize(int w, int h);
+			GLuint			x_, y_, w_, h_;
+			GLfloat			aspect_;
+	};
+}}
 
 #endif

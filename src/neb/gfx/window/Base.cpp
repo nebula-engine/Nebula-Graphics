@@ -59,13 +59,13 @@ void			THIS::init(parent_t * const & p)
 
 	if(!app->flag_.any(neb::fnd::app::util::flag::INIT_GLFW))
 	{
-		std::cout << "glfw not initializaed" << std::endl;
+		printv(WARNING, "glfw not initializaed\n");
 		return;
 	}
 	
 	auto g = std::dynamic_pointer_cast<neb::gfx::app::Base>(app->G::get_object());
 
-	auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
+	//auto self = std::dynamic_pointer_cast<THIS>(shared_from_this());
 	
 	if(window_) return;
 
@@ -73,6 +73,7 @@ void			THIS::init(parent_t * const & p)
 	
 	glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	//glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
 
 	window_ = glfwCreateWindow(
 			w_,
@@ -245,10 +246,13 @@ void			THIS::resize()
 
 	typedef neb::fnd::context::util::Parent C;
 
-	auto lamb = [&] (C::map_type::pointer p) {
-		auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
-		assert(context);
-		context->resize(w_, h_);
+	auto lamb = [&] (C::map_type::pointer p)
+	{
+		//auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
+		//assert(context);
+		//context->resize(w_, h_);
+		
+		p->resize(w_, h_);
 	};
 
 	getParent()->C::map_.for_each(lamb);

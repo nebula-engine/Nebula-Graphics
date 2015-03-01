@@ -13,7 +13,7 @@
 #include <neb/fnd/util/config.hpp>
 #include <neb/fnd/util/decl.hpp>
 #include <neb/fnd/itf/shared.hpp>
-#include <neb/fnd/math/serialization/glm.hpp>
+#include <gal/math/serialization/glm.hpp>
 
 #include <neb/gfx/core/light/Base.hpp>
 #include <neb/gfx/texture/Base.hpp>

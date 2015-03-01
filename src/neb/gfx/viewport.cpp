@@ -12,7 +12,11 @@ neb::gfx::Viewport::Viewport():
 	h_(0),
 	aspect_(0)
 {}
-void		neb::gfx::Viewport::load() {
+void		neb::gfx::Viewport::load()
+{
+	printv_func(DEBUG);
+	printv(DEBUG, "x %i y %i w %i h %i\n", x_, y_, w_, h_);
+	
 	glViewport(x_, y_, w_, h_);
 }
 void		neb::gfx::Viewport::resize(int w, int h) {
