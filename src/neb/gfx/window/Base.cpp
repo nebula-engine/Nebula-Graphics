@@ -181,11 +181,11 @@ void		THIS::render()
 		//context->render();
 		
 		// experiment: skip rendering of 2D
-		if(p->E::front()->is_fnd_environ_two()) {
+		//if(p->E::front()->is_fnd_environ_two()) {
 		
-		} else {
+		//} else {
 			p->render();
-		}
+		//}
 	};
 
 	getParent()->C::map_.for_each(lamb);
