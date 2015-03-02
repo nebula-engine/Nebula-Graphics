@@ -237,8 +237,9 @@ void			THIS::drawDebug(
 	auto parent = getParent();
 	auto app = get_fnd_app();
 
-	auto g = app->get_object();
+	auto g = app->G::get_object();
 	assert(g);
+
 	auto p = g->get_program_simple3();
 	p->use();
 
@@ -266,7 +267,7 @@ void			THIS::draw_debug_buffer(
 		neb::fnd::RenderDesc const & desc,
 		neb::fnd::DebugBuffer const & db)
 {
-	auto g = get_fnd_app()->get_object();
+	auto g = get_fnd_app()->G::get_object();
 	assert(g);
 
 	auto p = g->get_program_simple3();
