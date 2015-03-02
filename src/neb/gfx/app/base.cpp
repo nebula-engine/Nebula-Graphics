@@ -35,13 +35,14 @@ std::weak_ptr<THIS>			THIS::initialize()
 */
 void					THIS::init(parent_t * const & p)
 {
+	printv_func(INFO);
+
 	setParent(p);
 
 	// gfx
 	gal::tmp::VerbosityRegister::reg<neb::gfx::window::Base>("neb gfx window base");
 	gal::tmp::VerbosityRegister::reg<neb::gfx::context::base>("neb gfx context base");
 	gal::tmp::VerbosityRegister::reg<neb::gfx::environ::base>("neb gfx environ base");
-
 	
 	gal::tmp::VerbosityRegister::reg<neb::gfx::core::scene::base>("neb gfx core scene base");
 	gal::tmp::VerbosityRegister::reg<neb::gfx::core::actor::base>("neb gfx core actor base");

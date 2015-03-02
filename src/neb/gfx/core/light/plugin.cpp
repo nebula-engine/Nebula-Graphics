@@ -15,13 +15,15 @@ typedef neb::gfx::core::light::Directional D;
 
 extern "C" T0*	light_create(int i)
 {
+	printf("plugin gfx1 %s\n", __PRETTY_FUNCTION__);
+
 	switch(i) {
 	case NS0::type::POINT:
 		return new P;
-	case NS0::type::SPOT:
-		return new S;
-	case NS0::type::DIRECTIONAL:
-		return new D;
+//	case NS0::type::SPOT:
+//		return new S;
+//	case NS0::type::DIRECTIONAL:
+//		return new D;
 	default:
 		printf("error: invalid type: %i\n", i);
 		abort();
@@ -31,7 +33,7 @@ extern "C" T0*	light_create(int i)
 }
 extern "C" void	light_destroy(T0* t)
 {
-	std::cout << __PRETTY_FUNCTION__ << std::endl;
+	printf("plugin gfx1 %s\n", __PRETTY_FUNCTION__);
 	delete t;
 }
 
