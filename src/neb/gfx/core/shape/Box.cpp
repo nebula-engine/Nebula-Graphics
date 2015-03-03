@@ -13,10 +13,11 @@ typedef neb::gfx::core::shape::box THIS;
 
 THIS::box()
 {
-	printv_func(DEBUG);
+	printv_func(INFO);
 }
 void			THIS::init(parent_t * const & p)
 {
+	printv_func(INFO);
 	setParent(p);
 }
 void			THIS::step(gal::etc::timestep const & ts)
