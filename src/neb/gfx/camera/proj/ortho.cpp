@@ -1,5 +1,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
+#include <neb/fnd/camera/proj/Base.hpp>
+
 #include <neb/gfx/camera/proj/ortho.hpp>
 
 typedef neb::gfx::camera::proj::Ortho THIS;

@@ -1,4 +1,6 @@
 //#include <neb/app/base.hpp>
+#include <neb/fnd/camera/view/Base.hpp>
+
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/glsl/program/base.hpp>
