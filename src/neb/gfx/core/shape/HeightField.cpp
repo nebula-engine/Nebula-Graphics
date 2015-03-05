@@ -9,6 +9,9 @@ THIS::Base()
 {}
 void			THIS::mesh_from_heightfield(neb::fnd::math::HeightField::Base* hf, float rowScale, float colScale)
 {
+	auto parent = dynamic_cast<neb::fnd::core::shape::HeightField::Base*>(getParent());
+	assert(parent);
+
 	unsigned int r = hf->_M_r;
 	unsigned int c = hf->_M_c;
 	unsigned int nbVerts = r * c;
@@ -20,9 +23,9 @@ void			THIS::mesh_from_heightfield(neb::fnd::math::HeightField::Base* hf, float 
 	std::vector<neb::fnd::math::geo::vertex> vertices(nbVerts);
 	std::vector<unsigned short> indices(nbIndices);
 	
-	
-	min_y_ = hf->min();
-	max_y_ = hf->max();
+
+	parent->min_y_ = hf->min();
+	parent->max_y_ = hf->max();
 	
 	hf->slope(rowScale, colScale);
 
@@ -118,13 +121,16 @@ void			THIS::drawHF(
 		neb::gfx::glsl::program::Base const * const & p,
 		gal::math::pose const & pose)
 {
-	auto npose = pose * pose_;
+	auto parent = dynamic_cast<neb::fnd::core::shape::HeightField::Base*>(getParent());
+	assert(parent);
+
+	auto npose = pose * parent->pose_;
 
 	p->use();
 
 	// load texture height range
-	neb::gfx::ogl::glUniform(p->uniform_table_[neb::gfx::glsl::uniforms::HF_MIN], min_y_);
-	neb::gfx::ogl::glUniform(p->uniform_table_[neb::gfx::glsl::uniforms::HF_MAX], max_y_);
+	neb::gfx::ogl::glUniform(p->uniform_table_[neb::gfx::glsl::uniforms::HF_MIN], parent->min_y_);
+	neb::gfx::ogl::glUniform(p->uniform_table_[neb::gfx::glsl::uniforms::HF_MAX], parent->max_y_);
 
 
 	draw_elements(ptr, p, npose);

@@ -8,7 +8,7 @@
 
 namespace neb { namespace gfx { namespace core { namespace shape { namespace HeightField {
 	class Base:
-		virtual public neb::fnd::core::shape::HeightField::Base,
+		//virtual public neb::fnd::core::shape::HeightField::Base,
 		virtual public neb::gfx::core::shape::base
 	{
 		public:
