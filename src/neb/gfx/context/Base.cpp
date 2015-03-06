@@ -83,7 +83,11 @@ void		THIS::render()
 
 	auto lamb = [&] (E::map_type::pointer p)
 	{
-		p->render(parent);
+
+		if(p->is_fnd_environ_two())
+			p->render(parent);
+
+
 	};
 	
 	parent->E::for_each(lamb);
