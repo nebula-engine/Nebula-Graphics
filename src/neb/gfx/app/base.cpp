@@ -40,23 +40,23 @@ void					THIS::init(parent_t * const & p)
 	setParent(p);
 
 	// gfx
-	gal::tmp::VerbosityRegister::reg<neb::gfx::window::Base>("neb gfx window base");
-	gal::tmp::VerbosityRegister::reg<neb::gfx::context::base>("neb gfx context base");
-	gal::tmp::VerbosityRegister::reg<neb::gfx::environ::base>("neb gfx environ base");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::window::Base>("neb gfx window base");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::context::base>("neb gfx context base");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::environ::base>("neb gfx environ base");
 	
-	gal::tmp::VerbosityRegister::reg<neb::gfx::core::scene::base>("neb gfx core scene base");
-	gal::tmp::VerbosityRegister::reg<neb::gfx::core::actor::base>("neb gfx core actor base");
-	gal::tmp::VerbosityRegister::reg<neb::gfx::core::shape::base>("neb gfx core shape base");
-	gal::tmp::VerbosityRegister::reg<neb::gfx::core::light::Base>("neb gfx core light base");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::core::scene::base>("neb gfx core scene base");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::core::actor::base>("neb gfx core actor base");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::core::shape::base>("neb gfx core shape base");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::core::light::Base>("neb gfx core light base");
 
-	gal::tmp::VerbosityRegister::reg<neb::gfx::camera::view::Base>("neb gfx camera view base");
-	gal::tmp::VerbosityRegister::reg<neb::gfx::camera::view::Ridealong>("neb gfx camera view ridealong");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::camera::view::Base>("neb gfx camera view base");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::camera::view::Ridealong>("neb gfx camera view ridealong");
 
-	gal::tmp::VerbosityRegister::reg<neb::gfx::camera::proj::Base>("neb gfx camera proj base");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::camera::proj::Base>("neb gfx camera proj base");
 
-	gal::tmp::VerbosityRegister::reg<neb::fnd::glsl::program::Base>("neb gfx glsl program base");
+	p->gal::tmp::VerbosityRegister::reg<neb::fnd::glsl::program::Base>("neb gfx glsl program base");
 
-	gal::tmp::VerbosityRegister::reg<neb::gfx::Viewport>("neb gfx viewport");
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::Viewport>("neb gfx viewport");
 
 	neb::gfx::app::draw::__init();
 	neb::gfx::app::glfw::__init();

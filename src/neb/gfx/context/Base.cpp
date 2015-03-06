@@ -49,7 +49,7 @@ void		THIS::resize(int w, int h)
 		p->resize(w, h);
 	};
 	
-	parent->E::map_.for_each(lamb);
+	parent->E::for_each(lamb);
 }
 void		THIS::step(gal::etc::timestep const & ts)
 {
@@ -86,7 +86,7 @@ void		THIS::render()
 		p->render(parent);
 	};
 	
-	parent->E::map_.for_each(lamb);
+	parent->E::for_each(lamb);
 }		
 /*
 std::shared_ptr<neb::fnd::environ::Base>	THIS::get_environ()

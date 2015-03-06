@@ -146,7 +146,7 @@ void			THIS::drawMesh(neb::fnd::RenderDesc const & desc)
 		g2->draw(d3, gal::math::pose());
 	};
 
-	parent->A::map_.for_each(la);
+	parent->A::for_each(la);
 }
 void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 {
@@ -190,7 +190,7 @@ void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 		g2->drawHF(p, gal::math::pose());
 	};
 
-	parent->A::map_.for_each(la);
+	parent->A::for_each(la);
 
 }
 void			THIS::drawMeshInst(neb::fnd::RenderDesc const & desc)
@@ -257,7 +257,7 @@ void			THIS::drawDebug(
 		g2->drawDebug(p.get(), gal::math::pose());
 	};
 
-	parent->A::map_.for_each(la);
+	parent->A::for_each(la);
 
 }
 void			THIS::resize(int w, int h)

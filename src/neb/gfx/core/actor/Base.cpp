@@ -68,8 +68,8 @@ void			THIS::draw(
 
 	};
 
-	parent->A::map_.for_each(lambda_actor);
-	parent->S::map_.for_each(lambda_shape);
+	parent->A::for_each(lambda_actor);
+	parent->S::for_each(lambda_shape);
 }
 void				THIS::drawDebug(
 		neb::fnd::glsl::program::Base const * const & program,
@@ -84,13 +84,14 @@ void				THIS::drawDebug(
 	typedef neb::fnd::core::actor::util::parent A;
 	typedef neb::fnd::core::shape::util::parent S;
 
-	parent->A::map_.for_each([&] (A::map_type::pointer p) {
+	parent->A::for_each([&] (A::map_type::pointer p) {
 			auto actor = std::dynamic_pointer_cast<THIS>(p);
 			assert(actor);
 			actor->drawDebug(program, npose);
 			});
 
-	parent->S::map_.for_each([&] (S::map_type::pointer p) {
+	parent->S::for_each([&] (S::map_type::pointer p) {
+			/// @TODO fix this
 			//auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
 			//assert(shape);
 			//shape->drawDebug(program, npose);
@@ -111,13 +112,13 @@ void				THIS::drawHF(
 	typedef neb::fnd::core::actor::util::parent A;
 	typedef neb::fnd::core::shape::util::parent S;
 
-	parent->A::map_.for_each([&] (A::map_type::pointer p) {
+	parent->A::for_each([&] (A::map_type::pointer p) {
 			auto actor = std::dynamic_pointer_cast<THIS>(p);
 			assert(actor);
 			actor->drawHF(program, npose);
 			});
 
-	parent->S::map_.for_each([&] (S::map_type::pointer p) {
+	parent->S::for_each([&] (S::map_type::pointer p) {
 			//auto shape = std::dynamic_pointer_cast<neb::gfx::core::shape::base>(p);
 			//assert(shape);
 			//shape->drawHF(program, npose);

@@ -28,7 +28,7 @@ void			neb::gfx::core::light::util::parent::setPose(gal::math::pose const & pose
 		
 	};
 
-	map_.for_each(lambda_light);
+	for_each(lambda_light);
 
 }
 void			neb::gfx::core::light::util::parent::load_lights(
@@ -50,7 +50,7 @@ void			neb::gfx::core::light::util::parent::load_lights(
 
 	};
 
-	map_.for_each(lambda_light);
+	for_each(lambda_light);
 
 }
 

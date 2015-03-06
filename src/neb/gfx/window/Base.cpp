@@ -188,7 +188,7 @@ void		THIS::render()
 		//}
 	};
 
-	getParent()->C::map_.for_each(lamb);
+	getParent()->C::for_each(lamb);
 
 	glFinish();
 	glfwSwapBuffers(window_);
@@ -255,7 +255,7 @@ void			THIS::resize()
 		p->resize(w_, h_);
 	};
 
-	getParent()->C::map_.for_each(lamb);
+	getParent()->C::for_each(lamb);
 
 }
 void			THIS::makeCurrent()
