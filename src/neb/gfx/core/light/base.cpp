@@ -23,7 +23,7 @@ THIS::Base():
 	diffuse_(neb::fnd::math::color::color::white()),
 	specular_(neb::fnd::math::color::color::white()),
 	atten_const_(1.0),
-	atten_linear_(0.0),
+	atten_linear_(0.5),
 	atten_quad_(0.0),
 	spot_direction_(glm::vec3(0.0, 0.0, -1.0)),
 	spot_cutoff_(1.0),

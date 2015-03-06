@@ -6,6 +6,10 @@
 
 typedef neb::gfx::app::glfw THIS;
 
+std::weak_ptr<neb::fnd::input::js>	THIS::get_joystick(int i)
+{
+	return _M_joystick_state[i];
+}
 void			THIS::static_error_fun(
 		int error, char const * description)
 {
@@ -134,14 +138,28 @@ void							THIS::onFirstContext()
 void							THIS::update_joysticks()
 {
 	for(int i = 0; i <= GLFW_JOYSTICK_LAST; i++) {
-		_M_joystick_state[i].update();
+		int present = glfwJoystickPresent(i);
+		if(present) {
+			if(!_M_joystick_state[i]) {
+				// joystick connected
+				printf("joystick %i connected\n", i);
+				_M_joystick_state[i].reset(new neb::gfx::js);
+			}
+			_M_joystick_state[i]->update(i);
+		} else {
+			if(_M_joystick_state[i]) {
+				// joystick disconnected
+				printf("joystick %i disconnected", i);
+				_M_joystick_state[i].reset();
+			}
+		}
 	}
 }
 neb::gfx::app::glfw*					THIS::get_gfx_app_glfw()
 {
 	auto a = neb::fnd::app::Base::g_app_;
 	assert(a);
-	
+
 	auto go = a->G::get_object();
 
 	auto g = std::dynamic_pointer_cast<neb::gfx::app::glfw>(go);

@@ -67,10 +67,11 @@ namespace neb { namespace gfx { namespace app {
 			//{ throw neb::fnd::except::NotImplemented(); return window_w(); }
 			WINDOW*						get_window(GLFWwindow*);
 			void						update_joysticks();
+			virtual std::weak_ptr<neb::fnd::input::js>	get_joystick(int i);
 		public:
 			//GLFWwindow*					currentIdleWindow_;
 			glfwwindow_map_type				windows_glfw_;
-			neb::gfx::JoystickState				_M_joystick_state[16];
+			std::shared_ptr<neb::gfx::js>			_M_joystick_state[16];
 	};
 }}}
 

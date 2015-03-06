@@ -35,11 +35,13 @@ std::weak_ptr<THIS>			THIS::initialize()
 */
 void					THIS::init(parent_t * const & p)
 {
-	printv_func(INFO);
+	printv_func(DEBUG);
 
 	setParent(p);
 
 	// gfx
+	p->gal::tmp::VerbosityRegister::reg<neb::gfx::app::Base>("neb gfx app base");
+
 	p->gal::tmp::VerbosityRegister::reg<neb::gfx::window::Base>("neb gfx window base");
 	p->gal::tmp::VerbosityRegister::reg<neb::gfx::context::base>("neb gfx context base");
 	p->gal::tmp::VerbosityRegister::reg<neb::gfx::environ::base>("neb gfx environ base");
@@ -65,21 +67,30 @@ void					THIS::init(parent_t * const & p)
 }
 void					THIS::__init()
 {
+	printv_func(DEBUG);
+
 }
 double					THIS::get_time()
 {
+	printv_func(DEBUG);
+
 	return glfwGetTime();
 }
 void					THIS::release()
 {
+	printv_func(DEBUG);
+
 	neb::gfx::app::draw::release();
 	//neb::gfx::app::__gfx_glsl::release();
 }
 void					THIS::__release()
 {
+	printv_func(DEBUG);
 }
 void					THIS::step(gal::etc::timestep const & ts)
 {
+	printv_func(DEBUG);
+
 	//neb::fnd::app::__base::step(ts);
 	//neb::fnd::app::Base::__step(ts);
 	
@@ -102,6 +113,8 @@ void					THIS::loop()
 }*/
 void		THIS::update()
 {
+	printv_func(DEBUG);
+
 	glfwPollEvents();
 
 	neb::gfx::app::glfw::update_joysticks();

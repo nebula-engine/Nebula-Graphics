@@ -1,21 +1,25 @@
 #ifndef NEB_GFX_JOYSTICKSTATE_HPP
 #define NEB_GFX_JOYSTICKSTATE_HPP
 
-#include <neb/fnd/input/signals.hpp>
+#include <neb/fnd/input/js.hpp>
 
 namespace neb { namespace gfx {
-	class JoystickState
+	class js:
+		public neb::fnd::input::js
 	{
 		public:
-			virtual void		update();
+			js();
+			virtual int			get_axes_count();
+			virtual int			get_button_count();
+			virtual float			get_axes(int i);
+			virtual void			update(int i);
 		private:
-			float			_M_axes[6];
-			unsigned char		_M_buttons[32];
+			bool				_M_present;
+			float				_M_axes[6];
+			unsigned char			_M_buttons[32];
 
-			unsigned char		_M_axes_count;
-			unsigned char		_M_button_count;
-
-			neb::fnd::input::signals::JoystickButtonFun	_M_button_signal;
+			int				_M_axes_count;
+			int				_M_button_count;
 	};
 }}
 
