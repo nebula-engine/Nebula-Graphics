@@ -12,6 +12,8 @@ THIS::js():
 }
 void	THIS::update(int i)
 {
+	auto sthis = shared_from_this();
+
 	// axes
 	const float* axes = glfwGetJoystickAxes(i, &_M_axes_count);
 
@@ -24,12 +26,12 @@ void	THIS::update(int i)
 		switch(btn[j]) {
 			case GLFW_PRESS:
 				if(_M_buttons[j] == GLFW_RELEASE) {
-					joystickButtonFun_(j, GLFW_PRESS);
+					_M_sig.js_button_fun(sthis, j, GLFW_PRESS);
 				}
 				break;
 			case GLFW_RELEASE:
 				if(_M_buttons[j] == GLFW_PRESS) {
-					joystickButtonFun_(j, GLFW_RELEASE);
+					_M_sig.js_button_fun(sthis, j, GLFW_RELEASE);
 				}
 				break;
 		}

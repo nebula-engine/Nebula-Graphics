@@ -1,11 +1,14 @@
 #ifndef NEB_GFX_JOYSTICKSTATE_HPP
 #define NEB_GFX_JOYSTICKSTATE_HPP
 
+#include <gal/shared.hpp>
+
 #include <neb/fnd/input/js.hpp>
 
 namespace neb { namespace gfx {
 	class js:
-		public neb::fnd::input::js
+		virtual public gal::enable_shared_from_this<neb::gfx::js>,
+		virtual public neb::fnd::input::js
 	{
 		public:
 			js();
