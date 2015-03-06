@@ -81,16 +81,24 @@ void		THIS::render()
 	
 	typedef neb::fnd::environ::util::Parent E;
 
-	auto lamb = [&] (E::map_type::pointer p)
+
+	auto lamb1 = [&] (E::map_type::pointer p)
 	{
-
-		if(p->is_fnd_environ_two())
+		if(p->is_fnd_environ_three())
 			p->render(parent);
-
-
 	};
 	
-	parent->E::for_each(lamb);
+	parent->E::for_each(lamb1);
+
+	if(1) {
+	auto lamb2 = [&] (E::map_type::pointer p)
+	{
+		if(p->is_fnd_environ_two())
+			p->render(parent);
+	};
+	
+	parent->E::for_each(lamb2);
+	}
 }		
 /*
 std::shared_ptr<neb::fnd::environ::Base>	THIS::get_environ()

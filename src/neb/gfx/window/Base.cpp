@@ -172,23 +172,28 @@ void		THIS::render()
 	typedef neb::fnd::context::util::Parent C;
 	typedef neb::fnd::environ::util::Parent E;
 
-	auto lamb = [] (C::map_type::pointer p)
+	auto lamb1 = [] (C::map_type::pointer p)
 	{
-		//printv(DEBUG, "lamb");
-	
-		//auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
-		//assert(context);
-		//context->render();
-		
-		// experiment: skip rendering of 2D
-		//if(p->E::front()->is_fnd_environ_two()) {
-		
-		//} else {
+		if(p->E::front()->is_fnd_environ_three()) {
 			p->render();
-		//}
+		}
 	};
 
-	getParent()->C::for_each(lamb);
+	getParent()->C::for_each(lamb1);
+
+	auto lamb2 = [] (C::map_type::pointer p)
+	{
+		if(p->E::front()->is_fnd_environ_two()) {
+			p->render();
+		}
+	};
+
+	getParent()->C::for_each(lamb2);
+
+
+
+
+
 
 	glFinish();
 	glfwSwapBuffers(window_);
@@ -205,14 +210,14 @@ void			THIS::step(gal::etc::timestep const & ts)
 
 	/// @ TODO move to fnd
 	/*
-	contexts::step(ts);
+	   contexts::step(ts);
 
-	if(glfwWindowShouldClose(window_))
-	{
-		getParent()->erase(_M_index);
-		return;
-	}
-	*/
+	   if(glfwWindowShouldClose(window_))
+	   {
+	   getParent()->erase(_M_index);
+	   return;
+	   }
+	   */
 }
 void			THIS::callback_window_size_fun(GLFWwindow* window, int w, int h)
 {
@@ -251,7 +256,7 @@ void			THIS::resize()
 		//auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
 		//assert(context);
 		//context->resize(w_, h_);
-		
+
 		p->resize(w_, h_);
 	};
 
@@ -280,22 +285,22 @@ void			THIS::printScreen()
 			GL_UNSIGNED_BYTE,
 			(GLvoid *)&screenBuffer_[0]
 		    );
-	
-	
+
+
 	// invert pixels (stolen from SOILs source code)
 	/*
-	for (int j = 0; j * 2 < h_; ++j) {
-		int x = j * w_ * 3;
-		int y = (h_ - 1 - j) * w_ * 3;
-		for (int i = w_ * 3; i > 0; --i) {
-			uint8_t tmp = screenBuffer_[x];
-			screenBuffer_[x] = screenBuffer_[y];
-			screenBuffer_[y] = tmp;
-			++x;
-			++y;
-		}
-	}
-	*/
+	   for (int j = 0; j * 2 < h_; ++j) {
+	   int x = j * w_ * 3;
+	   int y = (h_ - 1 - j) * w_ * 3;
+	   for (int i = w_ * 3; i > 0; --i) {
+	   uint8_t tmp = screenBuffer_[x];
+	   screenBuffer_[x] = screenBuffer_[y];
+	   screenBuffer_[y] = tmp;
+	   ++x;
+	   ++y;
+	   }
+	   }
+	   */
 
 	time_t rawtime;
 	struct tm * timeinfo;

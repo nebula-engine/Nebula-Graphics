@@ -31,13 +31,13 @@ void			neb::gfx::environ::Two::render(
 	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 	//glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 
 	
 	// get program choice from drawable
 	/** @todo replace with 'environ' which determines program and camera types and accepts certian types of drawables */
 	
-	app->get_program_text()->use();
+	//app->get_program_text()->use();
 	
 	//drawable->draw(context, app->program_text_, 0);
 	drawable->draw(neb::fnd::RenderDesc());
