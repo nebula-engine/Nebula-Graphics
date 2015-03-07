@@ -19,18 +19,19 @@
 
 #include <neb/gfx/free.hpp>
 #include <neb/gfx/opengl/png.hpp>
-#include <neb/gfx/app/glfw.hpp>
-#include <neb/gfx/app/__gfx_glsl.hpp>
-#include <neb/gfx/app/base.hpp>
 #include <neb/gfx/camera/view/Base.hpp>
 #include <neb/gfx/context/Window.hpp>
 #include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/SceneDefault.hpp>
-#include <neb/gfx/window/util/Parent.hpp>
-#include <neb/gfx/environ/two.hpp>
 #include <neb/gfx/environ/three.hpp>
-#include <neb/gfx/window/Base.hpp>
+#include <neb/gfx/environ/two.hpp>
+#include <neb/gfx/window/util/Parent.hpp>
+
+#include <neb/gfx/app/glfw.hpp>
+#include <neb/gfx/app/__gfx_glsl.hpp>
 #include <neb/gfx/app/base.hpp>
+
+#include <neb/gfx/window/Base.hpp>
 
 typedef neb::gfx::window::Base THIS;
 
@@ -120,7 +121,7 @@ void			THIS::init(parent_t * const & p)
 			neb::gfx::app::glfw::staticCharFun);
 
 	// add window to app's window map
-	g->windows_glfw_[window_] = p->is_fnd_window_base();
+	g->reg(shared_from_this());
 
 	//if(all(neb::app::base::option::SHADERS)) create_programs();
 
@@ -313,13 +314,14 @@ void			THIS::printScreen()
 
 	save_png_libpng(buffer, &screenBuffer_[0], w_, h_);
 }
-int		THIS::get_width()
+int			THIS::get_width()
 {
 	return w_;
 }
-int		THIS::get_height()
+int			THIS::get_height()
 {
 	return h_;
 }
+
 
 

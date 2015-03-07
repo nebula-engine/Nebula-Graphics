@@ -6,7 +6,7 @@
 
 typedef neb::gfx::app::glfw THIS;
 
-std::weak_ptr<neb::fnd::input::js>	THIS::get_joystick(int i)
+THIS::S_JS		THIS::get_joystick(int i)
 {
 	return _M_joystick_state[i];
 }
@@ -108,8 +108,8 @@ void			THIS::step(gal::etc::timestep const & ts)
 }
 neb::fnd::window::Base*			THIS::get_window(GLFWwindow* window)
 {
-	auto it = windows_glfw_.find(window);
-	assert(it != windows_glfw_.cend());
+	auto it = _M_windows_glfw.find(window);
+	assert(it != _M_windows_glfw.cend());
 	auto w = it->second.lock();
 	assert(w);
 
@@ -165,6 +165,10 @@ neb::gfx::app::glfw*					THIS::get_gfx_app_glfw()
 	auto g = std::dynamic_pointer_cast<neb::gfx::app::glfw>(go);
 	assert(g);
 	return g.get();
+}
+void			THIS::reg(S_W window)
+{
+	_M_windows_glfw[window->window_] = window->getParent()->shared_from_this();
 }
 
 

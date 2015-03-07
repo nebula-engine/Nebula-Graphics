@@ -37,6 +37,8 @@ namespace neb { namespace gfx { namespace app {
 			typedef neb::fnd::window::Base WINDOW;
 			typedef std::map< GLFWwindow*, std::weak_ptr<WINDOW> >		glfwwindow_map_type;
 			typedef std::weak_ptr<neb::fnd::window::Base>			window_w;
+			typedef std::shared_ptr<neb::fnd::input::js> S_JS;
+			typedef std::shared_ptr<neb::gfx::window::Base> S_W;
 			static void					static_error_fun(int,char const *);
 			static void					static_window_pos_fun(GLFWwindow*,int,int);
 			static void					static_window_size_fun(GLFWwindow*,int,int);
@@ -67,10 +69,11 @@ namespace neb { namespace gfx { namespace app {
 			//{ throw neb::fnd::except::NotImplemented(); return window_w(); }
 			WINDOW*						get_window(GLFWwindow*);
 			void						update_joysticks();
-			virtual std::weak_ptr<neb::fnd::input::js>	get_joystick(int i);
-		public:
+			virtual S_JS					get_joystick(int i);
+			void						reg(S_W window);
+		private:
 			//GLFWwindow*					currentIdleWindow_;
-			glfwwindow_map_type				windows_glfw_;
+			glfwwindow_map_type				_M_windows_glfw;
 			std::shared_ptr<neb::gfx::js>			_M_joystick_state[16];
 	};
 }}}

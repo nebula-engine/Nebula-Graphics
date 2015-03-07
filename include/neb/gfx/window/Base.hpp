@@ -12,6 +12,7 @@
 #include <neb/fnd/core/scene/util/decl.hpp>
 #include <neb/fnd/plug/gfx/window/Base.hpp>
 
+#include <neb/gfx/app/util/decl.hpp>
 #include <neb/gfx/tmp/Child.hpp>
 #include <neb/gfx/context/Base.hpp>
 #include <neb/gfx/context/util/Parent.hpp>
@@ -27,28 +28,23 @@
 namespace neb { namespace gfx { namespace window {
 	class Base:
 		public gal::tmp::Verbosity<neb::gfx::window::Base>,
+		virtual public gal::enable_shared_from_this<neb::gfx::window::Base>,
 		virtual public neb::fnd::plug::gfx::window::Base,
-		//virtual public neb::gfx::context::util::parent,
 		virtual public neb::gfx::window::util::cast
-		//virtual public neb::gfx::tmp::Child<neb::fnd::window::util::Parent>
 	{
 		public:
+			friend class neb::gfx::app::glfw;
+			using gal::enable_shared_from_this<neb::gfx::window::Base>::shared_from_this;
 			//typedef neb::gfx::window::util::parent parent_t;
 			//typedef neb::fnd::util::parent<neb::fnd::context::Base, neb::fnd::context::util::Parent> contexts;
-
 			Base();
 			virtual ~Base();
 			virtual void				init(parent_t * const & p);
 			virtual void				release();
-
 			virtual glm::vec2			getCursorPosNDC();
-
-			/** @name Main Loop @{ */
 			virtual void				render();
 			virtual void				step(gal::etc::timestep const & ts);
-			/** @} */
 			void					resize();
-
 			void					callback_window_pos_fun(GLFWwindow*,int,int);
 			void					callback_window_size_fun(GLFWwindow*,int,int);
 			void					callback_window_close_fun(GLFWwindow*);
@@ -56,26 +52,12 @@ namespace neb { namespace gfx { namespace window {
 			void					callback_mouse_button_fun(GLFWwindow*,int,int,int);
 			void					callback_key_fun(GLFWwindow*,int,int,int,int);
 			void					callbackCharFun(GLFWwindow*,unsigned int);
-
-			/*
-			   std::weak_ptr<neb::fnd::context::Window>	createContextTwo();
-			   std::weak_ptr<neb::fnd::context::Window>	createContextThree();
-			   std::weak_ptr<neb::fnd::context::window>	createContextNormalMap();
-			   */
-
 			virtual int				get_width();
 			virtual int				get_height();
-
 			virtual void				makeCurrent();
-
 			void					printScreen();
-		public:
-
-
 			static GLFWwindow*			first_window_;
-
-
-			neb::gfx::window::util::Flag	flag_;
+			neb::gfx::window::util::Flag		flag_;
 			int					x_;
 			int					y_;
 			int					w_;
