@@ -82,12 +82,12 @@ void			THIS::__init()
 	glfwSetErrorCallback(static_error_fun);
 	//try {
 		glfwInit();
-		getParent()->flag_.set(neb::fnd::app::util::flag::INIT_GLFW);
+		getParent()->_M_flag.set(neb::fnd::app::util::flag::INIT_GLFW);
 	//} catch(std::exception& e);
 }
 void			THIS::init_glew()
 {
-	if(!getParent()->flag_.any(neb::fnd::app::util::flag::INIT_GLEW))
+	if(!getParent()->_M_flag.any(neb::fnd::app::util::flag::INIT_GLEW))
 	{
 		GLenum err = glewInit();
 		if (err != GLEW_OK)
@@ -96,7 +96,7 @@ void			THIS::init_glew()
 			exit(EXIT_FAILURE);
 		}
 
-		getParent()->flag_.set(neb::fnd::app::util::flag::INIT_GLEW);
+		getParent()->_M_flag.set(neb::fnd::app::util::flag::INIT_GLEW);
 	}
 }
 void			THIS::release()
@@ -117,8 +117,8 @@ neb::fnd::window::Base*			THIS::get_window(GLFWwindow* window)
 }
 void							THIS::onFirstContext()
 {
-	if(getParent()->flag_.any(neb::fnd::app::util::flag::FIRST_CONTEXT)) return;
-	getParent()->flag_.set(neb::fnd::app::util::flag::FIRST_CONTEXT);
+	if(getParent()->_M_flag.any(neb::fnd::app::util::flag::FIRST_CONTEXT)) return;
+	getParent()->_M_flag.set(neb::fnd::app::util::flag::FIRST_CONTEXT);
 	
 	/* Print version info */
 	GLubyte const *vendor_string = glGetString(GL_VENDOR);
@@ -157,7 +157,7 @@ void							THIS::update_joysticks()
 }
 neb::gfx::app::glfw*					THIS::get_gfx_app_glfw()
 {
-	auto a = neb::fnd::app::Base::g_app_;
+	auto a = neb::fnd::app::Base::_G_app;
 	assert(a);
 
 	auto go = a->G::get_object();

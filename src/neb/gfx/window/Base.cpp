@@ -58,7 +58,7 @@ void			THIS::init(parent_t * const & p)
 	
 	auto app = get_fnd_app();
 
-	if(!app->flag_.any(neb::fnd::app::util::flag::INIT_GLFW))
+	if(!app->_M_flag.any(neb::fnd::app::util::flag::INIT_GLFW))
 	{
 		printv(WARNING, "glfw not initializaed\n");
 		return;
