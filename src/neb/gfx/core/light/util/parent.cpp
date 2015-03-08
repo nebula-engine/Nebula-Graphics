@@ -5,6 +5,8 @@
 #include <neb/gfx/core/light/Base.hpp>
 #include <neb/gfx/core/light/util/Parent.hpp>
 
+typedef neb::gfx::core::light::util::parent THIS;
+
 /*std::weak_ptr<neb::gfx::core::scene::base>		neb::gfx::core::light::util::parent::getScene() {
 	auto shape = isShapeBase();
 	assert(shape);
@@ -13,7 +15,10 @@
 
 	return scene1;
 }*/
-void			neb::gfx::core::light::util::parent::setPose(gal::math::pose const & pose)
+THIS::~parent()
+{
+}
+void			THIS::setPose(gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 	

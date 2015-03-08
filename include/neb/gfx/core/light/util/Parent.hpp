@@ -12,7 +12,8 @@ namespace neb { namespace gfx { namespace core { namespace light { namespace uti
 		virtual public neb::fnd::core::light::util::parent
 	{
 		public:
-			virtual ~parent() {}
+			using gal::tmp::Verbosity<neb::gfx::core::light::util::parent>::printv;
+			virtual ~parent();
 			void			setPose(
 					gal::math::pose const & pose);
 			void			load_lights(
