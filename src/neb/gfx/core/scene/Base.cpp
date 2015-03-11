@@ -135,7 +135,7 @@ void			THIS::drawMesh(neb::fnd::RenderDesc const & desc)
 	assert(light_array_[0]->size() > 0);
 
 	// individual meshes
-	auto la = [&] (A::map_type::pointer p)
+	auto la = [&] (A::S const & p)
 	{
 		auto actor = std::dynamic_pointer_cast<neb::fnd::core::actor::base>(p);
 		assert(actor);
@@ -179,7 +179,7 @@ void			THIS::drawMeshHF(neb::fnd::RenderDesc const & desc)
 	light_array_[0]->load_uniform(p);
 
 	// individual meshes
-	auto la = [&] (A::map_type::pointer ptr) {
+	auto la = [&] (A::S const & ptr) {
 		auto actor = std::dynamic_pointer_cast<neb::fnd::core::actor::base>(ptr);
 		//auto actor = dynamic_cast<neb::fnd::core::actor::base*>(ptr);
 		assert(actor);
@@ -247,7 +247,7 @@ void			THIS::drawDebug(
 	desc.v->load(p.get());
 
 	// individual meshes
-	auto la = [&] (A::map_type::pointer ptr) {
+	auto la = [&] (A::S const & ptr) {
 		auto actor = std::dynamic_pointer_cast<neb::fnd::core::actor::base>(p);
 		assert(actor);
 		auto g = actor->G::get_object();

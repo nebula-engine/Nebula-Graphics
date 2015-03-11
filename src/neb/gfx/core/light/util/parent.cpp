@@ -22,7 +22,7 @@ void			THIS::setPose(gal::math::pose const & pose)
 {
 	printv_func(DEBUG);
 	
-	auto lambda_light = [&] (map_type::pointer p) {
+	auto lambda_light = [&] (S const & p) {
 		
 		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::Base>(p);
 		assert(light);
@@ -44,7 +44,7 @@ void			neb::gfx::core::light::util::parent::load_lights(
 
 	assert(0);
 
-	auto lambda_light = [&] (map_type::pointer p) {
+	auto lambda_light = [&] (S const & p) {
 
 		auto light = std::dynamic_pointer_cast<neb::gfx::core::light::Base>(p);
 		assert(light);

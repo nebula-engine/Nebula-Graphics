@@ -173,7 +173,7 @@ void		THIS::render()
 	typedef neb::fnd::context::util::Parent C;
 	typedef neb::fnd::environ::util::Parent E;
 
-	auto lamb1 = [] (C::map_type::pointer p)
+	auto lamb1 = [] (C::S const & p)
 	{
 		if(p->E::front()->is_fnd_environ_three()) {
 			p->render();
@@ -182,7 +182,7 @@ void		THIS::render()
 
 	getParent()->C::for_each(lamb1);
 
-	auto lamb2 = [] (C::map_type::pointer p)
+	auto lamb2 = [] (C::S const & p)
 	{
 		if(p->E::front()->is_fnd_environ_two()) {
 			p->render();
@@ -252,7 +252,7 @@ void			THIS::resize()
 
 	typedef neb::fnd::context::util::Parent C;
 
-	auto lamb = [&] (C::map_type::pointer p)
+	auto lamb = [&] (C::S const & p)
 	{
 		//auto context = std::dynamic_pointer_cast<neb::gfx::context::base>(p);
 		//assert(context);

@@ -44,7 +44,7 @@ void		THIS::resize(int w, int h)
 	
 	typedef neb::fnd::environ::util::Parent E;
 
-	auto lamb = [&] (E::map_type::pointer p)
+	auto lamb = [&] (E::S const & p)
 	{
 		p->resize(w, h);
 	};
@@ -82,7 +82,7 @@ void		THIS::render()
 	typedef neb::fnd::environ::util::Parent E;
 
 
-	auto lamb1 = [&] (E::map_type::pointer p)
+	auto lamb1 = [&] (E::S const & p)
 	{
 		if(p->is_fnd_environ_three())
 			p->render(parent);
@@ -91,7 +91,7 @@ void		THIS::render()
 	parent->E::for_each(lamb1);
 
 	if(1) {
-	auto lamb2 = [&] (E::map_type::pointer p)
+	auto lamb2 = [&] (E::S const & p)
 	{
 		if(p->is_fnd_environ_two())
 			p->render(parent);
