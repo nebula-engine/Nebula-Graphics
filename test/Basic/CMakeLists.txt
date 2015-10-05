@@ -1,3 +1,8 @@
-add_executable(Basic main.cpp)
-target_link_libraries(Basic tinyxml2 math galaxy gru tinyxml2 math)
+PROJECT(Basic)
+
+#target_link_libraries(Basic Nebula boost_system boost_serialization Nebula)
+
+MESSAGE(STATUS "libs: ${libs}")
+
+link_exe()
 
